@@ -1,0 +1,1655 @@
+01/30/17 17:54:24 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:54:24 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:54:24 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:54:24 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:54:24 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:54:24 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:54:24 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:54:24 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:54:24 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.010880947113037
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.0007789134979248
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.0012640953063965
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00095295906066895
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.0006411075592041
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00056815147399902
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00079989433288574
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.000762939453125
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00066304206848145
+01/30/17 17:54:24 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.0010819435119629
+01/30/17 17:54:24 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.0006871223449707
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00086617469787598
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00086522102355957
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00084900856018066
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00081300735473633
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.00083279609680176
+01/30/17 17:54:24 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:54:24 [16628][-none-][INFO] Query Execution Time:0.0009608268737793
+01/30/17 17:54:25 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:54:25 [16628][-none-][INFO] Query Execution Time:0.0012631416320801
+01/30/17 17:54:25 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:54:25 [16628][-none-][INFO] Query Execution Time:0.00051498413085938
+01/30/17 17:54:25 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:54:25 [16628][-none-][INFO] Query Execution Time:0.00098514556884766
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.0010709762573242
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00074291229248047
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00076508522033691
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00081419944763184
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00070309638977051
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00097393989562988
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00081300735473633
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00063085556030273
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00069093704223633
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.0009300708770752
+01/30/17 17:54:25 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:54:25 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:54:25 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:54:25 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:54:25 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:54:25 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:54:25 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:54:25 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:54:25 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.01148796081543
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00075006484985352
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00089693069458008
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00092792510986328
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00063204765319824
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00058817863464355
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.0005180835723877
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00072908401489258
+01/30/17 17:54:25 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00067305564880371
+01/30/17 17:54:25 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00092482566833496
+01/30/17 17:54:25 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00074386596679688
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00067782402038574
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.0010330677032471
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00059294700622559
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailTemplates' AND  deleted = 0
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00081896781921387
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT email_templates.* FROM email_templates  WHERE email_templates.id = '65380aa0-b305-1f21-b57d-58308df819f0' AND email_templates.deleted=0 LIMIT 0,1
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.0008847713470459
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00080299377441406
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.0011100769042969
+01/30/17 17:54:25 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:54:25 [16628][1][INFO] Query Execution Time:0.00056195259094238
+01/30/17 17:54:26 [16628][1][INFO] Query:INSERT INTO tracker (monitor_id,user_id,module_name,item_id,item_summary,date_modified,action,session_id,visible ) VALUES ( 'ddbf04e8-2c0c-fa78-53bd-588f6f993c77','1','EmailTemplates','65380aa0-b305-1f21-b57d-58308df819f0','Pruebas C1 Adagio','2017-01-30 16:54:24','editview','g1a1irr2o4lr0fmi78kv11r4o2','1')
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0044848918914795
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.00081610679626465
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Trackers' AND  deleted = 0
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.00090885162353516
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT item_id, item_summary, module_name, id FROM tracker WHERE id = (SELECT MAX(id) as id FROM tracker WHERE user_id = '1' AND deleted = 0 AND visible = 1) LIMIT 0,50
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0049259662628174
+01/30/17 17:54:26 [16628][1][INFO] Query:DELETE FROM tracker where id = '173552'
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0056240558624268
+01/30/17 17:54:26 [16628][1][INFO] Tracker: retrieving 10 items
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.00090909004211426
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0012080669403076
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.00059413909912109
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='zr2_ReportTemplate' AND  deleted = 0
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0011248588562012
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_reporttemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_reporttemplate   LEFT JOIN  users jt0 ON zr2_reporttemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_reporttemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_reporttemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_reporttemplate.deleted=0 ORDER BY zr2_reporttemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0011200904846191
+01/30/17 17:54:26 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='zr2_QueryTemplate' AND  deleted = 0
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.00090813636779785
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_querytemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_querytemplate   LEFT JOIN  users jt0 ON zr2_querytemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_querytemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_querytemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_querytemplate.deleted=0 ORDER BY zr2_querytemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0011110305786133
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_reporttemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_reporttemplate   LEFT JOIN  users jt0 ON zr2_reporttemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_reporttemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_reporttemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_reporttemplate.deleted=0 ORDER BY zr2_reporttemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0013420581817627
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_querytemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_querytemplate   LEFT JOIN  users jt0 ON zr2_querytemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_querytemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_querytemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_querytemplate.deleted=0 ORDER BY zr2_querytemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0011739730834961
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_reporttemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_reporttemplate   LEFT JOIN  users jt0 ON zr2_reporttemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_reporttemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_reporttemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_reporttemplate.deleted=0 ORDER BY zr2_reporttemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0011680126190186
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_querytemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_querytemplate   LEFT JOIN  users jt0 ON zr2_querytemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_querytemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_querytemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_querytemplate.deleted=0 ORDER BY zr2_querytemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0012049674987793
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_reporttemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_reporttemplate   LEFT JOIN  users jt0 ON zr2_reporttemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_reporttemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_reporttemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_reporttemplate.deleted=0 ORDER BY zr2_reporttemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.001105785369873
+01/30/17 17:54:26 [16628][1][INFO] Query: SELECT  zr2_querytemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_querytemplate   LEFT JOIN  users jt0 ON zr2_querytemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_querytemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_querytemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_querytemplate.deleted=0 ORDER BY zr2_querytemplate.name
+01/30/17 17:54:26 [16628][1][INFO] Query Execution Time:0.0010738372802734
+01/30/17 17:54:26 [16628][1][WARN] Image CrearExpan_GestionSolicitudes.gif not found
+01/30/17 17:54:27 [16628][1][INFO] Query: SELECT  zr2_reporttemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_reporttemplate   LEFT JOIN  users jt0 ON zr2_reporttemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_reporttemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_reporttemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_reporttemplate.deleted=0 ORDER BY zr2_reporttemplate.name
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.0011739730834961
+01/30/17 17:54:27 [16628][1][INFO] Query: SELECT  zr2_querytemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_querytemplate   LEFT JOIN  users jt0 ON zr2_querytemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_querytemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_querytemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_querytemplate.deleted=0 ORDER BY zr2_querytemplate.name
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.0010650157928467
+01/30/17 17:54:27 [16628][1][INFO] Query: SELECT  zr2_reporttemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_reporttemplate   LEFT JOIN  users jt0 ON zr2_reporttemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_reporttemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_reporttemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_reporttemplate.deleted=0 ORDER BY zr2_reporttemplate.name
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.0011119842529297
+01/30/17 17:54:27 [16628][1][INFO] Query: SELECT  zr2_querytemplate.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) modified_by_name , jt0.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) created_by_name , jt1.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) assigned_user_name , jt2.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM zr2_querytemplate   LEFT JOIN  users jt0 ON zr2_querytemplate.modified_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON zr2_querytemplate.created_by=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON zr2_querytemplate.assigned_user_id=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0 where zr2_querytemplate.deleted=0 ORDER BY zr2_querytemplate.name
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.0010650157928467
+01/30/17 17:54:27 [16628][1][WARN] Image CrearExpan_Evento.gif not found
+01/30/17 17:54:27 [16628][1][WARN] Image CrearExpin_Informes.gif not found
+01/30/17 17:54:27 [16628][1][WARN] Image CrearExpma_Mailing.gif not found
+01/30/17 17:54:27 [16628][1][WARN] Image CrearExpan_IncidenciaCorreo.gif not found
+01/30/17 17:54:27 [16628][1][INFO] Query:SELECT email_templates.* FROM email_templates  WHERE email_templates.id = '65380aa0-b305-1f21-b57d-58308df819f0' AND email_templates.deleted=0 LIMIT 0,1
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.00086188316345215
+01/30/17 17:54:27 [16628][1][INFO] EmailTemplate detail view
+01/30/17 17:54:27 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Contacts' AND  deleted = 0
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.00088095664978027
+01/30/17 17:54:27 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Accounts' AND  deleted = 0
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.00084805488586426
+01/30/17 17:54:27 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Leads' AND  deleted = 0
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.00086617469787598
+01/30/17 17:54:27 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Prospects' AND  deleted = 0
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.00087308883666992
+01/30/17 17:54:27 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Notes' AND  deleted = 0
+01/30/17 17:54:27 [16628][1][INFO] Query Execution Time:0.00080084800720215
+01/30/17 17:54:28 [16628][1][INFO] Query: SELECT  notes.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) assigned_user_name , jt0.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt1.first_name,''),' ',IFNULL(jt1.last_name,'')))) modified_by_name , jt1.created_by modified_by_name_owner  , 'Users' modified_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(jt2.first_name,''),' ',IFNULL(jt2.last_name,'')))) created_by_name , jt2.created_by created_by_name_owner  , 'Users' created_by_name_mod , LTRIM(RTRIM(CONCAT(IFNULL(contacts.first_name,''),' ',IFNULL(contacts.last_name,'')))) contact_name , contacts.assigned_user_id contact_name_owner  , 'Contacts' contact_name_mod FROM notes   LEFT JOIN  users jt0 ON notes.assigned_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0  LEFT JOIN  users jt1 ON notes.modified_user_id=jt1.id AND jt1.deleted=0
+
+ AND jt1.deleted=0  LEFT JOIN  users jt2 ON notes.created_by=jt2.id AND jt2.deleted=0
+
+ AND jt2.deleted=0  LEFT JOIN  contacts contacts ON notes.contact_id=contacts.id AND contacts.deleted=0
+
+ AND contacts.deleted=0 where (notes.parent_id='65380aa0-b305-1f21-b57d-58308df819f0' AND notes.filename IS NOT NULL) AND notes.deleted=0
+01/30/17 17:54:28 [16628][1][INFO] Query Execution Time:0.0015139579772949
+01/30/17 17:54:28 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:54:28 [16628][1][INFO] Query Execution Time:0.00087308883666992
+01/30/17 17:54:28 [16628][1][INFO] Query:SELECT id ,emails.name as parent_name , emails.assigned_user_id owner FROM emails WHERE deleted=0 AND id='65380aa0-b305-1f21-b57d-58308df819f0'
+01/30/17 17:54:28 [16628][1][INFO] Query Execution Time:0.00066995620727539
+01/30/17 17:54:28 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Contacts' AND  deleted = 0
+01/30/17 17:54:28 [16628][1][INFO] Query Execution Time:0.00075817108154297
+01/30/17 17:56:47 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:47 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:47 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:47 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:47 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:47 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:47 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:47 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:47 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.010428905487061
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.00076699256896973
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.0009770393371582
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.00089192390441895
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.00074005126953125
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.00063586235046387
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.00068187713623047
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.0008997917175293
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.0007328987121582
+01/30/17 17:56:47 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:47 [16628][-none-][INFO] Query Execution Time:0.0011439323425293
+01/30/17 17:56:47 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.00087308883666992
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.00095582008361816
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.001021146774292
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.00092315673828125
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.00096392631530762
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.00091695785522461
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.0010640621185303
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.0013530254364014
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.00072407722473145
+01/30/17 17:56:48 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:48 [16628][-none-][INFO] Query Execution Time:0.0011210441589355
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.0011570453643799
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00079202651977539
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00083494186401367
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00087809562683105
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00070691108703613
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.0013420581817627
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00082707405090332
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00089597702026367
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00074005126953125
+01/30/17 17:56:48 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.0010361671447754
+01/30/17 17:56:48 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:48 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:48 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:48 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:48 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:48 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:48 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:48 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:48 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.0103919506073
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00070691108703613
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00083708763122559
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00078010559082031
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00078988075256348
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00064516067504883
+01/30/17 17:56:48 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:48 [16628][1][INFO] Query Execution Time:0.00066018104553223
+01/30/17 17:56:49 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00081300735473633
+01/30/17 17:56:49 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.0007939338684082
+01/30/17 17:56:49 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.0011131763458252
+01/30/17 17:56:49 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00086808204650879
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00077486038208008
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.0011870861053467
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00059294700622559
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00093483924865723
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00076079368591309
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.0011470317840576
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00057792663574219
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Trackers' AND  deleted = 0
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.000885009765625
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT item_id, item_summary, module_name, id FROM tracker WHERE id = (SELECT MAX(id) as id FROM tracker WHERE user_id = '1' AND deleted = 0 AND visible = 1) LIMIT 0,50
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.0045328140258789
+01/30/17 17:56:49 [16628][1][INFO] Tracker: retrieving 10 items
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00078105926513672
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.0011610984802246
+01/30/17 17:56:49 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:49 [16628][1][INFO] Query Execution Time:0.00047802925109863
+01/30/17 17:56:49 [16628][1][WARN] Image CrearExpan_GestionSolicitudes.gif not found
+01/30/17 17:56:49 [16628][1][WARN] Image CrearExpan_Evento.gif not found
+01/30/17 17:56:49 [16628][1][WARN] Image CrearExpin_Informes.gif not found
+01/30/17 17:56:49 [16628][1][WARN] Image CrearExpma_Mailing.gif not found
+01/30/17 17:56:50 [16628][1][WARN] Image CrearExpan_IncidenciaCorreo.gif not found
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM folders f WHERE f.created_by = '1' AND f.deleted = 0 AND coalesce(LENGTH(f.folder_type),0) > 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.001352071762085
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='InboundEmail' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00085210800170898
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.0011739730834961
+01/30/17 17:56:50 [16628][1][DEPRECATED] User::getPreference() should not be used statically.
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Contacts' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00094199180603027
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Leads' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00091314315795898
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Prospects' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00087285041809082
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Accounts' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00088596343994141
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Bugs' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00092506408691406
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Cases' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.0010039806365967
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Opportunities' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00092101097106934
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Tasks' AND  deleted = 0
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00085806846618652
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.0011811256408691
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT id FROM inbound_email WHERE group_id = '1' AND deleted = 0 AND status = 'Active'  order by name
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.0013730525970459
+01/30/17 17:56:50 [16628][1][INFO] Query:SELECT inbound_email.* FROM inbound_email  WHERE inbound_email.id = 'ba687278-5ac6-9d1e-f9c1-55106397d004' AND inbound_email.deleted=0 LIMIT 0,1
+01/30/17 17:56:50 [16628][1][INFO] Query Execution Time:0.00089693069458008
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT * FROM users_signatures WHERE user_id = '1' AND deleted = 0 ORDER BY name ASC
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.001863956451416
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT * FROM users_signatures WHERE user_id = '1' AND deleted = 0 ORDER BY name ASC
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.0015270709991455
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailTemplates' AND  deleted = 0
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.00088596343994141
+01/30/17 17:56:51 [16628][1][INFO] Query: SELECT  email_templates.*  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) assigned_user_name , jt0.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod FROM email_templates   LEFT JOIN  users jt0 ON email_templates.assigned_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0 where ((type IS NULL OR type='' OR type='email')) AND email_templates.deleted=0
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.0011229515075684
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT id, user_name FROM users WHERE users.is_group = 1 AND deleted = 0
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.00069308280944824
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT inbound_email.* FROM inbound_email  WHERE group_id = '1' AND deleted=0 LIMIT 0,1
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.0012421607971191
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT id FROM inbound_email WHERE group_id = '1' AND deleted = 0 AND status = 'Active'  order by name
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.0010111331939697
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT inbound_email.* FROM inbound_email  WHERE inbound_email.id = 'ba687278-5ac6-9d1e-f9c1-55106397d004' AND inbound_email.deleted=0 LIMIT 0,1
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.00072002410888672
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT count(*) c FROM email_cache WHERE mbox = 'INBOX' AND seen = 0 AND ie_id = 'ba687278-5ac6-9d1e-f9c1-55106397d004'
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.0037541389465332
+01/30/17 17:56:51 [16628][1][INFO] Query:SELECT inbound_email.id FROM inbound_email  WHERE is_personal = 0 AND (groupfolder_id is null OR groupfolder_id = '') AND mailbox_type not like 'bounce' AND inbound_email.deleted = 0 AND status = 'Active' 
+01/30/17 17:56:51 [16628][1][INFO] Query Execution Time:0.0013818740844727
+01/30/17 17:56:53 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:53 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:53 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:53 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:53 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:53 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.012320041656494
+01/30/17 17:56:53 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.010565042495728
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.0007178783416748
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.001166820526123
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.0006101131439209
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00089216232299805
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00075387954711914
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00085902214050293
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00072193145751953
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00081992149353027
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00082612037658691
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00068807601928711
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00075602531433105
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00066113471984863
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00061511993408203
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00082898139953613
+01/30/17 17:56:53 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:53 [16628][-none-][INFO] Query Execution Time:0.00087189674377441
+01/30/17 17:56:54 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0011518001556396
+01/30/17 17:56:54 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00067496299743652
+01/30/17 17:56:54 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0011448860168457
+01/30/17 17:56:54 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:54 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00071287155151367
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00092911720275879
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00061202049255371
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00091218948364258
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00095796585083008
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0012331008911133
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.001317024230957
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0012381076812744
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00095295906066895
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00083804130554199
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00087904930114746
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0011990070343018
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0011539459228516
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0014448165893555
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0017838478088379
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00068116188049316
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0018799304962158
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.00092005729675293
+01/30/17 17:56:54 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.0012319087982178
+01/30/17 17:56:54 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:54 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:54 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:56:54 [16628][1][INFO] Query Execution Time:0.0013961791992188
+01/30/17 17:56:54 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:54 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:54 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:54 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:54 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:54 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:54 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:54 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:54 [16628][-none-][INFO] Query Execution Time:0.01479697227478
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00082492828369141
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00078010559082031
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.0014240741729736
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00077581405639648
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0006871223449707
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.001227855682373
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00063109397888184
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00076389312744141
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00068092346191406
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00075221061706543
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0013220310211182
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00074291229248047
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00085687637329102
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00081896781921387
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.0007929801940918
+01/30/17 17:56:55 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.001223087310791
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00073885917663574
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0009300708770752
+01/30/17 17:56:55 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:55 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:55 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:55 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:55 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:55 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:55 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:55 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:55 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:55 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00074005126953125
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.011970043182373
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00097894668579102
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00094485282897949
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00075197219848633
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0013008117675781
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.0011241436004639
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.0011498928070068
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00099611282348633
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00098896026611328
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00071811676025391
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.0010991096496582
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00062108039855957
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00083684921264648
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00080204010009766
+01/30/17 17:56:55 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00070023536682129
+01/30/17 17:56:55 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0011961460113525
+01/30/17 17:56:55 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00074005126953125
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00072693824768066
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0018320083618164
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00087189674377441
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.0013079643249512
+01/30/17 17:56:55 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:55 [16628][-none-][INFO] Query Execution Time:0.00049996376037598
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00094199180603027
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00089097023010254
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.0016520023345947
+01/30/17 17:56:55 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:55 [16628][1][INFO] Query Execution Time:0.00089693069458008
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00085616111755371
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.001223087310791
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00069403648376465
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='InboundEmail' AND  deleted = 0
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00088715553283691
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT inbound_email.* FROM inbound_email  WHERE group_id = '1' AND deleted=0 LIMIT 0,1
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.0019268989562988
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT id FROM inbound_email WHERE group_id = '1' AND deleted = 0 AND status = 'Active'  order by name
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.0010700225830078
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT inbound_email.* FROM inbound_email  WHERE inbound_email.id = 'ba687278-5ac6-9d1e-f9c1-55106397d004' AND inbound_email.deleted=0 LIMIT 0,1
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00093603134155273
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT count(*) c FROM email_cache WHERE mbox = 'INBOX' AND seen = 0 AND ie_id = 'ba687278-5ac6-9d1e-f9c1-55106397d004'
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.006415843963623
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT inbound_email.id FROM inbound_email  WHERE is_personal = 0 AND (groupfolder_id is null OR groupfolder_id = '') AND mailbox_type not like 'bounce' AND inbound_email.deleted = 0 AND status = 'Active' 
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00090789794921875
+01/30/17 17:56:56 [16628][1][INFO] [EMAIL] - Done checkEmail action for user [geonegoc]
+01/30/17 17:56:56 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:56 [16628][-none-][INFO] Query Execution Time:0.0011558532714844
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.0018379688262939
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.000762939453125
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00092601776123047
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.0010731220245361
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00085115432739258
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.0010819435119629
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00098586082458496
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00081706047058105
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00082802772521973
+01/30/17 17:56:56 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.0011579990386963
+01/30/17 17:56:56 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:56 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:56 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:56 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:56 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:56 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:56 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:56 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:56 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:56 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.010362148284912
+01/30/17 17:56:56 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00079202651977539
+01/30/17 17:56:56 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.001147985458374
+01/30/17 17:56:56 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:56 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:56 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:56 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:56 [16628][1][INFO] Query Execution Time:0.00094079971313477
+01/30/17 17:56:57 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:57 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:57 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:57 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:57 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:57 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00065922737121582
+01/30/17 17:56:57 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:57 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00057697296142578
+01/30/17 17:56:57 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00079488754272461
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:57 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00073003768920898
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.011196851730347
+01/30/17 17:56:57 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00084590911865234
+01/30/17 17:56:57 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0013020038604736
+01/30/17 17:56:57 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00063300132751465
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00096511840820312
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0009918212890625
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00097084045410156
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0016169548034668
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00089693069458008
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0007479190826416
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0008549690246582
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00089120864868164
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0010819435119629
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0010719299316406
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00089597702026367
+01/30/17 17:56:57 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0017001628875732
+01/30/17 17:56:57 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0011129379272461
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00090193748474121
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0012021064758301
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00095701217651367
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0018949508666992
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00072789192199707
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.001054048538208
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0010130405426025
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0013298988342285
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00060892105102539
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00088691711425781
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00099992752075195
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00087594985961914
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0012941360473633
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='InboundEmail' AND  deleted = 0
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0010099411010742
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT inbound_email.* FROM inbound_email  WHERE inbound_email.id = 'ba687278-5ac6-9d1e-f9c1-55106397d004' AND inbound_email.deleted=0 LIMIT 0,1
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00091195106506348
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT count(*) c FROM email_cache WHERE ie_id = 'ba687278-5ac6-9d1e-f9c1-55106397d004'
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0023140907287598
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0012860298156738
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT * FROM email_cache WHERE ie_id = 'ba687278-5ac6-9d1e-f9c1-55106397d004' AND mbox = 'undefined'  ORDER BY senddate DESC LIMIT 0,50
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00077199935913086
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.00049805641174316
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT ie_timestamp FROM inbound_email_cache_ts WHERE id = 'ba687278-5ac6-9d1e-f9c1-55106397d004_undefined'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00049209594726562
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT count(*) c FROM email_cache WHERE mbox = 'undefined' AND ie_id = 'ba687278-5ac6-9d1e-f9c1-55106397d004'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00068497657775879
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT count(*) c FROM email_cache WHERE mbox = 'undefined' AND ie_id = 'ba687278-5ac6-9d1e-f9c1-55106397d004' AND seen = '0'
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.00063800811767578
+01/30/17 17:56:57 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:57 [16628][-none-][INFO] Query Execution Time:0.0012731552124023
+01/30/17 17:56:57 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:56:57 [16628][1][INFO] Query Execution Time:0.0015430450439453
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.000701904296875
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00075197219848633
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00088000297546387
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00081300735473633
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.0012099742889404
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00092101097106934
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00070095062255859
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00079798698425293
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.0012071132659912
+01/30/17 17:56:58 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:56:58 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:56:58 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:56:58 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:56:58 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:56:58 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:56:58 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:56:58 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:56:58 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.010464906692505
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00083017349243164
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.0012898445129395
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00080490112304688
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00062203407287598
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00058913230895996
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00061202049255371
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00070595741271973
+01/30/17 17:56:58 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00069117546081543
+01/30/17 17:56:58 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00093197822570801
+01/30/17 17:56:58 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00077986717224121
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00065493583679199
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.0012378692626953
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00056290626525879
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailTemplates' AND  deleted = 0
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00091695785522461
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00077509880065918
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.0011019706726074
+01/30/17 17:56:58 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:58 [16628][1][INFO] Query Execution Time:0.00054287910461426
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.0010020732879639
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Trackers' AND  deleted = 0
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.0009150505065918
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT item_id, item_summary, module_name, id FROM tracker WHERE id = (SELECT MAX(id) as id FROM tracker WHERE user_id = '1' AND deleted = 0 AND visible = 1) LIMIT 0,50
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.0052039623260498
+01/30/17 17:56:59 [16628][1][INFO] Tracker: retrieving 10 items
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.00093197822570801
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.0012669563293457
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.00061488151550293
+01/30/17 17:56:59 [16628][1][WARN] Image CrearExpan_GestionSolicitudes.gif not found
+01/30/17 17:56:59 [16628][1][WARN] Image CrearExpan_Evento.gif not found
+01/30/17 17:56:59 [16628][1][WARN] Image CrearExpin_Informes.gif not found
+01/30/17 17:56:59 [16628][1][WARN] Image CrearExpma_Mailing.gif not found
+01/30/17 17:56:59 [16628][1][WARN] Image CrearExpan_IncidenciaCorreo.gif not found
+01/30/17 17:56:59 [16628][1][INFO] List View Where Clause: 
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='SavedSearch' AND  deleted = 0
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.00095796585083008
+01/30/17 17:56:59 [16628][1][INFO] Query:SELECT id, name FROM saved_search
+                  WHERE
+                    deleted = '0' AND
+                    assigned_user_id = '1' AND
+                    search_module =  'EmailTemplates'
+                  ORDER BY name
+01/30/17 17:56:59 [16628][1][INFO] Query Execution Time:0.0012938976287842
+01/30/17 17:56:59 [16628][1][DEPRECATED] Using row number in fetchByAssoc is not portable and no longer supported. Please fix your code.
+01/30/17 17:57:01 [16628][1][INFO] Query: SELECT  email_templates.id , email_templates.name , email_templates.type , email_templates.description  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) assigned_user_name , jt0.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod, email_templates.date_modified , email_templates.date_entered , email_templates.assigned_user_id  FROM email_templates   LEFT JOIN  users jt0 ON email_templates.assigned_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0 where email_templates.deleted=0 ORDER BY email_templates.date_entered DESC LIMIT 0,46
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.0012168884277344
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'system'
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.0010290145874023
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.0014209747314453
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.00063896179199219
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT meetings.id, name,reminder_time, description,location, status, parent_type, parent_id, date_start, assigned_user_id
+			FROM meetings LEFT JOIN meetings_users ON meetings.id = meetings_users.meeting_id
+			WHERE meetings_users.user_id ='1'
+				AND meetings_users.accept_status != 'decline'
+				AND meetings.reminder_time != -1
+				AND meetings_users.deleted != 1
+				AND meetings.status = 'Planned'
+			    AND date_start >= '2017-01-30 16:56:54'
+			    AND date_start <= '2017-01-31 17:56:54'
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.0012929439544678
+01/30/17 17:57:01 [16628][1][INFO] Query:
+				SELECT calls.id, name, reminder_time, description, date_start, status, parent_type, parent_id
+				FROM calls LEFT JOIN calls_users ON calls.id = calls_users.call_id
+				WHERE calls_users.user_id ='1'
+				    AND calls_users.accept_status != 'decline'
+				    AND calls.reminder_time != -1
+					AND calls_users.deleted != 1
+					AND calls.status = 'Planned'
+				    AND date_start >= '2017-01-30 16:56:54'
+				    AND date_start <= '2017-01-31 17:56:54'
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.00098109245300293
+01/30/17 17:57:01 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:57:01 [16628][-none-][INFO] Query Execution Time:0.0011341571807861
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.0015990734100342
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.00098085403442383
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.00078511238098145
+01/30/17 17:57:01 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:57:01 [16628][1][INFO] Query Execution Time:0.00099706649780273
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0008399486541748
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0012831687927246
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0010659694671631
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00096702575683594
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00067996978759766
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0011959075927734
+01/30/17 17:57:02 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:57:02 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:57:02 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:57:02 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:57:02 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:57:02 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:57:02 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:57:02 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:57:02 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.012202978134155
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00062990188598633
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00088691711425781
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0009770393371582
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00095605850219727
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00072312355041504
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00061988830566406
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00072407722473145
+01/30/17 17:57:02 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00067996978759766
+01/30/17 17:57:02 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00099682807922363
+01/30/17 17:57:02 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00074505805969238
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0009160041809082
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0015931129455566
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00067996978759766
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00087809562683105
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00097107887268066
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.0015959739685059
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00059890747070312
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00082492828369141
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.001284122467041
+01/30/17 17:57:02 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:02 [16628][1][INFO] Query Execution Time:0.00055408477783203
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='InboundEmail' AND  deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0010550022125244
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT f.id, f.name, f.has_child, f.is_group, f.is_dynamic, f.dynamic_query, f.folder_type, f.created_by, i.deleted FROM folders f LEFT JOIN folders_subscriptions fs ON f.id = fs.folder_id LEFT JOIN inbound_email i on  i.groupfolder_id = f.id WHERE f.deleted = 0 AND fs.assigned_user_id = '1' AND (f.parent_folder IS NULL OR f.parent_folder = '') ORDER BY f.is_dynamic, f.is_group, f.name ASC 
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.01621413230896
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT folder_id FROM folders_subscriptions WHERE assigned_user_id = '1'
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00095796585083008
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'd843a478-4be3-131d-fce4-557704b303fd' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0007941722869873
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'd843a478-4be3-131d-fce4-557704b303fd' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0055279731750488
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '992e4b23-2dba-387e-b267-557728cf0e72' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00057792663574219
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '992e4b23-2dba-387e-b267-557728cf0e72' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.010967969894409
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'a8c47369-1d85-eb88-6173-55ca5fb443d8' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00075793266296387
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'a8c47369-1d85-eb88-6173-55ca5fb443d8' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0015220642089844
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '30c600a9-271f-3088-b816-557723220849' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0005640983581543
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '30c600a9-271f-3088-b816-557723220849' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0021579265594482
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '83e8dd3c-8c56-a538-d473-55771b82b5ea' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0007021427154541
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '83e8dd3c-8c56-a538-d473-55771b82b5ea' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0013630390167236
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '43f8b088-f5ee-321a-5a52-55ca60905e2a' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00057482719421387
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '43f8b088-f5ee-321a-5a52-55ca60905e2a' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0020570755004883
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '42a5dda5-0354-89d7-a055-5577061f6e31' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00069999694824219
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '42a5dda5-0354-89d7-a055-5577061f6e31' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0051479339599609
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '40e30a71-a67d-1beb-89a4-557712f5ac4e' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00057411193847656
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '40e30a71-a67d-1beb-89a4-557712f5ac4e' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0062370300292969
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'a00918a8-d1c4-3666-2ae8-572a16df6a90' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00072407722473145
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'a00918a8-d1c4-3666-2ae8-572a16df6a90' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00083804130554199
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '6332cbaf-a05a-1773-1dd8-5577215104a5' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00053882598876953
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '6332cbaf-a05a-1773-1dd8-5577215104a5' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.018174171447754
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '9103b970-e285-5594-f3fe-55771139fc31' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00069284439086914
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '9103b970-e285-5594-f3fe-55771139fc31' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.001054048538208
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '38bce905-a10c-18ae-bf06-5577117bd9a1' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00055193901062012
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '38bce905-a10c-18ae-bf06-5577117bd9a1' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0020151138305664
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '20c1a037-ea60-8f8d-e881-56cf48ce7672' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0006871223449707
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '20c1a037-ea60-8f8d-e881-56cf48ce7672' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00096893310546875
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '25661514-4a07-5c2a-663d-5577210245f8' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00070786476135254
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '25661514-4a07-5c2a-663d-5577210245f8' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0092241764068604
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'd86c4c7a-f4ac-a85d-9800-56cf47f32856' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0010218620300293
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'd86c4c7a-f4ac-a85d-9800-56cf47f32856' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.001291036605835
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '93680aa4-fb40-72bc-b9c8-55772fd10b8f' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00081610679626465
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '93680aa4-fb40-72bc-b9c8-55772fd10b8f' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.02666711807251
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '79030d4d-c5e3-fda2-81f8-55773177dd20' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0007481575012207
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '79030d4d-c5e3-fda2-81f8-55773177dd20' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00642991065979
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'eb885a8a-eb8f-8b6e-b37e-557720698d29' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00068497657775879
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'eb885a8a-eb8f-8b6e-b37e-557720698d29' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.000885009765625
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '65467e5b-9b72-1bc1-88b6-557728be03f5' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00068092346191406
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '65467e5b-9b72-1bc1-88b6-557728be03f5' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0047650337219238
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '2db06b60-9205-48f4-fe2b-5773f1f09894' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00058579444885254
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '2db06b60-9205-48f4-fe2b-5773f1f09894' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0007929801940918
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'c89f424f-749b-c83c-7676-557728b1e904' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00055599212646484
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'c89f424f-749b-c83c-7676-557728b1e904' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.002863883972168
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'ca510b58-bad5-2429-cc48-55771e9a9756' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00068378448486328
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'ca510b58-bad5-2429-cc48-55771e9a9756' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00076198577880859
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '59b07ff3-6ad8-ff2c-b66c-578656abd319' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00057697296142578
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '59b07ff3-6ad8-ff2c-b66c-578656abd319' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00079011917114258
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'd45ab3cb-943c-b094-ac43-55772882e547' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00052809715270996
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'd45ab3cb-943c-b094-ac43-55772882e547' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0087239742279053
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '30071812-c024-a798-cf57-55772064f6d8' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00072193145751953
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '30071812-c024-a798-cf57-55772064f6d8' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.011316061019897
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '5a01ff36-ecab-dedc-0e7b-572308cc9cb4' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00065803527832031
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '5a01ff36-ecab-dedc-0e7b-572308cc9cb4' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00075507164001465
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '9a30a380-2466-d01e-7683-55772202d673' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00061297416687012
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '9a30a380-2466-d01e-7683-55772202d673' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0032660961151123
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'ef98edf1-3f1c-3f7e-1ebf-55fae2fbb357' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00067019462585449
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'ef98edf1-3f1c-3f7e-1ebf-55fae2fbb357' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.002842903137207
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'e0c12219-3ee2-42d1-8a49-55714094b417' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00066184997558594
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'e0c12219-3ee2-42d1-8a49-55714094b417' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.01996898651123
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'a4d234db-2fab-24ed-d12a-55f95f329b84' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00084495544433594
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'a4d234db-2fab-24ed-d12a-55f95f329b84' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0016889572143555
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = '8d97d9d6-4d40-be8f-ae60-557723ed9fd0' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00060105323791504
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = '8d97d9d6-4d40-be8f-ae60-557723ed9fd0' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0014641284942627
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'b065e8f8-1b21-f9f7-2d21-55771bba7ccd' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00065708160400391
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM folders_rel fr JOIN emails on fr.folder_id = 'b065e8f8-1b21-f9f7-2d21-55771bba7ccd' AND fr.deleted = 0 AND fr.polymorphic_id = emails.id AND emails.status = 'unread' AND emails.deleted = 0 AND (emails.assigned_user_id is null or emails.assigned_user_id = '')
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0077559947967529
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'c12821e3-cda7-313c-81cc-537f7d0634a4' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00068283081054688
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM emails JOIN emails_text on emails.id = emails_text.email_id
+                                   WHERE (type = 'inbound' OR status = 'inbound') AND assigned_user_id = '1' AND emails.deleted=0 AND emails.status NOT IN ('sent', 'archived', 'draft') AND emails.type NOT IN ('out', 'archived', 'draft') AND emails.status = 'unread'
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0010318756103516
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT f.id, f.name, f.has_child, f.is_group, f.is_dynamic, f.dynamic_query, f.folder_type, f.created_by, i.deleted FROM folders f left join inbound_email i on f.id = i.groupfolder_id WHERE f.deleted = 0 AND parent_folder = 'c12821e3-cda7-313c-81cc-537f7d0634a4'
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0013289451599121
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'c39052d0-41d3-d75e-177f-537f7d677def' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00070285797119141
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM emails JOIN emails_text on emails.id = emails_text.email_id
+                                   WHERE (type = 'draft' OR status = 'draft') AND assigned_user_id = '1' AND emails.deleted=0 AND emails.status NOT IN ('archived') AND emails.type NOT IN ('archived') AND emails.status = 'unread'
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00083303451538086
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'c5a6c8aa-9482-7df0-2e8c-537f7d859283' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00062704086303711
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM emails JOIN emails_text on emails.id = emails_text.email_id
+                                   WHERE (type = 'out' OR status = 'sent') AND assigned_user_id = '1' AND emails.deleted=0 AND emails.status NOT IN ('archived') AND emails.type NOT IN ('archived') AND emails.status = 'unread'
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0010740756988525
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT * FROM folders WHERE id = 'c7e43475-c090-a868-7606-537f7d317504' AND deleted = 0
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.00073695182800293
+01/30/17 17:57:03 [16628][1][INFO] Query:SELECT count(*) c FROM emails
+JOIN emails_text on emails.id = emails_text.email_id
+WHERE emails.deleted=0 AND emails.type NOT IN ('out', 'draft') AND emails.status NOT IN ('sent', 'draft') AND emails.id IN (
+SELECT eear.email_id FROM emails_email_addr_rel eear
+JOIN email_addr_bean_rel eabr ON eabr.email_address_id=eear.email_address_id AND eabr.bean_id = '1' AND eabr.bean_module = 'Users'
+WHERE eear.deleted=0
+) AND emails.status = 'unread'
+01/30/17 17:57:03 [16628][1][INFO] Query Execution Time:0.0012600421905518
+01/30/17 17:57:10 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:57:10 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:57:10 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:57:10 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:57:10 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:57:10 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:57:10 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:57:10 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:57:10 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.010351181030273
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00068211555480957
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00093889236450195
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00097489356994629
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00069999694824219
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00068807601928711
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00065803527832031
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00081419944763184
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00066184997558594
+01/30/17 17:57:10 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.0010690689086914
+01/30/17 17:57:10 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:57:10 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.0007319450378418
+01/30/17 17:57:10 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:57:10 [16628][-none-][INFO] Query Execution Time:0.00082802772521973
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.0010159015655518
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.00090813636779785
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.00083303451538086
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.00083708763122559
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.00091910362243652
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.0012691020965576
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.00050497055053711
+01/30/17 17:57:11 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:57:11 [16628][-none-][INFO] Query Execution Time:0.0010268688201904
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.001093864440918
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00078797340393066
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00077486038208008
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00086593627929688
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00072693824768066
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.0010910034179688
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00083708763122559
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00075197219848633
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00079703330993652
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.0010240077972412
+01/30/17 17:57:11 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:57:11 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:57:11 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:57:11 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:57:11 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:57:11 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:57:11 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:57:11 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:57:11 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.010301828384399
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00065183639526367
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00080299377441406
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00074887275695801
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00057697296142578
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00057315826416016
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00057291984558105
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00083804130554199
+01/30/17 17:57:11 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.000701904296875
+01/30/17 17:57:11 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.0010449886322021
+01/30/17 17:57:11 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.0008242130279541
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00073909759521484
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.0011739730834961
+01/30/17 17:57:11 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:11 [16628][1][INFO] Query Execution Time:0.00059294700622559
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailTemplates' AND  deleted = 0
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00087594985961914
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00077390670776367
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.0012288093566895
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00054597854614258
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00079894065856934
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.0011501312255859
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00068211555480957
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE status='Active' AND portal_only=0  ORDER BY first_name, last_name ASC
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.0012860298156738
+01/30/17 17:57:12 [16628][1][INFO] List View Where Clause: 
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='SavedSearch' AND  deleted = 0
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00099396705627441
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT id, name FROM saved_search
+				  WHERE
+					deleted = '0' AND
+				  	assigned_user_id = '1' AND
+					search_module =  'EmailTemplates'
+				  ORDER BY name
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.0010008811950684
+01/30/17 17:57:12 [16628][1][DEPRECATED] Using row number in fetchByAssoc is not portable and no longer supported. Please fix your code.
+01/30/17 17:57:12 [16628][1][INFO] Query:SELECT id, name FROM saved_search
+                  WHERE
+                    deleted = '0' AND
+                    assigned_user_id = '1' AND
+                    search_module =  'EmailTemplates'
+                  ORDER BY name
+01/30/17 17:57:12 [16628][1][INFO] Query Execution Time:0.00092601776123047
+01/30/17 17:57:12 [16628][1][DEPRECATED] Using row number in fetchByAssoc is not portable and no longer supported. Please fix your code.
+01/30/17 17:57:14 [16628][1][INFO] Query:SELECT meetings.id, name,reminder_time, description,location, status, parent_type, parent_id, date_start, assigned_user_id
+			FROM meetings LEFT JOIN meetings_users ON meetings.id = meetings_users.meeting_id
+			WHERE meetings_users.user_id ='1'
+				AND meetings_users.accept_status != 'decline'
+				AND meetings.reminder_time != -1
+				AND meetings_users.deleted != 1
+				AND meetings.status = 'Planned'
+			    AND date_start >= '2017-01-30 16:57:10'
+			    AND date_start <= '2017-01-31 17:57:10'
+01/30/17 17:57:14 [16628][1][INFO] Query Execution Time:0.0012049674987793
+01/30/17 17:57:14 [16628][1][INFO] Query:
+				SELECT calls.id, name, reminder_time, description, date_start, status, parent_type, parent_id
+				FROM calls LEFT JOIN calls_users ON calls.id = calls_users.call_id
+				WHERE calls_users.user_id ='1'
+				    AND calls_users.accept_status != 'decline'
+				    AND calls.reminder_time != -1
+					AND calls_users.deleted != 1
+					AND calls.status = 'Planned'
+				    AND date_start >= '2017-01-30 16:57:10'
+				    AND date_start <= '2017-01-31 17:57:10'
+01/30/17 17:57:14 [16628][1][INFO] Query Execution Time:0.00095605850219727
+01/30/17 17:57:21 [16628][-none-][INFO] Found language file: en_us.lang.php
+01/30/17 17:57:21 [16628][-none-][INFO] **********[ASOL][asol_Project][]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:57:21 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:57:21 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:57:21 [16628][-none-][INFO] **********[ASOL][WFM][]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:57:21 [16628][-none-][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:57:21 [16628][-none-][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:57:21 [16628][-none-][INFO] Found language file: es_ES.lang.php
+01/30/17 17:57:21 [16628][-none-][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.010336875915527
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00078797340393066
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.0014300346374512
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.0010170936584473
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00069117546081543
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00055384635925293
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.0005488395690918
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00077390670776367
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.0006718635559082
+01/30/17 17:57:21 [16628][-none-][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.0010139942169189
+01/30/17 17:57:21 [16628][-none-][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00071191787719727
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00077700614929199
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00093603134155273
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailAddresses' AND  deleted = 0
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.001032829284668
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00098800659179688
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.0010969638824463
+01/30/17 17:57:21 [16628][-none-][INFO] Query:SELECT category, name, value FROM config
+01/30/17 17:57:21 [16628][-none-][INFO] Query Execution Time:0.00097298622131348
+01/30/17 17:57:22 [16628][-none-][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:22 [16628][-none-][INFO] Query Execution Time:0.0018658638000488
+01/30/17 17:57:22 [16628][-none-][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:22 [16628][-none-][INFO] Query Execution Time:0.00074601173400879
+01/30/17 17:57:22 [16628][-none-][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '1' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:57:22 [16628][-none-][INFO] Query Execution Time:0.0013530254364014
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE 1=1 ORDER BY first_name, last_name ASC
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0014619827270508
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '1' and u1.deleted=0
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00073504447937012
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT id FROM users WHERE users.reports_to_id = '1' AND users.deleted=0
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0010650157928467
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT users.*,users_cstm.* FROM users  LEFT JOIN users_cstm ON users.id = users_cstm.id_c  WHERE users.id = '71f40543-2702-4095-9d30-536f529bd8b6' AND users.deleted=0 LIMIT 0,1
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0010199546813965
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT u1.first_name, u1.last_name from users  u1, users  u2 where u1.id = u2.reports_to_id AND u2.id = '71f40543-2702-4095-9d30-536f529bd8b6' and u1.deleted=0
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00067305564880371
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '71f40543-2702-4095-9d30-536f529bd8b6'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0009770393371582
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00082302093505859
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00060200691223145
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT id ,users.last_name as reports_to_name , users.created_by owner FROM users WHERE deleted=0 AND id='71f40543-2702-4095-9d30-536f529bd8b6'
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0008392333984375
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = 'Users'
+                AND ear.bean_id = '1'
+                AND ear.deleted = 0
+                ORDER BY ear.reply_to_address, ear.primary_address DESC
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0019369125366211
+01/30/17 17:57:22 [16628][1][INFO] Found language file: en_us.lang.php
+01/30/17 17:57:22 [16628][1][INFO] Found language file: es_ES.lang.php
+01/30/17 17:57:22 [16628][1][INFO] **********[ASOL][asol_Project][g1a1irr2o4lr0fmi78kv11r4o2]: asolProjectUtils.php[174]->asolProjectUtils::managePremiumFeature: Cannot get addAppListStrings_baseline Premium Feature. addAppListStrings_baseline() Function Called.
+01/30/17 17:57:22 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAudit Premium Feature. addAppListStrings_loginAudit() Function Called.
+01/30/17 17:57:22 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_loginAuditEvents Premium Feature. addAppListStrings_loginAuditEvents() Function Called.
+01/30/17 17:57:22 [16628][1][INFO] **********[ASOL][WFM][g1a1irr2o4lr0fmi78kv11r4o2]: wfm_reports_utils.php[830]->wfm_reports_utils::managePremiumFeature: Cannot get addAppListStrings_initialize Premium Feature. addAppListStrings_initialize() Function Called.
+01/30/17 17:57:22 [16628][1][INFO] Found extended language file: en_us.lang.ext.php
+01/30/17 17:57:22 [16628][1][INFO] Found custom language file: en_us.lang.php
+01/30/17 17:57:22 [16628][1][INFO] Found extended language file: es_ES.lang.ext.php
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,name,tipo_cuenta from expan_franquicia where deleted=0 AND (tipo_cuenta=1 OR  tipo_cuenta=2 OR tipo_cuenta=5 OR tipo_cuenta=6 OR tipo_cuenta=7 or tipo_cuenta=8 or tipo_cuenta=9) order by name
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.010281085968018
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,name from email_templates order by name
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00071096420288086
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,name from expan_evento where deleted=0 order by date_entered DESC
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00085902214050293
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,nombre from tipo_descarte order by Orden
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00079083442687988
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,nombre from tipo_parada
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00060296058654785
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,nombre from tipo_positivo order by orden
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00052809715270996
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,name,mailing from portales order by orden
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00059080123901367
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,name from expan_tipo_llamadas order by orden
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00066113471984863
+01/30/17 17:57:22 [16628][1][INFO] Query:select id,name from expan_tipo_reunion order by orden
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00066590309143066
+01/30/17 17:57:22 [16628][1][INFO] Query:select c_id,d_subsector from expan_m_sectores order by m_orden_act,m_orden_sector,d_subsector
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00096797943115234
+01/30/17 17:57:22 [16628][1][INFO] Found custom language file: es_ES.lang.php
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT count(*) as the_count FROM config WHERE category='info' AND name='sugar_version' AND value = '6.5.16'
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00080204010009766
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'license'
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00063896179199219
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0011558532714844
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00054812431335449
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='EmailTemplates' AND  deleted = 0
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00091314315795898
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'tracker'
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00081896781921387
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.0012421607971191
+01/30/17 17:57:22 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:22 [16628][1][INFO] Query Execution Time:0.00059199333190918
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Emails' AND  deleted = 0
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.00097084045410156
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='Trackers' AND  deleted = 0
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.00090384483337402
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT item_id, item_summary, module_name, id FROM tracker WHERE id = (SELECT MAX(id) as id FROM tracker WHERE user_id = '1' AND deleted = 0 AND visible = 1) LIMIT 0,50
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.0045111179351807
+01/30/17 17:57:23 [16628][1][INFO] Tracker: retrieving 10 items
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'MySettings'
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.00084996223449707
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.0011940002441406
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.00059294700622559
+01/30/17 17:57:23 [16628][1][WARN] Image CrearExpan_GestionSolicitudes.gif not found
+01/30/17 17:57:23 [16628][1][WARN] Image CrearExpan_Evento.gif not found
+01/30/17 17:57:23 [16628][1][WARN] Image CrearExpin_Informes.gif not found
+01/30/17 17:57:23 [16628][1][WARN] Image CrearExpma_Mailing.gif not found
+01/30/17 17:57:23 [16628][1][WARN] Image CrearExpan_IncidenciaCorreo.gif not found
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT contents FROM user_preferences WHERE assigned_user_id='1' AND category = 'EmailTemplates' AND deleted = 0
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.00081992149353027
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT id, first_name, last_name, user_name from users WHERE status='Active' AND portal_only=0  ORDER BY first_name, last_name ASC
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.0011699199676514
+01/30/17 17:57:23 [16628][1][INFO] List View Where Clause: 
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT * FROM fields_meta_data WHERE  custom_module='SavedSearch' AND  deleted = 0
+01/30/17 17:57:23 [16628][1][INFO] Query Execution Time:0.00090193748474121
+01/30/17 17:57:23 [16628][1][INFO] Query:SELECT id, name FROM saved_search
+				  WHERE
+					deleted = '0' AND
+				  	assigned_user_id = '1' AND
+					search_module =  'EmailTemplates'
+				  ORDER BY name
+01/30/17 17:57:24 [16628][1][INFO] Query Execution Time:0.00089097023010254
+01/30/17 17:57:24 [16628][1][DEPRECATED] Using row number in fetchByAssoc is not portable and no longer supported. Please fix your code.
+01/30/17 17:57:24 [16628][1][INFO] Query:SELECT id, name FROM saved_search
+                  WHERE
+                    deleted = '0' AND
+                    assigned_user_id = '1' AND
+                    search_module =  'EmailTemplates'
+                  ORDER BY name
+01/30/17 17:57:24 [16628][1][INFO] Query Execution Time:0.00097489356994629
+01/30/17 17:57:24 [16628][1][DEPRECATED] Using row number in fetchByAssoc is not portable and no longer supported. Please fix your code.
+01/30/17 17:57:25 [16628][1][INFO] Query: SELECT  email_templates.id , email_templates.name , email_templates.type , email_templates.description  , LTRIM(RTRIM(CONCAT(IFNULL(jt0.first_name,''),' ',IFNULL(jt0.last_name,'')))) assigned_user_name , jt0.created_by assigned_user_name_owner  , 'Users' assigned_user_name_mod, email_templates.date_modified , email_templates.date_entered , email_templates.assigned_user_id  FROM email_templates   LEFT JOIN  users jt0 ON email_templates.assigned_user_id=jt0.id AND jt0.deleted=0
+
+ AND jt0.deleted=0 where email_templates.deleted=0 ORDER BY email_templates.date_entered DESC LIMIT 0,46
+01/30/17 17:57:25 [16628][1][INFO] Query Execution Time:0.0010750293731689
+01/30/17 17:57:25 [16628][1][INFO] Query:SELECT category, name, value FROM config WHERE category = 'system'
+01/30/17 17:57:25 [16628][1][INFO] Query Execution Time:0.001107931137085
+01/30/17 17:57:25 [16628][1][INFO] Query:SELECT id FROM outbound_email WHERE type = 'system'  order by name
+01/30/17 17:57:25 [16628][1][INFO] Query Execution Time:0.002443790435791
+01/30/17 17:57:25 [16628][1][INFO] Query:SELECT * FROM outbound_email WHERE id = '7bc64968-7a26-3726-2454-519b4028d00a'
+01/30/17 17:57:25 [16628][1][INFO] Query Execution Time:0.00089693069458008
+01/30/17 17:57:26 [16628][1][INFO] Query:SELECT meetings.id, name,reminder_time, description,location, status, parent_type, parent_id, date_start, assigned_user_id
+			FROM meetings LEFT JOIN meetings_users ON meetings.id = meetings_users.meeting_id
+			WHERE meetings_users.user_id ='1'
+				AND meetings_users.accept_status != 'decline'
+				AND meetings.reminder_time != -1
+				AND meetings_users.deleted != 1
+				AND meetings.status = 'Planned'
+			    AND date_start >= '2017-01-30 16:57:21'
+			    AND date_start <= '2017-01-31 17:57:21'
+01/30/17 17:57:26 [16628][1][INFO] Query Execution Time:0.00099611282348633
+01/30/17 17:57:26 [16628][1][INFO] Query:
+				SELECT calls.id, name, reminder_time, description, date_start, status, parent_type, parent_id
+				FROM calls LEFT JOIN calls_users ON calls.id = calls_users.call_id
+				WHERE calls_users.user_id ='1'
+				    AND calls_users.accept_status != 'decline'
+				    AND calls.reminder_time != -1
+					AND calls_users.deleted != 1
+					AND calls.status = 'Planned'
+				    AND date_start >= '2017-01-30 16:57:21'
+				    AND date_start <= '2017-01-31 17:57:21'
+01/30/17 17:57:26 [16628][1][INFO] Query Execution Time:0.00084018707275391
+01/30/17 17:57:26 [16628][1][INFO] Query:SELECT user_preferences.* FROM user_preferences  WHERE assigned_user_id = '1' AND category = 'EmailTemplates' AND deleted=0 LIMIT 0,1
+01/30/17 17:57:26 [16628][1][INFO] Query Execution Time:0.00087594985961914
+01/30/17 17:57:26 [16628][1][DEPRECATED] SugarBean.php: preprocess_fields_on_save() is deprecated
+01/30/17 17:57:26 [16628][1][INFO] Query:INSERT INTO user_preferences (id,category,deleted,date_entered,date_modified,assigned_user_id,contents)
+					VALUES ('241b9546-9a06-53f2-739f-588f701baa9a','EmailTemplates',0,'2017-01-30 16:57:21','2017-01-30 16:57:21','1','YToxOntzOjIyOiJMaXN0Vmlld0Rpc3BsYXlDb2x1bW5zIjthOjA6e319')
+01/30/17 17:57:26 [16628][1][INFO] Query Execution Time:0.007763147354126
+01/30/17 17:57:26 [16628][1][INFO] Query:SELECT user_preferences.* FROM user_preferences  WHERE assigned_user_id = '1' AND category = 'global' AND deleted=0 LIMIT 0,1
+01/30/17 17:57:26 [16628][1][INFO] Query Execution Time:0.00097799301147461
+01/30/17 17:57:26 [16628][1][DEPRECATED] SugarBean.php: preprocess_fields_on_save() is deprecated
+01/30/17 17:57:26 [16628][1][INFO] Query:UPDATE user_preferences
+					SET category='global',date_modified='2017-01-30 16:57:21',assigned_user_id='1',contents='YTo1Mjp7czoxMjoibWFpbG1lcmdlX29uIjtzOjI6Im9uIjtzOjE2OiJzd2FwX2xhc3Rfdmlld2VkIjtzOjA6IiI7czoxNDoic3dhcF9zaG9ydGN1dHMiO3M6MDoiIjtzOjE5OiJuYXZpZ2F0aW9uX3BhcmFkaWdtIjtzOjI6ImdtIjtzOjEzOiJzdWJwYW5lbF90YWJzIjtzOjI6Im9uIjtzOjE0OiJtb2R1bGVfZmF2aWNvbiI7czowOiIiO3M6OToiaGlkZV90YWJzIjthOjA6e31zOjExOiJyZW1vdmVfdGFicyI7YTowOnt9czo3OiJub19vcHBzIjtzOjM6Im9mZiI7czoxMzoicmVtaW5kZXJfdGltZSI7czo0OiIxODAwIjtzOjE5OiJlbWFpbF9yZW1pbmRlcl90aW1lIjtpOi0xO3M6ODoidGltZXpvbmUiO3M6MTM6IkV1cm9wZS9NYWRyaWQiO3M6MjoidXQiO3M6MToiMSI7czo4OiJjdXJyZW5jeSI7czozOiItOTkiO3M6MzU6ImRlZmF1bHRfY3VycmVuY3lfc2lnbmlmaWNhbnRfZGlnaXRzIjtzOjE6IjIiO3M6MTE6Im51bV9ncnBfc2VwIjtzOjE6Ii4iO3M6NzoiZGVjX3NlcCI7czoxOiIsIjtzOjQ6ImZkb3ciO3M6MToiMSI7czo1OiJkYXRlZiI7czo1OiJkL20vWSI7czo1OiJ0aW1lZiI7czozOiJIOmkiO3M6MTU6Im1haWxfc210cHNlcnZlciI7czoxODoiZXhwYW5kZW5lZ29jaW8uY29tIjtzOjEzOiJtYWlsX3NtdHB1c2VyIjtzOjA6IiI7czoxMzoibWFpbF9zbXRwcGFzcyI7czowOiIiO3M6MjY6ImRlZmF1bHRfbG9jYWxlX25hbWVfZm9ybWF0IjtzOjU6InMgZiBsIjtzOjE2OiJleHBvcnRfZGVsaW1pdGVyIjtzOjE6IiwiO3M6MjI6ImRlZmF1bHRfZXhwb3J0X2NoYXJzZXQiO3M6MTA6IklTTy04ODU5LTEiO3M6MTQ6InVzZV9yZWFsX25hbWVzIjtzOjI6Im9uIjtzOjE3OiJtYWlsX3NtdHBhdXRoX3JlcSI7czowOiIiO3M6MTI6Im1haWxfc210cHNzbCI7aTowO3M6MTU6ImVtYWlsX2xpbmtfdHlwZSI7czo1OiJzdWdhciI7czoxNzoiZW1haWxfc2hvd19jb3VudHMiO2k6MDtzOjIwOiJjYWxlbmRhcl9wdWJsaXNoX2tleSI7czozNjoiODEwYjI2YWUtNTg5Zi0xYjY3LTAwOTktNTVhN2M0YzVmZDY5IjtzOjE1OiJsb2dpbmV4cGlyYXRpb24iO3M6MToiMCI7czo3OiJsb2Nrb3V0IjtzOjA6IiI7czoxMToibG9naW5mYWlsZWQiO3M6MToiMCI7czoxMDoidXNlcl90aGVtZSI7czo2OiJTdWdhcjUiO3M6MTk6InRoZW1lX2N1cnJlbnRfZ3JvdXAiO3M6NDoiVG9kbyI7czoxMDoiRW1wbG95ZWVzUSI7YTozOntzOjY6Im1vZHVsZSI7czo5OiJFbXBsb3llZXMiO3M6NjoiYWN0aW9uIjtzOjU6ImluZGV4IjtzOjU6InF1ZXJ5IjtzOjQ6InRydWUiO31zOjI1OiJFeHBhbl9HZXN0aW9uU29saWNpdHVkZXNRIjthOjI5OntzOjY6Im1vZHVsZSI7czoyNDoiRXhwYW5fR2VzdGlvblNvbGljaXR1ZGVzIjtzOjY6ImFjdGlvbiI7czo1OiJpbmRleCI7czoxMzoic2VhcmNoRm9ybVRhYiI7czoxNToiYWR2YW5jZWRfc2VhcmNoIjtzOjU6InF1ZXJ5IjtzOjQ6InRydWUiO3M6MTM6Im5hbWVfYWR2YW5jZWQiO3M6MDoiIjtzOjE5OiJlc3RhZG9fc29sX2FkdmFuY2VkIjthOjE6e2k6MDtzOjE6IjIiO31zOjI5OiJjYW5kaWRhdHVyYV9hdmFuemFkYV9hZHZhbmNlZCI7czowOiIiO3M6Mjk6ImNhbmRpZGF0dXJhX2NhbGllbnRlX2FkdmFuY2VkIjtzOjE6IjEiO3M6MzI6ImNoa19lbnZpb19kb2N1bWVudGFjaW9uX2FkdmFuY2VkIjtzOjA6IiI7czoyNDoiY2hrX3Jlc3BvbmRlX0MxX2FkdmFuY2VkIjtzOjA6IiI7czoyOToiY2hrX3Jlc29sdWNpb25fZHVkYXNfYWR2YW5jZWQiO3M6MDoiIjtzOjM0OiJjaGtfcmVjZXBjaW9fY3Vlc3Rpb25hcmlvX2FkdmFuY2VkIjtzOjA6IiI7czozNDoiY2hrX2luZm9ybWFjaW9uX2FkaWNpb25hbF9hZHZhbmNlZCI7czowOiIiO3M6MjM6ImNoa19lbnRyZXZpc3RhX2FkdmFuY2VkIjtzOjA6IiI7czoyNjoiY2hrX3Zpc2l0YWRvX2ZyYW5fYWR2YW5jZWQiO3M6MDoiIjtzOjMwOiJjaGtfZW52aW9fcHJlY29udHJhdG9fYWR2YW5jZWQiO3M6MDoiIjtzOjI3OiJjaGtfZW52aW9fY29udHJhdG9fYWR2YW5jZWQiO3M6MDoiIjtzOjI3OiJjaGtfdmlzaXRhX2NlbnRyYWxfYWR2YW5jZWQiO3M6MDoiIjtzOjMwOiJvcG9ydHVuaWRhZF9pbm1lZGlhdGFfYWR2YW5jZWQiO3M6MDoiIjtzOjIzOiJwZXJmaWxfaWRlb25lb19hZHZhbmNlZCI7czowOiIiO3M6OToic2hvd1NTRElWIjtzOjM6InllcyI7czoxNzoic2F2ZWRfc2VhcmNoX25hbWUiO3M6MDoiIjtzOjEzOiJzZWFyY2hfbW9kdWxlIjtzOjA6IiI7czoxOToic2F2ZWRfc2VhcmNoX2FjdGlvbiI7czowOiIiO3M6MTQ6ImRpc3BsYXlDb2x1bW5zIjtzOjQ3NDoiTkFNRXxFWFBBTl9TT0xJQ0lUVURfRVhQQU5fR0VTVElPTlNPTElDSVRVREVTXzFfTkFNRXxDQU5ESURBVFVSQV9BVkFOWkFEQXxDQU5ESURBVFVSQV9DQUxJRU5URXxDSEtfRU5WSU9fRE9DVU1FTlRBQ0lPTnxDSEtfUkVTT0xVQ0lPTl9EVURBU3xDSEtfU09MX0FNUF9JTkZPfENIS19SRUNFUENJT19DVUVTVElPTkFSSU98Q0hLX0lORk9STUFDSU9OX0FESUNJT05BTHxDSEtfRU5UUkVWSVNUQXxDSEtfVklTSVRBRE9fRlJBTnxDSEtfRU5WSU9fUFJFQ09OVFJBVE98Q0hLX1ZJU0lUQV9MT0NBTHxDSEtfRU5WSU9fQ09OVFJBVE98Q0hLX1ZJU0lUQV9DRU5UUkFMfEZSQU5RVUlDSUF8RVNUQURPX1NPTHxzdWJlc3RhZG98QVNTSUdORURfVVNFUl9OQU1FfERBVEVfRU5URVJFRHxwcmlvcmlkYWR8b3BvcnR1bmlkYWRfaW5tZWRpYXRhfHByb3ZpbmNpYV9hcGVydHVyYV8xfHJhdGluZ3x0ZWxlZm9ub3xwZXJmaWxfaWRlb25lb3xBY2Nlc29zIjtzOjg6ImhpZGVUYWJzIjtzOjA6IiI7czo3OiJvcmRlckJ5IjtzOjQ6Ik5BTUUiO3M6OToic29ydE9yZGVyIjtzOjM6IkFTQyI7czo2OiJidXR0b24iO3M6NjoiQnVzY2FyIjt9czoxMjoiZ2xvYmFsU2VhcmNoIjthOjU6e3M6MTU6IkV4cGFuX1NvbGljaXR1ZCI7czoxNToiRXhwYW5fU29saWNpdHVkIjtzOjI0OiJFeHBhbl9HZXN0aW9uU29saWNpdHVkZXMiO3M6MjQ6IkV4cGFuX0dlc3Rpb25Tb2xpY2l0dWRlcyI7czo1OiJDYWxscyI7czo0OiJDYWxsIjtzOjk6IkRvY3VtZW50cyI7czo4OiJEb2N1bWVudCI7czo4OiJNZWV0aW5ncyI7czo3OiJNZWV0aW5nIjt9czoxNzoiRXhwYW5fRnJhbnF1aWNpYVEiO2E6NTQ6e3M6MTM6InJldHVybl9hY3Rpb24iO3M6MDoiIjtzOjEzOiJyZXR1cm5fbW9kdWxlIjtzOjA6IiI7czo2OiJtb2R1bGUiO3M6MTY6IkV4cGFuX0ZyYW5xdWljaWEiO3M6NjoiYWN0aW9uIjtzOjU6ImluZGV4IjtzOjQ6Imx2c28iO3M6MzoiYXNjIjtzOjQzOiJFeHBhbl9GcmFucXVpY2lhMl9FWFBBTl9GUkFOUVVJQ0lBX09SREVSX0JZIjtzOjQ6Im5hbWUiO3M6MTg6InNlbGVjdF9lbnRpcmVfbGlzdCI7czoxOiIwIjtzOjQxOiJFeHBhbl9GcmFucXVpY2lhMl9FWFBBTl9GUkFOUVVJQ0lBX29mZnNldCI7czoxOiIwIjtzOjk6InNob3dfcGx1cyI7czowOiIiO3M6MTg6ImFzc2lnbmVkX3VzZXJfbmFtZSI7czowOiIiO3M6MTY6ImFzc2lnbmVkX3VzZXJfaWQiO3M6MDoiIjtzOjIxOiJleHBhbl9mcmFucXVpY2lhX3R5cGUiO3M6MDoiIjtzOjg6ImluZHVzdHJ5IjtzOjA6IiI7czoyMToiYW1vcnRpemFjaW9faW52ZXJzaW9uIjtzOjE6IjAiO3M6MTE6InRpcG9fY3VlbnRhIjtzOjA6IiI7czo2OiJjaGtfYzEiO3M6MDoiIjtzOjY6ImNoa19jMiI7czowOiIiO3M6NjoiY2hrX2MzIjtzOjA6IiI7czo2OiJjaGtfYzQiO3M6MDoiIjtzOjc6ImNoa19jMTEiO3M6MDoiIjtzOjc6ImNoa19jMTIiO3M6MDoiIjtzOjc6ImNoa19jMTMiO3M6MDoiIjtzOjc6ImNoa19jMTQiO3M6MDoiIjtzOjc6ImNoa19jMTUiO3M6MDoiIjtzOjk6InBhcmVudFRhYiI7czo0OiJUb2RvIjtzOjk6ImFqYXhfbG9hZCI7czoxOiIxIjtzOjE0OiJsb2FkTGFuZ3VhZ2VKUyI7czoxOiIxIjtzOjEzOiJzZWFyY2hGb3JtVGFiIjtzOjE1OiJhZHZhbmNlZF9zZWFyY2giO3M6NToicXVlcnkiO3M6NDoidHJ1ZSI7czoxMzoibmFtZV9hZHZhbmNlZCI7czowOiIiO3M6MjM6ImFkZHJlc3Nfc3RyZWV0X2FkdmFuY2VkIjtzOjA6IiI7czoxNDoicGhvbmVfYWR2YW5jZWQiO3M6MDoiIjtzOjE2OiJ3ZWJzaXRlX2FkdmFuY2VkIjtzOjA6IiI7czoyMToiYWRkcmVzc19jaXR5X2FkdmFuY2VkIjtzOjA6IiI7czoxNDoiZW1haWxfYWR2YW5jZWQiO3M6MDoiIjtzOjIzOiJhbm51YWxfcmV2ZW51ZV9hZHZhbmNlZCI7czowOiIiO3M6MjI6ImFkZHJlc3Nfc3RhdGVfYWR2YW5jZWQiO3M6MDoiIjtzOjE4OiJlbXBsb3llZXNfYWR2YW5jZWQiO3M6MDoiIjtzOjI3OiJhZGRyZXNzX3Bvc3RhbGNvZGVfYWR2YW5jZWQiO3M6MDoiIjtzOjIyOiJ0aWNrZXJfc3ltYm9sX2FkdmFuY2VkIjtzOjA6IiI7czoyMDoidGlwb19jdWVudGFfYWR2YW5jZWQiO2E6Mjp7aTowO3M6MToiMSI7aToxO3M6MToiMiI7fXM6MjQ6ImFkZHJlc3NfY291bnRyeV9hZHZhbmNlZCI7czowOiIiO3M6MTU6InJhdGluZ19hZHZhbmNlZCI7czowOiIiO3M6MTg6Im93bmVyc2hpcF9hZHZhbmNlZCI7czowOiIiO3M6OToic2hvd1NTRElWIjtzOjM6InllcyI7czoxNzoic2F2ZWRfc2VhcmNoX25hbWUiO3M6MDoiIjtzOjEzOiJzZWFyY2hfbW9kdWxlIjtzOjA6IiI7czoxOToic2F2ZWRfc2VhcmNoX2FjdGlvbiI7czowOiIiO3M6MTQ6ImRpc3BsYXlDb2x1bW5zIjtzOjE4NzoiTkFNRXxQSE9ORV9PRkZJQ0V8VElQT19DVUVOVEF8QVNTSUdORURfVVNFUl9OQU1FfGZpbHRyb19zb2xpY2l0dWRlc19jfGRpcmVjdG9yX2NvbnN1bHRvcmlhfGNvcnJlb19lbnZpb3xjaGtfYzF8Y2hrX2MyfGNoa19jM3xjaGtfYzR8Y2hrX2MxMXxjaGtfYzEyfGNoa19jMTN8Y2hrX2MxNHxjaGtfYzE1fGluZm9ybWVfdXJnZW50ZSI7czo4OiJoaWRlVGFicyI7czozNjk6IkJJTExJTkdfQUREUkVTU19DSVRZfEVNQUlMMXxFWFBBTl9GUkFOUVVJQ0lBX1RZUEV8SU5EVVNUUll8QU5OVUFMX1JFVkVOVUV8UEhPTkVfRkFYfEJJTExJTkdfQUREUkVTU19TVFJFRVR8QklMTElOR19BRERSRVNTX1NUQVRFfEJJTExJTkdfQUREUkVTU19QT1NUQUxDT0RFfEJJTExJTkdfQUREUkVTU19DT1VOVFJZfFNISVBQSU5HX0FERFJFU1NfU1RSRUVUfFNISVBQSU5HX0FERFJFU1NfQ0lUWXxTSElQUElOR19BRERSRVNTX1NUQVRFfFNISVBQSU5HX0FERFJFU1NfUE9TVEFMQ09ERXxTSElQUElOR19BRERSRVNTX0NPVU5UUll8UEhPTkVfQUxURVJOQVRFfFdFQlNJVEV8T1dORVJTSElQfEVNUExPWUVFU3xUSUNLRVJfU1lNQk9MfHByaW9yaWRhZCI7czo3OiJvcmRlckJ5IjtzOjQ6Ik5BTUUiO3M6OToic29ydE9yZGVyIjtzOjM6IkFTQyI7czo2OiJidXR0b24iO3M6NjoiQnVzY2FyIjtzOjE0OiJmb3JRdWlja0NyZWF0ZSI7czoxOiIxIjt9czoxNzoic2lnbmF0dXJlX2RlZmF1bHQiO3M6MDoiIjtzOjE3OiJzaWduYXR1cmVfcHJlcGVuZCI7YjowO3M6MzQ6IkluYm91bmRFbWFpbF9JbmJvdW5kRW1haWxfT1JERVJfQlkiO3M6MTI6ImRhdGVfZW50ZXJlZCI7czoxNToiRW1haWxUZW1wbGF0ZXNRIjthOjE2OntzOjY6Im1vZHVsZSI7czoxNDoiRW1haWxUZW1wbGF0ZXMiO3M6NjoiYWN0aW9uIjtzOjU6ImluZGV4IjtzOjEzOiJzZWFyY2hGb3JtVGFiIjtzOjE1OiJhZHZhbmNlZF9zZWFyY2giO3M6NToicXVlcnkiO3M6NDoidHJ1ZSI7czoxMzoibmFtZV9hZHZhbmNlZCI7czowOiIiO3M6MTY6InN1YmplY3RfYWR2YW5jZWQiO3M6MDoiIjtzOjIwOiJkZXNjcmlwdGlvbl9hZHZhbmNlZCI7czowOiIiO3M6OToic2hvd1NTRElWIjtzOjI6Im5vIjtzOjE3OiJzYXZlZF9zZWFyY2hfbmFtZSI7czowOiIiO3M6MTM6InNlYXJjaF9tb2R1bGUiO3M6MDoiIjtzOjE5OiJzYXZlZF9zZWFyY2hfYWN0aW9uIjtzOjA6IiI7czoxNDoiZGlzcGxheUNvbHVtbnMiO3M6MDoiIjtzOjg6ImhpZGVUYWJzIjtzOjA6IiI7czo3OiJvcmRlckJ5IjtzOjEyOiJEQVRFX0VOVEVSRUQiO3M6OToic29ydE9yZGVyIjtzOjQ6IkRFU0MiO3M6NjoiYnV0dG9uIjtzOjY6IkJ1c2NhciI7fXM6OToiTWVldGluZ3NRIjthOjE4OntzOjY6Im1vZHVsZSI7czo4OiJNZWV0aW5ncyI7czo2OiJhY3Rpb24iO3M6NToiaW5kZXgiO3M6MTM6InNlYXJjaEZvcm1UYWIiO3M6MTU6ImFkdmFuY2VkX3NlYXJjaCI7czo1OiJxdWVyeSI7czo0OiJ0cnVlIjtzOjEzOiJuYW1lX2FkdmFuY2VkIjtzOjA6IiI7czoyMDoicGFyZW50X3R5cGVfYWR2YW5jZWQiO3M6MDoiIjtzOjIwOiJwYXJlbnRfbmFtZV9hZHZhbmNlZCI7czowOiIiO3M6OToicGFyZW50X2lkIjtzOjA6IiI7czoyNjoiY3VycmVudF91c2VyX29ubHlfYWR2YW5jZWQiO3M6MToiMCI7czo5OiJzaG93U1NESVYiO3M6MzoieWVzIjtzOjE3OiJzYXZlZF9zZWFyY2hfbmFtZSI7czowOiIiO3M6MTM6InNlYXJjaF9tb2R1bGUiO3M6MDoiIjtzOjE5OiJzYXZlZF9zZWFyY2hfYWN0aW9uIjtzOjA6IiI7czoxNDoiZGlzcGxheUNvbHVtbnMiO3M6MTA1OiJTRVRfQ09NUExFVEV8TkFNRXxQQVJFTlRfTkFNRXxEQVRFX1NUQVJUfEFTU0lHTkVEX1VTRVJfTkFNRXxNRUVUSU5HX1RZUEV8UFJPVklOQ0lBfERBVEVfRU5URVJFRHxQUklPUklEQUQiO3M6ODoiaGlkZVRhYnMiO3M6MTY6IkRJUkVDVElPTnxTVEFUVVMiO3M6Nzoib3JkZXJCeSI7czo0OiJOQU1FIjtzOjk6InNvcnRPcmRlciI7czozOiJBU0MiO3M6NjoiYnV0dG9uIjtzOjY6IkJ1c2NhciI7fXM6MTY6IkV4cGFuX1NvbGljaXR1ZFEiO2E6MzA6e3M6NjoibW9kdWxlIjtzOjE1OiJFeHBhbl9Tb2xpY2l0dWQiO3M6NjoiYWN0aW9uIjtzOjU6ImluZGV4IjtzOjEzOiJzZWFyY2hGb3JtVGFiIjtzOjE1OiJhZHZhbmNlZF9zZWFyY2giO3M6NToicXVlcnkiO3M6NDoidHJ1ZSI7czoxOToiZmlyc3RfbmFtZV9hZHZhbmNlZCI7czowOiIiO3M6MTg6Imxhc3RfbmFtZV9hZHZhbmNlZCI7czowOiIiO3M6MjE6InBob25lX21vYmlsZV9hZHZhbmNlZCI7czowOiIiO3M6MjQ6ImNyZWF0ZWRfYnlfbmFtZV9hZHZhbmNlZCI7czowOiIiO3M6MTk6ImNyZWF0ZWRfYnlfYWR2YW5jZWQiO3M6MDoiIjtzOjIwOiJkb19ub3RfY2FsbF9hZHZhbmNlZCI7czowOiIiO3M6MTQ6ImVtYWlsX2FkdmFuY2VkIjtzOjA6IiI7czozMjoiZnJhbnF1aWNpYXNfc2VjdW5kYXJpYXNfYWR2YW5jZWQiO2E6MTp7aTowO3M6MzY6ImNmYWNlYmUyLWM1MTEtZWMyNy01OGNkLTU2YmM4MjJhZjRkMiI7fXM6Mjc6ImFzc2lnbmVkX3VzZXJfbmFtZV9hZHZhbmNlZCI7czowOiIiO3M6MjU6ImFzc2lnbmVkX3VzZXJfaWRfYWR2YW5jZWQiO3M6MDoiIjtzOjI5OiJsb2NhbGlkYWRfYXBlcnR1cmFfMV9hZHZhbmNlZCI7czowOiIiO3M6MzQ6ImRhdGVfZW50ZXJlZF9hZHZhbmNlZF9yYW5nZV9jaG9pY2UiO3M6MToiPSI7czoyNzoicmFuZ2VfZGF0ZV9lbnRlcmVkX2FkdmFuY2VkIjtzOjA6IiI7czozMzoic3RhcnRfcmFuZ2VfZGF0ZV9lbnRlcmVkX2FkdmFuY2VkIjtzOjA6IiI7czozMToiZW5kX3JhbmdlX2RhdGVfZW50ZXJlZF9hZHZhbmNlZCI7czowOiIiO3M6Mjk6ImNhbmRpZGF0dXJhX2F2YW56YWRhX2FkdmFuY2VkIjtzOjA6IiI7czoyOToiY2FuZGlkYXR1cmFfY2FsaWVudGVfYWR2YW5jZWQiO3M6MDoiIjtzOjMwOiJvcG9ydHVuaWRhZF9pbm1lZGlhdGFfYWR2YW5jZWQiO3M6MDoiIjtzOjk6InNob3dTU0RJViI7czozOiJ5ZXMiO3M6MTc6InNhdmVkX3NlYXJjaF9uYW1lIjtzOjA6IiI7czoxMzoic2VhcmNoX21vZHVsZSI7czowOiIiO3M6MTk6InNhdmVkX3NlYXJjaF9hY3Rpb24iO3M6MDoiIjtzOjE0OiJkaXNwbGF5Q29sdW1ucyI7czowOiIiO3M6ODoiaGlkZVRhYnMiO3M6MjI5OiJGUkFOUVVJQ0lBU19TRUNVTkRBUklBU3xET19OT1RfQ0FMTHxQSE9ORV9IT01FfFBIT05FX1dPUkt8UEhPTkVfT1RIRVJ8UEhPTkVfRkFYfEFERFJFU1NfU1RSRUVUfEFERFJFU1NfQ0lUWXxBRERSRVNTX1NUQVRFfEFERFJFU1NfUE9TVEFMQ09ERXxEQVRFX0VOVEVSRUR8Q1JFQVRFRF9CWV9OQU1FfGxvY2FsaWRhZF9hcGVydHVyYV8xfEFCSUVSVEF8RVNQRVJBfENFUlJBREF8UE9TSVRJVkF8cmF0aW5nIjtzOjc6Im9yZGVyQnkiO3M6NDoiTkFNRSI7czo2OiJidXR0b24iO3M6NjoiQnVzY2FyIjt9czoxNDoiRXhwbWFfTWFpbGluZ1EiO2E6OTp7czo2OiJtb2R1bGUiO3M6MTM6IkV4cG1hX01haWxpbmciO3M6NjoiYWN0aW9uIjtzOjU6ImluZGV4IjtzOjEzOiJzZWFyY2hGb3JtVGFiIjtzOjEyOiJiYXNpY19zZWFyY2giO3M6NToicXVlcnkiO3M6NDoidHJ1ZSI7czo3OiJvcmRlckJ5IjtzOjEyOiJEQVRFX0VOVEVSRUQiO3M6OToic29ydE9yZGVyIjtzOjQ6IkRFU0MiO3M6MTA6Im5hbWVfYmFzaWMiO3M6MDoiIjtzOjIzOiJjdXJyZW50X3VzZXJfb25seV9iYXNpYyI7czoxOiIwIjtzOjY6ImJ1dHRvbiI7czo2OiJCdXNjYXIiO31zOjEzOiJFeHBhbl9FdmVudG9RIjthOjI1OntzOjEzOiJyZXR1cm5fYWN0aW9uIjtzOjA6IiI7czoxMzoicmV0dXJuX21vZHVsZSI7czowOiIiO3M6NjoibW9kdWxlIjtzOjEyOiJFeHBhbl9FdmVudG8iO3M6NjoiYWN0aW9uIjtzOjU6ImluZGV4IjtzOjQ6Imx2c28iO3M6NDoiZGVzYyI7czozNToiRXhwYW5fRXZlbnRvMl9FWFBBTl9FVkVOVE9fT1JERVJfQlkiO3M6NDoieWVhciI7czoxODoic2VsZWN0X2VudGlyZV9saXN0IjtzOjE6IjAiO3M6MzM6IkV4cGFuX0V2ZW50bzJfRVhQQU5fRVZFTlRPX29mZnNldCI7czoxOiIwIjtzOjk6InNob3dfcGx1cyI7czowOiIiO3M6MTg6ImFzc2lnbmVkX3VzZXJfbmFtZSI7czowOiIiO3M6MTY6ImFzc2lnbmVkX3VzZXJfaWQiO3M6MDoiIjtzOjk6InBhcmVudFRhYiI7czo0OiJUb2RvIjtzOjk6ImFqYXhfbG9hZCI7czoxOiIxIjtzOjE0OiJsb2FkTGFuZ3VhZ2VKUyI7czoxOiIxIjtzOjEzOiJzZWFyY2hGb3JtVGFiIjtzOjE1OiJhZHZhbmNlZF9zZWFyY2giO3M6NToicXVlcnkiO3M6NDoidHJ1ZSI7czoxMzoibmFtZV9hZHZhbmNlZCI7czowOiIiO3M6OToic2hvd1NTRElWIjtzOjI6Im5vIjtzOjE3OiJzYXZlZF9zZWFyY2hfbmFtZSI7czowOiIiO3M6MTM6InNlYXJjaF9tb2R1bGUiO3M6MDoiIjtzOjE5OiJzYXZlZF9zZWFyY2hfYWN0aW9uIjtzOjA6IiI7czoxNDoiZGlzcGxheUNvbHVtbnMiO3M6MDoiIjtzOjg6ImhpZGVUYWJzIjtzOjA6IiI7czo3OiJvcmRlckJ5IjtzOjQ6Ik5BTUUiO3M6NjoiYnV0dG9uIjtzOjY6IkJ1c2NhciI7fXM6MTA6IkRvY3VtZW50c1EiO2E6ODp7czo2OiJtb2R1bGUiO3M6OToiRG9jdW1lbnRzIjtzOjY6ImFjdGlvbiI7czo1OiJpbmRleCI7czoxMzoic2VhcmNoRm9ybVRhYiI7czoxMjoiYmFzaWNfc2VhcmNoIjtzOjU6InF1ZXJ5IjtzOjQ6InRydWUiO3M6Nzoib3JkZXJCeSI7czowOiIiO3M6OToic29ydE9yZGVyIjtzOjA6IiI7czoxOToiZG9jdW1lbnRfbmFtZV9iYXNpYyI7czo1OiIlaXNvJSI7czo2OiJidXR0b24iO3M6NjoiQnVzY2FyIjt9czozMjoiRW1haWxUZW1wbGF0ZXNfRE9DVU1FTlRfT1JERVJfQlkiO3M6MTM6ImRvY3VtZW50X25hbWUiO3M6NjoiQ2FsbHNRIjthOjIxOntzOjY6Im1vZHVsZSI7czo1OiJDYWxscyI7czo2OiJhY3Rpb24iO3M6NToiaW5kZXgiO3M6MTM6InNlYXJjaEZvcm1UYWIiO3M6MTU6ImFkdmFuY2VkX3NlYXJjaCI7czo1OiJxdWVyeSI7czo0OiJ0cnVlIjtzOjI2OiJjdXJyZW50X3VzZXJfb25seV9hZHZhbmNlZCI7czoxOiIwIjtzOjE1OiJzdGF0dXNfYWR2YW5jZWQiO2E6MTp7aTowO3M6NzoiUGxhbm5lZCI7fXM6MzI6ImRhdGVfc3RhcnRfYWR2YW5jZWRfcmFuZ2VfY2hvaWNlIjtzOjE6Ij0iO3M6MjU6InJhbmdlX2RhdGVfc3RhcnRfYWR2YW5jZWQiO3M6MDoiIjtzOjMxOiJzdGFydF9yYW5nZV9kYXRlX3N0YXJ0X2FkdmFuY2VkIjtzOjA6IiI7czoyOToiZW5kX3JhbmdlX2RhdGVfc3RhcnRfYWR2YW5jZWQiO3M6MDoiIjtzOjI1OiJnZXN0aW9uX2FncnVwYWRhX2FkdmFuY2VkIjtzOjE6IjEiO3M6Mjk6InByb3ZpbmNpYV9hcGVydHVyYV8xX2FkdmFuY2VkIjthOjE6e2k6MDtzOjI6IjQ3Ijt9czo5OiJzaG93U1NESVYiO3M6MzoieWVzIjtzOjE3OiJzYXZlZF9zZWFyY2hfbmFtZSI7czowOiIiO3M6MTM6InNlYXJjaF9tb2R1bGUiO3M6MDoiIjtzOjE5OiJzYXZlZF9zZWFyY2hfYWN0aW9uIjtzOjA6IiI7czoxNDoiZGlzcGxheUNvbHVtbnMiO3M6MjI1OiJTRVRfQ09NUExFVEV8RElSRUNUSU9OfFRFTEVGT05PfENBTExfVFlQRXxFWFBBTl9HRVNUSU9OU09MSUNJVFVERVNfQ0FMTFNfMV9OQU1FfGZyYW5xdWljaWF8REFURV9TVEFSVHxBU1NJR05FRF9VU0VSX05BTUV8REFURV9FTlRFUkVEfFNUQVRVU3xvcmlnZW58cHJpb3JpZGFkfG9wb3J0dW5pZGFkX2lubWVkaWF0YXxnZXN0aW9uX2FncnVwYWRhfEFjY2Vzb3N8cHJvdmluY2lhX2FwZXJ0dXJhXzEiO3M6ODoiaGlkZVRhYnMiO3M6MDoiIjtzOjc6Im9yZGVyQnkiO3M6OToiRElSRUNUSU9OIjtzOjk6InNvcnRPcmRlciI7czozOiJBU0MiO3M6NjoiYnV0dG9uIjtzOjY6IkJ1c2NhciI7fX0='
+					 WHERE  user_preferences.id = 'c899d41a-823f-b8af-9a7a-5451277a06e3' AND deleted=0
+01/30/17 17:57:26 [16628][1][INFO] Query Execution Time:0.0033078193664551

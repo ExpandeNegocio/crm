@@ -1,0 +1,44 @@
+/*** BEGIN - WFM Task ***/
+body {
+	white-space: nowrap;
+}
+
+input.send_email_tpl_name {
+	width: 448px;
+}
+input.send_email_from {
+	width: 550px;
+}
+input.send_email_summary {
+	width: 550px;
+	background-color: #F9F8F6;
+}
+textarea.send_email_summary {
+	width: 550px;
+	height: 50px;
+	
+	background-color: #F9F8F6;
+}
+
+#email_list_for_bcc {
+	width: 300 px;
+	min-width: 300 px;
+	max-width: 300 px;
+}
+
+/*Avoid flickering*/
+#delay_label, #time, #time_amount {
+	visibility: hidden;
+}
+/*optgroup*/
+optgroup {
+    font-weight: bold;
+}
+
+.checkbox_center {
+	float: left;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/*** BEGIN - WFM Task ***/

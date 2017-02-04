@@ -1,0 +1,209 @@
+/* AlineaSol Reports start */
+
+.alineasol_reports .asol_icon {
+	margin-right: 5px;
+}
+
+.alineasol_reports .group_seq_span,
+.alineasol_reports .sort_seq_span {
+	margin-left: 5px;
+	font-weight: bold;
+}
+
+.alineasol_reports  th {
+	text-align: left;
+}
+
+.alineasol_reports  input:disabled {
+	border: 1px solid #CCCCCC;
+	margin-bottom: 1px;
+}
+
+.alineasol_reports h4.inline {
+	display: inline;
+}
+
+.alineasol_reports td.center,
+.alineasol_reports th.center {
+	text-align: center !important;
+	padding: 0px !important;
+}
+
+.alineasol_reports .hiddenRow {
+	opacity: 0.5;
+}
+
+.alineasol_reports .middle {
+	vertical-align: middle;
+}
+
+.alineasol_reports .clickable,
+.alineasol_reports .draggable,
+.groupOrderItem,
+.fieldOrderItem {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.alineasol_reports #reportRows,
+.alineasol_reports #report_info,
+.alineasol_reports #fields_Table,
+.alineasol_reports #filters_Table,
+.alineasol_reports #charts_Table_Wrapper,
+.alineasol_reports #charts_Table,
+.alineasol_reports #tasks_Table,
+.alineasol_reports #distribution_List_Table,
+.alineasol_reports #distribution_List_Table table,
+.dropdownFilteringGeneratorDialog table,
+.chartConfiguratorDialog table {
+	width: 100%;
+}
+
+#fieldsFilters #fields,#fieldsFilters #related_fields {
+	min-width: 175px;
+	max-width: 200px;
+}
+
+#report_info select {
+	min-width: 175px;
+	max-width: 175px;
+}
+
+#report_info #report_scope_role {
+	min-width: 175px;
+	max-width: 175px;
+}
+
+#fields_Table select {
+	min-width: 25px;
+	max-width: 120px;
+}
+
+#fields_Table .sort_seq,#fields_Table .group_seq {
+	min-width: 25px;
+}
+
+.mySQLFunctions {
+	height: 400px;
+}
+
+optgroup {
+    font-weight: bold;
+}
+
+.urlExternalAppParamValue,.urlExternalAppParamName{
+	width: 100%;
+}
+
+.legend span {
+    float: left;
+}
+
+.legend div {
+    float: left;
+}
+
+.legend .query-color {
+	width: 16px;
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 2px;
+}
+
+.yui-navset .yui-nav li.disabled {
+	background-color: #D8D8D8;
+	opacity: .5;
+}
+        
+.yui-navset .yui-nav li.disabled a, .yui-navset .yui-nav li.disabled a:hover {
+	cursor: default;
+}
+
+.multiChart .y1.axis .nv-axis g line.tick{
+	opacity: 0.15;
+}
+
+.multiChart .y2.axis .nv-axis g line.tick{
+	opacity: 0.30;
+}
+
+.multiChart .x.axis .nv-axis g line.tick{
+	opacity: 0.20;
+}
+
+/* Uniform widths */
+#fields_Table input[type="text"],
+#fields_Table select,
+#filters_Table input[type="text"],
+#filters_Table select,
+#charts_Table input[type="text"],
+#charts_Table select,
+#search_criteria input[type="text"],
+#search_criteria select {
+	width: 100px;
+	min-width: 100px;
+	max-width: 100px;
+}
+
+#filters_Table input.calendarValue,
+#tasks_Table input.calendarValue,
+#search_criteria input.calendarValue {
+	width: 84px; /* calendarValueWidth + calendarIconWidth = 100 */
+	min-width: 84px;
+	max-width: 84px;
+}
+
+#filters_Table img.calendarIcon,
+#tasks_Table img.calendarIcon,
+#search_criteria img.calendarIcon {
+	vertical-align: text-bottom;
+	width: 16px;
+	height: 18px;
+}
+
+#filters_Table .filter_parenthesis,
+#filters_Table .filter_logical_operator {
+	width: inherit;
+	min-width: initial;
+	max-width: initial;
+}
+
+#tasks_Table select {
+    min-width: 50px;
+}
+
+#fields_Table .sort_dir,
+#fields_Table .function {
+	width: 75px;
+	min-width: 75px;
+	max-width: 75px;
+}
+
+#fields_Table .layout_group,
+#charts_Table .chart_type {
+	width: 150px;
+	min-width: 150px;
+	max-width: 150px;
+}
+
+#fields_Table .alias[type="text"],
+#filters_Table .filter_alias[type="text"] {
+    max-width: 175px;
+    min-width: 175px;
+    width: 175px;
+}
+
+.predefinedColorPaletteSchemas {
+	width: 200px;
+	min-width: 200px;
+	max-width: 200px;
+}
+
+#report_info .report_name {
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+}
+/* Uniform widths */
+
+/* AlineaSol Reports end */

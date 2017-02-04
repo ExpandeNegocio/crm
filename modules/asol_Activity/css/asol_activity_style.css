@@ -1,0 +1,53 @@
+/*** BEGIN - WFM Activity ***/
+body {
+	white-space: nowrap;
+}
+
+/* conditions */
+table.conditions {
+	width: 80%;
+	white-space: nowrap;
+}
+.conditions td {
+	min-width: -moz-max-content;
+}
+.conditions  select {
+	min-width: 100px;
+	max-width: 100px;
+}
+.conditions  input {
+	min-width: 100px;
+	max-width: 100px;
+}
+.isChanged {
+	min-width: 65px;
+	max-width: 65px;
+}
+.OldBean_NewBean_Changed {
+	min-width: 85px;
+	max-width: 85px;
+}
+select.logical_parameters {
+	min-width: 25px;
+	max-width: 100px;
+}
+.conditions_oddListRowS1:hover {
+	background: #C6C6C6;
+}
+/* conditions */
+
+
+/*DetailView, event-subpanel, hide create*/
+#list_subpanel_asol_events_asol_activity .clickMenu {
+	display: none;
+}
+
+/*optgroup*/
+optgroup {
+    font-weight: bold;
+}
+
+.function {
+	display: none;
+}
+/*** BEGIN - WFM Activity ***/

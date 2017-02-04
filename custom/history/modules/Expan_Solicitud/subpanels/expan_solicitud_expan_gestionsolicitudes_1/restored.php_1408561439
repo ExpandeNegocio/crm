@@ -1,0 +1,29 @@
+<?php
+// created: 2014-08-20 21:03:54
+$layout_defs = array (
+  'name' => 
+  array (
+    'vname' => 'LBL_NAME',
+    'widget_class' => 'SubPanelDetailViewLink',
+    'width' => '45%',
+  ),
+  'date_modified' => 
+  array (
+    'vname' => 'LBL_DATE_MODIFIED',
+    'width' => '45%',
+  ),
+  'edit_button' => 
+  array (
+    'vname' => 'LBL_EDIT_BUTTON',
+    'widget_class' => 'SubPanelEditButton',
+    'module' => 'Expan_GestionSolicitudes',
+    'width' => '4%',
+  ),
+  'remove_button' => 
+  array (
+    'vname' => 'LBL_REMOVE',
+    'widget_class' => 'SubPanelRemoveButton',
+    'module' => 'Expan_GestionSolicitudes',
+    'width' => '5%',
+  ),
+);

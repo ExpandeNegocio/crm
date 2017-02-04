@@ -1,0 +1,211 @@
+<?php
+$module_name = 'Expan_GestionSolicitudes';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
+      {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+      {sugar_getscript file="include/javascript/EditGestionSolicitud.js"}
+      {sugar_getscript file="modules/Documents/documents.js"}
+      <script type="text/javascript"> onload=ocultarCheck();</script>',
+      	 'form' => array (
+        		'buttons' => array(
+        		0=>'SAVE',
+        		1=>'CANCEL',
+        		2=>array ('customCode'=>'{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+        			onClick="reenvioInfo(\'1\',\'{$fields.id.value}\');" value="Reenviar C1">{/if}'),
+        		3=>array ('customCode'=>'{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+        			onClick="reenvioInfo(\'2\',\'{$fields.id.value}\');" value="Reenviar C2">{/if}'),
+        		4=>array ('customCode'=>'{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+        			onClick="reenvioInfo(\'3\',\'{$fields.id.value}\');" value="Reenviar C3">{/if}'),   
+        		5=>array ('customCode'=>'{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+        			onClick="reenvioInfo(\'4\',\'{$fields.id.value}\');" value="Reenviar C4">{/if}'),        
+         ),
+	  ),
+      'useTabs' => false,
+      'tabDefs' => 
+      array (
+        'DEFAULT' => 
+        array (
+          'newTab' => false,
+          'panelDefault' => 'expanded',
+        ),
+      ),
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_auto',
+            'label' => 'Envios automatizados',
+          ),
+          1 => 
+          array (
+            'name' => 'franquicia',
+            'studio' => 'visible',
+            'label' => 'LBL_FRANQUICIA',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'estado_sol',
+            'studio' => 'visible',
+            'label' => 'Estado',
+            'displayParams' => 
+            array (
+              'javascript' => 'onchange="ocultarCheck();"',
+            ),
+          ),
+          1 => 
+          array (
+            'name' => 'candidatura_caliente',
+            'label' => 'Candidatura caliente',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_documentacion',
+            'label' => 'Envio de la documentacion',
+          ),
+          1 => 
+          array (
+            'name' => 'envio_documentacion',
+            'label' => 'Envio de Documentación',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_recepcio_cuestionario',
+            'label' => 'Recepción del cuestionario',
+          ),
+          1 => 
+          array (
+            'name' => 'f_recepcion_cuestionario',
+            'label' => 'Fecha de recepción del cuestionario',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_informacion_adicional',
+            'label' => 'Envio información adicional',
+          ),
+          1 => 
+          array (
+            'name' => 'f_informacion_adicional',
+            'label' => 'Fecha envio información adicional',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_entrevista',
+            'label' => 'Entrevista',
+          ),
+          1 => 
+          array (
+            'name' => 'f_entrevista',
+            'label' => 'Fecha Entrevista',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_precontrato',
+            'label' => 'Envio precontrato',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_precontrato',
+            'label' => 'Fecha envio precontrato',
+          ),
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_visita_local',
+            'label' => 'Visita al local',
+          ),
+          1 => 
+          array (
+            'name' => 'f_visita_local',
+            'label' => 'Fecha visita al local',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_contrato',
+            'label' => 'Envío de contrato',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_contrato',
+            'label' => 'Fecha envío de contrato',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_visita_central',
+            'label' => 'Visita a la Central',
+          ),
+          1 => 
+          array (
+            'name' => 'f_visita_central',
+            'label' => 'Fecha visita a la Central',
+          ),
+        ),
+        10 => 
+        array (
+          0 => 
+          array (
+            'name' => 'observaciones_informe',
+            'studio' => 'visible',
+            'label' => 'LBL_OBSERVACIONES_INFORME',
+          ),
+          1 => 
+          array (
+            'name' => 'motivo_descarte_c',
+            'studio' => 'visible',
+            'label' => 'LBL_MOTIVO_DESCARTE',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

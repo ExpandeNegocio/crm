@@ -1,0 +1,89 @@
+<?php
+    $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
+    $GLOBALS['log'] -> info('[ExpandeNegocio][Paso a Estado 3]Pruebas');
+    
+    $db = DBManagerFactory::getInstance();
+    
+    //Limpieza de las auditorias de gestion que tienen el usuario vacio (si no se actualiza, los datos de auditoría no se ven bien)
+    
+    $query = "update expan_gestionsolicitudes_audit set created_by=1 where expan_gestionsolicitudes_audit.created_by is null; ";    
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_GESTIONES_VACIAS
+    $query = "delete from expan_gestionsolicitudes where name=''";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ORIG_EXPANDE
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c=null,subor_central=null,subor_medios=null,portal=null  where tipo_origen = '1'";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ORIG_PORTAL
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, subor_medios = null  where tipo_origen = '2'";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ORIG_EVENTOS
+    $query = "update expan_gestionsolicitudes set subor_expande = null, subor_central = null, subor_medios = null, portal = null  where tipo_origen = '3'";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ORIG_CENTRAL
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_medios = null, portal = null  where tipo_origen = '4'";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ORIG_MEDIOS
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, portal = null  where tipo_origen = '5'";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ORIG_MAILLING
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, portal = null, subor_medios = null  where tipo_origen = '6'";
+    $result = $db -> query($query);
+    
+    
+    //CONS_LIMPIA_ESTADO_INI
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = 1";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ESTADO_CURSO
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = 2";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ESTADO_PARADO
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_positivo = null where estado_sol = 3";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ESTADO_DESCAR
+    $query = "update expan_gestionsolicitudes set motivo_parada = null, motivo_positivo = null where estado_sol = 4";
+    $result = $db -> query($query);
+    
+    //CONS_LIMPIA_ESTADO_EXITO
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null where estado_sol = 5";
+    $result = $db -> query($query);
+        
+    //CONS_LIMPIA_AVANZADAS
+    $query = "update expan_gestionsolicitudes set candidatura_avanzada=0,candidatura_caliente=0 where estado_sol=3 or estado_sol=4";
+    $result = $db -> query($query);    
+    
+    //CONS_ADD_DESCARTE
+    $query = "update expan_gestionsolicitudes set motivo_descarte=99 where estado_sol = 4 and motivo_descarte is null";
+    $result = $db -> query($query);
+    
+    //Limpia relacion de llamadas
+    
+    $query = "UPDATE calls c " ;
+    $query =$query . "join (SELECT c.id c_id, g.id g_id ";
+    $query =$query . "FROM   expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gc, calls c ";
+    $query =$query . "WHERE  g.id =gc.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida  AND  c.parent_id ='' AND  ";
+    $query =$query . "gc.expan_gestionsolicitudes_calls_1calls_idb=c.id AND c.parent_type='Expan_GestionSolicitudes' ) a ";
+    $query =$query . "on a.c_id=c.id ";
+    $query =$query . "set c.parent_id=a.g_id";
+    $result = $db -> query($query);
+    
+    //Actualiza los origenes de las llamadas
+    $query = "UPDATE calls c INNER JOIN expan_gestionsolicitudes g ON c.parent_id = g.id ";
+    $query=$query."SET    c.origen=g.tipo_origen; ";
+    $result = $db -> query($query);
+    
+    $query = "update calls set parent_type='Expan_GestionSolicitudes' where parent_type='Accounts'"; 
+    $result = $db -> query($query);
+    
+        
+?>

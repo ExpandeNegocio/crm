@@ -1,0 +1,20 @@
+
+#description {
+	display: none;
+}
+
+/* Style the CKEditor element to look like a textfield */
+.cke_textarea_inline
+{
+	padding: 10px;
+	height: 100px;
+	width: 400px;
+	overflow: auto;
+
+	border: 1px solid gray;
+	-webkit-appearance: textfield;
+	
+	background-color: #FFFFFF;
+	border-color: #94C1E8;
+}
+

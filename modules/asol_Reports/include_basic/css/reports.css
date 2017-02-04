@@ -1,0 +1,226 @@
+body { 
+	margin-left: auto; 
+	margin-right: auto; 
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+tbody { 
+	text-align: left; 
+}
+
+table { 
+	margin-left: auto; 
+	margin-right: auto; 
+    border-spacing: 0pt;
+    border-collapse: separate;
+    padding: 1pt;
+}
+
+table.htmlTable { 
+	font-family: Helvetica;
+	font-size: 8pt;
+}
+
+.htmlTable {
+    width: 90%;
+}
+
+.pdfTable {
+    width: 100%;
+}
+
+.header-title { 
+	background-color: #FFFFFF; 
+	font-weight: bold;
+}
+
+.header { 
+	text-align: left; 
+	color: #000000; 
+	font-weight: bold;
+}
+
+.header-group { 
+	background-color: #DDDDDD; 
+	color: #000000; 
+	font-weight: bold; 
+}
+
+.header-subtotal { 
+	background-color: #DDDDDD; 
+	color: #000000; 
+	font-weight: bold; 
+	text-align: center;
+	vertical-align: middle;
+}
+
+.column { 
+	background-color: #444444; 
+	color: #FFFFFF; 
+	font-weight: bold; 
+	border: 1pt solid #DDDDDD;
+}
+
+.column-subtotal { 
+	background-color: #444444; 
+	color: #FFFFFF; 
+	font-weight: bold; 
+	border: 1pt solid #DDDDDD;
+}
+
+.column-total { 
+	background-color: #444444; 
+	color: #FFFFFF; 
+	font-weight: bold;
+	border: 1pt solid #DDDDDD;
+}
+
+.row-even { 
+	background-color: #BBBBBB; 
+	color: #000000; 
+	border: 1pt solid #DDDDDD;
+}
+
+.row-uneven { 
+	background-color: #FFFFFF; 
+	color: #000000; 
+	border: 1pt solid #DDDDDD;
+}
+
+.row-subtotal { 
+	background-color: #BBBBBB; 
+	color: #000000; 
+	border: 1pt solid #DDDDDD;
+}
+
+.row-total { 
+	background-color: #BBBBBB; 
+	color: #000000; 
+	border: 1pt solid #DDDDDD;
+}
+
+.chart-img { 
+
+}
+
+/*****************/
+/******HTML5******/
+/*****************/
+.legend {
+    float: left;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.legend div {
+    float: left;
+}
+
+.legend .query-color {
+	width: 16px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.legend table td.label {
+    padding-bottom: 5px;
+    padding-left: 0;
+    padding-right: 20px;
+    padding-top: 0;
+    text-align: left;
+}
+
+.legend .query-color {
+    height: 12px;
+    width: 12px;
+}
+
+
+/******************/
+/*******NVD3*******/
+/******************/
+.disabled circle {
+    fill-opacity: 0;
+}
+
+.nv-axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #000000;
+    stroke-opacity: 0.25;
+}
+
+.nv-axis path {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #000000;
+    stroke-opacity: 0.75;
+}
+
+.nv-controlsWrap {
+	display: none;
+}
+
+.nv-groups text {
+    fill: #000000;
+    font-weight: bold;
+    stroke: transparent;
+}
+
+.nv-pie text {
+    stroke: transparent;
+    stroke-width: 0;
+}
+
+.nv-pie .nv-label rect {
+    fill-opacity: 0;
+    stroke-opacity: 0;
+}
+
+.nv-pie path {
+    stroke: #FFFFFF;
+    stroke-opacity: 1;
+    stroke-width: 1px;
+}
+
+.nv-point-paths path {
+    fill-opacity: 0;
+}
+
+.nv-groups path.nv-line {
+    fill: none;
+    stroke-width: 2.5px;
+}
+
+.nv-line .nv-scatter .nv-groups .nv-point {
+    fill-opacity: 0;
+    stroke-opacity: 0;
+}
+
+.nv-background {
+    fill: white;
+    fill-opacity: 0;
+}
+
+.nv-stackedarea circle.nv-point {
+	fill: none;
+	fill-opacity: 0;
+	stroke: none;
+    stroke-opacity: 0;
+}
+
+.multiChart .y1.axis .nv-axis g line.tick{
+	opacity: 0.15;
+}
+
+.multiChart .y2.axis .nv-axis g line.tick{
+	opacity: 0.30;
+}
+
+.multiChart .x.axis .nv-axis g line.tick{
+	opacity: 0.20;
+}

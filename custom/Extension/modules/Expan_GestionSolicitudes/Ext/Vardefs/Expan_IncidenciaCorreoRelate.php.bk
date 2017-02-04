@@ -1,0 +1,11 @@
+<?php
+$dictionary['Expan_GestionSolicitudes']['fields']['Expan_IncidenciaCorreo'] = array(
+    'name' => 'Expan_IncidenciaCorreo',
+    'type' => 'link',
+    'relationship' => 'Expan_GestionSolicitudes_Expan_IncidenciaCorreo',
+    'module' => 'Expan_IncidenciaCorreo',
+    'bean_name' => 'Expan_IncidenciaCorreo',
+    'source' => 'non-db',
+    'vname' => 'LBL_EXPAN_INCIDENCIACORREO',
+    );
+?>

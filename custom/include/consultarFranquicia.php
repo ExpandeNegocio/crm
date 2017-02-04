@@ -1,0 +1,81 @@
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+    require_once ('data/SugarBean.php');
+    
+    $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
+    $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Inicio' );
+
+    $db = DBManagerFactory::getInstance();
+
+    $nomFran=$_POST["nomFran"];
+    $nomSector=$_POST["nomSector"];
+    $idFranquicias=$_POST["franquicias"];
+    $evento=$_POST["evento"];
+    $estado=$_POST["estado"];
+    $tipo=$_POST["tipo"];
+    
+    switch ($tipo) {
+        case 'SectorFromFranq':
+            
+            $sectores=array();   
+            $nomFran=str_replace(",","','",$nomFran);         
+            $query="SELECT s.d_subsector sub, s.c_sector FROM expan_franquicia f, expan_m_sectores s ";
+            $query=$query."WHERE replace(f.sector,'^','')=s.c_id AND f.deleted=0 AND f.name in  ('".$nomFran."');";
+            
+            $result = $db -> query($query, true);       
+            while ($row = $db -> fetchByAssoc($result)) {
+                if (!in_array($row['sub'],$sectores)){
+                    $sectores[]=$row['sub'];
+                }
+                if (!in_array($row['c_sector'],$sectores)){
+                    $sectores[]=$row['c_sector'];
+                }               
+            }              
+            $salida= implode("|", $sectores);
+            
+            echo $salida;
+            
+            break;
+        
+        case 'FranqFromSector':
+            
+            $franquicias=array();
+            $nomSector=str_replace(",","','",$nomSector);
+            
+    /*        $query = "SELECT f.name fran FROM expan_franquicia f, expan_m_sectores s ";
+            $query=$query."WHERE replace(f.sector, '^', '') = s.c_id AND f.deleted=0 AND s.c_sector in ('".$nomSector."')"; */
+            
+            $query = "SELECT f.name fran FROM expan_franquicia f, expan_m_sectores s ";
+            $query=$query."WHERE replace(f.sector, '^', '') = s.c_id AND f.tipo_cuenta in (1,2) AND f.deleted=0 AND s.c_sector in ('".$nomSector."')";
+            
+            $result = $db -> query($query, true);       
+            while ($row = $db -> fetchByAssoc($result)) {
+               $franquicias[]=$row['fran'];
+            }              
+            $salida= implode("|", $franquicias);
+            
+            echo $salida;
+                        
+            break;             
+            
+        case 'FranqEstadoEvento':
+                        
+            $listaFranquicias=str_replace("!","','",$idFranquicias);
+            
+            $query = "UPDATE expan_franquicia_expan_evento_c set participacion='".$estado."' ";
+            $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
+            $query=$query."AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
+            
+            $result = $db -> query($query);
+            
+            echo 'Ok';
+                      
+            break;
+        
+        default:
+            
+            break;
+    }
+
+?>

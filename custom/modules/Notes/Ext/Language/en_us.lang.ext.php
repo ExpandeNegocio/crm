@@ -1,0 +1,13 @@
+<?php 
+ //WARNING: The contents of this file are auto-generated
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_ASOL_PROJECT_ACTIVITIES_NOTES_FROM_ASOL_PROJECT_TITLE'] = 'Activities AsolProject : AsolProject';
+$mod_strings['LBL_ASOL_PROJECTTASK_ACTIVITIES_NOTES_FROM_ASOL_PROJECTTASK_TITLE'] = 'Activities : AsolProjectTask';
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_EXPAN_GESTIONSOLICITUDES_ACTIVITIES_1_NOTES_FROM_EXPAN_GESTIONSOLICITUDES_TITLE'] = 'Actividades:GestionSolicitudes';
+
+?>

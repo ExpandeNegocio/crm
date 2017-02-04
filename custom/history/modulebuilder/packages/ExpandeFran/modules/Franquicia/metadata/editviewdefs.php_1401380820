@@ -1,0 +1,482 @@
+<?php
+$module_name = 'Expan_Franquicia';
+$_object_name = 'expan_franquicia';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'SAVE',
+          1 => 'CANCEL',
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'includes' => 
+      array (
+        0 => 
+        array (
+          'file' => 'modules/Accounts/Account.js',
+        ),
+      ),
+      'useTabs' => true,
+      'tabDefs' => 
+      array (
+        'LBL_ACCOUNT_INFORMATION' => 
+        array (
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+        'LBL_EDITVIEW_PANEL3' => 
+        array (
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+        'LBL_EDITVIEW_PANEL1' => 
+        array (
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+        'LBL_EDITVIEW_PANEL2' => 
+        array (
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+      ),
+    ),
+    'panels' => 
+    array (
+      'lbl_account_information' => 
+      array (
+        0 => 
+        array (
+          0 => 'name',
+          1 => 
+          array (
+            'name' => 'sector',
+            'studio' => 'visible',
+            'label' => 'LBL_SECTOR',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'breve_descripcion',
+            'label' => 'LBL_BREVE_DESCRIPCION',
+          ),
+          1 => 'description',
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'fecha_creacion',
+            'label' => 'LBL_FECHA_CREACION',
+          ),
+          1 => 
+          array (
+            'name' => 'fecha_expansion',
+            'label' => 'LBL_FECHA_EXPANSION',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'presencia_internacional',
+            'studio' => 'visible',
+            'label' => 'LBL_PRESENCIA_INTERNACIONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'paises',
+            'studio' => 'visible',
+            'label' => 'LBL_PAISES',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'centros_nacionales_propios',
+            'label' => 'LBL_CENTROS_NACIONALES_PROPIOS',
+          ),
+          1 => 
+          array (
+            'name' => 'centros_extranjeros_propios',
+            'label' => 'LBL_CENTROS_EXTRANJEROS_PROPIOS',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'centros_nacionales_franquicia',
+            'label' => 'LBL_CENTROS_NACIONALES_FRANQUICIA',
+          ),
+          1 => 
+          array (
+            'name' => 'centros_extranjeros_franqui',
+            'label' => 'LBL_CENTROS_EXTRANJEROS_FRANQUI',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'red_spain',
+            'label' => 'LBL_RED_SPAIN',
+          ),
+          1 => 
+          array (
+            'name' => 'red_extrangera',
+            'label' => 'LBL_RED_EXTRANGERA',
+          ),
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'plantilla_central',
+            'label' => 'LBL_PLANTILLA_CENTRAL',
+          ),
+          1 => 
+          array (
+            'name' => 'cifra_negocio_grupo',
+            'label' => 'LBL_CIFRA_NEGOCIO_GRUPO',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'nifra',
+            'label' => 'LBL_NIFRA',
+          ),
+          1 => 
+          array (
+            'name' => 'aef',
+            'studio' => 'visible',
+            'label' => 'LBL_AEF',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'sellos_calidad',
+            'studio' => 'visible',
+            'label' => 'LBL_SELLOS_CALIDAD',
+          ),
+          1 => 
+          array (
+            'name' => 'otro_sello_calidad',
+            'label' => 'LBL_OTRO_SELLO_CALIDAD',
+          ),
+        ),
+      ),
+      'lbl_editview_panel3' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'empresa',
+            'label' => 'LBL_EMPRESA',
+          ),
+          1 => 
+          array (
+            'name' => 'website',
+            'comment' => 'URL of website for the company',
+            'label' => 'LBL_WEBSITE',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_direccion',
+            'label' => 'LBL_DIRECCION_DIRECCION',
+          ),
+          1 => 
+          array (
+            'name' => 'persona_contacto',
+            'label' => 'LBL_PERSONA_CONTACTO',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_localidad',
+            'label' => 'LBL_DIRECCION_LOCALIDAD',
+          ),
+          1 => 
+          array (
+            'name' => 'phone_office',
+            'comment' => 'The office phone number',
+            'label' => 'LBL_PHONE_OFFICE',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_codigo_postal',
+            'label' => 'LBL_DIRECCION_CODIGO_POSTAL',
+          ),
+          1 => 
+          array (
+            'name' => 'phone_alternate',
+            'comment' => 'An alternate phone number',
+            'label' => 'LBL_PHONE_ALT',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_provincia',
+            'studio' => 'visible',
+            'label' => 'LBL_DIRECCION_PROVINCIA',
+          ),
+          1 => '',
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_pais',
+            'studio' => 'visible',
+            'label' => 'LBL_DIRECCION_PAIS',
+          ),
+          1 => '',
+        ),
+      ),
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'tipo_de_franquiciado',
+            'studio' => 'visible',
+            'label' => 'LBL_TIPO_DE_FRANQUICIADO',
+          ),
+          1 => 
+          array (
+            'name' => 'necesario_titulacion',
+            'studio' => 'visible',
+            'label' => 'LBL_NECESARIO_TITULACION',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'titulacion',
+            'label' => 'LBL_TITULACION',
+          ),
+          1 => 
+          array (
+            'name' => 'condiciones_especiales',
+            'studio' => 'visible',
+            'label' => 'LBL_CONDICIONES_ESPECIALES',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'observaciones',
+            'studio' => 'visible',
+            'label' => 'LBL_OBSERVACIONES',
+          ),
+          1 => 
+          array (
+            'name' => 'inversion_minima_necesaria',
+            'label' => 'LBL_INVERSION_MINIMA_NECESARIA',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'tipo_franquicia',
+            'studio' => 'visible',
+            'label' => 'LBL_TIPO_FRANQUICIA',
+          ),
+          1 => 
+          array (
+            'name' => 'necesita_local',
+            'studio' => 'visible',
+            'label' => 'LBL_NECESITA_LOCAL',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'superficie_local',
+            'studio' => 'visible',
+            'label' => 'LBL_SUPERFICIE_LOCAL',
+          ),
+          1 => 
+          array (
+            'name' => 'requisitos_local',
+            'studio' => 'visible',
+            'label' => 'LBL_REQUISITOS_LOCAL',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'entorno_ubicacion',
+            'studio' => 'visible',
+            'label' => 'LBL_ENTORNO_UBICACION',
+          ),
+          1 => 
+          array (
+            'name' => 'observaciones_ubicacion',
+            'studio' => 'visible',
+            'label' => 'LBL_OBSERVACIONES_UBICACION',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'provincias_ubicar_negocio',
+            'studio' => 'visible',
+            'label' => 'LBL_PROVINCIAS_UBICAR_NEGOCIO',
+          ),
+          1 => 
+          array (
+            'name' => 'poblacion_minima',
+            'studio' => 'visible',
+            'label' => 'LBL_POBLACION_MINIMA',
+          ),
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'personal_minimo',
+            'studio' => 'visible',
+            'label' => 'LBL_PERSONAL_MINIMO',
+          ),
+          1 => 
+          array (
+            'name' => 'zona_exclisiva',
+            'studio' => 'visible',
+            'label' => 'LBL_ZONA_EXCLISIVA',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'vigencia_contrato',
+            'studio' => 'visible',
+            'label' => 'LBL_VIGENCIA_CONTRATO',
+          ),
+          1 => 
+          array (
+            'name' => 'reconvertir_negocio',
+            'studio' => 'visible',
+            'label' => 'LBL_RECONVERTIR_NEGOCIO',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'acuerdo_financiacion',
+            'studio' => 'visible',
+            'label' => 'LBL_ACUERDO_FINANCIACION',
+          ),
+        ),
+      ),
+      'lbl_editview_panel2' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'tipo_ficha',
+            'studio' => 'visible',
+            'label' => 'LBL_TIPO_FICHA',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'zona',
+            'studio' => 'visible',
+            'label' => 'LBL_ZONA',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'logotipo',
+            'studio' => 'visible',
+            'label' => 'LBL_LOGOTIPO',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'video',
+            'label' => 'LBL_VIDEO',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'exclusion_de_sector',
+            'label' => 'LBL_EXCLUSION_DE_SECTOR',
+          ),
+          1 => 
+          array (
+            'name' => 'exclusion_de_subsector',
+            'label' => 'LBL_EXCLUSION_DE_SUBSECTOR',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'estado_validacion',
+            'studio' => 'visible',
+            'label' => 'LBL_ESTADO_VALIDACION',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

@@ -1,0 +1,168 @@
+<?php
+$module_name = 'Expan_GestionSolicitudes';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+      'tabDefs' => 
+      array (
+        'DEFAULT' => 
+        array (
+          'newTab' => false,
+          'panelDefault' => 'expanded',
+        ),
+      ),
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'estado_sol',
+            'studio' => 'visible',
+            'label' => 'Estado',
+          ),
+          1 => 
+          array (
+            'name' => 'candidatura_caliente',
+            'label' => 'Candidatura caliente',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_documentacion',
+            'label' => 'Envio de la documentacion',
+          ),
+          1 => 
+          array (
+            'name' => 'envio_documentacion',
+            'label' => 'Envio de Documentación',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_recepcio_cuestionario',
+            'label' => 'Recepción del cuestionario',
+          ),
+          1 => 
+          array (
+            'name' => 'f_recepcion_cuestionario',
+            'label' => 'Fecha de recepción del cuestionario',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_informacion_adicional',
+            'label' => 'Envio información adicional',
+          ),
+          1 => 
+          array (
+            'name' => 'f_informacion_adicional',
+            'label' => 'Fecha envio información adicional',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_entrevista',
+            'label' => 'Entrevista',
+          ),
+          1 => 
+          array (
+            'name' => 'f_entrevista',
+            'label' => 'Fecha Entrevista',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_precontrato',
+            'label' => 'Envio precontrato',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_precontrato',
+            'label' => 'Fecha envio precontrato',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_contrato',
+            'label' => 'Envío de contrato',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_contrato',
+            'label' => 'Fecha envío de contrato',
+          ),
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_visita_local',
+            'label' => 'Visita al local',
+          ),
+          1 => 
+          array (
+            'name' => 'f_visita_local',
+            'label' => 'Fecha visita al local',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_visita_central',
+            'label' => 'Visita a la Central',
+          ),
+          1 => 
+          array (
+            'name' => 'f_visita_central',
+            'label' => 'Fecha visita a la Central',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'observaciones_informe',
+            'studio' => 'visible',
+            'label' => 'LBL_OBSERVACIONES_INFORME',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

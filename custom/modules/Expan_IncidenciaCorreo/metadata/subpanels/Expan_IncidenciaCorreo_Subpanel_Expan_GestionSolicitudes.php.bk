@@ -1,0 +1,31 @@
+<?php
+// created: 2013-06-19 07:45:46
+$subpanel_layout['list_fields'] = array (
+
+    'name'=>array(
+            'vname' => 'LBL_NAME',
+            'widget_class' => 'SubPanelDetailViewLink',
+            'width' => '45%',
+    ),
+
+    'date_modified' =>
+    array (
+        'type' => 'datetime',
+        'vname' => 'LBL_DATE_MODIFIED',
+        'width' => '10%',
+        'default' => true,
+    ),
+    'edit_button' => array (
+        'widget_class' => 'SubPanelEditButton',
+        'module' => 'Expan_IncidenciaCorreo',
+        'width' => '4%',
+        'default' => true,
+    ),
+    'remove_button' => array (
+        'widget_class' => 'SubPanelRemoveButton',
+        'module' => 'Expan_IncidenciaCorreo',
+        'width' => '5%',
+        'default' => true,
+    ),
+);
+?>

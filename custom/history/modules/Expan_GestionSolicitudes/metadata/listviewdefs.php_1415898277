@@ -1,0 +1,60 @@
+<?php
+$module_name = 'Expan_GestionSolicitudes';
+$listViewDefs [$module_name] = 
+array (
+  'NAME' => 
+  array (
+    'width' => '32%',
+    'label' => 'LBL_NAME',
+    'default' => true,
+    'link' => true,
+  ),
+  'EXPAN_SOLICITUD_EXPAN_GESTIONSOLICITUDES_1_NAME' => 
+  array (
+    'type' => 'relate',
+    'link' => true,
+    'label' => 'LBL_EXPAN_SOLICITUD_EXPAN_GESTIONSOLICITUDES_1_FROM_EXPAN_SOLICITUD_TITLE',
+    'width' => '10%',
+    'default' => true,
+    'id' => 'EXPAN_SOLICITUD_EXPAN_GESTIONSOLICITUDES_1EXPAN_SOLICITUD_IDA',
+  ),
+  'FRANQUICIA' => 
+  array (
+    'type' => 'enum',
+    'studio' => 'visible',
+    'label' => 'LBL_FRANQUICIA',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'ESTADO_SOL' => 
+  array (
+    'type' => 'enum',
+    'studio' => 'visible',
+    'default' => true,
+    'label' => 'Estado',
+    'width' => '10%',
+  ),
+  'ASSIGNED_USER_NAME' => 
+  array (
+    'width' => '9%',
+    'label' => 'LBL_ASSIGNED_TO_NAME',
+    'module' => 'Employees',
+    'id' => 'ASSIGNED_USER_ID',
+    'default' => true,
+  ),
+  'CHK_ENVIO_DOCUMENTACION' => 
+  array (
+    'type' => 'bool',
+    'default' => true,
+    'label' => 'Envio de la documentacion',
+    'width' => '10%',
+  ),
+  'CHK_RECEPCIO_CUESTIONARIO' => 
+  array (
+    'type' => 'bool',
+    'default' => true,
+    'label' => 'Recepción del cuestionario',
+    'width' => '10%',
+  ),
+);
+?>

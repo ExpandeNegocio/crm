@@ -1,0 +1,108 @@
+#max_min {
+	float: right;
+	cursor: pointer;
+}
+
+#minimize {
+	display: none;
+}
+
+#maximize {
+}
+
+.code {
+	display: none;
+}
+
+.autosave {
+	cursor: pointer;
+	vertical-align: top;
+}
+
+.autosave_active {
+	display: none;
+}
+
+#button_save, #button_publish, #button_editAsWorkingVersion, #button_createBaseline, #button_exportGantt, #button_importGantt, #button_clearGantt {
+	display: none;
+}
+
+.ganttButtonBar .buttons_left {
+	float: left;
+	margin: 0px 0 0 40px;
+}
+
+.ganttButtonBar .mode {
+	float: left;
+	margin: 0px 0 0 40px;
+	cursor: pointer;
+}
+
+.edit_mode {
+	display: none;
+}
+
+#iframe_container {
+
+}
+
+.ganttButtonBar {
+	padding: 7px;
+}
+
+.ganttButtonBar h1 {
+	padding-left: 5px;
+}
+
+input[readonly] {
+	color: #666666;
+}
+
+.projectInfo {
+	float: left;
+	margin: 5px;
+	width: 200px;
+	height: 36px;
+}
+
+.projectInfo > * {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.projectInfo .projectName {
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 21px;
+}
+
+.projectInfo .projectVersion {
+	font-style: italic;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+#buttons_right {
+	float: right;
+}
+
+#buttons_actions, #button_autosave {
+	float: right;
+	margin-right: 5px;
+}
+
+#button_autosave {
+	display: none;
+}
+
+#buttons_right .dropdown-menu {
+	z-index: 4000;
+}
+
+#undo, #redo, #addAboveCurrentTask, #addBelowCurrentTask, #indentCurrentTask, #outdentCurrentTask, #moveUpCurrentTask, #moveDownCurrentTask, #deleteCurrentTask {
+    color: #bbbbbb;
+}
+
