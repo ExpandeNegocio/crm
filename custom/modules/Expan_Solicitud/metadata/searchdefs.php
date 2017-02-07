@@ -80,7 +80,6 @@ array (
         'default' => true,
         'name' => 'tipo_origen',
       ),
-
       'expan_evento_id_c' => 
       array (
         'type' => 'enum',
@@ -89,8 +88,7 @@ array (
         'label' => 'LBL_EVENTO',
         'width' => '10%',
         'name' => 'expan_evento_id_c',
-      ),      
-   
+      ),         
       'franquicia_principal' => 
       array (
         'type' => 'enum',
@@ -161,6 +159,15 @@ array (
         'label' => 'LBL_PORTAL',
         'width' => '10%',
         'name' => 'portal',
+      ),      
+      'sectores_de_interes' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_SECTORES_DE_INTERES',
+        'width' => '10%',
+        'name' => 'sectores_de_interes',
       ),
       
       'candidatura_avanzada' => 
@@ -180,7 +187,14 @@ array (
         'default' => true,
         'width' => '10%',
       ),
-      
+      'observaciones_solicitud' => 
+      array (
+        'type' => 'varchar',
+        'label' => 'LBL_OBSERVACIONES_SOLICITUD',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'observaciones_solicitud',
+      ),
 
    /*   'abierta' => 
       array (
