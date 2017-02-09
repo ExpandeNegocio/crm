@@ -180,6 +180,18 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      
+     'sector' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_SECTOR',
+        'width' => '10%',
+        'name' => 'sector',
+      ),
+      
+      
     ),
   ),
   'templateMeta' => 
