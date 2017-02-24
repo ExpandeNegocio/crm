@@ -275,7 +275,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
         $this -> load_relationship('expan_gestionsolicitudes_tasks_1');
 
-        foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $tareas) {
+        foreach ($this->expan_gestionsolicitudes_tasks_1->getBeans() as $tareas) {
                 $tareas -> deleted = 1;
                 $tareas -> save();
         }
