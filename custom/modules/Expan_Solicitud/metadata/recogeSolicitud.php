@@ -12,11 +12,8 @@
     $db = DBManagerFactory::getInstance();
     
     $query = "SELECT s.id ";
-    $query=$query."FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-    $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND ";
-    $query=$query."g.id='".$gestion."'";
-    
-    
+    $query=$query."FROM expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."WHERE gs.expan_soli5dcccitudes_idb='".$gestion."' AND deleted=0";
     
     $resultSol = $db->query($query, true);        
     while ($rowSol = $db->fetchByAssoc($resultSol)){
