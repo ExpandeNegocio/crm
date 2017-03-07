@@ -59,8 +59,8 @@ $sugar_config = array (
   array (
     'db_host_name' => 'localhost',
     'db_host_instance' => 'SQLEXPRESS',
-    'db_user_name' => 'sugar_user',
-    'db_password' => 'Aresit0s',
+    'db_user_name' => 'root',
+    'db_password' => '',
     'db_name' => 'sugarce_a',
     'db_type' => 'mysql',
     'db_port' => '3306',

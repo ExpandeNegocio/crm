@@ -1,4 +1,5 @@
 <?php
+
 $module_name = 'Expan_Franquicia';
 $_object_name = 'expan_franquicia';
 $viewdefs [$module_name] = 

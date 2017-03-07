@@ -365,7 +365,7 @@ array (
             'label' => 'LBL_SECTORES_DE_INTERES',
             'customCode' => '
           {php}
-              include $_SERVER[\'DOCUMENT_ROOT\']."/sugarcrm/custom/modules/Expan_Solicitud/metadata/opEdicionSolicitud.php";
+              include "custom/modules/Expan_Solicitud/metadata/opEdicionSolicitud.php";
               $prueba=new opEdicionSolicitud();
               $prueba->cargaSectores();  
       

@@ -275,7 +275,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
         $this -> load_relationship('expan_gestionsolicitudes_tasks_1');
 
-        foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $tareas) {
+        foreach ($this->expan_gestionsolicitudes_tasks_1->getBeans() as $tareas) {
                 $tareas -> deleted = 1;
                 $tareas -> save();
         }
@@ -319,15 +319,14 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Iniciamos calculo');
         
-        
         //Actualizamos las prioridadesde la gestion
              
         $query = "  update expan_gestionsolicitudes g ";
         $query=$query."  inner join (SELECT g.id,ra.sid, ";
         $query=$query."       g.name,       ";
-        $query=$query."       CASE WHEN estado_sol=".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO." THEN 200 ";
-        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::POSITIVO_COLABORACION." THEN 100 ";
-        $query=$query."       WHEN oportunidad_inmediata = 1 THEN 1000  ";
+        $query=$query."       CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200 ";
+        $query=$query."       WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100 ";
+        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND oportunidad_inmediata = 1 THEN 1000  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 100  ";                        
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 90  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato = 1 THEN 80  ";
@@ -339,7 +338,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_responde_C1 = 1 THEN 20   ";
         $query=$query."       when estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_documentacion = 1 THEN 10          ";
         $query=$query."       ELSE 0 END +IFNULL(ra.punt, 0) + IFNULL(lla.puntLLamada, 0) + IFNULL(co.puntCorreo, 0) final ";
-        $query=$query."FROM   expan_gestionsolicitudes g ";
+        $query=$query." FROM   expan_gestionsolicitudes g ";
         $query=$query."       LEFT JOIN ";
         $query=$query."                 (SELECT   g.id, s.rating,s.id sid, ";
         $query=$query."                           SUM(CASE WHEN s.rating = 1 THEN 50 WHEN s.rating = 2 THEN 30 WHEN s.rating = 3 THEN 10 ELSE 0 END) punt ";
@@ -359,7 +358,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."                  GROUP BY g.id) co  ";
         $query=$query."         ON g.id = co.id) op ";
         $query=$query."  on g.id='".$this->id."' AND op.id=g.id   ";
-        $query=$query."  set g.prioridad=op.final,g.date_modified=now(); ";
+        $query=$query."  set g.prioridad=op.final, g.date_modified=now(); ";
         $result = $db -> query($query);  
         
         //Actualizo las solicitudes
@@ -367,8 +366,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query = "  update expan_solicitud s ";
         $query=$query."  inner join (SELECT s.id, max(g.prioridad) prio ";
         $query=$query."              FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-        $query=$query."              WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted= 0 AND g.id='".$this->id."' ";
-        $query=$query."              GROUP BY s.id) p ";
+        $query=$query."              WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted= 0) p ";
         $query=$query."  on s.id=p.id ";
         $query=$query."  set s.prioridad=p.prio; ";
         
