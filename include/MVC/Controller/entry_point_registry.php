@@ -117,5 +117,6 @@ $entry_point_registry = array(
     'CrearLlamadasDiarias'=>array('file' => 'custom/include/CrearLlamadasDiarias.php', 'auth' => false),
     'consultarFranquicia'=>array('file' => 'custom/include/consultarFranquicia.php', 'auth' => false),
     'LimpiezaBD'=>array('file' => 'custom/include/LimpiezaBD.php', 'auth' => false),
+    'CrearLlamadaRecorFran'=>array('file' => 'custom/include/CrearLlamadaRecorFran.php', 'auth' => false),
 );
 ?>
