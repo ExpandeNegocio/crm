@@ -223,24 +223,18 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
     }
     /**
-     * Crea una llamada de recordatorio, si no existía ya y si existe el teléfono
-     * ¿Alguna comprobación más?
+     * Crea una llamada de recordatorio, si no está creada
      */
     public function creaLlamadaRecor($texto, $tipo){
         
-        $telefono = $this -> getTelefono();
+            $telefono = $this -> getTelefono();
         
-        if ($telefono==""){
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada] No existe un teléfono de contacto');
-            return;
-        }
-        
-        //comprobar si ya se ha creado la llamada, en cuyo caso no se hace nada
         if($this -> existeLlamada($tipo, "Planned")== true){
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada] Ya está añadida la llamada');
             return;
         }
-        //No existe la llamada y se tiene el teléfono, hay que crearla
+        
+        //No existe la llamada, hay que crearla
         $llamada = new Call();
         
         //completar campos
@@ -261,7 +255,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $llamada -> gestion_agrupada = false;
         $llamada -> name = $this -> name . ' - '. $texto;
         
-        //falta la fecha de empiece...!! numDias
+        $llamada -> date_start = $this -> calcularFechaInicio();
         
         //guardar los cambios de la llamada
         $llamada -> ignore_update_c = true;
@@ -269,20 +263,33 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
         $this -> actualizarFechaCreacion($llamada);
         
-         //enlazar con la franquicia¿?
+        $this -> enlazarConFranquicia($llamada);
+    }
+    
+    /**
+     * Se calcula como 12 horas después de la fecha actual, suponiendo que se ejecutará
+     * a las 12 de la noche, devolverá las 12 de la mañana del día siguiente.
+     */
+    function calcularFechaInicio(){
+         
+        date_default_timezone_set('europe/madrid');
+        $dateTime = time();
+        return date("Y-m-d H:i:s", $dateTime + (12 * 3600));
+    }
+    
+    function enlazarConFranquicia($llamada){
+        
         $this -> load_relationship('expan_franquicia_calls_1');
         $this -> expan_franquicia_calls_1 -> add($llamada -> id);
         $this -> ignore_update_c = true;
         $this -> save();
-        
-        
     }
-
+    
     /**
      * Actualizar fecha de creación de la llamada
      */
     function actualizarFechaCreacion($llamada){
-        //actualizar la fecha de creación de la llamada al momento actual
+        
         $db = DBManagerFactory::getInstance();
         $query = "UPDATE calls SET date_entered = UTC_TIMESTAMP() WHERE id = '".$llamada -> id."'";
         $result = $db -> query($query);
@@ -305,11 +312,6 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         return false;
     }
     
-    /**
-     * Devuelve el teléfono asociado a una franquicia
-     * ¿Cuáles son el resto de teléfonos?
-     */
-     
     function getTelefono(){
         
         $telefono = "";
