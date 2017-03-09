@@ -222,6 +222,106 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         }  
         
     }
+    /**
+     * Crea una llamada de recordatorio, si no está creada
+     */
+    public function creaLlamadaRecor($texto, $tipo){
+        
+            $telefono = $this -> getTelefono();
+        
+        if($this -> existeLlamada($tipo, "Planned")== true){
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada] Ya está añadida la llamada');
+            return;
+        }
+        
+        //No existe la llamada, hay que crearla
+        $llamada = new Call();
+        
+        //completar campos
+        $llamada -> assigned_user_id = $this -> assigned_user_id;
+        $llamada -> assigned_user_name = $this -> assigned_user_name;
+        $llamada -> duration_minutes = 15;
+        $llamada -> date_entered=TimeDate::getInstance()->getNow()->asDb();
+        $llamada -> status = "Planned";
+        $llamada -> parent_id = $this -> id;
+        $llamada -> parent_type = 'Expan_Franquicia';
+        $llamada -> direction = 'Outbound';
+        $llamada -> telefono = $telefono;
+        $llamada -> call_type = $tipo;
+        $llamada -> franquicia = $this;
+        $llamada -> reminder_time = -1;
+        $llamada -> created_by = 1;
+        
+        $llamada -> gestion_agrupada = false;
+        $llamada -> name = $this -> name . ' - '. $texto;
+        
+        $llamada -> date_start = $this -> calcularFechaInicio();
+        
+        //guardar los cambios de la llamada
+        $llamada -> ignore_update_c = true;
+        $llamada -> save();
+        
+        $this -> actualizarFechaCreacion($llamada);
+        
+        $this -> enlazarConFranquicia($llamada);
+    }
+    
+    /**
+     * Se calcula como 12 horas después de la fecha actual, suponiendo que se ejecutará
+     * a las 12 de la noche, devolverá las 12 de la mañana del día siguiente.
+     */
+    function calcularFechaInicio(){
+         
+        date_default_timezone_set('europe/madrid');
+        $dateTime = time();
+        return date("Y-m-d H:i:s", $dateTime + (12 * 3600));
+    }
+    
+    function enlazarConFranquicia($llamada){
+        
+        $this -> load_relationship('expan_franquicia_calls_1');
+        $this -> expan_franquicia_calls_1 -> add($llamada -> id);
+        $this -> ignore_update_c = true;
+        $this -> save();
+    }
+    
+    /**
+     * Actualizar fecha de creación de la llamada
+     */
+    function actualizarFechaCreacion($llamada){
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "UPDATE calls SET date_entered = UTC_TIMESTAMP() WHERE id = '".$llamada -> id."'";
+        $result = $db -> query($query);
+    }
+    
+    /**
+     * Comprueba si ya se ha creado la llamada de recordatorio
+     */
+    function existeLlamada($tipo, $estado){
+        
+        $db= DBManagerFactory::getInstance();
+        
+        $query= "SELECT id FROM calls WHERE parent_id='".$this -> id."' AND status = '".$estado."' AND call_type = '".$tipo."' AND deleted=0;";
+        
+        $result = $db -> query($query, TRUE);
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+            return true;
+        }
+        return false;
+    }
+    
+    function getTelefono(){
+        
+        $telefono = "";
+        
+        if ($this -> phone_office !=""){//si hay telefono de la oficina
+            $telefono = $this -> phone_office;
+        }
+        
+        return $telefono;
+    }
     
 }
 ?>
