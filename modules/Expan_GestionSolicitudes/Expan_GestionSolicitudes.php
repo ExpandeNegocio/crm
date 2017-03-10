@@ -286,7 +286,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $llamadasAbiertas=false;
         
         $db = DBManagerFactory::getInstance();
-        $query = "select * from calls where status='Planned' AND deteled=0 AND parent_id='".$this->id."'";
+        $query = "select * from calls where status='Planned' AND deleted=0 AND parent_id='".$this->id."'";
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneLlamadasPendientes]query-' . $query);
         $result = $db -> query($query, true);
 
@@ -774,9 +774,12 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NumGestiones - ' . $numgest);
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] tipo llamada - ' . $llamada -> call_type);
 
-            if ($numgest > 0 && ($llamada -> call_type == 'Primera' || 
+            
+
+            if ($numgest > 1 && ($llamada -> call_type == 'Primera' || 
                                  $llamada -> call_type == 'SolCorreo' ||
                                  $llamada -> call_type == 'InformacionAdicional')) {
+                    
                 $llamada -> gestion_agrupada = true;
                 $llamada -> name = $solicitud -> name . ' - Gestion Agrupada - ' . $texto;
                 $solicitud ->AgruparLLamadas('Planned',$tipo);
