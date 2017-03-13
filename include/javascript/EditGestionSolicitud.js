@@ -450,7 +450,7 @@ function reenvioInfo(tipoEnvio, id) {
 		config.msg = "Espere por favor... ";
 		YAHOO.SUGAR.MessageBox.show(config);
 
-		url = 'index.php?entryPoint=reenvioDoc&id=' + i + '&tipoEnvio=' + tipoEnvio;
+		url = 'index.php?entryPoint=reenvioDoc&id=' + id + '&tipoEnvio=' + tipoEnvio;
 		$.ajax({
 			type : "POST",
 			url : url,

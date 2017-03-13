@@ -82,6 +82,11 @@ array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="reenvioInfo(\'C1.4\',\'{$fields.id.value}\');" value="Reenviar C1.4">{/if}',
           ),
+          11 =>
+          array(
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
+                onClick="reenvioInfo(\'C1.5\',\'{$fields.id.value}\');" value="Reenviar C1.5">{/if}',
+          ), 
         ),
       ),
       'maxColumns' => '2',

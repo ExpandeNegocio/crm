@@ -85,12 +85,17 @@ array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="reenvioInfo(\'C1.4\',\'{$fields.id.value}\');" value="Reenviar C1.4">{/if}',
           ),
-           11 => 
+          11 => 
+          array (
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+                    onClick="reenvioInfo(\'C1.5\',\'{$fields.id.value}\');" value="Reenviar C1.5">{/if}',
+          ),
+          12 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirHermanas(\'{$fields.id.value}\');" value="Abrir Hermanas">{/if}',
           ),
-         12 => 
+          13 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="window.open(\'index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}\');" value="CrearLlamada">{/if}',
