@@ -1,5 +1,4 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -35,53 +34,39 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-
-
+/*
+ * Created on May 29, 2007
+ *
+ * To change the template for this generated file go to
+ * Window - Preferences - PHPeclipse - PHP - Code Templates
+ */
 $module_name = 'Expma_Mailing';
-$listViewDefs[$module_name] = array(
-	'NAME' => array(
-		'width' => '32', 
-		'label' => 'LBL_NAME', 
-		'default' => true,
-        'link' => true),         
-	'ASSIGNED_USER_NAME' => array(
-		'width' => '9', 
-		'label' => 'LBL_ASSIGNED_TO_NAME',
-		'module' => 'Employees',
-        'id' => 'ASSIGNED_USER_ID',
-        'default' => true),
-    'n_reenvios' => array (
-        'width' => '10%',
-        'label' => 'LBL_N_REENVIOS',
-        'default' => true),      
-        
-    'fecha_primer_envio' => array (
-        'width' => '10%',
-        'label' => 'LBL_FECHA_PRIMER_ENVIO',
-        'default' => true),     
-                          
-    'fecha_ultimo_envio' => array (
-        'width' => '10%',
-        'label' => 'LBL_FECHA_ULTIMO_ENVIO',
-        'default' => true),                       
-                       
-	'correos_ok' => array (
-        'width' => '10%',
-        'label' => 'LBL_CORREOS_OK',
-        'default' => true),
-                
-    'correos_ko' => array (
-        'width' => '10%',
-        'label' => 'LBL_CORREOS_KO',
-        'default' => true),
-        
-    'franquicias' => 
-        array (
-            'type' => 'multienum',
-            'studio' => 'visible',
-            'default' => true,
-            'label' => 'LBL_FRANQUICIAS',
-            'width' => '10%'),
-);
+  $searchdefs[$module_name] = array(
+                    'templateMeta' => array(
+                            'maxColumns' => '3',
+                            'maxColumnsBasic' => '4', 
+                            'widths' => array('label' => '10', 'field' => '30'),                 
+                           ),
+                    'layout' => array(                      
+                        'basic_search' => array(
+                            'name', 
+                            array('name'=>'current_user_only', 'label'=>'LBL_CURRENT_USER_FILTER', 'type'=>'bool'),
+                            ),
+                        'advanced_search' => array(
+                            'name', 
+                            array('name' => 'assigned_user_id', 'label' => 'LBL_ASSIGNED_TO', 'type' => 'enum', 'function' => array('name' => 'get_user_array', 'params' => array(false))),
+                        
+                        'franquicia_search' =>
+                            array(
+                                'name' => 'franquicias',
+                                'label' => 'LBL_FRANQUICIAS',
+                                'type' => 'multienum',
+                                'studio' => 'visible',
+                                'default' => true,
+                                'width' => '10%',
+                            ),
+                        
+                     ),
+                    ),
+               );
 ?>

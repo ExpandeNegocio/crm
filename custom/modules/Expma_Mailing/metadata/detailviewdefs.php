@@ -68,7 +68,16 @@ array (
           ),
         ),
         
-        1 => 
+        1 =>
+        array(
+            0 => array(
+                'name'=> 'franquicias',
+                'studio' => 'visible',
+                'label' => 'LBL_FRANQUICIAS',
+            ),
+        ),
+        
+        2 => 
         array (
           0 => 
           array (
@@ -82,7 +91,7 @@ array (
           ),
         ),
         
-        2 => 
+        3 => 
         array (
           0 => 
           array (
@@ -96,7 +105,7 @@ array (
           ),
         ),
         
-        3 => 
+        4 => 
         array (
           0 => 
           array (
@@ -110,7 +119,7 @@ array (
           ),
         ),
         
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -123,7 +132,7 @@ array (
             'label' => 'LBL_CHK_POR_FRANQUICIA',
           ),
         ),
-        5 => 
+        56=> 
         array (
           0 => 'description',
           1 => 
