@@ -248,7 +248,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $llamada -> direction = 'Outbound';
         $llamada -> telefono = $telefono;
         $llamada -> call_type = $tipo;
-        $llamada -> franquicia = $this;
+        $llamada -> franquicia = $this -> id;
         $llamada -> reminder_time = -1;
         $llamada -> created_by = 1;
         
