@@ -192,4 +192,6 @@ $mod_strings = array (
   'LBL_RECURSOS_PROPIOS'=>'Recursos Propios',
   'LBL_SUBORIGEN'=>'Suborigen',
   'LBL_CANDIDATURA_AVANZADA'=>'Candidatura avanzada',
+  'LBL_GESTIONESAGRUPADAS' => 'Gestiones agrupadas',
+  'LBL_NEWSLETTER' => 'No enviar newsletter',
 );
