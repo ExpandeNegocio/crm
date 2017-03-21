@@ -1716,6 +1716,26 @@ $dictionary['Expan_Solicitud'] = array(
       'len' => '255',
       'default'=>'Hola',
       'source' => 'non-db',
+  ),
+    
+  'no_newsletter' => 
+  array (
+    'required' => false,
+    'name' => 'no_newsletter',
+    'vname' => 'LBL_NEWSLETTER',
+    'type' => 'bool',
+    'massupdate' => 0,
+    'default' => '0',
+    'no_default' => false,
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'len' => '255',
+    'size' => '20',
   )
   
   

@@ -35,53 +35,21 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-
-
 $module_name = 'Expma_Mailing';
-$listViewDefs[$module_name] = array(
-	'NAME' => array(
-		'width' => '32', 
-		'label' => 'LBL_NAME', 
-		'default' => true,
-        'link' => true),         
-	'ASSIGNED_USER_NAME' => array(
-		'width' => '9', 
-		'label' => 'LBL_ASSIGNED_TO_NAME',
-		'module' => 'Employees',
-        'id' => 'ASSIGNED_USER_ID',
-        'default' => true),
-    'n_reenvios' => array (
-        'width' => '10%',
-        'label' => 'LBL_N_REENVIOS',
-        'default' => true),      
+$searchFields[$module_name] = 
+    array (
+        'name' => array( 'query_type'=>'default'),
+        'current_user_only'=> array('query_type'=>'default','db_field'=>array('assigned_user_id'),'my_items'=>true, 'vname' => 'LBL_CURRENT_USER_FILTER', 'type' => 'bool'),
+        'assigned_user_id'=> array('query_type'=>'default'),
+        'franquicias' => array('query_type' => 'default'),
         
-    'fecha_primer_envio' => array (
-        'width' => '10%',
-        'label' => 'LBL_FECHA_PRIMER_ENVIO',
-        'default' => true),     
-                          
-    'fecha_ultimo_envio' => array (
-        'width' => '10%',
-        'label' => 'LBL_FECHA_ULTIMO_ENVIO',
-        'default' => true),                       
-                       
-	'correos_ok' => array (
-        'width' => '10%',
-        'label' => 'LBL_CORREOS_OK',
-        'default' => true),
-                
-    'correos_ko' => array (
-        'width' => '10%',
-        'label' => 'LBL_CORREOS_KO',
-        'default' => true),
-        
-    'franquicias' => 
-        array (
-            'type' => 'multienum',
-            'studio' => 'visible',
-            'default' => true,
-            'label' => 'LBL_FRANQUICIAS',
-            'width' => '10%'),
-);
+        //Range Search Support 
+       'range_date_entered' => array ('query_type' => 'default', 'enable_range_search' => true, 'is_date_field' => true),
+       'start_range_date_entered' => array ('query_type' => 'default', 'enable_range_search' => true, 'is_date_field' => true),
+       'end_range_date_entered' => array ('query_type' => 'default', 'enable_range_search' => true, 'is_date_field' => true),
+       'range_date_modified' => array ('query_type' => 'default', 'enable_range_search' => true, 'is_date_field' => true),
+       'start_range_date_modified' => array ('query_type' => 'default', 'enable_range_search' => true, 'is_date_field' => true),
+       'end_range_date_modified' => array ('query_type' => 'default', 'enable_range_search' => true, 'is_date_field' => true),  
+        //Range Search Support      
+    );
 ?>

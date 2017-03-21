@@ -127,7 +127,16 @@ array (
           ),
         ),
         
-        5 => 
+        5 =>
+        array(
+            0 => 
+            array(
+                'name' => 'no_newsletter',
+                'label' => 'LBL_NEWSLETTER',
+            ),
+        ),
+        
+        6 => 
         array (
           0 => 
           array (
@@ -141,7 +150,7 @@ array (
             'label' => 'LBL_FECHA_PRIMER_CONTACTO',
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 
           array (
@@ -155,7 +164,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_1',
           ),
         ),
-        7 => 
+        8 => 
         array (
           0 => 
           array (
@@ -169,7 +178,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_2',
           ),
         ),
-        8 => 
+        9 => 
         array (
           0 => 
           array (
@@ -183,7 +192,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_3',
           ),
         ),
-        9 => 
+        10 => 
         array (
           0 => 
            array (          
@@ -200,7 +209,7 @@ array (
           ),
         ),
         
-        10 => 
+        11 => 
         array (
           0 => 
            array (          
@@ -215,7 +224,7 @@ array (
           ),
         ),                    
         
-        11 => 
+        12 => 
         array (
           0 => 
          array (
@@ -230,8 +239,6 @@ array (
               'maxlength' => 150,
             ),
           ),
-          1 => (''
-          ), 
         ),
       ),
       'lbl_editview_panel4' => 

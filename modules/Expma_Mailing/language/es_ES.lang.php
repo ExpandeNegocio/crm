@@ -76,4 +76,5 @@ $mod_strings = array (
   'LBL_N_REENVIOS'=>'Nº de reenvios',
   'LBL_FECHA_PRIMER_ENVIO'=>'Fecha de primer Envío',
   'LBL_FECHA_ULTIMO_ENVIO'=>'Fecha de último Envío',
+  'LBL_FRANQUICIAS' => 'Franquicias',
 );

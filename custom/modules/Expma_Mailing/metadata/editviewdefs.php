@@ -74,6 +74,12 @@ array (
           array (
             'name' => 'guardar_correo',
             'label' => 'LBL_GUARDAR_CORREO',
+          ),
+          
+          1 => array(
+            'name'=> 'franquicias',
+            'studio'=> 'visible',
+            'label'=> 'LBL_FRANQUICIAS',
           ),  
         ),
          2 => 

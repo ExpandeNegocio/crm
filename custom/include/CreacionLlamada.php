@@ -70,7 +70,8 @@ class AccionesGuardadoTel {
                 //Puede venir ya relleno si esta creado de forma automatica
                 if ($solicitud -> NumGestiones() > 1 && ($bean -> call_type == 'Primera' || 
                                                          $bean -> call_type == 'SolCorreo' ||
-                                                         $bean -> call_type == 'InformacionAdicional')) 
+                                                         $bean -> call_type == 'InformacionAdicional'
+                                                         )) 
                 {
                     $bean -> gestion_agrupada = true;
                     $bean -> name = $solicitud -> name . ' - Gestion Agrupada - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];
@@ -84,9 +85,7 @@ class AccionesGuardadoTel {
                         return null;
                     }
                 }
-                
-                
-
+              
                 //Si esta asociada a una gestion
                 if ($gestion!=null){
                     $bean->assigned_user_id=$gestion->assigned_user_id;
@@ -101,10 +100,10 @@ class AccionesGuardadoTel {
                 
                 if ($solicitud -> NumGestionesEstado("2") > 1 && 
                     ($bean -> call_type == 'Primera' || $bean -> call_type == 'SolCorreo' || $bean -> call_type == 'InformacionAdicional') &&
-                    ($gestion->origen_sol == Expan_GestionSolicitudes::TIPO_ORIGEN_EVENTOS || 
-                    $gestion->origen_sol == Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO || 
-                    $gestion->origen_sol == Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES ||
-                    $gestion->origen_sol == Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO ))                    
+                    ($gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_EVENTOS || 
+                    $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO || 
+                    $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES ||
+                    $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO ))                    
                 {
                     $bean -> gestion_agrupada = 1;
                     $bean -> name = $solicitud -> name . ' - Gestion Agrupada - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];

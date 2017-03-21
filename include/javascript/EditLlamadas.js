@@ -105,11 +105,13 @@ function abrirGestionesAgrupadas(llamada){
 		data : "llamada=" + llamada+"&tipo=AgrupadasFromLLamada",
 		success : function(data) {
 
-			var gestiones=data.split(",");
-			for (var i=0;i<gestiones.length;i++){
-				window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestiones[i]);
+			if(data!=""){//se trata de gestiones
+				var gestiones=data.split(",");
+				for (var i=0;i<gestiones.length;i++){
+					window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestiones[i]);
+				
+				}
 			}
-			
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -127,9 +129,10 @@ function abrirSolicitudEdicion(gestion) {
 		type : "POST",
 		url : url,
 		data : "gestion=" + gestion,
-		success : function(data) {		
-			window.open('index.php?module=Expan_Solicitud&action=EditView&record=' + data);
-
+		success : function(data) {	
+			if(data!=""){//se trata de una gestion
+				window.open('index.php?module=Expan_Solicitud&action=EditView&record=' + data);
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('No se han podido abrir para edidion la solicitud y la gestion asociada - ' + textStatus + ' - ' + errorThrown);

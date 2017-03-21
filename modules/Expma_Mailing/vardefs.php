@@ -289,7 +289,26 @@ $dictionary['Expma_Mailing'] = array(
     'enable_range_search' => false,
     'display_default' => 'now',
   ),
-          
+  
+  'franquicias' =>
+  array (
+    'required'=> false,
+    'name' => 'franquicias',
+    'vname' => 'LBL_FRANQUICIAS',
+    'type' => 'multienum',
+    'no_default'=> true,
+    'audited'=> true,
+    'unified_search'=> false,
+    'options'=> 'franquicia_list',
+    'isMultiSelect'=>true,
+    'massupdate' => 0,
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'reportable' => true,
+    'merge_filter' => 'disabled',
+    'studio' => 'visible', 
+  ),        
 ),
 	'relationships'=>array (
 ),
