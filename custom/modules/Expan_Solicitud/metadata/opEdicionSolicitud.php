@@ -100,36 +100,21 @@ class opEdicionSolicitud {
     }
 
 	function cargaFranquicias() {
-
-		
+	    
 		echo "<table style='width:100%'>" . "\n";
-
 		echo "<tr>\n<td>\n";
 		echo "<input type='checkbox' class='francheck' id='Asesoramiento' value='380f0dc1-e38e-83e2-8c74-53df9ab90ac1' onclick='cambiocheck(\"francheck\",\"franquicias_secundarias\",true);' style='margin-left:15px' > Asesoramiento<br/>";
 		echo "</td>\n</tr>\n";
 
 		//recogemos los sectores de la Base de datos
 		$db = DBManagerFactory::getInstance();
-        
-        $query = "select * from expan_m_sectores GROUP BY c_grupo_act;";
-                              
-		$result = $db -> query($query, true);
-
-		while ($row = $db -> fetchByAssoc($result)) {
-		    
-            echo "<tr>" . "\n" . "<td>";
-            echo "<p style='background-color:powderblue;'><b>" . $row["c_grupo_act"] . "</b></p>";
-            echo "</tr>" . "\n" . "</td>";
             
             $listaFran=array();     
             $listaTipoCuenta=array();               
             
             $query = "select * from expan_franquicia where  (tipo_cuenta=2 OR  tipo_cuenta=1 OR tipo_cuenta=9) AND ";
             $query = $query . "deleted=0 ";  
-            $filtro=$this->creaFiltro($row["c_grupo_act"]);
-            if ($filtro!=""){
-               $query = $query ." AND ". $filtro;
-            }                        
+                                
             $query = $query . "order by name";
        
             $resultFran = $db -> query($query, true);
@@ -174,11 +159,10 @@ class opEdicionSolicitud {
                 echo "</tr>" . "\n";
                 
             }      
-		}
+		
 
 		echo "</tr></table>" . "\n";
 
 	}
-	
 }
 ?>
