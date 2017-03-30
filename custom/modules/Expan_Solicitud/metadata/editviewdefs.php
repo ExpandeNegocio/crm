@@ -24,6 +24,7 @@ array (
       'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
       {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
       {sugar_getscript file="include/javascript/EditSolicitud.js"}
+      {sugar_getscript file="include/javascript/jquery.js"}
       {sugar_getscript file="modules/Documents/documents.js"}
       <script type="text/javascript"> onload=inicio();</script>',
       'form' => 
@@ -377,7 +378,7 @@ array (
             'label' => 'LBL_NEGOCIO',
           ),
         ),*/
-        6 => 
+        4 => 
         array (
           0 => 
           array (
@@ -392,7 +393,7 @@ array (
           ),
         ),
         
-        7 => 
+        5 => 
         array (
           0 => 
           array (
@@ -402,7 +403,7 @@ array (
           ),
         ),
         
-        8 => 
+        6 => 
         array (
           0 => 
           array (
@@ -422,7 +423,7 @@ array (
             ''
           ),
         ),
-        9 => 
+        7 => 
         array (
           0 => 
           array (
@@ -442,20 +443,38 @@ array (
             'label' => 'LBL_FRANQUICIA_PRINCIPAL',
           ),
         ),
-        10 => 
+        8 => 
         array (
           0 => 
           array (
             'name' => 'franquicias_contactadas',
             'studio' => 'visible',
             'label' => 'LBL_FRANQUICIAS_CONTACTADAS',
+            'customCode'=>'
+            {php}
+                $fran=new opEdicionSolicitud();
+                $idSol=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerFranContactadas($idSol);  
+      
+            {/php}
+          <div id="sugerencias" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencias"></div>        
+               ',
           ),
           1 => 
           array ('name' => 'otras_franquicias',
             'label' => 'LBL_OTRAS_FRANQUICIAS',
+            'customCode'=>'
+            {php}
+                $fran=new opEdicionSolicitud();
+                $idSol=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerFranNoContactadas($idSol);  
+      
+            {/php}
+            <div id="sugerenciasO" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerenciasO"></div>        
+               ',
           ),
         ),
-        11 => 
+        9 => 
         array (
           0 => 
           array (
@@ -463,7 +482,7 @@ array (
             'label' => 'LBL_ENVIAR_SERVICIOS_ASESORA',
           ),
         ),
-        12 => 
+        10 => 
         array (
           0 => 
           array (
@@ -480,7 +499,7 @@ array (
             'label' => 'LBL_SUBOR_EXPANDE',
           ),
         ),
-        13 => 
+        11 => 
         array (
           0 => '',
           1 => 
@@ -490,7 +509,7 @@ array (
             'label' => 'LBL_PORTAL',
           ),
         ),
-        14 => 
+        12 => 
         array (
           0 => '',
           1 => 
@@ -499,7 +518,7 @@ array (
             'label' => 'LBL_EVENTO',
           ),
         ),        
-         15 => 
+        13 => 
         array (
           0 => '',
           1 => 
@@ -508,7 +527,7 @@ array (
             'label' => 'LBL_SUBOR_CENTRAL',
           ),
         ),        
-         16 => 
+        14 => 
         array (
           0 => '',
           1 => 
@@ -517,7 +536,7 @@ array (
             'label' => 'LBL_SUBOR_MEDIOS',
           ),
         ),
-        17 => 
+        15 => 
         array (
           0 => '',
           1 => 
@@ -527,7 +546,7 @@ array (
           ),
         ),
         
-        18 =>
+        16 =>
         array (
           0 => array (
             'name' => 'rating',

@@ -4,6 +4,92 @@
 
 const BORDE_NORMAL="#94c1e8 solid 1px";
 
+	$("#franquicias_contactadas").keyup(function(){//cuando pulses la caja de texto
+		var campoF=$(this).val();	//valor del texto
+		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
+		var franqHastaUlComa="";
+		for(var i=0;i<arrayFran.length-1;i++){//construir las franquicias anteriores
+			franqHastaUlComa=franqHastaUlComa+arrayFran[i]+",";
+		}
+		var longi=arrayFran.length;//cuantas hay
+		
+		var franq=arrayFran[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+		var franqSE=franq.trim(); //eliminar espacios en blanco
+		
+		
+		if(franqSE.length>1){//solo se hace la llamada si se han escrito 3 caracteres
+			
+			var dataFran="franquicias="+franqSE;
+		
+		//llamada ajax
+		$.ajax({
+			type:"POST",
+			url:"index.php?entryPoint=RecogeSugerencias",
+			data: dataFran,
+			success: function(data){
+				$('#sugerencias').fadeIn(1000).html(data);
+				$('.sug').live('click', function(){//cuando se pulsa una
+					var fran=$(this).text();
+					if(longi==1){//borrar todo y sustituir por el nuevo valor
+						$('#franquicias_contactadas').val(fran);//editar input
+					}else{//poner las anteriores, y después la nueva
+						$('#franquicias_contactadas').val(franqHastaUlComa+fran);
+					}
+					
+					$('#sugerencias').fadeOut(1000);//quitar las sugerencias
+				});
+				
+				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias si se pulsa en otro sitio
+					$('#sugerencias').fadeOut(1000);
+				});
+			}
+		});
+		}
+	});
+	
+	$("#otras_franquicias").keyup(function(){//cuando pulses la caja de texto
+		var campoF=$(this).val();	//valor del texto
+		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
+		var franqHastaUlComa="";
+		for(var i=0;i<arrayFran.length-1;i++){//construir las franquicias anteriores
+			franqHastaUlComa=franqHastaUlComa+arrayFran[i]+",";
+		}
+		var longi=arrayFran.length;//cuantas hay
+		
+		var franq=arrayFran[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+		var franqSE=franq.trim(); //eliminar espacios en blanco
+		
+		
+		if(franqSE.length>1){//solo se hace la llamada si se han escrito 3 caracteres
+			
+			var dataFran="franquicias="+franqSE;
+		
+		//llamada ajax
+		$.ajax({
+			type:"POST",
+			url:"index.php?entryPoint=RecogeSugerencias",
+			data: dataFran,
+			success: function(data){
+				$('#sugerenciasO').fadeIn(1000).html(data);
+				$('.sug').live('click', function(){//cuando se pulsa una
+					var fran=$(this).text();
+					if(longi==1){//borrar todo y sustituir por el nuevo valor
+						$('#otras_franquicias').val(fran);//editar input
+					}else{//poner las anteriores, y después la nueva
+						$('#otras_franquicias').val(franqHastaUlComa+fran);
+					}
+					
+					$('#sugerenciasO').fadeOut(1000);//quitar las sugerencias
+				});
+				
+				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias en caso de pulsar fuera
+					$('#sugerenciasO').fadeOut(1000);
+				});
+			}
+		});
+		}
+	});
+
 function inicio() {
 	//Ocultar los campos auxiliares
 
@@ -45,9 +131,16 @@ function inicio() {
 	//poner en amarillo los elementos que aunque no son obligatorios los marcamos	
 	marcaCampos();	
 	cambioSeleccion();
-
+	
+	
 }
 
+function rellenarCampoFranquiciasContactadas(){
+	
+	var franC=document.getElementById("franquicias_contactadas_label_ocul").getElementsByTagName("input")[0].value;
+	document.getElementById("franquicias_contactadas_label").getElementsByTagName("input")[0].value=document.getElementById("franquicias_contactadas_label_ocul").getElementsByTagName("input")[0].value;
+	return franC;
+}
 function validarSubOrigen() {	
 	
 	
@@ -323,7 +416,6 @@ function ocultarCampoAux() {
 	if (campo != null) {
 		campo.style.display = 'none';
 	}
-
 }
 
 function completoSector(nombreSector,desp,actualizo) {
@@ -931,3 +1023,4 @@ function marcaCampos(){
 	$("#expan_evento_id_c").css( "background-color", "	#FFFFCC" );
 	
 }
+

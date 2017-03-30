@@ -164,5 +164,34 @@ class opEdicionSolicitud {
 		echo "</tr></table>" . "\n";
 
 	}
+
+function recogerFranContactadas($idSol) {
+        
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select franquicias_contactadas from expan_solicitud where id='".$idSol."';";
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
+   
+        $result = $db -> query($query);
+        while ($row = $db -> fetchByAssoc($result)) {
+            $franq=$row["franquicias_contactadas"];                                           
+        }
+        echo"<input type='text' name='franquicias_contactadas' id='franquicias_contactadas' size='30' maxlength='255' value='".$franq."'>";
+}
+function recogerFranNoContactadas($idSol) {
+        
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select otras_franquicias from expan_solicitud where id='".$idSol."';";
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
+   
+        $result = $db -> query($query, true);
+        while ($row = $db -> fetchByAssoc($result)) {
+            $franq=$row["otras_franquicias"];                                           
+        }
+        echo"<input type='text' name='otras_franquicias' id='otras_franquicias' size='30' maxlength='255' value='".$franq."'>";
+}
 }
 ?>
