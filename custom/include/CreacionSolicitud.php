@@ -82,7 +82,7 @@ class AccionesGuardado {
                 if ($current_user->franquicia!=null){                   
                     $this->controlSolicitudRepetidaFranquicia($bean);
                 }
-
+                
 			} else {
 			    
                 $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
@@ -132,14 +132,66 @@ class AccionesGuardado {
                     $gestionHija -> name = $bean -> first_name . ' ' . $bean -> last_name . ' - ' . $GLOBALS['app_list_strings']['franquicia_list'][$gestionHija ->franquicia];
                     $gestionHija -> ignore_update_c = true;
                     $gestionHija ->save();
+                    
                 }
+
                 
                 $bean = $this -> limpiarSuborigen($bean);
                 $bean -> ignore_update_c = true;
-                $bean -> save();    
+                $bean -> save(); 
+                
+                
 			}
+            
+            //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
+                $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
+                $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
 		}
 	}
+
+    /**
+     * Actualiza los sectores de interés de una solicitud con los sectores a los que 
+     * perteneces cada una de las franquicias que se le pasa cómo argumento.
+     */
+    function marcarSectores($franquicias, $idSol){
+      
+          $franC=split(",", $franquicias);//obtiene el array,del string separado por comas
+               
+          $db=DBManagerFactory::getInstance();
+            
+          for($i=0; $i<count($franC); $i++){//Recorrer todas las franquicias del array para actualizar los sectores de interes
+               
+               //el valor (número) del sector de esta franquicia
+               $query="select substring(sector, 2, LENGTH(sector)-2) as s"; 
+               $query= $query." FROM expan_franquicia where name='".$franC[$i]."' and deleted=0;"; 
+                $result=$db ->query($query);
+                while ($row = $db -> fetchByAssoc($result)) {
+                    $numSec=$row["s"]; //sector
+                }
+                
+                //sectores de interás de la solicitud
+                $query="select sectores_de_interes as s from expan_solicitud where id='".$idSol."'"; 
+                $result=$db ->query($query);
+                while ($row = $db -> fetchByAssoc($result)) {
+                    $sect=$row["s"]; //sectores de interés
+                }
+                
+                if(strpos($sect, $numSec)===false){//si no está ese sector ya en los sectores de interés, se añade
+                
+                    $query="UPDATE expan_solicitud INNER JOIN";
+                    $query= $query." (select c_id FROM expan_m_sectores sec";
+                    $query= $query." INNER JOIN (select substring(sector, 2, LENGTH(sector)-2) as s"; 
+                    $query= $query." FROM expan_franquicia where name='".$franC[$i]."' and deleted=0) t"; 
+                    $query= $query." ON sec.c_id=t.s) a";
+                    $query= $query." SET sectores_de_interes = (CASE WHEN (sectores_de_interes='0' OR sectores_de_interes IS NULL)";
+                    $query= $query." THEN CONCAT('^', CONCAT(a.c_id,'^'))";
+                    $query= $query." ELSE CONCAT(sectores_de_interes, CONCAT(',^', CONCAT(a.c_id, '^')))";
+                    $query= $query." END) WHERE id='".$idSol."' AND deleted=0;";
+                    $db -> query($query); //ejecutar la consulta de actualización de los sectores
+         
+                }
+          }        
+    }
 
 	function limpiarTelefonos(&$bean){
 	    
@@ -215,7 +267,7 @@ class AccionesGuardado {
             $resultSol = $db->query($sql, true);        
             while ($rowSol = $db->fetchByAssoc($resultSol)){
              
-                $idSol=$rowSol[id];
+                $idSol=$rowSol["id"];
                 $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El telefono existe');                     
                 return $idSol;               
             }
@@ -243,7 +295,7 @@ class AccionesGuardado {
             $resultSol = $db->query($sql, true);        
             while ($rowSol = $db->fetchByAssoc($resultSol)){               
                 $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El correo existe');
-                $idSol=$rowSol[id];                     
+                $idSol=$rowSol["id"];                     
                 return $idSol;
             }
         }   
