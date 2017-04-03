@@ -118,5 +118,6 @@ $entry_point_registry = array(
     'consultarFranquicia'=>array('file' => 'custom/include/consultarFranquicia.php', 'auth' => false),
     'LimpiezaBD'=>array('file' => 'custom/include/LimpiezaBD.php', 'auth' => false),
     'CrearLlamadaRecorFran'=>array('file' => 'custom/include/CrearLlamadaRecorFran.php', 'auth' => false),
+    'RecogeSugerencias'=>array('file' => 'custom/modules/Expan_Solicitud/metadata/recogeSugerencias.php', 'auth' => false),
 );
 ?>
