@@ -101,9 +101,10 @@ class opEdicionSolicitud {
 
 	function cargaFranquicias() {
 	    
-		echo "<table style='width:100%'>" . "\n";
+        echo "<input type='checkbox' class='francheck' id='Asesoramiento' value='380f0dc1-e38e-83e2-8c74-53df9ab90ac1' onclick='cambiocheck(\"francheck\",\"franquicias_secundarias\",true);' style='margin-left:15px;' > Asesoramiento<br/>";
+		echo "<table style='width:100%; margin-top:8px;' border='1'>" . "\n";
 		echo "<tr>\n<td>\n";
-		echo "<input type='checkbox' class='francheck' id='Asesoramiento' value='380f0dc1-e38e-83e2-8c74-53df9ab90ac1' onclick='cambiocheck(\"francheck\",\"franquicias_secundarias\",true);' style='margin-left:15px' > Asesoramiento<br/>";
+		
 		echo "</td>\n</tr>\n";
 
 		//recogemos los sectores de la Base de datos
@@ -113,9 +114,8 @@ class opEdicionSolicitud {
             $listaTipoCuenta=array();               
             
             $query = "select * from expan_franquicia where  (tipo_cuenta=2 OR  tipo_cuenta=1 OR tipo_cuenta=9) AND ";
-            $query = $query . "deleted=0 ";  
-                                
-            $query = $query . "order by name";
+            $query = $query . " id <> '380f0dc1-e38e-83e2-8c74-53df9ab90ac1' AND deleted=0 ";  
+            $query = $query . "order by name;";
        
             $resultFran = $db -> query($query, true);
        
@@ -128,6 +128,11 @@ class opEdicionSolicitud {
         
             $desp=intval(count($listaFran)/2);
             
+            if($desp*2!=count($listaFran)){//Si son impares se le suma uno para que entre en el último elemento de la lista
+                $desp=$desp+1;
+            }
+            
+
             for ($i=0; $i <$desp ; $i++) {
                              
                 //1º Columna             
@@ -170,7 +175,7 @@ function recogerFranContactadas($idSol) {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
         
         $db = DBManagerFactory::getInstance();
-        $query = "select franquicias_contactadas from expan_solicitud where id='".$idSol."';";
+        $query = "select franquicias_contactadas from expan_solicitud where id='".$idSol."' and deleted=0;";
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query);
@@ -184,7 +189,7 @@ function recogerFranNoContactadas($idSol) {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
         
         $db = DBManagerFactory::getInstance();
-        $query = "select otras_franquicias from expan_solicitud where id='".$idSol."';";
+        $query = "select otras_franquicias from expan_solicitud where id='".$idSol."' and deleted=0;";
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query, true);

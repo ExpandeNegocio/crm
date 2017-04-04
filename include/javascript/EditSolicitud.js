@@ -135,12 +135,6 @@ function inicio() {
 	
 }
 
-function rellenarCampoFranquiciasContactadas(){
-	
-	var franC=document.getElementById("franquicias_contactadas_label_ocul").getElementsByTagName("input")[0].value;
-	document.getElementById("franquicias_contactadas_label").getElementsByTagName("input")[0].value=document.getElementById("franquicias_contactadas_label_ocul").getElementsByTagName("input")[0].value;
-	return franC;
-}
 function validarSubOrigen() {	
 	
 	
