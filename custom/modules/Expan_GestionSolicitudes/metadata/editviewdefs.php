@@ -530,6 +530,16 @@ array (
         
         28 => 
         array (
+         0 => 
+         array (
+          'name' => 'modelosDeNegocio',
+            'studio' => 'visible',
+            'customCode' => '<p id="ModelosDeNegocio"><u><b>Modelos de negocio: </b></u><span class="required">*</span></p>' 
+          ),
+        ),
+        
+        29 => 
+        array (
           0 => 
           array (
             'name' => 'tiponegocio1',
@@ -538,7 +548,7 @@ array (
           ),
         ),
         
-        29 => 
+        30 => 
         array (
           0 => 
           array (
@@ -554,7 +564,7 @@ array (
           ),
         ),
         
-        30=> 
+        31=> 
         array (
           0 => 
           array (
@@ -570,7 +580,7 @@ array (
           ),
         ),
         
-       31=> 
+       32=> 
         array (
           0 => 
           array (
@@ -580,7 +590,7 @@ array (
           ),         
         ),        
         
-        32 => 
+        33 => 
         array (
           0 => 
           array (
@@ -590,7 +600,7 @@ array (
           ),
         ),
         
-        33 => 
+        34 => 
         array (
           0 => 
           array (
@@ -606,7 +616,7 @@ array (
           ),
         ),
         
-        34=> 
+        35=> 
         array (
           0 => 
           array (
@@ -622,7 +632,7 @@ array (
           ),
         ),
         
-       35 => 
+       36 => 
         array (
           0 => 
           array (
@@ -632,7 +642,7 @@ array (
           ),         
         ),        
         
-        36 => 
+        37 => 
         array (
           0 => 
           array (
@@ -642,7 +652,7 @@ array (
           ),
         ),
         
-        37 => 
+        38 => 
         array (
           0 => 
           array (
@@ -658,7 +668,7 @@ array (
           ),
         ),
         
-        38 => 
+        39 => 
         array (
           0 => 
           array (
@@ -674,7 +684,7 @@ array (
           ),
         ),
         
-       39 => 
+       40 => 
         array (
           0 => 
           array (
@@ -684,7 +694,7 @@ array (
           ),         
         ),   
               
-        40 => 
+        41 => 
         array (
           0 => 
           array (
@@ -694,7 +704,7 @@ array (
           ),
         ),
         
-        41 => 
+        42 => 
         array (
           0 => 
           array (
@@ -710,7 +720,7 @@ array (
           ),
         ),
         
-        42 => 
+        43 => 
         array (
           0 => 
           array (
@@ -726,7 +736,7 @@ array (
           ),
         ),
         
-       43 => 
+       44 => 
         array (
           0 => 
           array (
@@ -736,7 +746,7 @@ array (
           ),         
         ),        
         
-        44 => 
+        45 => 
         array (
           0 => 
           array (
@@ -749,7 +759,7 @@ array (
           ),
         ),
         
-        45 =>
+        46 =>
         array (
            0 => 'assigned_user_name',
            
@@ -760,7 +770,7 @@ array (
           ),      
         ),
         
-        46 => 
+        47 => 
         array (         
           0 => 
           array (
@@ -776,7 +786,7 @@ array (
             ),          
         ),
         
-        47 => 
+        48 => 
         array (         
           0 => 
           array (
@@ -804,7 +814,7 @@ array (
             ),  
         ),
         
-        48 => 
+        49 => 
         array (         
           0 => 
           array (
@@ -832,7 +842,7 @@ array (
             ),  
         ),
                 
-        49 => 
+        50 => 
         array (         
           0 => 
           array (
@@ -848,7 +858,7 @@ array (
             ),                  
         ),
         
-        50 => 
+        51 => 
         array (         
           0 => 
           array (
@@ -864,7 +874,7 @@ array (
             ), 
          ),
          
-        51 => 
+        52 => 
         array (         
           0 => 
           array (
@@ -892,7 +902,7 @@ array (
             ),  
         ),
         
-        52 => 
+        53 => 
         array (         
           0 => 
           array (
@@ -920,7 +930,7 @@ array (
             ),  
         ),
                 
-        53 => 
+        54 => 
         array (         
           0 => 
           array (
@@ -936,7 +946,7 @@ array (
             ),                  
         ),
                   
-        54 => 
+        55 => 
         array (         
           0 => 
           array (
@@ -952,7 +962,7 @@ array (
             ), 
          ),
          
-        55 => 
+        56 => 
         array (         
           0 => 
           array (
@@ -980,7 +990,7 @@ array (
             ),  
         ),
         
-        56 => 
+        57 => 
         array (         
           0 => 
           array (
@@ -1008,7 +1018,7 @@ array (
             ),  
         ),
                 
-        57 => 
+        58 => 
         array (         
           0 => 
           array (
@@ -1024,7 +1034,7 @@ array (
             ),                  
         ),
                   
-        58 => 
+        59 => 
         array (         
           0 => 
           array (
@@ -1040,7 +1050,7 @@ array (
             ),    
          ),
          
-        59 => 
+        60 => 
         array (         
           0 => 
           array (
@@ -1068,7 +1078,7 @@ array (
             ),  
         ),
         
-        60 => 
+        61 => 
         array (         
           0 => 
           array (
@@ -1096,7 +1106,7 @@ array (
             ),  
         ),
                 
-        61 => 
+        62 => 
         array (         
           0 => 
           array (
@@ -1112,7 +1122,7 @@ array (
             ),                  
         ), 
          
-        62 => 
+        63 => 
         array (
           0 =>  array (
             'name' =>'modified_by_name',     

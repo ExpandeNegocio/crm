@@ -227,11 +227,29 @@ function ocultarCheck() {
 	
 	$("#motivo_descarte").bind("change",organizarMotivos()).change();
 		
+	
 	ocultamosSuborigen();
 	mostrarSuborigen();
 	cambiarNombreTipoNeg();
 	deactivateModifiedName();
+	ocultarModelosNegocio();
 	
+}
+
+/**
+ *Oculta el encabezado de los modelos de negocio cuando no los hay 
+ */
+function ocultarModelosNegocio(){
+	
+	var tipoN1=document.getElementById("tiponegocio1_label").innerHTML;
+	var tipoN2=document.getElementById("tiponegocio2_label").innerHTML;
+	var tipoN3=document.getElementById("tiponegocio3_label").innerHTML;
+	var tipoN4=document.getElementById("tiponegocio4_label").innerHTML;
+	
+	if(tipoN2==""&&tipoN1==""&&tipoN3==""&&tipoN4==""){
+		//no hay modelos de negocio
+		document.getElementById("ModelosDeNegocio").style.display='none';
+	}
 }
 
 function ocultamosSuborigen(){
@@ -661,11 +679,42 @@ function validarEdicion(){
 		//validarEstadoCurso()==false ||
 		validarMotivoDescarte()==false ||
 		validarMotivoParada()==false ||
-		validarMotivoPositivo()){
+		validarMotivoPositivo()||
+		validarModeloDeNegocio()==false){
 		return false;
 	}
+	
 	return check_form("EditView");
 		
+}
+
+/**
+ * Se comprueba si hay modelos de negocio, si los hay se valida que haya uno seleccionado
+ */
+function validarModeloDeNegocio(){
+	
+	var tipoN1=document.getElementById("tiponegocio1_label").innerHTML;
+	var tipoN2=document.getElementById("tiponegocio2_label").innerHTML;
+	var tipoN3=document.getElementById("tiponegocio3_label").innerHTML;
+	var tipoN4=document.getElementById("tiponegocio4_label").innerHTML;
+	
+	if(tipoN2==""&&tipoN1==""&&tipoN3==""&&tipoN4==""){
+		//no hay modelos de negocio
+		
+	}else{
+		
+		if(document.getElementById("tiponegocio1").checked==false&&document.getElementById("tiponegocio2").checked==false&&document.getElementById("tiponegocio3").checked==false&&document.getElementById("tiponegocio4").checked==false){
+			//ninguno chekeado y hay modelo de negocio
+			alert("Se debe seleccionar un modelo de negocio");
+			//poner en rojo los modelos de negocio
+			document.getElementById("tiponegocio1_label").style.color="red";
+			document.getElementById("tiponegocio2_label").style.color="red";
+			document.getElementById("tiponegocio3_label").style.color="red";
+			document.getElementById("tiponegocio4_label").style.color="red";
+			return false;
+		}
+		
+	}
 }
 
 function validarEstadoNoAt(){
