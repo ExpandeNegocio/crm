@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -166,14 +166,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $llamada) {
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][Eliminar LLamadas] Estado LLamada'.$llamada ->status);
-            if ($llamada ->status=="Planned" && ($llamada->call_type=="Primera" ||
-                                                $llamada->call_type=="ResPriDuda" ||
-                                                $llamada->call_type=="InformacionAdicional" ||
-                                                $llamada->call_type=="Cuestionario" ||
-                                                $llamada->call_type=="VisitaF" ||
-                                                $llamada->call_type=="SegPre" ||
-                                                $llamada->call_type=="Locales" ||
-                                                $llamada->call_type=="Contrato")){
+            if ($llamada ->status=="Planned" && ($llamada->call_type=="Primera" || $llamada->call_type=="ResPriDuda" || $llamada->call_type=="InformacionAdicional" || $llamada->call_type=="Cuestionario" || $llamada->call_type=="VisitaF" || $llamada->call_type=="SegPre" || $llamada->call_type=="Locales" || $llamada->call_type=="Contrato")){
                 $llamada ->status='Archived';
                 $llamada -> ignore_update_c = true;
                 $llamada->save();
@@ -181,6 +174,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
         
     }
+   
     function asociarLLamadas($status, $user) {
 
         $this -> load_relationship('expan_gestionsolicitudes_calls_1');
@@ -446,9 +440,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         //Actualizo tareas
         $query = "SELECT id ";
         $query=$query."FROM   tasks ";
-        $query=$query."WHERE  parent_id = '".$this->id.
-                      "' AND deleted = 0 AND status = '".$estado.
-                      "' AND task_type = '".$tipo."' ";
+        $query=$query."WHERE  parent_id = '".$this->id."' AND deleted = 0 AND status = '".$estado."' AND task_type = '".$tipo."' ";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][existeTarea]query-' . $query);
         $result = $db -> query($query, true);
