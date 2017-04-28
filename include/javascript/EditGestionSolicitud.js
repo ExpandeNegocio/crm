@@ -495,6 +495,51 @@ function reenvioInfo(tipoEnvio, id) {
 
 }
 
+function reenvioDoc(tipoEnvio) {
+
+	if (confirm("¿Esta seguro de que desea reenviar la documentacion " + tipoEnvio + " para las Gestiones actuales?")) {
+
+		var config = { };
+		config.title = "Enviando Correos";
+		config.msg = "Espere por favor... ";
+		YAHOO.SUGAR.MessageBox.show(config);
+		
+		var idGests="";
+		var lista=document.getElementByClassName("checkbox");
+		
+		for(i=0; i<lista.length; i++){
+			if(lista[i].checked==true&& lista[i].name.indexOf("mass[]")>-1){
+				idGests=idGests+"!"+lista[i].value;
+			}
+		}
+
+		url = 'index.php?entryPoint=reenvioDocGestiones&gestiones=' + idGests + '&tipoEnvio=' + tipoEnvio;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "gestiones=" + idGests + "&tipoEnvio=" + tipoEnvio,
+			success : function(data) {
+				YAHOO.SUGAR.MessageBox.hide();
+				if ( data.indexOf('Ok')!=-1) {
+					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio);
+				} else {
+					alert('No se ha podido reenviar la información - \\n' + data);
+				}
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido enviar la documentación - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
+
+}
+
 function abrirHermanas(id) {
 
 	url = 'index.php?entryPoint=gestionesHermanas&id=' + id;
