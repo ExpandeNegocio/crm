@@ -33,6 +33,18 @@ array (
     'label' => 'LBL_TIPO_CUENTA',
     'width' => '10%',
   ),
+  'gestionesFran' => 
+  array (
+    'width' => '1%',
+    'label' => 'LBL_GESTIONESFRAN',
+    'default'=>true,
+  ),
+  'llamadaspendientesfran' => 
+  array (
+    'width' => '1%',
+    'label' => 'LBL_LLAMADASPENDIENTESFRAN',
+    'default'=>true,
+  ),
   'ASSIGNED_USER_NAME' => 
   array (
     'width' => '15%',
@@ -243,5 +255,6 @@ array (
     'label' => 'LBL_MASTER_FRANQUICIA',
     'default' => true,
   ),
+  
 );
 ?>

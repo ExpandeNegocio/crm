@@ -312,4 +312,6 @@ $mod_strings = array (
     'LBL_VALNEG44'=>'Valoracion Zona 4 Negocio 4',
     'LBL_VALNEG45'=>'Valoracion Zona 5 Negocio 4',
     'LBL_PRIORIDAD_FRAN'=>'Prioridad',
+    'LBL_GESTIONESFRAN'=>'Gestiones en curso',
+    'LBL_LLAMADASPENDIENTESFRAN' => 'Llamadas pendientes',
 );

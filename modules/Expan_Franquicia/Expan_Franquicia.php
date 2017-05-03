@@ -54,6 +54,51 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
 	function Expan_Franquicia(){	
 		parent::Expan_Franquicia_sugar();
 	}
+    
+    public function fill_in_additional_list_fields() {
+        parent::fill_in_additional_list_fields();
+        //rellenar los campos de la lista de franquicias de numero de gestiones en curso y llamadas pendientes de gestiones
+        $this->gestionesfran=$this->numGestionesEnCurso();
+        $this->llamadaspendientesfran=$this->numLlamadasPendientes();
+        
+    }
+    /**
+     * Calcula el número de gestiones en curso de una franquicia concreta
+     */
+    public function numGestionesEnCurso(){
+        $db = DBManagerFactory::getInstance();
+        
+            $query = "select count(*) as gestionesfran FROM expan_gestionsolicitudes where estado_sol='2' and franquicia='".$this->id."' and dummie=0 and deleted=0;";
+                       
+        $result = $db -> query($query, true);
+        
+        $numGestiones=0;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $numGestiones = $row["gestionesfran"];
+        }                
+        
+        return $numGestiones;  
+    }
+    
+    /**
+     * Calcula el número de llamadas pendientes de todas las gestiones en curso de una franquicia concreta
+     */
+    public function numLlamadasPendientes(){
+        $db = DBManagerFactory::getInstance();
+        
+            $query = "select count(*) as llamadasPendientes FROM calls where status='Planned' and franquicia='".$this->id."' and parent_type='Expan_GestionSolicitudes' and deleted=0;";
+                       
+        $result = $db -> query($query, true);
+        
+        $numLlamadasPendientes=0;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $numLlamadasPendientes = $row["llamadasPendientes"];
+        }                
+        
+        return $numLlamadasPendientes;  
+    }
 	
     function existeTarea($tipo,$estado){
         
