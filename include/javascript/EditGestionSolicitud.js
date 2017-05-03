@@ -505,10 +505,10 @@ function reenvioDoc(tipoEnvio) {
 		YAHOO.SUGAR.MessageBox.show(config);
 		
 		var idGests="";
-		var lista=document.getElementByClassName("checkbox");
+		var lista=document.getElementsByClassName("checkbox");
 		
 		for(i=0; i<lista.length; i++){
-			if(lista[i].checked==true&& lista[i].name.indexOf("mass[]")>-1){
+			if(lista[i].checked==true&& lista[i].name.indexOf("mass[]")>-1){//coger los checkbox que interesan
 				idGests=idGests+"!"+lista[i].value;
 			}
 		}
@@ -520,10 +520,10 @@ function reenvioDoc(tipoEnvio) {
 			data : "gestiones=" + idGests + "&tipoEnvio=" + tipoEnvio,
 			success : function(data) {
 				YAHOO.SUGAR.MessageBox.hide();
-				if ( data.indexOf('Ok')!=-1) {
-					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio);
+				if ( data.indexOf('No se ha podido')==-1) {
+					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio + ' para las gestiones seleccionadas');
 				} else {
-					alert('No se ha podido reenviar la información - \\n' + data);
+					alert(data);
 				}
 
 			},

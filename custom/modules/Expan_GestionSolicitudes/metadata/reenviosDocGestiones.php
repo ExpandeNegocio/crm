@@ -9,6 +9,7 @@
     
     $ids = $_POST['gestiones'];
     $tipoEnvio = $_POST['tipoEnvio'];
+    $mensajes="";
     
     $listaGest=split('!', $ids);
     
@@ -54,11 +55,14 @@
         $bean -> save();
         
         $bean -> calcularPrioridades();       
+    }else{
+        $mensajes=$mensajes."No se ha podido enviar la documentación para: ".$bean->name."\n";
     }  
         }
     }
     
-     echo $salida;
+     ob_end_clean();
+     echo $mensajes;
     
     
 ?>
