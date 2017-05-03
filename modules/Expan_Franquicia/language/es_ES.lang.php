@@ -96,6 +96,7 @@ $mod_strings = array (
   'LBL_MEMBER_OF' => 'Miembro de:',
   'LBL_MEMBER_ORG_FORM_TITLE' => 'Organizaciones Miembro',
   'LBL_MEMBER_ORG_SUBPANEL_TITLE' => 'Organizaciones Miembro',
+  'LBL_MASTER_FRANQUICIA' => 'Master',
   'LBL_OTHER_EMAIL_ADDRESS' => 'Email Alternativo:',
   'LBL_OTHER_PHONE' => 'Tel. movil:',
   'LBL_OWNERSHIP' => 'Propietario:',
@@ -310,5 +311,5 @@ $mod_strings = array (
     'LBL_VALNEG43'=>'Valoracion Zona 3 Negocio 4',
     'LBL_VALNEG44'=>'Valoracion Zona 4 Negocio 4',
     'LBL_VALNEG45'=>'Valoracion Zona 5 Negocio 4',
-  'LBL_PRIORIDAD_FRAN'=>'Prioridad',
+    'LBL_PRIORIDAD_FRAN'=>'Prioridad',
 );
