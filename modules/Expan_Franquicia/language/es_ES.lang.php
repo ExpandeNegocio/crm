@@ -314,4 +314,11 @@ $mod_strings = array (
     'LBL_PRIORIDAD_FRAN'=>'Prioridad',
     'LBL_GESTIONESFRAN'=>'Gestiones en curso',
     'LBL_LLAMADASPENDIENTESFRAN' => 'Llamadas pendientes',
+    'LBL_NUMEROSOLICITUDES' => 'Total solicitudes: ',
+    'LBL_TOTALGESTIONES' => 'Total gestiones',
+    'LBL_DUMMIES' => 'Dummies',
+    'LBL_SOL_RATING_A_PLUS' => 'Solicitudes A+',
+    'LBL_SOL_RATING_A' => 'Solicitudes A',
+    'LBL_SOL_RATING_B' => 'Solicitudes B',
+    'LBL_SOL_RATING_C' => 'Solicitudes C',    
 );

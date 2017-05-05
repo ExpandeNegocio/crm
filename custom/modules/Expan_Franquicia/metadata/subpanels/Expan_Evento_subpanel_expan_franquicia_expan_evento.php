@@ -43,6 +43,44 @@ $subpanel_layout['list_fields'] = array (
     'sortable' => false,            
     'width' => '25%',
   ), 
+  'num_solicitudes'=> array(
+    'vname' => 'LBL_NUMEROSOLICITUDES',
+    'sortable' => false,            
+    'width' => '25%',
+  ),
+  
+  'sol_rating_a_plus'=> array(
+    'vname' => 'LBL_SOL_RATING_A_PLUS',
+    'sortable' => false,            
+    'width' => '25%',
+  ), 
+   'sol_rating_a'=> array(
+    'vname' => 'LBL_SOL_RATING_A',
+    'sortable' => false,            
+    'width' => '25%',
+  ), 
+   'sol_rating_b'=> array(
+    'vname' => 'LBL_SOL_RATING_B',
+    'sortable' => false,            
+    'width' => '25%',
+  ), 
+   'sol_rating_c'=> array(
+    'vname' => 'LBL_SOL_RATING_C',
+    'sortable' => false,            
+    'width' => '25%',
+  ), 
+  
+  'total_gestiones'=> array(
+    'vname' => 'LBL_TOTALGESTIONES',
+    'sortable' => false,            
+    'width' => '25%',
+  ),  
+  
+  'dummies'=> array(
+    'vname' => 'LBL_DUMMIES',
+    'sortable' => false,            
+    'width' => '25%',
+  ),
   
     'edit_button' => 
   array (
