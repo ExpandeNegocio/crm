@@ -72,6 +72,7 @@ class AccionesGuardado {
 					$bean -> franquicia_principal = $fran;
 					$bean -> expan_franquicia_id_c = $fran;
                     $bean -> abierta=1;
+                    $bean -> assigned_user_id=$bean->created_by;
                     $bean -> ignore_update_c = true;
 					$bean -> save();
 
@@ -137,6 +138,7 @@ class AccionesGuardado {
 
                 
                 $bean = $this -> limpiarSuborigen($bean);
+                $bean -> assigned_user_id=$bean->created_by;
                 $bean -> ignore_update_c = true;
                 $bean -> save(); 
                 
@@ -241,7 +243,9 @@ class AccionesGuardado {
             }
             
             $solAnt->perfil_profesional=$solAnt->perfil_profesional.$solicitud->perfil_profesional;
+            $solAnt->assigned_user_id=$solAnt->created_by;
             $solAnt->ignore_update_c=true;
+            
             $solAnt->save();
             
             $solicitud->removeSol();
