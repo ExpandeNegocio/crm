@@ -16,12 +16,6 @@ array (
     'label' => 'LBL_CITY',
     'default' => false,
   ),
-  'PHONE_OFFICE' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_PHONE',
-    'default' => true,
-  ),
   'EMAIL1' => 
   array (
     'width' => '15%',
@@ -38,6 +32,18 @@ array (
     'studio' => 'visible',
     'label' => 'LBL_TIPO_CUENTA',
     'width' => '10%',
+  ),
+  'gestionesFran' => 
+  array (
+    'width' => '1%',
+    'label' => 'LBL_GESTIONESFRAN',
+    'default'=>true,
+  ),
+  'llamadaspendientesfran' => 
+  array (
+    'width' => '1%',
+    'label' => 'LBL_LLAMADASPENDIENTESFRAN',
+    'default'=>true,
   ),
   'ASSIGNED_USER_NAME' => 
   array (
@@ -242,5 +248,13 @@ array (
     'label' => 'LBL_INFORME_URGENTE',
     'default' => true,
   ),
+  
+  'master' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_MASTER_FRANQUICIA',
+    'default' => true,
+  ),
+  
 );
 ?>

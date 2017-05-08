@@ -42,7 +42,7 @@ $dictionary["Expan_Franquicia"]["fields"]["expan_franquicia_expan_documentacion"
 
 // created: 2014-08-01 17:17:40
 
-//http://sugarmods.co.uk/how-to-add-custom-fields-to-a-relationship-table-and-display-them-in-a-subpanel-sugarcrm-suitecrm/
+//http://sugarmods.co.uk/how-to-add-custom-fields-to-a-relationship-table-and-displayn-them-in-a-subpanel-sugarcrm-suitecrm/
 
 $dictionary["Expan_Franquicia"]["fields"]["expan_franquicia_expan_evento"] = array (
   'name' => 'expan_franquicia_expan_evento',
@@ -80,6 +80,83 @@ $dictionary['Expan_Franquicia']['fields']['tipo_participacion'] =
  'studio' => 'false',
  'source' => 'non-db',
  'vname' => 'Tipo Parcticipa',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['num_solicitudes'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'num_solicitudes',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_NUMEROSOLICITUDES',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['total_gestiones'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'total_gestiones',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_TOTALGESTIONES',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['dummies'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'dummies',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_DUMMIES',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['sol_rating_a_plus'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_a_plus',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_A_PLUS',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['sol_rating_a'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_a',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_A',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['sol_rating_b'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_b',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_B',
+ 'importable' => 'false',
+ );
+ 
+ $dictionary['Expan_Franquicia']['fields']['sol_rating_c'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_c',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_C',
  'importable' => 'false',
  );
  

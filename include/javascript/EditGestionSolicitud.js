@@ -227,11 +227,29 @@ function ocultarCheck() {
 	
 	$("#motivo_descarte").bind("change",organizarMotivos()).change();
 		
+	
 	ocultamosSuborigen();
 	mostrarSuborigen();
 	cambiarNombreTipoNeg();
 	deactivateModifiedName();
+	ocultarModelosNegocio();
 	
+}
+
+/**
+ *Oculta el encabezado de los modelos de negocio cuando no los hay 
+ */
+function ocultarModelosNegocio(){
+	
+	var tipoN1=document.getElementById("tiponegocio1_label").innerHTML;
+	var tipoN2=document.getElementById("tiponegocio2_label").innerHTML;
+	var tipoN3=document.getElementById("tiponegocio3_label").innerHTML;
+	var tipoN4=document.getElementById("tiponegocio4_label").innerHTML;
+	
+	if(tipoN2==""&&tipoN1==""&&tipoN3==""&&tipoN4==""){
+		//no hay modelos de negocio
+		document.getElementById("ModelosDeNegocio").style.display='none';
+	}
 }
 
 function ocultamosSuborigen(){
@@ -477,6 +495,51 @@ function reenvioInfo(tipoEnvio, id) {
 
 }
 
+function reenvioDoc(tipoEnvio) {
+
+	if (confirm("¿Esta seguro de que desea reenviar la documentacion " + tipoEnvio + " para las Gestiones actuales?")) {
+
+		var config = { };
+		config.title = "Enviando Correos";
+		config.msg = "Espere por favor... ";
+		YAHOO.SUGAR.MessageBox.show(config);
+		
+		var idGests="";
+		var lista=document.getElementsByClassName("checkbox");
+		
+		for(i=0; i<lista.length; i++){
+			if(lista[i].checked==true&& lista[i].name.indexOf("mass[]")>-1){//coger los checkbox que interesan
+				idGests=idGests+"!"+lista[i].value;
+			}
+		}
+
+		url = 'index.php?entryPoint=reenvioDocGestiones&gestiones=' + idGests + '&tipoEnvio=' + tipoEnvio;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "gestiones=" + idGests + "&tipoEnvio=" + tipoEnvio,
+			success : function(data) {
+				YAHOO.SUGAR.MessageBox.hide();
+				if ( data.indexOf('No se ha podido')==-1) {
+					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio + ' para las gestiones seleccionadas');
+				} else {
+					alert(data);
+				}
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido enviar la documentación - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
+
+}
+
 function abrirHermanas(id) {
 
 	url = 'index.php?entryPoint=gestionesHermanas&id=' + id;
@@ -661,11 +724,42 @@ function validarEdicion(){
 		//validarEstadoCurso()==false ||
 		validarMotivoDescarte()==false ||
 		validarMotivoParada()==false ||
-		validarMotivoPositivo()){
+		validarMotivoPositivo()||
+		validarModeloDeNegocio()==false){
 		return false;
 	}
+	
 	return check_form("EditView");
 		
+}
+
+/**
+ * Se comprueba si hay modelos de negocio, si los hay se valida que haya uno seleccionado
+ */
+function validarModeloDeNegocio(){
+	
+	var tipoN1=document.getElementById("tiponegocio1_label").innerHTML;
+	var tipoN2=document.getElementById("tiponegocio2_label").innerHTML;
+	var tipoN3=document.getElementById("tiponegocio3_label").innerHTML;
+	var tipoN4=document.getElementById("tiponegocio4_label").innerHTML;
+	
+	if(tipoN2==""&&tipoN1==""&&tipoN3==""&&tipoN4==""){
+		//no hay modelos de negocio
+		
+	}else{
+		
+		if(document.getElementById("tiponegocio1").checked==false&&document.getElementById("tiponegocio2").checked==false&&document.getElementById("tiponegocio3").checked==false&&document.getElementById("tiponegocio4").checked==false){
+			//ninguno chekeado y hay modelo de negocio
+			alert("Se debe seleccionar un modelo de negocio");
+			//poner en rojo los modelos de negocio
+			document.getElementById("tiponegocio1_label").style.color="red";
+			document.getElementById("tiponegocio2_label").style.color="red";
+			document.getElementById("tiponegocio3_label").style.color="red";
+			document.getElementById("tiponegocio4_label").style.color="red";
+			return false;
+		}
+		
+	}
 }
 
 function validarEstadoNoAt(){

@@ -95,11 +95,11 @@ class AccionesGuardado {
 				$db = DBManagerFactory::getInstance();
 
 				$query = "select * ";
-				$query .= "from  (select * from expan_franquicia where id in (" . $textoFran . ")) f where id not in( ";
-				$query .= "select g.franquicia from expan_gestionsolicitudes g ,expan_solicitud s ,expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-				$query .= "where g.id = gs.expan_soli5dcccitudes_idb AND ";
-				$query .= "s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted=0 AND ";
-				$query .= "s.id = '" . $bean -> id . "' )";
+				$query =$query. "from  (select * from expan_franquicia where id in (" . $textoFran . ")) f where id not in( ";
+				$query =$query. "select g.franquicia from expan_gestionsolicitudes g ,expan_solicitud s ,expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+				$query =$query. "where g.id = gs.expan_soli5dcccitudes_idb AND ";
+				$query = $query."s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted=0 AND ";
+				$query =$query. "s.id = '" . $bean -> id . "' )";
 				
 				$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Consulta -' . $query);
 
@@ -117,10 +117,10 @@ class AccionesGuardado {
                 if ($bean->rating=='5'){
                     
                     $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT gs.expan_soli5dcccitudes_idb ";
-                    $query.="  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-                    $query.="  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.id='".$bean->id."') s ";
-                    $query.="on g.id= s.expan_soli5dcccitudes_idb ";
-                    $query.="set estado_sol='".Expan_GestionSolicitudes::ESTADO_DESCARTADO."',motivo_descarte='".Expan_GestionSolicitudes::DESCARTE_CANDIDATO_TOPO."'; ";
+                    $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+                    $query= $query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.id='".$bean->id."') s ";
+                    $query=$query."on g.id= s.expan_soli5dcccitudes_idb ";
+                    $query=$query."set estado_sol='".Expan_GestionSolicitudes::ESTADO_DESCARTADO."',motivo_descarte='".Expan_GestionSolicitudes::DESCARTE_CANDIDATO_TOPO."'; ";
                     
                     $db -> query($query);
                                         
@@ -145,7 +145,7 @@ class AccionesGuardado {
                 
 			}
             
-            //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
+                //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
                 $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
                 $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
 		}

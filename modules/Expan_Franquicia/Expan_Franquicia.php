@@ -54,6 +54,121 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
 	function Expan_Franquicia(){	
 		parent::Expan_Franquicia_sugar();
 	}
+    
+    public function fill_in_additional_list_fields() {
+        parent::fill_in_additional_list_fields();
+        //rellenar los campos de la lista de franquicias de numero de gestiones en curso y llamadas pendientes de gestiones
+        $this->gestionesfran=$this->numGestionesEnCurso();
+        $this->llamadaspendientesfran=$this->numLlamadasPendientes();
+        $this->num_solicitudes=$this->numSolicitudes("");
+        $this->total_gestiones=$this->numTotalGestiones(false);
+        $this->dummies=$this->numTotalGestiones(true);
+        $this->sol_rating_a_plus=$this->numSolicitudes(1);
+        $this->sol_rating_a=$this->numSolicitudes(2);
+        $this->sol_rating_b=$this->numSolicitudes(3);
+        $this->sol_rating_c=$this->numSolicitudes(4);
+        
+    }
+    
+    public function numTotalGestiones($ConDummies){
+        $db = DBManagerFactory::getInstance();
+        
+        if ($ConDummies==true){
+            $query = "select count(1) num  ";
+            $query=$query."from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND name like '%Dummie%' AND ";
+            $query=$query."((tipo_origen = ".Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO." AND subor_expande=".Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO." AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR ";
+            $query=$query."expan_evento_id_c='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'); ";
+        }else{
+            $query = "select count(1) num  ";
+            $query=$query."from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND not name like '%Dummie%' AND ";
+            $query=$query."((tipo_origen = ".Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO." AND subor_expande=".Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO." AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR ";
+            $query=$query."expan_evento_id_c='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'); ";
+        }          
+        $result = $db -> query($query, true);
+        
+        $numGestiones=0;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $numGestiones = $row["num"];
+        }                
+        
+        return $numGestiones;  
+    }
+    
+    public function numSolicitudes($rating){
+        $db = DBManagerFactory::getInstance();
+        
+        if($rating==""){
+            $query = "SELECT count(distinct(s.id)) num ";
+            $query=$query."FROM   expan_solicitud s, ";
+            $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
+            $query=$query."       (SELECT id ";
+            $query=$query."        FROM   expan_gestionsolicitudes ";
+            $query=$query."        WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
+            $query=$query."               '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g ";
+            $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
+            
+        }else{
+            $query = "SELECT count(distinct(s.id)) num ";
+            $query=$query."FROM   expan_solicitud s, ";
+            $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
+            $query=$query."       (SELECT id ";
+            $query=$query."        FROM   expan_gestionsolicitudes ";
+            $query=$query."        WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
+            $query=$query."               '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g ";
+            $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.rating='".$rating."' ";
+            
+        }
+        
+                  
+        $result = $db -> query($query, true);
+        
+        $numSolicitudesRecogidas=0;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $numSolicitudesRecogidas = $row["num"];
+        }                
+        
+        return $numSolicitudesRecogidas;  
+    }
+    
+    /**
+     * Calcula el número de gestiones en curso de una franquicia concreta
+     */
+    public function numGestionesEnCurso(){
+        $db = DBManagerFactory::getInstance();
+        
+            $query = "select count(*) as gestionesfran FROM expan_gestionsolicitudes where estado_sol='2' and franquicia='".$this->id."' and dummie=0 and deleted=0;";
+                       
+        $result = $db -> query($query, true);
+        
+        $numGestiones=0;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $numGestiones = $row["gestionesfran"];
+        }                
+        
+        return $numGestiones;  
+    }
+    
+    /**
+     * Calcula el número de llamadas pendientes de todas las gestiones en curso de una franquicia concreta
+     */
+    public function numLlamadasPendientes(){
+        $db = DBManagerFactory::getInstance();
+        
+            $query = "select count(*) as llamadasPendientes FROM calls where status='Planned' and franquicia='".$this->id."' and parent_type='Expan_GestionSolicitudes' and deleted=0;";
+                       
+        $result = $db -> query($query, true);
+        
+        $numLlamadasPendientes=0;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $numLlamadasPendientes = $row["llamadasPendientes"];
+        }                
+        
+        return $numLlamadasPendientes;  
+    }
 	
     function existeTarea($tipo,$estado){
         

@@ -50,6 +50,37 @@ class Expan_Evento extends Expan_Evento_sugar {
         $this->total_solicitudes=$this->NumSolicitudes(false);
         $this->total_gestiones=$this->NumGestiones(false);
         
+        if($this->id!=""){//ficha de evento concreto
+            $this->addFranquiciasNoInscritas();
+        }
+        
+    }
+    
+    /**
+     * Añade a la lista de franquicias las de los identificadores que devuelve la consulta. 
+     * La consulta devuelve los identificadores de las franquicias que tienen gestiones del evento, pero no
+     * estaban inscritas en ella.
+     */
+    public function addFranquiciasNoInscritas(){
+    
+    $db = DBManagerFactory::getInstance();
+    
+    //consulta las los identificadores de franquicias que no es
+    $query= "select franquicia ";
+    $query= $query."from expan_gestionsolicitudes g where g.franquicia not in ( ";
+    $query=$query. "select e.expan_franquicia_expan_eventoexpan_franquicia_ida from expan_franquicia_expan_evento_c e "; 
+    $query=$query."where e.expan_franquicia_expan_eventoexpan_evento_idb='".$this->id."' ";   
+    $query=$query.") and deleted=0 AND ((tipo_origen = '1' AND subor_expande='7' AND evento_bk='".$this->id."' ) OR "; 
+    $query=$query."expan_evento_id_c='".$this->id."');";
+    
+    $result = $db -> query($query, true);
+        
+    $this -> load_relationship('expan_franquicia_expan_evento');  
+    
+        while ($row = $db -> fetchByAssoc($result)) {
+            $id = $row["franquicia"];
+            $this->  expan_franquicia_expan_evento->add($id);
+        }   
     }
     
     public function NumGestiones($ConDummies){

@@ -32,6 +32,7 @@ function procesar() {
     $inicio = $_POST['inicio'];
     $papel = $_POST['papel'];
     $idCuestionario = $_POST['idresp'];
+   
 
     $GLOBALS['log'] -> info("[ExpandeNegocio][][Pruebas]IdFranq-" . $idFran);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Nombre-" . $nombre);
@@ -209,7 +210,17 @@ function procesar() {
             $gestion -> lnk_cuestionario = $idCuestionario;
 
             $GLOBALS['log'] -> info("[ExpandeNegocio]   -" . $gestion -> name);
-
+            //ACTUALIZAR EL NOMBRE DE LA GESTION POR SI HA PUESTO OTRO NOMBRE EN EL CUESTIONARIO
+             $nomApe=substr($gestion->name, 0, strpos($gestion -> name, "-"));
+             $substN=substr($gestion->name, 0, strpos($gestion -> name, " "));
+             $substA=substr($nomApe, strpos($nomApe, " ") + 1);
+             $substfran=substr($gestion->name, strpos($gestion->name, "-"));
+            
+            if($nombre!=$substN|$apellidos!=$substA){//si se ha cambiado el nombre o el apellido
+                $nombreNuevo=$nombre." ".$apellidos." ".$substfran;
+                $gestion-> name=$nombreNuevo;//cambiar el nombre    
+            }
+            
             $gestion -> chk_recepcio_cuestionario = 1;
             $gestion -> f_recepcion_cuestionario = $GLOBALS['timedate'] -> now();
             $gestion -> candidatura_avanzada=true;
