@@ -59,10 +59,11 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         parent::fill_in_additional_list_fields();
         $vista=$GLOBALS['app']->controller->action;
         //rellenar los campos de la lista de franquicias de numero de gestiones en curso y llamadas pendientes de gestiones
-        if($vista=="listview"&& ($this->tipo_cuenta==1|$this->tipo_cuenta==2)){//solo entra si es de consultoria o intermediacion, y solo en la vista de franquicias
-            
-            $this->gestionesfran=$this->numGestionesEnCurso();
-            $this->llamadaspendientesfran=$this->numLlamadasPendientes();
+        if($vista=="listview"){//solo entra si es de consultoria o intermediacion, y solo en la vista de franquicias
+            if(($this->tipo_cuenta==1|$this->tipo_cuenta==2)){
+                $this->gestionesfran=$this->numGestionesEnCurso();
+                $this->llamadaspendientesfran=$this->numLlamadasPendientes();
+            }
         
         }
         else{
