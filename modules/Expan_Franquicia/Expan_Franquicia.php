@@ -57,16 +57,25 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
     
     public function fill_in_additional_list_fields() {
         parent::fill_in_additional_list_fields();
+        $vista=$GLOBALS['app']->controller->action;
         //rellenar los campos de la lista de franquicias de numero de gestiones en curso y llamadas pendientes de gestiones
-        $this->gestionesfran=$this->numGestionesEnCurso();
-        $this->llamadaspendientesfran=$this->numLlamadasPendientes();
-        $this->num_solicitudes=$this->numSolicitudes("");
-        $this->total_gestiones=$this->numTotalGestiones(false);
-        $this->dummies=$this->numTotalGestiones(true);
-        $this->sol_rating_a_plus=$this->numSolicitudes(1);
-        $this->sol_rating_a=$this->numSolicitudes(2);
-        $this->sol_rating_b=$this->numSolicitudes(3);
-        $this->sol_rating_c=$this->numSolicitudes(4);
+        if($vista=="listview"){//solo entra si es de consultoria o intermediacion, y solo en la vista de franquicias
+            if(($this->tipo_cuenta==1|$this->tipo_cuenta==2)){
+                $this->gestionesfran=$this->numGestionesEnCurso();
+                $this->llamadaspendientesfran=$this->numLlamadasPendientes();
+            }
+        
+        }
+        else{
+            $this->num_solicitudes=$this->numSolicitudes("");
+            $this->total_gestiones=$this->numTotalGestiones(false);
+            $this->dummies=$this->numTotalGestiones(true);
+            $this->sol_rating_a_plus=$this->numSolicitudes(1);
+            $this->sol_rating_a=$this->numSolicitudes(2);
+            $this->sol_rating_b=$this->numSolicitudes(3);
+            $this->sol_rating_c=$this->numSolicitudes(4);   
+        }
+        
         
     }
     

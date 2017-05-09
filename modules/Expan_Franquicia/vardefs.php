@@ -3301,6 +3301,84 @@ $dictionary['Expan_Franquicia'] = array(
     ),
     
     
+   'num_solicitudes' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'num_solicitudes',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_NUMEROSOLICITUDES',
+ 'importable' => 'false',
+ ),
+ 
+ 'total_gestiones' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'total_gestiones',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_TOTALGESTIONES',
+ 'importable' => 'false',
+ ),
+ 
+ 'dummies' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'dummies',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_DUMMIES',
+ 'importable' => 'false',
+ ),
+ 
+ 'sol_rating_a_plus' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_a_plus',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_A_PLUS',
+ 'importable' => 'false',
+ ),
+ 
+ 'sol_rating_a' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_a',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_A',
+ 'importable' => 'false',
+ ),
+
+ 'sol_rating_b' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_b',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_B',
+ 'importable' => 'false',
+ ),
+ 
+ 'sol_rating_c' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_c',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_C',
+ 'importable' => 'false',
+ ),
+    
+    
 ),
 	'relationships'=>array (
 ),
