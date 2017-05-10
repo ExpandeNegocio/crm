@@ -64,7 +64,12 @@ $listViewDefs[$module_name] = array(
     'fecha_ultimo_envio' => array (
         'width' => '10%',
         'label' => 'LBL_FECHA_ULTIMO_ENVIO',
-        'default' => true),                       
+        'default' => true),  
+        
+    'total_correos' => array (
+        'width' => '10%',
+        'label' => 'LBL_TOTALCORREOS',
+        'default' => true),                     
                        
 	'correos_ok' => array (
         'width' => '10%',
@@ -76,6 +81,11 @@ $listViewDefs[$module_name] = array(
         'label' => 'LBL_CORREOS_KO',
         'default' => true),
         
+    'correos_protocolo' => array (
+        'width' => '10%',
+        'label' => 'LBL_CORREOSPROTOCOLO',
+        'default' => true),
+
     'franquicias' => 
         array (
             'type' => 'multienum',

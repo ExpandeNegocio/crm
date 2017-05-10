@@ -77,4 +77,6 @@ $mod_strings = array (
   'LBL_FECHA_PRIMER_ENVIO'=>'Fecha de primer Envío',
   'LBL_FECHA_ULTIMO_ENVIO'=>'Fecha de último Envío',
   'LBL_FRANQUICIAS' => 'Franquicias',
+  'LBL_TOTALCORREOS' => 'Nº total de correos',
+  'LBL_CORREOSPROTOCOLO' => 'Nº de no envíos por protocolo',
 );

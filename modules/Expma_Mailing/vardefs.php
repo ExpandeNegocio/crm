@@ -215,6 +215,68 @@ $dictionary['Expma_Mailing'] = array(
     ),
   ),
   
+  'correos_protocolo' => 
+  array (
+    'required' => false,
+    'name' => 'correos_protocolo',
+    'vname' => 'LBL_CORREOSPROTOCOLO',
+    'type' => 'int',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'len' => '20',
+    'size' => '5',
+    'enable_range_search' => false,
+    'disable_num_format' => '',
+    'min' => 0,
+    'max' => false,
+    'validation' => 
+    array (
+      'type' => 'range',
+      'min' => 0,
+      'max' => false,
+    ),
+  ),
+  
+  'total_correos' => 
+  array (
+    'required' => false,
+    'name' => 'total_correos',
+    'vname' => 'LBL_TOTALCORREOS',
+    'type' => 'int',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'len' => '20',
+    'size' => '5',
+    'enable_range_search' => false,
+    'disable_num_format' => '',
+    'min' => 0,
+    'max' => false,
+    'validation' => 
+    array (
+      'type' => 'range',
+      'min' => 0,
+      'max' => false,
+    ),
+  ),
+  
     'n_reenvios' => 
   array (
     'required' => false,

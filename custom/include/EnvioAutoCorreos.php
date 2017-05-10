@@ -359,8 +359,8 @@ class EnvioAutoCorreos {
             sleep(4);
             
             //Enviamos el correo
-            if ($mail -> Send()) {                    
-                $this->marcarEnviadoMailing(implode(",",$arrayCorreos),$idMailing);
+            if ($mail -> Send()) {
+                 $this->marcarEnviadoMailing(implode(",",$arrayCorreos),$idMailing);  
                 if ($mailing->guardar_correo==1){
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Entra Asociar Correo');
                     $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$mailing->texto_informe);
@@ -383,7 +383,7 @@ class EnvioAutoCorreos {
         $db = DBManagerFactory::getInstance();
         
         $query = "UPDATE expma_mailing_expan_solicitud_c ";
-        $query=$query."SET enviado = 1 ";
+        $query=$query."SET enviado = 1, motivo_no_envio=null ";
         $query=$query."WHERE ";
         $query=$query."   expma_mailing_expan_solicitudexpma_mailing_ida= '".$idMailing."' AND ";
         $query=$query."   expma_mailing_expan_solicitudexpan_solicitud_idb IN  ";
@@ -391,7 +391,7 @@ class EnvioAutoCorreos {
         $query=$query."    FROM email_addr_bean_rel r,email_addresses e ";
         $query=$query."    WHERE ";
         $query=$query."     e.id = r.email_address_id AND ";
-        $query=$query."     e.email_address_caps in ( ".$listaMail.")); ";
+        $query=$query."     e.email_address_caps in ( ".$listaMail.") and r.deleted=0); ";
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]marcarEnviadoMailing:' . $query);
         
@@ -406,7 +406,7 @@ class EnvioAutoCorreos {
             $db = DBManagerFactory::getInstance();
             
             $query = "UPDATE expma_mailing_expan_solicitud_c ";
-            $query=$query."SET motivo_no_envio = 'No se ha podido enviar' ";
+            $query=$query."SET enviado=0, motivo_no_envio = 'No se ha podido enviar' ";
             $query=$query."WHERE ";
             $query=$query."   expma_mailing_expan_solicitudexpma_mailing_ida= '".$idMailing."' AND ";
             $query=$query."   expma_mailing_expan_solicitudexpan_solicitud_idb IN  ";
@@ -414,7 +414,7 @@ class EnvioAutoCorreos {
             $query=$query."    FROM email_addr_bean_rel r,email_addresses e ";
             $query=$query."    WHERE ";
             $query=$query."     e.id = r.email_address_id AND e.deleted=0 AND ";
-            $query=$query."     e.email_address_caps in ( ".$listaMail.")); ";
+            $query=$query."     e.email_address_caps in ( ".$listaMail.") and r.deleted=0); ";
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]marcarEnviadoMailing:' . $query);
             

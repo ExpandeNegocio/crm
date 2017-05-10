@@ -11,12 +11,15 @@
     $idMailing = rawurldecode($_GET['idMailing']);
     
     $query = "UPDATE expma_mailing_expan_solicitud_c ";
-    $query=$query."SET    enviado = 0, motivo_no_envio = NULL ";
+    $query=$query."SET    enviado = 0, motivo_no_envio=null ";
     $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$idMailing."'";
     
     $db = DBManagerFactory::getInstance();
     
     $result = $db -> query($query);  
+    
+    $query = "UPDATE expma_mailing SET correos_ok=0, correos_ko=0, correos_protocolo=0 WHERE id='".$idMailing."' and deleted=0 ;";
+     $result = $db -> query($query); 
     
     echo "Ok";
     

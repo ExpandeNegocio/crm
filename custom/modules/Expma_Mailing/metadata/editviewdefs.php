@@ -97,7 +97,23 @@ array (
           ),
         ),
         
-        3 => 
+        3 =>
+        array(
+            0 =>
+            array(
+                'name' => 'total_correos',
+                'label' => 'LBL_TOTALCORREOS',
+                'type' => 'readonly',
+            ),
+            1 =>
+            array(
+                'name' => 'correos_protocolo',
+                'label' => 'LBL_CORREOSPROTOCOLO',
+                'type' => 'readonly',
+            ),
+        ),
+        
+        4 => 
         array (
           0 => 
           array (
@@ -113,7 +129,7 @@ array (
           ),
         ),
         
-        4=> 
+        5=> 
         array (
           0 => 
           array (
@@ -129,7 +145,7 @@ array (
            ),
         ),
         
-       5 => 
+       6 => 
         array (              
           0 => 
           array (

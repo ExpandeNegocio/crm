@@ -90,8 +90,34 @@ array (
             'label' => 'LBL_N_REENVIOS',
           ),
         ),
-        
+
         3 => 
+        array (
+          0 => 
+          array (
+            'name' => '',
+          ),
+          1 => 
+          array (
+            'name' => 'total_correos',
+            'label' => 'LBL_TOTALCORREOS',
+          ),
+        ),
+        
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => '',
+          ),
+          1 => 
+          array (
+            'name' => 'correos_protocolo',
+            'label' => 'LBL_CORREOSPROTOCOLO',
+          ),
+        ),
+                
+        5 => 
         array (
           0 => 
           array (
@@ -105,7 +131,7 @@ array (
           ),
         ),
         
-        4 => 
+        6 => 
         array (
           0 => 
           array (
@@ -119,7 +145,7 @@ array (
           ),
         ),
         
-        5 => 
+        7 => 
         array (
           0 => 
           array (
@@ -132,7 +158,7 @@ array (
             'label' => 'LBL_CHK_POR_FRANQUICIA',
           ),
         ),
-        56=> 
+        8=> 
         array (
           0 => 'description',
           1 => 

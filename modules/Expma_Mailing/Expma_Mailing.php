@@ -48,6 +48,9 @@ class Expma_Mailing extends Expma_Mailing_sugar {
         
         $this->correos_ok=$this->calculaCorreosCorrectos();
         $this->correos_ko=$this->calculaCorreosIncorrectos();
+        $this->total_correos=$this->calculaCorreosTotales();
+        $this->correos_protocolo=$this->calculaNoEnviosProtocolo();
+        $this->n_reenvios=$this->n_reenvios+1;
         $this-> fecha_ultimo_envio = $GLOBALS['timedate'] -> now();
         if ($this-> fecha_primer_envio==null){
             $this-> fecha_primer_envio= $GLOBALS['timedate'] -> now();
@@ -57,36 +60,36 @@ class Expma_Mailing extends Expma_Mailing_sugar {
     
     private function calculaCorreosCorrectos(){
         
-        $num=0;
+        $numCorreosOk=0;
         
         $db = DBManagerFactory::getInstance();
                 
         $query = "SELECT count(1) num ";
         $query=$query."FROM   expma_mailing_expan_solicitud_c ";
-        $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$this->id."' AND enviado=1; ";    
+        $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$this->id."' AND enviado=1 AND deleted=0; ";    
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaCorreosCorrectos query:' . $query);    
         
         $resultSol = $db -> query($query, true);
     
         while ($rowSol = $db -> fetchByAssoc($resultSol)) {                     
-           $numCorr=$rowSol["num"];
+           $numCorreosOk=$rowSol["num"];
         }
 
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]Num Correos Correctos:' . $num); 
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]Num Correos Correctos:' . $numCorreosOk); 
         
-        return $num;        
+        return $numCorreosOk;        
     }
     
      private function calculaCorreosIncorrectos(){
         
-        $num=0;
+        $numCorreosKo=0;
         
         $db = DBManagerFactory::getInstance();
                 
         $query = "SELECT count(1) num ";
         $query=$query."FROM   expma_mailing_expan_solicitud_c ";
-        $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$this->id."' AND not motivo_no_envio is null; ";
+        $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$this->id."' AND not (motivo_no_envio is null OR motivo_no_envio='Por protocolo') AND deleted=0; ";
         $query=$query." "; 
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaCorreosCorrectos query:' . $query);   
@@ -94,12 +97,60 @@ class Expma_Mailing extends Expma_Mailing_sugar {
         $resultSol = $db -> query($query, true);
     
         while ($rowSol = $db -> fetchByAssoc($resultSol)) {                     
-           $num=$rowSol["num"];
+           $numCorreosKo=$rowSol["num"];
         }
 
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaCorreosCorrectos query:' . $num); 
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaCorreosCorrectos query:' . $numCorreosKo); 
         
-        return $num;
+        return $numCorreosKo;
+        
+    }
+     
+    private function calculaCorreosTotales(){
+        
+        $numCorreosTotales=0;
+        
+        $db = DBManagerFactory::getInstance();
+                
+        $query = "SELECT count(1) num ";
+        $query=$query."FROM   expma_mailing_expan_solicitud_c ";
+        $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$this->id."' AND deleted=0; "; 
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaCorreosTotales query:' . $query);   
+        
+        $resultSol = $db -> query($query, true);
+    
+        while ($rowSol = $db -> fetchByAssoc($resultSol)) {                     
+           $numCorreosTotales=$rowSol["num"];
+        }
+
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaCorreosTotales query:' . $numCorreosTotales); 
+        
+        return $numCorreosTotales;
+        
+    }
+
+    private function calculaNoEnviosProtocolo(){
+        
+        $numNoEnviosProtocolo=0;
+        
+        $db = DBManagerFactory::getInstance();
+                
+        $query = "SELECT count(1) num ";
+        $query=$query."FROM   expma_mailing_expan_solicitud_c ";
+        $query=$query."WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '".$this->id."' AND motivo_no_envio='Por protocolo'AND deleted=0; "; 
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaNoEnviosProtocolo query:' . $query);   
+        
+        $resultSol = $db -> query($query, true);
+    
+        while ($rowSol = $db -> fetchByAssoc($resultSol)) {                     
+           $numNoEnviosProtocolo=$rowSol["num"];
+        }
+
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mailing]calculaNoEnviosProtocolo query:' . $numNoEnviosProtocolo); 
+        
+        return $numNoEnviosProtocolo;
         
     }
 	
