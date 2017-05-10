@@ -776,7 +776,7 @@ class Call extends SugarBean {
         $nuevaLlamada -> telefono = $this -> telefono;
         $nuevaLlamada -> franquicia = $this -> franquicia;
         $nuevaLlamada -> gestion_agrupada = $this -> gestion_agrupada;
-        $nuevaLLamada -> created_by=1;
+        $nuevaLLamada -> created_by='1';
         $nuevaLlamada -> repeticiones = $this -> repeticiones + 1;
         
         $nuevaLlamada -> call_type = $this -> call_type;
@@ -1113,9 +1113,9 @@ class Call extends SugarBean {
         
         //Si llevamos varias llamadas sin exito debemos pasar la gestion a un estado no localizado        
         
-        if (($this -> repeticiones == self::MAX_REPETICIONES && $solicitud->tipo_origen!=4)||
-        $this -> repeticiones == self::MAX_REPETICIONES_CENTRAL) {
-            if ($bean->parent_type=='Expan_GestionSolicitudes'){
+        if (($this -> repeticiones >= self::MAX_REPETICIONES && $gestion->tipo_origen!=4)||
+        $this -> repeticiones >= self::MAX_REPETICIONES_CENTRAL) {
+            if ($this->parent_type=='Expan_GestionSolicitudes'){
                 $gestion -> estado_sol = Expan_GestionSolicitudes::ESTADO_PARADO;
                 $gestion -> motivo_parada= Expan_GestionSolicitudes::PARADA_NO_LOCALIZADO;
                 $gestion -> motivo_descarte=null;
