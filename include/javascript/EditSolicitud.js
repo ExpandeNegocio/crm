@@ -92,7 +92,6 @@ const BORDE_NORMAL="#94c1e8 solid 1px";
 
 function inicio() {
 	//Ocultar los campos auxiliares
-
 	ocultarCampoAux();
 
 	//Ponemos de solo lectura el check de candidatur caliente
@@ -486,8 +485,8 @@ function ControlUsuarioFran(franq) {
 	if (franq != '') {
 
 		//Checamos las franquicias
-		var checks = document.getElementsByName(franq);
-		checks[0].checked = true;
+		var checks = document.getElementById(franq);	
+		checks.checked = true;
 		cambiocheck("francheck", "franquicias_secundarias",true);
 
 		//Ocultamo los sectores de interes y las franquicias

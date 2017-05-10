@@ -4,6 +4,8 @@
     
     $db = DBManagerFactory::getInstance();
     
+    echo 'Iniciando Proceso';
+    
     //Limpieza de las auditorias de gestion que tienen el usuario vacio (si no se actualiza, los datos de auditoría no se ven bien)
     
     $query = "update expan_gestionsolicitudes_audit set created_by=1 where expan_gestionsolicitudes_audit.created_by is null; ";    
@@ -85,5 +87,5 @@
     $query = "update calls set parent_type='Expan_GestionSolicitudes' where parent_type='Accounts'"; 
     $result = $db -> query($query);
     
-        
+    echo 'FinlizadoProceso';
 ?>

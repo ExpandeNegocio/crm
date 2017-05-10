@@ -69,6 +69,50 @@
                         $val_chk_c3_Ant=false;
                     }    
                     $val_chk_c3_Act=$bean->chk_c3; 
+                    
+                    if (self::$fetchedRow[$bean -> id]['chk_c4']==1){
+                        $val_chk_c4_Ant=true;
+                    }else{
+                        $val_chk_c4_Ant=false;
+                    }    
+                    $val_chk_c4_Act=$bean->chk_c4; 
+                    
+                    
+                    if (self::$fetchedRow[$bean -> id]['chk_c11']==1){
+                        $val_chk_c11_Ant=true;
+                    }else{
+                        $val_chk_c11_Ant=false;
+                    }
+                    $val_chk_c11_Act=$bean->chk_c11;
+                    
+                    if (self::$fetchedRow[$bean -> id]['chk_c12']==1){
+                        $val_chk_c12_Ant=true;
+                    }else{
+                        $val_chk_c12_Ant=false;
+                    }
+                    $val_chk_c12_Act=$bean->chk_c12;
+                                                     
+                    if (self::$fetchedRow[$bean -> id]['chk_c13']==1){
+                        $val_chk_c13_Ant=true;
+                    }else{
+                        $val_chk_c13_Ant=false;
+                    }
+                    $val_chk_c13_Act=$bean->chk_c13;
+                                                           
+                    if (self::$fetchedRow[$bean -> id]['chk_c14']==1){
+                        $val_chk_c14_Ant=true;
+                    }else{
+                        $val_chk_c14_Ant=false;
+                    }
+                    $val_chk_c14_Act=$bean->chk_c14;
+                                                             
+                    if (self::$fetchedRow[$bean -> id]['chk_c15']==1){
+                        $val_chk_c15_Ant=true;
+                    }else{
+                        $val_chk_c15_Ant=false;
+                    }
+                    $val_chk_c15_Act=$bean->chk_c15;
+                                                           
                                                                                                                                                               
                                                                   
                     //Miramos si se ha cambiado el filtro
@@ -118,6 +162,36 @@
                     if ($val_chk_c3_Ant!=$val_chk_c3_Act &&
                     $val_chk_c3_Act==true){
                         $bean->lanzaIncidencias("C3");
+                    } 
+                    
+                    if ($val_chk_c4_Ant!=$val_chk_c4_Act &&
+                    $val_chk_c4_Act==true){
+                        $bean->lanzaIncidencias("C4");
+                    }  
+                    
+                    if ($val_chk_c1_Ant!=$val_chk_c1_Act &&
+                    $val_chk_c1_Act==true){
+                        $bean->lanzaIncidencias("C1.1");
+                    }   
+                    
+                    if ($val_chk_c12_Ant!=$val_chk_c12_Act &&
+                    $val_chk_c12_Act==true){
+                        $bean->lanzaIncidencias("C1.2");
+                    }   
+                    
+                    if ($val_chk_c13_Ant!=$val_chk_c13_Act &&
+                    $val_chk_c13_Act==true){
+                        $bean->lanzaIncidencias("C1.3");
+                    } 
+                    
+                    if ($val_chk_c14_Ant!=$val_chk_c14_Act &&
+                    $val_chk_c14_Act==true){
+                        $bean->lanzaIncidencias("C1.4");
+                    } 
+                    
+                    if ($val_chk_c15_Ant!=$val_chk_c15_Act &&
+                    $val_chk_c15_Act==true){
+                        $bean->lanzaIncidencias("C1.5");
                     } 
                     
                     if ($llamarTodosAnt!=$llamarTodosAct &&
