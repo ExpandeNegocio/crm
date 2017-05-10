@@ -116,7 +116,7 @@
                     }   
                     
                     if ($val_chk_c3_Ant!=$val_chk_c3_Act &&
-                    $val_chk_c2_Act==true){
+                    $val_chk_c3_Act==true){
                         $bean->lanzaIncidencias("C3");
                     } 
                     
