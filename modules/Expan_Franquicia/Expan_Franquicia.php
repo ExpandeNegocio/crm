@@ -61,124 +61,79 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         //rellenar los campos de la lista de franquicias de numero de gestiones en curso y llamadas pendientes de gestiones
         if($vista=="listview"){//solo entra si es de consultoria o intermediacion, y solo en la vista de franquicias
             if(($this->tipo_cuenta==1|$this->tipo_cuenta==2)){
-                $this->gestionesfran=$this->numGestionesEnCurso();
-                $this->llamadaspendientesfran=$this->numLlamadasPendientes();
+                $this->calculoDatosFranquicia();
             }
-        
         }
         else{
-            $this->num_solicitudes=$this->numSolicitudes("");
-            $this->total_gestiones=$this->numTotalGestiones(false);
-            $this->dummies=$this->numTotalGestiones(true);
-            $this->sol_rating_a_plus=$this->numSolicitudes(1);
-            $this->sol_rating_a=$this->numSolicitudes(2);
-            $this->sol_rating_b=$this->numSolicitudes(3);
-            $this->sol_rating_c=$this->numSolicitudes(4);   
+            $this->calculoDatosEvento();
         }
         
         
     }
     
-    public function numTotalGestiones($ConDummies){
-        $db = DBManagerFactory::getInstance();
+    
+    public function calculoDatosEvento(){
+        $db=DBManagerFactory::getInstance();
         
-        if ($ConDummies==true){
-            $query = "select count(1) num  ";
-            $query=$query."from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND name like '%Dummie%' AND ";
-            $query=$query."((tipo_origen = ".Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO." AND subor_expande=".Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO." AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR ";
-            $query=$query."expan_evento_id_c='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'); ";
-        }else{
-            $query = "select count(1) num  ";
-            $query=$query."from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND not name like '%Dummie%' AND ";
-            $query=$query."((tipo_origen = ".Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO." AND subor_expande=".Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO." AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR ";
-            $query=$query."expan_evento_id_c='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'); ";
-        }          
+        $query="SELECT * FROM(SELECT count(distinct(s.id)) numS FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
+        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND "; 
+        $query=$query." ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
+        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
+        $query=$query." ) a JOIN(SELECT count(distinct(s.id)) numSAP FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
+        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = "; 
+        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g ";
+        $query=$query."  WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=1 ";
+        $query=$query." ) b JOIN (SELECT count(distinct(s.id)) numSA FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
+        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
+        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
+        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=2 "; 
+        $query=$query." ) c JOIN (SELECT count(distinct(s.id)) numSB FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
+        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = "; 
+        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
+        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=3 ";  
+        $query=$query." )d JOIN (SELECT count(distinct(s.id)) numSC FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
+        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = "; 
+        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
+        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=4 ";
+        $query=$query." )e JOIN (select count(1) numGD from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND name like '%Dummie%' AND "; 
+        $query=$query." ((tipo_origen = '1' AND subor_expande='7' AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR "; 
+        $query=$query." expan_evento_id_c='19351fa5-2f26-777b-db68-5811cdc72c77'))f JOIN (select count(1) numGT ";  
+        $query=$query." from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND "; 
+        $query=$query." ((tipo_origen = '1' AND subor_expande='7' AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR "; 
+        $query=$query." expan_evento_id_c='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'))g;"; 
+        
         $result = $db -> query($query, true);
-        
-        $numGestiones=0;
 
         while ($row = $db -> fetchByAssoc($result)) {
-            $numGestiones = $row["num"];
+            $this->num_solicitudes=$row["numS"];
+            $this->sol_rating_a_plus=$row["numSAP"];
+            $this->sol_rating_a=$row["numSA"];
+            $this->sol_rating_b=$row["numSB"];
+            $this->sol_rating_c=$row["numSC"];
+            $this->total_gestiones=$row["numGT"];
+            $this->dummies=$row["numGD"];
         }                
         
-        return $numGestiones;  
     }
-    
-    public function numSolicitudes($rating){
-        $db = DBManagerFactory::getInstance();
+
+    public function calculoDatosFranquicia(){
         
-        if($rating==""){
-            $query = "SELECT count(distinct(s.id)) num ";
-            $query=$query."FROM   expan_solicitud s, ";
-            $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
-            $query=$query."       (SELECT id ";
-            $query=$query."        FROM   expan_gestionsolicitudes ";
-            $query=$query."        WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
-            $query=$query."               '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g ";
-            $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
+        $db=DBManagerFactory::getInstance();
+        $query="select * from (select count(*) as gestionesfran FROM expan_gestionsolicitudes where estado_sol='2' and ";
+        $query=$query. " franquicia='".$this->id."' and dummie=0 and deleted=0) a ";
+        $query=$query. " join (select count(*) as llamadasPendientes FROM calls where status='Planned' and ";
+        $query=$query. " franquicia='".$this->id."' and parent_type='Expan_GestionSolicitudes' and deleted=0)b;";
+        
+         $result = $db -> query($query, true);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $this->gestionesfran=$row["gestionesfran"];
+            $this->llamadaspendientesfran=$row["llamadasPendientes"];
             
-        }else{
-            $query = "SELECT count(distinct(s.id)) num ";
-            $query=$query."FROM   expan_solicitud s, ";
-            $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
-            $query=$query."       (SELECT id ";
-            $query=$query."        FROM   expan_gestionsolicitudes ";
-            $query=$query."        WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
-            $query=$query."               '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g ";
-            $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.rating='".$rating."' ";
-            
-        }
-        
-                  
-        $result = $db -> query($query, true);
-        
-        $numSolicitudesRecogidas=0;
-
-        while ($row = $db -> fetchByAssoc($result)) {
-            $numSolicitudesRecogidas = $row["num"];
-        }                
-        
-        return $numSolicitudesRecogidas;  
+        }     
+    
     }
     
-    /**
-     * Calcula el número de gestiones en curso de una franquicia concreta
-     */
-    public function numGestionesEnCurso(){
-        $db = DBManagerFactory::getInstance();
-        
-            $query = "select count(*) as gestionesfran FROM expan_gestionsolicitudes where estado_sol='2' and franquicia='".$this->id."' and dummie=0 and deleted=0;";
-                       
-        $result = $db -> query($query, true);
-        
-        $numGestiones=0;
-
-        while ($row = $db -> fetchByAssoc($result)) {
-            $numGestiones = $row["gestionesfran"];
-        }                
-        
-        return $numGestiones;  
-    }
-    
-    /**
-     * Calcula el número de llamadas pendientes de todas las gestiones en curso de una franquicia concreta
-     */
-    public function numLlamadasPendientes(){
-        $db = DBManagerFactory::getInstance();
-        
-            $query = "select count(*) as llamadasPendientes FROM calls where status='Planned' and franquicia='".$this->id."' and parent_type='Expan_GestionSolicitudes' and deleted=0;";
-                       
-        $result = $db -> query($query, true);
-        
-        $numLlamadasPendientes=0;
-
-        while ($row = $db -> fetchByAssoc($result)) {
-            $numLlamadasPendientes = $row["llamadasPendientes"];
-        }                
-        
-        return $numLlamadasPendientes;  
-    }
-	
     function existeTarea($tipo,$estado){
         
         $db = DBManagerFactory::getInstance();
