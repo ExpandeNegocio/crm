@@ -201,7 +201,7 @@ array (
           0 => 
           array (
             'name' => 'chk_responde_C1',
-            'label' => 'Responde a C1',
+            'label' => 'LBL_RESPONDE_C1',
           ),
           1 => 
           array (
@@ -243,7 +243,7 @@ array (
           0 => 
           array (
             'name' => 'chk_recepcio_cuestionario',
-            'label' => 'Recepción del cuestionario',
+            'label' => 'LBL_RECEPCION_CUESTIONARIO',
           ),
           1 => 
           array (
@@ -323,7 +323,7 @@ array (
           0 => 
           array (
             'name' => 'chk_visita_local',
-            'label' => 'Informacion de local',
+            'label' => 'LBL_INFORMACION_LOCAL',
           ),
           1 => 
           array (
@@ -331,7 +331,35 @@ array (
             'label' => 'Fecha Informacion de local',
           ),
         ),
+        
         16 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_precontrato_personal',
+            'label' => 'LBL_ENVIO_PRECONTRATO_PERSONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_precontrato_personal',
+            'label' => 'LBL_FECHA_ENVIO_PRECONTRATO_PERSONAL',
+          ),
+        ),
+        
+        17 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_plan_financiero_personal',
+            'label' => 'LBL_ENVIO_PLAN_FINANCIERO_PERSONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_plan_financiero_personal',
+            'label' => 'LBL_FECHA_ENVIO_PLAN_FINANCIERO_PERSONAL',
+          ),
+        ),
+        18 => 
         array (
           0 => 
           array (
@@ -345,7 +373,7 @@ array (
           ),
         ),
         
-        17 => 
+        19 => 
         array (
           0 => 
           array (
@@ -359,7 +387,7 @@ array (
           ),
         ),
         
-        18 => 
+        20 => 
         array (
           0 => 
           array (
@@ -373,7 +401,21 @@ array (
           ),
         ),
         
-         19 => 
+        21 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_contrato_personal',
+            'label' => 'LBL_ENVIO_CONTRATO_PERSONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_contrato_personal',
+            'label' => 'LBL_FECHA_ENVIO_CONTRATO_PERSONAL',
+          ),
+        ),
+        
+         22 => 
         array (
           0 => 
           array (
@@ -389,7 +431,7 @@ array (
           ),
         ),
         
-        20 => 
+        23 => 
         array (
           0 => 
           array (
@@ -405,7 +447,7 @@ array (
           ),
         ),
         
-        21 => 
+        24 => 
         array (
           0 => 
           array (
@@ -419,7 +461,7 @@ array (
           ),  
         ),
         
-        22 => 
+        25 => 
         array (
           0 => 
           array (
@@ -432,7 +474,7 @@ array (
           ),  
         ),
  
-        23 => 
+        26 => 
         array (
           0 => 
           array (
@@ -445,7 +487,7 @@ array (
           ),  
         ),       
        
-        24 => 
+        27 => 
         array (
           0 => 
           array (
@@ -461,7 +503,7 @@ array (
           ),
         ),
                 
-        25 => 
+        28 => 
         array (
           0 => 
           array (
@@ -493,7 +535,7 @@ array (
             ),
         ),
         
-        26 => 
+        29 => 
         array (
           0 => 
           array (
@@ -508,7 +550,7 @@ array (
           ),
         ),
         
-        27 => 
+        30 => 
         array (        
           0 => 
           array (
@@ -523,7 +565,7 @@ array (
           ),
         ),
         
-        28 => 
+        31 => 
         array (         
           0 => 
           array (
@@ -538,7 +580,7 @@ array (
           ),
         ),
         
-        29 => 
+        32 => 
         array (         
           0 => 
           array (
@@ -553,7 +595,7 @@ array (
           ),
         ),
         
-        30 => 
+        33 => 
         array (
           0 => 'assigned_user_name',
           1 => 
@@ -568,7 +610,7 @@ array (
           ),          
         ),
         
-        31 => 
+        34 => 
         array (
           0 =>  array (
             'name' =>'modified_by_name',     

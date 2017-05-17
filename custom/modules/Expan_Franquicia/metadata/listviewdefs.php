@@ -39,12 +39,22 @@ array (
     'label' => 'LBL_GESTIONESFRAN',
     'default'=>true,
   ),
+  
   'llamadaspendientesfran' => 
   array (
     'width' => '1%',
     'label' => 'LBL_LLAMADASPENDIENTESFRAN',
     'default'=>true,
   ),
+
+  'llamar_todos' => 
+  array (
+    'width' => '10%',
+    'studio' => 'visible',
+    'label' => 'LBL_LLAMAR_TODOS',
+    'default' => true,
+  ),
+  
   'ASSIGNED_USER_NAME' => 
   array (
     'width' => '15%',

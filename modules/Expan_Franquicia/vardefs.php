@@ -2677,7 +2677,6 @@ $dictionary['Expan_Franquicia'] = array(
         'vname' => 'LBL_LLAMAR_TODOS',
         'type' => 'bool',
         'massupdate' => 0,
-        'default' => '0',
         'no_default' => false,
         'comments' => '',
         'help' => '',

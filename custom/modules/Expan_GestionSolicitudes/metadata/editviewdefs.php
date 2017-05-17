@@ -170,7 +170,50 @@ array (
             'label' => 'Candidatura caliente',
           ),
         ),
+        
         2 => 
+        array (    
+          0 => 
+          array (
+            'name' => 'motivo_parada',
+            'studio' => 'visible',
+            'label' => 'LBL_MOTIVO_PARADA',   
+          ), 
+          1=>
+          array(
+            'name'=>'',
+          ), 
+        ),
+        
+        3 => 
+        array (    
+          0 => 
+          array (
+            'name' => 'motivo_descarte',
+            'studio' => 'visible',
+            'label' => 'LBL_MOTIVO_DESCARTE',   
+          ), 
+          1=>
+          array(
+            'name'=>'',
+          ),  
+        ),
+        
+        4 => 
+        array (    
+          0 => 
+          array (
+            'name' => 'motivo_positivo',
+            'studio' => 'visible',
+            'label' => 'LBL_MOTIVO_POSITIVO',   
+          ),  
+          1=>
+          array(
+            'name'=>'',
+          ), 
+        ),
+        
+        5 => 
         array (
           0 => 
           array (
@@ -183,12 +226,12 @@ array (
             'label' => 'Envio de Documentación',
           ),
         ),
-        3 => 
+        6 => 
         array (
           0 => 
           array (
             'name' => 'chk_responde_C1',
-            'label' => 'Responde a C1',
+            'label' => 'LBL_RESPONDE_C1',
           ),
           1 => 
           array (
@@ -196,7 +239,7 @@ array (
             'label' => 'Fecha respuesta C1',
           ),
         ),
-        4 => 
+        7 => 
         array (        
          0 => 
           array (
@@ -210,7 +253,7 @@ array (
           ),              
         ),
         
-       5 => 
+       8 => 
         array (
           0 => 
           array (
@@ -224,12 +267,12 @@ array (
           ),
         ),
         
-        6 => 
+        9 => 
         array (
           0 => 
           array (
             'name' => 'chk_recepcio_cuestionario',
-            'label' => 'Recepción del cuestionario',
+            'label' => 'LBL_RECEPCION_CUESTIONARIO',
           ),
           1 => 
           array (
@@ -237,7 +280,7 @@ array (
             'label' => 'Fecha de recepción del cuestionario',
           ),
         ),
-        7 => 
+        10 => 
         array (
           0 => 
           array (
@@ -251,7 +294,7 @@ array (
           ),
         ),
                
-        8 => 
+        11 => 
         array (
           0 => 
           array (
@@ -265,7 +308,7 @@ array (
           ),
         ),
         
-        9 => 
+        12 => 
         array (
           0 => 
           array (
@@ -279,7 +322,7 @@ array (
           ),
         ),
         
-        10 => 
+        13 => 
         array (
           0 => 
           array (
@@ -292,7 +335,7 @@ array (
             'label' => 'Fecha Visitado franquiciado',
           ),
         ),
-        11 => 
+        14 => 
         array (
           0 => 
           array (
@@ -305,12 +348,12 @@ array (
             'label' => 'Fecha envio precontrato',
           ),
         ),
-        12 => 
+        15 => 
         array (
           0 => 
           array (
             'name' => 'chk_visita_local',
-            'label' => 'Información de local',
+            'label' => 'LBL_INFORMACION_LOCAL',
           ),
           1 => 
           array (
@@ -318,7 +361,36 @@ array (
             'label' => 'Fecha Información de local',
           ),
         ),
-        13 => 
+        
+        16 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_precontrato_personal',
+            'label' => 'LBL_ENVIO_PRECONTRATO_PERSONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_precontrato_personal',
+            'label' => 'LBL_FECHA_ENVIO_PRECONTRATO_PERSONAL',
+          ),
+        ),
+        
+         17 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_plan_financiero_personal',
+            'label' => 'LBL_ENVIO_PLAN_FINANCIERO_PERSONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_plan_financiero_personal',
+            'label' => 'LBL_FECHA_ENVIO_PLAN_FINANCIERO_PERSONAL',
+          ),
+        ),
+        
+        18 => 
         array (
           0 => 
           array (
@@ -331,7 +403,7 @@ array (
             'label' => 'Fecha envío de contrato',
           ),
         ),
-        14 => 
+        19 => 
         array (
           0 => 
           array (
@@ -345,7 +417,7 @@ array (
           ),
         ),
         
-        15 => 
+        20 => 
         array (
           0 => 
           array (
@@ -359,7 +431,22 @@ array (
           ),
         ),
         
-        16 => 
+        21 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_envio_contrato_personal',
+            'label' => 'LBL_ENVIO_CONTRATO_PERSONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'f_envio_contrato_personal',
+            'label' => 'LBL_FECHA_ENVIO_CONTRATO_PERSONAL',
+          ),
+        ),
+        
+        
+        22 => 
         array (
           0 => 
           array (
@@ -375,7 +462,7 @@ array (
           ),
         ),
         
-        17 => 
+        23 => 
         array (
           0 => 
           array (
@@ -391,49 +478,7 @@ array (
           ),
         ),
         
-        18 => 
-        array (
-          0 => 
-          array (
-
-          ),    
-          1 => 
-          array (
-            'name' => 'motivo_parada',
-            'studio' => 'visible',
-            'label' => 'LBL_MOTIVO_PARADA',   
-          ),  
-        ),
-        
-        19 => 
-        array (
-          0 => 
-          array (
-
-          ),    
-          1 => 
-          array (
-            'name' => 'motivo_descarte',
-            'studio' => 'visible',
-            'label' => 'LBL_MOTIVO_DESCARTE',   
-          ),  
-        ),
-        
-        20 => 
-        array (
-          0 => 
-          array (
-
-          ),    
-          1 => 
-          array (
-            'name' => 'motivo_positivo',
-            'studio' => 'visible',
-            'label' => 'LBL_MOTIVO_POSITIVO',   
-          ),  
-        ),
-        
-        21 => 
+        24 => 
         array (
           0 => 
           array (
@@ -449,7 +494,7 @@ array (
           ),
         ),
         
-        22 => 
+        25 => 
         array (
           0 => 
           array (
@@ -463,7 +508,7 @@ array (
           ),
         ),
         
-        23 => 
+        26 => 
         array (
           0 => 
           array (
@@ -476,7 +521,7 @@ array (
           ),
         ),
         
-        24 => 
+        27 => 
         array (
           0 => 
           array (
@@ -489,7 +534,7 @@ array (
           ),
         ),
         
-        25 => 
+        28 => 
         array (
           0 => 
           array (
@@ -502,7 +547,7 @@ array (
           ),
         ),
         
-        26 => 
+        29 => 
         array (
           0 => 
           array (
@@ -515,7 +560,7 @@ array (
           ),
         ),
         
-        27 => 
+        30 => 
         array (
           0 => 
           array (
@@ -528,7 +573,7 @@ array (
           ),
         ),
         
-        28 => 
+        31 => 
         array (
          0 => 
          array (
@@ -538,7 +583,7 @@ array (
           ),
         ),
         
-        29 => 
+        32 => 
         array (
           0 => 
           array (
@@ -548,7 +593,7 @@ array (
           ),
         ),
         
-        30 => 
+        33 => 
         array (
           0 => 
           array (
@@ -564,7 +609,7 @@ array (
           ),
         ),
         
-        31=> 
+        34=> 
         array (
           0 => 
           array (
@@ -580,7 +625,7 @@ array (
           ),
         ),
         
-       32=> 
+       35=> 
         array (
           0 => 
           array (
@@ -600,7 +645,7 @@ array (
           ),
         ),
         
-        34 => 
+        36 => 
         array (
           0 => 
           array (
@@ -616,7 +661,7 @@ array (
           ),
         ),
         
-        35=> 
+        37=> 
         array (
           0 => 
           array (
@@ -632,7 +677,7 @@ array (
           ),
         ),
         
-       36 => 
+       38 => 
         array (
           0 => 
           array (
@@ -642,7 +687,7 @@ array (
           ),         
         ),        
         
-        37 => 
+        39 => 
         array (
           0 => 
           array (
@@ -652,7 +697,7 @@ array (
           ),
         ),
         
-        38 => 
+        40 => 
         array (
           0 => 
           array (
@@ -668,7 +713,7 @@ array (
           ),
         ),
         
-        39 => 
+        41 => 
         array (
           0 => 
           array (
@@ -684,7 +729,7 @@ array (
           ),
         ),
         
-       40 => 
+       42 => 
         array (
           0 => 
           array (
@@ -694,7 +739,7 @@ array (
           ),         
         ),   
               
-        41 => 
+        43 => 
         array (
           0 => 
           array (
@@ -704,7 +749,7 @@ array (
           ),
         ),
         
-        42 => 
+        44 => 
         array (
           0 => 
           array (
@@ -720,7 +765,7 @@ array (
           ),
         ),
         
-        43 => 
+        45 => 
         array (
           0 => 
           array (
@@ -736,7 +781,7 @@ array (
           ),
         ),
         
-       44 => 
+       46 => 
         array (
           0 => 
           array (
@@ -746,7 +791,7 @@ array (
           ),         
         ),        
         
-        45 => 
+        47 => 
         array (
           0 => 
           array (
@@ -759,7 +804,7 @@ array (
           ),
         ),
         
-        46 =>
+        48 =>
         array (
            0 => 'assigned_user_name',
            
@@ -770,7 +815,7 @@ array (
           ),      
         ),
         
-        47 => 
+        49 => 
         array (         
           0 => 
           array (
@@ -786,7 +831,7 @@ array (
             ),          
         ),
         
-        48 => 
+        50 => 
         array (         
           0 => 
           array (
@@ -814,7 +859,7 @@ array (
             ),  
         ),
         
-        49 => 
+        51 => 
         array (         
           0 => 
           array (
@@ -842,7 +887,7 @@ array (
             ),  
         ),
                 
-        50 => 
+        52 => 
         array (         
           0 => 
           array (
@@ -858,7 +903,7 @@ array (
             ),                  
         ),
         
-        51 => 
+        53 => 
         array (         
           0 => 
           array (
@@ -874,7 +919,7 @@ array (
             ), 
          ),
          
-        52 => 
+        54 => 
         array (         
           0 => 
           array (
@@ -902,7 +947,7 @@ array (
             ),  
         ),
         
-        53 => 
+        55 => 
         array (         
           0 => 
           array (
@@ -930,7 +975,7 @@ array (
             ),  
         ),
                 
-        54 => 
+        56 => 
         array (         
           0 => 
           array (
@@ -946,7 +991,7 @@ array (
             ),                  
         ),
                   
-        55 => 
+        57 => 
         array (         
           0 => 
           array (
@@ -962,7 +1007,7 @@ array (
             ), 
          ),
          
-        56 => 
+        58 => 
         array (         
           0 => 
           array (
@@ -990,7 +1035,7 @@ array (
             ),  
         ),
         
-        57 => 
+        59 => 
         array (         
           0 => 
           array (
@@ -1018,7 +1063,7 @@ array (
             ),  
         ),
                 
-        58 => 
+        60 => 
         array (         
           0 => 
           array (
@@ -1034,7 +1079,7 @@ array (
             ),                  
         ),
                   
-        59 => 
+        61 => 
         array (         
           0 => 
           array (
@@ -1050,7 +1095,7 @@ array (
             ),    
          ),
          
-        60 => 
+        62 => 
         array (         
           0 => 
           array (
@@ -1078,7 +1123,7 @@ array (
             ),  
         ),
         
-        61 => 
+        63 => 
         array (         
           0 => 
           array (
@@ -1106,7 +1151,7 @@ array (
             ),  
         ),
                 
-        62 => 
+        64 => 
         array (         
           0 => 
           array (
@@ -1122,7 +1167,7 @@ array (
             ),                  
         ), 
          
-        63 => 
+        65 => 
         array (
           0 =>  array (
             'name' =>'modified_by_name',     
