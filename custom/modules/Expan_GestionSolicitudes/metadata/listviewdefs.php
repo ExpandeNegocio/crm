@@ -1,11 +1,12 @@
 <?php
 $module_name = 'Expan_GestionSolicitudes';
 $listViewDefs [$module_name] = 
-array (
+
+array (  
   'NAME' => 
   array (
     'width' => '100%',
-    'label' => 'Hola',
+    'label' => 'Nombre',
     'default' => true,
     'link' => true,
   ),
@@ -201,7 +202,7 @@ array (
     'sortable' => false,
     'link' => true,
     'id'=>'id',
-    'customCode' => '<input type="image" src="themes/Sugar5/images/abrirtodo.gif" onclick="abrirGestionEdicion(\'{$ID}\');   abrirSolicitudLlamadas(\'{$ID}\',\'{$EXPAN_SOLICITUD_EXPAN_GESTIONSOLICITUDES_1EXPAN_SOLICITUD_IDA}\');  return false;"/>',
+    'customCode' => '<input type="image" src="themes/Sugar5/images/abrirtodo.gif" onclick="abrirGestionConsulta(\'{$ID}\');   abrirSolicitudLlamadas(\'{$ID}\',\'{$EXPAN_SOLICITUD_EXPAN_GESTIONSOLICITUDES_1EXPAN_SOLICITUD_IDA}\');  return false;"/>',
     'default' => true,
   ),
   
