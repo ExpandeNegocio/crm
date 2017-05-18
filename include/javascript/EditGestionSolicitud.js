@@ -712,13 +712,13 @@ function eliminarAlertaCuestionario(gestion){
 }
 
 
-function abrirGestionEdicion(gestion) {
-	window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestion);
+function abrirGestionConsulta(gestion) {
+	window.open('index.php?module=Expan_GestionSolicitudes&action=DetailView&record=' + gestion);
 }
 
 function abrirSolicitudLlamadas(gestion, solicitud) {
 
-	window.open('index.php?module=Expan_Solicitud&action=EditView&record=' + solicitud);
+	window.open('index.php?module=Expan_Solicitud&action=DetailView&record=' + solicitud);
 	if (confirm("¿Desea abrir las llamadas asociadas?")) {
 		url = 'index.php?entryPoint=recogellamadasGestion&gestionid=' + gestion;
 		$.ajax({

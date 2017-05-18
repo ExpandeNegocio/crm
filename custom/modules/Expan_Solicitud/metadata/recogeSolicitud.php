@@ -11,7 +11,7 @@
     $GLOBALS['log']->info('[ExpandeNegocio][recogeSolicitud]gestion-'.$gestion);
     $db = DBManagerFactory::getInstance();
     
-    $query = "SELECT s.id ";
+    $query = "SELECT gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida as id ";
     $query=$query."FROM expan_solicitud_expan_gestionsolicitudes_1_c gs ";
     $query=$query."WHERE gs.expan_soli5dcccitudes_idb='".$gestion."' AND deleted=0";
     
