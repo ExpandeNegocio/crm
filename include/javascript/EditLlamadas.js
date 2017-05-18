@@ -34,17 +34,25 @@ function retrasarLlamada(tipoRetraso, id) {
 	var minutos = f.getMinutes();
 
 	var segundos = 0;
-
 	var retraso = 0;
+	var valorFechaTermino = 0;
 
 	var fechaInicial = new Date(year, mes, dia, hora, minutos, segundos);
 	valorFecha = fechaInicial.valueOf();
-	if (tipoRetraso == "10M") {
-		valorFechaTermino = valorFecha + (10 * 60 * 1000 );
-	} else if (tipoRetraso == "1H") {
-		valorFechaTermino = valorFecha + (60 * 60 * 1000 );
-	} else if (tipoRetraso == "1D") {
-		valorFechaTermino = valorFecha + (24 * 60 * 60 * 1000 );
+	
+	switch(tipoRetraso){
+		case "1H":
+			valorFechaTermino = valorFecha + (60 * 60 * 1000 );
+			break;
+		case "1D":
+			valorFechaTermino = valorFecha + (24 * 60 * 60 * 1000 );
+			break;
+		case "3D":
+			valorFechaTermino = valorFecha + (3 * 24 * 60 * 60 * 1000 );
+			break;
+		case "7D":
+			valorFechaTermino = valorFecha + (7 * 24 * 60 * 60 * 1000 );
+			break;
 	}
 
 	fechaTermino = new Date(valorFechaTermino);

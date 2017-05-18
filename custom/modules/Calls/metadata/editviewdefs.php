@@ -30,23 +30,31 @@ array (
           4 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'10M\',\'{$fields.id.value}\');" value="+10M">{/if}',
-          ),
-          5 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
         			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');" value="+1H">{/if}',
           ),
-          6 => 
+          
+          5 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
         			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');" value="+1D">{/if}',
           ),
+          
+          6 => 
+          array (
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');" value="+3D">{/if}',
+          ),
+          
           7 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');" value="+7D">{/if}',
+          ),
+          8 => 
+          array (
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirGestionesAgrupadas(\'{$fields.id.value}\');  abrirSolicitudEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',
-          ),   
+          ),
          /*         
              7 => 
           array (
@@ -83,19 +91,25 @@ array (
           4 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'10M\',\'{$fields.id.value}\');" value="+10M">{/if}',
+        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');" value="+1H">{/if}',
           ),
           5 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');" value="+1H">{/if}',
+        			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');" value="+1D">{/if}',
           ),
           6 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');" value="+1D">{/if}',
+                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');" value="+3D">{/if}',
           ),
+          
           7 => 
+          array (
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');" value="+7D">{/if}',
+          ),
+          8 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirGestionesAgrupadas(\'{$fields.id.value}\');  abrirSolicitudEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',
