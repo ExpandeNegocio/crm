@@ -161,15 +161,6 @@ array (
             'label' => 'LBL_MODIFICADO_POR',
           ),  
         ),
-        
-        
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
-        array (
-          0 => 'assigned_user_name',
-        ),
       ),
     ),
   ),

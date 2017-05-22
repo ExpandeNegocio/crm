@@ -217,11 +217,6 @@ array (
         array (
           0 => 
           array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO_NAME',
-          ),
-           1 => 
-          array (
             'name' => 'skype',
             'label' => 'LBL_SKYPE',
           ),
