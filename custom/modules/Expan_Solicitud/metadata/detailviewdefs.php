@@ -281,21 +281,6 @@ array (
         array (
           0 => 
           array (
-            'name' => 'franquicias_secundarias',
-            'studio' => 'visible',
-            'label' => 'LBL_FRANQUICIAS_SECUNDARIAS',
-          ),
-          1 => 
-          array (
-            'name' => 'sectores_de_interes',
-            'studio' => 'visible',
-            'label' => 'LBL_SECTORES_DE_INTERES',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
             'name' => 'perfil_franquicia',
             'studio' => 'visible',
             'label' => 'LBL_PERFIL_FRANQUICIA',
@@ -307,7 +292,7 @@ array (
             'label' => 'LBL_SITUACION_PROFESIONAL',
           ),
         ),
-        2 => 
+        1 => 
         array (
           0 => 
           array (
@@ -321,7 +306,7 @@ array (
             'label' => 'LBL_CUANDO_EMPEZAR',
           ),
         ),
-        3 => 
+        2 => 
         array (
           0 => 
           array (
@@ -356,7 +341,7 @@ array (
             'label' => 'LBL_NEGOCIO',
           ),
         ),*/
-        6 => 
+        3 => 
         array (
           0 => 
           array (
@@ -371,7 +356,7 @@ array (
           ),
         ),
         
-          7 => 
+          4 => 
         array (
           0 => 
           array (
@@ -382,7 +367,7 @@ array (
         ),
         
         
-        8 => 
+        5 => 
         array (
           0 => 
           array (
@@ -392,7 +377,7 @@ array (
           ),
 
         ),
-        9 => 
+        6 => 
         array (
           0 => 
           array (
@@ -408,7 +393,7 @@ array (
           ),
         ),
       
-        10 => 
+        7 => 
         array (
           0 => 
           array (
@@ -421,7 +406,7 @@ array (
             'label' => 'LBL_OTRAS_FRANQUICIAS',
           ),
         ),
-         11 => 
+         8 => 
         array (
          0 => 
           array (
@@ -429,7 +414,7 @@ array (
             'label' => 'LBL_ENVIAR_SERVICIOS_ASESORA',
           ),
         ),
-        12 => 
+        9 => 
         array (
           0 => 
           array (
@@ -443,7 +428,7 @@ array (
             'label' => 'LBL_SUBOR_EXPANDE',            
           ),
         ),        
-        13 => 
+        10=> 
         array (
           0 => '',
           1 => 
@@ -453,7 +438,7 @@ array (
             'label' => 'LBL_PORTAL',
           ),
         ),
-        14 => 
+        11 => 
         array (
           0 => '',
           1 => 
@@ -462,7 +447,7 @@ array (
             'label' => 'LBL_EVENTO',
           ),
         ),        
-         15 => 
+         12 => 
         array (
           0 => '',
           1 => 
@@ -471,7 +456,7 @@ array (
             'label' => 'LBL_SUBOR_CENTRAL',
           ),
         ),        
-         16 => 
+         13 => 
         array (
           0 => '',
           1 => 
@@ -480,7 +465,7 @@ array (
             'label' => 'LBL_SUBOR_MEDIOS',
           ),
         ),
-        17 => 
+        14 => 
         array (
           0 => '',
           1 => 
@@ -490,7 +475,7 @@ array (
           ),
         ),
         
-         18 =>
+         15 =>
         array (
           0 => array (
             'name' => 'rating',
