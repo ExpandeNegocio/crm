@@ -75,44 +75,48 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
     public function calculoDatosEvento(){
         $db=DBManagerFactory::getInstance();
         
-        $query="SELECT * FROM(SELECT count(distinct(s.id)) numS FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
-        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND "; 
-        $query=$query." ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
-        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
-        $query=$query." ) a JOIN(SELECT count(distinct(s.id)) numSAP FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
-        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = "; 
-        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g ";
-        $query=$query."  WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=1 ";
-        $query=$query." ) b JOIN (SELECT count(distinct(s.id)) numSA FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
-        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
-        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
-        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=2 "; 
-        $query=$query." ) c JOIN (SELECT count(distinct(s.id)) numSB FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
-        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = "; 
-        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
-        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=3 ";  
-        $query=$query." )d JOIN (SELECT count(distinct(s.id)) numSC FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, "; 
-        $query=$query." (SELECT id FROM   expan_gestionsolicitudes WHERE  deleted = 0  AND franquicia='".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = "; 
-        $query=$query." '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."')) g "; 
-        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and s.rating=4 ";
-        $query=$query." )e JOIN (select count(1) numGD from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND name like '%Dummie%' AND "; 
-        $query=$query." ((tipo_origen = '1' AND subor_expande='7' AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR "; 
-        $query=$query." expan_evento_id_c='19351fa5-2f26-777b-db68-5811cdc72c77'))f JOIN (select count(1) numGT ";  
-        $query=$query." from expan_gestionsolicitudes where franquicia='".$this->id."' AND deleted=0 AND "; 
-        $query=$query." ((tipo_origen = '1' AND subor_expande='7' AND evento_bk='".$this->expan_franquicia_expan_eventoexpan_evento_idb."' ) OR "; 
-        $query=$query." expan_evento_id_c='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'))g;"; 
+        $query="SELECT distinct(s.id), rating, s.first_name FROM  expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, ( ";
+        $query=$query." SELECT id FROM   expan_gestionsolicitudes WHERE franquicia='".$this->id."' AND ((tipo_origen = 1 AND "; 
+        $query=$query." subor_expande = 7 AND evento_bk = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') and deleted = 0) g ";  
+        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida; ";
         
         $result = $db -> query($query, true);
+        $cont = 0;
+        $contAA=0;
+        $contA=0;
+        $contB=0;
+        $contC=0;
+        $contD=0;
 
         while ($row = $db -> fetchByAssoc($result)) {
-            $this->num_solicitudes=$row["numS"];
-            $this->sol_rating_a_plus=$row["numSAP"];
-            $this->sol_rating_a=$row["numSA"];
-            $this->sol_rating_b=$row["numSB"];
-            $this->sol_rating_c=$row["numSC"];
-            $this->total_gestiones=$row["numGT"];
-            $this->dummies=$row["numGD"];
-        }                
+            $pos=strpos($row["first_name"], 'Dummie');
+            if($pos!==false){
+                $contD=$contD+1;
+            }
+            $cont=$cont+1;
+            switch($row["rating"]){
+                case 1:
+                    $contAA=$contAA+1;
+                    break;
+                case 2:
+                    $contA=$contA+1;
+                    break;
+                case 3:
+                    $contB=$contB+1;
+                    break;
+                case 4:
+                    $contC=$contC+1;
+                    break;
+            }
+        }  
+        $this->num_solicitudes=$cont;
+        $this->total_gestiones=$cont;  
+        $this->sol_rating_a_plus=$contAA;
+        $this->sol_rating_a=$contA;
+        $this->sol_rating_b=$contB;
+        $this->sol_rating_c=$contC;
+        $this->dummies=$contD;
+                    
         
     }
 
