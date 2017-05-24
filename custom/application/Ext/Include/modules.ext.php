@@ -63,6 +63,12 @@ $modInvisList[] = 'asol_WorkingNodes';
 
 
  
+$beanList['Expan_Apertura'] = 'Expan_Apertura';
+$beanFiles['Expan_Apertura'] = 'modules/Expan_Apertura/Expan_Apertura.php';
+$moduleList[] = 'Expan_Apertura';
+
+
+ 
  //WARNING: The contents of this file are auto-generated
 $beanList['Expan_Evento'] = 'Expan_Evento';
 $beanFiles['Expan_Evento'] = 'modules/Expan_Evento/Expan_Evento.php';
