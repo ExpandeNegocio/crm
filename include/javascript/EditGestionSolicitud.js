@@ -961,7 +961,7 @@ function colorearAvanzado(){
 	var czona = document.getElementById("chk_propuesta_zona");
 	var cavanzada = document.getElementById("candidatura_avanzada");
 	var cavanzadal = document.getElementById("candidatura_avanzada");
-	$(cavanzadal).css( "background-color", "rgb(250,210,181)");	
+	$(cavanzadal).css( "background-color", "rgb(236,234,234)");	
 	
 	var lista = new Array (cdudas, ccuestionario, cadicional, centrevista, czona, cavanzada);
 	
@@ -971,7 +971,7 @@ function colorearAvanzado(){
 	}
 	
 	for (i in lista){
-		$(lista[i]).parent().css( "background-color", "rgb(250,210,181)");			
+		$(lista[i]).parent().css( "background-color", "rgb(236,234,234)");			
 	}
 }
 function colorearCaliente(){			
@@ -986,7 +986,7 @@ function colorearCaliente(){
 	var ccontratop = document.getElementById("chk_envio_contrato_personal");
 	var ccaliente = document.getElementById("candidatura_caliente");
 	var ccalientel = document.getElementById("candidatura_caliente");
-	$(ccalientel).css( "background-color", "rgb(255,183,183)");	
+	$(ccalientel).css( "background-color", "rgb(219,217,217)");	
 	
 	var lista = new Array (cvisitado, cprecontrato, clocal, cprecontratop, cplanpersonal, ccontrato, cvisita, ccolabora, ccontratop, ccaliente);
 	
@@ -996,7 +996,7 @@ function colorearCaliente(){
 	}
 	
 	for (i in lista){
-		$(lista[i]).parent().css( "background-color", "rgb(255,183,183)");			
+		$(lista[i]).parent().css( "background-color", "rgb(219,217,217)");			
 	}
 }
 	function cambiarAGris(texto){
