@@ -35,6 +35,6 @@
  ********************************************************************************/
 
 
-$app_list_strings['moduleList']['Expan_Apertura'] = 'Expan_Apertura';
+$app_list_strings['moduleList']['Expan_Apertura'] = 'Apertura';
 
 ?>
