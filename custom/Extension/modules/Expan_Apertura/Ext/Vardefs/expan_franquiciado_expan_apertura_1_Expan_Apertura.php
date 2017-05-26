@@ -13,6 +13,11 @@
         'table'     => 'expan_franquiciado',
         'isnull'    => 'true',
         'module'    => 'Expan_Franquiciado',
+        'db_concat_fields' => 
+            array (
+                0 => 'first_name',
+                1 => 'last_name',
+            ),
     );
     /*
      * Linking id field

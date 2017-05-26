@@ -48,6 +48,11 @@ array (
         ),
         1 => 
         array(
+            0 =>
+            array(
+                'name'=>'expan_franquiciado_name',
+                'label'=>'Franquiciado',
+            ),
         ),
        
         2 => 
