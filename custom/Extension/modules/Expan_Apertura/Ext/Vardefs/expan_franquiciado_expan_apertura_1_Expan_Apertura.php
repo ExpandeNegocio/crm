@@ -1,7 +1,4 @@
-<?php 
- //WARNING: The contents of this file are auto-generated
-
-
+<?php
 // created: 2016-11-29 19:35:37
   $dictionary['Expan_Apertura']['fields']['expan_franquiciado_name'] = array(
         'required'  => true,
@@ -55,6 +52,5 @@
         'lhs_key'           => 'id',
         'relationship_type' => 'one-to-many',
         );  
-
 
 ?>

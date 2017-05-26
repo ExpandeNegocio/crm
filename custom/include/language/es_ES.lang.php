@@ -7,7 +7,7 @@ $GLOBALS['app_list_strings']['call_status_dom']=array (  'Planned' => 'Planific
 $GLOBALS['app_list_strings']['meeting_status_dom']=array (
   'Planned' => 'Planificada',  'Held' => 'Realizada con exito',  'Not Held' => 'Realizada sin exito',  'Archived' => 'Archivado por Protocolo',
   'Could' => 'Posible',
-);$GLOBALS['app_list_strings']['lst_tipo_evento']=array (  'Feria' => 'Feria',  'FShop' => 'Con Cita Previa',);$GLOBALS['app_list_strings']['tipo_apertura_list']=array (  1 => '',  2 => 'Propia',  3 => 'Franquiciada',);$GLOBALS['app_list_strings']['valoracion_list']=array (  1 => '',  2 => 'Muy mala',  3 => 'Mala',  4 => 'Regular',  5 => 'Buena',  6 => 'Muy buena', );
+);$GLOBALS['app_list_strings']['lst_tipo_evento']=array (  'Feria' => 'Feria',  'FShop' => 'Con Cita Previa',);$GLOBALS['app_list_strings']['origen_list']=array (  '' => '',  1 => 'Candidato a otra cadena',  2 => 'Aportado por central',     3 => 'Aportado por ExpandeNegocios',);$GLOBALS['app_list_strings']['tipo_apertura_list']=array (  1 => '',  2 => 'Propia',  3 => 'Franquiciada',);$GLOBALS['app_list_strings']['valoracion_list']=array (  1 => '',  2 => 'Muy mala',  3 => 'Mala',  4 => 'Regular',  5 => 'Buena',  6 => 'Muy buena', );
 $GLOBALS['app_list_strings']['subor_central_list']=array (
   '' => '',
   1 => 'Posicionamiento',

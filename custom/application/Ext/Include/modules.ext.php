@@ -109,6 +109,12 @@ $moduleList[] = 'Expma_Mailing';
 
 
  
+$beanList['Expan_Franquiciado'] = 'Expan_Franquiciado';
+$beanFiles['Expan_Franquiciado'] = 'modules/Expan_Franquiciado/Expan_Franquiciado.php';
+$moduleList[] = 'Expan_Franquiciado';
+
+
+ 
  //WARNING: The contents of this file are auto-generated
 $beanList['Expma_Mailing'] = 'Expma_Mailing';
 $beanFiles['Expma_Mailing'] = 'modules/Expma_Mailing/Expma_Mailing.php';
