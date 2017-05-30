@@ -357,12 +357,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         //Actualizo las solicitudes
         
-        $query = "  update expan_solicitud s ";
-        $query=$query."  inner join (SELECT s.id, max(g.prioridad) prio ";
-        $query=$query."              FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-        $query=$query."              WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted= 0) p ";
-        $query=$query."  on s.id=p.id ";
-        $query=$query."  set s.prioridad=p.prio; ";
+        $query = "  update expan_solicitud s inner join (SELECT s.id, max(g.prioridad) as prio ";
+        $query = $query. " FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs "; 
+        $query = $query. " WHERE g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida "; 
+        $query = $query. " AND g.deleted= 0 and s.id= (SELECT s.id ";
+        $query = $query. " FROM expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs "; 
+        $query = $query. " WHERE g.id='".$this->id."' and g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida "; 
+        $query = $query. " AND g.deleted= 0)) p on s.id=p.id set s.prioridad=p.prio;";
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Actualizamos solicitudes');
         
