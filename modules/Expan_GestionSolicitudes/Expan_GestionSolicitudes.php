@@ -637,9 +637,28 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                             
                 $this->candidatura_avanzada=true;
         }else{
-            $this->candidatura_avanzada=false;
+            
+            $reuniones=$this->comprobarReuniones();
+            if($this->estado_sol== Expan_GestionSolicitudes::ESTADO_EN_CURSO &&$reuniones==true){
+                $this->candidatura_avanzada=true;
+            }else{
+                $this->candidatura_avanzada=false;
+            }
         }        
     } 
+
+    public function comprobarReuniones(){
+            //mirar si tienes reuniones planificadas
+            $db = DBManagerFactory::getInstance();
+            $query = "select count(*) as reuniones FROM meetings where parent_id='".$this->id."' and status='Planned' and deleted=0; ";
+            $result = $db -> query($query, true);
+            while ($row = $db -> fetchByAssoc($result)) {
+                if ($row["reuniones"]!=0){
+                    return true;
+                }   
+            }
+            return false;
+    }
     
     public function calcCaliente(){
         
