@@ -406,5 +406,15 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         return $telefono;
     }
     
+    //Archivamos las llamadas de una franquicia en un determinado status
+    function archivarLLamadas($status) {
+
+        $db = DBManagerFactory::getInstance();
+
+        $query = "update calls c set c.status='Archived' where c.parent_id='".$this->id."' and c.status='Planned' and deleted=0;";
+
+        $result = $db -> query($query);
+    }
+    
 }
 ?>

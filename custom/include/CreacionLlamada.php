@@ -46,9 +46,13 @@ class AccionesGuardadoTel {
 
             //Creacion de una nueva llamada
             if (!isset(self::$fetchedRow[$bean -> id])) {
+                if($bean -> parent_type=='Expan_Franquicia'){
+                    $franquicia -> archivarLlamadas("Planned");
+                }else{
+                    $solicitud->ArchivarLLamadas("Planned");
+                }
                 
-                $solicitud->ArchivarLLamadas("Planned");
-
+               
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada]Entro');
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada]Nombre - ' . $bean -> name);
 
@@ -80,9 +84,6 @@ class AccionesGuardadoTel {
                         $bean -> name = $gestion->name . ' - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];
                     }else{                   
                         $bean -> name = $franquicia->name . ' - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];
-                        $bean -> ignore_update_c = true;
-                        $bean -> save();
-                        return null;
                     }
                 }
               
@@ -129,12 +130,38 @@ class AccionesGuardadoTel {
             }
             
             $bean->procesarLLamadaFinal($franquicia,$gestion,$solicitud);
+            //$this -> archivarLlamadasPlanned($bean, $gestion, $solicitud);//Por si hay alguna duplicacion, se archivan las llamadas planificadas anteriores a esta.
+                                                                          //Con esto no se deberían producir. Y si lo hicieran, cuando se crea un nueva se archivarán las anteriores
+                                                                          //o cuando se modifique una de las llamadas planificadas también se archivarán las que hubiera. 
+                                                                          //Evita el error o lo corrige si se da.
     
         }
 
     }
-
-
+    //funcion para las llamadas!!
+    function archivarLlamadasPlanned($bean, $gestion, $solicitud){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        //coger la última llamada
+        $query="select id from calls mi where mi.status='Planned' and mi.parent_id='".$gestion->id."' order by mi.date_entered DESC limit 1;";
+        $result = $db -> query($query,true);
+        $idLlamadaU="";
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+            $idLlamadaU=$row["id"];
+        }
+        
+        $query="update calls c JOIN (SELECT g.id ";
+        $query=$query. "FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs "; 
+        $query= $query. "WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida "; 
+        $query=$query."AND s.id = '".$solicitud->id."' and g.id='".$gestion->id."') t ";
+        $query = $query. "on c.parent_id=t.id set c.status='Archived' where c.parent_id = t.id and status='Planned' and c.id <> '".$idLlamadaU."' "; 
+        //revisar la llamada
+        $result = $db -> query($query,true);
+        
+    }
+    
     function ActualizarRel(&$bean, $event, $arguments) {
 
         //logic goes here;
@@ -209,6 +236,5 @@ class AccionesGuardadoTel {
         }
         return $numLlamadas;
     }
-
 }
 ?>
