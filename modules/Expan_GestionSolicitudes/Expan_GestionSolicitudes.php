@@ -769,12 +769,20 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NumDias - ' . $numDias);
 
-            $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+            if($texto=='[AUT]De seguimiento'){ //la llamada es para dentro de 15 dias
+                date_default_timezone_set('europe/madrid');
+                $dateTime = time()-3600;
+                $llamada->date_start=date("Y-m-d H:i:s", $dateTime + (15 * 24 * 3600));
+                
+            }else{
+                $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
             $llamada -> date_start = $fecha;
-
-
+            }
+            
+             
+            
             //Si es agrupada la marcamos
 
             if ($solicitud == null){

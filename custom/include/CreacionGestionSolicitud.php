@@ -442,7 +442,11 @@ class AccionesGuardadoGestionSol {
                         $bean -> creaLlamada('[AUT]Puertas abiertas', 'PAbiertas');
                         break;
                     case 13 :
-                        $bean -> creaLlamada('[AUT]Ver estado colaboración', 'EstColab');
+                        $bean -> creaLlamada('[AUT]De seguimiento', 'GESTSeg');
+                        $fran = new Expan_Franquicia();
+                        $fran -> retrieve($bean -> franquicia);
+                        $nombre="[AUT]Pasar colaborador - ".$solicitud->first_name." ".$solicitud->last_name."";
+                        $fran -> creaLlamadaRecor($nombre,'PasarColaborador'); //mirar el cambio de parent_id**
                         break;                        
                 }
 

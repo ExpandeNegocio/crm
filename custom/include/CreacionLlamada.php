@@ -47,7 +47,7 @@ class AccionesGuardadoTel {
             //Creacion de una nueva llamada
             if (!isset(self::$fetchedRow[$bean -> id])) {
                 if($bean -> parent_type=='Expan_Franquicia'){
-                    $franquicia -> archivarLlamadas("Planned");
+                    //$franquicia -> archivarLlamadas("Planned");//por si se tienen que archivar en algun momento
                 }else{
                     $solicitud->ArchivarLLamadas("Planned");
                 }
