@@ -445,8 +445,8 @@ class AccionesGuardadoGestionSol {
                         $bean -> creaLlamada('[AUT]De seguimiento', 'GESTSeg');
                         $fran = new Expan_Franquicia();
                         $fran -> retrieve($bean -> franquicia);
-                        $nombre="[AUT]Pasar colaborador - ".$solicitud->first_name." ".$solicitud->last_name."";
-                        $fran -> creaLlamadaRecor($nombre,'PasarColaborador'); //mirar el cambio de parent_id**
+                        $nombre="[AUT]Pasar colaborador";
+                        $fran -> creaLlamadaRecor($nombre,'PasarColaborador');
                         break;                        
                 }
 

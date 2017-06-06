@@ -141,6 +141,8 @@ class AccionesGuardadoTel {
     //funcion para las llamadas!!
     function archivarLlamadasPlanned($bean, $gestion, $solicitud){
         
+       
+        
         $db = DBManagerFactory::getInstance();
         
         //coger la última llamada
@@ -163,7 +165,8 @@ class AccionesGuardadoTel {
     }
     
     function ActualizarRel(&$bean, $event, $arguments) {
-
+                  
+          if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
         //logic goes here;
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Actualizacion de llamada][ActulizaRel]Nombre - ' . $bean -> name);
@@ -218,7 +221,7 @@ class AccionesGuardadoTel {
         
         //$bean -> ignore_update_c = true;
         $bean->save();
-
+        }
     }
 
 
