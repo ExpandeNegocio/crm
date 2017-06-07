@@ -121,6 +121,7 @@ $entry_point_registry = array(
     'RecogeSugerencias'=>array('file' => 'custom/modules/Expan_Solicitud/metadata/recogeSugerencias.php', 'auth' => false),
     'reenvioDocGestiones'=>array('file' => 'custom/modules/Expan_GestionSolicitudes/metadata/reenviosDocGestiones.php', 'auth' => false),
     'franquiciado'=>array('file' => 'custom/modules/Expan_Franquiciado/metadata/crearFranquiciado.php', 'auth' => false),
+    'limpiezaLlamadasDuplicadas'=>array('file' => 'custom/include/limpiezaLlamadasDuplicadas.php', 'auth' => false),
     
 );
 ?>
