@@ -10,12 +10,21 @@ array (
         {sugar_getscript file="include/javascript/EditSolicitud.js"}
         <script type="text/javascript">onload=inicioViewSol();</script>'
       ,
+      
+      'includes' => array (
+                        0 =>array ('file' => 'include/javascript/EditSolicitud.js',),
+                    ),
       'form' => 
       array (
         'buttons' => 
         array (
           0 => 'EDIT',
           2 => 'DELETE',
+          3 =>
+          array(
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
+                onClick="pasoAFranquiciado(\'{$fields.id.value}\');" value="Paso a franquiciado">{/if}',
+          ), 
         ),
       ),
       'maxColumns' => '2',
