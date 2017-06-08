@@ -227,9 +227,40 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_ZONA',
           ),
-        ),                    
+        ),
+        12 =>
+        array ( 
+        0=> array(
+            'name' => '',
+            'customCode' => '<hr size="10" align="left" style="color: #0056b2;" width="75%" />',
+        ),
+            
+          ),     
+        13 =>
+        array (
+          0 => 
+          array (
+            'name' => 'contacto_secundario',
+            'label' => 'LBL_CONTACTO_SECUNDARIO',
+          ),
+          1 => 
+          array (
+            'name' => 'correo_secundario',
+            'label' => 'LBL_CORREO_SECUNDARIO',
+          ),
+        ),
+        14=>
+        array (
+          0 => 
+          array (
+            'name' => 'phone_other',
+            'comment' => 'Other phone number for the contact',
+            'label' => 'LBL_OTHER_PHONE',
+          ),
+        ),
+     
         
-        12 => 
+        15 => 
         array (
           0 => 
          array (
@@ -246,54 +277,6 @@ array (
           ),
           1 => (''
           ),          
-        ),
-      ),
-      'lbl_editview_panel4' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'contacto_secundario',
-            'label' => 'LBL_CONTACTO_SECUNDARIO',
-          ),
-          1 => 
-          array (
-            'name' => 'correo_secundario',
-            'label' => 'LBL_CORREO_SECUNDARIO',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'phone_other',
-            'comment' => 'Other phone number for the contact',
-            'label' => 'LBL_OTHER_PHONE',
-          ),
-          1 => 
-          array (
-            'name' => 'observaciones_contacto_sec',
-            'studio' => 'visible',
-            'label' => 'LBL_OBSERVACIONES_CONTACTO_SEC',
-          ),
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'alt_address_street',
-            'hideLabel' => true,
-            'type' => 'address',
-            'displayParams' => 
-            array (
-              'key' => 'alt',
-              'copy' => 'primary',
-              'rows' => 2,
-              'cols' => 30,
-              'maxlength' => 150,
-            ),
-          ),
         ),
       ),
       'lbl_editview_panel2' => 
