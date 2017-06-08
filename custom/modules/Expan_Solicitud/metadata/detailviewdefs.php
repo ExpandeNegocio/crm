@@ -249,11 +249,7 @@ array (
             ),
           ),
         ),
-      ),
-      'lbl_editview_panel4' => 
-      array (
-        0 => 
-        array (
+        13=> array(
           0 => 
           array (
             'name' => 'contacto_secundario',
@@ -265,25 +261,16 @@ array (
             'label' => 'LBL_CORREO_SECUNDARIO',
           ),
         ),
-        1 => 
-        array (
+        14=>
+        array(
           0 => 
           array (
             'name' => 'phone_other',
             'comment' => 'Other phone number for the contact',
             'label' => 'LBL_OTHER_PHONE',
           ),
-          1 => 
-          array (
-            'name' => 'observaciones_contacto_sec',
-            'label' => 'LBL_OBSERVACIONES_CONTACTO_SEC',
-          ),
         ),
-        2 => 
-        array (
-          0 => 'alt_address_street',
         ),
-      ),
       'lbl_editview_panel2' => 
       array (
         0 => 
