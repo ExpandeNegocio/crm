@@ -625,6 +625,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         if ($this->estado_sol== Expan_GestionSolicitudes::ESTADO_EN_CURSO &&
             ($this->chk_resolucion_dudas==true ||
+            $this->chk_sol_amp_info==true ||
             $this->chk_recepcio_cuestionario==true ||
             $this->chk_informacion_adicional==true ||
             $this->chk_entrevista==true ||
@@ -1123,6 +1124,33 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
         return $opIn;
     } 
+    
+    function getEmail(){
+        
+        $solicitud=$this->GetSolicitud();
+        if ($solicitud!==null){
+            $listaCorreos=$solicitud->getCorreos();
+            return current($listaCorreos);
+        }else{
+            return null;
+        }
+              
+    }
+    
+    function getTemplate($tipo){
+       
+        $db = DBManagerFactory::getInstance();
+        $query = "select id from email_templates where type='".$this->franquicia."#".$tipo."'";
+
+        $result = $db -> query($query, true);
+        
+        $template= new EmailTemplate();
+
+        while ($row = $db -> fetchByAssoc($result)) {
+              $template -> retrieve($row["id"]);
+        }
+        return $template;
+    }
 
 }
 ?>
