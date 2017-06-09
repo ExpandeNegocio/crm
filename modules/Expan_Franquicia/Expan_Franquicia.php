@@ -319,7 +319,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
         //No existe la llamada, hay que crearla
         $llamada = new Call();
-        
+        $prueba= $this -> id;
         //completar campos
         $llamada -> assigned_user_id = $this -> assigned_user_id;
         $llamada -> assigned_user_name = $this -> assigned_user_name;
@@ -337,8 +337,19 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
         $llamada -> gestion_agrupada = false;
         $llamada -> name = $this -> name . ' - '. $texto;
+        if($tipo=='PasarColaborador'){
+            //otra opcion para las fechas
+            /*$now = gmdate('Y-m-d H:i:s');  
+            $today = new DateTime($now,new DateTimeZone('EUROPE'));
+            $today_plus = $today->add(new DateInterval('PT5M')); //add 7 days
+            $llamada -> date_start = $today_plus->format('Y-m-d H:i:s');*/
+            
+            $llamada -> date_start=TimeDate::getInstance()->getNow() -> modify('+5 minutes')-> asDb();
+            
+        }else{
+            $llamada -> date_start = $this -> calcularFechaInicio();
+        }
         
-        $llamada -> date_start = $this -> calcularFechaInicio();
         
         //guardar los cambios de la llamada
         $llamada -> ignore_update_c = true;
@@ -404,6 +415,16 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         }
         
         return $telefono;
+    }
+    
+    //Archivamos las llamadas de una franquicia en un determinado status
+    function archivarLLamadas($status) {
+
+        $db = DBManagerFactory::getInstance();
+
+        $query = "update calls c set c.status='Archived' where c.parent_id='".$this->id."' and c.status='Planned' and deleted=0;";
+
+        $result = $db -> query($query);
     }
     
 }

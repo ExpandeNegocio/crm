@@ -56,7 +56,7 @@
     $query = "  update expan_solicitud s ";
     $query=$query."  inner join (SELECT s.id, max(g.prioridad) prio ";
     $query=$query."              FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-    $query=$query."              WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted= 0) p ";
+    $query=$query."              WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted= 0 group by s.id) p ";
     $query=$query."  on s.id=p.id ";
     $query=$query."  set s.prioridad=p.prio; ";
     

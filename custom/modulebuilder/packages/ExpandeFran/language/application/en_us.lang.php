@@ -48,6 +48,7 @@ $app_list_strings['moduleList']['Expan_Medios'] = 'Medios';
 $app_list_strings['moduleList']['Expan_GestionSolicitudes'] = 'GestionSolicitudes';
 $app_list_strings['moduleList']['Expan_Informes'] = 'Informes';
 $app_list_strings['moduleList']['Expan_Incidencia'] = 'Incidencia';
+$app_list_strings['moduleList']['Expan_Apertura']='Apertura';
 $app_list_strings['perfil_fran_list']['auto'] = 'autoempleo';
 $app_list_strings['perfil_fran_list']['gestor'] = 'gestor';
 $app_list_strings['perfil_fran_list']['inversor'] = 'inversor';

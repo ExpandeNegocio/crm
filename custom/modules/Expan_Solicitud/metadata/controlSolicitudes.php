@@ -43,7 +43,7 @@
                 
                 $sql="SELECT id ";
                 $sql=$sql."FROM   expan_solicitud ";
-                $sql=$sql."WHERE  (phone_home = '".$telefono."' OR phone_mobile = '".$telefono."' OR phone_home = '".$telefono."') AND ";
+                $sql=$sql."WHERE  (phone_home = '".$telefono."' OR phone_mobile = '".$telefono."') AND ";
                 $sql=$sql."deleted=0 AND id <>'".$solId."'";
                  
                 $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Validadndo Telefono - Consulta - '.$sql); 
@@ -52,7 +52,7 @@
                 while ($rowSol = $db->fetchByAssoc($resultSol)){
                     if ($current_user->franquicia==null){
                         $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El telefono existe');                     
-                        echo $rowSol[id];
+                        echo $rowSol['id'];
                         return;               
                     }else{
                         echo '';

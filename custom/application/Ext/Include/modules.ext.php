@@ -63,6 +63,12 @@ $modInvisList[] = 'asol_WorkingNodes';
 
 
  
+$beanList['Expan_Apertura'] = 'Expan_Apertura';
+$beanFiles['Expan_Apertura'] = 'modules/Expan_Apertura/Expan_Apertura.php';
+$moduleList[] = 'Expan_Apertura';
+
+
+ 
  //WARNING: The contents of this file are auto-generated
 $beanList['Expan_Evento'] = 'Expan_Evento';
 $beanFiles['Expan_Evento'] = 'modules/Expan_Evento/Expan_Evento.php';
@@ -100,6 +106,12 @@ $moduleList[] = 'Expin_Informes';
 $beanList['Expma_Mailing'] = 'Expma_Mailing';
 $beanFiles['Expma_Mailing'] = 'modules/Expma_Mailing/Expma_Mailing.php';
 $moduleList[] = 'Expma_Mailing';
+
+
+ 
+$beanList['Expan_Franquiciado'] = 'Expan_Franquiciado';
+$beanFiles['Expan_Franquiciado'] = 'modules/Expan_Franquiciado/Expan_Franquiciado.php';
+$moduleList[] = 'Expan_Franquiciado';
 
 
  

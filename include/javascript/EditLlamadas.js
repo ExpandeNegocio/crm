@@ -290,8 +290,31 @@ function DesactivarGS() {
 	});
 
 	deactivateModifiedName();
+	modificarComboTipoLlamada();
 	
 	
+}
+function modificarComboTipoLlamada(){
+	var url=window.location.href;
+	var el=document.getElementById('call_type').textContent;
+	var nombres=el.split("[");
+	var indice;
+	
+	if(url.indexOf("Expan_Franquicia")>-1){//si es de modulo franquicias
+		indice="FRAN";
+	}else{// gestiones
+		indice="GEST";
+		
+	}
+	
+	for(i=1; i<nombres.length; i++){
+		
+		var cadena=nombres[i].trim();
+		if(cadena.indexOf(indice)){//si es de franquicia se borra
+			$("#call_type option[label='["+cadena+"']").remove();
+		}
+		
+	}
 }
 
 function ModPaginaLista() {

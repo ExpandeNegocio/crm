@@ -1017,3 +1017,56 @@ function marcaCampos(){
 	
 }
 
+function pasoAFranquiciado(solicitud) {
+
+	var fran='';
+
+	if (confirm("¿Está seguro que desea crear un franquiciado?")) {
+
+		url = 'index.php?entryPoint=franquiciado&accion=1&id=' + solicitud;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "accion=1&id="+solicitud,
+			success : function(data) {
+				if (data =='') {//error
+					alert('Ya existe el franquiciado');
+					return false;
+				} else{
+					
+					url = 'index.php?entryPoint=franquiciado&accion=2&id=' + solicitud;
+					$.ajax({
+						type : "POST",
+						url : url,
+						data : "accion=2&id="+solicitud,
+						success : function(data) {
+							if ( data=='') {//No se ha creado el franquiciado
+								alert('No se ha podido crear el franquiciado - \\n' + data);
+							} else {
+								alert('Se ha creado el franquiciado correctamente');
+							}
+
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert('No se ha podido crear el franquiciado - ' + textStatus + ' - ' + errorThrown);
+
+						}
+					});	
+				}
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('No se ha podido crear el franquiciado - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+	
+	} else {
+		return false;
+	}
+	
+	
+	
+
+}
+

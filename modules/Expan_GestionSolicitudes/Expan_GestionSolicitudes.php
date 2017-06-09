@@ -357,12 +357,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         //Actualizo las solicitudes
         
-        $query = "  update expan_solicitud s ";
-        $query=$query."  inner join (SELECT s.id, max(g.prioridad) prio ";
-        $query=$query."              FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-        $query=$query."              WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted= 0) p ";
-        $query=$query."  on s.id=p.id ";
-        $query=$query."  set s.prioridad=p.prio; ";
+        $query = "  update expan_solicitud s inner join (SELECT s.id, max(g.prioridad) as prio ";
+        $query = $query. " FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs "; 
+        $query = $query. " WHERE g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida "; 
+        $query = $query. " AND g.deleted= 0 and s.id= (SELECT s.id ";
+        $query = $query. " FROM expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs "; 
+        $query = $query. " WHERE g.id='".$this->id."' and g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida "; 
+        $query = $query. " AND g.deleted= 0)) p on s.id=p.id set s.prioridad=p.prio;";
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Actualizamos solicitudes');
         
@@ -637,9 +638,28 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                             
                 $this->candidatura_avanzada=true;
         }else{
-            $this->candidatura_avanzada=false;
+            
+            $reuniones=$this->comprobarReuniones();
+            if($this->estado_sol== Expan_GestionSolicitudes::ESTADO_EN_CURSO &&$reuniones==true){
+                $this->candidatura_avanzada=true;
+            }else{
+                $this->candidatura_avanzada=false;
+            }
         }        
     } 
+
+    public function comprobarReuniones(){
+            //mirar si tienes reuniones planificadas
+            $db = DBManagerFactory::getInstance();
+            $query = "select count(*) as reuniones FROM meetings where parent_id='".$this->id."' and status='Planned' and deleted=0; ";
+            $result = $db -> query($query, true);
+            while ($row = $db -> fetchByAssoc($result)) {
+                if ($row["reuniones"]!=0){
+                    return true;
+                }   
+            }
+            return false;
+    }
     
     public function calcCaliente(){
         
@@ -750,12 +770,20 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NumDias - ' . $numDias);
 
-            $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+            if($texto=='[AUT]De seguimiento'){ //la llamada es para dentro de 15 dias
+                date_default_timezone_set('europe/madrid');
+                $dateTime = time()-3600;
+                $llamada->date_start=date("Y-m-d H:i:s", $dateTime + (15 * 24 * 3600));
+                
+            }else{
+                $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
             $llamada -> date_start = $fecha;
-
-
+            }
+            
+             
+            
             //Si es agrupada la marcamos
 
             if ($solicitud == null){

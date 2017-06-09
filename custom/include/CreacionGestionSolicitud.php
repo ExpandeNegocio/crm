@@ -183,6 +183,7 @@ class AccionesGuardadoGestionSol {
                                     //Si no hemos podido enviar el correo por la plantilla lo devolvemos al estado 1
 
                                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] No se ha podido enviar el correo');
+                                    $bean -> chk_envio_documentacion = false;
                                     $bean -> estado_sol = Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO;
                                 } else {
                                     if ($telefono != "") {
@@ -441,7 +442,11 @@ class AccionesGuardadoGestionSol {
                         $bean -> creaLlamada('[AUT]Puertas abiertas', 'PAbiertas');
                         break;
                     case 13 :
-                        $bean -> creaLlamada('[AUT]Ver estado colaboración', 'EstColab');
+                        $bean -> creaLlamada('[AUT]De seguimiento', 'GESTSeg');
+                        $fran = new Expan_Franquicia();
+                        $fran -> retrieve($bean -> franquicia);
+                        $nombre="[AUT]Pasar colaborador";
+                        $fran -> creaLlamadaRecor($nombre,'PasarColaborador');
                         break;                        
                 }
 
@@ -453,6 +458,7 @@ class AccionesGuardadoGestionSol {
                 $bean -> ignore_update_c = true;
                 $bean -> save();
                 $bean -> calcularPrioridades();
+                
 
                 //Los demas estados que no son el dos
             } else {

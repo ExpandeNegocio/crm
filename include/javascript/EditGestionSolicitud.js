@@ -954,14 +954,14 @@ function organizarMotivos(){
 }
 
 function colorearAvanzado(){			
-	var cdudas = document.getElementById("chk_resolucion_dudas_label");
-	var ccuestionario = document.getElementById("chk_recepcio_cuestionario_label");
-	var cadicional = document.getElementById("chk_informacion_adicional_label");
-	var centrevista = document.getElementById("chk_entrevista_label");
-	var czona = document.getElementById("chk_propuesta_zona_label");
+	var cdudas = document.getElementById("chk_resolucion_dudas");
+	var ccuestionario = document.getElementById("chk_recepcio_cuestionario");
+	var cadicional = document.getElementById("chk_informacion_adicional");
+	var centrevista = document.getElementById("chk_entrevista");
+	var czona = document.getElementById("chk_propuesta_zona");
 	var cavanzada = document.getElementById("candidatura_avanzada");
-	var cavanzadal = document.getElementById("candidatura_avanzada_label");
-	$(cavanzadal).css( "background-color", "#FAB78B");	
+	var cavanzadal = document.getElementById("candidatura_avanzada");
+	$(cavanzadal).css( "background-color", "rgb(236,234,234)");	
 	
 	var lista = new Array (cdudas, ccuestionario, cadicional, centrevista, czona, cavanzada);
 	
@@ -971,22 +971,22 @@ function colorearAvanzado(){
 	}
 	
 	for (i in lista){
-		$(lista[i]).parent().css( "background-color", "#FAB78B");			
+		$(lista[i]).parent().css( "background-color", "rgb(236,234,234)");			
 	}
 }
 function colorearCaliente(){			
-	var cvisitado = document.getElementById("chk_visitado_fran_label");
-	var cprecontrato= document.getElementById("chk_envio_precontrato_label");
-	var clocal = document.getElementById("chk_visita_local_label");
-	var cprecontratop = document.getElementById("chk_envio_precontrato_personal_label");
-	var cplanpersonal = document.getElementById("chk_envio_plan_financiero_personal_label");
-	var ccontrato = document.getElementById("chk_envio_contrato_label");
-	var cvisita = document.getElementById("chk_visita_central_label");
-	var ccolabora = document.getElementById("chk_posible_colabora_label");
-	var ccontratop = document.getElementById("chk_envio_contrato_personal_label");
+	var cvisitado = document.getElementById("chk_visitado_fran");
+	var cprecontrato= document.getElementById("chk_envio_precontrato");
+	var clocal = document.getElementById("chk_visita_local");
+	var cprecontratop = document.getElementById("chk_envio_precontrato_personal");
+	var cplanpersonal = document.getElementById("chk_envio_plan_financiero_personal");
+	var ccontrato = document.getElementById("chk_envio_contrato");
+	var cvisita = document.getElementById("chk_visita_central");
+	var ccolabora = document.getElementById("chk_posible_colabora");
+	var ccontratop = document.getElementById("chk_envio_contrato_personal");
 	var ccaliente = document.getElementById("candidatura_caliente");
-	var ccalientel = document.getElementById("candidatura_caliente_label");
-	$(ccalientel).css( "background-color", "#FF9898");	
+	var ccalientel = document.getElementById("candidatura_caliente");
+	$(ccalientel).css( "background-color", "rgb(219,217,217)");	
 	
 	var lista = new Array (cvisitado, cprecontrato, clocal, cprecontratop, cplanpersonal, ccontrato, cvisita, ccolabora, ccontratop, ccaliente);
 	
@@ -996,7 +996,7 @@ function colorearCaliente(){
 	}
 	
 	for (i in lista){
-		$(lista[i]).parent().css( "background-color", "#FF9898");			
+		$(lista[i]).parent().css( "background-color", "rgb(219,217,217)");			
 	}
 }
 	function cambiarAGris(texto){
