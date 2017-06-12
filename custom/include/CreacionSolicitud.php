@@ -36,6 +36,7 @@ class AccionesGuardado {
 			if (!isset(self::$fetchedRow[$bean -> id])) {
 			                    
 				$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Asigno');
+                
 
 				$caracteres = split(',', $bean -> franquicias_secundarias);
 				$bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
@@ -72,6 +73,7 @@ class AccionesGuardado {
 					$bean -> franquicia_principal = $fran;
 					$bean -> expan_franquicia_id_c = $fran;
                     $bean -> abierta=1;
+                    $this -> activarMaster($bean);
                     $bean -> assigned_user_id=$bean->created_by;
                     $bean -> ignore_update_c = true;
 					$bean -> save();
@@ -89,6 +91,7 @@ class AccionesGuardado {
                 $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
 
 				// Entramos solo en edicion -- tenemos que ver si las gestiones estan creadas 
+				
 
 				$textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
 
@@ -138,6 +141,7 @@ class AccionesGuardado {
 
                 
                 $bean = $this -> limpiarSuborigen($bean);
+                $this -> activarMaster($bean);
                 $bean -> assigned_user_id=$bean->created_by;
                 $bean -> ignore_update_c = true;
                 $bean -> save(); 
@@ -145,12 +149,23 @@ class AccionesGuardado {
                 
 			}
             
+                
                 //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
                 $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
                 $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
 		}
 	}
 
+
+    function activarMaster($bean){
+    // cambiar check de master 
+        if($bean->pais_c!= "SPAIN"){
+            $bean -> master=true;
+        }else{//es de spain por tanto no nos interesan estos campos
+            $bean -> provincia_residencia='';
+            $bean -> localidad_residencia='';
+        }
+    }
     /**
      * Actualiza los sectores de interés de una solicitud con los sectores a los que 
      * perteneces cada una de las franquicias que se le pasa cómo argumento.
@@ -348,7 +363,8 @@ class AccionesGuardado {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.$GLOBALS['timedate']->now());
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.$gestion->date_modified);
             
-            $gestion->date_entered=TimeDate::getInstance()->getNow()->asDb();             
+            $gestion->date_entered=TimeDate::getInstance()->getNow()->asDb(); 
+            //$bean->fecha_primer_contacto=$gestion->date_entered;            
         
         	$gestion -> name = $bean -> first_name . ' ' . $bean -> last_name . ' - ' . $GLOBALS['app_list_strings']['franquicia_list'][$idFranq];
         	$gestion -> assigned_user_id = $usuario_asg;

@@ -4,6 +4,30 @@
 
 const BORDE_NORMAL="#94c1e8 solid 1px";
 
+		
+		$("#pais_c").change(function(){
+			var valor=$(this).val();
+			if(valor!="SPAIN"){//es master
+				$("#master").prop("checked", true);
+				$("#provincia_residencia_label").parent().show();
+			}else{
+				$("#master").prop("checked", false);
+				$("#provincia_residencia_label").parent().hide();
+			}
+			
+		}),
+		
+		$("#provincia_residencia").change(function(){
+			var valor=$(this).val();
+			if(valor!="100"){
+				$("#localidad_residencia").prop("disabled", true);
+			}else{
+				$("#localidad_residencia").prop("disabled", false);
+			}
+			
+		}),
+		
+
 	$("#franquicias_contactadas").keyup(function(){//cuando pulses la caja de texto
 		var campoF=$(this).val();	//valor del texto
 		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
@@ -97,6 +121,7 @@ function inicio() {
 	//Ponemos de solo lectura el check de candidatur caliente
 	document.getElementById("candidatura_caliente").disabled = true;
 	document.getElementById("oportunidad_inmediata").disabled = true;
+	document.getElementById("master").disabled = true;
 
 	//Cargamos los sectores
 	cargarchecks("Sectorcheck", "sectores_de_interes");
@@ -128,9 +153,9 @@ function inicio() {
 	conControlUsuarioFran();
 	
 	//poner en amarillo los elementos que aunque no son obligatorios los marcamos	
-	marcaCampos();	
+	marcaCampos();	//'<hr size="10" style="color: #0056b2;" width="200%" />'
 	cambioSeleccion();
-	
+
 	
 }
 
@@ -401,6 +426,22 @@ function cambiocheck(clase, id,act) {
 
 function ocultarCampoAux() {
 
+	var check=$("#master").prop("checked");
+	if(!check){
+		$("#provincia_residencia_label").parent().hide();
+	}
+	
+	if($("#provincia_residencia").val()=="100"){
+		$("#localidad_residencia").prop("disabled", false);
+	}else{
+		$("#localidad_residencia").prop("disabled", true);
+	}
+	
+	
+	
+	
+				
+	
 	//Ocultamos la lista
 	var campo = document.getElementById("franquicias_secundarias_label").parentNode;
 
