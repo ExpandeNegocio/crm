@@ -259,12 +259,5 @@ array (
     'default' => true,
   ),
   
-  'master' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_MASTER_FRANQUICIA',
-    'default' => true,
-  ),
-  
 );
 ?>

@@ -231,7 +231,12 @@ array (
       4 => 'subor_medios',
       5 => 'subor_mailing',      
     ),
-  ),  
-  
+  ),
+  'master' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_MASTER_FRANQUICIA',
+    'default' => true,
+  ),
 );
 ?>

@@ -194,4 +194,7 @@ $mod_strings = array (
   'LBL_CANDIDATURA_AVANZADA'=>'Candidatura avanzada',
   'LBL_GESTIONESAGRUPADAS' => 'Gestiones agrupadas',
   'LBL_NEWSLETTER' => 'No enviar newsletter',
+  'LBL_MASTER_FRANQUICIA' => 'Master',
+  'LBL_PROVINCIA_RESIDENCIA' => 'Provincia de residencia',
+  'LBL_LOCALIDAD_RESIDENCIA'=>'Municipio de residencia',
 );

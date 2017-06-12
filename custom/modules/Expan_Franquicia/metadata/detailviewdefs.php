@@ -372,20 +372,6 @@ array (
             'label' => 'LBL_CHK_C15',
           ),
         ),
-        12=>
-        array(
-            0=>array(
-            ),
-            
-            1=> array(
-                
-                'name'=>'master',
-                'studio' =>'visible',
-                'label' =>'LBL_MASTER_FRANQUICIA',
-            
-            ),
-        ),
-        
       ),
       
       

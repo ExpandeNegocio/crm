@@ -145,7 +145,18 @@ array (
             ),
         ),
         
-        6 => 
+        6=>
+        array(
+            0=> array(
+                
+                'name'=>'master',
+                'studio' =>'visible',
+                'label' =>'LBL_MASTER_FRANQUICIA',
+            
+            ),
+        ),
+        
+        7 => 
         array (
           0 => 
           array (
@@ -159,7 +170,21 @@ array (
             'label' => 'LBL_FECHA_PRIMER_CONTACTO',
           ),
         ),
-        7 => 
+        8 => 
+        array (
+          0 => 
+          array (
+          'name' => 'provincia_residencia',
+            'studio' => 'visible',
+            'label' => 'LBL_PROVINCIA_RESIDENCIA',
+          ),
+          1 => 
+          array (
+            'name' => 'localidad_residencia',
+            'label' => 'LBL_LOCALIDAD_RESIDENCIA',
+          ),
+        ),
+        9 => 
         array (
           0 => 
           array (
@@ -173,7 +198,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_1',
           ),
         ),
-        8 => 
+        10 => 
         array (
           0 => 
           array (
@@ -187,7 +212,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_2',
           ),
         ),
-        9 => 
+        11 => 
         array (
           0 => 
           array (
@@ -201,7 +226,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_3',
           ),
         ),
-        10 => 
+        12 => 
         array (
           0 => 
            array (          
@@ -218,7 +243,7 @@ array (
           ),
         ),
         
-        11 => 
+        13 => 
         array (
           0 => 
            array (          
@@ -233,7 +258,7 @@ array (
           ),
         ),                    
         
-        12 => 
+        14 => 
         array (
           0 => 
          array (
@@ -249,7 +274,7 @@ array (
             ),
           ),
         ),
-        13=> array(
+        15=> array(
           0 => 
           array (
             'name' => 'contacto_secundario',
@@ -261,7 +286,7 @@ array (
             'label' => 'LBL_CORREO_SECUNDARIO',
           ),
         ),
-        14=>
+        16=>
         array(
           0 => 
           array (
