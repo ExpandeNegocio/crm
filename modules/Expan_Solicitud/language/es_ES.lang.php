@@ -197,4 +197,5 @@ $mod_strings = array (
   'LBL_MASTER_FRANQUICIA' => 'Master',
   'LBL_PROVINCIA_RESIDENCIA' => 'Provincia de residencia',
   'LBL_LOCALIDAD_RESIDENCIA'=>'Municipio de residencia',
+  'LBL_PUERTAS_ABIERTAS'=>'Interés puertas abiertas',
 );

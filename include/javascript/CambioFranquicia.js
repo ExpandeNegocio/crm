@@ -69,3 +69,35 @@ function display(){
 	}
 
 }
+function envioPuertasAbiertas(franquicia){
+	//estoy aqui
+	var fran='';
+
+	if (confirm("¿Está seguro que desea realizar el envío de puertas abiertas?")) {
+
+		url = 'index.php?entryPoint=envioPuertasAbiertas&idFran=' + franquicia;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "idFran="+franquicia,
+			success : function(data) {
+				if (data.indexOf('Ok')!=-1) {//error
+					alert('Se ha realizado el envío correctamente');
+					return false;
+				} else{
+					alert('No se ha podido realizar el envío del correo, pero se ha creado la llamada - \\n '+data);
+					return false;
+				}
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('No se ha podido realizar el envío de correo, pero se ha creado la llamada - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+	
+	} else {
+		return false;
+	}
+	
+}

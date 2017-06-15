@@ -775,10 +775,20 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                 $llamada->date_start=date("Y-m-d H:i:s", $dateTime + (15 * 24 * 3600));
                 
             }else{
-                $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+                if($texto=='[AUT]Puertas abiertas'){
+                       $llamada -> date_start=TimeDate::getInstance()->getNow() -> modify('+1 hour')-> asDb();
+                   //date_default_timezone_set('europe/madrid');
+                    //$dateTime = time()+3600;
+                    //$llamada->date_start=date("Y-m-d H:i:s", $dateTime);
+                    
+                }else{
+                     $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+                     $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
+                     $llamada -> date_start = $fecha;
+                }
+               
 
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
-            $llamada -> date_start = $fecha;
+           
             }
             
              
@@ -1000,8 +1010,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $tarea -> status = "Not Started";
         $tarea -> task_type= $tipoTarea;
                
-        $tarea -> date_start = $GLOBALS['timedate'] -> now();
-        $tarea -> date_due = $GLOBALS['timedate'] -> now();
+        $tarea -> date_start = TimeDate::getInstance()->nowDb();
+        $tarea -> date_due = TimeDate::getInstance()->nowDb();
     
         $franquicia = new Expan_Franquicia();
         $franquicia -> retrieve($this -> franquicia);

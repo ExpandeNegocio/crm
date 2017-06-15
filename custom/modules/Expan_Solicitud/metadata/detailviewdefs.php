@@ -143,6 +143,11 @@ array (
                 'name' => 'no_newsletter',
                 'label' => 'LBL_NEWSLETTER',
             ),
+            1 => 
+            array(
+            'name'=> 'check_puertas_abiertas',
+            'label'=> 'LBL_PUERTAS_ABIERTAS',
+            ),
         ),
         
         6=>

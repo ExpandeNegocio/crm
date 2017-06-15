@@ -8,6 +8,12 @@ array (
   array (
     'templateMeta' => 
     array (
+      'javascript' => '
+      {sugar_getscript file="include/javascript/CambioFranquicia.js"}',
+      
+      'includes' => array (
+                        0 =>array ('file' => 'include/javascript/CambioFranquicia.js',),
+                    ),
       'form' => 
       array (
         'buttons' => 
@@ -16,6 +22,11 @@ array (
           1 => 'DUPLICATE',
           2 => 'DELETE',
           3 => 'FIND_DUPLICATES',
+          4 =>
+          array(
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
+                onClick="envioPuertasAbiertas(\'{$fields.id.value}\');" value="Envío puertas abiertas">{/if}',
+          ), 
         ),
       ),
       'maxColumns' => '2',
