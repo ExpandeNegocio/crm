@@ -222,7 +222,7 @@ function procesar() {
             }
             
             $gestion -> chk_recepcio_cuestionario = 1;
-            $gestion -> f_recepcion_cuestionario = $GLOBALS['timedate'] -> now();
+            $gestion -> f_recepcion_cuestionario = TimeDate::getInstance()->nowDb();
             $gestion -> candidatura_avanzada=true;
             $gestion -> candidatura_caliente=true;
             $gestion -> asignarUsuarioGestor();

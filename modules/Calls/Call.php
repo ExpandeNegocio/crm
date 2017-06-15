@@ -1026,7 +1026,7 @@ class Call extends SugarBean {
         // Si pasamos a un estado cerrado con exito guardamos la hora
         if ($newStatus == 'Held' && $prevStatus != $newStatus) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Cambia la hora');
-            $this -> date_start = $GLOBALS['timedate'] -> now();
+            $this -> date_start = TimeDate::getInstance()->nowDb();
             
             //Añadimos las observaciones y los checks de las llamadas
             if ($gestion!=null){                                                     
@@ -1061,6 +1061,7 @@ class Call extends SugarBean {
         if (substr($this->call_type,0,4)=='FRAN'){
             $franquicia->load_relationship('expan_franquicia_calls_1');
             $franquicia ->expan_franquicia_calls_1->add($this->id);
+            
             $this -> name = $franquicia->name . ' - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$this -> call_type];                
         } 
         

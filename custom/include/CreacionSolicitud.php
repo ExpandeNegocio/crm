@@ -40,7 +40,8 @@ class AccionesGuardado {
 
 				$caracteres = split(',', $bean -> franquicias_secundarias);
 				$bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-
+                $bean -> fecha_primer_contacto=TimeDate::getInstance()->nowDb();
+                
 				$fran = null;
  				$numFran =0;
 
@@ -54,6 +55,7 @@ class AccionesGuardado {
  						$numFran++;
 					}
 				}
+
 
 				$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Numero Franquicias' . $numFran);
 
@@ -89,8 +91,7 @@ class AccionesGuardado {
 			} else {
 			    
                 $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-
-				// Entramos solo en edicion -- tenemos que ver si las gestiones estan creadas 
+				// Entramos solo en edicion -- tenemos que ver si las gestiones estan creadas
 				
 
 				$textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
@@ -360,11 +361,10 @@ class AccionesGuardado {
         
         	$gestion = new Expan_GestionSolicitudes();
             
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.$GLOBALS['timedate']->now());
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.TimeDate::getInstance()->nowDb());
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.$gestion->date_modified);
             
             $gestion->date_entered=TimeDate::getInstance()->getNow()->asDb(); 
-            //$bean->fecha_primer_contacto=$gestion->date_entered;            
         
         	$gestion -> name = $bean -> first_name . ' ' . $bean -> last_name . ' - ' . $GLOBALS['app_list_strings']['franquicia_list'][$idFranq];
         	$gestion -> assigned_user_id = $usuario_asg;

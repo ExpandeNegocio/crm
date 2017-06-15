@@ -169,7 +169,7 @@ class AccionesGuardadoGestionSol {
                                 if ($salida == "Ok") {
                                     $bean -> chk_envio_documentacion = true;
                                     if ($bean -> envio_documentacion == $fecha_envio_documentacion_ant) {
-                                        $bean -> envio_documentacion = $GLOBALS['timedate'] -> now();
+                                        $bean -> envio_documentacion = TimeDate::getInstance()->nowDb();
                                     }
 
                                     //Si hemos podido pasar a estado dos. Creamos la llamada
@@ -190,6 +190,7 @@ class AccionesGuardadoGestionSol {
                                         $mayorCheck = 1;
                                     } else {
                                         $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Envío de plantilla C1.5');
+                                        //NO TIENE TELF, COMPROBAR SI TIENE SKYPE PUES SE LLAMA IGUAL
                                       //  $bean -> preparaCorreo("C1.5");
                                     }
                                 }
@@ -216,7 +217,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 3;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estamos mocificando Resolucion dudas');
                     if ($bean -> f_resolucion_dudas == $fecha_resolucion_dudas_ant) {
-                        $bean -> f_resolucion_dudas = $GLOBALS['timedate'] -> now();
+                        $bean -> f_resolucion_dudas = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_resolucion_dudas != null) {
@@ -228,7 +229,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 2;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estamos mocificando Ampliacion de información');
                     if ($bean -> f_sol_amp_info == $fecha_sol_amp_info_ant) {
-                        $bean -> f_sol_amp_info = $GLOBALS['timedate'] -> now();
+                        $bean -> f_sol_amp_info = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_sol_amp_info != null) {
@@ -242,7 +243,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> crearTarea("DOCURevCorreo");
 
                     if ($bean -> f_responde_C1 == $fecha_respuesta_C1) {
-                        $bean -> f_responde_C1 = $GLOBALS['timedate'] -> now();
+                        $bean -> f_responde_C1 = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_responde_C1 != null) {
@@ -257,7 +258,7 @@ class AccionesGuardadoGestionSol {
                     $salida=$bean -> preparaCorreo("C2");
 
                     if ($bean -> f_informacion_adicional == $fecha_envio_informacion_adicional_ant) {
-                        $bean -> f_informacion_adicional = $GLOBALS['timedate'] -> now();
+                        $bean -> f_informacion_adicional = TimeDate::getInstance()->nowDb();
                     }
 
                     // $bean -> creaLlamada('[AUT]Infor adicional enviada', 'InformacionAdicional');
@@ -274,7 +275,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> preparaCorreo("C1.3");
 
                     if ($bean -> f_recepcion_cuestionario == $fecha_recepcion_cuestionario_ant) {
-                        $bean -> f_recepcion_cuestionario = $GLOBALS['timedate'] -> now();
+                        $bean -> f_recepcion_cuestionario = TimeDate::getInstance()->nowDb();
                     }
 
                     $bean -> crearTarea("DOCURevCu");
@@ -290,7 +291,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 6;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a entrevista');
                     if ($bean -> f_entrevista == $fecha_entrevista_ant) {
-                        $bean -> f_entrevista = $GLOBALS['timedate'] -> now();
+                        $bean -> f_entrevista = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_entrevista != null) {
@@ -302,7 +303,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 7;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] zna propuesta');
                     if ($bean -> f_propuesta_zona == $fecha_propuesta_zona_ant) {
-                        $bean -> f_propuesta_zona = $GLOBALS['timedate'] -> now();
+                        $bean -> f_propuesta_zona = TimeDate::getInstance()->nowDb();
                     }
                     
       /*               //Marcamos también el precontrato
@@ -311,7 +312,7 @@ class AccionesGuardadoGestionSol {
                         $bean -> chk_envio_precontrato=true;
                                         
                         if ($bean -> f_envio_precontrato == null){
-                            $bean -> f_envio_precontrato = $GLOBALS['timedate'] -> now();
+                            $bean -> f_envio_precontrato = TimeDate::getInstance()->nowDb();
                         }
                         $bean -> preparaCorreo("C3");
                         $bean -> crearTarea("DOCUPerPre");
@@ -328,7 +329,7 @@ class AccionesGuardadoGestionSol {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a estado fran ant');
 
                     if ($bean -> f_visitado_fran == $fecha_visitado_fran_ant) {
-                        $bean -> f_visitado_fran = $GLOBALS['timedate'] -> now();
+                        $bean -> f_visitado_fran = TimeDate::getInstance()->nowDb();
                     }                    
                 }
                 if ($bean -> f_visitado_fran != null) {
@@ -343,7 +344,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> crearTarea("DOCUPerPre");
 
                     if ($bean -> f_envio_precontrato == $fecha_envio_precontrato_ant) {
-                        $bean -> f_envio_precontrato = $GLOBALS['timedate'] -> now();
+                        $bean -> f_envio_precontrato = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_envio_precontrato != null) {
@@ -358,7 +359,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> crearTarea("DOCURevLoc");
 
                     if ($bean -> f_visita_local == $fecha_visita_local_ant) {
-                        $bean -> f_visita_local = $GLOBALS['timedate'] -> now();
+                        $bean -> f_visita_local = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_visita_local != null) {
@@ -374,7 +375,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> crearTarea("DOCUPerCon");
 
                     if ($bean -> f_envio_contrato == $fecha_envio_contrato_ant) {
-                        $bean -> f_envio_contrato = $GLOBALS['timedate'] -> now();
+                        $bean -> f_envio_contrato = TimeDate::getInstance()->nowDb();
                     }
                 }
                 if ($bean -> f_envio_contrato != null) {
@@ -385,7 +386,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 12;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estado 8');
                     if ($bean -> f_visita_central == $fecha_visita_central_ant) {
-                        $bean -> f_visita_central = $GLOBALS['timedate'] -> now();
+                        $bean -> f_visita_central = TimeDate::getInstance()->nowDb();
                     }
 
                     $bean -> creaReunion("Visita a la central", "VisCentral", 0);
@@ -468,6 +469,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> archivarLLamadas();
                     $bean -> archivarTareas();
                     $bean -> archivarReuniones();
+                    //COMPROBAR AQUI SI ES POR FINANCIACION, EN ESE CASO CREAR APERTURA Y QUE SE ABRA PARA RELLENAR LOS CAMPOS
                     
                 }
 
