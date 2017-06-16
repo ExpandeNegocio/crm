@@ -18,6 +18,7 @@
     
     $resultSol = $db->query($query, true);    //tengo los ids de las gestiones de la franquicia seleccionada, que tienen interes de puertas
      
+     $salida='';
      
     while ($rowSol = $db->fetchByAssoc($resultSol)){
         
@@ -29,8 +30,7 @@
         $gestion -> creaLlamada("[AUT]Puertas abiertas", "PAbiertas");
         
         $salida = $gestion -> preparaCorreo("C6");//Este correo será el envío de puertas abiertas, habrá que hacer la plantilla
-        
-       // if($salida=='Ok'){
+        // if($salida=='Ok'){
             //desactivar check
             $query="update expan_solicitud s set s.check_puertas_abiertas=0 where id='".$idSol."';";
             $result = $db -> query($query);
