@@ -110,17 +110,15 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     function archivarLLamadas(){
         
         //archivamos todas las llamadas de una gestion
-        $this -> load_relationship('expan_gestionsolicitudes_calls_1');
-         
-        foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $llamada) {
+        $db = DBManagerFactory::getInstance();
             
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Archivar LLamadas] Estado LLamada'.$llamada ->status);
-            if ($llamada ->status=="Planned"){
-                $llamada ->status='Archived';
-                $llamada -> ignore_update_c = true;
-                $llamada->save();
-            }
-        }
+            $query= " update calls c JOIN (SELECT c.id ";
+            $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
+            $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
+            $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and g.deleted=0) t "; 
+            $query=$query. " ON c.id = t.id set c.status='Archived'; ";
+            
+            $result = $db -> query($query);
         
     }
     
@@ -161,18 +159,19 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     
    function archivarLLamadasPrevias(){
           //archivamos todas las llamadas de una gestion que se crean de forma automática
-        $this -> load_relationship('expan_gestionsolicitudes_calls_1');
-         
-        foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $llamada) {
+          
+            $db = DBManagerFactory::getInstance();
             
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Eliminar LLamadas] Estado LLamada'.$llamada ->status);
-            if ($llamada ->status=="Planned" && ($llamada->call_type=="Primera" || $llamada->call_type=="ResPriDuda" || $llamada->call_type=="InformacionAdicional" || $llamada->call_type=="Cuestionario" || $llamada->call_type=="VisitaF" || $llamada->call_type=="SegPre" || $llamada->call_type=="Locales" || $llamada->call_type=="Contrato")){
-                $llamada ->status='Archived';
-                $llamada -> ignore_update_c = true;
-                $llamada->save();
-            }
-        }
-        
+            $query= " update calls c JOIN (SELECT c.id ";
+            $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
+            $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
+            $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and (c.call_type='Primera' or "; 
+            $query=$query. " c.call_type='ResPriDuda' or c.call_type='InformacionAdicional' or c.call_type='Cuestionario' or c.call_type='VisitaF' or "; 
+            $query=$query. " c.call_type='SegPre' or c.call_type='Locales' or c.call_type='Contrato') and g.deleted=0) t "; 
+            $query=$query. " ON c.id = t.id set c.status='Archived'; ";
+            
+            $result = $db -> query($query);
+  
     }
    
     function asociarLLamadas($status, $user) {

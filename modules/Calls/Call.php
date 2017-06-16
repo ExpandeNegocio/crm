@@ -868,7 +868,7 @@ class Call extends SugarBean {
         return $dias;
     }
 
-     function rellenaLlamada($gestion, $texto, $solicitud, $telefono, $tipo) {
+   /*  function rellenaLlamada($gestion, $texto, $solicitud, $telefono, $tipo) {
         
         //Si no tiene telefono no creamos la llamada
         if ($telefono==""){
@@ -964,7 +964,7 @@ class Call extends SugarBean {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NO se puede añadir llamada or las condiciones impuestas');
         }
 
-    }
+    }*/
 
     public function getTextoObservacion(){
         
