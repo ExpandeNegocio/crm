@@ -84,9 +84,15 @@ function envioPuertasAbiertas(franquicia){
 				if (data.indexOf('Ok')!=-1) {//error
 					alert('Se ha realizado el envío correctamente');
 					return false;
-				} else{
-					alert('No se ha podido realizar el envío del correo, pero se ha creado la llamada - \\n '+data);
+				} else
+				{
+					if(data==''){
+						alert('No existen interesados a los que no se les haya enviado el mensaje - \\n '+data);
+						return false;
+					}else{
+						alert('No se ha podido realizar el envío del correo, pero se ha creado la llamada - \\n '+data);
 					return false;
+					}
 				}
 
 			},
