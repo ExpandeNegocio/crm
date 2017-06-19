@@ -335,7 +335,8 @@ class EnvioAutoCorreos {
                     $this->marcarEnviadoMailing(implode(",",$arrayCorreos),$idMailing);
                     if ($mailing->guardar_correo==1){
                         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Entra Asociar Correo');
-                        $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$mailing->texto_informe);
+                        $textoMai=$mailing->texto_informe." - ".$mailing->name;
+                        $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$textoMai);
                     }
                 }else{
                     $this->marcarNoEnviadoMailing(implode(",",$arrayCorreos),$idMailing);
@@ -363,7 +364,8 @@ class EnvioAutoCorreos {
                  $this->marcarEnviadoMailing(implode(",",$arrayCorreos),$idMailing);  
                 if ($mailing->guardar_correo==1){
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Entra Asociar Correo');
-                    $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$mailing->texto_informe);
+                    $textoMai=$mailing->texto_informe." - ".$mailing->name;
+                    $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$textoMai);
                 }
             }else{
                 $this->marcarNoEnviadoMailing(implode(",",$arrayCorreos),$idMailing);

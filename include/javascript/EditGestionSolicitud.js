@@ -854,7 +854,7 @@ function validarMotivoDescarte(){
 		$("#motivo_descarte option:selected").val()==13 || 
 	    $("#motivo_descarte option:selected").val()==14))
 	{
-		alert ("Si el candidato a montado otro negocio, indicalo en la gestion");
+		alert ("Si el candidato ha montado otro negocio, indícalo en la gestión");
 	}
 	
 }
