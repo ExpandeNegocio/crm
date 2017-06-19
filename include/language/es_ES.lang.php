@@ -736,10 +736,14 @@ $app_list_strings['document_status_dom'] = array (
 );
 $app_list_strings['document_template_type_dom'] = array (
   '' => '',
-  'mailmerge' => 'Combinar correspondencia',
-  'eula' => 'CLUF',
-  'nda' => 'ANR',
-  'license' => 'Contrato de Licencia',
+  'DF' => 'Dossier Franquicia',
+  'CC' => 'Cuestionario Candidatura',
+  'PF' => 'Plan Financiero',
+  'CLL' => 'Check List Local',
+  'P' => 'Precontrato',
+  'DIP' => 'Dossier Informacion Precontractual',
+  'C' => 'Contrato',
+  'PFP' => 'Plan Financiero Personalizado',
 );
 $app_list_strings['dom_meeting_accept_options'] = array (
   'accept' => 'Aceptar',
