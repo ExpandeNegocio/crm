@@ -54,7 +54,10 @@
         $bean -> ignore_update_c = true;
         $bean -> save();
         
-        $bean -> calcularPrioridades();       
+        $prioridad=$bean -> calcularPrioridades();
+        $bean->prioridad=$prioridad;
+        //$solicitud->prioridad=$prioridad;   
+            
     }else{
         $mensajes=$mensajes."No se ha podido enviar la documentación para: ".$bean->name."\n";
     }  

@@ -124,35 +124,29 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     
     function archivarTareas(){
         
-        //archivamos todas las llamadas de una gestion
-        $this -> load_relationship('expan_gestionsolicitudes_tasks_1');
-         
-        foreach ($this->expan_gestionsolicitudes_tasks_1->getBeans() as $tarea) {
-            
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Archivar Tareas] Estado Tarea'.$tarea ->status);
-            if ($tarea ->status=="Not Started"){
-                $tarea ->status='Deferred';
-                $tarea -> ignore_update_c = true;
-                $tarea->save();
-            }
-        }       
+        $db = DBManagerFactory::getInstance();
+        
+        $query="update tasks t join (select t.id FROM tasks t, expan_gestionsolicitudes g, expan_gestionsolicitudes_tasks_1_c gt where "; 
+        $query=$query. " t.id=gt.expan_gestionsolicitudes_tasks_1tasks_idb and "; 
+        $query=$query. " gt.expan_gestionsolicitudes_tasks_1expan_gestionsolicitudes_ida=g.id and g.id='".$this->id."' and "; 
+        $query=$query. " (t.status='Not Started') and t.deleted=0) b on t.id=b.id set t.status='Deferred';";
+        
+        $result = $db -> query($query);
+                
     }
     
     function archivarReuniones(){
+                       
+        $db = DBManagerFactory::getInstance();
+                
+        $query ="update meetings m join (select m.id from expan_gestionsolicitudes g, expan_gestionsolicitudes_meetings_1_c gm, meetings m ";
+        $query=$query. " where g.id=gm.expan_gestionsolicitudes_meetings_1expan_gestionsolicitudes_ida and "; 
+        $query=$query. " gm.expan_gestionsolicitudes_meetings_1meetings_idb=m.id and g.id='".$this->id."' and "; 
+        $query=$query. " (m.status='Not Started' or m.status='Could') and m.deleted = 0 ";
+        $query=$query. " ) b on m.id=b.id set m.status='Archived';";     
         
-        //archivamos todas las llamadas de una gestion
-        $this -> load_relationship('expan_gestionsolicitudes_meetings_1');
-         
-        foreach ($this->expan_gestionsolicitudes_meetings_1->getBeans() as $reunion) {
-            
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Archivar Reuniones] Estado Reuniones'.$reunion ->status);
-            if ($reunion ->status=="Not Started" ||
-                $reunion ->status=="Could"){
-                $reunion ->status='Archived';
-                $reunion -> ignore_update_c = true;
-                $reunion->save();
-            }
-        }       
+        $result = $db -> query($query);
+           
     }
     
     
@@ -352,7 +346,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."         ON g.id = co.id) op ";
         $query=$query."  on g.id='".$this->id."' AND op.id=g.id   ";
         $query=$query."  set g.prioridad=op.final, g.date_modified=now(); ";
-        $result = $db -> query($query);  
+        $result = $db -> query($query, true);  
         
         //Actualizo las solicitudes
         
@@ -366,7 +360,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Actualizamos solicitudes');
         
-        $result = $db -> query($query); 
+        $result = $db -> query($query, true); 
         
         //Actualizo llamadas
         $query = "  update calls c ";
@@ -376,7 +370,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Actualizamos llamadas');
         
-        $result = $db -> query($query); 
+        $result = $db -> query($query, true); 
         
         //Actualizo tareas
         $query = "  update tasks t ";
@@ -384,7 +378,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."  on g.id=t.parent_id AND g.id='".$this->id."' ";
         $query=$query."  set t.prioridad=g.prioridad; ";
         
-        $result = $db -> query($query);
+        $result = $db -> query($query, true);
                 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_GestionSolicitudes]Se han calculado las prioridades de las tareas');
         
@@ -394,10 +388,17 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."  on g.id=m.parent_id AND g.id='".$this->id."' ";
         $query=$query."  set m.prioridad=g.prioridad; ";
         
-        $result = $db -> query($query);
+        $result = $db -> query($query, true);
                 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_GestionSolicitudes]Se han calculado las prioridades de las reuniones');        
         
+        $query="select g.prioridad as prior from expan_gestionsolicitudes g where g.id='".$this->id."';";
+        
+        $result = $db -> query($query, true);
+        
+         while ($row = $db -> fetchByAssoc($result)) {
+            return $row["prior"];
+        }        
     }
 
     function asignarUsuarioGestor() {
@@ -703,7 +704,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $this -> ignore_update_c = true;
         $this -> save();
     
-        $this->calcularPrioridades();       
+        $prioridad=$this->calcularPrioridades();
+        $this->prioridad=$prioridad;       
         
     }
      
@@ -832,7 +834,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this -> ignore_update_c = true;
             $this -> save();
             
-            $this->calcularPrioridades();
+            $prioridad=$this->calcularPrioridades();
+            $this->prioridad=$prioridad;       
         }else{
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NO se puede añadir llamada or las condiciones impuestas');
         }
@@ -1052,7 +1055,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this -> save();
         }               
            
-        $this->calcularPrioridades();
+        $prioridad=$this->calcularPrioridades();
+        $this->prioridad=$prioridad;  
+             
         
     }
 

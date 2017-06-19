@@ -437,7 +437,9 @@ class AccionesGuardado {
             }        	
         	$bean -> save();
             
-            $gestion->calcularPrioridades();
+            $prioridad=$gestion->calcularPrioridades();
+            $gestion->prioridad=$prioridad;
+            //$bean->prioridad=$prioridad;
             
             if ($crearLLamadaFS==true){
                 $telefono=$bean->recogerTelefono();

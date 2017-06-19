@@ -456,9 +456,10 @@ class AccionesGuardadoGestionSol {
                 $bean -> calcAvanzado();
                 $bean -> calcCaliente();
 
-                $bean -> ignore_update_c = true;
+                /*se hace dos veces
+                 * $bean -> ignore_update_c = true;
                 $bean -> save();
-                $bean -> calcularPrioridades();
+                $bean -> calcularPrioridades();*/
                 
 
                 //Los demas estados que no son el dos
@@ -467,7 +468,7 @@ class AccionesGuardadoGestionSol {
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO || $bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO) {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Archivamos llamadas');
                     $bean -> archivarLLamadas();
-                    $bean -> archivarTareas();
+                    //$bean -> archivarTareas(); //cambio no se archivan las tareas
                     $bean -> archivarReuniones();
                     //COMPROBAR AQUI SI ES POR FINANCIACION, EN ESE CASO CREAR APERTURA Y QUE SE ABRA PARA RELLENAR LOS CAMPOS
                     
@@ -508,9 +509,11 @@ class AccionesGuardadoGestionSol {
                 $bean -> calcAvanzado();
                 $bean -> calcCaliente();
 
-                $bean -> ignore_update_c = true;
+           /*
+            * Se guarda dos veces
+            *      $bean -> ignore_update_c = true;
                 $bean -> save();
-                $bean -> calcularPrioridades();
+                $bean -> calcularPrioridades(); */
             }
 
             if ($solicitud != null) {
@@ -568,7 +571,9 @@ class AccionesGuardadoGestionSol {
 
                 $solicitud -> ignore_update_c = true;
                 $solicitud -> save();
-                $bean -> calcularPrioridades();
+                $prioridad=$bean -> calcularPrioridades();
+                $bean->prioridad=$prioridad;
+                //$solicitud -> prioridad=$prioridad;
             }
 
         }

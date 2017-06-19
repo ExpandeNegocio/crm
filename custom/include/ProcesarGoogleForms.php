@@ -318,7 +318,10 @@ function procesar() {
         $solicitud -> save();
 
         if ($gestion != null) {
-            $gestion -> calcularPrioridades();
+            $prioridad=$gestion -> calcularPrioridades();
+            $gestion -> prioridad=$prioridad;
+            //$solicitud -> prioridad=$prioridad;
+            
         }
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Guardamos Solicitud");
     }

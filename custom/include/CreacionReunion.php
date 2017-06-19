@@ -75,7 +75,10 @@ class AccionesGuardadoReunion {
                 $gestion->save();
                 $solicitud -> ignore_update_c = true;
                 $solicitud->save();
-                $gestion->calcularPrioridades();
+                $prioridad=$gestion->calcularPrioridades();
+                $gestion->prioridad=$prioridad;
+                //$solicitud->prioridad=$prioridad;
+                //$bean->prioridad=$prioridad;
             }
             
             $durMinutos=$bean -> asignarTiempo($bean -> meeting_type);                        

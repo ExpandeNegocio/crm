@@ -1105,7 +1105,10 @@ class Call extends SugarBean {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Se ha guardado la llamada');
         
         if ($gestion!=null){
-            $gestion->calcularPrioridades();
+            $prioridad=$gestion->calcularPrioridades();
+            $gestion -> prioridad=$prioridad;
+            //$this->prioridad=$prioridad;
+            //$solicitud->prioridad=$prioridad;
         }
         
     }

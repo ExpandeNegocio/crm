@@ -67,7 +67,10 @@ class controlTareas {
                     $gestion->save();
                     $solicitud -> ignore_update_c = true;
                     $solicitud->save();
-                    $gestion->calcularPrioridades();
+                    $prioridad=$gestion->calcularPrioridades();
+                    $gestion->prioridad=$prioridad;
+                    //$solicitud->prioridad=$prioridad;
+                    //$bean -> prioridad=$prioridad;
                     $bean->assigned_user_id=$gestion->assigned_user_id; 
                 }
             }
