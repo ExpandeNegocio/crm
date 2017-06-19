@@ -854,11 +854,15 @@ $app_list_strings = array (
   ),
   'document_template_type_dom' =>
   array(
-    ''=>'',
-    'mailmerge'=>'Mail Merge',
-    'eula'=>'EULA',
-    'nda'=>'NDA',
-    'license'=>'License Agreement',
+  '' => '',
+  'DF' => 'Dossier Franquicia',
+  'CC' => 'Cuestionario Candidatura',
+  'PF' => 'Plan Financiero',
+  'CLL' => 'Check List Local',
+  'P' => 'Precontrato',
+  'DIP' => 'Dossier Informacion Precontractual',
+  'C' => 'Contrato',
+  'PFP' => 'Plan Financiero Personalizado',
   ),
     'dom_meeting_accept_options' =>
     array (
