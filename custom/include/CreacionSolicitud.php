@@ -409,7 +409,13 @@ class AccionesGuardado {
                 
                 $gestion->estado_sol=Expan_GestionSolicitudes::ESTADO_DESCARTADO;
                 $gestion->motivo_descarte=Expan_GestionSolicitudes::DESCARTE_CANDIDATO_TOPO;
-            }            
+            }else{//no es topo, miramos si esta el check de la franquicia para pasar automaticamente a estado 2
+            
+                if($franq->chk_c1==1){//se puede pasar a estado 2
+                    $gestion->estado_sol=Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+                }
+                
+            }           
             
             //Si viene de un evento y la franquicia no paga se la pasamos a ExpandeNegocio
             
