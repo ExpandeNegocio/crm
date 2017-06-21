@@ -43,5 +43,22 @@ class Expan_Apertura extends Expan_Apertura_sugar {
     function Expan_Apertura(){    
         parent::Expan_Apertura_sugar();
     }
+    
+    
+    function existeApertura($nombre){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "select id from expan_apertura where name='".$nombre."' and deleted=0; ";
+        
+        $result = $db -> query($query, true);
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+                
+            return true;
+                 
+        }
+            return false;
+    }
 }
 ?>
