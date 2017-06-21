@@ -28,8 +28,8 @@
         $filePath = 'tmp/' . $idFich . '.xlsx';
         echo $filePath;
         echo "<br>";
-        CreaFicheroEnvio($filePath,$user_id);    
-        EnviarCorreo($row['email_address'],$filePath);        
+        CreaFicheroEnvio($filePath,$user_id);
+        EnviarCorreo($row['email_address'],$filePath);    
         echo "Termiado";       
     }
 
@@ -269,6 +269,32 @@
         
         InsertaConuslta($objPHPExcel,$query,9,'Candidaturas Calientes');
         echo "inserta Candidaturas Calientes";
+        
+        $user=new User();
+        $user -> retrieve($user_id);
+        
+        if($user -> is_admin==1){//solo para admin, mostrar el informe de franquicias
+            
+            $query = "SELECT   f.name as Franquicia,  ";
+            $query=$query."          sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END) \"Calientes\", ";
+            $query=$query."          sum(CASE WHEN g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas\", ";
+            $query=$query."          sum(CASE WHEN g.tipo_origen = \"1\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Expande\", ";
+            $query=$query."          sum(CASE WHEN g.tipo_origen = \"2\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Portales\", ";
+            $query=$query."          sum(CASE WHEN g.tipo_origen = \"3\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Eventos\", ";
+            $query=$query."          sum(CASE WHEN g.tipo_origen = \"4\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Central\", ";
+            $query=$query."          sum(CASE WHEN g.tipo_origen = \"5\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Medios Comunicacion\", ";
+            $query=$query."          sum(CASE WHEN g.tipo_origen = \"6\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Mailing\", ";
+            $query=$query."          sum(CASE WHEN g.estado_sol=\"5\" THEN 1 ELSE 0 END) \"Positivas\" ";
+            $query=$query."FROM     expan_gestionsolicitudes g, expan_franquicia f ";
+            $query=$query."WHERE    g.deleted = 0 AND  ";
+            $query=$query."         f.id = g.franquicia AND  ";
+            $query=$query."         tipo_cuenta IN (1, 2) ";
+            $query=$query."GROUP BY franquicia ";
+            $query=$query."ORDER BY f.name; ";
+            
+            InsertaConuslta($objPHPExcel,$query,10,'Informe franquicias');
+            echo "Informe franquicias";
+        }
                    
         $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         $writer -> save($filePath);
