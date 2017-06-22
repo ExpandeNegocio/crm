@@ -9,6 +9,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $db = DBManagerFactory::getInstance();
 
     $nomFran=$_POST["nomFran"];
+    $idFran=$_POST["idFran"];
     $nomSector=$_POST["nomSector"];
     $idFranquicias=$_POST["franquicias"];
     $evento=$_POST["evento"];
@@ -72,6 +73,24 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             echo 'Ok';
                       
             break;
+            
+            
+        case 'FranqModeloNegocio':
+            
+            $query = "select modNeg1,modNeg2,modNeg3,modNeg4 from expan_franquicia where id='".$idFran."'";
+ 
+            $result = $db -> query($query, true);
+            
+            while ($row = $db -> fetchByAssoc($result)) {
+               $ModelosNeg=$row['modNeg1']."|";
+               $ModelosNeg=$ModelosNeg.$row['modNeg2']."|";
+               $ModelosNeg=$ModelosNeg.$row['modNeg3']."|";
+               $ModelosNeg=$ModelosNeg.$row['modNeg4'];
+            } 
+            
+            echo $ModelosNeg;
+            
+            break;            
         
         default:
             
