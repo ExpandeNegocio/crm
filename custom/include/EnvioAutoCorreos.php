@@ -1,5 +1,4 @@
 <?php
-
 //Definimos el receptor
 require_once ('include/SugarPHPMailer.php');
 require_once ('modules/Emails/Email.php');
@@ -7,14 +6,14 @@ require_once ('modules/Expan_Solicitud/Expan_Solicitud.php');
 require_once ('modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes.php');
 require_once ('modules/EmailTemplates/EmailTemplate.php');
 require_once ('modules/Notes/Note.php');
-
 class EnvioAutoCorreos {
     
     const MARC_NOMBRE = '#nombre#';
     const MARC_APELLIDO = '#apellidos#';
     const MARC_EMAIL = '#email#';
     const MARC_MOVIL = '#movil#';
-
+    const USUARIOS_POR_CORREO = 10;
+    
     function sendMessage(&$bean, $gestion, $idTemp, $fran) {
         
         //Comprobamos si la solicitud es cerrda o positiva
@@ -31,40 +30,26 @@ class EnvioAutoCorreos {
         if ($bean->no_correos_c==1){
             return "No se puede enviar a esta solicitud"; 
         }
-
         //Recogemos el template
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Entra');
-
         $emailTemp = new EmailTemplate();
         $emailTemp -> disable_row_level_security = true;
         $emailTemp -> retrieve($idTemp);
-
         $mail = new SugarPHPMailer();
-
         $emailObj = new Email();
         $defaults = $emailObj -> getSystemDefaultEmail();
-
         $mail -> From = $defaults['email'];
         $mail -> FromName = $defaults['name'];
-
         $mail -> ClearAllRecipients();
         $mail -> ClearReplyTos();
-
         $rcpt_name = $bean -> first_name . ' ' . $bean -> last_name;
-
         /*Recorremos todas las direcciones de correo de la solicitud*/
         $sea = new SugarEmailAddress;
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]C' . $bean -> id . '-');
         $addresses = $sea -> getAddressesByGUID($bean -> id, 'Expan_Solicitud');
-
         foreach ($addresses as $address) {
-
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Correo de recepcion - ' . $address['email_address']);
-
             $rcpt_email = $address['email_address'];
-
             $mail -> AddAddress($rcpt_email, $rcpt_name);
             //  $mail->AddBCC('crm@expandenegocio.com','CRM');
             $mail -> Subject = from_html($emailTemp -> subject);
@@ -76,55 +61,42 @@ class EnvioAutoCorreos {
             $mail -> Body = wordwrap($this->modificaMarcas($bean,from_html($emailTemp -> body_html)), 900);
             $mail -> IsHTML(true);
             //Omit or comment out this line if plain text
-
             //Attachments
             $note = new Note();
             $where = "notes.parent_id = '" . $idTemp . "'";
             $attach_list = $note -> get_full_list("", $where, true);
             //Get all Notes entries associated with email template
-
             $attachments = array();
             $attachments = array_merge($attachments, $attach_list);
-
             foreach ($attachments as $attached) {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Recoge Attach');
-
                 $filename = $attached -> filename;
                 $file_location = 'upload/' . $attached -> id;
                 $mime_type = $attached -> file_mime_type;
                 $mail -> AddAttachment($file_location, $filename, 'base64', $mime_type);
                 //Attach each file to message
             }
-
             $mail -> FromName = $fran -> name;
             $mail -> IsHTML(true);
-
             //$mail->From=$fran->correo_envio;
-
             //Recogemos la cuenta con la que enviamos los correos
             global $current_user;
             $current_user = new User();
             $current_user -> getSystemUser();
-
             $cuentaCor = new OutboundEmail();
             $cuentaCor = $cuentaCor -> getMailerByName($current_user, $fran -> correo_envio);
-
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuenta Correo-' . $fran -> correo_envio);
-
             if ($cuentaCor == false) {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuenta Correo no definida->Cuenta defecto');
-
             } else {
                 $mail -> IsSMTP();
                 $mail -> SMTPDebug = 1;
                 $mail -> SMTPAuth = true;
                 $mail -> From = $cuentaCor -> name;
-
                 $mail -> Username = $cuentaCor -> mail_smtpuser;
                 $mail -> Password = $cuentaCor -> mail_smtppass;
                 $mail -> Host = $cuentaCor -> mail_smtpserver;
                 $mail -> Port = $cuentaCor -> mail_smtpport;
-
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Puerto:' . $cuentaCor -> mail_smtpport);
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]tipoSSL:' . $cuentaCor -> mail_smtpssl);
                 if ($cuentaCor -> mail_smtpssl == 1) {
@@ -134,13 +106,9 @@ class EnvioAutoCorreos {
                     $mail -> SMTPSecure = 'tls';
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Es TLS');
                 }
-
                 $mail -> prepForOutbound();
-
             }
-
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]LLega aqui');
-
             if (!$mail -> Send()) {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]ERROR: El envio del correo ha fallado - ' . $mail -> ErrorInfo);
                 return "Error";
@@ -155,29 +123,19 @@ class EnvioAutoCorreos {
     }
 /*
     function preparaCorreosEvento($listaCorreos, $idFran,$cuerpo) {
-
         //Recogemos el objeto fraqnuicia
-
         $Fran = new Expan_Franquicia();
         $Fran -> retrieve($gestion -> $idFran);
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envios Evento Envio Correo] Nombre de la franquicia - ' . $Fran -> name);
-
         $db = DBManagerFactory::getInstance();
-
         //Creamos la consulta para localizar el id del template correspondiente
-
         $query = "select id from email_templates where type='" . $Fran -> name . "#EVENTO' AND deleted=0";
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envios Evento Envio Correo] Query correo - ' . $query);
         $result = $db -> query($query, true);
-
         $idTeplate = "";
-
         while ($row = $db -> fetchByAssoc($result)) {
             $idTeplate = $row["id"];
         }
-
         if ($idTeplate != "") {
             $envioCorreos = new EnvioAutoCorreos();
             $envioCorreos -> sendMessage($listaCorreos, '', $idTeplate, $Fran);
@@ -185,7 +143,6 @@ class EnvioAutoCorreos {
         }
     }
 */
-
     function modificaMarcas($solicitud,$texto){
         
        $text= str_replace(self::MARC_NOMBRE,$solicitud->first_name,$texto);
@@ -206,65 +163,50 @@ class EnvioAutoCorreos {
        return $text;
                 
     }
-
     function envioCorreosMailing($listaCorreos, $idTemplate,$cuerpo,$idMailing) {               
         
         $mailing=new Expma_Mailing();
         $mailing-> retrieve($idMailing);
         
         $listaSalida=array();
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]ID Template-' . $idTemplate);
-
         $emailTemp = new EmailTemplate();
         $emailTemp -> disable_row_level_security = true;
         $emailTemp -> retrieve($idTemplate);
-
         $mail = new SugarPHPMailer();
-
         $emailObj = new Email();
         $defaults = $emailObj -> getSystemDefaultEmail();
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Tipo Temp-' . $emailTemp -> getFieldValue('type'));
-
         $idFran = $this -> recogeFranquiciaPorPlantilla($emailTemp -> type);
         
         //Marcamos las que sabemos que no podemos enviar por protocolo
         
         $this->marcadoProtocolo($idMailing,$idFran);
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]ID fran-' . $idFran);
-
         //Utilizamos la cuenta por defecto o la de la franquicia
         if ($idFran == null) {
             $mail -> From = $defaults['email'];
             $mail -> FromName = $defaults['name'];
         } else {
-
             $fran = new Expan_Franquicia();
             $fran -> retrieve($idFran);
-
             global $current_user;
             $current_user = new User();
             $current_user -> getSystemUser();
-
             $cuentaCor = new OutboundEmail();
             $cuentaCor = $cuentaCor -> getMailerByName($current_user, $fran -> correo_envio);
-
             if ($cuentaCor == false) {
                 $mail -> From = $defaults['email'];
                 $mail -> FromName = $defaults['name'];
             } else {
                 $mail -> From = $cuentaCor -> name;
                 $mail -> FromName = $fran -> name;
-
                 $mail -> IsSMTP();
                 $mail -> SMTPAuth = true;
                 $mail -> Username = $cuentaCor -> mail_smtpuser;
                 $mail -> Password = $cuentaCor -> mail_smtppass;
                 $mail -> Host = $cuentaCor -> mail_smtpserver;
                 $mail -> Port = $cuentaCor -> mail_smtpport;
-
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Puerto:' . $cuentaCor -> mail_smtpport);
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]tipoSSL:' . $cuentaCor -> mail_smtpssl);
                 if ($cuentaCor -> mail_smtpssl == 1) {
@@ -274,21 +216,14 @@ class EnvioAutoCorreos {
                     $mail -> SMTPSecure = 'tls';
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Es TLS');
                 }
-
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Direccion-' . $mail -> From);
             }
         }
-
         $mail -> ClearAllRecipients();
         $mail -> ClearReplyTos();
-
         /*Añadimos en copia oculta todas las direcciones recogidas*/
-
         //    $mail->AddBCC('crm@expandenegocio.com','CRM');
-
         $mail -> Subject = from_html($emailTemp -> subject);
-
-
         $tempFinal=str_replace('$body',$cuerpo,$emailTemp -> body_html);
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuerpo-' . $cuerpo);
@@ -299,26 +234,21 @@ class EnvioAutoCorreos {
         $mail -> Body = wordwrap($tempFinal, 900);
         $mail -> IsHTML(true);
         //Omit or comment out this line if plain text
-
         //Attachments
         $note = new Note();
-        $where = "notes.parent_id = '" . $idTemp . "'";
+        $where = "notes.parent_id = '" . $idTemplate . "'";
         $attach_list = $note -> get_full_list("", $where, true);
         //Get all Notes entries associated with email template
-
         $attachments = array();
         $attachments = array_merge($attachments, $attach_list);
-
         foreach ($attachments as $attached) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Recoge Attach');
-
             $filename = $attached -> filename;
             $file_location = 'upload/' . $attached -> id;
             $mime_type = $attached -> file_mime_type;
             $mail -> AddAttachment($file_location, $filename, 'base64', $mime_type);
             //Attach each file to message
         }
-
         //Enviamos los correos en paquetes de 40
         $cont = 0;
         $arrayCorreos = array();
@@ -326,7 +256,7 @@ class EnvioAutoCorreos {
         foreach ($listaCorreos as $bccer) {
             $mail -> AddBCC($bccer);
             $arrayCorreos[]="'".strtoupper($bccer)."'";
-            if ($cont == 10) {
+            if ($cont == self::USUARIOS_POR_CORREO) {
                 $mail -> prepForOutbound();
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]CorreoEnviado:' . $cuentaCor -> mail_smtpport);
                 
@@ -352,7 +282,6 @@ class EnvioAutoCorreos {
                 $todosEnviados = false;
             }
         }
-
         if ($todosEnviados == false) {
             $mail -> prepForOutbound();
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]CorreoEnviado:' . $cuentaCor -> mail_smtpport);
@@ -375,9 +304,7 @@ class EnvioAutoCorreos {
         $mailing->save();
         echo "Ok";
         // $mail->setMailerForSystem();
-
     }
-
     function marcarEnviadoMailing($listaMail,$idMailing){
         
         $db = DBManagerFactory::getInstance();
@@ -402,7 +329,6 @@ class EnvioAutoCorreos {
     function marcarNoEnviadoMailing($listaMail,$idMailing){
         
         if ($listaMail!=''){
-
             $db = DBManagerFactory::getInstance();
             
             $query = "UPDATE expma_mailing_expan_solicitud_c ";
@@ -419,7 +345,6 @@ class EnvioAutoCorreos {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]marcarEnviadoMailing:' . $query);
             
             $db -> query($query);
-
         }
         
     }
@@ -463,7 +388,6 @@ class EnvioAutoCorreos {
         $db -> query($query);
         
     }
-
     function asociarCorreoSolicitudes($listaCorr,$fran,$mail,$texto) {
         
         $db = DBManagerFactory::getInstance();
@@ -489,7 +413,6 @@ class EnvioAutoCorreos {
         while ($rowSol = $db -> fetchByAssoc($resultSol)) {
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Entra bucle');
-
             //tenemos que recoger las gestiones asociadas
                                             
             $gestion = new Expan_GestionSolicitudes();
@@ -508,100 +431,71 @@ class EnvioAutoCorreos {
                    
         
     }
-
     function recogeFranquiciaPorPlantilla($namePlantilla) {
-
         $idFran = '';
         //Recogemos el id de la franquicia idFran#tipoPlant
         $GLOBALS['log'] -> info('[ExpandeNegocio][recogeFranquiciaPorPlantilla]NombrePlantilla-' . $namePlantilla);
-
         $lista = explode('#', $namePlantilla);
         if (count($lista) > 0) {
             $idFran = $lista[0];
         } else {
             return null;
         }
-
         return $idFran;
-
     }
 /*
     function enviarCorreosEvento($listaCorreos, $idTemplate, $fran) {
-
         //Recogemos el template
-
         $emailTemp = new EmailTemplate();
         $emailTemp -> disable_row_level_security = true;
         $emailTemp -> retrieve($idTemplate);
-
         $mail = new SugarPHPMailer();
-
         $emailObj = new Email();
         $defaults = $emailObj -> getSystemDefaultEmail();
-
         $mail -> From = $defaults['email'];
         $mail -> FromName = $defaults['name'];
-
         $mail -> ClearAllRecipients();
         $mail -> ClearReplyTos();
-
         //Añadimos en copia oculta todas las direcciones recogidas
-
         //$mail->AddBCC('crm@expandenegocio.com','CRM');
-
         foreach ($listaCorreos as $bccer) {
             $mail -> AddBCC($bccer);
         }
-
         $mail -> Subject = from_html($emailTemp -> subject);
-
         $mail -> Body_html = from_html($emailTemp -> body_html);
         $mail -> Body = wordwrap($emailTemp -> body_html, 900);
         $mail -> IsHTML(true);
         //Omit or comment out this line if plain text
-
         //Attachments
         $note = new Note();
         $where = "notes.parent_id = '" . $idTemp . "'";
         $attach_list = $note -> get_full_list("", $where, true);
         //Get all Notes entries associated with email template
-
         $attachments = array();
         $attachments = array_merge($attachments, $attach_list);
-
         foreach ($attachments as $attached) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Recoge Attach');
-
             $filename = $attached -> filename;
             $file_location = 'upload/' . $attached -> id;
             $mime_type = $attached -> file_mime_type;
             $mail -> AddAttachment($file_location, $filename, 'base64', $mime_type);
             //Attach each file to message
         }
-
         $mail -> FromName = $fran -> name;
         $mail -> IsHTML(true);
-
         //$mail->From=$fran->correo_envio;
-
         //Recogemos la cuenta con la que enviamos los correos
         global $current_user;
         $current_user = new User();
         $current_user -> getSystemUser();
-
         $cuentaCor = new OutboundEmail();
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuenta Correo' . $fran -> correo_envio);
-
         if ($cuentaCor == false) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuenta Correo no definida->Cuenta defecto');
-
             //  $mail->prepForOutbound();
             //  $mail->setMailerForSystem();
-
         } else {
             $mail -> From = $cuentaCor -> name;
-
             $mail -> Username = $cuentaCor -> mail_smtpuser;
             $mail -> Password = $cuentaCor -> mail_smtppass;
             $mail -> Host = $cuentaCor -> mail_smtpserver;
@@ -614,45 +508,30 @@ class EnvioAutoCorreos {
             $mail -> IsSMTP();
             // telling the class to use SMTP
             $mail -> SMTPAuth = true;
-
             $mail -> prepForOutbound();
-
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuenta Correo' . $dirCor -> mail_smtpuser . '-');
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuenta Correo' . $dirCor -> mail_smtppass);
-
             if (!$mail -> Send()) {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]ERROR: El envio del correo ha fallado');
             } else {
                 $this -> almacenarCorreo($mail, $rcpt_email, $bean, "Expan_GestionSolicitudes");
             }
-
         }
-
     }
 */
-
     function almacenarCorreo($mail, $toAdd, $bean, $module) {
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Insercion Correos]Entra');
-
         $db = DBManagerFactory::getInstance();
-
         $emailUID = create_guid();
-
         //Debemos insertar el correo
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Insercion Correos]Antes consulta');
-
         $query = "Insert emails (id,date_entered,date_modified,assigned_user_id,modified_user_id,created_by,
                                     deleted,date_sent,name,type,status,intent,parent_type,parent_id)
                     VALUES ('" . $emailUID . "', date_add(NOW(), INTERVAL -1 HOUR),date_add(NOW(), INTERVAL -1 HOUR),'" 
                     . $GLOBALS['current_user'] -> id . "','" . $GLOBALS['current_user'] -> id . "','" 
                     . $GLOBALS['current_user'] -> id . "',0,date_add(NOW(), INTERVAL -1 HOUR),'" . str_replace("'","", $mail -> Subject) . "','archived','sent','pick','" . $module . "','" . $bean -> id . "')";
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Insercion Correos]Insercion Correo-' . $query);
-
         $db -> query($query);
-
         //Debemos insertar el texto del correo
         $query = "Insert emails_text (email_id,from_addr,reply_to_addr,to_addrs,description,description_html,deleted) ";
         $query = $query. "VALUES ('" . $emailUID . "','" . 
@@ -662,12 +541,8 @@ class EnvioAutoCorreos {
                   mysql_real_escape_string($mail -> Body) . "','" . 
                   mysql_real_escape_string($mail -> Body_html) . 
                   "',0)";
-
         $GLOBALS['log'] -> info('[ExpandeNegocio][Insercion Correos]Insercion Correo Mensaje-' . $query);
-
         $db -> query($query);
-
     }
-
 }
 ?>
