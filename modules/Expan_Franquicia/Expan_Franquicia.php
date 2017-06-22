@@ -159,25 +159,71 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
      public function cambioDirCuenta($dirCuentaAnt,$dirCuentaAct) {
          
         $db = DBManagerFactory::getInstance();
-            
+        
         $query = "select id from expan_gestionsolicitudes where deleted=0 AND franquicia='".$this -> id."' AND assigned_user_id='".$dirCuentaAnt."'";  
                            
-        $result = $db -> query($query, true);
+        $resultado = $db -> query($query, true);
 
-        while ($row = $db -> fetchByAssoc($result)) {
-                                                                                           
-            $gestion = new Expan_GestionSolicitudes();
-            $gestion -> retrieve($row['id']);
-
-            $gestion -> assigned_user_id=$dirCuentaAct;
-            $gestion -> ignore_update_c = true;
-            $gestion -> save();
-  
-            $gestion -> asociarLLamadas("Planned", $dirCuentaAct);
-            $gestion -> asociarTareas("Not Started", $dirCuentaAct);  
+        while ($row = $db -> fetchByAssoc($resultado)) {
+                                                                 
+            $gestion =$row['id'];
+            //ANTIGUA FORMA
+            //$gestion -> asociarLLamadas("Planned", $dirCuentaAct);
+            //$gestion -> asociarTareas("Not Started", $dirCuentaAct);  
+            //$this -> eliminarEnlaceConFranquicia($gestion);
+            $this -> asociarLlamadas($gestion, $dirCuentaAct);
+            $this -> asociarTareas($gestion, $dirCuentaAct);
         }
+        $query="update expan_gestionsolicitudes g join (select id from expan_gestionsolicitudes where deleted=0 AND franquicia='".$this->id."' "; 
+        $query=$query. " AND assigned_user_id='".$dirCuentaAnt."') b on g.id=b.id set g.assigned_user_id='".$dirCuentaAct."' where g.deleted=0;";
+            
+        $result = $db -> query($query);
+            
     }
+     
+     function asociarLlamadas($gestion, $user){
+         
+
+        $db = DBManagerFactory::getInstance();       
+        $query="update calls c join (select c.id FROM calls c, ";
+        $query=$query. " expan_franquicia_calls_1_c fc where c.parent_id='".$this->id."' and "; 
+        $query=$query. " c.status='Planned' and  c.id=fc.expan_franquicia_calls_1calls_idb and c.deleted=0 and fc.deleted=0 ";
+        $query=$query. " ) b join (select c.id FROM calls c, expan_gestionsolicitudes_calls_1_c fc ";
+        $query=$query. " where c.parent_id='".$gestion."' and "; 
+        $query=$query. " c.status='Planned' and  c.id=fc.expan_gestionsolicitudes_calls_1calls_idb and c.deleted=0 and fc.deleted=0 ";
+        $query=$query. " ) d on (c.id=b.id or c.id=d.id) set assigned_user_id='".$user."';";
         
+         $result = $db -> query($query, true);
+     }
+     
+     function asociarTareas($gestion, $user){
+         
+
+        $db = DBManagerFactory::getInstance();       
+        $query="update tasks t join (select t.id FROM tasks t, ";
+        $query=$query. " expan_franquicia_tasks_1_c ft where t.parent_id='".$this->id."' and "; 
+        $query=$query. " t.status='Not Started' and  t.id=ft.expan_franquicia_tasks_1tasks_idb and t.deleted=0 and ft.deleted=0 ";
+        $query=$query. " ) b join (select t.id FROM tasks t, "; 
+        $query=$query. " expan_gestionsolicitudes_tasks_1_c ft where t.parent_id='".$gestion."' and "; 
+        $query=$query. " t.status='Not Started' and  t.id=ft.expan_gestionsolicitudes_tasks_1tasks_idb and t.deleted=0 and ft.deleted=0 ";
+        $query=$query." ) d on (t.id=b.id or t.id=d.id) set assigned_user_id='".$user."';";
+        
+         $result = $db -> query($query, true);
+     }
+        
+    function eliminarEnlaceConFranquicia($gestion){
+        $db = DBManagerFactory::getInstance();       
+        $query="delete from expan_franquicia_calls_1_c where expan_franquicia_calls_1calls_idb in ";
+        $query=$query. "(select c.id from expan_gestionsolicitudes_calls_1_c gc, expan_gestionsolicitudes g, calls c ";
+        $query=$query." where gc.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida=g.id and ";
+        $query=$query. " gc.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida='".$gestion->id."' and "; 
+        $query=$query. " c.parent_id=g.id and gc.expan_gestionsolicitudes_calls_1calls_idb=c.id and c.status='Planned' and "; 
+        $query=$query." c.parent_type='Expan_GestionSolicitudes');";
+        
+         $result = $db -> query($query, true);
+        
+    }
+
     public function cambioFiltro($filtroAnt,$filtroAct){
         
         $db = DBManagerFactory::getInstance();                

@@ -122,11 +122,11 @@ class SugarWidgetSubPanelTopChangeStateFranEvenButton extends SugarWidgetSubPane
                             if ( data = "Ok") {
                                 document.location.reload();                 
                             } else {
-                                alert("No se han podido cambiar el estado  " + estado);
+                                alert("No se han podido cambiar el estado y/o las gestiones asociadas  " + estado);
                             }            
                         },
                         error : function(jqXHR, textStatus, errorThrown) {
-                            alert("No se han podido cambiar el estado - " + textStatus + " - " + errorThrown);            
+                            alert("No se han podido cambiar el estado y/o las gestiones asociadas - " + textStatus + " - " + errorThrown);            
                         }
                     });
 

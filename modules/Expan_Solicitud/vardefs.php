@@ -1801,6 +1801,26 @@ $dictionary['Expan_Solicitud'] = array(
     'merge_filter' => 'disabled',
     'len' => '255',
     'size' => '20',
+  ),
+  
+  'check_puertas_abiertas' => 
+  array (
+    'required' => false,
+    'name' => 'check_puertas_abiertas',
+    'vname' => 'LBL_PUERTAS_ABIERTAS',
+    'type' => 'bool',
+    'massupdate' => 0,
+    'default' => '0',
+    'no_default' => false,
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'len' => '255',
+    'size' => '20',
   )
   
   

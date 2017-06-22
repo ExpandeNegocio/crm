@@ -51,11 +51,11 @@ class Expma_Mailing extends Expma_Mailing_sugar {
         $this->total_correos=$this->calculaCorreosTotales();
         $this->correos_protocolo=$this->calculaNoEnviosProtocolo();
         $this->n_reenvios=$this->n_reenvios+1;
-        $this-> fecha_ultimo_envio = $GLOBALS['timedate'] -> now();
+        $this-> fecha_ultimo_envio = TimeDate::getInstance()->nowDb();
         if ($this-> fecha_primer_envio==null){
-            $this-> fecha_primer_envio= $GLOBALS['timedate'] -> now();
-        }
-      
+            $this-> fecha_primer_envio= TimeDate::getInstance()->nowDb();
+        
+      }
     }
     
     private function calculaCorreosCorrectos(){

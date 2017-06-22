@@ -32,20 +32,20 @@
     if ($salida=='Ok'){
         
         if ($tipoEnvio=="C1"){
-            $bean->envio_documentacion=$GLOBALS['timedate']->now();
+            $bean->envio_documentacion=TimeDate::getInstance()->nowDb();
             $bean->chk_envio_documentacion=true;
             $bean -> creaLlamada('[AUT]Primera llamada', 'Primera');
         }elseif ($tipoEnvio=="C2"){
-            $bean->f_informacion_adicional=$GLOBALS['timedate']->now();     
+            $bean->f_informacion_adicional=TimeDate::getInstance()->nowDb();     
             $bean->chk_informacion_adicional=true;  
             $bean -> creaLlamada('[AUT]Llamada envio documentacion adicional', 'InformacionAdicional');
         }elseif ($tipoEnvio=="C3"){
-            $bean->f_envio_precontrato=$GLOBALS['timedate']->now();
+            $bean->f_envio_precontrato=TimeDate::getInstance()->nowDb();
             $bean->chk_envio_precontrato=true;
             $bean -> crearTarea("DOCUPerPre");    
             $bean -> creaLlamada('[AUT]Llamada envio precontrato', 'SegPre');  
         }elseif ($tipoEnvio=="C4"){
-            $bean->f_envio_contrato=$GLOBALS['timedate']->now();
+            $bean->f_envio_contrato=TimeDate::getInstance()->nowDb();
             $bean->chk_envio_contrato=true;
             $bean -> crearTarea("DOCUPerCon");
             $bean -> creaLlamada('[AUT]Llamada Contrato', 'Contrato');
@@ -54,7 +54,10 @@
         $bean -> ignore_update_c = true;
         $bean -> save();
         
-        $bean -> calcularPrioridades();       
+        $prioridad=$bean -> calcularPrioridades();
+        $bean->prioridad=$prioridad;
+        //$solicitud->prioridad=$prioridad;   
+            
     }else{
         $mensajes=$mensajes."No se ha podido enviar la documentación para: ".$bean->name."\n";
     }  

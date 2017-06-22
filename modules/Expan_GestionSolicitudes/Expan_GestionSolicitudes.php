@@ -70,6 +70,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     
     const DESCARTE_CANDIDATO_TOPO='5';    
     const DESCARTE_PERSONAL='14';
+    const DESCARTE_FRANQUICIA_MISMO_SECTOR='26';
+    const DESCARTE_FRANQUICIA_OTRO_SECTOR='27';
     
     const POSITIVO_PRECONTRATO='Pre';
     const POSITIVO_FRANQUICIADO='Cont';
@@ -110,69 +112,62 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     function archivarLLamadas(){
         
         //archivamos todas las llamadas de una gestion
-        $this -> load_relationship('expan_gestionsolicitudes_calls_1');
-         
-        foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $llamada) {
+        $db = DBManagerFactory::getInstance();
             
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Archivar LLamadas] Estado LLamada'.$llamada ->status);
-            if ($llamada ->status=="Planned"){
-                $llamada ->status='Archived';
-                $llamada -> ignore_update_c = true;
-                $llamada->save();
-            }
-        }
+            $query= " update calls c JOIN (SELECT c.id ";
+            $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
+            $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
+            $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and g.deleted=0) t "; 
+            $query=$query. " ON c.id = t.id set c.status='Archived'; ";
+            
+            $result = $db -> query($query);
         
     }
     
     function archivarTareas(){
         
-        //archivamos todas las llamadas de una gestion
-        $this -> load_relationship('expan_gestionsolicitudes_tasks_1');
-         
-        foreach ($this->expan_gestionsolicitudes_tasks_1->getBeans() as $tarea) {
-            
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Archivar Tareas] Estado Tarea'.$tarea ->status);
-            if ($tarea ->status=="Not Started"){
-                $tarea ->status='Deferred';
-                $tarea -> ignore_update_c = true;
-                $tarea->save();
-            }
-        }       
+        $db = DBManagerFactory::getInstance();
+        
+        $query="update tasks t join (select t.id FROM tasks t, expan_gestionsolicitudes g, expan_gestionsolicitudes_tasks_1_c gt where "; 
+        $query=$query. " t.id=gt.expan_gestionsolicitudes_tasks_1tasks_idb and "; 
+        $query=$query. " gt.expan_gestionsolicitudes_tasks_1expan_gestionsolicitudes_ida=g.id and g.id='".$this->id."' and "; 
+        $query=$query. " (t.status='Not Started') and t.deleted=0) b on t.id=b.id set t.status='Deferred';";
+        
+        $result = $db -> query($query);
+                
     }
     
     function archivarReuniones(){
+                       
+        $db = DBManagerFactory::getInstance();
+                
+        $query ="update meetings m join (select m.id from expan_gestionsolicitudes g, expan_gestionsolicitudes_meetings_1_c gm, meetings m ";
+        $query=$query. " where g.id=gm.expan_gestionsolicitudes_meetings_1expan_gestionsolicitudes_ida and "; 
+        $query=$query. " gm.expan_gestionsolicitudes_meetings_1meetings_idb=m.id and g.id='".$this->id."' and "; 
+        $query=$query. " (m.status='Not Started' or m.status='Could') and m.deleted = 0 ";
+        $query=$query. " ) b on m.id=b.id set m.status='Archived';";     
         
-        //archivamos todas las llamadas de una gestion
-        $this -> load_relationship('expan_gestionsolicitudes_meetings_1');
-         
-        foreach ($this->expan_gestionsolicitudes_meetings_1->getBeans() as $reunion) {
-            
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Archivar Reuniones] Estado Reuniones'.$reunion ->status);
-            if ($reunion ->status=="Not Started" ||
-                $reunion ->status=="Could"){
-                $reunion ->status='Archived';
-                $reunion -> ignore_update_c = true;
-                $reunion->save();
-            }
-        }       
+        $result = $db -> query($query);
+           
     }
     
     
     
    function archivarLLamadasPrevias(){
           //archivamos todas las llamadas de una gestion que se crean de forma automática
-        $this -> load_relationship('expan_gestionsolicitudes_calls_1');
-         
-        foreach ($this->expan_gestionsolicitudes_calls_1->getBeans() as $llamada) {
+          
+            $db = DBManagerFactory::getInstance();
             
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Eliminar LLamadas] Estado LLamada'.$llamada ->status);
-            if ($llamada ->status=="Planned" && ($llamada->call_type=="Primera" || $llamada->call_type=="ResPriDuda" || $llamada->call_type=="InformacionAdicional" || $llamada->call_type=="Cuestionario" || $llamada->call_type=="VisitaF" || $llamada->call_type=="SegPre" || $llamada->call_type=="Locales" || $llamada->call_type=="Contrato")){
-                $llamada ->status='Archived';
-                $llamada -> ignore_update_c = true;
-                $llamada->save();
-            }
-        }
-        
+            $query= " update calls c JOIN (SELECT c.id ";
+            $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
+            $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
+            $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and (c.call_type='Primera' or "; 
+            $query=$query. " c.call_type='ResPriDuda' or c.call_type='InformacionAdicional' or c.call_type='Cuestionario' or c.call_type='VisitaF' or "; 
+            $query=$query. " c.call_type='SegPre' or c.call_type='Locales' or c.call_type='Contrato') and g.deleted=0) t "; 
+            $query=$query. " ON c.id = t.id set c.status='Archived'; ";
+            
+            $result = $db -> query($query);
+  
     }
    
     function asociarLLamadas($status, $user) {
@@ -353,7 +348,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."         ON g.id = co.id) op ";
         $query=$query."  on g.id='".$this->id."' AND op.id=g.id   ";
         $query=$query."  set g.prioridad=op.final, g.date_modified=now(); ";
-        $result = $db -> query($query);  
+        $result = $db -> query($query, true);  
         
         //Actualizo las solicitudes
         
@@ -367,7 +362,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Actualizamos solicitudes');
         
-        $result = $db -> query($query); 
+        $result = $db -> query($query, true); 
         
         //Actualizo llamadas
         $query = "  update calls c ";
@@ -377,7 +372,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][calcularPrioridades] Actualizamos llamadas');
         
-        $result = $db -> query($query); 
+        $result = $db -> query($query, true); 
         
         //Actualizo tareas
         $query = "  update tasks t ";
@@ -385,7 +380,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."  on g.id=t.parent_id AND g.id='".$this->id."' ";
         $query=$query."  set t.prioridad=g.prioridad; ";
         
-        $result = $db -> query($query);
+        $result = $db -> query($query, true);
                 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_GestionSolicitudes]Se han calculado las prioridades de las tareas');
         
@@ -395,10 +390,17 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."  on g.id=m.parent_id AND g.id='".$this->id."' ";
         $query=$query."  set m.prioridad=g.prioridad; ";
         
-        $result = $db -> query($query);
+        $result = $db -> query($query, true);
                 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_GestionSolicitudes]Se han calculado las prioridades de las reuniones');        
         
+        $query="select g.prioridad as prior from expan_gestionsolicitudes g where g.id='".$this->id."';";
+        
+        $result = $db -> query($query, true);
+        
+         while ($row = $db -> fetchByAssoc($result)) {
+            return $row["prior"];
+        }        
     }
 
     function asignarUsuarioGestor() {
@@ -705,7 +707,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $this -> ignore_update_c = true;
         $this -> save();
     
-        $this->calcularPrioridades();       
+        $prioridad=$this->calcularPrioridades();
+        $this->prioridad=$prioridad;       
         
     }
      
@@ -776,10 +779,20 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                 $llamada->date_start=date("Y-m-d H:i:s", $dateTime + (15 * 24 * 3600));
                 
             }else{
-                $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+                if($texto=='[AUT]Puertas abiertas'){
+                       $llamada -> date_start=TimeDate::getInstance()->getNow() -> modify('+1 hour')-> asDb();
+                   //date_default_timezone_set('europe/madrid');
+                    //$dateTime = time()+3600;
+                    //$llamada->date_start=date("Y-m-d H:i:s", $dateTime);
+                    
+                }else{
+                     $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+                     $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
+                     $llamada -> date_start = $fecha;
+                }
+               
 
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
-            $llamada -> date_start = $fecha;
+           
             }
             
              
@@ -824,7 +837,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this -> ignore_update_c = true;
             $this -> save();
             
-            $this->calcularPrioridades();
+            $prioridad=$this->calcularPrioridades();
+            $this->prioridad=$prioridad;       
         }else{
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NO se puede añadir llamada or las condiciones impuestas');
         }
@@ -1001,8 +1015,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $tarea -> status = "Not Started";
         $tarea -> task_type= $tipoTarea;
                
-        $tarea -> date_start = $GLOBALS['timedate'] -> now();
-        $tarea -> date_due = $GLOBALS['timedate'] -> now();
+        $tarea -> date_start = TimeDate::getInstance()->nowDb();
+        $tarea -> date_due = TimeDate::getInstance()->nowDb();
     
         $franquicia = new Expan_Franquicia();
         $franquicia -> retrieve($this -> franquicia);
@@ -1044,7 +1058,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this -> save();
         }               
            
-        $this->calcularPrioridades();
+        $prioridad=$this->calcularPrioridades();
+        $this->prioridad=$prioridad;  
+             
         
     }
 

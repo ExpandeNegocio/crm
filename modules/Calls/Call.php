@@ -868,7 +868,7 @@ class Call extends SugarBean {
         return $dias;
     }
 
-     function rellenaLlamada($gestion, $texto, $solicitud, $telefono, $tipo) {
+   /*  function rellenaLlamada($gestion, $texto, $solicitud, $telefono, $tipo) {
         
         //Si no tiene telefono no creamos la llamada
         if ($telefono==""){
@@ -964,7 +964,7 @@ class Call extends SugarBean {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NO se puede añadir llamada or las condiciones impuestas');
         }
 
-    }
+    }*/
 
     public function getTextoObservacion(){
         
@@ -1026,7 +1026,7 @@ class Call extends SugarBean {
         // Si pasamos a un estado cerrado con exito guardamos la hora
         if ($newStatus == 'Held' && $prevStatus != $newStatus) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Cambia la hora');
-            $this -> date_start = $GLOBALS['timedate'] -> now();
+            $this -> date_start = TimeDate::getInstance()->nowDb();
             
             //Añadimos las observaciones y los checks de las llamadas
             if ($gestion!=null){                                                     
@@ -1061,6 +1061,7 @@ class Call extends SugarBean {
         if (substr($this->call_type,0,4)=='FRAN'){
             $franquicia->load_relationship('expan_franquicia_calls_1');
             $franquicia ->expan_franquicia_calls_1->add($this->id);
+            
             $this -> name = $franquicia->name . ' - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$this -> call_type];                
         } 
         
@@ -1104,7 +1105,10 @@ class Call extends SugarBean {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Se ha guardado la llamada');
         
         if ($gestion!=null){
-            $gestion->calcularPrioridades();
+            $prioridad=$gestion->calcularPrioridades();
+            $gestion -> prioridad=$prioridad;
+            //$this->prioridad=$prioridad;
+            //$solicitud->prioridad=$prioridad;
         }
         
     }

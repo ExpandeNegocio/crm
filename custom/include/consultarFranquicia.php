@@ -61,6 +61,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             break;             
             
         case 'FranqEstadoEvento':
+            
+            //si el estado es a facturar o incluido, cambiarel origen etc
                         
             $listaFranquicias=str_replace("!","','",$idFranquicias);
             
@@ -69,6 +71,16 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $query=$query."AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
             
             $result = $db -> query($query);
+            
+            if($estado=='1'||$estado=='2'){ //se pasa a facturar o incluido, hay que cambiar las gestiones asociadas
+            
+                $query="update expan_gestionsolicitudes g join (select g.id from expan_gestionsolicitudes g, expan_franquicia f where "; 
+                $query=$query. " (g.evento_bk is not null and g.evento_bk<>'') and g.franquicia=f.id and g.franquicia in ('".$listaFranquicias."') ";
+                $query=$query. " and g.evento_bk='".$evento."' ";
+                $query=$query. " and g.deleted=0 and f.deleted=0) b on g.id=b.id set g.tipo_origen=3, g.expan_evento_id_c=g.evento_bk, g.evento_bk = null;";
+                
+                $result = $db -> query($query);
+            }
             
             echo 'Ok';
                       

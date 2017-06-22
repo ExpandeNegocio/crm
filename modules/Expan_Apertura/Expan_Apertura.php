@@ -43,5 +43,37 @@ class Expan_Apertura extends Expan_Apertura_sugar {
     function Expan_Apertura(){    
         parent::Expan_Apertura_sugar();
     }
+    
+    
+    function existeApertura($nombre){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "select id from expan_apertura where name='".$nombre."' and deleted=0; ";
+        
+        $result = $db -> query($query, true);
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+                
+            return true;
+                 
+        }
+            return false;
+    }
+    
+    function crearApertura($nombre, $solicitud, $franquiciado){
+        
+        $apertura=new Expan_Apertura();
+        $apertura -> name= $nombre;
+        $apertura -> date_entered=TimeDate::getInstance()->getNow()->asDb();
+        $apertura -> abierta=0;
+        $apertura -> tipo_apertura=3;
+        $apertura -> provincia_apertura=$solicitud -> provincia_apertura_1;
+        $apertura -> localidad_apertura -> $solicitud -> localidad_apertura_1;
+        $apertura -> franquicia= $bean -> franquicia;
+        $apertura -> expan_franquiciado_id=$franquiciado;
+        $apertura -> ignore_update_c = true;
+        $apertura -> save();
+    }
 }
 ?>
