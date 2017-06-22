@@ -225,6 +225,7 @@ function procesar() {
             $gestion -> f_recepcion_cuestionario = $GLOBALS['timedate'] -> now();
             $gestion -> candidatura_avanzada=true;
             $gestion -> candidatura_caliente=true;
+            $gestion -> estado_sol = '2';
             $gestion -> asignarUsuarioGestor();
                 
             switch ($papel) {
