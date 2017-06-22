@@ -59,5 +59,26 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         }
         return false;
     }
+    function crearFranquiciado($solicitud){
+        
+        $franquiciado=new Expan_Franquiciado();
+        $franquiciado -> date_entered=TimeDate::getInstance()->getNow()->asDb();
+        $franquiciado -> first_name= $solicitud->first_name;
+        $franquiciado -> last_name=$solicitud->last_name;
+        $franquiciado -> salutation =$solicitud->salutation;
+        $franquiciado -> phone_home=$solicitud ->phone_home;
+        $franquiciado -> phone_mobile=$solicitud->phone_mobile;
+        $franquiciado -> no_correos=$solicitud->no_correos;
+        $franquiciado -> no_newsletter=$solicitud->no_newsletter;
+        $franquiciado -> skype=$solicitud->skype;
+        $franquiciado -> email1=$solicitud->email1;
+        $franquiciado -> email2=$solicitud->email2;
+        $franquiciado -> pais=$solicitud->pais_c;
+                  
+        //guardar los cambios del franquiciado
+        $franquiciado -> ignore_update_c = true;
+        $franquiciado -> save();
+        return $franquiciado;
+    }
 }
 ?>

@@ -70,6 +70,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     
     const DESCARTE_CANDIDATO_TOPO='5';    
     const DESCARTE_PERSONAL='14';
+    const DESCARTE_FRANQUICIA_MISMO_SECTOR='26';
+    const DESCARTE_FRANQUICIA_OTRO_SECTOR='27';
     
     const POSITIVO_PRECONTRATO='Pre';
     const POSITIVO_FRANQUICIADO='Cont';

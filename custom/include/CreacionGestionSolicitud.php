@@ -490,55 +490,31 @@ class AccionesGuardadoGestionSol {
                     }
                 }
                 
+                //si ha pasado a descartado con motivo, monta franquicia, se debe crear el franquiciado si es que no existía
+                if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO && ($bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_MISMO_SECTOR||$bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR)){
+                        
+                    
+                    $franq= Expan_Franquiciado::existeFranquiciado($solicitud->id);
+                    if($franq==false){ //se crea el franquiciado
+                        Expan_Franquiciado::crearFranquiciado($solicitud);
+                    }
+                    
+                }
+                
                 //Si pasamos a estados positivo, con motivo positivo-> contrato, se crea la apertura con los datos de la solicitud
                 if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && $bean -> motivo_positivo == Expan_GestionSolicitudes::POSITIVO_FRANQUICIADO){
                       
-                    
-                    $apertura=new Expan_Apertura();
-                    if($apertura->existeApertura($bean->name)==false) {//no está creada la apertura
+                    if(Expan_Apertura::existeApertura($bean->name)==false) {//no está creada la apertura
                         
-                        $apertura -> name= $bean -> name;
-                        $apertura -> date_entered=TimeDate::getInstance()->getNow()->asDb();
-                        $apertura -> abierta=0;
-                        $apertura -> tipo_apertura=3;
-                        $apertura -> provincia_apertura=$solicitud -> provincia_apertura_1;
-                        $apertura -> localidad_apertura -> $solicitud -> localidad_apertura_1;
-                        $apertura -> franquicia= $bean -> franquicia;
+                        $franquiciado=Expan_Franquiciado::existeFranquiciado($solicitud->id);
                         
-                        $franquiciado=new Expan_Franquiciado();
-                        
-                        $franq=$franquiciado -> existeFranquiciado($solicitud->id);
-                        
-                        if($franq==false) {//se crea el franquiciado a partir de la solicitud, no existe
+                        if($franquiciado==false) {//se crea el franquiciado a partir de la solicitud, no existe
                             
-                            $franquiciado -> date_entered=TimeDate::getInstance()->getNow()->asDb();
-                            $franquiciado -> first_name= $solicitud->first_name;
-                            $franquiciado -> last_name=$solicitud->last_name;
-                            $franquiciado -> salutation =$solicitud->salutation;
-                            $franquiciado -> phone_home=$solicitud ->phone_home;
-                            $franquiciado -> phone_mobile=$solicitud->phone_mobile;
-                            $franquiciado -> no_correos=$solicitud->no_correos;
-                            $franquiciado -> no_newsletter=$solicitud->no_newsletter;
-                            $franquiciado -> skype=$solicitud->skype;
-                            $franquiciado -> email1=$solicitud->email1;
-                            $franquiciado -> email2=$solicitud->email2;
-                            $franquiciado -> pais=$solicitud->pais_c;
-                  
-                            //guardar los cambios del franquiciado
-                            $franquiciado -> ignore_update_c = true;
-                            $franquiciado -> save();
-                            
-                            $apertura -> expan_franquiciado_id=$franquiciado->id;
-                            
-                        }else{//ya está creado, se asigna
-                            $apertura -> expan_franquiciado_id= $franq;//puede que sea mejor el id solo
+                            $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud);
                             
                         }
+                        Expan_Apertura::crearApertura($bean, $solicitud, $franquiciado);
                     
-                    
-                    
-                    $apertura -> ignore_update_c = true;
-                    $apertura -> save();
                     }   
                     
                     
@@ -632,6 +608,8 @@ class AccionesGuardadoGestionSol {
             }
 
         }
+
+    
     }
 
 }
