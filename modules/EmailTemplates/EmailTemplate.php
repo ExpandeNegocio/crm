@@ -108,6 +108,7 @@ class EmailTemplate extends SugarBean {
 		'created_by_name',
 		'accept_status_id',
 		'accept_status_name',
+		'franquicia',
 	);
 
     /**
@@ -724,6 +725,7 @@ class EmailTemplate extends SugarBean {
         parent::cleanBean();
         $this->body_html = str_replace(array_values($this->storedVariables), array_keys($this->storedVariables), $this->body_html);
     */
+    echo 'llega';
      }
 
     /**

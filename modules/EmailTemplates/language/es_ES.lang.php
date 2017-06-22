@@ -115,4 +115,6 @@ $mod_strings = array (
   'LBL_SELECT' => 'Seleccionar',
   'LBL_ID_FF_CLEAR' => 'Limpiar',
   'LBL_TYPE' => 'Tipo',
+  'LBL_FRANQUICIA' => 'Franquicia',
+  'LBL_MODELO_NEGOCIO' => 'Modelo de Negocio',
 );

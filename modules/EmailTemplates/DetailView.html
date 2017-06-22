@@ -62,24 +62,33 @@
 <table width="100%" border="0" cellspacing="{GRIDLINE}" cellpadding="0">
 {PAGINATION}
     <tr>
-    <td scope="row" width='15%'><slot>{MOD.LBL_TYPE}</slot></td>
-    <td colspan="3"><slot>{TYPE}</slot></td>
+		<td scope="row" width='15%'><slot>{MOD.LBL_NAME}</slot></td>
+		<td><slot>{NAME}&nbsp;</slot></td>
+	    
     </tr>
 	<tr>
-	<td scope="row" width='15%'><slot>{MOD.LBL_NAME}</slot></td>
-	<td><slot>{NAME}&nbsp;</slot></td>
-	<td scope="row"><slot>{APP.LBL_DATE_MODIFIED}</slot></td>
-	<td><slot>{DATE_MODIFIED} {APP.LBL_BY} {MODIFIED_BY}&nbsp;</slot></td>
+		<td scope="row" width='15%'><slot>{MOD.LBL_FRANQUICIA}</slot></td>
+		<td><slot>{nombreFran}</slot></td>
+		<td scope="row"><slot>{MOD.LBL_TYPE}</slot></td>
+	    <td><slot>{TYPE}</slot></td>		
 	<!--
 	<td><slot>{MOD.LBL_PUBLISH}</slot></td>
 	<td><slot><input type="checkbox" name="published" disabled {PUBLISHED}></slot></td>
 	-->
 	</tr>
 	<tr>
-	<td scope="row" width='15%'><slot>{MOD.LBL_DESCRIPTION}</slot></td>
-	<td><slot>{DESCRIPTION}&nbsp;</slot></td>
-	<td scope="row"><slot>{APP.LBL_DATE_ENTERED}</slot></td>
-	<td><slot>{DATE_ENTERED} {APP.LBL_BY} {CREATED_BY}&nbsp;</slot></td>
+		<td scope="row" width='15%'><slot>{MOD.LBL_MODELO_NEGOCIO}</slot></td>
+		<td><slot>{modneg}</slot></td>
+		<td scope="row"><slot>{MOD.LBL_DESCRIPTION}</slot></td>
+		<td><slot>{DESCRIPTION}&nbsp;</slot></td>
+		
+		
+	</tr>
+	<tr>
+		<td scope="row" width='15%'><slot>{APP.LBL_DATE_ENTERED}</slot></td>
+		<td><slot>{DATE_ENTERED} {APP.LBL_BY} {CREATED_BY}&nbsp;</slot></td>
+		<td scope="row"><slot>{APP.LBL_DATE_MODIFIED}</slot></td>
+		<td><slot>{DATE_MODIFIED} {APP.LBL_BY} {MODIFIED_BY}&nbsp;</slot></td>-->
 	</tr>
 <!--
 	<tr>

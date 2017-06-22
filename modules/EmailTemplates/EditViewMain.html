@@ -46,12 +46,17 @@
 <script type="text/javascript" language="Javascript" src="modules/Emails/javascript/Email.js?v={VERSION_MARK}"></script>
 <script type="text/javascript" language="Javascript" src="modules/EmailTemplates/EmailTemplate.js?v={VERSION_MARK}"></script>
 <script type="text/javascript" src="cache/include/javascript/sugar_grp1.js?v={VERSION_MARK}"></script>
+<script type="text/javascript" language="Javascript" src="modules/EmailTemplates/EditTemplate.js"></script>
+<script type="text/javascript">  
+   recogelistaNegocios('{FRANQ}','{MODNEG}');
+</script>
 <script type="text/javascript">
 {FIELD_DEFS_JS}
 </script>
 {JSLANG}
 
-<form name="EditView" id="EditView" method="POST" action="index.php" enctype="multipart/form-data">
+<form name="EditView" id="EditView" method="POST" onload="prueba();" action="index.php" enctype="multipart/form-data">
+	<input type="hidden" name="Hola" value="Hola">
 	<input type="hidden" name="module" value="EmailTemplates">
 	<input type="hidden" name="record" value="{ID}">
 	<input type="hidden" name="action">
@@ -105,6 +110,20 @@
                         </td>
                         <td width="30%" >
                             <select name='type' tabindex="11">{TYPEDROPDOWN}</select>
+                        </td>
+					</tr>
+					<tr>
+                        <td width="15%" scope="row">
+                         {MOD.LBL_FRANQUICIA}
+                        </td>
+                        <td width="30%" >
+                            <select name='franquicia' onchange="recogelistaNegocios(value);"  tabindex="11">{FRANQDROPDOWN}</select>
+                        </td>
+                        <td width="15%" scope="row">
+                         {MOD.LBL_MODELO_NEGOCIO}
+                        </td>
+                        <td width="30%" >
+                            <select id='modeloneg' name='modeloneg' tabindex="12">{NEGDROPDOWN}</select>
                         </td>
 					</tr>
                     <tr>

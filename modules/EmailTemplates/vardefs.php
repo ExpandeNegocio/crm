@@ -188,7 +188,7 @@ $dictionary['EmailTemplate'] = array(
             'options' => 'emailTemplates_type_list',
             'comment' => 'Type of the email template'
        ),
-        'franquicia_principal' =>array (
+        'franquicia' =>array (
 		    'required' => false,
 		    'name' => 'franquicia',
 		    'vname' => 'LBL_FRANQUICIA',
@@ -210,6 +210,29 @@ $dictionary['EmailTemplate'] = array(
 		    'studio' => 'visible',
 		    'dependency' => false,
 		  ),
+		            
+          'modeloneg' =>array (
+            'required' => false,
+            'name' => 'modeloneg',
+            'vname' => 'LBL_MODELO_NEGOCIO',
+            'type' => 'enum',
+            'massupdate' => '1',
+            'no_default' => false,
+            'comments' => '',
+            'help' => '',
+            'importable' => 'true',
+            'duplicate_merge' => 'disabled',
+            'duplicate_merge_dom_value' => '0',
+            'audited' => false,
+            'reportable' => true,
+            'unified_search' => false,
+            'merge_filter' => 'disabled',
+            'len' => 100,
+            'size' => '20',
+            'options' => 'modelo_negocio_list',
+            'studio' => 'visible',
+            'dependency' => false,
+          ),
 	),
 	'indices' => array(
 		array(

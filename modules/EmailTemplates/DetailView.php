@@ -46,6 +46,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once('include/upload_file.php');
 require_once('include/DetailView/DetailView.php');
+require_once('modules/Expan_Franquicia/Expan_Franquicia.php');
 
 //Old DetailView compares wrong session variable against new view.list.  Need to sync so that
 //the pagination on the DetailView page will show.
@@ -138,6 +139,7 @@ if(isset($focus->text_only) && $focus->text_only){
     $xtpl->assign("TEXT_ONLY_CHECKED","CHECKED");
 }
 $xtpl->assign("NAME", $focus->name);
+
 $xtpl->assign("DESCRIPTION", $focus->description);
 $xtpl->assign("SUBJECT", $focus->subject);
 $xtpl->assign("BODY", $focus->body);
@@ -147,6 +149,14 @@ $xtpl->assign("DATE_ENTERED", $focus->date_entered);
 $xtpl->assign("ASSIGNED_USER_NAME", $focus->assigned_user_name);
 
 $xtpl->assign("TYPE", $app_list_strings['emailTemplates_type_list'][$focus->type]);
+$xtpl->assign("franquicia", $focus->franquicia);
+$xtpl->assign("nombreFran", $app_list_strings['franquicia_list_todas'][$focus->franquicia]);
+
+
+$franObj = new Expan_Franquicia();
+$franObj -> retrieve($focus -> franquicia);
+
+$xtpl->assign("modneg", $franObj->getNombreModeloNegocio($focus->modeloneg));
 
 if($focus->ACLAccess('EditView')) {
 	$xtpl->parse("main.edit");

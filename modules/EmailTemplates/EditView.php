@@ -343,6 +343,8 @@ if(true) {
 	////    END ATTACHMENTS
 	///////////////////////////////////////
     $templateType = !empty($focus->type) ? $focus->type : '';
+    $franquicia = !empty($focus->franquicia) ? $focus->franquicia : '';
+    $modeloneg = !empty($focus->modeloneg) ? $focus->modeloneg : '';
     if($has_campaign) {
         if (empty($_REQUEST['record']))
         {
@@ -368,6 +370,12 @@ if(true) {
             $xtpl->assign("TYPEDROPDOWN", get_select_options_with_id($app_list_strings['emailTemplates_type_list_no_workflow'],$templateType));
         }
     }
+    
+    
+    $xtpl->assign("FRANQDROPDOWN", get_select_options_with_id($app_list_strings['franquicia_list_todas'],$franquicia));
+    $xtpl->assign("FRANQ",$franquicia);
+    $xtpl->assign("MODNEG",$modeloneg);
+       
 	// done and parse
 	$xtpl->parse("main.textarea");
 }

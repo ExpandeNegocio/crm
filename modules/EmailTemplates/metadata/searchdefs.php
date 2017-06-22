@@ -53,6 +53,7 @@
 							),
 					    'advanced_search' => array('name',
                                                         'type' => array('name' => 'type', 'type'=>'enum', 'function' => array('name' => 'EmailTemplate::getTypeOptionsForSearch')),
+                                                        'franquicia' => array('name' => 'franquicia', 'type'=>'enum'),
                                                         'subject','description',
                                 					    'assigned_user_id' => 
                                 					      array (

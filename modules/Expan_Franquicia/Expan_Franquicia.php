@@ -427,5 +427,22 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $result = $db -> query($query);
     }
     
+    function getNombreModeloNegocio($modNegId){
+        
+        $campo='modNeg'.$modNegId;   
+        $nombreNeg="";     
+     
+        $db = DBManagerFactory::getInstance();
+
+        $query = "select * from expan_franquicia where id='".$this->id."'";
+        
+        $result = $db -> query($query, TRUE);
+         
+        while ($row = $db -> fetchByAssoc($result)) {
+            $nombreNeg=$row[$campo];
+        }
+        return $nombreNeg;
+    }
+    
 }
 ?>
