@@ -494,9 +494,13 @@ class AccionesGuardadoGestionSol {
                 if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO && ($bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_MISMO_SECTOR||$bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR)){
                         
                     
-                    $franq= Expan_Franquiciado::existeFranquiciado($solicitud->id);
-                    if($franq==false){ //se crea el franquiciado
-                        Expan_Franquiciado::crearFranquiciado($solicitud);
+                    $franquiciado= Expan_Franquiciado::existeFranquiciado($solicitud->id);
+                    if($franquiciado==false){ //se crea el franquiciado
+                        $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud);
+                    }
+                    $name=$solicitud-> first_name ." ".$solicitud->last_name. " - Franquicia Competencia";
+                    if (Expan_Apertura::existeApertura($name)==false){
+                        Expan_Apertura::crearApertura($name, $solicitud, $franquiciado);
                     }
                     
                 }
@@ -513,7 +517,7 @@ class AccionesGuardadoGestionSol {
                             $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud);
                             
                         }
-                        Expan_Apertura::crearApertura($bean, $solicitud, $franquiciado);
+                        Expan_Apertura::crearApertura($bean->name, $solicitud, $franquiciado);
                     
                     }   
                     

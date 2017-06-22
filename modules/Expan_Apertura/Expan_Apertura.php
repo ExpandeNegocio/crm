@@ -61,17 +61,17 @@ class Expan_Apertura extends Expan_Apertura_sugar {
             return false;
     }
     
-    function crearApertura($gestion, $solicitud, $franquiciado){
+    function crearApertura($nombre, $solicitud, $franquiciado){
         
         $apertura=new Expan_Apertura();
-        $apertura -> name= $gestion -> name;
+        $apertura -> name= $nombre;
         $apertura -> date_entered=TimeDate::getInstance()->getNow()->asDb();
         $apertura -> abierta=0;
         $apertura -> tipo_apertura=3;
         $apertura -> provincia_apertura=$solicitud -> provincia_apertura_1;
         $apertura -> localidad_apertura -> $solicitud -> localidad_apertura_1;
         $apertura -> franquicia= $bean -> franquicia;
-        $apertura -> expan_franquiciado_id=$franquiciado->id;
+        $apertura -> expan_franquiciado_id=$franquiciado;
         $apertura -> ignore_update_c = true;
         $apertura -> save();
     }
