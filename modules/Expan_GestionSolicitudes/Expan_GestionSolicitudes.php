@@ -635,7 +635,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this->chk_envio_precontrato==true ||
             $this->chk_visita_local==true ||
             $this->chk_envio_contrato==true ||
-            $this->chk_visita_central==true)){
+            $this->chk_visita_central==true ||
+            $this->chk_propuesta_zona==true)){
                             
                 $this->candidatura_avanzada=true;
         }else{
@@ -670,7 +671,10 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this->chk_visita_local==true ||
             $this->chk_envio_contrato==true ||
             $this->chk_visita_central==true ||
-            $this->chk_posible_colabora==true
+            $this->chk_posible_colabora==true ||
+            $this->chk_envio_precontrato_personal==true||
+            $this->chk_envio_contrato_personal==true||
+            $this->chk_envio_plan_financiero_personal==true
             ))
             ||
             ($this -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && 
