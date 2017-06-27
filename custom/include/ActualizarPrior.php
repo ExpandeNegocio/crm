@@ -16,8 +16,11 @@
     $query=$query."    CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200  ";
     $query=$query."    WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100  ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND oportunidad_inmediata = 1 THEN 1000   ";
-    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 100   ";
-    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 90   ";
+    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato_personal = 1 THEN 130  ";
+    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 120   ";
+    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 110   ";
+    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_plan_financiero_personal = 1 THEN 100  ";
+    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato_personal = 1 THEN 90  ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato = 1 THEN 80   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visitado_fran = 1 THEN 70   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_entrevista = 1 THEN 60   ";
