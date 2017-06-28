@@ -469,6 +469,16 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
         if ($this -> phone_office !=""){//si hay telefono de la oficina
             $telefono = $this -> phone_office;
+        }elseif($this->phone_alternate != ""){
+            $telefono = $this -> phone_alternate;
+        }elseif($this -> movil_general!=""){
+            $telefono = $this -> movil_general;
+        }elseif($this->telefono_contacto_2!=""){
+            $telefono = $this -> telefono_contacto_2;
+        }elseif($this -> telefono_alternativo_2!=""){
+            $telefono = $this -> telefono_alternativo_2;            
+        }elseif($this ->movil_general_2!=""){
+            $telefono = $this -> movil_general_2;
         }
         
         return $telefono;
