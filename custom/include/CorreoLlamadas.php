@@ -148,7 +148,7 @@
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."RIGHT JOIN users u on u.id=f.assigned_user_id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2)  ";
-        $query=$query."order by f.tipo_cuenta,Total_Planificadas desc ";
+        $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc ";
 
 
         InsertaConuslta($objPHPExcel,$query,4,'Franquicia-Llamadas');
@@ -179,7 +179,7 @@
         $query=$query."    GROUP BY g.franquicia) a ";
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
-        $query=$query."order by f.tipo_cuenta,Total_Planificadas desc; ";
+        $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc; ";
 
                 
         InsertaConuslta($objPHPExcel,$query,5,'Franquicia-Tareas');
@@ -213,7 +213,7 @@
         $query=$query."    GROUP BY g.franquicia) a ";
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
-        $query=$query."order by f.tipo_cuenta,Total_Planificadas desc; ";
+        $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc; ";
 
                 
         InsertaConuslta($objPHPExcel,$query,6,'Franquicia-Reuniones');               
@@ -234,7 +234,7 @@
         $query=$query."join expan_franquicia f ";
         $query=$query."on f.id=a.f_id ";
         $query=$query."where f.tipo_cuenta in (1,2)  ";
-        $query=$query."order by Calientes desc,Avanzadas desc; ";
+        $query=$query."order by f.prime desc, Calientes desc,Avanzadas desc; ";
         
         InsertaConuslta($objPHPExcel,$query,7,'Franquicia-Avanzadas_Calientes');                       
         echo "inserta Gestiones avanzadas/Calientas por franquicia";
@@ -259,13 +259,13 @@
         
         //Candidaturas Calientes
         $query = "SELECT name Franquicia, Nombre, d_prov Provincia ";
-        $query=$query."FROM   (SELECT   f.name, concat(s.first_name, ' ', s.last_name) nombre, s.provincia_apertura_1 prov ";
+        $query=$query."FROM   (SELECT   f.name, f.prime, concat(s.first_name, ' ', s.last_name) nombre, s.provincia_apertura_1 prov ";
         $query=$query."        FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_franquicia f ";
         $query=$query."        WHERE    f.id = g.franquicia AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id = ";
         $query=$query."                   gs.expan_soli5dcccitudes_idb AND g.candidatura_caliente = 1 AND g.deleted = 0 ";
         $query=$query."        ORDER BY f.name) a ";
         $query=$query."       JOIN expan_m_provincia p ";
-        $query=$query."WHERE  a.prov = p.c_prov; ";
+        $query=$query."WHERE  a.prov = p.c_prov ORDER BY a.prime desc, Franquicia; ";
         
         InsertaConuslta($objPHPExcel,$query,9,'Candidaturas Calientes');
         echo "inserta Candidaturas Calientes";
@@ -290,7 +290,7 @@
             $query=$query."         f.id = g.franquicia AND  ";
             $query=$query."         tipo_cuenta IN (1, 2) ";
             $query=$query."GROUP BY franquicia ";
-            $query=$query."ORDER BY f.name; ";
+            $query=$query."ORDER BY f.prime desc, f.name; ";
             
             InsertaConuslta($objPHPExcel,$query,10,'Informe franquicias');
             echo "Informe franquicias";
