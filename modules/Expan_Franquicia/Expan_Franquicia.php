@@ -184,14 +184,21 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
      function asociarLlamadas($gestion, $user){
          
 
-        $db = DBManagerFactory::getInstance();       
-        $query="update calls c join (select c.id FROM calls c, ";
-        $query=$query. " expan_franquicia_calls_1_c fc where c.parent_id='".$this->id."' and "; 
-        $query=$query. " c.status='Planned' and  c.id=fc.expan_franquicia_calls_1calls_idb and c.deleted=0 and fc.deleted=0 ";
-        $query=$query. " ) b join (select c.id FROM calls c, expan_gestionsolicitudes_calls_1_c fc ";
-        $query=$query. " where c.parent_id='".$gestion."' and "; 
-        $query=$query. " c.status='Planned' and  c.id=fc.expan_gestionsolicitudes_calls_1calls_idb and c.deleted=0 and fc.deleted=0 ";
-        $query=$query. " ) d on (c.id=b.id or c.id=d.id) set assigned_user_id='".$user."';";
+        $db = DBManagerFactory::getInstance();    
+        
+        $query = "update calls c join ";
+        $query=$query." (select * from ( ";
+        $query=$query." (select c.id FROM calls c,  ";
+        $query=$query." expan_franquicia_calls_1_c fc where c.parent_id='".$this->id."' and  ";
+        $query=$query." c.status='Planned' and  c.id=fc.expan_franquicia_calls_1calls_idb and c.deleted=0 and fc.deleted=0  ";
+        $query=$query." )  ";
+        $query=$query."  UNION  ";
+        $query=$query." (select c.id FROM calls c, expan_gestionsolicitudes_calls_1_c fc  ";
+        $query=$query." where c.parent_id='".$gestion."' and  ";
+        $query=$query." c.status='Planned' and  c.id=fc.expan_gestionsolicitudes_calls_1calls_idb and c.deleted=0 and fc.deleted=0  ";
+        $query=$query." ) ";
+        $query=$query." )a)b on b.id=c.id set c.assigned_user_id='".$user."'; ";
+                
         
          $result = $db -> query($query, true);
      }
@@ -200,13 +207,17 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
          
 
         $db = DBManagerFactory::getInstance();       
-        $query="update tasks t join (select t.id FROM tasks t, ";
-        $query=$query. " expan_franquicia_tasks_1_c ft where t.parent_id='".$this->id."' and "; 
-        $query=$query. " t.status='Not Started' and  t.id=ft.expan_franquicia_tasks_1tasks_idb and t.deleted=0 and ft.deleted=0 ";
-        $query=$query. " ) b join (select t.id FROM tasks t, "; 
-        $query=$query. " expan_gestionsolicitudes_tasks_1_c ft where t.parent_id='".$gestion."' and "; 
-        $query=$query. " t.status='Not Started' and  t.id=ft.expan_gestionsolicitudes_tasks_1tasks_idb and t.deleted=0 and ft.deleted=0 ";
-        $query=$query." ) d on (t.id=b.id or t.id=d.id) set assigned_user_id='".$user."';";
+        
+        $query = "update tasks t join  ";
+        $query=$query."        (select * from  ";
+        $query=$query."        ((select t.id FROM tasks t,  ";
+        $query=$query." expan_franquicia_tasks_1_c ft where t.parent_id='".$this->id."' and  ";
+        $query=$query." t.status='Not Started' and  t.id=ft.expan_franquicia_tasks_1tasks_idb and t.deleted=0 and ft.deleted=0  ";
+        $query=$query." ) UNION  ";
+        $query=$query." (select t.id FROM tasks t,  ";
+        $query=$query." expan_gestionsolicitudes_tasks_1_c ft where t.parent_id='".$gestion."' and  ";
+        $query=$query." t.status='Not Started' and  t.id=ft.expan_gestionsolicitudes_tasks_1tasks_idb and t.deleted=0 and ft.deleted=0  ";
+        $query=$query." ))a)b on t.id=b.id set assigned_user_id='".$user."'; ";
         
          $result = $db -> query($query, true);
      }
