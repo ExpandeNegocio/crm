@@ -14,6 +14,7 @@ class EnvioAutoCorreos {
     const MARC_APELLIDO = '#apellidos#';
     const MARC_EMAIL = '#email#';
     const MARC_MOVIL = '#movil#';
+    const MARC_GESTION= '#idgestion#';
 
     function sendMessage(&$bean, $gestion, $idTemp, $fran) {
         
@@ -70,10 +71,10 @@ class EnvioAutoCorreos {
             $mail -> Subject = from_html($emailTemp -> subject);
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuerpo de la plantilla - ' . $emailTemp -> body_html);
-            $mail -> Body_html = $this->modificaMarcas($bean,from_html($emailTemp -> body_html));
+            $mail -> Body_html = $this->modificaMarcas($bean,$gestion, from_html($emailTemp -> body_html));
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuerpo del correo - ' . $mail -> Body_html);
             
-            $mail -> Body = wordwrap($this->modificaMarcas($bean,from_html($emailTemp -> body_html)), 900);
+            $mail -> Body = wordwrap($this->modificaMarcas($bean, $gestion, from_html($emailTemp -> body_html)), 900);
             $mail -> IsHTML(true);
             //Omit or comment out this line if plain text
 
@@ -186,7 +187,7 @@ class EnvioAutoCorreos {
     }
 */
 
-    function modificaMarcas($solicitud,$texto){
+    function modificaMarcas($solicitud,$gestion, $texto){
         
        $text= str_replace(self::MARC_NOMBRE,$solicitud->first_name,$texto);
        $text= str_replace(self::MARC_APELLIDO,$solicitud->last_name,$text);
@@ -202,6 +203,7 @@ class EnvioAutoCorreos {
        $text= str_replace(self::MARC_EMAIL,$dir,$text);
        
        $text= str_replace(self::MARC_MOVIL,$solicitud->phone_mobile,$text);
+       $text= str_replace(self::MARC_GESTION, $gestion->id ,$text);
               
        return $text;
                 
