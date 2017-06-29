@@ -115,6 +115,11 @@ class AccionesGuardadoTel {
                         $bean -> name = $franquicia->name . ' - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];                       
                     }
                 }
+                
+                if($solicitud->phone_mobile=='' && $solicitud->phone_home=='' && $solicitud->phone_work=='' && $solicitud->phone_other=='' &&$solicitud->skype!=''){//llamada tipo skype
+                    $bean->telefono='';
+                    $bean -> name=$bean->name." - Skype";
+                }
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Estado Anterior - ' . self::$fetchedRow[$bean -> id]['status']);
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Estado Nuevo - ' . $bean -> status);

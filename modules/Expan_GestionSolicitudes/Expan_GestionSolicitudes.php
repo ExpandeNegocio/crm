@@ -72,6 +72,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     const DESCARTE_PERSONAL='14';
     const DESCARTE_FRANQUICIA_MISMO_SECTOR='26';
     const DESCARTE_FRANQUICIA_OTRO_SECTOR='27';
+    const DESCARTE_OTROS='99';
     
     const POSITIVO_PRECONTRATO='Pre';
     const POSITIVO_FRANQUICIADO='Cont';
@@ -729,15 +730,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $telefono=$solicitud->recogeTelefono();
         
         if ($telefono==""){
-            return;
-        
-            /*if($solicitud->skype=""){
+            if($solicitud->skype==""){
                return; 
             }
             else{//tiene skype y no telefono
                 $telefono="";
                 $texto=$texto." - Skype";
-            }*/
+            }
         }        
         
         $Fran = new Expan_Franquicia();
