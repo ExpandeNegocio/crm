@@ -176,8 +176,13 @@ class AccionesGuardadoGestionSol {
                                     if ($telefono != "") {
                                         $mayorCheck = 1;
                                     } else {
+                                        if($solicitud->skype!=""){
+                                            $mayorCheck = 1;
+                                        }else{
+                                            
                                         $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Envío de plantilla C1.5');
                                       //  $bean -> preparaCorreo("C1.5");
+                                      }
                                     }
                                 } elseif ($salida == "Alguno de los correos no han sido enviados. La plantilla no existe" || $salida == "La plantilla de envío no está validada" || $salida == "Los correos no se han enviado porque el usuario no quería recibirlos." || $salida == "Alguno de los correos no han sido enviados. Posiblemente el correo no sea válido.") {
                                     //Si no hemos podido enviar el correo por la plantilla lo devolvemos al estado 1
@@ -189,9 +194,13 @@ class AccionesGuardadoGestionSol {
                                     if ($telefono != "") {
                                         $mayorCheck = 1;
                                     } else {
+                                        if($solicitud->skype!=""){
+                                            $mayorCheck = 1;
+                                        }else{
+                                            
                                         $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Envío de plantilla C1.5');
-                                        //NO TIENE TELF, COMPROBAR SI TIENE SKYPE PUES SE LLAMA IGUAL
                                       //  $bean -> preparaCorreo("C1.5");
+                                      }
                                     }
                                 }
                             } else {
@@ -470,7 +479,6 @@ class AccionesGuardadoGestionSol {
                     $bean -> archivarLLamadas();
                     //$bean -> archivarTareas(); //cambio no se archivan las tareas
                     $bean -> archivarReuniones();
-                    //COMPROBAR AQUI SI ES POR FINANCIACION, EN ESE CASO CREAR APERTURA Y QUE SE ABRA PARA RELLENAR LOS CAMPOS
                     
                 }
 

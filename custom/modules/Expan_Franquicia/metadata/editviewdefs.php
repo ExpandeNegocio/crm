@@ -893,6 +893,16 @@ array (
             'label' => 'LBL_OTRO_SELLO_CALIDAD',
           ),
         ),
+        10=>
+        array(
+            0=> array(
+                
+                'name'=>'prime',
+                'studio' =>'visible',
+                'label' =>'LBL_PRIME',
+            
+            ),
+        ),
       ),
      
       //Datos Economicos

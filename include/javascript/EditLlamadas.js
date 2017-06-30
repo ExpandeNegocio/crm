@@ -274,7 +274,9 @@ function DesactivarGS() {
 	
 	if ($("#telefono").val()==''){
 		getTelefono();
-	}	
+	}
+	
+	
 			
 	$("[href='index.php?module=Calls&action=EditView&return_module=Calls&return_action=DetailView']").hide();
 	$("[href='index.php?module=Import&action=Step1&import_module=Calls&return_module=Calls&return_action=index']").hide();
@@ -350,7 +352,11 @@ function getTelefono() {
 		url : url,
 		data : "id=" + idGestion,
 		success : function(data) {						
-			$("#telefono").val(data);				
+			$("#telefono").val(data);	
+			var titulo=$('div.moduleTitle').children('h2').children('a').text();
+			if(titulo.indexOf("Skype")!=-1&&$("#telefono").val()==''){
+			$('#telefono').val("0");
+	}				
 		},
 		error : function(jqXHR, textStatus, errorThrown) {					
 		}

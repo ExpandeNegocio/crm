@@ -86,6 +86,11 @@ array (
           array(
              'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
                 onClick="reenvioInfo(\'C1.5\',\'{$fields.id.value}\');" value="Reenviar C1.5">{/if}',
+          ),
+          12 =>
+          array(
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
+                onClick="envioCorreoInterlocutor(\'{$fields.id.value}\');" value="Correo interlocutor">{/if}',
           ), 
         ),
       ),

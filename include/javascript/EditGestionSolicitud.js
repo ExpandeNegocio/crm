@@ -518,6 +518,42 @@ function reenvioInfo(tipoEnvio, id) {
 
 }
 
+function envioCorreoInterlocutor(id) {
+
+	if (confirm("¿Esta seguro de que desea enviar el correo con el cuestionario  a la franquicia?")) {
+
+		var config = { };
+		config.title = "Enviando Correo";
+		config.msg = "Espere por favor... ";
+		YAHOO.SUGAR.MessageBox.show(config);
+
+		url = 'index.php?entryPoint=envioCorreoInterlocutor&id=' + id;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "id=" + id,
+			success : function(data) {
+				YAHOO.SUGAR.MessageBox.hide();
+				if ( data.indexOf('Ok')!=-1) {
+					alert('Se ha enviado el correo de interlocutor correctamente');
+				} else {
+					alert('No se ha podido enviar el correo, ' + data);
+				}
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido enviar el correo - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
+
+}
+
 function reenvioDoc(tipoEnvio) {
 
 	if (confirm("¿Esta seguro de que desea reenviar la documentacion " + tipoEnvio + " para las Gestiones actuales?")) {

@@ -72,6 +72,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     const DESCARTE_PERSONAL='14';
     const DESCARTE_FRANQUICIA_MISMO_SECTOR='26';
     const DESCARTE_FRANQUICIA_OTRO_SECTOR='27';
+    const DESCARTE_OTROS='99';
     
     const POSITIVO_PRECONTRATO='Pre';
     const POSITIVO_FRANQUICIADO='Cont';
@@ -316,8 +317,11 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."       CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200 ";
         $query=$query."       WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100 ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND oportunidad_inmediata = 1 THEN 1000  ";
-        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 100  ";                        
-        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 90  ";
+        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato_personal = 1 THEN 130  ";
+        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 120  ";                        
+        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 110  ";
+        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_plan_financiero_personal = 1 THEN 100  ";
+        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato_personal = 1 THEN 90  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato = 1 THEN 80  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visitado_fran = 1 THEN 70  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_entrevista = 1 THEN 60  ";
@@ -636,7 +640,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this->chk_envio_precontrato==true ||
             $this->chk_visita_local==true ||
             $this->chk_envio_contrato==true ||
-            $this->chk_visita_central==true)){
+            $this->chk_visita_central==true ||
+            $this->chk_propuesta_zona==true)){
                             
                 $this->candidatura_avanzada=true;
         }else{
@@ -671,7 +676,10 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $this->chk_visita_local==true ||
             $this->chk_envio_contrato==true ||
             $this->chk_visita_central==true ||
-            $this->chk_posible_colabora==true
+            $this->chk_posible_colabora==true ||
+            $this->chk_envio_precontrato_personal==true||
+            $this->chk_envio_contrato_personal==true||
+            $this->chk_envio_plan_financiero_personal==true
             ))
             ||
             ($this -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && 
@@ -723,7 +731,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $telefono=$solicitud->recogeTelefono();
         
         if ($telefono==""){
-            return;
+            if($solicitud->skype==""){
+               return; 
+            }
+            else{//tiene skype y no telefono
+                $telefono="";
+                $texto=$texto." - Skype";
+            }
         }        
         
         $Fran = new Expan_Franquicia();

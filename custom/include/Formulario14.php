@@ -15,107 +15,63 @@
     $db = DBManagerFactory::getInstance();
 
     $resp=$_POST["resp"];
-    $email=$_POST["email"];
-    $franquicia=$_POST["franquicia"];
+    $respnointeresado=$_POST["respnointeresado"];
+    $idGestion=$_POST["idgestion"];
         
     $GLOBALS['log'] -> info('[ExpandeNegocio][Paso a Estado 3]Pruebas' );
     
     switch ($resp) {
     case INTERESADO:
-        PasarInteresado($email,$franquicia);
+        PasarInteresado($idGestion);
         break;
     case NOINTERESADO:
-        PasarNoInteresado($email,$franquicia);
+        PasarNoInteresado($idGestion, $respnointeresado);
         break;
     case VALORANDO:
-        PasarValorando($email,$franquicia);
+        PasarValorando($idGestion);
         break;
     }
     
-    function PasarInteresado($email,$franquicia){
+    function PasarInteresado($idGestion){
     
-        $solicitud=getSol($email);
         
-        if ($solicitud==null){
-            return null;
-        }
+        $gestion=new Expan_GestionSolicitudes();
+        $gestion -> retrieve($idGestion);
         
-        $gestion=$solicitud->getGestionFromFranID($franquicia);
         $gestion -> creaLlamada('[AUT]Revision Estado' , 'RevEst');
         $gestion -> ignore_update_c=true;
         $gestion -> save();
         
      }
      
-     function PasarValorando($email,$franquicia){
+     function PasarValorando($idGestion){
     
-        $solicitud=getSol($email);
-        
-        if ($solicitud==null){
-            return null;
-        }
-        
-        $gestion=$solicitud->getGestionFromFranID($franquicia);        
+        $gestion=new Expan_GestionSolicitudes();
+        $gestion -> retrieve($idGestion);
+           
         $gestion->estado_sol=Expan_GestionSolicitudes::ESTADO_PARADO;   
-        $gestion->motivo_parada=Expan_GestionSolicitudes::PARADA_POR_PROTOCOLO;            
+        $gestion->motivo_parada=Expan_GestionSolicitudes::PARADA_POR_PROTOCOLO;
+        $gestion -> archivarLLamadas();
+        //$gestion -> archivarTareas(); //cambio no se archivan las tareas
+        $gestion -> archivarReuniones();            
         $gestion->ignore_update_c=true;
         $gestion->save();
      }
      
-     function PasarNoInteresado($email,$franquicia){
+     function PasarNoInteresado($idGestion, $respuesta){
     
-        $solicitud=getSol($email);
-        
-        if ($solicitud==null){
-            return null;
+        $gestion=new Expan_GestionSolicitudes();
+        $gestion -> retrieve($idGestion);
+               
+        $gestion->estado_sol=Expan_GestionSolicitudes::ESTADO_DESCARTADO;
+        if($respuesta!="0"){//ha seleccionado un motivo
+            $gestion->motivo_descarte=$respuesta;  
+        }else{
+            $gestion->motivo_descarte=Expan_GestionSolicitudes::DESCARTE_OTROS;
         }
-        
-        $gestion=$solicitud->getGestionFromFranID($franquicia);        
-        $gestion->estado_sol=Expan_GestionSolicitudes::ESTADO_DESCARTADO;  
-        $gestion->motivo_descarte=Expan_GestionSolicitudes::DESCARTE_PERSONAL;      
+              
         $gestion->ignore_update_c=true;
         $gestion->save();
      }
-     
-     function getSol($email){
-         
-       $idSol=localizaSolicitudPoremail($email);       
-        
-        if ($idSol!=""){                      
-            
-            $solicitud = new Expan_Solicitud();
-            $solicitud -> retrieve($idSol);
-            
-           return $solicitud;
-        }else{
-            return null;
-        }
-     }     
-     
-     function localizaSolicitudPoremail($email) {
-
-        $db = DBManagerFactory::getInstance();
-
-        $query = "SELECT s.id ";
-        $query = $query . "FROM   expan_solicitud s, email_addr_bean_rel r, email_addresses e ";
-        $query = $query . "WHERE s.id = r.bean_id AND s.deleted=0 AND e.id = r.email_address_id AND lower(trim(e.email_address))='" . strtolower(trim($email)) . "'";
-
-        echo $query."<br>";
-        
-        $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][localizaSolicitud]Consulta-".$query);
-
-        $result = $db -> query($query, true);
-        $idSol = "";
-
-        while ($row = $db -> fetchByAssoc($result)) {
-            
-            $idSol = $row["id"];
-            $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][localizaSolicitud]Bucle ENtra-".$idSol);
-        }
-        
-        $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][localizaSolicitud]idSol-".$idSol);
-
-        return $idSol;
-    } 
      
 ?>

@@ -319,5 +319,6 @@ $mod_strings = array (
     'LBL_SOL_RATING_A_PLUS' => 'Solicitudes A+',
     'LBL_SOL_RATING_A' => 'Solicitudes A',
     'LBL_SOL_RATING_B' => 'Solicitudes B',
-    'LBL_SOL_RATING_C' => 'Solicitudes C',    
+    'LBL_SOL_RATING_C' => 'Solicitudes C',  
+    'LBL_PRIME' => 'Prime',  
 );
