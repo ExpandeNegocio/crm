@@ -123,6 +123,5 @@ $entry_point_registry = array(
     'franquiciado'=>array('file' => 'custom/modules/Expan_Franquiciado/metadata/crearFranquiciado.php', 'auth' => false),
     'limpiezaLlamadasDuplicadas'=>array('file' => 'custom/include/limpiezaLlamadasDuplicadas.php', 'auth' => false),
     'envioPuertasAbiertas'=>array('file' => 'custom/modules/Expan_Franquicia/metadata/envioPuertasAbiertas.php', 'auth' => false),
-    
 );
 ?>
