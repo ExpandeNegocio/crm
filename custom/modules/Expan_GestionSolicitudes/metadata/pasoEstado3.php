@@ -8,8 +8,10 @@
     $GLOBALS['log'] -> info('[ExpandeNegocio][Paso a Estado 3]Pruebas');
     
     define('TIEMPO_REENVIO_C14_INI',10); 
-    define('TIEMPO_REENVIO_C14_MED',15);   
-    define('TIEMPO_REENVIO_C14_FIN',30); 
+    define('TIEMPO_REENVIO_C14_FIN',30);   
+    define('TIEMPO_REENVIO_C14_INI_PORTAL',5);
+    define('TIEMPO_REENVIO_C14_MED_PORTAL',15);  
+    define('TIEMPO_REENVIO_C14_FIN_PORTAL',30);       
     define('TIEMPO_PASO_ESTADO_3',60);
     
     $db = DBManagerFactory::getInstance();
@@ -67,24 +69,28 @@
         
 
     
-    //Las que tienen  10 o 20 o 30 días tenemos que enviarlas un C1.4 (reevío del C1)
+    //Las que tienen  10 0 20 o 30 días tenemos que enviarlas un C1.4 (reevío del C1)
     
     $query = "SELECT * ";
-    $query = $query . "FROM expan_gestionsolicitudes ";
-    $query = $query . "WHERE ";
-    $query = $query . "  deleted = 0 AND ";
-    $query = $query . "  (estado_sol =".Expan_GestionSolicitudes::ESTADO_EN_CURSO.") AND ";
-    $query = $query . "  chk_recepcio_cuestionario = 0 AND  ";
-    $query = $query . "  (TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_INI." OR ";
-    $query = $query . "  TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_MED." OR ";
-    $query = $query . "   TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_FIN.") AND ";
-    $query = $query . "  id NOT IN (SELECT parent_id ";
-    $query = $query . "             FROM calls ";
-    $query = $query . "             WHERE deleted=0 AND status = 'planned' AND parent_type = 'Expan_GestionSolicitudes') AND ";
-    $query = $query . "  id NOT IN (SELECT parent_id ";
-    $query = $query . "             FROM tasks ";
-    $query = $query . "             WHERE deleted=0 AND status = 'Not Started' AND parent_type = 'Expan_GestionSolicitudes'); ";
-    
+    $query=$query."FROM expan_gestionsolicitudes  ";
+    $query=$query."WHERE  ";
+    $query=$query."  deleted = 0 AND  ";
+    $query=$query."  (estado_sol =\"2\") AND  ";
+    $query=$query."  chk_recepcio_cuestionario = 0 AND     ";
+    $query=$query."   ( (tipo_origen=2 AND (TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_INI_PORTAL." OR  ";
+    $query=$query."  TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_MED_PORTAL." OR  ";
+    $query=$query."   TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_FIN_PORTAL."))    ";
+    $query=$query."   OR ";
+    $query=$query."   (tipo_origen!=2 AND(TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_INI." OR    ";
+    $query=$query."   TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_FIN.") ))      ";
+    $query=$query." AND  ";
+    $query=$query."  id NOT IN (SELECT parent_id  ";
+    $query=$query."             FROM calls  ";
+    $query=$query."             WHERE deleted=0 AND status = 'planned' AND parent_type = 'Expan_GestionSolicitudes') AND  ";
+    $query=$query."  id NOT IN (SELECT parent_id  ";
+    $query=$query."             FROM tasks  ";
+    $query=$query."             WHERE deleted=0 AND status = 'Not Started' AND parent_type = 'Expan_GestionSolicitudes'); ";
+        
     $result = $db -> query($query, true);
     
     while ($row = $db -> fetchByAssoc($result)) {
