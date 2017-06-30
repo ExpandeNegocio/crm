@@ -124,6 +124,7 @@ $entry_point_registry = array(
     'limpiezaLlamadasDuplicadas'=>array('file' => 'custom/include/limpiezaLlamadasDuplicadas.php', 'auth' => false),
     'envioPuertasAbiertas'=>array('file' => 'custom/modules/Expan_Franquicia/metadata/envioPuertasAbiertas.php', 'auth' => false),
     'correoAlertaPortales'=>array('file' => 'custom/include/correoAlertaPortales.php', 'auth' => false),
+    'envioCorreoInterlocutor'=>array('file' => 'custom/include/envioCorreoInterlocutor.php', 'auth' => false),
     
 );
 ?>
