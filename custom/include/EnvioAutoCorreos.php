@@ -15,6 +15,7 @@ class EnvioAutoCorreos {
     const MARC_EMAIL = '#email#';
     const MARC_MOVIL = '#movil#';
     const MARC_GESTION= '#idgestion#';
+    
 
     function sendMessage(&$bean, $gestion, $idTemp, $fran) {
         
