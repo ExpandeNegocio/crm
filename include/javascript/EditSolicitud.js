@@ -41,7 +41,7 @@ const BORDE_NORMAL="#94c1e8 solid 1px";
 		var franqSE=franq.trim(); //eliminar espacios en blanco
 		
 		
-		if(franqSE.length>1){//solo se hace la llamada si se han escrito 3 caracteres
+		if(franqSE.length>2){//solo se hace la llamada si se han escrito 3 caracteres
 			
 			var dataFran="franquicias="+franqSE;
 		
