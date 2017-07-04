@@ -168,7 +168,7 @@ class AccionesGuardadoGestionSol {
                                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Resultado envío - ' . $salida);
                                 if ($salida == "Ok") {
                                     $bean -> chk_envio_documentacion = true;
-                                    if ($bean -> envio_documentacion == $fecha_envio_documentacion_ant) {
+                                    if ($bean -> envio_documentacion == $fecha_envio_documentacion_ant || $bean -> envio_documentacion==null) {
                                         $bean -> envio_documentacion = TimeDate::getInstance()->nowDb();
                                     }
 
@@ -190,6 +190,7 @@ class AccionesGuardadoGestionSol {
                                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] No se ha podido enviar el correo');
                                     $bean -> chk_envio_documentacion = false;
                                     $bean -> estado_sol = Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO;
+                                    $bean -> envio_documentacion = null;
                                 } else {
                                     if ($telefono != "") {
                                         $mayorCheck = 1;

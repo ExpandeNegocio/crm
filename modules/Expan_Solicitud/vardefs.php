@@ -978,7 +978,7 @@ $dictionary['Expan_Solicitud'] = array(
     'required' => false,
     'name' => 'fecha_primer_contacto',
     'vname' => 'LBL_FECHA_PRIMER_CONTACTO',
-    'type' => 'date',
+    'type' => 'datetime',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -992,7 +992,6 @@ $dictionary['Expan_Solicitud'] = array(
     'merge_filter' => 'disabled',
     'size' => '20',
     'enable_range_search' => false,
-    'display_default' => 'now',
   ),
   'last_name' => 
   array (
