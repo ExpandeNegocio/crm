@@ -89,6 +89,7 @@ class AccionesGuardado {
                 }
                 
 			} else {
+			                    
 			    
                 $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
 				// Entramos solo en edicion -- tenemos que ver si las gestiones estan creadas
@@ -140,6 +141,8 @@ class AccionesGuardado {
                     
                 }
 
+                //Control de campos mofificados                
+                $this->cambiosAHijos($bean);                
                 
                 $bean = $this -> limpiarSuborigen($bean);
                 $this -> activarMaster($bean);
@@ -147,9 +150,7 @@ class AccionesGuardado {
                 $bean -> ignore_update_c = true;
                 $bean -> save(); 
                 
-                
 			}
-            
                 
                 //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
                 $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
@@ -507,6 +508,76 @@ class AccionesGuardado {
         }    
         return $bean;                 
                                                      
+    }
+
+    function cambiosAHijos($bean){
+        
+        $nombreAnt=self::$fetchedRow[$bean -> id]['first_name'];
+        $nombreAct=$bean->first_name;
+        
+        $apellidoAnt=self::$fetchedRow[$bean -> id]['last_name'];
+        $apellidoAct=$bean->last_name;
+            
+        $movilAnt=self::$fetchedRow[$bean -> id]['phone_mobile'];
+        $movilAct=$bean->phone_mobile;
+        
+        $db = DBManagerFactory::getInstance();
+        
+        if ($nombreAnt!=$nombreAct || $apellidoAnt!=$apellidoAct){
+            
+            //Cambiamos el nombre de las gestiones
+            
+            $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT gs.expan_soli5dcccitudes_idb , f.name fran ,s.first_name,s.last_name ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g, expan_franquicia f ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND ";
+            $query=$query."  g.franquicia = f.id AND ";
+            $query=$query."  s.id='".$bean->id."') s  ";
+            $query=$query."on g.id= s.expan_soli5dcccitudes_idb  ";
+            $query=$query."set estado_sol=CONCAT(COALESCE(first_name,''),COALESCE(last_name,''),COALESCE(fran,'')) ";
+                                              
+            $db -> query($query);
+            
+            //Cambiamos el nombre de las llamadas
+            
+            $query = "UPDATE calls c JOIN (SELECT g.id, s.phone_mobile ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND ";
+            $query=$query."  s.id='".$bean->id."') m  ";
+            $query=$query."on c.parent_id= m.id ";
+            $query=$query."set name=replace(name,'".$nombreAnt." ".$apellidoAnt."','".$nombreAct." ".$apellidoAct."')";
+            
+            $db -> query($query);
+            
+            //Cambiamos el nombre de las tareas
+            
+            $query = "UPDATE tasks t JOIN (SELECT g.id, s.phone_mobile ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND ";
+            $query=$query."  s.id='".$bean->id."') m  ";
+            $query=$query."on t.parent_id= m.id ";
+            $query=$query."set name=replace(name,'".$nombreAnt." ".$apellidoAnt."','".$nombreAct." ".$apellidoAct."')";
+            
+            $db -> query($query);
+            
+        }
+        
+        if ($movilAnt!=$movilAct){
+            
+            $query = "UPDATE calls c JOIN (SELECT g.id, s.phone_mobile ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND ";
+            $query=$query."  s.id='\".$bean->id.\"') m  ";
+            $query=$query."on c.id= m.id ";
+            $query=$query."set telefono=m.phone_mobile; ";
+            
+            $db -> query($query);
+            
+        }
+               
     }
 
     function origenGestion($bean){
