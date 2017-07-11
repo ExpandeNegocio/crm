@@ -116,7 +116,7 @@ function abrirGestionesAgrupadas(llamada){
 			if(data!=""){//se trata de gestiones
 				var gestiones=data.split(",");
 				for (var i=0;i<gestiones.length;i++){
-					window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestiones[i]);
+					window.open('index.php?module=Expan_GestionSolicitudes&action=DetailView&record=' + gestiones[i]);
 				
 				}
 			}
@@ -139,7 +139,7 @@ function abrirSolicitudEdicion(gestion) {
 		data : "gestion=" + gestion,
 		success : function(data) {	
 			if(data!=""){//se trata de una gestion
-				window.open('index.php?module=Expan_Solicitud&action=EditView&record=' + data);
+				window.open('index.php?module=Expan_Solicitud&action=DetailView&record=' + data);
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -157,8 +157,8 @@ function abrirSolicitudGestionEdicion(gestion) {
 		data : "gestion=" + gestion,
 		success : function(data) {
 
-			window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestion);
-			window.open('index.php?module=Expan_Solicitud&action=EditView&record=' + data);
+			window.open('index.php?module=Expan_GestionSolicitudes&action=DetailView&record=' + gestion);
+			window.open('index.php?module=Expan_Solicitud&action=DetailView&record=' + data);
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
