@@ -12,7 +12,7 @@
     $query = "SELECT * FROM   expan_gestionsolicitudes ";
     $query=$query."WHERE  estado_sol = 2 ";
     $query=$query."AND deleted=0 ";
-    $query=$query."AND chk_envio_documentacion=0 ";
+    $query=$query."AND envio_documentacion is null ";
     $query=$query."AND date_entered > STR_TO_DATE('20-06-2017', '%d-%m-%Y')";
    
    

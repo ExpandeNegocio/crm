@@ -973,8 +973,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                 $db = DBManagerFactory::getInstance();
 
                 //Creamos la consulta para localizar el id del template correspondiente
-
-                $query = "select id,type from email_templates where type='" . $this -> franquicia . "#" . $envio . "' AND deleted=0";
+                
+                $query = "select id,type,modeloneg from email_templates where franquicia='" . $this -> franquicia . "' AND type='" . $envio . "' AND deleted=0";
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] Query correo - ' . $query);
                 $result = $db -> query($query, true);
@@ -984,30 +984,36 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
                 while ($row = $db -> fetchByAssoc($result)) {
                     $idTemplate = $row["id"];
-                    $typeTemplate= $row["type"];
-                }
-
-                if ($idTemplate == "") {
-                    $this->crearTarea("INTPlantilla");
-                    $incidencia= new Expan_IncidenciaCorreo();
-                    $incidencia->RellenoGestion($this,$envio);
-                    return "Alguno de los correos no han sido enviados. La plantilla no existe";
-                } else {
-                    //Comprobamos que el está validada la plantilla                                       
+                    $typeTemplate= $row["type"];                
+                    $modnegTemplate=$row["modeloneg"]; 
                    
-                   if ($this->plantillaValida($typeTemplate)==true){                    
-                        $envioCorreos = new EnvioAutoCorreos();
-                        if ($envioCorreos -> sendMessage($solicitud, $this, $idTemplate, $Fran) == 'Ok') {
-                            return "Ok";
-                        } else {
-                            return "Alguno de los correos no han sido enviados. Posiblemente el correo no sea válido.";
-                        }
-                   }else{
+                    if ($modnegTemplate==null || ($modnegTemplate==1 && $this->tiponegocio1=1)
+                                              || ($modnegTemplate==2 && $this->tiponegocio2=1)
+                                              || ($modnegTemplate==3 && $this->tiponegocio3=1)
+                                              || ($modnegTemplate==4 && $this->tiponegocio4=1))     
+                    
+                    if ($idTemplate == "") {
+                        $this->crearTarea("INTPlantilla");
+                        $incidencia= new Expan_IncidenciaCorreo();
+                        $incidencia->RellenoGestion($this,$envio);
+                        return "Alguno de los correos no han sido enviados. La plantilla no existe";
+                    } else {
+                        //Comprobamos que el está validada la plantilla                                       
                        
-                       $incidencia= new Expan_IncidenciaCorreo();
-                       $incidencia->RellenoGestion($this,$envio);
-                       return "La plantilla de envío no está validada";
-                   }
+                       if ($this->plantillaValida($typeTemplate)==true){                    
+                            $envioCorreos = new EnvioAutoCorreos();
+                            if ($envioCorreos -> sendMessage($solicitud, $this, $idTemplate, $Fran) == 'Ok') {
+                                return "Ok";
+                            } else {
+                                return "Alguno de los correos no han sido enviados. Posiblemente el correo no sea válido.";
+                            }
+                       }else{
+                           
+                           $incidencia= new Expan_IncidenciaCorreo();
+                           $incidencia->RellenoGestion($this,$envio);
+                           return "La plantilla de envío no está validada";
+                       }
+                    }
                 }
             }else{
                 return "No se debe enviar correo";
@@ -1083,48 +1089,46 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         //Cargamos la franquicia
         
         $Fran = new Expan_Franquicia();
-        $Fran -> retrieve($this -> franquicia);
-        
-        $porcion = explode("#", $typeTemplate);
+        $Fran -> retrieve($this -> franquicia);              
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] ID Plantilla - ' . $typeTemplate);
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] Tipo Plantilla - ' . $porcion[1]);
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] check franquicia - ' . $Fran->chk_c1);
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] nombre franquicia - ' . $Fran->name);
 
-        if ($porcion[1]=="C1"){
+        if ($typeTemplate=="C1"){
            if ($Fran->chk_c1 == true){
                return true;
            } 
-        }else if ($porcion[1] == "C1.1"){
+        }else if ($typeTemplate == "C1.1"){
             if ($Fran->chk_c11 == true){
                 return true;
             }
-        }else if ($porcion[1] == "C1.2"){
+        }else if ($typeTemplate == "C1.2"){
             if ($Fran->chk_c12 == true){
                 return true;
             }
-        }else if ($porcion[1] == "C1.3"){
+        }else if ($typeTemplate == "C1.3"){
             if ($Fran->chk_c13 == true){
                 return true;
             }
-        }else if ($porcion[1] == "C1.4"){
+        }else if ($typeTemplate == "C1.4"){
             if ($Fran->chk_c14 == true){
                 return true;
             }
-        }else if ($porcion[1] == "C1.5"){
+        }else if ($typeTemplate == "C1.5"){
             if ($Fran->chk_c15 == true){
                 return true;
             }
-        }else if ($porcion[1] == "C2"){
+        }else if ($typeTemplate == "C2"){
             if ($Fran->chk_c2 == true){
                return true;
            } 
-        }else if ($porcion[1] == "C3"){
+        }else if ($typeTemplate == "C3"){
             if ($Fran->chk_c3 == true){
                return true;
            }
-        }else if ($porcion[1] == "C4"){
+        }else if ($typeTemplate == "C4"){
             if ($Fran->chk_c4 == true){
                return true;
            }
@@ -1198,7 +1202,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     function getTemplate($tipo){
        
         $db = DBManagerFactory::getInstance();
-        $query = "select id from email_templates where type='".$this->franquicia."#".$tipo."'";
+        $query = "select id from email_templates where franquicia='" . $this -> franquicia . "' AND type='" . $envio . "' AND deleted=0";        
 
         $result = $db -> query($query, true);
         

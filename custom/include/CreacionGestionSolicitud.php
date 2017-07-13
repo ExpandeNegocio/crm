@@ -140,7 +140,7 @@ class AccionesGuardadoGestionSol {
 
                 //Si el estado cambia
                 // REALIZAMOS ENVÍO C 1
-                if ($estadoAnt != $bean -> estado_sol && $bean -> envio_documentacion == null) {
+                if ($estadoAnt != $bean -> estado_sol && ($bean -> chk_envio_documentacion == null)) {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entramos Envio 1');
 
                     //Si no tenemos correo debemos de programar llamada para pedir el mismo
