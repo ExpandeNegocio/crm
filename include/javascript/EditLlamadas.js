@@ -44,6 +44,9 @@ function retrasarLlamada(tipoRetraso, id) {
 		case "1H":
 			valorFechaTermino = valorFecha + (60 * 60 * 1000 );
 			break;
+		case "4H":
+			valorFechaTermino = valorFecha + (4* 60 * 60 * 1000 );
+			break;
 		case "1D":
 			valorFechaTermino = valorFecha + (24 * 60 * 60 * 1000 );
 			break;

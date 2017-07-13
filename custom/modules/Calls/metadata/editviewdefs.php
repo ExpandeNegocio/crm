@@ -1,4 +1,9 @@
 <?php
+
+//SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; document.EditView.return_action.value=\'DetailView\'; {if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; {/if}formSubmitCheck();;  Avisar();
+
+$guardar='SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; document.EditView.return_action.value=\'DetailView\'; {if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; {/if}formSubmitCheck();;  Avisar();';
+
 $viewdefs ['Calls'] = 
 array (
   'EditView' => 
@@ -20,7 +25,7 @@ array (
         array (
           0 => 
           array (
-            'customCode' => '<input title="{$APP.LBL_SAVE_BUTTON_TITLE}" id="SAVE_HEADER" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="button primary" onclick="SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; document.EditView.return_action.value=\'DetailView\'; {if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; {/if}formSubmitCheck();;  Avisar();" type="button" name="button" value="{$APP.LBL_SAVE_BUTTON_LABEL}">',
+            'customCode' => '<input title="{$APP.LBL_SAVE_BUTTON_TITLE}" id="SAVE_HEADER" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="button primary" onclick="'.$guardar.'" type="button" name="button" value="{$APP.LBL_SAVE_BUTTON_LABEL}">',
           ),
           1 => 'CANCEL',
           3 => 
@@ -30,27 +35,33 @@ array (
           4 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');" value="+1H">{/if}',
+        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');'.$guardar.'" value="+1H">{/if}',
           ),
           
           5 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');" value="+1D">{/if}',
+                    onClick="retrasarLlamada(\'4H\',\'{$fields.id.value}\');'.$guardar.'" value="+4H">{/if}',
           ),
           
           6 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');" value="+3D">{/if}',
+        			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');'.$guardar.'" value="+1D">{/if}',
           ),
           
           7 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');" value="+7D">{/if}',
+                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');'.$guardar.'" value="+3D">{/if}',
           ),
+          
           8 => 
+          array (
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');'.$guardar.'" value="+7D">{/if}',
+          ),
+          9 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirGestionesAgrupadas(\'{$fields.id.value}\');  abrirSolicitudEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',
@@ -77,7 +88,7 @@ array (
         array (
           0 => 
           array (
-            'customCode' => '<input title="{$APP.LBL_SAVE_BUTTON_TITLE}" id="SAVE_FOOTER" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="button primary" onclick="SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; document.EditView.return_action.value=\'DetailView\'; {if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; {/if}formSubmitCheck();;" type="button" name="button" value="{$APP.LBL_SAVE_BUTTON_LABEL}">',
+            'customCode' => '<input title="{$APP.LBL_SAVE_BUTTON_TITLE}" id="SAVE_FOOTER" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="button primary" onclick="'.$guardar.'" type="button" name="button" value="{$APP.LBL_SAVE_BUTTON_LABEL}">',
           ),
           1 => 'CANCEL',
        /*   2 => 
@@ -91,25 +102,32 @@ array (
           4 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');" value="+1H">{/if}',
+        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');'.$guardar.'" value="+1H">{/if}',
           ),
-          5 => 
+           5 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');" value="+1D">{/if}',
+                    onClick="retrasarLlamada(\'4H\',\'{$fields.id.value}\');'.$guardar.'" value="+4H">{/if}',
           ),
+          
           6 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');" value="+3D">{/if}',
+                    onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');'.$guardar.'" value="+1D">{/if}',
           ),
           
           7 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');" value="+7D">{/if}',
+                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');'.$guardar.'" value="+3D">{/if}',
           ),
+          
           8 => 
+          array (
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');'.$guardar.'" value="+7D">{/if}',
+          ),
+          9 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirGestionesAgrupadas(\'{$fields.id.value}\');  abrirSolicitudEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',
