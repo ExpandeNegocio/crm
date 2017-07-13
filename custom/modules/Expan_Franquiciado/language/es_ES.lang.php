@@ -11,4 +11,12 @@ $mod_strings = array (
   'LBL_NO_CORREOS' => 'No enviar correo',
   'LBL_PAIS' => 'País',
   'LBL_FECHA_PRIMER_CONTACTO' => 'Fecha del primer contacto',
+  'LBL_SKYPE'=>'Skype',
+  'LBL_RECURSOS_PROPIOS'=>'Recursos Propios',
+  'LBL_ORIGEN'=>'Origen',
+  'LBL_GESTIONESAGRUPADAS' => 'Gestiones agrupadas',
+  'LBL_NEWSLETTER' => 'No enviar newsletter',
+  'LBL_CHECK_PLURIFRANQUICIADO'=>'Plurifranquiciado de alta inversión',
+  'LBL_OBSERVACIONES' => 'Observaciones franquiciado',
+  'LBL_EMPRESA' => 'Empresa',
 );
