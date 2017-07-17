@@ -144,7 +144,11 @@ function procesar() {
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Perfil-" . $solicitud -> perfil_profesional);
 
         if ($franContac != "") {
-            $solicitud -> franquicias_contactadas = $franContac;
+            if ( $solicitud -> franquicias_contactadas ==''){
+                $solicitud -> franquicias_contactadas = $franContac;
+            }else{
+               $solicitud -> franquicias_contactadas = $solicitud -> franquicias_contactadas.",".$franContac; 
+            }
         }
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Otras Franq-" . $solicitud -> otras_franquicias);
