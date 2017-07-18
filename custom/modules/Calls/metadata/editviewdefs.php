@@ -220,25 +220,17 @@ array (
           ),
           1 => 
           array (
-            'name' => 'expan_gestionsolicitudes_calls_1_name',
+            'name' => 'date_delayed',
+            'displayParams' => 
+            array (
+              'updateCallback' => 'SugarWidgetScheduler.update_time();',
+            ),
+            'label' => 'LBL_DATE_DELAYED',
           ),
+         
         ),
+      
         2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'duration_hours',
-            'label' => 'LBL_DURATION',
-            'customCode' => '{literal}<script type="text/javascript">function isValidDuration() { form = document.getElementById(\'EditView\'); if ( form.duration_hours.value + form.duration_minutes.value <= 0 ) { alert(\'{/literal}{$MOD.NOTICE_DURATION_TIME}{literal}\'); return false; } return true; }</script>{/literal}<input id="duration_hours" name="duration_hours" size="2" maxlength="2" type="text" value="{$fields.duration_hours.value}" onkeyup="SugarWidgetScheduler.update_time();"/>{$fields.duration_minutes.value}&nbsp;<span class="dateFormat">{$MOD.LBL_HOURS_MINUTES}</span>',
-          ),
-          1 => 
-          array (
-            'name' => 'reminder_time',
-            'customCode' => '{include file="modules/Meetings/tpls/reminders.tpl"}',
-            'label' => 'LBL_REMINDER',
-          ),
-        ),
-        3 => 
         array (
           0 => 
           array (
@@ -252,7 +244,7 @@ array (
             'label' => 'LBL_TELEFONO',
           ),
         ),
-        4 => 
+        3 => 
         array (
           0 => 
           array (
@@ -265,26 +257,7 @@ array (
             'label' => 'LBL_OPORTUNIDAD_INMEDIATA',
           ),
         ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'expan_gestionsolicitudes_activities_1_calls_name',
-          ),
-          1 => 
-          array (
-            'name' => 'expan_gestionsolicitudes_activities_1_calls_name',
-          ),
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
-            'name' => 'expan_franquicia_calls_1_name',
-          ),
-        ),
-        
-        7 => 
+        4 => 
         array (
             0 =>  array (
             'name' =>'modified_by_name',     

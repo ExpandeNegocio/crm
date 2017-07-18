@@ -97,7 +97,8 @@ class AccionesGuardadoTel {
 
             } else{              
 
-                //Modificacion de llamada existente                
+                //Modificacion de llamada existente                                              
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Nueva fecha- ' . $bean->date_delayed); 
                 
                 if ($solicitud -> NumGestionesEstado("2") > 1 && 
                     ($bean -> call_type == 'Primera' || $bean -> call_type == 'SolCorreo' || $bean -> call_type == 'InformacionAdicional') &&

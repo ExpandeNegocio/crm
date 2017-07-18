@@ -219,40 +219,9 @@ function crearTarea(gestionid) {
 
 function DesactivarGS() {
 	
-	if (document.getElementById("expan_gestionsolicitudes_calls_1_name") != null) {
-		var campo = document.getElementById("expan_gestionsolicitudes_calls_1_name").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-			$("#expan_gestionsolicitudes_calls_1_name_label").hide();
-		}
-	}
-
-	if (document.getElementById("duration_hours_label") != null) {
-		var campo = document.getElementById("duration_hours_label").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-		}
-	}
-
-	if (document.getElementById("reminder_time_label") != null) {
-		var campo = document.getElementById("reminder_time_label").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-		}
-	}
-	if (document.getElementById("parent_type") != null) {
-		var campo = document.getElementById("parent_type").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-		}
-	}
+	$("#status").on('change',cambioEstado);
 	
-	if (document.getElementById("expan_franquicia_calls_1_name_label") != null) {
-		var campo = document.getElementById("expan_franquicia_calls_1_name_label").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-		}		
-	}
+	cambioEstado();
 	
 	var campo = document.getElementById("parent_name_label");
 	if (campo != null) {
@@ -277,9 +246,7 @@ function DesactivarGS() {
 	
 	if ($("#telefono").val()==''){
 		getTelefono();
-	}
-	
-	
+	}	
 			
 	$("[href='index.php?module=Calls&action=EditView&return_module=Calls&return_action=DetailView']").hide();
 	$("[href='index.php?module=Import&action=Step1&import_module=Calls&return_module=Calls&return_action=index']").hide();
@@ -364,5 +331,19 @@ function getTelefono() {
 		error : function(jqXHR, textStatus, errorThrown) {					
 		}
 	});
+}
+
+function cambioEstado(){
+		
+	if ($("#status").val()=='Not Held'){
+		$("#date_delayed_date").parent().show();	
+		$("#date_delayed_hours").parent().show();	
+		$("#date_delayed_label").text("Nuevo Inicio:");	
+	}else{
+		$("#date_delayed_date").parent().hide();
+		$("#date_delayed_hours").parent().hide();
+		$("#date_delayed_label").text("");
+	}	
+	
 }
 

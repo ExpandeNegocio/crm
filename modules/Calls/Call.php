@@ -781,8 +781,13 @@ class Call extends SugarBean {
         
         $nuevaLlamada -> call_type = $this -> call_type;
 
-        $numDias = $this -> CalcularRetraso($bean);
-        $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+        //Si la fecha viene definida desde la propia llamada 
+        if ($this->date_delayed==null){
+            $numDias = $this -> CalcularRetraso($bean);
+            $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));           
+        }else{
+            $fecha = $this->date_delayed;
+        }
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][DuplicarLlamada]Hora de la nueva llamada-' . $fecha);
 

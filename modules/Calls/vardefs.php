@@ -112,6 +112,20 @@ $dictionary['Call'] = array('table' => 'calls', 'comment' => 'A Call is an activ
     'enable_range_search' => true,
     'options' => 'date_range_search_dom',
   ),
+  
+   'date_delayed' =>
+  array (
+    'name' => 'date_delayed',
+    'vname' => 'LBL_DATE_DELAYED',    
+    'type' => 'datetimecombo',
+    'dbType' => 'datetime',
+    'comment' => 'Nueva fecha de realizacion de la llamada',
+    'importable' => 'required',    
+    'enable_range_search' => true,
+    'options' => 'date_range_search_dom',
+    'massupdate'=> true,
+    'audited' => true,
+  ),
 
  'parent_type'=>
   array(

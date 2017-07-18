@@ -92,6 +92,7 @@ $mod_strings = array (
   'LBL_HOURS_MINUTES' => '(horas/minutos)',
   'LBL_CALL' => 'Llamada:',
   'LBL_DATE_TIME' => 'Inicio:',
+  'LBL_DATE_DELAYED' => 'Nuevo Inicio:',
   'LBL_TIME' => 'Hora inicio:',
   'LBL_HOURS_ABBREV' => 'h',
   'LBL_MINSS_ABBREV' => 'm',
