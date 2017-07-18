@@ -415,6 +415,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
         $this -> assigned_user_id = $Fran -> assigned_user_id;
         $this -> asociarLLamadas("Planned", $Fran -> assigned_user_id);
+        $bean -> asociarTareas("Not Started", $Fran -> assigned_user_id);
+        $bean -> asociarReuniones("Planned", $Fran -> assigned_user_id);
+        $bean -> asociarReuniones("Could", $Fran -> assigned_user_id);
     }
 
     //Comprobamos si hay una llamada el tipo y el estado que se indican
