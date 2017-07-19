@@ -351,7 +351,9 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 9;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entramos Envio 3');
                     $bean -> preparaCorreo("C3");
-                    $bean -> crearTarea("DOCUPerPre");
+                    
+                    //PIDE RUBEN ELIMINAR LA TAREA PROGRAMADA 18/7/2017
+                   // $bean -> crearTarea("DOCUPerPre");
 
                     if ($bean -> f_envio_precontrato == $fecha_envio_precontrato_ant) {
                         $bean -> f_envio_precontrato = TimeDate::getInstance()->nowDb();
