@@ -760,7 +760,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                                                
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] Se puede añadir llamada');
 
-            $numDias = $this -> calcularDias($solicitud, $tipo);
+            $numDias = $this -> calcularDias($tipo);
 
             //Creo la llamada
             $llamada = new Call();
@@ -894,20 +894,20 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         return $dateTime - (2 * 3600);
     }
     
-    private function calcularDias($solicitud, $tipo) {
+    private function calcularDias($tipo) {
         $dias = 0;
         if ($tipo == 'Primera') {
-            switch ($solicitud->tipo_origen) {
-                case Expan_Solicitud::TIPO_ORIGEN_CENTRAL :
+            switch ($this->tipo_origen) {
+                case Expan_GestionSolicitudes::TIPO_ORIGEN_CENTRAL :
                     $dias = 1;
                     break;
-                case Expan_Solicitud::TIPO_ORIGEN_MEDIOS_COMUN :
+                case Expan_GestionSolicitudes::TIPO_ORIGEN_MEDIOS_COMUN :
                     $dias = 2;
                     break;
-                case Expan_Solicitud::TIPO_ORIGEN_PORTALES :
+                case Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES :
                     $dias = 4;
                     break;
-                case Expan_Solicitud::TIPO_ORIGEN_EVENTOS :
+                case Expan_GestionSolicitudes::TIPO_ORIGEN_EVENTOS :
                     $dias = 3;
                     break;
                 default :
