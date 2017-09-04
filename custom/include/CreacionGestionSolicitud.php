@@ -250,7 +250,7 @@ class AccionesGuardadoGestionSol {
                 if ($responde_C1_ant != $bean -> chk_responde_C1 && $bean -> chk_responde_C1 == true) {
                     $mayorCheck = 2;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a chk_responde_C1');
-                    $bean -> crearTarea("DOCURevCorreo");
+                //    $bean -> crearTarea("DOCURevCorreo");
 
                     if ($bean -> f_responde_C1 == $fecha_respuesta_C1) {
                         $bean -> f_responde_C1 = TimeDate::getInstance()->nowDb();

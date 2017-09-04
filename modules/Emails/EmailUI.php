@@ -376,7 +376,29 @@ eoq;
     	    require_once('modules/Emails/Compose.php');
     	    $composePackage = generateComposeDataPackage($composeData,FALSE, $bean);
         }else{
-            $composePackage = $composeData;
+            $composePackage = $composeData;                      
+        }
+        
+       // $composePackage['to_addrs_emails ']= $bean->getEmail();
+
+        $gestion= new Expan_GestionSolicitudes();
+        $gestion -> retrieve($composeData['parent_id']);
+        if ($gestion!=null){
+            $toMail= $gestion->getEmail();
+                
+            if ($toMail!=null){
+                $composePackage['to_email_addrs']=$toMail;
+            }   
+             
+            $template=$gestion->getTemplate("E1");
+            if ($template!=null){
+                $composePackage['body']=$template->body_html;
+                $composePackage['subject']=$template->subject;                
+            }            
+            
+           $composePackage['addressFrom']='8375ec8e-a8a6-cd5c-9aa8-592f062fd921';
+            
+        //    $composePackage['subject']='Hola';
         }
 
     	// JSON object is passed into the function defined within the a href onclick event
@@ -395,7 +417,8 @@ eoq;
 
     	return $j_quickComposeOptions;
     }
-
+    
+    
     /**
      * Generate the config data needed for the Full Compose UI and the Quick Compose UI.  The set of config data
      * returned is the minimum set needed by the quick compose UI.
@@ -2455,13 +2478,13 @@ eoq;
 	 * returns an array of EmailTemplates that the user has access to for the compose email screen
 	 * @return array
 	 */
-	function getEmailTemplatesArray() {
+/*	function getEmailTemplatesArray() {
 
 		global $app_strings;
-
+        $email_templates_arr = array('' => $app_strings['LBL_NONE']);
 		if(ACLController::checkAccess('EmailTemplates', 'list', true) && ACLController::checkAccess('EmailTemplates', 'view', true)) {
 			$et = new EmailTemplate();
-            $etResult = $et->db->query($et->create_new_list_query('',"(type IS NULL OR type='' OR type='email')",array(),array(),''));
+            $etResult = $et->db->query($et->create_new_list_query('',"",array(),array(),''));
 			//$email_templates_arr = array('' => $app_strings['LBL_NONE']);
 			while($etA = $et->db->fetchByAssoc($etResult)) {
 			    
@@ -2470,12 +2493,67 @@ eoq;
 			        $email_templates_arr[$etA['id']] = $etA['name'];
 			    }
 			}
-		} else {
-			$email_templates_arr = array('' => $app_strings['LBL_NONE']);
 		}
 
 		return $email_templates_arr;
-	}
+	}*/
+	
+	 function getEmailTemplatesArray() {
+	        	      
+        if (!isset($_SESSION['Expan_GestionSolicitudes_detailview_record'])){
+            $email_templates_arr=$this->getEmailTemplatesArrayGeneric();
+        }   else{
+            $email_templates_arr=$this->getEmailTemplatesArrayGestion();
+        }           
+	    return $email_templates_arr;   
+    }
+	
+    
+    function getEmailTemplatesArrayGeneric(){
+        
+        global $app_strings;
+        $email_templates_arr = array('' => $app_strings['LBL_NONE']);
+        if(ACLController::checkAccess('EmailTemplates', 'list', true) && ACLController::checkAccess('EmailTemplates', 'view', true)) {
+            $et = new EmailTemplate();
+            $etResult = $et->db->query($et->create_new_list_query('',"",array(),array(),''));
+            //$email_templates_arr = array('' => $app_strings['LBL_NONE']);
+            while($etA = $et->db->fetchByAssoc($etResult)) {
+                
+                $pos=strpos($etA['type'], 'E1');              
+                if ($pos!==false){
+                    $email_templates_arr[$etA['id']] = $etA['name'];
+                }
+            }
+        }
+
+        return $email_templates_arr;
+               
+    }
+	
+    function getEmailTemplatesArrayGestion(){
+        
+        //Recogemos el valor de la plantilla asociada a la gestion
+        
+        $gestion=new Expan_GestionSolicitudes();
+        $gestion->retrieve($_SESSION->Expan_GestionSolicitudes_detailview_record);                      
+        
+        global $app_strings;
+        $email_templates_arr = array('' => $app_strings['LBL_NONE']);
+        if(ACLController::checkAccess('EmailTemplates', 'list', true) && ACLController::checkAccess('EmailTemplates', 'view', true)) {
+            $et = new EmailTemplate();
+            $etResult = $et->db->query($et->create_new_list_query('',"",array(),array(),''));
+            //$email_templates_arr = array('' => $app_strings['LBL_NONE']);
+            while($etA = $et->db->fetchByAssoc($etResult)) {
+                                        
+                if ($etA['type']==$gestion->franquicia.'E1'){
+                    $email_templates_arr[$etA['id']] = $etA['name'];
+                }
+            }
+        }
+
+        return $email_templates_arr;
+    }
+    
 
 	function getFromAccountsArray($ie) {
         global $current_user;

@@ -129,10 +129,10 @@ function inicio() {
 	
 	pintaFranFromSector();
 
-	$("*").on("click", function() {
+	$(document).bind("click", function() {
 
 		if (hasEventListener($("#Expan_Solicitud0emailAddress0"), "blur") == false) {
-			$("#Expan_Solicitud0emailAddress0").on("blur", function() {
+			$("#Expan_Solicitud0emailAddress0").bind("blur", function() {
 
 				controlCorreos();
 

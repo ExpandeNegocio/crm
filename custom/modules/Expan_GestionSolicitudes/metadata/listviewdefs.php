@@ -162,7 +162,7 @@ array (
   'oportunidad_inmediata' => 
   array (
     'width' => '5%',
-    'label' => 'Oport. Inme.',
+    'label' => 'Gest. Inme.',
     'default' => true,
   ),
   

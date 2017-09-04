@@ -29,7 +29,7 @@
         
         $gestion -> creaLlamada("[AUT]Puertas abiertas", "PAbiertas");
         
-        $salida = $gestion -> preparaCorreo("C6");//Este correo será el envío de puertas abiertas, habrá que hacer la plantilla
+        $salida = $gestion -> preparaCorreo("C2.2");
         // if($salida=='Ok'){
             //desactivar check
             $query="update expan_solicitud s set s.check_puertas_abiertas=0 where id='".$idSol."';";

@@ -300,7 +300,7 @@ $app_strings["LBL_EDV_SAVING_ERROR"] = "The field has not been saved.";
  ********************************************************************************/
 
 
-$app_list_strings['moduleList']['Expan_Franquiciado'] = 'Franquiciado';
+$app_list_strings['moduleList']['Expan_Apertura'] = 'Apertura';
 
 
 
@@ -969,7 +969,7 @@ $app_list_strings['temporalizacion_list']['4'] = 'A largo Plazo';
  ********************************************************************************/
 
 
-$app_list_strings['moduleList']['Expan_Apertura'] = 'Apertura';
+$app_list_strings['moduleList']['Expan_Franquiciado'] = 'Franquiciado';
 
 
 

@@ -8,29 +8,56 @@
 
     $db = DBManagerFactory::getInstance();
 
-    $idGest=$_POST["id"];
+    $idGest=$_POST["idGest"];
+    $idCall=$_POST["idCall"];
+    $tipo=$_POST["tipo"]; 
     
-    $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]IdGest-'.$idGest );
     
-    $gestion=new Expan_GestionSolicitudes();
+    switch ($tipo) {
+        case 'numTelefono':
     
-    $gestion->retrieve($idGest);
-    
-    $telefono="";
-    
-    if ($gestion !=null){
-       
-       $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Gestion' ); 
-        
-       $solicitud= $gestion->GetSolicitud();
-       
-       $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Solicitud-'.$solicitud->id ); 
-        
-       if ($solicitud !=null){           
-           $telefono=$solicitud->phone_mobile;  
-           $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Telefono-'.$telefono );          
-       }
+            $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]IdGest-'.$idGest );
+            
+            $gestion=new Expan_GestionSolicitudes();            
+            $gestion->retrieve($idGest);
+            
+            $telefono="";
+            
+            if ($gestion !=null){
+               
+               $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Gestion' ); 
+                
+               $solicitud= $gestion->GetSolicitud();
+               
+               $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Solicitud-'.$solicitud->id ); 
+                
+               if ($solicitud !=null){           
+                   $telefono=$solicitud->phone_mobile;  
+                   $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Telefono-'.$telefono );          
+               }
+            }
+            
+            echo $telefono;
+            
+            break;
+            
+        case 'fechaRetraso':
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]IdCall-'.$idCall );
+            
+            $call=new Call();            
+            $call->retrieve($idCall);
+                        
+            $numDias = $call -> CalcularRetraso();
+            $nuevaFecha = date("Y-m-d-H-i-s", $call -> addBusinessDays($numDias));
+            
+            echo $nuevaFecha;
+            
+            break;
+            
+        default:
+            
+            break;
+            
     }
-    
-    echo $telefono;
 ?>

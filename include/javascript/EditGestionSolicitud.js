@@ -500,6 +500,7 @@ function reenvioInfo(tipoEnvio, id) {
 				YAHOO.SUGAR.MessageBox.hide();
 				if ( data.indexOf('Ok')!=-1) {
 					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio);
+					location.reload(true);
 				} else {
 					alert('No se ha podido reenviar la información - \\n' + data);
 				}

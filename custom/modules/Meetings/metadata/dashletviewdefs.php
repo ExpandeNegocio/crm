@@ -1,21 +1,10 @@
 <?php
-$dashletData['CallsDashlet']['searchFields'] = array (
+$dashletData['MeetingsDashlet']['searchFields'] = array (
   'name' => 
   array (
     'default' => '',
   ),
   'status' => 
-  array (
-    'default' => 
-    array (
-      0 => 'Planned',
-    ),
-  ),
-  'date_entered' => 
-  array (
-    'default' => '',
-  ),
-  'call_type' => 
   array (
     'default' => '',
   ),
@@ -23,17 +12,19 @@ $dashletData['CallsDashlet']['searchFields'] = array (
   array (
     'default' => '',
   ),
+  'date_entered' => 
+  array (
+    'default' => '',
+  ),
   'assigned_user_id' => 
   array (
-    'type' => 'assigned_user_name',
-    'label' => 'LBL_ASSIGNED_TO',
-    'default' => 'Administrator',
+    'default' => '',
   ),
 );
-$dashletData['CallsDashlet']['columns'] = array (
+$dashletData['MeetingsDashlet']['columns'] = array (
   'set_complete' => 
   array (
-    'width' => '5%',
+    'width' => '1%',
     'label' => 'LBL_LIST_CLOSE',
     'default' => true,
     'sortable' => false,
@@ -44,12 +35,13 @@ $dashletData['CallsDashlet']['columns'] = array (
     ),
     'name' => 'set_complete',
   ),
-  'call_type' => 
+  'name' => 
   array (
-    'label' => 'LBL_CALL_TYPE',
-    'width' => '30%',
+    'width' => '40%',
+    'label' => 'LBL_SUBJECT',
+    'link' => true,
     'default' => true,
-    'name' => 'call_type',
+    'name' => 'name',
   ),
   'parent_name' => 
   array (
@@ -68,6 +60,18 @@ $dashletData['CallsDashlet']['columns'] = array (
     'default' => true,
     'name' => 'parent_name',
   ),
+ 'provincia' => 
+  array (
+    'default' => false,
+    'label' => 'Provincia',
+    'width' => '10%',
+  ),
+  'prioridad' => 
+  array (    
+    'default' => false,
+    'label' => 'Prioridad',
+    'width' => '10%',
+  ),
   'date_start' => 
   array (
     'width' => '15%',
@@ -78,29 +82,10 @@ $dashletData['CallsDashlet']['columns'] = array (
       0 => 'time_start',
     ),
     'name' => 'date_start',
-  ),
-  'set_accept_links' => 
-  array (
-    'width' => '10%',
-    'label' => '¿Aceptar?',
-    'sortable' => false,
-    'related_fields' => 
-    array (
-      0 => 'status',
-    ),
-    'default' => true,
-    'name' => 'set_accept_links',
-  ),
-  'status' => 
-  array (
-    'width' => '8%',
-    'label' => 'LBL_STATUS',
-    'default' => true,
-    'name' => 'status',
-  ),
+  ), 
   'duration' => 
   array (
-    'width' => '10%',
+    'width' => '15%',
     'label' => 'LBL_DURATION',
     'sortable' => false,
     'related_fields' => 
@@ -111,11 +96,11 @@ $dashletData['CallsDashlet']['columns'] = array (
     'name' => 'duration',
     'default' => false,
   ),
-  'direction' => 
+  'status' => 
   array (
-    'width' => '10%',
-    'label' => 'LBL_DIRECTION',
-    'name' => 'direction',
+    'width' => '8%',
+    'label' => 'LBL_STATUS',
+    'name' => 'status',
     'default' => false,
   ),
   'date_entered' => 
@@ -146,19 +131,10 @@ $dashletData['CallsDashlet']['columns'] = array (
     'name' => 'assigned_user_name',
     'default' => false,
   ),
-  
- 'provincia_apertura_1' => 
-  array (
-    'default' => false,
-    'label' => 'Provincia',
-    'width' => '10%',
-  ),
-    'prioridad' => 
+  'prioridad' => 
   array (    
     'default' => false,
     'label' => 'Prioridad',
     'width' => '10%',
   ),
-  
-  
 );

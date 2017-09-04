@@ -51,7 +51,7 @@ class EnvioAutoCorreos {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Correo de recepcion - ' . $address['email_address']);
             $rcpt_email = $address['email_address'];
             $mail -> AddAddress($rcpt_email, $rcpt_name);
-            $mail->AddBCC('itc@expandenegocio.com','CRM');
+            // $mail->AddBCC('itc@expandenegocio.com','CRM');
             $mail -> Subject = from_html($emailTemp -> subject);
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Cuerpo de la plantilla - ' . $emailTemp -> body_html);

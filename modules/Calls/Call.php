@@ -777,13 +777,14 @@ class Call extends SugarBean {
         $nuevaLlamada -> franquicia = $this -> franquicia;
         $nuevaLlamada -> gestion_agrupada = $this -> gestion_agrupada;
         $nuevaLLamada -> created_by='1';
+        $nuevaLLamada -> oportunidad_inmediata = $this -> oportunidad_inmediata;;
         $nuevaLlamada -> repeticiones = $this -> repeticiones + 1;
         
         $nuevaLlamada -> call_type = $this -> call_type;
 
         //Si la fecha viene definida desde la propia llamada 
         if ($this->date_delayed==null){
-            $numDias = $this -> CalcularRetraso($bean);
+            $numDias = $this -> CalcularRetraso();
             $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));           
         }else{
             $fecha = $this->date_delayed;
@@ -838,7 +839,7 @@ class Call extends SugarBean {
 
         $dateTime = is_null($dateTime) ? time() : $dateTime;
 
-        return $dateTime - (2 * 3600);
+        return $dateTime;
     }
 
     function CalcularRetraso() {
@@ -1031,7 +1032,7 @@ class Call extends SugarBean {
         // Si pasamos a un estado cerrado con exito guardamos la hora
         if ($newStatus == 'Held' && $prevStatus != $newStatus) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Cambia la hora');
-            $this -> date_start = TimeDate::getInstance()->nowDb();
+            //$this -> date_start = TimeDate::getInstance()->nowDb();
             
             //Añadimos las observaciones y los checks de las llamadas
             if ($gestion!=null){                                                     

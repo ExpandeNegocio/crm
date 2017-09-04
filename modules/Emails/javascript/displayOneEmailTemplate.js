@@ -34,16 +34,9 @@
  ********************************************************************************/
 
 SUGAR.email2.templates['displayOneEmail'] = 
-'<script>'+
-'    function iniciaCorreos(){'+
-'		alert("Funciona");'+
-''+
-''+
-'}'+
-'<div onload="iniciaCorreos()" class="emailDetailTable" style="height:100%">' +
+'<div onload="" class="emailDetailTable" style="height:100%">' +
 '<div id="viewMenuDiv{idx}"></div>' + 
 '<div width="100%" class="displayEmailValue">' +
-'<button type="button" class="button">HolaCocacola</button>'+
 '					<button type="button" class="button" onclick="SUGAR.email2.composeLayout.c0_replyForwardEmail(\'{meta.ieId}\', \'{meta.uid}\', \'{meta.mbox}\', \'reply\');"><img src="index.php?entryPoint=getImage&themeName='+SUGAR.themes.theme_name+'&imageName=icon_email_reply.gif" align="absmiddle" border="0"> {app_strings.LBL_EMAIL_REPLY}</button>' +
 '					<button type="button" class="button" onclick="SUGAR.email2.composeLayout.c0_replyForwardEmail(\'{meta.ieId}\', \'{meta.uid}\', \'{meta.mbox}\', \'replyAll\');"><img src="index.php?entryPoint=getImage&themeName='+SUGAR.themes.theme_name+'&imageName=icon_email_replyall.gif" align="absmiddle" border="0"> {app_strings.LBL_EMAIL_REPLY_ALL}</button>' +
 '					<button type="button" class="button" onclick="SUGAR.email2.composeLayout.c0_replyForwardEmail(\'{meta.ieId}\', \'{meta.uid}\', \'{meta.mbox}\', \'forward\');"><img src="index.php?entryPoint=getImage&themeName='+SUGAR.themes.theme_name+'&imageName=icon_email_forward.gif" align="absmiddle" border="0"> {app_strings.LBL_EMAIL_FORWARD}</button>' +

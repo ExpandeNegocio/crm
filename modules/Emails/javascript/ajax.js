@@ -675,6 +675,8 @@ AjaxObject.detailView = {
 	showQuickCreateForm : function(o) {
 		var SED = SUGAR.email2.detailView;
 		var ret = YAHOO.lang.JSON.parse(o.responseText);
+		
+		alert("hola");
 
 		if(!SED.quickCreateDialog) {
 			SED.quickCreateDialog = new YAHOO.widget.Dialog("quickCreateForEmail", {

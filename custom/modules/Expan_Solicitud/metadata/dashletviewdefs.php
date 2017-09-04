@@ -66,6 +66,14 @@ $dashletData['Expan_SolicitudDashlet']['columns'] = array (
     'default' => true,
   ),
   
+  'candidatura_avanzada'=>
+  array (
+    'width' => '8',
+    'type' => 'bool',
+    'label' => 'Avanzada',
+    'default' => true,
+  ),
+  
    'prioridad' => 
   array (
     'width' => '8',
@@ -78,12 +86,6 @@ $dashletData['Expan_SolicitudDashlet']['columns'] = array (
     'label' => 'LBL_FRANQUICIA_PRINCIPAL',
     'link' => true,
     'width' => '10',
-    'default' => true,
-  ),
-  'oportunidad_inmediata' => 
-  array (
-    'width' => '5%',
-    'label' => 'Oport. Inme.',
     'default' => true,
   ),
   

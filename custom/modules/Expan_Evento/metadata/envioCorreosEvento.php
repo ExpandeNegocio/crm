@@ -67,7 +67,7 @@
 		
         //Recogemos la plantilla
         
-        $query="select * from email_templates where deleted=0 AND type='".$idFran."#"."M1'";
+        $query="select * from email_templates where deleted=0 AND type='M1' AND fraquicia='".$idFran."'";
          
         $resultSol = $db->query($query, true);
  

@@ -161,15 +161,20 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
     //Recoge una gestion por id Franquicia
 
     function getGestionFromFranID($franID) {
+            
+        echo "Entra buscar Gest" ."<br>";
               
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][getGestionFromFranID]Intenta RecogerFranquicia');
         
         $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
         foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
+            
+            echo "Entra Bucle" ."<br>";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][getGestionFromFranID]franquicia' . $gestion -> franquicia);
 
             if ($gestion -> franquicia == $franID) {
+                echo "Encuentra Gestion" ."<br>";
                 return $gestion;
             }
         }

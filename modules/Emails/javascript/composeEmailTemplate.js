@@ -33,13 +33,7 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-SUGAR.email2.templates['compose'] = '<script>'+
-'    function iniciaCorreos(){'+
-'		alert("Funciona");'+
-''+
-''+
-'}'+
-'</script>'+
+SUGAR.email2.templates['compose'] = 
 '<div id="composeLayout{idx}" class="ylayout-inactive-content"></div>' +
 '<div id="composeOverFrame{idx}" style="height:100%;width:100%;position:absolute;top:0px">' +
 '	<form onload"" id="emailCompose{idx}" name="ComposeEditView{idx}" action="index.php" method="POST">' +

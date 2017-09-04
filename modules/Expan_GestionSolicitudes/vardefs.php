@@ -79,7 +79,7 @@ $dictionary['Expan_GestionSolicitudes'] = array(
     'unified_search' => false,
     'merge_filter' => 'disabled',
     'len' => '255',
-    'size' => '20',
+    'size' => '20',    
   ),
   'f_resolucion_dudas' => 
   array (
@@ -160,6 +160,7 @@ $dictionary['Expan_GestionSolicitudes'] = array(
     'merge_filter' => 'disabled',
     'len' => '255',
     'size' => '20',
+    'popupHelp' => 'Se activa cuando el solicitante rellena el cuestionario. Es de activación automática, no es necesario que el usuario la active',
   ),
   'f_recepcion_cuestionario' => 
   array (
@@ -239,6 +240,7 @@ $dictionary['Expan_GestionSolicitudes'] = array(
     'merge_filter' => 'disabled',
     'len' => '255',
     'size' => '20',
+    'popupHelp' => 'Se activa si el usuario responde al C1. Es de activación automática no es necesario que el usuario la active',
   ),
   'f_responde_C1' => 
   array (
@@ -653,7 +655,7 @@ $dictionary['Expan_GestionSolicitudes'] = array(
     'required' => false,
     'name' => 'envio_documentacion',
     'vname' => 'Fecha de envio de Documentación',
-    'type' => 'datetime',
+    'type' => 'date',
     'massupdate' => '1',
     'no_default' => false,
     'comments' => '',

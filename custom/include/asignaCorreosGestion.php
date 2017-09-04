@@ -52,7 +52,7 @@
             $gestion -> save();
         }
     
-        $gestion -> crearTarea("DOCURevCorreo");
+        //$gestion -> crearTarea("DOCURevCorreo");
     
     }
     $GLOBALS['log'] -> info("[ExpandeNegocio][Cargo correos]Finaliza");

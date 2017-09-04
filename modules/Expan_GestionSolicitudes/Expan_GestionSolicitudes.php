@@ -192,8 +192,11 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     
     
     function asociarTareas($status, $user) {
-
+        echo "Entra Asociar Tareas" ."<br>";
+        
         $this -> load_relationship('expan_gestionsolicitudes_tasks_1');
+        
+        echo "Entra Asociar Tareas" ."<br>";
 
         foreach ($this->expan_gestionsolicitudes_tasks_1->getBeans() as $tarea) {
 
@@ -407,17 +410,16 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }        
     }
 
-    function asignarUsuarioGestor() {
+    function asignarUsuarioGestor() {        
 
         //asignamos el usuarioGestor s
         $Fran = new Expan_Franquicia();
         $Fran -> retrieve($this -> franquicia);
-
         $this -> assigned_user_id = $Fran -> assigned_user_id;
-        $this -> asociarLLamadas("Planned", $Fran -> assigned_user_id);
-        $bean -> asociarTareas("Not Started", $Fran -> assigned_user_id);
-        $bean -> asociarReuniones("Planned", $Fran -> assigned_user_id);
-        $bean -> asociarReuniones("Could", $Fran -> assigned_user_id);
+        $this -> asociarLLamadas("Planned", $Fran -> assigned_user_id);            
+        $this -> asociarTareas("Not Started", $Fran -> assigned_user_id);        
+        $this -> asociarReuniones("Planned", $Fran -> assigned_user_id);
+        $this -> asociarReuniones("Could", $Fran -> assigned_user_id);       
     }
 
     //Comprobamos si hay una llamada el tipo y el estado que se indican

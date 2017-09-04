@@ -90,15 +90,14 @@ class AccionesGuardado {
                 
 			} else {
 			                    
-			    
+			    // Entramos solo en edicion 
                 $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-				// Entramos solo en edicion -- tenemos que ver si las gestiones estan creadas
-				
-
+								
 				$textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
 
 				$db = DBManagerFactory::getInstance();
 
+				//tenemos que ver si las gestiones estan creadas
 				$query = "select * ";
 				$query =$query. "from  (select * from expan_franquicia where id in (" . $textoFran . ")) f where id not in( ";
 				$query =$query. "select g.franquicia from expan_gestionsolicitudes g ,expan_solicitud s ,expan_solicitud_expan_gestionsolicitudes_1_c gs ";
@@ -132,17 +131,9 @@ class AccionesGuardado {
                 }
                 
                 //Si modificamos el nombre de la solicitud cambiamos el de las gestiones asociadas              
-
-                foreach ($bean->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestionHija) {
-                    
-                    $gestionHija -> name = $bean -> first_name . ' ' . $bean -> last_name . ' - ' . $GLOBALS['app_list_strings']['franquicia_list'][$gestionHija ->franquicia];
-                    $gestionHija -> ignore_update_c = true;
-                    $gestionHija ->save();
-                    
-                }
-
                 //Control de campos mofificados                
-                $this->cambiosAHijos($bean);                
+                $this->cambiosAHijos($bean); 
+                $this->cambiosEconomicosGestion($bean);               
                 
                 $bean = $this -> limpiarSuborigen($bean);
                 $this -> activarMaster($bean);
@@ -512,7 +503,10 @@ class AccionesGuardado {
     }
 
     function cambiosAHijos($bean){
-        
+                       
+        $recursos_propiosAnt=self::$fetchedRow[$bean -> id]['recursos_propios'];
+        $recursos_propiosAct=$bean->recursos_propios;                       
+               
         $nombreAnt=self::$fetchedRow[$bean -> id]['first_name'];
         $nombreAct=$bean->first_name;
         
@@ -571,14 +565,86 @@ class AccionesGuardado {
             $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
             $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
             $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND ";
-            $query=$query."  s.id='\".$bean->id.\"') m  ";
+            $query=$query."  s.id='".$bean->id."') m  ";
             $query=$query."on c.id= m.id ";
             $query=$query."set telefono=m.phone_mobile; ";
             
             $db -> query($query);
             
-        }
+        }                
                
+    }
+    
+    function cambiosEconomicosGestion($bean) {
+            
+        $cuando_empezarAnt=self::$fetchedRow[$bean -> id]['cuando_empezar'];
+        $cuando_empezarAct=$bean->cuando_empezar;
+                
+        $perfil_franquiciaAnt=self::$fetchedRow[$bean -> id]['perfil_franquicia'];
+        $perfil_franquiciaAct=$bean->perfil_franquicia;
+        
+        $capitalAnt=self::$fetchedRow[$bean -> id]['capital'];
+        $capitalAct=$bean->capital;
+        
+        $recursos_propiosAnt=self::$fetchedRow[$bean -> id]['recursos_propios'];
+        $recursos_propiosAct=$bean->recursos_propios;
+            
+        $db = DBManagerFactory::getInstance();
+        
+        if($cuando_empezarAnt!=$cuando_empezarAct) {
+                
+            $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT s.cuando_empezar,expan_soli5dcccitudes_idb ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND   ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND   ";
+            $query=$query."  s.id='".$bean->id."') s   ";
+            $query=$query."on g.id= s.expan_soli5dcccitudes_idb ";
+            $query=$query."set g.cuando_empezar=s.cuando_empezar WHERE (g.cuando_empezar='' or g.cuando_empezar is null);";
+            
+            $db -> query($query);
+        }
+        
+        if($perfil_franquiciaAnt!=$perfil_franquiciaAct) {
+                            
+            $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT perfil_franquicia,expan_soli5dcccitudes_idb ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND   ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND   ";
+            $query=$query."  s.id='".$bean->id."') s   ";
+            $query=$query."on g.id= s.expan_soli5dcccitudes_idb ";
+            $query=$query."set papel=s.perfil_franquicia WHERE (papel='' or papel is null);";
+            
+            $db -> query($query);
+                        
+        }
+        
+        if($capitalAnt!=$capitalAct) {
+                
+            $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT capital,expan_soli5dcccitudes_idb ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND   ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND   ";
+            $query=$query."  s.id='".$bean->id."') s   ";
+            $query=$query."on g.id= s.expan_soli5dcccitudes_idb ";
+            $query=$query."set inversion=s.capital WHERE (inversion='' or inversion is null);";
+            
+            $db -> query($query);
+            
+        }
+        
+        if ($recursos_propiosAnt!=$recursos_propiosAct){
+                
+            $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT s.recursos_propios,expan_soli5dcccitudes_idb ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND   ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND   ";
+            $query=$query."  s.id='".$bean->id."') s   ";
+            $query=$query."on g.id= s.expan_soli5dcccitudes_idb   ";
+            $query=$query."set g.recursos_propios=s.recursos_propios WHERE (g.recursos_propios='' or g.recursos_propios is null);";
+                
+            $db -> query($query);
+        }
+        
     }
 
     function origenGestion($bean){

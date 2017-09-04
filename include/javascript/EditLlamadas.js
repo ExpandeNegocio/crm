@@ -247,6 +247,9 @@ function DesactivarGS() {
 	if ($("#telefono").val()==''){
 		getTelefono();
 	}	
+	
+	getFechaRetraso();
+	addDelayButtons();
 			
 	$("[href='index.php?module=Calls&action=EditView&return_module=Calls&return_action=DetailView']").hide();
 	$("[href='index.php?module=Import&action=Step1&import_module=Calls&return_module=Calls&return_action=index']").hide();
@@ -316,11 +319,11 @@ function getTelefono() {
 	
 	var idGestion=$("#form_SubpanelQuickCreate_Calls > table > tbody > tr > td.buttons > input[type='hidden']:nth-child(7)").val();
 
-	url='index.php?entryPoint=recogeTelefonoGestion&id=' + idGestion;
+	url='index.php?entryPoint=recogeTelefonoGestion&idGest=' + idGestion+'&tipo=numTelefono';
 	$.ajax({
 		type : "POST",
 		url : url,
-		data : "id=" + idGestion,
+		data : "idGest=" + idGestion + '&tipo=numTelefono',
 		success : function(data) {						
 			$("#telefono").val(data);	
 			var titulo=$('div.moduleTitle').children('h2').children('a').text();
@@ -333,17 +336,154 @@ function getTelefono() {
 	});
 }
 
+function getFechaRetraso(){
+	
+	var idCall=$("#EditView > table > tbody > tr > td.buttons > input[type='hidden']:nth-child(2)").val();	
+
+	url='index.php?entryPoint=recogeTelefonoGestion&idCall=' + idCall+'&tipo=fechaRetraso';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "idCall=" + idCall +'&tipo=fechaRetraso',
+		success : function(data) {						
+					
+			vectFechaHora=data.split("-");
+			
+			Fecha=("0" + vectFechaHora[2]).slice(-2)+"/"+("0" + vectFechaHora[1]).slice(-2)+"/"+vectFechaHora[0];
+			if (vectFechaHora[4] >= 53 && vectFechaHora[4] <= 59){
+				Hora=3+vectFechaHora[3];
+			}else{
+				Hora=2+vectFechaHora[3];
+			}
+			HoraForm=("0" + Hora).slice(-2);			
+			Minutos=calcularMinutosFormat(vectFechaHora[4]);		
+			
+			$('#date_delayed_date').val(Fecha);
+			$('#date_delayed_hours > option[value="' + HoraForm + '"]').attr('selected', 'selected');
+			$('#date_delayed_minutes > option[value="' + Minutos + '"]').attr('selected', 'selected');
+						
+			combo_date_delayed.update(); 
+				
+		},
+		error : function(jqXHR, textStatus, errorThrown) {					
+		}
+	});
+		
+}
+
+function addTime(hours){
+	
+	var now= new Date();			
+	var nowAdded=new Date(now.getTime() + (hours*60*60*1000));
+	
+	Fecha=("0" + nowAdded.getDate()).slice(-2)+"/"+("0" + nowAdded.getMonth()).slice(-2)+"/"+nowAdded.getYear();
+	if (nowAdded.getMinutes() >= 53 && nowAdded.getMinutes() <= 59){
+		Hora=1+nowAdded.getHours();
+	}else{
+		Hora=nowAdded.getHours();
+	}
+	HoraForm=("0" + Hora).slice(-2);			
+	Minutos=calcularMinutosFormat(nowAdded.getMinutes());		
+	
+	$('#date_delayed_date').val(Fecha);
+	$('#date_delayed_hours > option[value="' + HoraForm + '"]').attr('selected', 'selected');
+	$('#date_delayed_minutes > option[value="' + Minutos + '"]').attr('selected', 'selected');
+	
+	combo_date_delayed.update();	
+						 	
+}
+
+
+function calcularMinutosFormat(Minutos){
+	
+	if (Minutos >= 0 && Minutos <= 7) {
+		minFor='00';
+	} else if (Minutos >= 8 && Minutos <= 22) {
+		minFor='15';
+	} else if (Minutos >= 23 && Minutos <= 36) {		
+		minFor='30';
+	} else if (Minutos >= 37 && Minutos <= 52) {		
+		minFor='45';
+	} else if (Minutos >= 53 && Minutos <= 59) {
+		minFor='00';
+	}
+	
+	return minFor;
+	
+}
+
+function addDelayButtons(){
+	
+	var div= $('<button/>',
+    {
+        id: 'add_time_buttons',        
+    });
+	
+	var H1 = $('<button/>',
+    {
+        text: '+1H',
+        click: function () { addTime(1); return false;}
+    });
+    
+	 var H4 = $('<button/>',
+    {
+        text: '+4H',
+        click: function () { addTime(4); return false;}
+    });
+    
+ 	var D1 = $('<button/>',
+    {
+        text: '+1D',
+        click: function () { addTime(24); return false;}
+    });
+	
+ 	var D3 = $('<button/>',
+    {
+        text: '+3D',
+        click: function () { addTime(24*3); return false;}
+    });
+    
+ 	var D7 = $('<button/>',
+    {
+        text: '+7D',
+        click: function () { addTime(24*7); return false;}
+    });
+    
+    div.hide();
+		
+	div.append(H1);
+	div.append(H4);
+	div.append(D1);
+	div.append(D3);
+	div.append(D7);
+	
+	$("#date_delayed_time_section").append(div);
+	
+}
+
+function limpiarNuevoInicio(){
+	$("#date_delayed_date").val('');
+	$('#date_delayed_hours').val('');
+	$('#date_delayed_minutes').val('');	
+}
+
 function cambioEstado(){
 		
 	if ($("#status").val()=='Not Held'){
 		$("#date_delayed_date").parent().show();	
 		$("#date_delayed_hours").parent().show();	
+		$("#add_time_buttons").show();
+		
 		$("#date_delayed_label").text("Nuevo Inicio:");	
+		getFechaRetraso();		
+				
 	}else{
 		$("#date_delayed_date").parent().hide();
 		$("#date_delayed_hours").parent().hide();
+		$("#add_time_buttons").hide();
 		$("#date_delayed_label").text("");
+		limpiarNuevoInicio();
+		
 	}	
 	
 }
-

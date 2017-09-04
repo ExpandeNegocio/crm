@@ -28,40 +28,11 @@ array (
             'customCode' => '<input title="{$APP.LBL_SAVE_BUTTON_TITLE}" id="SAVE_HEADER" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="button primary" onclick="'.$guardar.'" type="button" name="button" value="{$APP.LBL_SAVE_BUTTON_LABEL}">',
           ),
           1 => 'CANCEL',
-          3 => 
+          2 => 
           array (
             'customCode' => '{if $fields.status.value != "Held"}<input title="Guardar y Crear Nuevo id="CLOSE_CREATE_FOOTER" accessKey="{$APP.LBL_CLOSE_AND_CREATE_BUTTON_KEY}" class="button" onclick="SUGAR.calls.fill_invitees(); document.EditView.action.value=\'Save\'; document.EditView.return_module.value=\'Calls\'; document.EditView.isDuplicate.value=true; document.EditView.isSaveAndNew.value=true; document.EditView.return_action.value=\'EditView\'; document.EditView.return_id.value=\'{$fields.id.value}\'; formSubmitCheck();" type="button" name="button" value="{$APP.LBL_CLOSE_AND_CREATE_BUTTON_LABEL}">{/if}',
-          ),
-          4 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');'.$guardar.'" value="+1H">{/if}',
-          ),
-          
-          5 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'4H\',\'{$fields.id.value}\');'.$guardar.'" value="+4H">{/if}',
-          ),
-          
-          6 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');'.$guardar.'" value="+1D">{/if}',
-          ),
-          
-          7 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');'.$guardar.'" value="+3D">{/if}',
-          ),
-          
-          8 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');'.$guardar.'" value="+7D">{/if}',
-          ),
-          9 => 
+          ),         
+          3 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirGestionesAgrupadas(\'{$fields.id.value}\');  abrirSolicitudEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',
@@ -91,43 +62,11 @@ array (
             'customCode' => '<input title="{$APP.LBL_SAVE_BUTTON_TITLE}" id="SAVE_FOOTER" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="button primary" onclick="'.$guardar.'" type="button" name="button" value="{$APP.LBL_SAVE_BUTTON_LABEL}">',
           ),
           1 => 'CANCEL',
-       /*   2 => 
-          array (
-            'customCode' => '<input title="{$MOD.LBL_SEND_BUTTON_TITLE}" id="SAVE_SEND_FOOTER" class="button" onclick="document.EditView.send_invites.value=\'1\';SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\';document.EditView.return_action.value=\'EditView\';document.EditView.return_module.value=\'{$smarty.request.return_module}\';formSubmitCheck();;" type="button" name="button" value="{$MOD.LBL_SEND_BUTTON_LABEL}">',
-          ),*/
-          3 => 
+          2 => 
           array (
             'customCode' => '{if $fields.status.value != "Held"}<input title="Guardar y Crear Nuevo id="CLOSE_CREATE_FOOTER" accessKey="{$APP.LBL_CLOSE_AND_CREATE_BUTTON_KEY}" class="button" onclick="SUGAR.calls.fill_invitees(); document.EditView.action.value=\'Save\'; document.EditView.return_module.value=\'Calls\'; document.EditView.isDuplicate.value=true; document.EditView.isSaveAndNew.value=true; document.EditView.return_action.value=\'EditView\'; document.EditView.return_id.value=\'{$fields.id.value}\'; formSubmitCheck();" type="button" name="button" value="{$APP.LBL_CLOSE_AND_CREATE_BUTTON_LABEL}">{/if}',
-          ),
-          4 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-        			onClick="retrasarLlamada(\'1H\',\'{$fields.id.value}\');'.$guardar.'" value="+1H">{/if}',
-          ),
-           5 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'4H\',\'{$fields.id.value}\');'.$guardar.'" value="+4H">{/if}',
-          ),
-          
-          6 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'1D\',\'{$fields.id.value}\');'.$guardar.'" value="+1D">{/if}',
-          ),
-          
-          7 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'3D\',\'{$fields.id.value}\');'.$guardar.'" value="+3D">{/if}',
-          ),
-          
-          8 => 
-          array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="retrasarLlamada(\'7D\',\'{$fields.id.value}\');'.$guardar.'" value="+7D">{/if}',
-          ),
-          9 => 
+          ),         
+          3 => 
           array (
             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
                     onClick="abrirGestionesAgrupadas(\'{$fields.id.value}\');  abrirSolicitudEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',

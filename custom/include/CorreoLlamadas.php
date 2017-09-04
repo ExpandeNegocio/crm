@@ -12,10 +12,11 @@
     
     $db = DBManagerFactory::getInstance();
     
+    //No se muestran ni los de las franquicias ni los que no show_on_employees=1  
     $query = "SELECT u.id, u.user_name, e.email_address ";
     $query=$query."FROM   users u, email_addr_bean_rel r, email_addresses e ";
     $query=$query."WHERE  r.bean_id = u.id AND e.id = r.email_address_id AND u.status = 'Active' AND e.deleted=0 AND r.deleted=0 AND ";
-    $query=$query."u.deleted = 0 AND u.franquicia IS NULL; ";
+    $query=$query."u.deleted = 0 AND show_on_employees=1 AND u.franquicia IS NULL; ";
     
     $result = $db -> query($query, true);    
     
@@ -182,11 +183,11 @@
         $query=$query."             , Sum(CASE WHEN c.status = 'Planned' AND (c.date_start >CURDATE() or c.date_start is null) THEN 1 ELSE 0 END) AS Por_Hacer  ";
         $query=$query."             , Sum(CASE WHEN c.status = 'Planned' THEN 1 ELSE 0 END) AS Total_Planificadas  ";
         $query=$query."    FROM     calls c,expan_gestionsolicitudes g  ";
-        $query=$query."    WHERE    c.parent_id=g.id AND c.deleted = 0  ";
+        $query=$query."    WHERE    c.parent_id=g.id AND c.deleted = 0 and c.parent_type!='Expan_Franquicia' ";
         $query=$query."    GROUP BY g.franquicia) a  ";
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."RIGHT JOIN users u on u.id=f.assigned_user_id ";
-        $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2)  ";
+        $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
         $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc ";
 
 

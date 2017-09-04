@@ -59,7 +59,10 @@ function procesar() {
 
     echo "Entra2" . "<br>";
 
+    echo "Nombre-" . $nombre . "<br>";
+    echo "Apellidos-" . $apellidos . "<br>";
     echo "Email-" . $email . "<br>";
+    echo "Telefono-" . $telefono . "<br>";
 
     $idSol = localizaSolicitudPoremail($email);
 
@@ -71,6 +74,8 @@ function procesar() {
 
     if ($idSol != "") {
 
+        echo "Tiene Solicitud-" .$idSol. "<br>";
+
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Tenemos la solicitud");
 
         $solicitud = new Expan_Solicitud();
@@ -79,6 +84,8 @@ function procesar() {
         if ($solicitud == null) {
             return;
         }
+        
+        echo "Tiene Solicitud-" .$solicitud->first_name. "<br>";
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Nombre de la solicitud-" . $solicitud -> first_name);
 
@@ -114,6 +121,8 @@ function procesar() {
             $solicitud -> disp_contacto = $disponibilidad;
         }
 
+        echo "Antes Situacion" . "<br>";
+
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Disponibilidad-" . $solicitud -> disp_contacto);
 
         if ($situacion != "") {
@@ -142,6 +151,8 @@ function procesar() {
         }
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Perfil-" . $solicitud -> perfil_profesional);
+        
+        echo "Antes fran Contacto" . "<br>";
 
         if ($franContac != "") {
             if ( $solicitud -> franquicias_contactadas ==''){
@@ -172,6 +183,8 @@ function procesar() {
 
         $infoLocal = "";
 
+        echo "Antes Local" . "<br>";
+
         if ($localPropio != "") {
             if ($localPropio == "Si") {
                 $infoLocal = "Local Propio";
@@ -200,14 +213,20 @@ function procesar() {
             $obsFinanci = $obsFinanci . ". " . $recursos;
 
         }
+        
+        echo "Antes Financia" . "<br>";
 
-        if ($obsFinanci != "") {
-            $solicitud -> capital_observaciones = $recursos;
+        if ($obsFinanci != "" && $solicitud->$obsFinanci="") {
+            $solicitud -> capital_observaciones =$solicitud -> capital_observaciones .'. '. $obsFinanci;
         }
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger gestion");
+        
+        echo "Antes de la gestion idfran-".$idFran ."<br>";
 
         $gestion = $solicitud -> getGestionFromFranID($idFran);
+              
+        echo "Gestion - " . $gestion->id ."<br>";
 
         if ($gestion != null) {
 
@@ -219,18 +238,31 @@ function procesar() {
              $substN=substr($gestion->name, 0, strpos($gestion -> name, " "));
              $substA=substr($nomApe, strpos($nomApe, " ") + 1);
              $substfran=substr($gestion->name, strpos($gestion->name, "-"));
+             
+             echo "Pasa Gestion1 " ."<br>";
             
             if($nombre!=$substN|$apellidos!=$substA){//si se ha cambiado el nombre o el apellido
                 $nombreNuevo=$nombre." ".$apellidos." ".$substfran;
                 $gestion-> name=$nombreNuevo;//cambiar el nombre    
             }
             
+            echo "Pasa Gestion2 " ."<br>";
+            
             $gestion -> chk_recepcio_cuestionario = 1;
             $gestion -> f_recepcion_cuestionario = TimeDate::getInstance()->nowDb();
             $gestion -> candidatura_avanzada=true;
+            
+            echo "Pasa Gestion22 " ."<br>";
+            
             $gestion -> candidatura_caliente=true;
+                                   
             $gestion -> estado_sol = '2';
+            
+            echo "Pasa Gestion23 " ."<br>";
+            
             $gestion -> asignarUsuarioGestor();
+            
+            echo "Pasa Gestion3 " ."<br>";
                 
             switch ($papel) {
 

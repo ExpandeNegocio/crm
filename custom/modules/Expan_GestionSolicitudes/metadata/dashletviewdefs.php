@@ -19,6 +19,14 @@ $dashletData['Expan_GestionSolicitudesDashlet']['searchFields'] = array (
   'candidatura_caliente' => 
   array (
     'default' => '',
+  ),  
+  'candidatura_avanzada' => 
+  array (
+    'default' => '',
+  ),  
+  'oportunidad_inmediata' => 
+  array (
+    'default' => '',
   ),
 );
 $dashletData['Expan_GestionSolicitudesDashlet']['columns'] = array (
@@ -74,4 +82,24 @@ $dashletData['Expan_GestionSolicitudesDashlet']['columns'] = array (
     'label' => 'Candidatura caliente',
     'width' => '10%',
   ),
+  'candidatura_avanzada' => 
+  array (
+    'type' => 'bool',
+    'default' => false,
+    'label' => 'Candidatura Avanzada',
+    'width' => '10%',
+  ),
+  'provincia_apertura_1' => 
+  array (
+    'default' => false,
+    'label' => 'Provincia',
+    'width' => '10%',
+  ),
+    'prioridad' => 
+  array (    
+    'default' => false,
+    'label' => 'Prioridad',
+    'width' => '10%',
+  ),
+  
 );
