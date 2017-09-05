@@ -1052,13 +1052,14 @@ class Call extends SugarBean {
         }
     
         // Si pasamos a un estado cerrado sin exito creamos una nueva llamada
-        if ($newStatus == 'Not Held' && 
-            $newStatus != $prevStatus ) {
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Guardada llamada sin exito');                 
-    
-            $this->LlamadaNoRealizada($gestion);
-        }
-               
+        if ($newStatus != $prevStatus){
+            if ($newStatus == 'Not Held'){
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Guardada llamada sin exito');  
+                $this->LlamadaNoRealizada($gestion);
+            }else{
+                $this -> repeticiones=0;
+            }                                 
+        }                                        
     }
 
     public function procesarLLamadaFinal($franquicia,$gestion,$solicitud){
