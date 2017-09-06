@@ -252,9 +252,7 @@ function procesar() {
             $gestion -> f_recepcion_cuestionario = TimeDate::getInstance()->nowDb();
             $gestion -> candidatura_avanzada=true;
             
-            echo "Pasa Gestion22 " ."<br>";
-            
-            $gestion -> candidatura_caliente=true;
+            echo "Pasa Gestion22 " ."<br>";                      
                                    
             $gestion -> estado_sol = '2';
             
