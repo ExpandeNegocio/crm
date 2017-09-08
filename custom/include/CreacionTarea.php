@@ -57,7 +57,9 @@ class controlTareas {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Nombre Solicitud-' . $bean -> status);
                 
                 $gestion -> calcularOportunidadInmediata($this->oportunidad_inmediata);   
-                $solicitud -> calcularOportunidadInmediata();  
+                if (solicitud!=null){
+                    $solicitud -> calcularOportunidadInmediata();
+                }                  
                 $prioridad=$gestion->calcularPrioridades();
                 
                 $bean->assigned_user_id=$gestion->assigned_user_id; 

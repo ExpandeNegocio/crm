@@ -43,7 +43,7 @@ class AccionesGuardadoReunion {
 
             }            
                        
-            if ($gestion != null || $solicitud!=null ) {
+            if ($gestion != null) {
                  //Si la Tarea se ha realizado ya no puede estar como oportunidad
 
                if ($bean->status=='Held'){
@@ -54,7 +54,9 @@ class AccionesGuardadoReunion {
                }       
                
                $gestion -> calcularOportunidadInmediata($this->oportunidad_inmediata);   
-               $solicitud -> calcularOportunidadInmediata();  
+               if($solicitud!=null){
+                   $solicitud -> calcularOportunidadInmediata();  
+               }               
                $prioridad=$gestion->calcularPrioridades();
 
                $prioridad=$gestion->calcularPrioridades();

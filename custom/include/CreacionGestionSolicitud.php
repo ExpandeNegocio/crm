@@ -28,6 +28,7 @@ class AccionesGuardadoGestionSol {
         if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {                       
             
             $bean->ignore_update_c = true;
+            $fechaHoy=  new DateTime();
 
             $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Entramos en control bucle');
@@ -124,7 +125,7 @@ class AccionesGuardadoGestionSol {
             //Miramos si la GestionSolicitud a la que pasamos es de tipo 2
             if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_EN_CURSO) {
                           
-                $mayorCheck = 0;
+                $mayorCheck = 0;                                                                                 
 
                 $bean -> ignore_update_c = true;
 
@@ -169,7 +170,7 @@ class AccionesGuardadoGestionSol {
                                 if ($salida == "Ok") {
                                     $bean -> chk_envio_documentacion = true;
                                     if ($bean -> envio_documentacion == $fecha_envio_documentacion_ant || $bean -> envio_documentacion==null) {
-                                        $bean -> envio_documentacion = TimeDate::getInstance()->nowDb();
+                                        $bean -> envio_documentacion = $fechaHoy->format('d/m/Y H:i');                                                                                
                                     }
 
                                     //Si hemos podido pasar a estado dos. Creamos la llamada
@@ -227,7 +228,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 3;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estamos mocificando Resolucion dudas');
                     if ($bean -> f_resolucion_dudas == $fecha_resolucion_dudas_ant) {
-                        $bean -> f_resolucion_dudas = TimeDate::getInstance()->nowDb();
+                        $bean -> f_resolucion_dudas = $fechaHoy->format('d/m/Y H:i');                            
                     }
                 }
                 if ($bean -> f_resolucion_dudas != null) {
@@ -238,8 +239,8 @@ class AccionesGuardadoGestionSol {
                 if ($sol_amp_info_ant != $bean -> chk_sol_amp_info && $bean -> chk_sol_amp_info == true) {
                     $mayorCheck = 2;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estamos mocificando Ampliacion de información');
-                    if ($bean -> f_sol_amp_info == $fecha_sol_amp_info_ant) {
-                        $bean -> f_sol_amp_info = TimeDate::getInstance()->nowDb();
+                    if ($bean -> f_sol_amp_info == $fecha_sol_amp_info_ant) {                                                         
+                        $bean -> f_sol_amp_info = $fechaHoy->format('d/m/Y H:i');                           
                     }
                 }
                 if ($bean -> f_sol_amp_info != null) {
@@ -253,7 +254,7 @@ class AccionesGuardadoGestionSol {
                 //    $bean -> crearTarea("DOCURevCorreo");
 
                     if ($bean -> f_responde_C1 == $fecha_respuesta_C1) {
-                        $bean -> f_responde_C1 = TimeDate::getInstance()->nowDb();
+                        $bean -> f_responde_C1 = $fechaHoy->format('d/m/Y H:i');
                     }
                 }
                 if ($bean -> f_responde_C1 != null) {
@@ -268,7 +269,7 @@ class AccionesGuardadoGestionSol {
                     $salida=$bean -> preparaCorreo("C2");
 
                     if ($bean -> f_informacion_adicional == $fecha_envio_informacion_adicional_ant) {
-                        $bean -> f_informacion_adicional = TimeDate::getInstance()->nowDb();
+                        $bean -> f_informacion_adicional = $fechaHoy->format('d/m/Y H:i');
                     }
 
                     // $bean -> creaLlamada('[AUT]Infor adicional enviada', 'InformacionAdicional');
@@ -285,7 +286,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> preparaCorreo("C1.3");
 
                     if ($bean -> f_recepcion_cuestionario == $fecha_recepcion_cuestionario_ant) {
-                        $bean -> f_recepcion_cuestionario = TimeDate::getInstance()->nowDb();
+                        $bean -> f_recepcion_cuestionario = $fechaHoy->format('d/m/Y H:i');
                     }
 
                     $bean -> crearTarea("DOCURevCu");
@@ -301,7 +302,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 6;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a entrevista');
                     if ($bean -> f_entrevista == $fecha_entrevista_ant) {
-                        $bean -> f_entrevista = TimeDate::getInstance()->nowDb();
+                        $bean -> f_entrevista = $fechaHoy->format('d/m/Y H:i');
                     }
                 }
                 if ($bean -> f_entrevista != null) {
@@ -313,7 +314,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 7;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] zna propuesta');
                     if ($bean -> f_propuesta_zona == $fecha_propuesta_zona_ant) {
-                        $bean -> f_propuesta_zona = TimeDate::getInstance()->nowDb();
+                        $bean -> f_propuesta_zona = $fechaHoy->format('d/m/Y H:i');
                     }
                     
       /*               //Marcamos también el precontrato
@@ -339,7 +340,7 @@ class AccionesGuardadoGestionSol {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a estado fran ant');
 
                     if ($bean -> f_visitado_fran == $fecha_visitado_fran_ant) {
-                        $bean -> f_visitado_fran = TimeDate::getInstance()->nowDb();
+                        $bean -> f_visitado_fran = $fechaHoy->format('d/m/Y H:i');
                     }                    
                 }
                 if ($bean -> f_visitado_fran != null) {
@@ -356,7 +357,7 @@ class AccionesGuardadoGestionSol {
                    // $bean -> crearTarea("DOCUPerPre");
 
                     if ($bean -> f_envio_precontrato == $fecha_envio_precontrato_ant) {
-                        $bean -> f_envio_precontrato = TimeDate::getInstance()->nowDb();
+                        $bean -> f_envio_precontrato = $fechaHoy->format('d/m/Y H:i');
                     }
                 }
                 if ($bean -> f_envio_precontrato != null) {
@@ -371,7 +372,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> crearTarea("DOCURevLoc");
 
                     if ($bean -> f_visita_local == $fecha_visita_local_ant) {
-                        $bean -> f_visita_local = TimeDate::getInstance()->nowDb();
+                        $bean -> f_visita_local = $fechaHoy->format('d/m/Y H:i');
                     }
                 }
                 if ($bean -> f_visita_local != null) {
@@ -387,7 +388,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> crearTarea("DOCUPerCon");
 
                     if ($bean -> f_envio_contrato == $fecha_envio_contrato_ant) {
-                        $bean -> f_envio_contrato = TimeDate::getInstance()->nowDb();
+                        $bean -> f_envio_contrato = $fechaHoy->format('d/m/Y H:i');
                     }
                 }
                 if ($bean -> f_envio_contrato != null) {
@@ -398,7 +399,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 12;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estado 8');
                     if ($bean -> f_visita_central == $fecha_visita_central_ant) {
-                        $bean -> f_visita_central = TimeDate::getInstance()->nowDb();
+                        $bean -> f_visita_central = $fechaHoy->format('d/m/Y H:i');
                     }
 
                     $bean -> creaReunion("Visita a la central", "VisCentral", 0);
