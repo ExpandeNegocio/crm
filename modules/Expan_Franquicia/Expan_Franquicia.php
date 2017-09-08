@@ -166,13 +166,13 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
 
         while ($row = $db -> fetchByAssoc($resultado)) {
                                                                  
-            $gestion =$row['id'];
+            $idGestion =$row['id'];
             //ANTIGUA FORMA
             //$gestion -> asociarLLamadas("Planned", $dirCuentaAct);
             //$gestion -> asociarTareas("Not Started", $dirCuentaAct);  
             //$this -> eliminarEnlaceConFranquicia($gestion);
-            $this -> asociarLlamadas($gestion, $dirCuentaAct);
-            $this -> asociarTareas($gestion, $dirCuentaAct);
+            $this -> asociarLlamadas($idGestion, $dirCuentaAct);
+            $this -> asociarTareas($idGestion, $dirCuentaAct);
         }
         $query="update expan_gestionsolicitudes g join (select id from expan_gestionsolicitudes where deleted=0 AND franquicia='".$this->id."' "; 
         $query=$query. " AND assigned_user_id='".$dirCuentaAnt."') b on g.id=b.id set g.assigned_user_id='".$dirCuentaAct."' where g.deleted=0;";
@@ -236,26 +236,27 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
     }
 
     public function cambioFiltro($filtroAnt,$filtroAct){
-        
-        $db = DBManagerFactory::getInstance();                
+                    
+        $db = DBManagerFactory::getInstance();
         $query = "select id from expan_gestionsolicitudes where deleted=0 AND franquicia='".$this -> id."' AND assigned_user_id='".$filtroAnt."'";  
                            
-        $result = $db -> query($query, true);
+        $resultado = $db -> query($query, true);
 
-        while ($row = $db -> fetchByAssoc($result)) {
-            
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Franquicia]Gestion ID-'.$row['id']);
-                                                                           
-            $gestion = new Expan_GestionSolicitudes();
-            $gestion -> retrieve($row['id']);
-
-            $gestion->assigned_user_id=$filtroAct;
-            $gestion->ignore_update_c = true;
-            $gestion->save();
-  
-            $gestion -> asociarLLamadas("Planned", $filtroAct);
-            $gestion -> asociarTareas("Not Started", $filtroAct);  
+        while ($row = $db -> fetchByAssoc($resultado)) {
+                                                                 
+            $idGestion =$row['id'];
+            //ANTIGUA FORMA
+            //$gestion -> asociarLLamadas("Planned", $dirCuentaAct);
+            //$gestion -> asociarTareas("Not Started", $dirCuentaAct);  
+            //$this -> eliminarEnlaceConFranquicia($gestion);
+            $this -> asociarLlamadas($idGestion, $filtroAct);
+            $this -> asociarTareas($idGestion, $filtroAct);
         }
+        $query="update expan_gestionsolicitudes g join (select id from expan_gestionsolicitudes where deleted=0 AND franquicia='".$this->id."' "; 
+        $query=$query. " AND assigned_user_id='".$filtroAnt."') b on g.id=b.id set g.assigned_user_id='".$filtroAct."' where g.deleted=0;";
+            
+        $result = $db -> query($query);
+            
     }    
     
     public function pasoaExcliente(){

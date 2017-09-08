@@ -462,18 +462,7 @@ class AccionesGuardadoGestionSol {
                         $fran -> creaLlamadaRecor($nombre,'PasarColaborador');
                         break;                        
                 }
-
-                //Guardamos si sn avanzadas y/o calientes
-
-                $bean -> calcAvanzado();
-                $bean -> calcCaliente();
-
-                /*se hace dos veces
-                 * $bean -> ignore_update_c = true;
-                $bean -> save();
-                $bean -> calcularPrioridades();*/
                 
-
                 //Los demas estados que no son el dos
             } else {
                 //Si pasamos a un estado (descartado)
@@ -485,7 +474,7 @@ class AccionesGuardadoGestionSol {
                     
                 }
 
-                //Si no localizamos para una gestión, debeos de pasar el resto de gestiones de la solicitud al mismo estado
+                //Si no localizamos para una gestión, debemos de pasar el resto de gestiones de la solicitud al mismo estado
                 //4 - No localizado
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_NO_LOCALIZADO) {
                     if ($solicitud != null) {
@@ -524,15 +513,11 @@ class AccionesGuardadoGestionSol {
                         $franquiciado=Expan_Franquiciado::existeFranquiciado($solicitud->id);
                         
                         if($franquiciado==false) {//se crea el franquiciado a partir de la solicitud, no existe
-                            
                             $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud);
-                            
                         }
                         Expan_Apertura::crearApertura($bean->name, $solicitud, $franquiciado);
                     
                     }   
-                    
-                    
                     
                 }
 
@@ -552,15 +537,10 @@ class AccionesGuardadoGestionSol {
                 $bean -> chk_envio_contrato = $envio_contrato_ant;
                 $bean -> chk_visita_central = $visita_central_ant;
 
-                $bean -> calcAvanzado();
-                $bean -> calcCaliente();
-
-           /*
-            * Se guarda dos veces
-            *      $bean -> ignore_update_c = true;
-                $bean -> save();
-                $bean -> calcularPrioridades(); */
             }
+
+            $bean -> calcAvanzado();
+            $bean -> calcCaliente();
 
             if ($solicitud != null) {
 
@@ -623,7 +603,6 @@ class AccionesGuardadoGestionSol {
             }
 
         }
-
     
     }
 

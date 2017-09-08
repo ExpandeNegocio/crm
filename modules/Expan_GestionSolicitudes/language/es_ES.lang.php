@@ -36,7 +36,7 @@
 
 $mod_strings = array (
   'LBL_ASSIGNED_TO_ID' => 'Asignado a Usuario con Id',
-  'LBL_ASSIGNED_TO_NAME' => 'Usuario',
+  'LBL_ASSIGNED_TO_NAME' => 'Usuario asignado:',
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
   'LBL_DATE_MODIFIED' => 'Última Modificación',
@@ -92,7 +92,7 @@ $mod_strings = array (
   'LBL_PAPEL'=>'Rol en el Proyecto:',
   'LBL_RECURSOS_PROPIOS'=>'Recursos propios',
   'LBL_INVERSION'=>'Capacidad de Inversión:',
-  'LBL_MODIFICADO_POR'=>'Modificado por',
+  'LBL_MODIFICADO_POR'=>'Ultima modificacion por:',
   'LBL_PROVINCIA_APERTURA_1'=>'Provincia',
   'LBL_TELEFONO'=>'Telefono',
   'LBL_RATING'=>'Rating',
