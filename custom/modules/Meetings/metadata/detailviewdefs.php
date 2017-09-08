@@ -104,19 +104,12 @@ array (
           ),
           1 => 
           array (
-            'name' => 'expan_gestionsolicitudes_activities_1_meetings_name',
-          ),
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
             'name' => 'oportunidad_inmediata',
             'label' => 'LBL_OPORTUNIDAD_INMEDIATA',
           ),
         ),
-        
-        7 => 
+       
+        6 => 
         array (
           0 => 
           array (

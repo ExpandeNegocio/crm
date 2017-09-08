@@ -150,7 +150,7 @@ class AccionesGuardadoTel {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Actualizacion de llamada][ActulizaRel]ID - ' . $bean -> id);
         $GLOBALS['log'] -> info('[ExpandeNegocio][Actualizacion de llamada][ActulizaRel]Modulo - ' . $arguments['related_module']);
         $GLOBALS['log'] -> info('[ExpandeNegocio][Actualizacion de llamada][ActulizaRel]ID - ' . $arguments['related_id']);
-
+    
         //Actualizamo los
         $db = DBManagerFactory::getInstance();
         $query = "SELECT * ";

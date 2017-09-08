@@ -56,7 +56,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][NumHermanas]Solicitud ID' . $this -> id);
 
         $db = DBManagerFactory::getInstance();
-        $query = "select count(*) num from  expan_solicitud_expan_gestionsolicitudes_1_c gs where gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida='" . $this -> id . "'";
+        $query = "select count(*) num from  expan_solicitud_expan_gestionsolicitudes_1_c gs where deleted=0 and gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida='" . $this -> id . "'";
 
         $result = $db -> query($query, true);
         $num = 0;
@@ -622,7 +622,6 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         return $telefono;
     }
     
-    
    public function _create_proper_name_field() {
         parent::_create_proper_name_field();
      if ($this->tipo_origen=='^1^'){
@@ -686,6 +685,41 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         return $listaCorreo;
 
     }
+
+    function calcularOportunidadInmediata(){
+            
+        if ($this->gestionesInmediatas()==true){
+           
+            $this->oportunidad_inmediata=true;             
+        }else{
+            $this->oportunidad_inmediata=false;             
+        }
+        
+        $this->ignore_update_c = true;
+        $this->save();
+                                  
+    } 
+  
+    public function gestionesInmediatas(){
+                
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "SELECT oportunidad_inmediata ";
+        $query=$query."FROM   expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+        $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND g.deleted=0 and gs.deleted=0 and gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '". $this -> id ."'";
+        
+        $result = $db -> query($query, true);
+        $inmediata = false;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            if ($row["oportunidad_inmediata"]==1){
+                $inmediata=true;
+            }
+        }
+        return $inmediata;
+        
+    }
+
     
         //Buscará si el municipio entra dentro de la zona que la franquicia puede abrir
     //por las condiciones de la franquicia

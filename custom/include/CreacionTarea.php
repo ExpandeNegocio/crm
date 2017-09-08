@@ -48,7 +48,7 @@ class controlTareas {
 
             }
 
-            //Si la Tarea se ha realizado ya no puede estar como oportunidad
+            //Si es de tipo gestion
 
             if ($gestion != null) {
                 $solicitud = $gestion -> GetSolicitud();
@@ -56,23 +56,12 @@ class controlTareas {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Nombre Solicitud-' . $solicitud->name);
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Nombre Solicitud-' . $bean -> status);
                 
-                if ($bean -> status != 'Not Started') {
-                    $bean -> oportunidad_inmediata == false;
-                }
-                if ($solicitud!=null){                                       
-                    
-                    $this->controlOpInmediata($gestion,$solicitud);
-                    
-                    $gestion-> ignore_update_c = true;
-                    $gestion->save();
-                    $solicitud -> ignore_update_c = true;
-                    $solicitud->save();
-                    $prioridad=$gestion->calcularPrioridades();
-                    $gestion->prioridad=$prioridad;
-                    //$solicitud->prioridad=$prioridad;
-                    //$bean -> prioridad=$prioridad;
-                    $bean->assigned_user_id=$gestion->assigned_user_id; 
-                }
+                $gestion -> calcularOportunidadInmediata($this->oportunidad_inmediata);   
+                $solicitud -> calcularOportunidadInmediata();  
+                $prioridad=$gestion->calcularPrioridades();
+                
+                $bean->assigned_user_id=$gestion->assigned_user_id; 
+                
             }
             //Si la tarea es de tipo Franquicia
             if (substr($bean -> task_type, 0, 4) == 'FRAN') {
@@ -102,49 +91,6 @@ class controlTareas {
     function ActualizarRel(&$bean, $event, $arguments ){
         
         //NO BORRAR
-    }
-
-
-    function tareasHermanasOportunidadInmediata($Gestion, $estado) {
-
-        $db = DBManagerFactory::getInstance();
-        $query = "select oportunidad_inmediata from tasks where parent_id='" . $Gestion -> id . "' and status='" . $estado . "'";
-
-        $result = $db -> query($query, true);
-
-        $opIn = false;
-
-        while ($row = $db -> fetchByAssoc($result)) {
-            if ($row["oportunidad_inmediata"] == 1) {
-                return true;
-            }
-        }
-        return $opIn;
-    }
-    
-    function controlOpInmediata(&$gestion,&$solicitud){
-        if ($this -> tareasHermanasOportunidadInmediata($gestion, "Not Started")) {
-                        
-            if ($solicitud -> tieneLlamadasPendientes() == true || 
-                $solicitud -> tieneReunionesPendientes() == true || 
-                $solicitud -> tieneTareasPendientes() == true) {
-
-                    $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Activamos OI');
-
-                    $gestion -> oportunidad_inmediata = true;
-                    $solicitud -> oportunidad_inmediata = true;
-
-            } else {
-                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Desactivamos OI-1');
-                $gestion -> oportunidad_inmediata = false;
-                $solicitud -> oportunidad_inmediata = false;
-            }
-        
-        } else {
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Desactivamos OI-2');
-            $gestion -> oportunidad_inmediata = false;
-            $solicitud -> oportunidad_inmediata = false;
-        }
     }
 
 }

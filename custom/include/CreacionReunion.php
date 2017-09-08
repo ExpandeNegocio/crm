@@ -41,44 +41,25 @@ class AccionesGuardadoReunion {
                     $bean -> provincia -> $solicitud -> provincia_apertura_1;
                 }
 
-            }
-            
+            }            
                        
             if ($gestion != null || $solicitud!=null ) {
                  //Si la Tarea se ha realizado ya no puede estar como oportunidad
-                if ($bean->status!='Planned' && 
-                    $bean->status!='Could'){
-                    $bean->oportunidad_inmediata==false;
-                }
+
                if ($bean->status=='Held'){
                    $gestion->chk_entrevista=1;
                    $gestion->f_entrevista="".date ("d/m/Y",strtotime($bean->date_start));
-               }                               
-                if ($this->reunionesHermanasOportunidadInmediata($gestion)){
-                    if ($solicitud->tieneLlamadasPendientes()==true ||
-                        $solicitud->tieneReunionesPendientes()==true ||
-                        $solicitud->tieneTareasPendientes()==true){
-                            $gestion->oportunidad_inmediata=true;
-                            $solicitud->oportunidad_inmediata=true;  
-                            
-                        }else{
-                            $gestion->oportunidad_inmediata=false;
-                            $solicitud->oportunidad_inmediata=false;  
-                        }
-    
-                } else{
-                    $gestion->oportunidad_inmediata=false;
-                    $solicitud->oportunidad_inmediata=false;                
-                }
-                
-                $gestion-> ignore_update_c = true;
-                $gestion->save();
-                $solicitud -> ignore_update_c = true;
-                $solicitud->save();
-                $prioridad=$gestion->calcularPrioridades();
-                $gestion->prioridad=$prioridad;
-                //$solicitud->prioridad=$prioridad;
-                //$bean->prioridad=$prioridad;
+                   $gestion-> ignore_update_c = true;
+                   $gestion->save();
+               }       
+               
+               $gestion -> calcularOportunidadInmediata($this->oportunidad_inmediata);   
+               $solicitud -> calcularOportunidadInmediata();  
+               $prioridad=$gestion->calcularPrioridades();
+
+               $prioridad=$gestion->calcularPrioridades();
+               $gestion->prioridad=$prioridad;
+
             }
             
             $durMinutos=$bean -> asignarTiempo($bean -> meeting_type);                        
@@ -96,23 +77,6 @@ class AccionesGuardadoReunion {
 
         }
 
-    }
-
-    function reunionesHermanasOportunidadInmediata($Gestion) {
-
-        $db = DBManagerFactory::getInstance();
-        $query = "select oportunidad_inmediata from meetings where parent_id='" . $Gestion -> id . "' and (status='Planed' or status='Could')";
-
-        $result = $db -> query($query, true);
-
-        $opIn = false;
-
-        while ($row = $db -> fetchByAssoc($result)) {
-            if ($row["oportunidad_inmediata"]==1){
-                return true;
-            }           
-        }
-        return $opIn;
     }
 
 }

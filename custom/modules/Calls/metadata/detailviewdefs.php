@@ -124,7 +124,7 @@ array (
             'name' => 'expan_gestionsolicitudes_calls_1_name',
           ),
         ),
-        3 => 
+        2 => 
         array (
           0 => 
           array (
@@ -138,7 +138,7 @@ array (
             'label' => 'LBL_TELEFONO',
           ),
         ),
-        4 => 
+        3 => 
         array (
           0 => 
           array (
@@ -151,24 +151,19 @@ array (
             'name' => 'franquicia',
           ),
         ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'expan_gestionsolicitudes_activities_1_calls_name',
-          ),
-          1 => 
-          array (
-            'name' => 'expan_gestionsolicitudes_activities_1_calls_name',
-          ),
-        ),
+
                 
-        6 => 
+        4 => 
         array (
-            0 =>  array (
+          0 =>  array (
             'name' =>'modified_by_name',     
             'label' => 'LBL_MODIFICADO_POR',
-          ),                                
+          ),    
+          
+          1 => array (
+            'name' => 'oportunidad_inmediata',
+            'label' => 'LBL_OPORTUNIDAD_INMEDIATA',
+          ),                            
         ),
       ),
     ),

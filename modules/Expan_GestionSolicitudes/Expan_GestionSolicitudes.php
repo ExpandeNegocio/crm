@@ -992,20 +992,15 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                     $typeTemplate= $row["type"];                
                     $modnegTemplate=$row["modeloneg"]; 
                    
+                   //Si no tiene modelo de negocio o encaja con el modelo de negocio
                     if ($modnegTemplate==null || ($modnegTemplate==1 && $this->tiponegocio1=1)
                                               || ($modnegTemplate==2 && $this->tiponegocio2=1)
                                               || ($modnegTemplate==3 && $this->tiponegocio3=1)
-                                              || ($modnegTemplate==4 && $this->tiponegocio4=1))     
-                    
-                    if ($idTemplate == "") {
-                        $this->crearTarea("INTPlantilla");
-                        $incidencia= new Expan_IncidenciaCorreo();
-                        $incidencia->RellenoGestion($this,$envio);
-                        return "Alguno de los correos no han sido enviados. La plantilla no existe";
-                    } else {
-                        //Comprobamos que el está validada la plantilla                                       
-                       
-                       if ($this->plantillaValida($typeTemplate)==true){                    
+                                              || ($modnegTemplate==4 && $this->tiponegocio4=1)){
+                                             
+                        //Comprobamos que el está validada la plantilla 
+                                                  
+                        if ($this->plantillaValida($typeTemplate)==true){                    
                             $envioCorreos = new EnvioAutoCorreos();
                             if ($envioCorreos -> sendMessage($solicitud, $this, $idTemplate, $Fran) == 'Ok') {
                                 return "Ok";
@@ -1017,8 +1012,17 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                            $incidencia= new Expan_IncidenciaCorreo();
                            $incidencia->RellenoGestion($this,$envio);
                            return "La plantilla de envío no está validada";
-                       }
-                    }
+                       }                     
+                                                  
+                    }                        
+                }
+
+                //Si no tenemos plantilla
+                if ($idTemplate == "") {
+                    $this->crearTarea("INTPlantilla");
+                    $incidencia= new Expan_IncidenciaCorreo();
+                    $incidencia->RellenoGestion($this,$envio);
+                    return "Alguno de los correos no han sido enviados. La plantilla no existe";
                 }
             }else{
                 return "No se debe enviar correo";
@@ -1027,6 +1031,26 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             return "Los correos no se han enviado porque el usuario no quería recibirlos.";
         }
     }
+
+    function calcularOportunidadInmediata($inmediata){
+        
+        //Pasamos el parámetro de inmediata porque cuando la creamos de nueva 
+        //no está bien guardada llamada/gestion/reunion    
+            
+        if ($inmediata||
+            $this->llamadasOportunidadInmediata("Planned")||
+            $this->tareasOportunidadInmediata("Not Started")||
+            $this->reunionesOportunidadInmediata("Planned")){
+           
+            $this->oportunidad_inmediata=true;             
+        }else{
+            $this->oportunidad_inmediata=false;             
+        }
+        
+        $this->ignore_update_c = true;
+        $this->save();
+                                  
+    } 
    
     function crearTarea($tipoTarea) {
         
@@ -1175,10 +1199,10 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                        
     } 
 
-    function llamadasHermanasOportunidadInmediata($estado) {
+    function llamadasOportunidadInmediata($estado) {
 
         $db = DBManagerFactory::getInstance();
-        $query = "select oportunidad_inmediata from calls where parent_id='" . $this -> id . "' and status='" . $estado . "'";
+        $query = "select oportunidad_inmediata from calls where parent_id='" . $this -> id . "' and deleted=0 and status='" . $estado . "'";
 
         $result = $db -> query($query, true);
 
@@ -1191,6 +1215,41 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
         return $opIn;
     } 
+    
+    function tareasOportunidadInmediata($estado) {
+
+        $db = DBManagerFactory::getInstance();
+        $query = "select oportunidad_inmediata from tasks where parent_id='" . $this -> id . "' and deleted=0 and status='" . $estado . "'";
+
+        $result = $db -> query($query, true);
+
+        $opIn = false;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            if ($row["oportunidad_inmediata"]==1){
+                return true;
+            }           
+        }
+        return $opIn;
+    } 
+    
+    function reunionesOportunidadInmediata($estado) {
+
+        $db = DBManagerFactory::getInstance();
+        $query = "select oportunidad_inmediata from meetings where parent_id='" . $this -> id . "' and deleted=0 and status='" . $estado . "'";
+
+        $result = $db -> query($query, true);
+
+        $opIn = false;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            if ($row["oportunidad_inmediata"]==1){
+                return true;
+            }           
+        }
+        return $opIn;
+    } 
+    
     
     function getEmail(){
         

@@ -118,7 +118,7 @@ array (
         ),
         3 => 
         array (
-          0 => 'description',
+          0 => 'description',                     
         ),
         4 => 
         array (
@@ -131,14 +131,7 @@ array (
             'name' => 'oportunidad_inmediata',
             'label' => 'LBL_OPORTUNIDAD_INMEDIATA',
           ),
-        ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'expan_franquicia_tasks_1_name',
-          ),
-        ),
+        ),      
         6 => 
         array (
           0 =>  array (

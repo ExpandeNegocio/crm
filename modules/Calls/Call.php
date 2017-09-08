@@ -776,8 +776,8 @@ class Call extends SugarBean {
         $nuevaLlamada -> telefono = $this -> telefono;
         $nuevaLlamada -> franquicia = $this -> franquicia;
         $nuevaLlamada -> gestion_agrupada = $this -> gestion_agrupada;
-        $nuevaLLamada -> created_by='1';
-        $nuevaLLamada -> oportunidad_inmediata = $this -> oportunidad_inmediata;;
+        $nuevaLlamada -> created_by='1';
+        $nuevaLlamada -> oportunidad_inmediata = $this -> oportunidad_inmediata;;
         $nuevaLlamada -> repeticiones = $this -> repeticiones + 1;
         
         $nuevaLlamada -> call_type = $this -> call_type;
@@ -1064,47 +1064,14 @@ class Call extends SugarBean {
 
     public function procesarLLamadaFinal($franquicia,$gestion,$solicitud){
         
-                //Si la llamada es de tipo Franquicia
+        //Si la llamada es de tipo Franquicia
         if (substr($this->call_type,0,4)=='FRAN'){
             $franquicia->load_relationship('expan_franquicia_calls_1');
             $franquicia ->expan_franquicia_calls_1->add($this->id);
             
             $this -> name = $franquicia->name . ' - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$this -> call_type];                
         } 
-        
-        //Si la llamada se ha realizado ya no puede estar como oportunidad
-        if ($this->parent_type=='Expan_GestionSolicitudes'){
-            if ($solicitud!=null){
-                if ($this->status!='Planned'){
-                    $this->oportunidad_inmediata==false;
-                }
-                
-                if ($gestion->llamadasHermanasOportunidadInmediata("Planned")){
-                    if ($solicitud->tieneLlamadasPendientes()==true ||
-                        $solicitud->tieneReunionesPendientes()==true ||
-                        $solicitud->tieneTareasPendientes()==true){
-                            $gestion->oportunidad_inmediata=true;
-                            $solicitud->oportunidad_inmediata=true;  
-                            
-                        }else{
-                            $gestion->oportunidad_inmediata=false;
-                            $solicitud->oportunidad_inmediata=false;  
-                        }
-    
-                } else{
-                    $gestion->oportunidad_inmediata=false;
-                    $solicitud->oportunidad_inmediata=false;                
-                }
-            }
-            
-            if ($gestion!=null){
-                $gestion->ignore_update_c = true;
-                $gestion->save();
-            }
-                        
-            $solicitud->ignore_update_c = true;
-            $solicitud->save();
-        }
+               
                    
         //Guardo al final
         $this -> ignore_update_c = true;
@@ -1112,10 +1079,12 @@ class Call extends SugarBean {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Se ha guardado la llamada');
         
         if ($gestion!=null){
+            
+            $gestion -> calcularOportunidadInmediata($this->oportunidad_inmediata);   
+            $solicitud -> calcularOportunidadInmediata();       
             $prioridad=$gestion->calcularPrioridades();
             $gestion -> prioridad=$prioridad;
-            //$this->prioridad=$prioridad;
-            //$solicitud->prioridad=$prioridad;
+            
         }
         
     }
