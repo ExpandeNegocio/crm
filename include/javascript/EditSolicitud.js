@@ -174,6 +174,7 @@ function validarSubOrigen() {
 	var optRating = document.getElementById("rating");
 	var txtPerfil = document.getElementById("perfil_profesional");
 	var optCapital = document.getElementById("capital");
+	var optMailing = document.getElementById("subor_mailing");
 	var optSituacion_profesional = document.getElementById("situacion_profesional");
 	var optPerfil_franquicia= document.getElementById("perfil_franquicia");
 		
@@ -240,6 +241,11 @@ function validarSubOrigen() {
 	var medios = "";
 	if (optMedios.selectedIndex != -1) {
 		medios = optMedios.options[optMedios.selectedIndex].label;
+	}
+	
+	var mailing = "";
+	if (optMailing.selectedIndex != -1) {
+		mailing = optMailing.options[optMailing.selectedIndex].label;
 	}
 	
 	var capital = "";
@@ -338,6 +344,14 @@ function validarSubOrigen() {
 			return false;
 		}else {
 			$("#subor_medios").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (o.selected == true && o.value == 6 && mailing == "") {			
+			$("#subor_mailing").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es Mailing y no se ha seleccionado el mismo");
+			return false;
+		}else {
+			$("#subor_mailing").css("border", "#94c1e8 solid 1px");
 		}
 
 	}	
