@@ -16,23 +16,23 @@
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ORIG_EXPANDE
-    $query = "update expan_gestionsolicitudes set expan_evento_id_c=null,subor_central=null,subor_medios=null,portal=null  where tipo_origen = '1'";
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c=null,subor_central=null,subor_medios=null,portal=null,subor_mailing= null  where tipo_origen = '1'";
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ORIG_PORTAL
-    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, subor_medios = null  where tipo_origen = '2'";
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, subor_medios = null,subor_mailing= null  where tipo_origen = '2'";
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ORIG_EVENTOS
-    $query = "update expan_gestionsolicitudes set subor_expande = null, subor_central = null, subor_medios = null, portal = null  where tipo_origen = '3'";
+    $query = "update expan_gestionsolicitudes set subor_expande = null, subor_central = null, subor_medios = null, portal = null,subor_mailing= null  where tipo_origen = '3'";
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ORIG_CENTRAL
-    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_medios = null, portal = null  where tipo_origen = '4'";
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_medios = null, portal = null,subor_mailing= null  where tipo_origen = '4'";
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ORIG_MEDIOS
-    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, portal = null  where tipo_origen = '5'";
+    $query = "update expan_gestionsolicitudes set expan_evento_id_c = null, subor_expande = null, subor_central = null, portal = null,subor_mailing= null  where tipo_origen = '5'";
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ORIG_MAILLING
@@ -41,31 +41,31 @@
     
     
     //CONS_LIMPIA_ESTADO_INI
-    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = 1";
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO;
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ESTADO_CURSO
-    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = 2";
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO;
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ESTADO_PARADO
-    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_positivo = null where estado_sol = 3";
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_positivo = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_PARADO;
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ESTADO_DESCAR
-    $query = "update expan_gestionsolicitudes set motivo_parada = null, motivo_positivo = null where estado_sol = 4";
+    $query = "update expan_gestionsolicitudes set motivo_parada = null, motivo_positivo = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_DESCARTADO;
     $result = $db -> query($query);
     
     //CONS_LIMPIA_ESTADO_EXITO
-    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null where estado_sol = 5";
+    $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_POSITIVO;
     $result = $db -> query($query);
         
     //CONS_LIMPIA_AVANZADAS
-    $query = "update expan_gestionsolicitudes set candidatura_avanzada=0,candidatura_caliente=0 where estado_sol=3 or estado_sol=4";
+    $query = "update expan_gestionsolicitudes set candidatura_avanzada=0,candidatura_caliente=0 where estado_sol=".Expan_GestionSolicitudes::ESTADO_PARADO." or estado_sol=".Expan_GestionSolicitudes::ESTADO_DESCARTADO;
     $result = $db -> query($query);    
     
     //CONS_ADD_DESCARTE
-    $query = "update expan_gestionsolicitudes set motivo_descarte=99 where estado_sol = 4 and motivo_descarte is null";
+    $query = "update expan_gestionsolicitudes set motivo_descarte=99 where estado_sol = ".Expan_GestionSolicitudes::ESTADO_DESCARTADO." and motivo_descarte is null";
     $result = $db -> query($query);
     
     //Limpia relacion de llamadas
@@ -86,6 +86,17 @@
     
     $query = "update calls set parent_type='Expan_GestionSolicitudes' where parent_type='Accounts'"; 
     $result = $db -> query($query);
+    
+    //Actualiza la fecha de recogida de las gestiones que vienen de FranquiShop 
+    //No lo hacemos con caracter retroctivo por no modificar los informes previos
+    
+    $query = "update expan_gestionsolicitudes g ";
+    $query=$query."join expan_evento e ";
+    $query=$query."on  g.expan_evento_id_c=e.id ";
+    $query=$query."set g.date_entered =e.fecha_celebracion ";
+    $query=$query."where e.tipo_evento='FShop' and g.date_entered>STR_TO_DATE('20/10/2017','%d/%m/%Y') and g.deleted=0; ";
+    $result = $db -> query($query);
+        
     
     echo 'FinlizadoProceso';
 ?>
