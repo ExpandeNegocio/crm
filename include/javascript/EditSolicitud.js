@@ -168,6 +168,7 @@ function validarSubOrigen() {
 	var Origen = document.getElementById("tipo_origen");
 	var optPortal = document.getElementById("portal");
 	var optEvento = document.getElementById("expan_evento_id_c");
+	var optExpande = document.getElementById("subor_expande");	
 	var optCentral = document.getElementById("subor_central");
 	var optMedios = document.getElementById("subor_medios");
 	var franPrin = document.getElementById("franquicia_principal");
@@ -215,8 +216,6 @@ function validarSubOrigen() {
 		$("#franquicia_principal").css("border", "#94c1e8 solid 1px");
 	}
 
-	
-
 	var rating="";
 	if (optRating.selectedIndex != -1) {
 		rating = optRating.options[optRating.selectedIndex].label;
@@ -233,7 +232,12 @@ function validarSubOrigen() {
 	if (optEvento.selectedIndex != -1) {
 		evento = optEvento.options[optEvento.selectedIndex].label;
 	}
-
+	
+	var expande = "";
+	if (optExpande.selectedIndex != -1) {
+		expande = optExpande.options[optExpande.selectedIndex].label;
+	}
+	
 	var central = "";
 	if (optCentral.selectedIndex != -1) {
 		central = optCentral.options[optCentral.selectedIndex].label;
@@ -309,6 +313,14 @@ function validarSubOrigen() {
 		if (o.selected == true && o.value == 3 && rating == "" && esCreacion()) {
 			$("#rating").css("border", "2px solid red");
 			alert("El rating es obligatorio si el origen es evento");
+			return false;
+		}else {
+			$("#rating").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (o.selected == true && o.value == 1 && expande == "" ) {
+			$("#subor_expande").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es ExpandeNegocio y no se ha seleccionado el mismo");
 			return false;
 		}else {
 			$("#rating").css("border", "#94c1e8 solid 1px");
