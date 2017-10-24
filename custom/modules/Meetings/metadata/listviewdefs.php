@@ -48,13 +48,22 @@ array (
       0 => 'status',
     ),
   ),
-  'NAME' => 
+  'MEETING_TYPE' => 
+  array (
+    'type' => 'enum',
+    'width' => '10%',
+    'label' => 'LBL_MEETING_TYPE',
+    'link' => true,
+    'default' => true,
+  ),
+  
+  /*'NAME' => 
   array (
     'width' => '20%',
     'label' => 'LBL_LIST_SUBJECT',
     'link' => true,
     'default' => true,
-  ),
+  ),*/
 
   'PARENT_NAME' => 
   array (
@@ -91,13 +100,7 @@ array (
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
-  'MEETING_TYPE' => 
-  array (
-    'type' => 'enum',
-    'width' => '10%',
-    'label' => 'LBL_MEETING_TYPE',
-    'default' => true,
-  ),
+
   'DIRECTION' => 
   array (
     'type' => 'enum',
