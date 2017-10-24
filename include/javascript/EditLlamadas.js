@@ -248,8 +248,13 @@ function DesactivarGS() {
 		getTelefono();
 	}	
 	
+	//Ocultamos el elemento de gestionsolicitudes	
+	$("#expan_gestionsolicitudes_calls_1_name").parent().hide();
+	$("#expan_gestionsolicitudes_calls_1_name_label").hide();
+	
 	getFechaRetraso();
 	addDelayButtons();
+	addModUserButton();
 			
 	$("[href='index.php?module=Calls&action=EditView&return_module=Calls&return_action=DetailView']").hide();
 	$("[href='index.php?module=Import&action=Step1&import_module=Calls&return_module=Calls&return_action=index']").hide();
@@ -266,9 +271,9 @@ function DesactivarGS() {
 
 	deactivateModifiedName();
 	modificarComboTipoLlamada();
-	
-	
+		
 }
+
 function modificarComboTipoLlamada(){
 	var url=window.location.href;
 	var el=document.getElementById('call_type').textContent;
@@ -376,7 +381,7 @@ function addTime(hours){
 	var now= new Date();			
 	var nowAdded=new Date(now.getTime() + (hours*60*60*1000));
 	
-	Fecha=("0" + nowAdded.getDate()).slice(-2)+"/"+("0" + nowAdded.getMonth()).slice(-2)+"/"+nowAdded.getYear();
+	Fecha=("0" + nowAdded.getDate()).slice(-2)+"/"+("0" + nowAdded.getMonth()).slice(-2)+"/"+nowAdded.getFullYear();
 	if (nowAdded.getMinutes() >= 53 && nowAdded.getMinutes() <= 59){
 		Hora=1+nowAdded.getHours();
 	}else{
@@ -459,6 +464,33 @@ function addDelayButtons(){
 	
 	$("#date_delayed_time_section").append(div);
 	
+}
+
+
+function addModUserButton(){
+	
+	
+	var BotModAsignado = $('<button/>',
+    {
+    	id: 'bot_mod_asig',  
+        text: 'Modificar Usuario Asignado por Defecto',
+        click: function () { 
+        		$("#assigned_user_name").show();
+        		$("#btn_assigned_user_name").show();
+        		$("#assigned_user_name_label").show();
+        		$("#btn_clr_assigned_user_name").show();  
+        		$("#bot_mod_asig").hide(); 
+        		return false;         		     		        
+        	}
+    });		 	
+	
+	$("#assigned_user_name_label").after(BotModAsignado);
+	
+	$("#assigned_user_name").hide();
+	$("#btn_assigned_user_name").hide();
+	$("#assigned_user_name_label").hide();
+	$("#btn_clr_assigned_user_name").hide();    
+		
 }
 
 function limpiarNuevoInicio(){

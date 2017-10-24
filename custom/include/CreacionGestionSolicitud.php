@@ -237,7 +237,7 @@ class AccionesGuardadoGestionSol {
 
                 //Paso a estado Solicitud ampliacion información
                 if ($sol_amp_info_ant != $bean -> chk_sol_amp_info && $bean -> chk_sol_amp_info == true) {
-                    $mayorCheck = 2;
+                    $mayorCheck = 3;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Estamos mocificando Ampliacion de información');
                     if ($bean -> f_sol_amp_info == $fecha_sol_amp_info_ant) {                                                         
                         $bean -> f_sol_amp_info = $fechaHoy->format('d/m/Y H:i');                           
@@ -426,7 +426,7 @@ class AccionesGuardadoGestionSol {
                         $bean -> creaLlamada('[AUT]Resolucion primeras dudas', 'ResPriDuda');
                         break;
                     case 3 :
-                        $bean -> creaLlamada('[AUT]Resolucion primeras dudas', 'ResPriDuda');
+                        $bean -> creaLlamada('[AUT]Resolucion primeras dudas', 'ResPriDuda',1);
                         break;
                     case 4 :
                         $bean -> creaLlamada('[AUT]Llamada envio documentacion adicional', 'InformacionAdicional');
@@ -467,7 +467,8 @@ class AccionesGuardadoGestionSol {
                 //Los demas estados que no son el dos
             } else {
                 //Si pasamos a un estado (descartado)
-                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO || $bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO) {
+                if (($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO || $bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO) &&
+                    ($bean -> estado_sol!=$estadoAnt)) {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Archivamos llamadas');
                     $bean -> archivarLLamadas();
                     //$bean -> archivarTareas(); //cambio no se archivan las tareas
@@ -477,7 +478,9 @@ class AccionesGuardadoGestionSol {
 
                 //Si no localizamos para una gestión, debemos de pasar el resto de gestiones de la solicitud al mismo estado
                 //4 - No localizado
-                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_NO_LOCALIZADO) {
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && 
+                    $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_NO_LOCALIZADO &&
+                    $bean -> estado_sol!=$estadoAnt) {
                     if ($solicitud != null) {
                         $solicitud -> PasarGestionesEstado('4');
                         $solicitud -> EliminarLLamadas('Planned');
@@ -485,16 +488,19 @@ class AccionesGuardadoGestionSol {
                     }
                 }
 
-                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_DATOS_ERRORNEOS) {
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && 
+                    $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_DATOS_ERRORNEOS &&
+                    $bean -> estado_sol!=$estadoAnt) {
                     if ($solicitud != null) {
                         $salida = $bean -> preparaCorreo("C1.4");
                     }
                 }
                 
                 //si ha pasado a descartado con motivo, monta franquicia, se debe crear el franquiciado si es que no existía
-                if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO && ($bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_MISMO_SECTOR||$bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR)){
-                        
-                    
+                if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO && 
+                  ($bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_MISMO_SECTOR||$bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR) &&
+                   $bean -> estado_sol!=$estadoAnt){
+                                            
                     $franquiciado= Expan_Franquiciado::existeFranquiciado($solicitud->id);
                     if($franquiciado==false){ //se crea el franquiciado
                         $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud);
@@ -507,7 +513,9 @@ class AccionesGuardadoGestionSol {
                 }
                 
                 //Si pasamos a estados positivo, con motivo positivo-> contrato, se crea la apertura con los datos de la solicitud
-                if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && $bean -> motivo_positivo == Expan_GestionSolicitudes::POSITIVO_FRANQUICIADO){
+                if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && 
+                   $bean -> motivo_positivo == Expan_GestionSolicitudes::POSITIVO_FRANQUICIADO &&
+                   $bean -> estado_sol!=$estadoAnt){
                       
                     if(Expan_Apertura::existeApertura($bean->name)==false) {//no está creada la apertura
                         
@@ -567,28 +575,15 @@ class AccionesGuardadoGestionSol {
                 $solicitud -> candidatura_caliente = $solicitudCaliente;
                 $solicitud -> candidatura_avanzada = $solicitudAvanzada;
 
-                $Fran = new Expan_Franquicia();
-                $Fran -> retrieve($bean -> franquicia);
-
-                //Candidatura Avanzada->director de cuenta
-                if ($bean -> candidatura_avanzada == true && $cand_avan_ant != $bean -> candidatura_avanzada) {
-                    //Si no cambiamos el usuario durante la edicion lo cambiamos al ser avanzada
-                    if ($usuario_ant == $bean -> assigned_user_id) {
-                        $bean -> assigned_user_id = $Fran -> assigned_user_id;
-                        $bean -> asociarLLamadas("Planned", $Fran -> assigned_user_id);
-                        $bean -> asociarTareas("Not Started", $Fran -> assigned_user_id);
-                        $bean -> asociarReuniones("Planned", $Fran -> assigned_user_id);
-                        $bean -> asociarReuniones("Could", $Fran -> assigned_user_id);
-                    }
-                } else {
-                    //Si cambiamos al usuario a mano
-                    if ($usuario_ant != $bean -> assigned_user_id) {
-                        $bean -> asociarLLamadas("Planned", $bean -> assigned_user_id);
-                        $bean -> asociarTareas("Not Started", $bean -> assigned_user_id);
-                        $bean -> asociarReuniones("Planned", $Fran -> assigned_user_id);
-                        $bean -> asociarReuniones("Could", $Fran -> assigned_user_id);
-                    }
-                }
+                //Cambios de asignacion                
+                if ($usuario_ant != $bean -> assigned_user_id) {
+                    $bean ->asignarAccionesUsuario($bean -> assigned_user_id);                        
+                }else{                                   
+                    //Candidatura Avanzada->director de cuenta
+                    if ($bean -> candidatura_avanzada == true && $cand_avan_ant != $bean -> candidatura_avanzada){                                                                   
+                        $bean -> asignarGestor();                        
+                    } 
+                }                                
 
                 $bean -> ignore_update_c = true;
                 $bean -> save();

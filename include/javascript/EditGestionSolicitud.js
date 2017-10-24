@@ -259,6 +259,175 @@ function ocultarCheck() {
 	
 }
 
+function validarSubOrigen() {	
+	
+	var Origen = document.getElementById("tipo_origen");
+	var optPortal = document.getElementById("portal");
+	var optEvento = document.getElementById("expan_evento_id_c");
+	var optCentral = document.getElementById("subor_central");
+	var optMedios = document.getElementById("subor_medios");
+	var franPrin = document.getElementById("franquicia_principal");
+	var optRating = document.getElementById("rating");
+	var txtPerfil = document.getElementById("perfil_profesional");
+	var optCapital = document.getElementById("capital");
+	var optMailing = document.getElementById("subor_mailing");
+		
+	var styleProps = $("#phone_mobile").css("border");
+	if (styleProps=="2px solid rgb(255, 0, 0)"){
+		alert("El teléfono movil corresponde con otra solicitud");		
+		return false;
+	}
+	
+    styleProps = $("#Expan_Solicitud0emailAddress0").css("border");
+	if (styleProps=="2px solid rgb(255, 0, 0)"){
+		alert("El correo corresponde con otra solicitud");		
+		return false;
+	}
+
+	if (Nombre.value=="" && Apellidos.value==""){
+		
+		if (Nombre.value==""){
+			$("#first_name").css("border", "2px solid red");
+		}
+		if (Apellidos.value==""){
+			$("#last_name").css("border", "2px solid red");
+		} 
+		
+		alert("El nombre o los apellidos deben de estar rellenos");
+		return false;
+	}else {
+		$("#first_name").css("border", "#94c1e8 solid 1px");
+		$("#last_name").css("border", "#94c1e8 solid 1px");
+	}		
+
+	//Comprobamos si la franquicia principal esta rellena
+	if (franPrin.selectedIndex == 0){		
+		$("#franquicia_principal").css("border", "2px solid red");
+		alert("La franquicia principl esta vacia");			
+		return false;
+	}else {
+		$("#franquicia_principal").css("border", "#94c1e8 solid 1px");
+	}
+	
+
+	var rating="";
+	if (optRating.selectedIndex != -1) {
+		rating = optRating.options[optRating.selectedIndex].label;
+	}
+	
+	var perfil=txtPerfil.value;
+
+	var portal = "";
+	if (optPortal.selectedIndex != -1) {
+		portal = optPortal.options[optPortal.selectedIndex].label;
+	}
+
+	var evento = "";
+	if (optEvento.selectedIndex != -1) {
+		evento = optEvento.options[optEvento.selectedIndex].label;
+	}
+
+	var central = "";
+	if (optCentral.selectedIndex != -1) {
+		central = optCentral.options[optCentral.selectedIndex].label;
+	}
+	var medios = "";
+	if (optMedios.selectedIndex != -1) {
+		medios = optMedios.options[optMedios.selectedIndex].label;
+	}
+	
+	var mailing = "";
+	if (optMailing.selectedIndex != -1) {
+		mailing = optMailing.options[optMailing.selectedIndex].label;
+	}
+	
+	var capital = "";
+	if (optCapital.selectedIndex != -1) {
+		capital = optCapital.options[optCapital.selectedIndex].label;
+	}
+	
+	var situacion_profesional = "";
+	if (optSituacion_profesional.selectedIndex != -1) {
+		situacion_profesional = optSituacion_profesional.options[optSituacion_profesional.selectedIndex].label;
+	}
+	
+	var perfilFran= "";
+	if (optPerfil_franquicia.selectedIndex != -1) {
+		perfilFran = optPerfil_franquicia.options[optPerfil_franquicia.selectedIndex].label;
+	}
+
+	for (var i = 0, l = Origen.options.length, o; i < l; i++) {
+		o = Origen.options[i];
+
+		if (o.selected == true && o.value == 2 && portal == "") {
+			$("#portal").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es portal y no se ha seleccionado el mismo");			
+			return false;
+		} else {
+			$("#portal").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (o.selected == true && o.value == 3 && evento == "") {
+			$("#expan_evento_id_c").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es Evento y no se ha seleccionado el mismo");
+			return false;
+		}else {
+			$("#expan_evento_id_c").css("border", "#94c1e8 solid 1px");
+		}		
+				
+		if (o.selected == true && o.value == 3 && rating == "" && esCreacion()) {
+			$("#rating").css("border", "2px solid red");
+			alert("El rating es obligatorio si el origen es evento");
+			return false;
+		}else {
+			$("#rating").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (o.selected == true && o.value == 1 && rating == "" && esCreacion()) {
+			$("#rating").css("border", "2px solid red");
+			alert("El rating es obligatorio si el origen es expandenegocio");
+			return false;
+		}else {
+			$("#rating").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (o.selected == true && o.value == 3 && perfilFran == "" && esCreacion()) {
+			$("#perfil_franquicia").css("border", "2px solid red");
+			alert("El pefil de la franquicia es obligatorio si el origen es evento");
+			return false;
+		}else {
+			$("#perfil_franquicia").css("border", "#94c1e8 solid 1px");
+		}
+
+		if (o.selected == true && o.value == 4 && central == "") {
+			$("#subor_central").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es Central y no se ha seleccionado el mismo");			
+			return false;
+		}else {
+			$("#subor_central").css("border", "#94c1e8 solid 1px");
+		}
+
+		if (o.selected == true && o.value == 5 && medios == "") {			
+			$("#subor_medios").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es Medios y no se ha seleccionado el mismo");
+			return false;
+		}else {
+			$("#subor_medios").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (o.selected == true && o.value == 6 && mailing == "") {			
+			$("#subor_mailing").css("border", "2px solid red");
+			alert("Uno de los origenes de la solicitud es Mailing y no se ha seleccionado el mismo");
+			return false;
+		}else {
+			$("#subor_mailing").css("border", "#94c1e8 solid 1px");
+		}
+
+	}	
+	return check_form("EditView");
+}
+
+
 /**
  *Oculta el encabezado de los modelos de negocio cuando no los hay 
  */
@@ -991,7 +1160,9 @@ function organizarMotivos(){
 }
 
 function colorearAvanzado(){			
+	
 	var cdudas = document.getElementById("chk_resolucion_dudas");
+	var amp_info = document.getElementById("chk_sol_amp_info");
 	var ccuestionario = document.getElementById("chk_recepcio_cuestionario");
 	var cadicional = document.getElementById("chk_informacion_adicional");
 	var centrevista = document.getElementById("chk_entrevista");
@@ -1000,7 +1171,7 @@ function colorearAvanzado(){
 	var cavanzadal = document.getElementById("candidatura_avanzada");
 	$(cavanzadal).css( "background-color", "rgb(236,234,234)");	
 	
-	var lista = new Array (cdudas, ccuestionario, cadicional, centrevista, czona, cavanzada);
+	var lista = new Array (cdudas, ccuestionario, cadicional, centrevista, czona, cavanzada,amp_info);
 	
 	//Quitamos primero el color
 	for (var i = 0; i < lista.length; i++) {
