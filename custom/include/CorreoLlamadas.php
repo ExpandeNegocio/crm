@@ -66,39 +66,92 @@
         echo "inserta Usuario Asignado-LLamada";
         
         //Llamadas por usuario  modificado 
-        $query = "SELECT   concat(u.first_name, ' ', u.last_name) Nombre  ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '+ 30dias'  ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ 30dias'  ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '- 30dias'  ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- 30dias'  ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Arch 30dias'  ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch 30dias'  ";
-        $query=$query."          ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '+ 7dias'  ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ 7dias'           ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '- 7dias' ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- 7dias'           ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Arch 7dias' ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch 7dias'           ";
-        $query=$query."          ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '+ Ayer'           ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Ayer'                    ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '- Ayer'           ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Ayer'           ";
-        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Arch Ayer' ";
-        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END)/ ";
-        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Ayer'           ";
-        $query=$query."FROM     calls c, users u  ";
-        $query=$query."WHERE    c.modified_user_id = u.id AND c.deleted = 0 AND u.status = 'Active' and not(u.first_name is null)  ";
-        $query=$query."GROUP BY c.modified_user_id order by u.first_name  ";
+        
+        $query = "SELECT   concat(u.first_name, ' ', u.last_name) Nombre   ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '+ Ayer'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Ayer'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '- Ayer'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Ayer'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Arch Ayer'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Ayer'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS '+ Dia 2'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Dia 2'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS '- Dia 2'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Dia 2'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS 'Arch Dia 2'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Dia 2'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END) AS '+ Dia 3'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Dia 3'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END) AS '- Dia 3'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Dia 3'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END) AS 'Arch Dia 3'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Dia 3'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END) AS '+ Dia 4'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Dia 4'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END) AS '- Dia 4'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Dia 4'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END) AS 'Arch Dia 4'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_SUB(CURDATE(), INTERVAL 3 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Dia 4'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END) AS '+ Dia 5'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Dia 5'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END) AS '- Dia 5'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Dia 5'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END) AS 'Arch Dia 5'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND DATE_SUB(CURDATE(), INTERVAL 4 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Dia 5'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END) AS '+ Dia 6'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ Dia 6'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END) AS '- Dia 6'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- Dia 6'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END) AS 'Arch Dia 6'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND DATE_SUB(CURDATE(), INTERVAL 5 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch Dia 6'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END) AS '+ Dia 7'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+  Dia 7'                     ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END) AS '-  Dia 7'            ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%-  Dia 7'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END) AS 'Arch  Dia 7'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch  Dia 7'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '+ 7dias'   ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ 7dias'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '- 7dias'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- 7dias'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Arch 7dias'  ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch 7dias'            ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '+ 30dias'   ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%+ 30dias'   ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS '- 30dias'   ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Not Held' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%- 30dias'   ";
+        $query=$query."         , Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Arch 30dias'   ";
+        $query=$query."         , concat(coalesce(round((Sum(CASE WHEN c.status = 'Archived' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END)/  ";
+        $query=$query."         Sum(CASE WHEN c.status <> 'Planned' AND c.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END))*100,2),'-'),'%') AS '%Arch 30dias'   ";
+        $query=$query."FROM     calls c, users u   ";
+        $query=$query."WHERE    c.modified_user_id = u.id AND c.deleted = 0 AND u.status = 'Active' and not(u.first_name is null)   ";
+        $query=$query."GROUP BY c.modified_user_id order by u.first_name   ";                                        
             
         InsertaConuslta($objPHPExcel,$query,1,'Usuario Modifica-Llamadas');
         
@@ -263,11 +316,11 @@
         //Gestiones avanzadas/Calientas por franquicia
         $query = "SELECT f.name, EnCurso, Avanzadas, PorAvanzadas ,Calientes, PorCalientes ";
         $query=$query."FROM   (SELECT   g.franquicia f_id, ";
-        $query=$query."                  Sum(CASE WHEN g.estado_sol = 2 THEN 1 ELSE 0 END) EnCurso, ";
+        $query=$query."                  Sum(CASE WHEN g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." THEN 1 ELSE 0 END) EnCurso, ";
         $query=$query."                  Sum(CASE WHEN g.candidatura_avanzada = 1 THEN 1 ELSE 0 END) Avanzadas, ";
-        $query=$query."                  round((Sum(CASE WHEN g.candidatura_avanzada = 1 THEN 1 ELSE 0 END)/Sum(CASE WHEN g.estado_sol = 2 THEN 1 ELSE 0 END))*100,2) PorAvanzadas, ";
+        $query=$query."                  round((Sum(CASE WHEN g.candidatura_avanzada = 1 THEN 1 ELSE 0 END)/Sum(CASE WHEN g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." THEN 1 ELSE 0 END))*100,2) PorAvanzadas, ";
         $query=$query."                 Sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END) Calientes, ";
-        $query=$query."                 round((Sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END)/Sum(CASE WHEN g.estado_sol = 2 THEN 1 ELSE 0 END))*100,2) PorCalientes ";
+        $query=$query."                 round((Sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END)/Sum(CASE WHEN g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." THEN 1 ELSE 0 END))*100,2) PorCalientes ";
         $query=$query."        FROM     expan_gestionsolicitudes g ";
         $query=$query."        WHERE g.deleted=0 ";
         $query=$query."        GROUP BY g.franquicia) a ";
@@ -282,11 +335,11 @@
         //Gestiones avanzadas/Calientas por Usuario
         $query = "SELECT   concat(u.first_name, ' ', u.last_name) Nombre, EnCurso, Avanzadas, PorAvanzadas, Calientes, PorCalientes ";
         $query=$query."FROM     (SELECT   f.assigned_user_id ";
-        $query=$query."                   , Sum(CASE WHEN g.estado_sol = 2 THEN 1 ELSE 0 END) EnCurso ";
+        $query=$query."                   , Sum(CASE WHEN g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." THEN 1 ELSE 0 END) EnCurso ";
         $query=$query."                   , Sum(CASE WHEN g.candidatura_avanzada = 1 THEN 1 ELSE 0 END) Avanzadas ";
-        $query=$query."                   , round((Sum(CASE WHEN g.candidatura_avanzada = 1 THEN 1 ELSE 0 END) / Sum(CASE WHEN g.estado_sol = 2 THEN 1 ELSE 0 END)) * 100, 2) PorAvanzadas ";
+        $query=$query."                   , round((Sum(CASE WHEN g.candidatura_avanzada = 1 THEN 1 ELSE 0 END) / Sum(CASE WHEN g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." THEN 1 ELSE 0 END)) * 100, 2) PorAvanzadas ";
         $query=$query."                   , Sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END) Calientes ";
-        $query=$query."                   , round((Sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END) / Sum(CASE WHEN g.estado_sol = 2 THEN 1 ELSE 0 END)) * 100, 2) PorCalientes ";
+        $query=$query."                   , round((Sum(CASE WHEN g.candidatura_caliente = 1 THEN 1 ELSE 0 END) / Sum(CASE WHEN g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." THEN 1 ELSE 0 END)) * 100, 2) PorCalientes ";
         $query=$query."          FROM     expan_gestionsolicitudes g, expan_franquicia f ";
         $query=$query."          WHERE    g.franquicia = f.id AND f.tipo_cuenta IN (1, 2) AND g.deleted=0 ";
         $query=$query."          GROUP BY f.assigned_user_id) a ";
@@ -308,7 +361,25 @@
         $query=$query."WHERE  a.prov = p.c_prov ORDER BY a.prime desc, Franquicia; ";
         
         InsertaConuslta($objPHPExcel,$query,10,'Candidaturas Calientes');
-        echo "inserta Candidaturas Calientes";
+        echo "inserta Candidaturas Calientes";               
+        
+        $query = "select f.name Franquicia,min(c.nombre) Tipo,count(1) NumGestiones from expan_gestionsolicitudes g, expan_franquicia f , tipo_cuenta c ";
+        $query=$query."where g.estado_sol=1 and g.deleted = 0 and g.franquicia=f.id and f.tipo_cuenta=c.id ";
+        $query=$query."group by f.name ";
+        $query=$query."order by c.orden, f.name; ";
+                
+        InsertaConuslta($objPHPExcel,$query,11,'Gestiones No Atendidas');
+        echo "Inserta Gestiones No Atendidas";
+        
+        
+        $query = "SELECT description ";
+        $query=$query."FROM   emails e, emails_text et ";
+        $query=$query."WHERE  e.id = et.email_id AND e.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() AND  ";
+        $query=$query."(from_addr LIKE '%delivery%' or from_addr LIKE '%daemon%'  or from_addr LIKE '%postmaster%') ; ";
+                
+        InsertaConuslta($objPHPExcel,$query,12,'Correos Devueltos');
+        echo "Correos no Atendidos";
+                              
         
         $user=new User();
         $user -> retrieve($user_id);
@@ -324,7 +395,7 @@
             $query=$query."          sum(CASE WHEN g.tipo_origen = \"4\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Central\", ";
             $query=$query."          sum(CASE WHEN g.tipo_origen = \"5\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Medios Comunicacion\", ";
             $query=$query."          sum(CASE WHEN g.tipo_origen = \"6\" AND g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Creadas Origen Mailing\", ";
-            $query=$query."          sum(CASE WHEN g.estado_sol=\"5\" THEN 1 ELSE 0 END) \"Positivas\" ";
+            $query=$query."          sum(CASE WHEN g.estado_sol=".Expan_GestionSolicitudes::ESTADO_POSITIVO." THEN 1 ELSE 0 END) \"Positivas\" ";
             $query=$query."FROM     expan_gestionsolicitudes g, expan_franquicia f ";
             $query=$query."WHERE    g.deleted = 0 AND  ";
             $query=$query."         f.id = g.franquicia AND  ";
