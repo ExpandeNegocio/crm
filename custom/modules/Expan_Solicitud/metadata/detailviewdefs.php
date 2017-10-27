@@ -136,12 +136,27 @@ array (
           ),
         ),
         
-        5 =>
+        5 => 
+        array (
+          0 => 
+          array (   
+            'name' => 'no_newsletter',
+            'label' => 'LBL_NEWSLETTER',        
+          ),
+          1 => 
+          array ( 
+            'name' => 'disp_contacto',
+            'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+          ),
+        ),
+              
+        6 =>
         array(
             0 => 
             array(
-                'name' => 'no_newsletter',
-                'label' => 'LBL_NEWSLETTER',
+                'name'=>'master',
+                'studio' =>'visible',
+                'label' =>'LBL_MASTER_FRANQUICIA',               
             ),
             1 => 
             array(
@@ -149,18 +164,7 @@ array (
             'label'=> 'LBL_PUERTAS_ABIERTAS',
             ),
         ),
-        
-        6=>
-        array(
-            0=> array(
-                
-                'name'=>'master',
-                'studio' =>'visible',
-                'label' =>'LBL_MASTER_FRANQUICIA',
-            
-            ),
-        ),
-        
+     
         7 => 
         array (
           0 => 
@@ -175,6 +179,7 @@ array (
             'label' => 'LBL_FECHA_PRIMER_CONTACTO',
           ),
         ),
+        
         8 => 
         array (
           0 => 
@@ -189,6 +194,7 @@ array (
             'label' => 'LBL_LOCALIDAD_RESIDENCIA',
           ),
         ),
+        
         9 => 
         array (
           0 => 
@@ -203,6 +209,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_1',
           ),
         ),
+        
         10 => 
         array (
           0 => 
@@ -217,6 +224,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_2',
           ),
         ),
+        
         11 => 
         array (
           0 => 
@@ -231,6 +239,7 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA_3',
           ),
         ),
+        
         12 => 
         array (
           0 => 
@@ -251,9 +260,7 @@ array (
         13 => 
         array (
           0 => 
-           array (          
-            'name' => 'disp_contacto',
-            'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+           array (                     
           ),
           1 => 
           array (
@@ -279,7 +286,8 @@ array (
             ),
           ),
         ),
-        15=> array(
+        
+        15 => array(
           0 => 
           array (
             'name' => 'contacto_secundario',
@@ -291,7 +299,8 @@ array (
             'label' => 'LBL_CORREO_SECUNDARIO',
           ),
         ),
-        16=>
+        
+        16 =>
         array(
           0 => 
           array (
