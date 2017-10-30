@@ -97,6 +97,53 @@
     $query=$query."where e.tipo_evento='FShop' and g.date_entered>STR_TO_DATE('20/10/2017','%d/%m/%Y') and g.deleted=0; ";
     $result = $db -> query($query);
         
+        
+    //Copia de capos de solicitud a gestiones si las gestiones están vacías
+    
+    
+    $query = "UPDATE expan_gestionsolicitudes b ";
+    $query=$query."       INNER JOIN ";
+    $query=$query."       (SELECT g.id, s.rating ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida) a ";
+    $query=$query."         ON b.id = a.id ";
+    $query=$query."SET    b.rating=a.rating ";
+    $query=$query."where b.rating is null; ";
+    $result = $db -> query($query);
+    
+    
+    $query = "UPDATE expan_gestionsolicitudes b ";
+    $query=$query."       INNER JOIN ";
+    $query=$query."       (SELECT g.id, s.prioridad ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida) a ";
+    $query=$query."         ON b.id = a.id ";
+    $query=$query."SET    b.prioridad=a.prioridad ";
+    $query=$query."where b.prioridad is null; ";
+    $result = $db -> query($query);
+    
+    
+    $query = "UPDATE expan_gestionsolicitudes b ";
+    $query=$query."       INNER JOIN ";
+    $query=$query."       (SELECT g.id, s.recursos_propios ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida) a ";
+    $query=$query."         ON b.id = a.id ";
+    $query=$query."SET    b.recursos_propios=a.recursos_propios ";
+    $query=$query."where b.recursos_propios is null; ";
+    $result = $db -> query($query);
+    
+    $query = "UPDATE expan_gestionsolicitudes b ";
+    $query=$query."       INNER JOIN ";
+    $query=$query."       (SELECT g.id, s.cuando_empezar ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida) a ";
+    $query=$query."         ON b.id = a.id ";
+    $query=$query."SET    b.cuando_empezar=a.cuando_empezar ";
+    $query=$query."where b.cuando_empezar is null; ";
+    $result = $db -> query($query);
+    
+    
     
     echo 'FinlizadoProceso';
 ?>
