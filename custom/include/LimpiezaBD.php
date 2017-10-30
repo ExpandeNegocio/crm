@@ -143,6 +143,25 @@
     $query=$query."where b.cuando_empezar is null; ";
     $result = $db -> query($query);
     
+    //LImpiamos acciones de gestiones que están en estado 4
+    
+    $query = "UPDATE calls  c ";
+    $query=$query."       INNER JOIN (SELECT c.id ";
+    $query=$query."                   FROM   expan_gestionsolicitudes g, calls c ";
+    $query=$query."                   WHERE  c.parent_id = g.id AND g.estado_sol = 4 AND c.status = 'Planned' AND g.deleted = 0 AND c.deleted = 0) a ";
+    $query=$query."         ON c.id = a.id ";
+    $query=$query."SET    status = 'Archived'; ";
+    $result = $db -> query($query);
+        
+    $query = "UPDATE tasks  t ";
+    $query=$query."       INNER JOIN (SELECT c.id ";
+    $query=$query."                   FROM   expan_gestionsolicitudes g, tasks t ";
+    $query=$query."                   WHERE  c.parent_id = g.id AND g.estado_sol = 4 AND c.status = 'Not Started' AND g.deleted = 0 AND t.deleted = 0) a ";
+    $query=$query."         ON t.id = a.id ";
+    $query=$query."SET    status = 'Archived'; ";
+    $result = $db -> query($query);
+    
+    
     
     
     echo 'FinlizadoProceso';
