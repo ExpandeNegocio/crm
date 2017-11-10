@@ -41,10 +41,8 @@ $subpanel_layout = array(
 	//Removed button because this layout def is a component of
 	//the activities sub-panel.
 
-	'where' => "(meetings.status !='Held' AND meetings.status !='Not Held')",
-	
-	
-				
+	'where' => "(meetings.status='Planned' OR meetings.status='Could')",
+					
 	'list_fields' => array(
 		'object_image'=>array(
 			'vname' => 'LBL_OBJECT_IMAGE',

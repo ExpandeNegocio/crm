@@ -39,10 +39,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 $subpanel_layout = array(
 	//Removed button because this layout def is a component of
-	//the activities sub-panel.
-	//'where' => "(calls.status=\'Planned\')",
-	'where' => "(calls.status != 'Held' AND calls.status != 'Not Held' AND calls.status != 'Archived')",
-	
+	//the activities sub-panel.	
+	'where' => "(calls.status='Planned')",	
 	
 	'list_fields' => array(
 		'object_image'=>array(

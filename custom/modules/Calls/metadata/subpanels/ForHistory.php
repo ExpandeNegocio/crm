@@ -39,7 +39,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 $subpanel_layout = array(
 
-	'where' => "(calls.status='Held' OR calls.status='Not Held' or calls.status='Archived')",
+	'where' => "(calls.status!='Planned')",
 	'sort_by' => 'calls.date_entered',
     'fill_in_additional_fields' => true,
 	'list_fields' => array(

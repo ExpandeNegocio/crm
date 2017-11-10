@@ -41,7 +41,7 @@ $subpanel_layout = array(
 	//Removed button because this layout def is a component of
 	//the activities sub-panel.
 
-	'where' => "(meetings.status='Held' OR meetings.status='Deferred')",
+	'where' => "(meetings.status!='Planned' AND meetings.status!='Could')",
 	'sort_by' => 'meetings.date_entered',
     'fill_in_additional_fields' => true,
 	'list_fields' => array(
