@@ -132,7 +132,6 @@ class opEdicionSolicitud {
                 $desp=$desp+1;
             }
             
-
             for ($i=0; $i <$desp ; $i++) {
                              
                 //1º Columna             
@@ -163,14 +162,91 @@ class opEdicionSolicitud {
                 echo "</td>" . "\n";                
                 echo "</tr>" . "\n";
                 
-            }      
-		
+            }      		
 
 		echo "</tr></table>" . "\n";
 
 	}
 
-function recogerFranContactadas($idSol) {
+    function cargaHabilidades($idSol){         
+        $this->pintarListaTags("expan_tag_habilidades","habilidadTagCheck");
+    } 
+    
+    function cargaSituacionesPersonales($idSol){
+        $solicitud= new Expan_Solicitud ();  
+        $solicitud->retrieve($idSol); 
+        $lista=explode(',',$solicitud->situacion_personal);     
+        $this->pintarListaTags("expan_tag_sit_personal","sitPerTagCheck");           
+    }
+    
+    function cargaMotivos($idSol){
+        $solicitud= new Expan_Solicitud ();  
+        $solicitud->retrieve($idSol); 
+        $lista=explode(',',$solicitud->motivo);     
+        $this->pintarListaTags("expan_tag_motivos","motivosTagCheck");
+    }
+    
+    function pintarListaTags($tabla,$class){
+         $i = 0;
+         
+        echo '<input type="text" name="buscador_'.$class.'" id="busca_'.$class.'" size="50" maxlength="255" onkeypress>';  
+        echo "<table style='width:100%'>" . "\n";
+
+        //recogemos los sectores de la Base de datos
+        $db = DBManagerFactory::getInstance();
+        $query = "select tipo,tag from ".$tabla." order by tipo,tag";
+
+        $result = $db -> query($query, true);
+
+        $listaTags = array();
+        $listaTipo = array();
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+            $listaTags[] = $row["tag"];
+            $listaTipo[] = $row["tipo"];            
+        }
+
+        $tipoAnt='';
+        
+        for ($j = 0; $j < count($listaTipo); $j++) {
+            
+            if ($listaTipo[$j] != $tipoAnt) {
+                echo "<tr>" . "\n" . "<td>";
+        
+                echo "<p style='margin-top: 15px;background-color:powderblue;'><b>" . $listaTipo[$j] . "</b></p>";
+                echo "</tr>" . "\n" . "</td>";
+                $tipoAnt = $listaTipo[$j];
+            }  
+            $i++;
+            if ($i % 2 == 0) {
+                echo "<tr>" . "\n";
+            }
+            echo "<td style='font-weight:smaller;'>" . "\n";
+            switch ($class){
+                    
+                case 'habilidadTagCheck': 
+                    echo "<input type='checkbox' name=".str_replace(" ","_",$listaTags[$j])." class='".$class."' id='" . $listaTags[$j] . "' value='" . $listaTags[$j] . "' onclick='cambiocheck(\"habilidadTagCheck\",\"habilidades\",true);' style='margin-left:25px'>" . $listaTags[$j] . "\n";
+                    break;
+                
+                case 'sitPerTagCheck': 
+                    echo "<input type='checkbox' name=".str_replace(" ","_",$listaTags[$j])." class='".$class."' id='" . $listaTags[$j] . "' value='" . $listaTags[$j] . "' onclick='cambiocheck(\"sitPerTagCheck\",\"situacion_personal\",true);' style='margin-left:25px'>" . $listaTags[$j] . "\n";
+                    break;
+                
+                case 'motivosTagCheck':
+                    echo "<input type='checkbox' name=".str_replace(" ","_",$listaTags[$j])." class='".$class."' id='" . $listaTags[$j] . "' value='" . $listaTags[$j] . "' onclick='cambiocheck(\"motivosTagCheck\",\"motivos_interes\",true);' style='margin-left:25px'>" . $listaTags[$j] . "\n";
+                    break;                
+            }
+            
+            echo "</td>" . "\n";
+            if ($i % 2 != 0) {
+                echo "</tr>" . "\n";
+            }
+        }
+            
+        echo "</tr></table>" . "\n";
+    }
+
+    function recogerFranContactadas($idSol) {
         
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
         
@@ -183,8 +259,8 @@ function recogerFranContactadas($idSol) {
             $franq=$row["franquicias_contactadas"];                                           
         }
         echo"<input type='text' name='franquicias_contactadas' id='franquicias_contactadas' size='30' maxlength='255' value='".$franq."'>";
-}
-function recogerFranNoContactadas($idSol) {
+    }
+    function recogerFranNoContactadas($idSol) {
         
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
         
@@ -197,6 +273,22 @@ function recogerFranNoContactadas($idSol) {
             $franq=$row["otras_franquicias"];                                           
         }
         echo"<input type='text' name='otras_franquicias' id='otras_franquicias' size='30' maxlength='255' value='".$franq."'>";
-}
+    }
+    
+    function recogerTagsEmpresa($idSol) {
+        
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerTagsEmpresa] Entra');
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select tags_empresa from expan_solicitud where id='".$idSol."' and deleted=0;";
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerTagsEmpresa]Id de la solicitud: '.$idSol);
+   
+        $result = $db -> query($query, true);
+        while ($row = $db -> fetchByAssoc($result)) {
+            $franq=$row["tags_empresa"];                                           
+        }
+        echo"<input type='text' name='tags_empresa' id='tags_empresa' size='100' maxlength='255' value='".$franq."'>";
+    }
+    
 }
 ?>

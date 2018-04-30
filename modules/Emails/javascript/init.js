@@ -63,7 +63,8 @@ function email2init() {
          extended_valid_elements : tinyConfig.extended_valid_elements,
          mode: tinyConfig.mode,
          strict_loading_mode : true,
-		 force_br_newlines : true,
+		 force_br_newlines : false,
+		 remove_redundant_brs :true,
          forced_root_block : '',
          directionality : (typeof(rtl) == "undefined") ? "ltr" : "rtl",
          gecko_spellcheck : tinyConfig.gecko_spellcheck
@@ -76,7 +77,7 @@ function email2init() {
             modal       : false,
             autoTabs    : true,
             width       : 300,
-            height      : 120,
+            height      : 600,
             shadow      : true
         }
     );

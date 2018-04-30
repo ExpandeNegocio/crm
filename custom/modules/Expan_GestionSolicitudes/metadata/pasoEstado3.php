@@ -13,8 +13,38 @@
     define('TIEMPO_REENVIO_C14_MED_PORTAL',15);  
     define('TIEMPO_REENVIO_C14_FIN_PORTAL',30);       
     define('TIEMPO_PASO_ESTADO_3',60);
+    define('TIEMPO_PASO_ESTADO_2',24);
     
     $db = DBManagerFactory::getInstance();
+    
+    
+    //Cuando una gestion en estado 3 tiene alguna llamda programada para menos de 24 días, esta asa a estado 2
+    
+    $query = "SELECT ";
+    $query=$query." g.id ";
+    $query=$query."FROM ";
+    $query=$query." calls                     c, ";
+    $query=$query." expan_gestionsolicitudes  g ";
+    $query=$query."WHERE ";
+    $query=$query." c.parent_id = g.id AND ";
+    $query=$query." c.status = 'Planned' AND ";
+    $query=$query." g.deleted = 0 AND ";
+    $query=$query." c.deleted = 0 AND ";
+    $query=$query." g.estado_sol =".Expan_GestionSolicitudes::ESTADO_PARADO." AND ";
+    $query=$query." c.date_start < DATE_ADD(now(),INTERVAL".TIEMPO_PASO_ESTADO_2." 24 DAY); ";
+    
+    $result = $db -> query($query, true);
+    
+    while ($row = $db -> fetchByAssoc($result)) {
+    
+        //recogemos la gestion
+        $gestion = new Expan_GestionSolicitudes();
+        $gestion -> retrieve($row["id"]);
+                
+        $gestion ->estado_sol=2;
+        $gestion ->save();
+        
+    }
     
     //Cuando una gestion tiene mas de 60 días, esta en estad 2, y no tiene ninguna llamada/terea por realizar asociada
     //se pasa a estado 3
@@ -75,7 +105,7 @@
     $query=$query."FROM expan_gestionsolicitudes  ";
     $query=$query."WHERE  ";
     $query=$query."  deleted = 0 AND  ";
-    $query=$query."  (estado_sol =\"2\") AND  ";
+    $query=$query."  (estado_sol =".Expan_GestionSolicitudes::ESTADO_EN_CURSO.") AND  ";
     $query=$query."  chk_recepcio_cuestionario = 0 AND     ";
     $query=$query."   ( (tipo_origen=2 AND (TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_INI_PORTAL." OR  ";
     $query=$query."  TIMESTAMPDIFF(DAY,DATE( date_entered),CURDATE())=".TIEMPO_REENVIO_C14_MED_PORTAL." OR  ";

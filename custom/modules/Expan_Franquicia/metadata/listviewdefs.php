@@ -252,6 +252,13 @@ array (
     'default' => true,
   ),
   
+  'config_correo' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_CONFIG_CORREO',
+    'default' => true,
+  ),
+
   'informe_urgente' => 
   array (
     'width' => '10%',

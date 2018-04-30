@@ -2697,7 +2697,7 @@ $dictionary['Expan_Franquicia'] = array(
         'name' => 'informe_urgente',
         'vname' => 'LBL_INFORME_URGENTE',
         'type' => 'enum',
-        'massupdate' => 0,
+        'massupdate' => 1,
         'default' => '1',
         'no_default' => false,
         'options' => 'tipo_informe_franquicia',
@@ -3358,6 +3358,29 @@ $dictionary['Expan_Franquicia'] = array(
  'importable' => 'false',
  ),
  
+ 'config_correo' => 
+  array (
+    'required' => false,
+    'name' => 'config_correo',
+    'vname' => 'LBL_CONFIG_CORREO',
+    'type' => 'multienum',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'size' => '20',
+    'options' => 'active_users_list',
+    'studio' => 'visible',
+    'isMultiSelect' => true,
+  ),
+ 
  'prime' => 
       array (
         'required' => false,
@@ -3378,7 +3401,48 @@ $dictionary['Expan_Franquicia'] = array(
         'len' => '255',
         'size' => '20',
       ),
-    
+      
+      'cod_franquicia' => 
+      array (
+        'required' => false,
+        'name' => 'cod_franquicia',
+        'vname' => 'LBL_COD_FRANQUICIA',
+        'type' => 'varchar',
+        'massupdate' => 0,
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '3',
+        'size' => '3',
+      ),
+      
+      'proy_ERM' => array(
+        'name'=> 'proy_ERM',
+        'vname'=> 'LBL_PROY_ERM',
+        'type' => 'enum',
+        'len' => '50',
+        'options' => 'proy_ERM_list',
+        'massupdate' => 0,
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'studio' => 'visible',
+        'dependency' => false,
+      ),
     
 ),
 	'relationships'=>array (

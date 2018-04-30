@@ -115,8 +115,10 @@ $entry_point_registry = array(
     'CrearLlamadasDiarias'=>array('file' => 'custom/include/CrearLlamadasDiarias.php', 'auth' => false),
     'consultarFranquicia'=>array('file' => 'custom/include/consultarFranquicia.php', 'auth' => false),
     'LimpiezaBD'=>array('file' => 'custom/include/LimpiezaBD.php', 'auth' => false),
+    'KillSleepSQL'=>array('file' => 'custom/include/killSleepSQL.php', 'auth' => false),
     'CrearLlamadaRecorFran'=>array('file' => 'custom/include/CrearLlamadaRecorFran.php', 'auth' => false),
     'RecogeSugerencias'=>array('file' => 'custom/modules/Expan_Solicitud/metadata/recogeSugerencias.php', 'auth' => false),
+    'RecogeTags'=>array('file' => 'custom/modules/Expan_Solicitud/metadata/recogeTags.php', 'auth' => false),
     'reenvioDocGestiones'=>array('file' => 'custom/modules/Expan_GestionSolicitudes/metadata/reenviosDocGestiones.php', 'auth' => false),
     'franquiciado'=>array('file' => 'custom/modules/Expan_Franquiciado/metadata/crearFranquiciado.php', 'auth' => false),
     'limpiezaLlamadasDuplicadas'=>array('file' => 'custom/include/limpiezaLlamadasDuplicadas.php', 'auth' => false),
@@ -124,6 +126,12 @@ $entry_point_registry = array(
     'correoAlertaPortales'=>array('file' => 'custom/include/correoAlertaPortales.php', 'auth' => false),
     'envioCorreoInterlocutor'=>array('file' => 'custom/include/envioCorreoInterlocutor.php', 'auth' => false),
     'corregirEnvios'=>array('file' => 'custom/include/corregirEnvios.php', 'auth' => false),
-    
+    'cronCorreos'=>array('file' => 'custom/include/cronCorreos.php', 'auth' => false),       
+    'validarGestion'=>array('file' => 'custom/modules/Expan_GestionSolicitudes/metadata/validarGestion.php', 'auth' => false),
+    'consultarSolicitud'=>array('file' => 'custom/include/ConsultarSolicitud.php', 'auth' => false),
+    'actTaskERM'=>array('file' => 'custom/include/ActTaskERM.php', 'auth' => false),
+    'getObservacionesMemo'=>array('file' => 'custom/include/getObservacionesMemo.php', 'auth' => false),
+    'procesarTags'=>array('file' => 'custom/include/procesarTags.php', 'auth' => false),
+    'procesarFeria'=>array('file' => 'custom/include/procesarFeria.php', 'auth' => false),
 );
 ?>

@@ -5,28 +5,7 @@ array (
   'DetailView' => 
   array (
     'templateMeta' => 
-    array (
-        'javascript' => '{sugar_getscript file="include/javascript/ViewSolicitud.js"}
-        {sugar_getscript file="include/javascript/EditSolicitud.js"}
-        <script type="text/javascript">onload=inicioViewSol();</script>'
-      ,
-      
-      'includes' => array (
-                        0 =>array ('file' => 'include/javascript/EditSolicitud.js',),
-                    ),
-      'form' => 
-      array (
-        'buttons' => 
-        array (
-          0 => 'EDIT',
-          2 => 'DELETE',
-          3 =>
-          array(
-             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
-                onClick="pasoAFranquiciado(\'{$fields.id.value}\');" value="Paso a franquiciado">{/if}',
-          ), 
-        ),
-      ),
+    array (                         
       'maxColumns' => '2',
       'widths' => 
       array (
@@ -41,10 +20,44 @@ array (
           'field' => '30',
         ),
       ),
+      
+      'includes' =>
+      array (
+        0 =>array ('file' => 'include/javascript/EditSolicitud.js',),
+        1 =>array ('file' => 'include/javascript/ViewSolicitud.js',),
+        2 =>array ('onload' => 'cargaAccionesSol();',),
+       ),
+      
+      
+      'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
+      {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+      {sugar_getscript file="include/javascript/EditSolicitud.js"}
+      {sugar_getscript file="include/javascript/jquery.js"}
+      {sugar_getscript file="modules/Documents/documents.js"}
+      {sugar_getscript file="include/javascript/ViewSolicitud.js"}
+      <script type="text/javascript"> onload=cargaAccionesSol();</script>',
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          2 => 'DELETE',
+          3 =>
+          array(
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
+                onClick="pasoAFranquiciado(\'{$fields.id.value}\');" value="Paso a franquiciado">{/if}',
+          ), 
+        ),
+      ),  
       'useTabs' => true,
       'tabDefs' => 
       array (
         'LBL_CONTACT_INFORMATION' => 
+        array (
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+        'LBL_EDITVIEW_PANEL1' => 
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
@@ -58,13 +71,8 @@ array (
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
-        ),
-        'LBL_EDITVIEW_PANEL1' => 
-        array (
-          'newTab' => true,
-          'panelDefault' => 'expanded',
-        ),
-        'LBL_EDITVIEW_PANEL3' => 
+        ),       
+        'LBL_EDITVIEW_PANEL_TAG' => 
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
@@ -160,8 +168,8 @@ array (
             ),
             1 => 
             array(
-            'name'=> 'check_puertas_abiertas',
-            'label'=> 'LBL_PUERTAS_ABIERTAS',
+                'name'=> 'check_puertas_abiertas',
+                'label'=> 'LBL_PUERTAS_ABIERTAS',
             ),
         ),
      
@@ -309,221 +317,8 @@ array (
             'label' => 'LBL_OTHER_PHONE',
           ),
         ),
-        ),
-      'lbl_editview_panel2' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'perfil_franquicia',
-            'studio' => 'visible',
-            'label' => 'LBL_PERFIL_FRANQUICIA',
-          ),
-          1 => 
-          array (
-            'name' => 'situacion_profesional',
-            'studio' => 'visible',
-            'label' => 'LBL_SITUACION_PROFESIONAL',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'perfil_profesional',
-            'label' => 'LBL_PERFIL_PROFESIONAL',
-          ),
-          1 => 
-          array (
-            'name' => 'cuando_empezar',
-            'studio' => 'visible',
-            'label' => 'LBL_CUANDO_EMPEZAR',
-          ),
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'observaciones_solicitud',
-            'label' => 'LBL_OBSERVACIONES_SOLICITUD',
-          ), 
-                
-        ),        
-    /*    4 => 
-        array (
-          0 => 
-          array (
-            'name' => 'experiencia_sector',
-            'label' => 'LBL_EXPERIENCIA_SECTOR',
-          ),
-          1 => 
-          array (
-            'name' => 'desc_experiencia',
-            'label' => 'DESC_EXPERIENCIA',
-          ),
-        ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'negocio_antes',
-            'label' => 'LBL_NEGOCIO_ANTES',
-          ),
-          1 => 
-          array (
-            'name' => 'negocio',
-            'label' => 'LBL_NEGOCIO',
-          ),
-        ),*/
-        3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'capital',
-            'studio' => 'visible',
-            'label' => 'LBL_CAPITAL',
-          ),
-          1 => 
-          array (
-            'name' => 'capital_observaciones',
-            'label' => 'LBL_CAPITAL_OBSERVACIONES',
-          ),
-        ),
-        
-          4 => 
-        array (
-          0 => 
-          array (
-            'name' => 'recursos_propios',
-            'studio' => 'visible',
-            'label' => 'LBL_RECURSOS_PROPIOS',
-          ),
-        ),
-        
-        
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'sectores_de_interes',
-            'studio' => 'visible',
-            'label' => 'LBL_SECTORES_DE_INTERES',
-          ),
-
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
-            'name' => 'franquicias_secundarias',
-            'studio' => 'visible',
-            'label' => 'LBL_FRANQUICIAS_SECUNDARIAS',
-          ),
-          1 => 
-          array (
-            'name' => 'franquicia_principal',
-            'studio' => 'visible',
-            'label' => 'LBL_FRANQUICIA_PRINCIPAL',
-          ),
-        ),
-      
-        7 => 
-        array (
-          0 => 
-          array (
-            'name' => 'franquicias_contactadas',
-            'studio' => 'visible',
-            'label' => 'LBL_FRANQUICIAS_CONTACTADAS',
-          ),
-          1 => 
-          array ('name' => 'otras_franquicias',
-            'label' => 'LBL_OTRAS_FRANQUICIAS',
-          ),
-        ),
-         8 => 
-        array (
-         0 => 
-          array (
-            'name' => 'enviar_servicios_asesora',
-            'label' => 'LBL_ENVIAR_SERVICIOS_ASESORA',
-          ),
-        ),
-        9 => 
-        array (
-          0 => 
-          array (
-            'name' => 'tipo_origen',
-            'studio' => 'visible',
-            'label' => 'LBL_TIPO_ORIGEN',
-          ),
-          1 => 
-          array (
-             'name' => 'subor_expande',          
-            'label' => 'LBL_SUBOR_EXPANDE',            
-          ),
-        ),        
-        10=> 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'portal',
-            'studio' => 'visible',
-            'label' => 'LBL_PORTAL',
-          ),
-        ),
-        11 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'expan_evento_id_c',
-            'label' => 'LBL_EVENTO',
-          ),
-        ),        
-         12 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'subor_central',
-            'label' => 'LBL_SUBOR_CENTRAL',
-          ),
-        ),        
-         13 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'subor_medios',
-            'label' => 'LBL_SUBOR_MEDIOS',
-          ),
-        ),
-        14 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'subor_mailing',
-            'label' => 'LBL_SUBOR_MAILING',
-          ),
-        ),
-        
-         15 =>
-        array (
-          0 => array (
-            'name' => 'rating',
-            'studio' => 'visible',
-            'label' => 'LBL_RATING',
-          ),
-          1 => array (         
-            'name' => 'perfil_plurifranquiciado',
-            'studio' => 'visible',
-            'label' => 'LBL_PERFIL_PLURIFRANQUICIADO',
-          ),
-        ),
       ),
+      
       'lbl_editview_panel1' => 
       array (
         0 => 
@@ -587,6 +382,235 @@ array (
           ),
         ),      
       ),
+            
+      'lbl_editview_panel2' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'perfil_franquicia',
+            'studio' => 'visible',
+            'label' => 'LBL_PERFIL_FRANQUICIA',
+          ),
+          1 => 
+          array (
+            'name' => 'situacion_profesional',
+            'studio' => 'visible',
+            'label' => 'LBL_SITUACION_PROFESIONAL',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'perfil_profesional',
+            'label' => 'LBL_PERFIL_PROFESIONAL',
+          ),
+          1 => 
+          array (
+            'name' => 'historial_empresa',
+            'studio' => 'visible',
+            'label' => 'LBL_HISTORIAL_EMPRESA',
+          ),          
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'observaciones_solicitud',
+            'label' => 'LBL_OBSERVACIONES_SOLICITUD',
+          ), 
+          1 => 
+          array (
+            'name' => 'cuando_empezar',
+            'studio' => 'visible',
+            'label' => 'LBL_CUANDO_EMPEZAR',
+          ),               
+        ),           
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'capital',
+            'studio' => 'visible',
+            'label' => 'LBL_CAPITAL',
+          ),
+          1 => 
+          array (
+            'name' => 'capital_observaciones',
+            'label' => 'LBL_CAPITAL_OBSERVACIONES',
+          ),
+        ),
+        
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'recursos_propios',
+            'studio' => 'visible',
+            'label' => 'LBL_RECURSOS_PROPIOS',
+          ),
+        ),        
+        
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'sectores_de_interes',
+            'studio' => 'visible',
+            'label' => 'LBL_SECTORES_DE_INTERES',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'franquicias_secundarias',
+            'studio' => 'visible',
+            'label' => 'LBL_FRANQUICIAS_SECUNDARIAS',
+          ),
+          1 => 
+          array (
+            'name' => 'franquicia_principal',
+            'studio' => 'visible',
+            'label' => 'LBL_FRANQUICIA_PRINCIPAL',
+          ),
+        ),
+      
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'franquicias_contactadas',
+            'studio' => 'visible',
+            'label' => 'LBL_FRANQUICIAS_CONTACTADAS',
+          ),
+          1 => 
+          array ('name' => 'otras_franquicias',
+            'label' => 'LBL_OTRAS_FRANQUICIAS',
+          ),
+        ),
+        8 => 
+        array (
+         0 => 
+          array (
+            'name' => 'enviar_servicios_asesora',
+            'label' => 'LBL_ENVIAR_SERVICIOS_ASESORA',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'tipo_origen',
+            'studio' => 'visible',
+            'label' => 'LBL_TIPO_ORIGEN',
+          ),
+          1 => 
+          array (
+             'name' => 'subor_expande',          
+            'label' => 'LBL_SUBOR_EXPANDE',            
+          ),
+        ),        
+        10=> 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'portal',
+            'studio' => 'visible',
+            'label' => 'LBL_PORTAL',
+          ),
+        ),
+        11 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'expan_evento_id_c',
+            'label' => 'LBL_EVENTO',
+          ),
+        ),        
+        12 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'subor_central',
+            'label' => 'LBL_SUBOR_CENTRAL',
+          ),
+        ),        
+        13 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'subor_medios',
+            'label' => 'LBL_SUBOR_MEDIOS',
+          ),
+        ),
+        14 => 
+        array (
+          0 => '',
+          1 => 
+          array (
+            'name' => 'subor_mailing',
+            'label' => 'LBL_SUBOR_MAILING',
+          ),
+        ),
+        
+         15 =>
+        array (
+          0 => array (
+            'name' => 'rating',
+            'studio' => 'visible',
+            'label' => 'LBL_RATING',
+          ),
+          1 => array (         
+            'name' => 'perfil_plurifranquiciado',
+            'studio' => 'visible',
+            'label' => 'LBL_PERFIL_PLURIFRANQUICIADO',
+          ),
+        ),
+      ),
+      
+      'LBL_EDITVIEW_PANEL_TAG' => 
+      array (                  
+      
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'tags_empresa',
+            'label' => 'LBL_TAG_EMPRESA',           
+          ),
+        ),
+            
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'motivos_interes',
+            'label' => 'LBL_MOTIVOS_INTERES',          
+          ),
+          1 => 
+          array (
+            'name' => 'habilidades',
+            'label' => 'LBL_HABILIDADES', 
+          ),
+        ),
+                 
+       3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'situacion_personal',
+            'label' => 'LBL_SITUACION_PERSONAL',      
+          ), 
+          1=> array()                  
+        ),
+      ),                  
     ),
   ),
 );

@@ -531,4 +531,5 @@ $mod_strings = array (
   'LBL_SHOWOPTIONS' => 'Mostrar Opciones',
   'LBL_FRANQUICIA'=>'Franquicia',
   'LBL_TRUST_USER'=>'Usuario Confianza',
+  'LBL_USER_ERM'=>'Usuario dentro del ERM',
 );

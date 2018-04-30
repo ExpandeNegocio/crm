@@ -44,7 +44,7 @@ SUGAR.util.doWhen(check_edv_loaded, function(){
 		var nodes = YAHOO.util.Selector.query('#email1_span_span a');
 		if(nodes[0] != undefined){
 			var val = nodes[0].innerHTML;
-			elm.setAttribute("value",val);
+		//	elm.setAttribute("value",val);
 		}else
 			elm.setAttribute("value","");		
 	}

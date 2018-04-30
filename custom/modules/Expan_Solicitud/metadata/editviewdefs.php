@@ -1,5 +1,4 @@
 <?php
-global $current_user; 
 $module_name = 'Expan_Solicitud';
 $viewdefs [$module_name] = 
 array (
@@ -33,7 +32,13 @@ array (
         array (
           0 => 
           array (
-            'customCode' => '<input type="submit" name="save" id="save" class="submit" onClick="this.form.return_action.value=\'DetailView\'; this.form.action.value=\'Save\';  return validarSubOrigen(\'EditView\');" value="Guardar Validado">',
+            'customCode' => '<input type="submit" name="save" id="save" class="submit" 
+            onClick="        
+            this.form.return_action.value=\'DetailView\'; 
+            this.form.action.value=\'Save\';             
+            var valido=validarSubOrigen(\'EditView\');
+            if (valido!=false) controlRating(\'{$fields.id.value}\');                        
+            return valido;" value="Guardar Validado">',
           ),
           2 => 'CANCEL',
         ),
@@ -42,6 +47,11 @@ array (
       'tabDefs' => 
       array (
         'LBL_CONTACT_INFORMATION' => 
+        array (
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+        'LBL_EDITVIEW_PANEL1' => 
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
@@ -55,13 +65,8 @@ array (
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
-        ),
-        'LBL_EDITVIEW_PANEL1' => 
-        array (
-          'newTab' => true,
-          'panelDefault' => 'expanded',
-        ),
-        'LBL_EDITVIEW_PANEL3' => 
+        ),       
+        'LBL_EDITVIEW_PANEL_TAG' => 
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
@@ -320,6 +325,70 @@ array (
           ),          
         ),
       ),
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'dispone_local',
+            'label' => 'LBL_DISPONE_LOCAL',
+          ),
+          1 => 
+          array (
+            'name' => 'negocio_anterior_local',
+            'label' => 'LBL_NEGOCIO_ANTERIOR_LOCAL',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_local',
+            'label' => 'LBL_DIRECCION_LOCAL',
+          ),
+          1 => 
+          array (
+            'name' => 'superficie_local',
+            'label' => 'LBL_SUPERFICIE_LOCAL',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_local2',
+            'label' => 'LBL_DIRECCION_LOCAL2',
+          ),
+          1 => 
+          array (
+            'name' => 'superficie_local2',
+            'label' => 'LBL_SUPERFICIE_LOCAL2',
+          ),
+        ),
+         3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_local3',
+            'label' => 'LBL_DIRECCION_LOCAL3',
+          ),
+          1 => 
+          array (
+            'name' => 'superficie_local3',
+            'label' => 'LBL_SUPERFICIE_LOCAL3',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'descripcion_local',
+            'label' => 'LBL_DESCRIPCION_LOCAL',
+          ),
+        ),
+
+      ),
       'lbl_editview_panel2' => 
       array (
         0 => 
@@ -362,9 +431,9 @@ array (
           ),
           1 => 
           array (
-            'name' => 'cuando_empezar',
+            'name' => 'historial_empresa',
             'studio' => 'visible',
-            'label' => 'LBL_CUANDO_EMPEZAR',
+            'label' => 'LBL_HISTORIAL_EMPRESA',
           ),
         ),
         3 => 
@@ -374,34 +443,14 @@ array (
             'name' => 'observaciones_solicitud',
             'label' => 'LBL_OBSERVACIONES_SOLICITUD',
           ),
+          1 => 
+          array (
+            'name' => 'cuando_empezar',
+            'studio' => 'visible',
+            'label' => 'LBL_CUANDO_EMPEZAR',
+          ),        
+        ),
         
-        ),
-     /*   4 => 
-        array (
-          0 => 
-          array (
-            'name' => 'experiencia_sector',
-            'label' => 'LBL_EXPERIENCIA_SECTOR',
-          ),
-          1 => 
-          array (
-            'name' => 'desc_experiencia',
-            'label' => 'DESC_EXPERIENCIA',
-          ),
-        ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'negocio_antes',
-            'label' => 'LBL_NEGOCIO_ANTES',
-          ),
-          1 => 
-          array (
-            'name' => 'negocio',
-            'label' => 'LBL_NEGOCIO',
-          ),
-        ),*/
         4 => 
         array (
           0 => 
@@ -584,69 +633,93 @@ array (
           ),
         ),
       ),
-      'lbl_editview_panel1' => 
+            
+      'LBL_EDITVIEW_PANEL_TAG' => 
       array (
+      
         0 => 
         array (
           0 => 
           array (
-            'name' => 'dispone_local',
-            'label' => 'LBL_DISPONE_LOCAL',
+            'name' => 'habilidades',
+            'label' => 'LBL_HABILIDADES',                     
           ),
           1 => 
           array (
-            'name' => 'negocio_anterior_local',
-            'label' => 'LBL_NEGOCIO_ANTERIOR_LOCAL',
+            'name' => 'situacion_personal',
+            'label' => 'LBL_SITUACION_PERSONAL',           
           ),
-        ),
+        ),  
+        
         1 => 
         array (
           0 => 
           array (
-            'name' => 'direccion_local',
-            'label' => 'LBL_DIRECCION_LOCAL',
-          ),
-          1 => 
-          array (
-            'name' => 'superficie_local',
-            'label' => 'LBL_SUPERFICIE_LOCAL',
-          ),
-        ),
+            'name' => 'motivos_interes',
+            'label' => 'LBL_MOTIVOS_INTERES',          
+          ), 
+          1=> array()                  
+        ),              
+      
         2 => 
         array (
           0 => 
           array (
-            'name' => 'direccion_local2',
-            'label' => 'LBL_DIRECCION_LOCAL2',
-          ),
-          1 => 
-          array (
-            'name' => 'superficie_local2',
-            'label' => 'LBL_SUPERFICIE_LOCAL2',
+            'name' => 'tags_empresa',
+            'label' => 'LBL_TAG_EMPRESA',
+            'customCode'=>
+            '{php}
+                $fran=new opEdicionSolicitud();
+                $idSol=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerTagsEmpresa($idSol);  
+      
+            {/php}
+            <div id="sugerencias_tag_emp" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencias_tag_emp"></div>',
           ),
         ),
-         3 => 
+            
+        3 => 
         array (
           0 => 
           array (
-            'name' => 'direccion_local3',
-            'label' => 'LBL_DIRECCION_LOCAL3',
+            'name' => 'motivos_interes',
+            'label' => 'LBL_MOTIVOS_INTERES',
+            'customCode' => '
+              {php}                
+                  $opSol=new opEdicionSolicitud();
+                  $idSol=$this-> _tpl_vars["bean"]-> id;
+                  $opSol->cargaMotivos($idSol);            
+              {/php}',
+        
           ),
           1 => 
           array (
-            'name' => 'superficie_local3',
-            'label' => 'LBL_SUPERFICIE_LOCAL3',
+            'name' => 'habilidades',
+            'label' => 'LBL_HABILIDADES',
+            'customCode' => '
+              {php}                
+                  $opSol=new opEdicionSolicitud();
+                  $idSol=$this-> _tpl_vars["bean"]-> id;
+                  $opSol->cargaHabilidades($idSol);            
+              {/php}',  
           ),
         ),
-        4 => 
+       4 => 
         array (
           0 => 
-          array (
-            'name' => 'descripcion_local',
-            'label' => 'LBL_DESCRIPCION_LOCAL',
+           array (
+            'name' => 'situacion_personal',
+            'label' => 'LBL_SITUACION_PERSONAL',
+            'customCode' => '
+              {php}                
+                  $opSol=new opEdicionSolicitud();
+                  $idSol=$this-> _tpl_vars["bean"]-> id;
+                  $opSol->cargaSituacionesPersonales($idSol);            
+              {/php}', 
           ),
+          
+          1=> array()                  
         ),
-
       ),
     ),
   ),

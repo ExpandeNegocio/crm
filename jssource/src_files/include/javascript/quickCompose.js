@@ -61,10 +61,7 @@ SUGAR.quickCompose = function() {
 	       if(!SUGAR.quickCompose.frameLoaded)
 		      YAHOO.util.Connect.asyncRequest('GET', 'index.php?entryPoint=GenerateQuickComposeFrame', callback, null);
 		   else
-		      SUGAR.quickCompose.initUI(c.data);
-		      
-		   alert ($("#data_parent_name0").val());
-
+		      SUGAR.quickCompose.initUI(c.data);		  
 		},
 		/**
 		 * Initalize the UI for the quick compose
@@ -108,9 +105,9 @@ SUGAR.quickCompose = function() {
     			SE.composeLayout.composeTemplate = new YAHOO.SUGAR.Template(SE.templates['compose']);
 
     		var panel_modal = dce_mode ? false : true,
-    		    panel_width = '880px',
+    		    panel_width = '1000px',
 			    panel_constrain = dce_mode ? false : true,
-    		    panel_height = dce_mode ? 'auto' : '400px',
+    		    panel_height = dce_mode ? 'auto' : '700px',
     		    panel_shadow = dce_mode ? false : true,
     		    panel_draggable = dce_mode ? false : true,
     		    panel_resize = dce_mode ? false : true,
@@ -141,7 +138,7 @@ SUGAR.quickCompose = function() {
                     handles: ['br'],
                     autoRatio: false,
                     minWidth: 400,
-                    minHeight: 350,
+                    minHeight: 700,
                     status: false
                 });
 
@@ -155,7 +152,7 @@ SUGAR.quickCompose = function() {
                 }, SQ.parentPanel, true);
 			} else {
                 SUGAR.util.doWhen("typeof SE.composeLayout[SE.composeLayout.currentInstanceId] != 'undefined'", function(){
-                    var panelHeight = 400;
+                    var panelHeight = 700;
                     SQ.parentPanel.cfg.setProperty("height", panelHeight + "px");
                     var layout = SE.composeLayout[SE.composeLayout.currentInstanceId];
                     layout.set("height", panelHeight);
@@ -231,13 +228,14 @@ SUGAR.quickCompose = function() {
               loadingMessgPanl.setHeader(SUGAR.language.get('app_strings','LBL_EMAIL_PERFORMING_TASK'));
 		      loadingMessgPanl.setBody(SUGAR.language.get('app_strings','LBL_EMAIL_ONE_MOMENT'));
 		      loadingMessgPanl.render(document.body);
-		      loadingMessgPanl.show();
+		      loadingMessgPanl.show();		     
 
 		      //If JS files havn't been loaded, perform the load.
 		      if(! SUGAR.quickCompose.resourcesLoaded )
 		          this.loadResources(o);
 		      else
-		          this.initUI(o);
+		          this.initUI(o);		         
+		          
 		},
 		/**
 		 * Pull in all the required js files.

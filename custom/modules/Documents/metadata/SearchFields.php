@@ -38,6 +38,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 $searchFields['Documents'] = 
 	array (
 		'document_name' => array( 'query_type'=>'default'),
+		'template_type'=> array('query_type'=>'default'),   
         'category_id'=> array('query_type'=>'default', 'options' => 'document_category_dom', 'template_var' => 'CATEGORY_OPTIONS'),
         'subcategory_id'=> array('query_type'=>'default', 'options' => 'document_subcategory_dom', 'template_var' => 'SUBCATEGORY_OPTIONS'),
 		'active_date'=> array('query_type'=>'default'),

@@ -209,6 +209,7 @@ class SugarWidgetSubPanelTopChangeStateButton extends SugarWidgetSubPanelTopButt
         }
         
         $script='<script type="text/javascript" src="/sugarcrm/include/javascript/CambioEstadoMasivo.js"></script>';
+        //$script='<script type="text/javascript" src="/sugarcrm/include/javascript/EditSolicitud.js"></script>';
         
         return $estilos.$script.$modal.$script.$boton;
                        

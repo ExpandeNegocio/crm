@@ -66,22 +66,30 @@ $listViewDefs['Documents'] = array(
   ),
     'franquicia' => 
   array (
-    'width' => '10%',
+    'width' => '15%',
     'label' => 'LBL_FRANQUICIA',
     'default' => true,
   ),
-  'CATEGORY_ID' => 
+  'template_type' => 
   array (
-    'width' => '10%',
+    'width' => '15%',
     'label' => 'LBL_LIST_CATEGORY',
     'default' => true,
   ),
-  'SUBCATEGORY_ID' => 
+  'is_valid' => 
   array (
-    'width' => '15%',
-    'label' => 'LBL_LIST_SUBCATEGORY',
+    'width' => '10%',
+    'label' => 'LBL_VALID',
     'default' => true,
   ),
+  'revision_date' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_REVISION_DATE',
+    'default' => true,
+  ),
+  
+  
   'LAST_REV_CREATE_DATE' => 
   array (
     'width' => '10%',

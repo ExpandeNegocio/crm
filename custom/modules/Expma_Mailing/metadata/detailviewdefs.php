@@ -68,16 +68,8 @@ array (
           ),
         ),
         
-        1 =>
-        array(
-            0 => array(
-                'name'=> 'franquicias',
-                'studio' => 'visible',
-                'label' => 'LBL_FRANQUICIAS',
-            ),
-        ),
-        
-        2 => 
+
+        1 => 
         array (
           0 => 
           array (
@@ -91,7 +83,7 @@ array (
           ),
         ),
 
-        3 => 
+        2 => 
         array (
           0 => 
           array (
@@ -104,7 +96,7 @@ array (
           ),
         ),
         
-        4 => 
+        3 => 
         array (
           0 => 
           array (
@@ -117,7 +109,7 @@ array (
           ),
         ),
                 
-        5 => 
+        4 => 
         array (
           0 => 
           array (
@@ -131,7 +123,7 @@ array (
           ),
         ),
         
-        6 => 
+        5 => 
         array (
           0 => 
           array (
@@ -143,22 +135,8 @@ array (
             'name' => 'correos_ko',
             'label' => 'LBL_CORREOS_KO',
           ),
-        ),
-        
-        7 => 
-        array (
-          0 => 
-          array (
-            'name' => 'fecha_envio',
-            'label' => 'LBL_FECHA_ENVIO',
-          ),
-          1 => 
-          array (
-            'name' => 'chk_por_franquicia',
-            'label' => 'LBL_CHK_POR_FRANQUICIA',
-          ),
-        ),
-        8=> 
+        ),             
+        6=> 
         array (
           0 => 'description',
           1 => 

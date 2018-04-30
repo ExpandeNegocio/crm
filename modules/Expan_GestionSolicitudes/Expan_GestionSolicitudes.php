@@ -59,7 +59,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     const PARADA_POR_PROTOCOLO='1';
     
     const PARADA_ZONA_NO_INTERES='51';
-    const PARADA_EXCLIENTE='52';
+    const PARADA_ENESPERA='52';
     const PARADA_NO_LOCALIZADO='53';
     const PARADA_DATOS_ERRORNEOS='54';
     
@@ -132,7 +132,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query="update tasks t join (select t.id FROM tasks t, expan_gestionsolicitudes g, expan_gestionsolicitudes_tasks_1_c gt where "; 
         $query=$query. " t.id=gt.expan_gestionsolicitudes_tasks_1tasks_idb and "; 
         $query=$query. " gt.expan_gestionsolicitudes_tasks_1expan_gestionsolicitudes_ida=g.id and g.id='".$this->id."' and "; 
-        $query=$query. " (t.status='Not Started') and t.deleted=0) b on t.id=b.id set t.status='Deferred';";
+        $query=$query. " (t.status  in ('Not Started','Pending Input','In Progress','Paused')) and t.deleted=0) b on t.id=b.id set t.status='Deferred';";
         
         $result = $db -> query($query);
                 
@@ -145,29 +145,111 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query ="update meetings m join (select m.id from expan_gestionsolicitudes g, expan_gestionsolicitudes_meetings_1_c gm, meetings m ";
         $query=$query. " where g.id=gm.expan_gestionsolicitudes_meetings_1expan_gestionsolicitudes_ida and "; 
         $query=$query. " gm.expan_gestionsolicitudes_meetings_1meetings_idb=m.id and g.id='".$this->id."' and "; 
-        $query=$query. " (m.status='Not Started' or m.status='Could') and m.deleted = 0 ";
+        $query=$query. " (m.status='Planned' or m.status='Could') and m.deleted = 0 ";
         $query=$query. " ) b on m.id=b.id set m.status='Archived';";     
         
         $result = $db -> query($query);
            
     }
     
-    
-    
-   function archivarLLamadasPrevias(){
-          //archivamos todas las llamadas de una gestion que se crean de forma automática
-          
-            $db = DBManagerFactory::getInstance();
+    function pausarLLamadas(){
+        
+        //archivamos todas las llamadas de una gestion
+        $db = DBManagerFactory::getInstance();
             
             $query= " update calls c JOIN (SELECT c.id ";
             $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
             $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
-            $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and (c.call_type='Primera' or "; 
-            $query=$query. " c.call_type='ResPriDuda' or c.call_type='InformacionAdicional' or c.call_type='Cuestionario' or c.call_type='VisitaF' or "; 
-            $query=$query. " c.call_type='SegPre' or c.call_type='Locales' or c.call_type='Contrato') and g.deleted=0) t "; 
-            $query=$query. " ON c.id = t.id set c.status='Archived'; ";
+            $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and g.deleted=0) t "; 
+            $query=$query. " ON c.id = t.id set c.status='Paused'; ";
             
             $result = $db -> query($query);
+        
+    }
+    
+    function pausarTareas(){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query="update tasks t join (select t.id FROM tasks t, expan_gestionsolicitudes g, expan_gestionsolicitudes_tasks_1_c gt where "; 
+        $query=$query. " t.id=gt.expan_gestionsolicitudes_tasks_1tasks_idb and "; 
+        $query=$query. " gt.expan_gestionsolicitudes_tasks_1expan_gestionsolicitudes_ida=g.id and g.id='".$this->id."' and "; 
+        $query=$query. " (t.status='Not Started') and t.deleted=0) b on t.id=b.id set t.status='Paused';";
+        
+        $result = $db -> query($query);
+                
+    }
+    
+    function pausarReuniones(){
+                       
+        $db = DBManagerFactory::getInstance();
+                
+        $query ="update meetings m join (select m.id from expan_gestionsolicitudes g, expan_gestionsolicitudes_meetings_1_c gm, meetings m ";
+        $query=$query. " where g.id=gm.expan_gestionsolicitudes_meetings_1expan_gestionsolicitudes_ida and "; 
+        $query=$query. " gm.expan_gestionsolicitudes_meetings_1meetings_idb=m.id and g.id='".$this->id."' and "; 
+        $query=$query. " (m.status='Not Started' or m.status='Could') and m.deleted = 0 ";
+        $query=$query. " ) b on m.id=b.id set m.status='Paused';";     
+        
+        $result = $db -> query($query);
+           
+    }
+    
+    function restartLLamadas(){
+        
+        //archivamos todas las llamadas de una gestion
+        $db = DBManagerFactory::getInstance();
+            
+        $query= " update calls c JOIN (SELECT c.id ";
+        $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
+        $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
+        $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Paused' and g.deleted=0) t "; 
+        $query=$query. " ON c.id = t.id set c.status='Planned'; ";
+        
+        $result = $db -> query($query);
+        
+    }
+    
+    function restartTareas(){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query="update tasks t join (select t.id FROM tasks t, expan_gestionsolicitudes g, expan_gestionsolicitudes_tasks_1_c gt where "; 
+        $query=$query. " t.id=gt.expan_gestionsolicitudes_tasks_1tasks_idb and "; 
+        $query=$query. " gt.expan_gestionsolicitudes_tasks_1expan_gestionsolicitudes_ida=g.id and g.id='".$this->id."' and "; 
+        $query=$query. " (t.status='Paused') and t.deleted=0) b on t.id=b.id set t.status='Not Started';";
+        
+        $result = $db -> query($query);
+                
+    }
+    
+    function restartReuniones(){
+                       
+        $db = DBManagerFactory::getInstance();
+                
+        $query ="update meetings m join (select m.id from expan_gestionsolicitudes g, expan_gestionsolicitudes_meetings_1_c gm, meetings m ";
+        $query=$query. " where g.id=gm.expan_gestionsolicitudes_meetings_1expan_gestionsolicitudes_ida and "; 
+        $query=$query. " gm.expan_gestionsolicitudes_meetings_1meetings_idb=m.id and g.id='".$this->id."' and "; 
+        $query=$query. " m.status='Paused' and m.deleted = 0 ";
+        $query=$query. " ) b on m.id=b.id set m.status='Not Started';";     
+        
+        $result = $db -> query($query);
+           
+    }
+    
+   function archivarLLamadasPrevias(){
+        //archivamos todas las llamadas de una gestion que se crean de forma automática
+      
+        $db = DBManagerFactory::getInstance();
+        
+        $query= " update calls c JOIN (SELECT c.id ";
+        $query=$query. " FROM   calls c, expan_gestionsolicitudes g, expan_gestionsolicitudes_calls_1_c gs "; 
+        $query=$query. " WHERE  g.id = gs.expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida AND g.id = '".$this->id."' "; 
+        $query=$query. " AND gs.expan_gestionsolicitudes_calls_1calls_idb =c.id and c.status = 'Planned' and (c.call_type='Primera' or "; 
+        $query=$query. " c.call_type='ResPriDuda' or c.call_type='InformacionAdicional' or c.call_type='Cuestionario' or c.call_type='VisitaF' or "; 
+        $query=$query. " c.call_type='SegPre' or c.call_type='Locales' or c.call_type='Contrato') and g.deleted=0) t "; 
+        $query=$query. " ON c.id = t.id set c.status='Archived'; ";
+        
+        $result = $db -> query($query);
   
     }
    
@@ -306,6 +388,39 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         return $tareasAbiertas;        
     }
     
+    function tieneLlamadasRealizadas(){
+                
+        $llamadasAbiertas=false;
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select * from calls where status='Held' AND deleted=0 AND parent_id='".$this->id."'";
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneLlamadasPendientes]query-' . $query);
+        $result = $db -> query($query, true);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $llamadasAbiertas=true;
+        }
+        
+        return $llamadasAbiertas;       
+    }
+    
+     function tieneReunionesRealizadas(){
+                
+        $reunionesRealizadas=false;
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select * from meetings where status='Held' AND deleted=0 AND parent_id='".$this->id."'";
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneLlamadasPendientes]query-' . $query);
+        $result = $db -> query($query, true);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $reunionesRealizadas=true;
+        }
+        
+        return $reunionesRealizadas;       
+    }
+    
+    
     function calcularPrioridades(){
                         
         $db = DBManagerFactory::getInstance();
@@ -319,7 +434,6 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."       g.name,       ";
         $query=$query."       CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200 ";
         $query=$query."       WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100 ";
-        $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND oportunidad_inmediata = 1 THEN 1000  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato_personal = 1 THEN 130  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 120  ";                        
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 110  ";
@@ -336,8 +450,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."       ELSE 0 END +IFNULL(ra.punt, 0) + IFNULL(lla.puntLLamada, 0) + IFNULL(co.puntCorreo, 0) final ";
         $query=$query." FROM   expan_gestionsolicitudes g ";
         $query=$query."       LEFT JOIN ";
-        $query=$query."                 (SELECT   g.id, s.rating,s.id sid, ";
-        $query=$query."                           SUM(CASE WHEN s.rating = 1 THEN 50 WHEN s.rating = 2 THEN 30 WHEN s.rating = 3 THEN 10 ELSE 0 END) punt ";
+        $query=$query."                 (SELECT   g.id, g.rating,s.id sid, ";
+        $query=$query."                           SUM(CASE WHEN g.rating = 1 THEN 50 WHEN g.rating = 2 THEN 30 WHEN g.rating = 3 THEN 10 ELSE 0 END) punt ";
         $query=$query."                  FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
         $query=$query."                  WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id='".$this->id."' ";
         $query=$query."                  GROUP BY g.id) ra ";
@@ -410,16 +524,28 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }        
     }
 
-    function asignarUsuarioGestor() {        
+    function asignarGestor(){        
 
-        //asignamos el usuarioGestor s
+        //asignamos el usuario Gestor a la gestion y a todo lo que cuelga
         $Fran = new Expan_Franquicia();
         $Fran -> retrieve($this -> franquicia);
         $this -> assigned_user_id = $Fran -> assigned_user_id;
-        $this -> asociarLLamadas("Planned", $Fran -> assigned_user_id);            
-        $this -> asociarTareas("Not Started", $Fran -> assigned_user_id);        
-        $this -> asociarReuniones("Planned", $Fran -> assigned_user_id);
-        $this -> asociarReuniones("Could", $Fran -> assigned_user_id);       
+        $this->asignarAccionesUsuario($Fran -> assigned_user_id);
+    }
+    
+    function asignarFiltro(){
+        //asignamos el usuario Filtro a la gestion y a todo lo que cuelga
+        $Fran = new Expan_Franquicia();
+        $Fran -> retrieve($this -> franquicia);
+        $this -> assigned_user_id = $Fran -> filtro_solicitudes;
+        $this->asignarAccionesUsuario($Fran -> filtro_solicitudes);
+    }    
+    
+    function asignarAccionesUsuario($user){
+        $this -> asociarLLamadas("Planned", $user);            
+        $this -> asociarTareas("Not Started", $user);        
+        $this -> asociarReuniones("Planned", $user);
+        $this -> asociarReuniones("Could", $user);  
     }
 
     //Comprobamos si hay una llamada el tipo y el estado que se indican
@@ -468,7 +594,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
               
         $db = DBManagerFactory::getInstance();
          
-        $query = "SELECT s.provincia_apertura_1,s.rating,s.phone_mobile,g.motivo_parada,g.motivo_descarte,g.motivo_positivo, ";
+        $query = "SELECT s.provincia_apertura_1,g.rating,s.phone_mobile,g.motivo_parada,g.motivo_descarte,g.motivo_positivo, ";
         $query=$query."g.portal,g.expan_evento_id_c,g.subor_mailing,g.subor_central,g.subor_expande,g.subor_medios ";
         $query=$query."FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
         $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
@@ -502,9 +628,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
         
             //Calculamos los subestados
-         if ($this->estado_sol=='1'){
+         if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO){
             $this->subestado="";
-         } else if ($this->estado_sol=='2'){
+         } else if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_EN_CURSO){
             
             if ($this->chk_visita_central==true){
                 $this->subestado=Expan_GestionSolicitudes::SUBESTADO_CENTRAL;
@@ -532,11 +658,11 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                 $this->subestado=Expan_GestionSolicitudes::SUBESTADO_ENVIO_DOC;
             }
         
-         } else if ($this->estado_sol=='3'){
+         } else if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_PARADO){
             $this->subestado=$GLOBALS["app_list_strings"]["motivo_parada_list"][$parada];
-         } else if ($this->estado_sol=='4'){
+         } else if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_DESCARTADO){
             $this->subestado=$GLOBALS["app_list_strings"]["motivo_descarte_list"][$descarte];
-         } else if ($this->estado_sol=='5'){
+         } else if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_POSITIVO){
             $this->subestado=$GLOBALS["app_list_strings"]["motivo_positivo_list"][$positivo];
          }  
          
@@ -569,6 +695,77 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
     }
 
+    public function getSuborigenDesc(){
+               
+        $portal=$GLOBALS["app_list_strings"]["portal_list"][$this->portal];
+        $evento=$GLOBALS["app_list_strings"]["eventos_list"][$this->expan_evento_id_c];
+        $mailing=$GLOBALS["app_list_strings"]["subor_mailing_list"][$this->subor_mailing];
+        $central=$GLOBALS["app_list_strings"]["subor_central_list"][$this->subor_central];
+        $expande=$GLOBALS["app_list_strings"]["subor_expande_list"][$this->subor_expande];
+        $medios=$GLOBALS["app_list_strings"]["subor_medios_list"][$this->subor_medios];  
+        
+        switch ($this->tipo_origen) {
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_CENTRAL:
+                return $central;
+                break;
+            
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_EVENTOS:
+                return $evento;
+                break;
+           
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO:
+                return $expande;
+                break;
+            
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_MAILING:
+                return $mailing;
+                break;
+                
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_MEDIOS_COMUN:
+                return $medios;
+                break;   
+           
+           case Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES:
+                return $portal;
+                break;                               
+        }
+        
+        return '';
+        
+    }
+
+    public function getSuborigenId(){
+        
+        switch ($this->tipo_origen) {
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_CENTRAL:
+                return $this->subor_central;
+                break;
+            
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_EVENTOS:
+                return $this->expan_evento_id_c;
+                break;
+           
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO:
+                return $this->subor_expande;
+                break;
+            
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_MAILING:
+                return $this->subor_mailing;
+                break;
+                
+            case Expan_GestionSolicitudes::TIPO_ORIGEN_MEDIOS_COMUN:
+                return $this->subor_medios;
+                break;   
+           
+           case Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES:
+                return $this->portal;
+                break;                               
+        }
+        
+        return '';
+        
+    }
+
     public function isDescartadoUsuario(){
         
         $db = DBManagerFactory::getInstance();
@@ -582,7 +779,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $myArraydescartes[$row['id']] =0;
         }
                 
-        if ($this->estado_sol==SELF::ESTADO_DESCARTADO && 
+        if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_DESCARTADO && 
             in_array($this->motivo_descarte,$myArraydescartes) ){            
             return true;            
         }else{
@@ -603,7 +800,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $myArraydescartes[$row['id']] =1;
         }
                 
-        if ($this->estado_sol==SELF::ESTADO_DESCARTADO &&
+        if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_DESCARTADO &&
             in_array($this->motivo_descarte,$myArraydescartes) ){            
             return true;            
         }else{
@@ -624,7 +821,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $myArrayPadara[$row['id']] =0;
         }
                 
-        if ($this->estado_sol==SELF::ESTADO_PARADO && 
+        if ($this->estado_sol==Expan_GestionSolicitudes::ESTADO_PARADO && 
             in_array($this->motivo_parada,$myArrayPadara) ){            
             return true;            
         }else{
@@ -632,6 +829,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
         
     }   
+     
      
     public function calcAvanzado(){
         
@@ -725,7 +923,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
     }
      
-    public function creaLlamada($texto, $tipo) {
+    public function creaLlamada($texto, $tipo, $retraso) {
+        
+        if (!isset($retraso)){
+            $retraso=0;
+        }
+        
+        //Retraso en días
         
         $solicitud=$this->GetSolicitud();
         
@@ -805,16 +1009,14 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                     //$llamada->date_start=date("Y-m-d H:i:s", $dateTime);
                     
                 }else{
-                     $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
+                     $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias)+($retraso*3600*24));
                      $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
                      $llamada -> date_start = $fecha;
                 }
                
 
            
-            }
-            
-             
+            }                        
             
             //Si es agrupada la marcamos
 
@@ -914,6 +1116,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                     break;
                 default :
                     $dias = 3;
+                    break;
             }
         } else if ($tipo == 'InformacionAdicional') {
             $dias = 3;
@@ -1169,7 +1372,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
 
     public function pasoaOrigenExpandeFeria(){
         
-        if ($this->tipo_origen==$this::TIPO_ORIGEN_EVENTOS){
+        if ($this->tipo_origen==$this::TIPO_ORIGEN_EVENTOS ||
+            $this->tipo_origen==null){
             
             $db = DBManagerFactory::getInstance();
 
@@ -1177,24 +1381,31 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $query = "SELECT * ";
             $query=$query."FROM expan_franquicia_expan_evento_c ";
             $query=$query."WHERE expan_franquicia_expan_eventoexpan_franquicia_ida ='".$this->franquicia."' AND ";
-            $query=$query."  expan_franquicia_expan_eventoexpan_evento_idb = '".$this->expan_evento_id_c."'; ";
+            $query=$query."  expan_franquicia_expan_eventoexpan_evento_idb = '".$this->expan_evento_id_c."' AND deleted=0; ";
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Consulta-'.$query);
 
             $result = $db -> query($query, true);
             
             $numElem=0;
 
             while ($row = $db -> fetchByAssoc($result)) {
-                
+                    
+               $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Entra');
                $numElem++;
-               if($row['participacion']=='3'){
+               
+               if($row['participacion']=='3' || $row['participacion']==null){
+                   $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Sale por 3 null o 0');
                    return true;
                }; 
             }   
             //Si no hay franquicia asociada pero el origen es evento. Se lo pasamos a Expande
             if ($numElem==0) {
+                $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Sale por 0');
                 return true;
             }        
         }
+        $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Sale al final');
         return false;
                        
     } 
@@ -1263,6 +1474,17 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
               
     }
     
+    function getEmailPrincipal(){
+        $solicitud=$this->GetSolicitud();
+        if ($solicitud!==null){
+            $listaCorreos=$solicitud->getCorreoPrincipal();
+            return current($listaCorreos);
+        }else{
+            return null;
+        }
+            
+    }
+    
     function getTemplate($tipo){
        
         $db = DBManagerFactory::getInstance();
@@ -1276,6 +1498,87 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
               $template -> retrieve($row["id"]);
         }
         return $template;
+    }
+    
+    function setOrigenSuborigenFromSolicitud($solicitud,$origenAnt){
+        //Calculamos el origen y suborigen de la gestion
+        $origen=$solicitud->getNewOrigen($origenAnt);            
+        $this->tipo_origen=$origen;
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen de la gestion - '.$this->tipo_origen);
+                   
+        if ($origen==Expan_Solicitud::TIPO_ORIGEN_EXPANDENEGOCIO){
+            $this->subor_expande=$solicitud->subor_expande;                
+        }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_PORTALES){
+            $this->portal=$solicitud->portal;                              
+        }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_EVENTOS){
+            $this->expan_evento_id_c=$solicitud->expan_evento_id_c;
+            
+            $evento=new Expan_Evento();
+            $evento -> retrieve($solicitud->expan_evento_id_c);
+            
+            //Si el origen es un evento de tipo franquishp debemos crear llamada 
+            if ($evento->tipo_evento=="FShop"){
+                $crearLLamadaFS=true;                              
+            } 
+            
+        }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_CENTRAL){
+            $this->subor_central=$solicitud->subor_central;
+        }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_MEDIOS_COMUN){
+            $this->subor_medios=$solicitud->subor_medios;                             
+        }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_MAILING){
+            $this->subor_mailing=$solicitud->subor_mailing;                             
+        }
+    }
+
+    function procesarObservaciones(){
+        
+       $this->preguntas_mn_t= $this->addFechaObservacion($this->preguntas_mn_t);
+       $this->objeciones_mn= $this->addFechaObservacion($this->objeciones_mn);
+       $this->solicitudes_candidato= $this->addFechaObservacion($this->solicitudes_candidato);
+       $this->informacion_competencia= $this->addFechaObservacion($this->informacion_competencia);
+       $this->mejoras= $this->addFechaObservacion($this->mejoras);
+       $this->concesiones= $this->addFechaObservacion($this->concesiones);
+       $this->preg_en_central= $this->addFechaObservacion($this->preg_en_central);
+       $this->notas_argumentario= $this->addFechaObservacion($this->notas_argumentario);
+        
+    }
+
+    function addFechaObservacion($observaciones){
+        
+        //Secogemos cada párrafo
+        
+        $listaParr =explode("\r\n", $observaciones);
+        
+        $output="";
+        $cont=0;
+       
+        foreach ($listaParr as $par){
+           if ($par!=""){                         
+               $parConFecha=$par;
+                    
+               if ($this->validateDate(substr($par,0,10))==false){
+                     
+                  $parConFecha=''.date('d/m/Y').' - '.$parConFecha;
+                  if ($cont!=count($listaParr)){
+                      $parConFecha=$parConFecha;
+                  }
+               }
+               $output=$output.$parConFecha."\r\n";
+           }else{
+               if ($cont!=count($listaParr)-1){
+                   $output=$output."\r\n";
+               }               
+           }
+           $cont=$cont+1;
+        }
+        return $output;               
+    }
+    
+    function validateDate($date, $format = 'd/m/Y')
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
     }
 
 }

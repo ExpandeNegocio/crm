@@ -96,7 +96,8 @@ function retrasarLlamada(tipoRetraso, id) {
 	$('#date_start_meridiem > option[value="' + meridi + '"]').attr('selected', 'selected');
 
 	//document.getElementById('date_start_date').text=trim(("0" + fechaTermino.getDate()).slice(-2)+"/"+("0" + (fechaTermino.getMonth() + 1)).slice(-2)+"/"+(fechaTermino.getYear()+1900))+ " "+horasFor+":"+min+meridi;
-
+ 
+ 	//alert (fechaTermino.getMonth());
 	$("#date_start_date").val(("0" + fechaTermino.getDate()).slice(-2) + "/" + ("0" + (fechaTermino.getMonth() + 1)).slice(-2) + "/" + (fechaTermino.getYear() + 1900));
 
 	combo_date_start.update();
@@ -242,7 +243,9 @@ function DesactivarGS() {
 	var campo = document.getElementById("create_image");
 	if (campo != null) {
 		campo.style.display = 'none';
-	}	
+	}
+	
+	getSepuedeLlamar();	
 	
 	if ($("#telefono").val()==''){
 		getTelefono();
@@ -341,6 +344,28 @@ function getTelefono() {
 	});
 }
 
+function getSepuedeLlamar() {
+	
+	var idGestion=$("#form_SubpanelQuickCreate_Calls > table > tbody > tr > td.buttons > input[type='hidden']:nth-child(7)").val();
+
+	url='index.php?entryPoint=recogeTelefonoGestion&idGest=' + idGestion+'&tipo=doNotCall';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "idGest=" + idGestion + '&tipo=doNotCall',
+		success : function(data) {					
+			if (data==1){
+				alert('El solicitante no desea recibir llamadas');
+			}							
+		},
+		error : function(jqXHR, textStatus, errorThrown) {				
+			
+				alert('Error');
+		}
+	});
+}
+
+
 function getFechaRetraso(){
 	
 	var idCall=$("#EditView > table > tbody > tr > td.buttons > input[type='hidden']:nth-child(2)").val();	
@@ -379,9 +404,9 @@ function getFechaRetraso(){
 function addTime(hours){
 	
 	var now= new Date();			
-	var nowAdded=new Date(now.getTime() + (hours*60*60*1000));
+	var nowAdded=new Date(now.getTime() + (hours*60*60*1000));	
 	
-	Fecha=("0" + nowAdded.getDate()).slice(-2)+"/"+("0" + nowAdded.getMonth()).slice(-2)+"/"+nowAdded.getFullYear();
+	Fecha=("0" + nowAdded.getDate()).slice(-2)+"/"+("0" + (nowAdded.getMonth()+1)).slice(-2)+"/"+nowAdded.getFullYear();
 	if (nowAdded.getMinutes() >= 53 && nowAdded.getMinutes() <= 59){
 		Hora=1+nowAdded.getHours();
 	}else{

@@ -107,6 +107,15 @@ array (
             'label' => 'LBL_IS_ADMIN',
           ),
         ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'user_ERM',     
+            'label' => 'LBL_USER_ERM',
+          ),
+         
+        ),
       ),
       'LBL_EMPLOYEE_INFORMATION' => 
       array (

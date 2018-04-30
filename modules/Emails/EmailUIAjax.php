@@ -596,6 +596,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
     case "checkEmailProgress":
         $GLOBALS['log']->info("[EMAIL] - Start checkEmail action for user [{$current_user->user_name}]");
+        $GLOBALS['log']->info("[EMAIL] - Start checkEmail action for user [{$_REQUEST['ieId']}]");
+        
         if(isset($_REQUEST['ieId']) && !empty($_REQUEST['ieId'])) {
             $ie->retrieve($_REQUEST['ieId']);
             $ie->mailbox = (isset($_REQUEST['mbox']) && !empty($_REQUEST['mbox'])) ? $_REQUEST['mbox'] : "INBOX";
@@ -611,7 +613,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                     $ie->importMessages();                                                                       
 	            } // else
 	            
-	            $GLOBALS['log']->info("[ExpandeNegocio][Cargo correos]Carg correos de la cuenta - ".$ie->name);   
+	            $GLOBALS['log']->info("[ExpandeNegocio][Cargo correos]Cargo correos de la cuenta - ".$ie->name);   
 	            
             } // if
             $return['ieid'] = $ie->id;
@@ -621,6 +623,13 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 					$return['totalcount'] = $_REQUEST['totalcount'];
 				} // else
 			}
+            
+            $GLOBALS['log']->info("[ExpandeNegocio][Cargo correos]vuelta  - ".$json->encode($return));
+            //Lo metemos para que no casque si una de las cuentas no funciona ok
+            if ($return['status']=='error'){                
+                $return['status']='done';
+            }
+            $GLOBALS['log']->info("[ExpandeNegocio][Cargo correos]vuelta  - ".$json->encode($return));
             echo $json->encode($return);
         } // if
         break;

@@ -321,4 +321,7 @@ $mod_strings = array (
     'LBL_SOL_RATING_B' => 'Solicitudes B',
     'LBL_SOL_RATING_C' => 'Solicitudes C',  
     'LBL_PRIME' => 'Prime',  
+    'LBL_CONFIG_CORREO' => 'Usuarios Correo',
+    'LBL_COD_FRANQUICIA' => 'Código de la Franquicia',
+    'LBL_PROY_ERM' => 'Proyecto ERM',
 );

@@ -88,12 +88,27 @@ array (
             'label' => 'LBL_DET_IS_TEMPLATE',
           ),
         ),
+        
         3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'is_valid',
+            'label' => 'LBL_VALID',
+          ),
+          1 => 
+          array (
+            'name' => 'revision_date',
+            'label' => 'LBL_REVISION_DATE',
+          ),
+        ),
+        
+        4 => 
         array (
           0 => 'active_date',
           1 => 'exp_date',
         ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -108,7 +123,7 @@ array (
             'label' => 'LBL_TIPO_ENVIO',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
@@ -116,7 +131,7 @@ array (
             'label' => 'LBL_DOC_DESCRIPTION',
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 'related_doc_name',
           1 => 'related_doc_rev_number',

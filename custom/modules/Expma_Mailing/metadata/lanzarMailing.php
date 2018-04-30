@@ -17,6 +17,8 @@
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]ID Plantilla-' . $idplantilla);
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]PorFranquicia-' . $porFranquicia);
     
+    //Recogemos el cuerpo del mailing si no queremos meter una plantilla
+    
     $db = DBManagerFactory::getInstance();
     
     $query = "SELECT cuerpo ";
@@ -32,10 +34,10 @@
     //Si tenemos que enviar un mismo correo para todos y solo a los que no hemos enviado
     // if ($porFranquicia==0){
     
-    $query = "SELECT s.id as id, email_address,cuerpo ";
+    $query = "SELECT s.id as id, email_address ";
     $query = $query . "FROM expma_mailing m, expma_mailing_expan_solicitud_c ms, expan_solicitud s, email_addr_bean_rel r, email_addresses e, expan_solicitud_cstm cs ";
     $query = $query . "WHERE ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id AND s.id = r.bean_id AND e.id = r.email_address_id AND ";
-    $query = $query . "s.cerrada<>1 AND s.positiva<>1 AND cs.no_correos_c=0 AND cs.id_c=s.id AND enviado = 0  AND ms.deleted=0 AND ";
+    $query = $query . "s.cerrada<>1 AND s.positiva<>1 AND cs.no_correos_c=0 AND cs.id_c=s.id AND enviado = 0  AND ms.deleted=0 AND e.deleted= 0 AND r.deleted=0 AND s.dummie=0 AND ";
     $query = $query . "ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id AND m.id = '" . $idMailing . "' ";
     $query = $query . "GROUP BY s.id, email_address";
            

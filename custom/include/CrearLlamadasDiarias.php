@@ -14,19 +14,19 @@
     $query = "select distinct id from (  ";
     $query=$query."SELECT g.id  ";
     $query=$query."FROM   expan_gestionsolicitudes g , expan_franquicia f ";
-    $query=$query."WHERE  f.id=g.franquicia AND f.tipo_cuenta in (1,2) AND g.estado_sol = 2 AND g.deleted = 0 AND candidatura_avanzada=0 AND g.id IN (SELECT parent_id  ";
+    $query=$query."WHERE  f.id=g.franquicia AND f.tipo_cuenta in (1,2) AND g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND g.deleted = 0 AND candidatura_avanzada=0 AND g.id IN (SELECT parent_id  ";
     $query=$query."FROM   calls  ";
     $query=$query."WHERE  deleted=0 and TIMESTAMPDIFF(DAY, DATE(date_start), CURDATE()) < 30)  ";
     $query=$query."  UNION  ";
     $query=$query."SELECT g.id   ";
     $query=$query."FROM   expan_gestionsolicitudes g , expan_franquicia f ";
-    $query=$query."WHERE  f.id=g.franquicia AND f.tipo_cuenta in (1,2) AND g.estado_sol = 2 AND g.deleted = 0 AND candidatura_avanzada=1 AND candidatura_caliente=0 AND g.id IN (SELECT parent_id  ";
+    $query=$query."WHERE  f.id=g.franquicia AND f.tipo_cuenta in (1,2) AND g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND g.deleted = 0 AND candidatura_avanzada=1 AND candidatura_caliente=0 AND g.id IN (SELECT parent_id  ";
     $query=$query."FROM   calls  ";
     $query=$query."WHERE  deleted=0 and TIMESTAMPDIFF(DAY, DATE(date_start), CURDATE()) < 20)  ";
     $query=$query."  UNION  ";
     $query=$query."SELECT g.id   ";
     $query=$query."FROM   expan_gestionsolicitudes g , expan_franquicia f ";
-    $query=$query."WHERE  f.id=g.franquicia AND f.tipo_cuenta in (1,2) AND g.estado_sol = 2 AND g.deleted = 0 AND candidatura_caliente=1 AND g.id IN (SELECT parent_id  ";
+    $query=$query."WHERE  f.id=g.franquicia AND f.tipo_cuenta in (1,2) AND g.estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND g.deleted = 0 AND candidatura_caliente=1 AND g.id IN (SELECT parent_id  ";
     $query=$query."FROM   calls  ";
     $query=$query."WHERE  deleted=0 and TIMESTAMPDIFF(DAY, DATE(date_start), CURDATE()) < 10)) a ; ";
 

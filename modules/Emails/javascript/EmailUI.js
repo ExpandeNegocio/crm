@@ -2039,7 +2039,7 @@ SE.folders = {
             SE.accounts.ieIds = SE.folders.getIeIds();
             if (SE.accounts.ieIds.length > 0) {
             	AjaxObject.startRequest(AjaxObject.accounts.callbackCheckMailProgress, urlStandard +
-                                '&emailUIAction=checkEmailProgress&ieId=' + SE.accounts.ieIds[0] + "&currentCount=0");
+                                '&emailUIAction=checkEmailProgress&ieId=' + SE.accounts.ieIds[0] + "&currentCount=0");                                
             } else {
                SUGAR.hideMessageBox();
             }

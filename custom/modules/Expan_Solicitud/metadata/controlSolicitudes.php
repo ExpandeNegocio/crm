@@ -11,6 +11,7 @@
     $valida = $_GET['valida'];
     $telefono=$_GET['telefono'];
     $solId=$_GET['solId'];
+    $ratingAct=$_GET['rating'];
     
     $idEmail=$_GET['idEmail'];
     $email=$_GET['email'];
@@ -77,7 +78,7 @@
                 while ($rowSol = $db->fetchByAssoc($resultSol)){
                     if ($current_user->franquicia==null){
                         $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El correo existe');                     
-                        echo $rowSol[id];
+                        echo $rowSol['id'];
                         return;
                     }else{
                         echo '';
@@ -88,6 +89,37 @@
             }
 
             break;
-    }
+            
+        case 'pregRating':
+        
+            $query = "select * from expan_solicitud where id = '".$solId."'";
+            
+            $ratingAnt='';
+            $resultSol = $db->query($query, true);        
+            while ($rowSol = $db->fetchByAssoc($resultSol)){
+                $ratingAnt=$rowSol['rating'];
+            }
+        
+            if ($ratingAct!='' && $ratingAct!=$ratingAnt){
+                echo 'true';
+            }else{
+                echo 'false';
+            }
+                    
+            break;
+            
+        case 'modRating':
+        
+            $query = "UPDATE expan_gestionsolicitudes  g ";
+            $query=$query."       JOIN (SELECT gs.expan_soli5dcccitudes_idb, s.rating ";
+            $query=$query."             FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+            $query=$query."             WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.id = '".$solId."') s ";
+            $query=$query."         on g.id = s.expan_soli5dcccitudes_idb ";
+            $query=$query."set    g.rating = s.rating; ";
+            
+            $result = $db -> query($query);
+        
+            break;
+    }   
     
 ?>

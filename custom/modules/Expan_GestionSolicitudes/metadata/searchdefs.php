@@ -236,6 +236,24 @@ array (
         'name' => 'perfil_ideoneo',
       ),
       
+      'date_entered' => 
+      array (
+        'type' => 'datetime',
+        'label' => 'LBL_DATE_ENTERED',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'date_entered',
+      ),
+      
+     'date_modified' => 
+      array (
+        'type' => 'datetime',
+        'label' => 'LBL_DATE_MODIFIED',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'date_modified',
+      ),
+      
       'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',

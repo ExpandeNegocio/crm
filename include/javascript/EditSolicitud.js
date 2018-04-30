@@ -1,14 +1,10 @@
-/**
- * @author Penlopjo
- */
 
-const BORDE_NORMAL="#94c1e8 solid 1px";
-
-		
+	
 		$("#pais_c").change(function(){
 			var valor=$(this).val();
 			if(valor!="SPAIN"){//es master
 				$("#master").prop("checked", true);
+				$("#master").prop('disabled', false);
 				$("#provincia_residencia_label").parent().show();
 			}else{
 				$("#master").prop("checked", false);
@@ -51,7 +47,7 @@ const BORDE_NORMAL="#94c1e8 solid 1px";
 			url:"index.php?entryPoint=RecogeSugerencias",
 			data: dataFran,
 			success: function(data){
-				$('#sugerencias').fadeIn(1000).html(data);
+				$('#sugerencias').fadeIn(500).html(data);
 				$('.sug').live('click', function(){//cuando se pulsa una
 					var fran=$(this).text();
 					if(longi==1){//borrar todo y sustituir por el nuevo valor
@@ -60,11 +56,11 @@ const BORDE_NORMAL="#94c1e8 solid 1px";
 						$('#franquicias_contactadas').val(franqHastaUlComa+fran);
 					}
 					
-					$('#sugerencias').fadeOut(1000);//quitar las sugerencias
+					$('#sugerencias').fadeOut(500);//quitar las sugerencias
 				});
 				
 				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias si se pulsa en otro sitio
-					$('#sugerencias').fadeOut(1000);
+					$('#sugerencias').fadeOut(500);
 				});
 			}
 		});
@@ -94,7 +90,7 @@ const BORDE_NORMAL="#94c1e8 solid 1px";
 			url:"index.php?entryPoint=RecogeSugerencias",
 			data: dataFran,
 			success: function(data){
-				$('#sugerenciasO').fadeIn(1000).html(data);
+				$('#sugerenciasO').fadeIn(500).html(data);
 				$('.sug').live('click', function(){//cuando se pulsa una
 					var fran=$(this).text();
 					if(longi==1){//borrar todo y sustituir por el nuevo valor
@@ -103,19 +99,153 @@ const BORDE_NORMAL="#94c1e8 solid 1px";
 						$('#otras_franquicias').val(franqHastaUlComa+fran);
 					}
 					
-					$('#sugerenciasO').fadeOut(1000);//quitar las sugerencias
+					$('#sugerenciasO').fadeOut(500);//quitar las sugerencias
 				});
 				
 				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias en caso de pulsar fuera
-					$('#sugerenciasO').fadeOut(1000);
+					$('#sugerenciasO').fadeOut(500);
 				});
 			}
 		});
 		}
 	});
+	
+	$("#tags_empresa").keyup(function(){//cuando pulses la caja de texto
+		var campoF=$(this).val();	//valor del texto
+		var arrayTag=campoF.split(","); //todas las franquicias separadas por comas en un array
+		var tagHastaUlComa="";
+		for(var i=0;i<arrayTag.length-1;i++){//construir las franquicias anteriores
+			tagHastaUlComa=tagHastaUlComa+arrayTag[i]+",";
+		}
+		var longi=arrayTag.length;//cuantas hay
+		
+		var tag=arrayTag[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+		var tagSE=tag.trim(); //eliminar espacios en blanco
+		
+		
+		if(tagSE.length>1){//solo se hace la llamada si se han escrito 3 caracteres
+			
+			var dataTag="tags="+tagSE+"&tipoTag=expan_tag_perfil";
+		
+			//llamada ajax
+			$.ajax({
+				type:"POST",
+				url:"index.php?entryPoint=RecogeTags",
+				data: dataTag,
+				success: function(data){
+					$('#sugerencias_tag_emp').fadeIn(500).html(data);
+					$('.sug').live('click', function(){//cuando se pulsa una
+						var tag=$(this).text();
+						if(longi==1){//borrar todo y sustituir por el nuevo valor
+							$('#tags_empresa').val(tag);//editar input
+						}else{//poner las anteriores, y después la nueva
+							$('#tags_empresa').val(tagHastaUlComa+tag);
+						}
+						
+						$('#sugerencias_tag_emp').fadeOut(500);//quitar las sugerencias
+					});
+					
+					$('#detailpanel_4').live('click', function(){//que se cierre el cuadro de sugerencias en caso de pulsar fuera
+						$('#sugerencias_tag_emp').fadeOut(500);
+					});
+				}
+			});
+		}
+	});
+	
+	$("#busca_habilidadTagCheck").keyup(function(){//cuando pulses la caja de texto
+		
+		$(".habilidadTagCheck").parent().css( "background-color", "");
+		
+		var text= $(this).val();
+		
+		if (text.trim()==""){
+			return;
+		}		
+		
+		$(".habilidadTagCheck").each(function(){
+			
+			var id= $(this).attr('id').toLowerCase();
+			
+			if (id.indexOf(text.toLowerCase())!=-1){
+				$(this).parent().css( "background-color", "lightgreen");				
+			}										
+		}			
+		);
+			
+	});
+	
+	$("#busca_sitPerTagCheck").keyup(function(){//cuando pulses la caja de texto
+		
+		$(".sitPerTagCheck").parent().css( "background-color", "");
+		
+		var text= $(this).val();
+		
+		if (text.trim()==""){
+			return;
+		}		
+		
+		$(".sitPerTagCheck").each(function(){
+			
+			var id= $(this).attr('id').toLowerCase();
+			
+			if (id.indexOf(text.toLowerCase())!=-1){
+				$(this).parent().css( "background-color", "lightgreen");				
+			}										
+		}			
+		);
+			
+	});
+	
+	$("#busca_motivosTagCheck").keyup(function(){//cuando pulses la caja de texto
+		
+		$(".motivosTagCheck").parent().css( "background-color", "");
+		
+		var text= $(this).val();
+		
+		if (text.trim()==""){
+			return;
+		}		
+		
+		$(".motivosTagCheck").each(function(){
+			
+			var id= $(this).attr('id').toLowerCase();
+			
+			if (id.indexOf(text.toLowerCase())!=-1){
+				$(this).parent().css( "background-color", "lightgreen");				
+			}										
+		}			
+		);
+			
+	});
+	
+	
+var refreshSn = function ()
+{
+	var refreshTime = 600000; // every 10 minutes in milliseconds
+	window.setInterval( function() {
+	    $.ajax({
+	        cache: false,
+	        type: "GET",
+	        url: "refresh_session.php",
+	        success: function(data) {	        		        	        
+	        	
+	        	var _form = document.getElementById('EditView');
+				 _form.action.value='Save';
+				 _form.return_action.value='EditView';  
+				 if(check_form('EditView')){
+				 	SUGAR.ajaxUI.submitForm(_form);
+				 }
+			  		
+				 return false;	        	
+	        }
+	    });
+	}, refreshTime );
+};
+
 
 function inicio() {
-	//Ocultar los campos auxiliares
+	//Ocultar los campos auxiliares	
 	ocultarCampoAux();
 
 	//Ponemos de solo lectura el check de candidatur caliente
@@ -126,6 +256,9 @@ function inicio() {
 	//Cargamos los sectores
 	cargarchecks("Sectorcheck", "sectores_de_interes");
 	cargarchecks("francheck", "franquicias_secundarias");
+	cargarchecks("habilidadTagCheck","habilidades");
+	cargarchecks("sitPerTagCheck","situacion_personal");
+	cargarchecks("motivosTagCheck","motivos_interes");
 	
 	pintaFranFromSector();
 
@@ -155,10 +288,318 @@ function inicio() {
 	//poner en amarillo los elementos que aunque no son obligatorios los marcamos	
 	marcaCampos();	//'<hr size="10" style="color: #0056b2;" width="200%" />'
 	cambioSeleccion();
-
+	
+	cargaAccionesSol();
+	refreshSn();
 	
 }
 
+function cargaAccionesSol(){
+	var solId = $('[name="record"]').val();	
+	addPanelAccionesPorHacerSolicitud(solId);	
+}
+
+function addPanelAccionesPorHacerSolicitud(solId){
+	
+	url = 'index.php?entryPoint=consultarSolicitud&tipo=RecogeAccionesPorHacer&solId=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeAccionesPorHacer&solId=" + solId,
+		success : function(data) {						
+			
+			if (data!=	'UsuarioFranquicia'){
+				var parse = JSON.parse(data);				
+				var array=tareasJsonToArray(parse);
+				
+				var div= $('<div/>',
+			    {
+			        id: 'ListadoTareas',        
+			        class:'subpanelTabForm',
+			        html:'<H3>Actividades</H3>',
+			    });       
+					
+				tabla=generateTable(array);																					
+				div.append(tabla);
+				
+				if ($('#EditView_tabs').length) {
+	  				$("#EditView_tabs").after(div);	
+				} else {
+	  				$("#content").after(div);	
+				}
+				
+				
+				addPanelAccionesHistoricoSolicitud(solId);	
+			}
+		
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar tareas por realizar - ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+}
+
+function addPanelAccionesHistoricoSolicitud(solId){
+	
+	url = 'index.php?entryPoint=consultarSolicitud&tipo=RecogeAccionesHistorico&solId=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeAccionesHistorico&solId=" + solId,
+		success : function(data) {								
+			
+			var parse = JSON.parse(data);				
+			var array=tareasJsonToArray(parse);
+			
+			var div= $('<div/>',
+		    {
+		        id: 'ListadoHistTareas',        
+		        class:'subpanelTabForm H3',
+		        html:'<H3>Historial</H3>',
+		    });       
+				
+			tabla=generateTable(array);																					
+			div.append(tabla);
+			$("#ListadoTareas").after(div);		
+			addPanelDocumentosRecibidosSolicitud(solId);		
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar los documntos Entrantes- ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+}
+
+function addPanelDocumentosRecibidosSolicitud(solId){
+	
+	url = 'index.php?entryPoint=consultarSolicitud&tipo=RecogeDocumentosRecibidos&solId=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeDocumentosRecibidos&solId=" + solId,
+		success : function(data) {								
+			
+			var parse = JSON.parse(data);				
+			var array=documentosJsonToArray(parse);
+			
+			var div= $('<div/>',
+		    {
+		        id: 'DocumentosRecibidos',        
+		        class:'subpanelTabForm H3',
+		        html:'<H3>Documentos Recibidos</H3>',
+		    });       
+				
+			tabla=generateTable(array);																					
+			div.append(tabla);
+			$("#ListadoHistTareas").after(div);	
+			addPanelDocumentosEnviadosSolicitud(solId);			
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar tareas históricas - ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+}
+
+function addPanelDocumentosEnviadosSolicitud(solId){
+	
+	url = 'index.php?entryPoint=consultarSolicitud&tipo=RecogeDocumentosEnviados&solId=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeDocumentosEnviados&solId=" + solId,
+		success : function(data) {								
+			
+			var parse = JSON.parse(data);				
+			var array=documentosJsonToArray(parse);
+			
+			var div= $('<div/>',
+		    {
+		        id: 'DocumentosEnviados',        
+		        class:'subpanelTabForm H3',
+		        html:'<H3>Documentos Enviados</H3>',
+		    });       
+				
+			tabla=generateTable(array);																					
+			div.append(tabla);
+			$("#ListadoHistTareas").after(div);				
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar tareas históricas - ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+}
+
+function unescapeHTML(escapedHTML) {
+	if (escapedHTML==null){
+		return null;
+	}else{
+		return escapedHTML.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/&quot;/g,'');
+	}  
+}
+
+function documentosJsonToArray(Json){
+	
+	var array=[];
+	
+	var arrayInt=[];
+
+	arrayInt.push('Fecha');
+	arrayInt.push('Documento');
+	arrayInt.push('');	
+	array.push(arrayInt);
+	
+	for(var i in Json) {
+		
+		var arrayInt=[];
+		
+        arrayInt.push('<img src="themes/Sugar5/images/Documents.gif?v=1DGI1bi-PiFYhwpnWfZEfg" border="0" alt="Llamadas">');        				
+		arrayInt.push(Json[i].Documento);
+		arrayInt.push(Json[i].Fecha);		
+		
+		array.push(arrayInt);
+	}
+	
+	return array;
+	
+}
+
+function tareasJsonToArray(Json){
+	
+	var array=[];
+	
+	var arrayInt=[];
+
+	arrayInt.push('Usuario Asignado');
+	arrayInt.push('Fecha Programada');
+	arrayInt.push('Fecha de Modificacion');	
+	arrayInt.push('Fecha de Creacion');
+	arrayInt.push('Franquicia');
+	arrayInt.push('Estado');
+	arrayInt.push('Tipo');
+	arrayInt.push('');	
+	array.push(arrayInt);
+	
+	for(var i in Json) {
+		var arrayInt=[];
+		
+		switch(Json[i].icono) {
+		    case 'llamada':
+		        arrayInt.push('<img src="themes/Sugar5/images/Calls.gif?v=EN4Hi51G3rnoYYAGKHVP6A" border="0" alt="Llamadas">');
+		        break;
+		    case 'tarea':
+		        arrayInt.push('<img src="themes/Sugar5/images/Tasks.gif?v=X2Oa2Xk7VqeGMsDrCw_Ovg" border="0" alt="Tareas">');
+		        break;
+		    case 'correo':
+		        arrayInt.push('<img src="themes/Sugar5/images/Emails.gif?v=Nnh-cP0-Am9KpOzOv4vbgQ" border="0" alt="Emails">');
+		        break;	
+		   case 'reunion':
+		        arrayInt.push('<img src="themes/Sugar5/images/Meetings.gif?v=dLmpNb-Z3DfXBNpmqxmq7w" border="0" alt="Reuniones">');
+		        break;    		   	        
+		    default:
+		        arrayInt.push('');
+		        break;
+		}
+				
+		arrayInt.push(Json[i].tipo);
+		arrayInt.push(Json[i].Estado);
+		arrayInt.push(Json[i].franquicia);
+		arrayInt.push(Json[i].fecha_creacion);	
+		arrayInt.push(Json[i].date_modified);
+		arrayInt.push(Json[i].date_start);
+		arrayInt.push(Json[i].usuario_asignado);					
+		
+		array.push(arrayInt);
+	}
+	
+	return array;
+}
+
+function generateTable(lista) {
+	
+	 var aTable =$('<table/>',
+    {    	
+    	cellpadding:'0',
+    	cellspacing:'0',
+    	width:'100%',
+    	border:'0',
+        id: 'tableTareas',        
+        class:'list view',
+    });
+	
+    var rowCount = lista.length;
+    var colmCount = lista[0].length;
+
+    // For loop for adding header .i.e th to our table
+    for (var k = 0; k < 1; k++) {
+        var fragTrow = $("<tr>", {
+            "class": "trClass"
+        }).appendTo(aTable);
+        for (var j = 0; j < colmCount; j++) {
+            $("<th>", {
+                "class": "thClass"
+            }).prependTo(fragTrow).html(unescapeHTML(lista[k][j]));
+        }
+    }
+
+    //For loop for adding data .i.e td with data to our dynamic generated table
+    for (var i = 1; i < rowCount; i < i++) {    	        	
+        var fragTrow = $("<tr>", {
+            "class": "oddListRowS1"
+        }).appendTo(aTable);
+        for (var j = 0; j < colmCount; j++) {
+            $("<td>", {
+               // "class": "tdClass",
+                "scope": "row",
+            }).appendTo(fragTrow).html(unescapeHTML(lista[i][j]));
+        }
+    }
+    return aTable;
+}
+
+function controlRating(solId){
+	
+	var rating=$('#rating').val();
+	
+	url = 'index.php?entryPoint=controlSolicitudes&valida=pregRating&rating=' + rating + '&solId=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "valida=pregRating&rating=" + rating + "&solId=" + solId,
+		success : function(data) {
+			if (data == 'true') {
+
+				confirmar=confirm("Se ha cambiado el rating de la solicitud. ¿Desea que las gestiones asociadas cambien el rating al seleccionado?"); 
+				if (confirmar){
+					cambioRating(rating,solId);
+				}
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido realizar control del Rating de la solicitud - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+	
+}
+
+function cambioRating(rating,solId){
+	
+	url = 'index.php?entryPoint=controlSolicitudes&valida=modRating&rating=' + rating + '&solId=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "valida=modRating&rating=" + rating + "&solId=" + solId,
+		success : function(data) {
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			if (errorThrown!=''){
+				alert('No se ha podido modificar los rating de las gestiones asociadas - ' + textStatus + ' - ' + errorThrown);				
+			}
+		}
+	});
+}
 function validarSubOrigen() {	
 	
 	
@@ -376,18 +817,21 @@ function cargarchecks(clase, id) {
 	var checkboxes = document.getElementsByClassName(clase);
 	var listaFran = document.getElementById(id);
 	var listaSel = [];
-
-	//Cargamos los cheks seleccionados
-	for (var j = 0; j < listaFran.length; j++) {
-		if (listaFran[j].selected) {
-			var check = document.getElementById(listaFran[j].label);
-			if (check != null) {
-				check.checked = true;
-				if (clase=='Sectorcheck'){
-					despliegoSector(check.getAttribute("name"));
+	
+	if (listaFran!=null){
+		//Cargamos los cheks seleccionados
+		for (var j = 0; j < listaFran.length; j++) {
+			if (listaFran[j].selected) {
+				var check = document.getElementById(listaFran[j].label);
+				if (check != null) {
+					check.checked = true;
+					if (clase=='Sectorcheck'){
+						despliegoSector(check.getAttribute("name"));
+					}
 				}
 			}
-		}
+		}		
+		
 	}
 
 }
@@ -463,11 +907,6 @@ function ocultarCampoAux() {
 		$("#localidad_residencia").prop("disabled", true);
 	}
 	
-	
-	
-	
-				
-	
 	//Ocultamos la lista
 	var campo = document.getElementById("franquicias_secundarias_label").parentNode;
 
@@ -476,6 +915,9 @@ function ocultarCampoAux() {
 	if (campo != null) {
 		campo.style.display = 'none';
 	}
+	
+	$("#habilidades_label").parent().hide();
+	$("#motivos_interes_label").parent().hide();
 }
 
 function completoSector(nombreSector,desp,actualizo) {
@@ -578,29 +1020,32 @@ function ControlUsuarioFran(franq) {
 			campo.style.display = 'none';
 		}				
 		
+		var campo = document.getElementById("tab3");
+		if (campo != null) {
+			campo.style.display = 'none';
+		}
+			
+		var campo = document.getElementById("no_newsletter").parentNode;
+		if (campo != null) {
+			campo.style.display = 'none';
+		}		
+						
 		//Seleccionamos el origen (feria) y Suborigen (SIF VAlencia 2015)
 		
 		var campo = document.getElementById("tipo_origen");
 		if (campo != null) {
 			campo.value=3;
 		}
-	/*	
-		var campo = document.getElementById("expan_evento_id_c");
-		if (campo != null) {
-			campo.value='e83f0799-7be6-911d-5dd1-55fa79927f78';
-		}
+				
+		var campo = document.getElementById("save_and_continue");
+		if (campo==null){
+			$("#expan_evento_id_c option:eq(1)").prop("selected", "selected");			
+		}			 		
 		
-		
-		var campo = document.getElementById("tipo_origen_label").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-		}
-		
-	
-		var campo = document.getElementById("capital_observaciones_label").parentNode;
+		var campo = document.getElementById("btn_view_change_log");
 		if (campo != null) {
 			campo.style.display = 'none';
-		}*/
+		}					
 		
 		var campo = document.getElementById("subor_expande_label").parentNode;
 		if (campo != null) {
@@ -1082,6 +1527,38 @@ function marcaCampos(){
 	$("#situacion_profesional").css( "background-color", "	#FFFFCC" );
 	$("#expan_evento_id_c").css( "background-color", "	#FFFFCC" );
 	
+}
+
+var tmrReady = setInterval(isPageFullyLoaded, 100);
+ 
+function isPageFullyLoaded() {
+     if (document.readyState == "loaded" || document.readyState == "complete") {
+         subclassForms();
+         clearInterval(tmrReady);
+     }
+ }
+  
+function submitDisabled(_form, currSubmit) {
+     return function () {
+         var mustSubmit = true;
+         if (currSubmit != null)
+             mustSubmit = currSubmit();
+  
+         var els = _form.elements;
+         for (var i = 0; i < els.length; i++) {
+             if (els[i].type == "submit")
+                 if (mustSubmit)
+                     els[i].disabled = true;
+         }
+         return mustSubmit;
+     }
+}
+  
+function subclassForms() {
+    for (var f = 0; f < document.forms.length; f++) {
+        var frm = document.forms[f];
+        frm.onsubmit = submitDisabled(frm, frm.onsubmit);
+    }
 }
 
 function pasoAFranquiciado(solicitud) {

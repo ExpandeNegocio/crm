@@ -111,4 +111,13 @@ $mod_strings = array (
   'LBL_ENVIO_PLAN_FINANCIERO_PERSONAL' => 'Plan financiero personalizado (Envío manual)',
   'LBL_FECHA_ENVIO_CONTRATO_PERSONAL' => 'Fecha envío contrato personalizado',
   'LBL_ENVIO_CONTRATO_PERSONAL' => 'Contrato personalizado (Envío manual)',
+  'LBL_RATING' => 'Rating',
+  'LBL_EDITVIEW_OBSERVACIONES'=>'Observaciones',
+  'LBL_PREGUNTAS_MN_T' => 'Preguntas de modelo de negocio<BR>o técnicas de la actividad<BR>realizadas por el candidato',
+  'LBL_OBJECIONES_MN' => 'Objeciones al modelo de negocio',
+  'LBL_SOLICITUDES_CANDIDATO' => 'Solicitudes del candidato',
+  'LBL_INFORMACION_COMPETENCIA' => 'Informacion de la competencia que nos facilitan',
+  'LBL_MEJORAS' => 'Mejora o incidencias detectadas',
+  'LBL_CONCESIONES' => 'Concesiones',
+  'LBL_PREG_EN_CENTRAL' => 'Preguntas de EN a la Central',
 );

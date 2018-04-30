@@ -102,12 +102,17 @@ array (
           ),
         ),
       ),
-      'useTabs' => false,
+      'useTabs' => true,
       'tabDefs' => 
       array (
         'DEFAULT' => 
         array (
-          'newTab' => false,
+          'newTab' => true,
+          'panelDefault' => 'expanded',
+        ),
+        'LBL_EDITVIEW_OBSERVACIONES' => 
+        array (
+          'newTab' => true,
           'panelDefault' => 'expanded',
         ),
       ),
@@ -136,7 +141,12 @@ array (
               'name' => 'prioridad',
               'label' => 'LBL_PRIORIDAD',
               'type' => 'readonly',
-          ),        
+          ),  
+           1 => 
+          array (
+              'name' => 'rating',
+              'label' => 'LBL_RATING',
+          ),       
         ),
       
         0 => 
@@ -1180,6 +1190,76 @@ array (
                           
         ),
                  
+      ),
+               
+      'LBL_EDITVIEW_OBSERVACIONES' => 
+      array (
+      
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'preguntas_mn_t',
+            'studio' => 'visible',
+            'label' => 'LBL_PREGUNTAS_MN_T',
+          ),
+          1 => 
+          array (
+            'name' => 'preg_en_central',
+            'studio' => 'visible',
+            'label' => 'LBL_PREG_EN_CENTRAL',
+          ),
+        ),        
+        
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'objeciones_mn',
+            'studio' => 'visible',
+            'label' => 'LBL_OBJECIONES_MN',
+          
+          ),
+          1 => 
+          array (
+            'name' => 'solicitudes_candidato',
+            'studio' => 'visible',
+            'label' => 'LBL_SOLICITUDES_CANDIDATO',
+
+          ),
+        ),      
+      
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'mejoras',
+            'studio' => 'visible',
+            'label' => 'LBL_MEJORAS',
+          ),
+          1 => 
+          array (
+            'name' => 'informacion_competencia',
+            'studio' => 'visible',
+            'label' => 'LBL_INFORMACION_COMPETENCIA',
+          ),
+        ),
+        
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'concesiones',
+            'studio' => 'visible',
+            'label' => 'LBL_CONCESIONES',
+          ),
+          1 => 
+          array (
+            'name' => 'notas_argumentario',
+            'studio' => 'visible',
+            'label' => 'LBL_NOTAS_ARGUMENTARIO',
+          ),
+        ),
       ),
     ),
   ),

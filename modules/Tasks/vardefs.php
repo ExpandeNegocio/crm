@@ -334,6 +334,16 @@ $dictionary['Task'] = array('table' => 'tasks',
     'reportable' => true,
     'size' => '10',
   ),
+  
+    'ERM_tasks_id' =>
+  array (
+    'name' => 'ERM_tasks_id',
+    'type' => 'id',
+    'group'=>'contact_name',
+    'audited' => true,
+    'reportable'=>false,    
+  ),
+  
      
 )
 ,

@@ -14,7 +14,7 @@
     $query = "select g.id as idG, s.id as idS from expan_solicitud s, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
     $query=$query." where s.id=gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida and ";
     $query=$query." gs.expan_soli5dcccitudes_idb=g.id and g.franquicia='".$franquicia."' "; 
-    $query=$query." and g.estado_sol='2' and s.check_puertas_abiertas=1 and s.deleted=0 and g.deleted=0 and gs.deleted=0;";
+    $query=$query." and g.estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." and s.check_puertas_abiertas=1 and s.deleted=0 and g.deleted=0 and gs.deleted=0;";
     
     $resultSol = $db->query($query, true);    //tengo los ids de las gestiones de la franquicia seleccionada, que tienen interes de puertas
      

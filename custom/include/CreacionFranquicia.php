@@ -113,8 +113,6 @@
                     }
                     $val_chk_c15_Act=$bean->chk_c15;
                                                            
-                                                                                                                                                              
-                                                                  
                     //Miramos si se ha cambiado el filtro
                     $GLOBALS['log'] -> info('[ExpandeNegocio]_[Modificacion de Franquicia]Filtro Antes-'.$filtroAnt);
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Franquicia]Filtro Ahora-'.$filtroAct);
@@ -127,26 +125,38 @@
                     
                     //Miramos si se cambia el filtro                           
                     if ($filtroAnt!='' && $filtroAnt!=$filtroAct){
-                        $bean->cambioFiltro($filtroAnt,$filtroAct);
+                        $bean->cambioUsuarioGestion($filtroAnt,$filtroAct);
                     }
                     
                     //Miramos si se cambia el Director de la cuenta                           
                     if ($dirCuentaAnt!='' && $dirCuentaAnt!=$dirCuentaAct)
                     {                            
-                       $bean->cambioDirCuenta($dirCuentaAnt,$dirCuentaAct);                               
+                       $bean->cambioUsuarioGestion($dirCuentaAnt,$dirCuentaAct);                               
                     }  
                     
-                    if ($tipoCuentaAnt!=$tipoCuentaAct && 
-                        $tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_EXCLIENTE)
+                    if (($tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_EXCLIENTE ||
+                        $tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_DESAPARECIDA) &&
+                        ($tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_INTERMEDIA || $tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_CONSULTORIA))
                     {
                         $bean->pasoaExcliente();
-                    }   
+                    }  
                     
-                    if ($tipoCuentaAnt!=$tipoCuentaAct && 
-                        $tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_EXCLIENTE &&
+                    if (($tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_EXCLIENTE ||
+                        $tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_DESAPARECIDA) &&
                         ($tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_INTERMEDIA || $tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_CONSULTORIA)){
                         $bean->vueltaExcliente();
-                    }
+                    }    
+                        
+                    if ($tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_CLIENTE_PARADO  &&
+                        ($tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_INTERMEDIA || $tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_CONSULTORIA))
+                    {
+                        $bean->pasoaClienteParado();
+                    }  
+                    
+                    if ($tipoCuentaAnt==Expan_Franquicia::TIPO_FRAN_CLIENTE_PARADO &&
+                        ($tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_INTERMEDIA || $tipoCuentaAct==Expan_Franquicia::TIPO_FRAN_CONSULTORIA)){
+                        $bean->vueltaClienteParado();
+                    }                                                                      
                         
                         
                     if ($val_chk_c1_Ant!=$val_chk_c1_Act &&

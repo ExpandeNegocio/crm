@@ -6417,12 +6417,18 @@ eoq;
                 $this->importMailboxMessages($protocol);
                 break;
             case 'imap':
+                
+                
                 $mailboxes = $this->getMailboxes(true);
                 foreach ($mailboxes as $mailbox) {
                     $this->importMailboxMessages($protocol, $mailbox);
                 }
-                imap_expunge($this->conn);
-                imap_close($this->conn);
+                
+                if ($this->conn!=null){
+                    imap_expunge($this->conn);
+                    imap_close($this->conn);
+                }
+
                 break;
         }
     }
@@ -6444,7 +6450,9 @@ eoq;
             case 'imap':
                 $this->mailbox = $mailbox;
                 $this->connectMailserver();
+                $GLOBALS['log']->info("[ExpandeNegocio][ImportoMensaje] COnectado con MailServer"); 
                 $msgNumbers = $this->getNewMessageIds();
+                $GLOBALS['log']->info("[ExpandeNegocio][ImportoMensaje] {$msgNumbers}"); 
                 if (!$msgNumbers) {
                     $msgNumbers = array();
                 }

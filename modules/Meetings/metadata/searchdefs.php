@@ -98,6 +98,13 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      'description' => 
+      array (
+        'name' => 'description',
+        'default' => true,
+        'width' => '10%',
+      ),      
+      
       'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',

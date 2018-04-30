@@ -16,12 +16,12 @@
     //Procesamos los correos entrantes
     
     $query = "SELECT t.email_id, g.id, e.date_sent ";
-    $query = $query . "FROM emails e, emails_text t, expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
-    $query = $query . "email_addr_bean_rel r, expan_franquicia f, email_addresses ea ";
-    $query = $query . "WHERE  t.from_addr LIKE concat('%', ea.email_address, '%') AND g.id = gs.expan_soli5dcccitudes_idb AND s.id = ";
-    $query = $query . "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted = 0 AND s.deleted = 0 AND s.id = r.bean_id ";
-    $query = $query . "AND ea.id = r.email_address_id AND e.id = t.email_id AND e.parent_type IS NULL AND e.parent_id IS NULL AND f.id = ";
-    $query = $query . "g.franquicia AND t.to_addrs_clean=f.correo_envio; ";
+    $query=$query."FROM   emails e, emails_text t, expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, email_addr_bean_rel r, expan_franquicia f, email_addresses ea ";
+    $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND ";
+    $query=$query."       substring_index(substring_index(t.from_addr, '<', -1),'>', 1) = ea.email_address AND ";
+    $query=$query." g.deleted = 0 AND s.deleted = 0 AND s.id = r.bean_id AND ea.id = r.email_address_id AND e.id = ";
+    $query=$query."         t.email_id AND e.parent_type IS NULL AND e.parent_id IS NULL AND f.id = g.franquicia AND t.to_addrs_clean = f.correo_envio; ";
+
     
     $result = $db -> query($query, true);
     
@@ -55,19 +55,16 @@
         //$gestion -> crearTarea("DOCURevCorreo");
     
     }
-    $GLOBALS['log'] -> info("[ExpandeNegocio][Cargo correos]Finaliza");
-    return;
     
     //Procesamos los correos salientes que no estan ya asociados
     
     $query = "SELECT t.email_id, g.id, e.date_sent ";
-    $query = $query . "FROM emails e, emails_text t, expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
-    $query = $query . "email_addr_bean_rel r, expan_franquicia f, email_addresses ea ";
-    $query = $query . "WHERE  t.from_addr LIKE concat('%',f.correo_envio, '%') AND g.id = gs.expan_soli5dcccitudes_idb AND s.id = ";
-    $query = $query . "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted = 0 AND s.deleted = 0 AND s.id = r.bean_id ";
-    $query = $query . "AND ea.id = r.email_address_id AND e.id = t.email_id AND e.parent_type IS NULL AND e.parent_id IS NULL AND f.id = ";
-    $query = $query . "g.franquicia AND t.to_addrs LIKE concat('%',ea.email_address , '%'); ";
-    
+    $query=$query."FROM   emails e, emails_text t, expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, email_addr_bean_rel r, expan_franquicia f, email_addresses ea ";
+    $query=$query."WHERE  substring_index(substring_index(t.from_addr, '<', -1), '>', 1) = f.correo_envio AND g.id = gs.expan_soli5dcccitudes_idb AND ";
+    $query=$query."       s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted = 0 AND s.deleted = 0 AND s.id = ";
+    $query=$query."         r.bean_id AND ea.id = r.email_address_id AND e.id = t.email_id AND e.parent_type IS NULL AND e.parent_id IS NULL AND f.id ";
+    $query=$query."       = g.franquicia AND substring_index(substring_index(t.to_addrs, '<', -1), '>', 1) = ea.email_address; ";
+
     $result = $db -> query($query, true);
     
     while ($row = $db -> fetchByAssoc($result)) {
@@ -80,4 +77,6 @@
         $db -> query($sqlUp);
     
     }
+    $GLOBALS['log'] -> info("[ExpandeNegocio][Cargo correos]Finaliza");
+    return;
 ?>

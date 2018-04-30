@@ -115,7 +115,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $db = DBManagerFactory::getInstance();
         $query = "select count(*) num from  expan_solicitud_expan_gestionsolicitudes_1_c gs,";
         $query .= "expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g";
-        $query .= "WHERE  g.id = gs.expan_soli5dcccitudes_idb AND g.estado_sol='4' AND ";
+        $query .= "WHERE  g.id = gs.expan_soli5dcccitudes_idb AND g.estado_sol=".Expan_GestionSolicitudes::ESTADO_DESCARTADO." AND ";
         $query .= "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ='" . $this -> id . "'";
 
         $result = $db -> query($query, true);
@@ -686,6 +686,27 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
     }
 
+    function getCorreoPrincipal() {
+
+        $listaCorreo = array();
+
+        $db = DBManagerFactory::getInstance();
+        $query = "select e.email_address from expan_solicitud s,email_addr_bean_rel r,email_addresses e ";
+        $query = $query . "where r.primary_address=1 AND s.id = r.bean_id AND e.id = r.email_address_id AND  e.deleted = 0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
+
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_solicitud][TieneCorreo]-' . $query);
+
+        $result = $db -> query($query, true);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+                
+            $listaCorreo[] = $row["email_address"];           
+        }
+
+        return $listaCorreo;
+
+    }
+
     function calcularOportunidadInmediata(){
             
         if ($this->gestionesInmediatas()==true){
@@ -761,6 +782,38 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $this->ignore_update_c=true;
         $this->save();
     }
+
+    function getNewOrigen($origenAnt){
+                                        
+        $origenAnt = str_replace('^', '', $origenAnt);
+                       
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Ant - '.$origenAnt);
+        
+        $listaAnt = split(',', $origenAnt);
+
+        $origenAct = str_replace('^', '', $this->tipo_origen);
+        $listaAct = split(',', $origenAct);
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Act - '.$origenAct);
+                               
+        $listaDif=array_diff($listaAct, $listaAnt);
+        
+        $origen=-1;
+                                          
+        foreach ($listaDif as $ori){
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Nuevos origenes - '.$ori);
+            $origen=$ori;
+        }      
+        
+        if ($origen==-1){
+            $origen =$listaAct[0];
+        }      
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen final - '.$origen);
+        
+        return $origen;
+    }   
+    
 
 }
 ?>

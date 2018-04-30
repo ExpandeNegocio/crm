@@ -329,8 +329,13 @@ EOQ;
 			$docNote->parent_type = 'Emails';
 			$docNote->file_mime_type = $docRev->file_mime_type;
 			$docId = $docNote = $docNote->save();
+            
+            //Añadims un enlace entre documento/revision - Nota
+            $sql = "insert into documents_notes (document_id,note_id,docrev_id) values ('".$doc->id."','".$docId."','".$docRev->id."')";
+            $focus->db->query($sql);          
 
 			UploadFile::duplicate_file($docRev->id, $docId, $docRev->filename);
+            
 		}
 
 	}
@@ -345,6 +350,11 @@ EOQ;
 			foreach($_REQUEST['remove_attachment'] as $noteId) {
 				$q = 'UPDATE notes SET deleted = 1 WHERE id = \''.$noteId.'\'';
 				$focus->db->query($q);
+                
+                //Eliminamos los enlaces de los notes sobre los documentos 
+                $sql = "delete from documents_notes  where note_id='".$docNote->id."'";
+                $focus->db->query($sql);
+                
 			}
 
 		}

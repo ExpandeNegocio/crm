@@ -15,7 +15,7 @@
          
          function display(){
              
-             parent::display();           
+             parent::display(); 
              
             echo "
             <script language=\"javascript\">

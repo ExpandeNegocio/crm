@@ -69,7 +69,7 @@ class Expan_Evento extends Expan_Evento_sugar {
     $query= "select franquicia ";
     $query= $query."from expan_gestionsolicitudes g where g.franquicia not in ( ";
     $query=$query. "select e.expan_franquicia_expan_eventoexpan_franquicia_ida from expan_franquicia_expan_evento_c e "; 
-    $query=$query."where e.expan_franquicia_expan_eventoexpan_evento_idb='".$this->id."' ";   
+    $query=$query."where e.expan_franquicia_expan_eventoexpan_evento_idb='".$this->id."' and deleted=0";   
     $query=$query.") and deleted=0 AND ((tipo_origen = '1' AND subor_expande='7' AND evento_bk='".$this->id."' ) OR "; 
     $query=$query."expan_evento_id_c='".$this->id."');";
     

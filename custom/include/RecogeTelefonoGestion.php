@@ -12,7 +12,6 @@
     $idCall=$_POST["idCall"];
     $tipo=$_POST["tipo"]; 
     
-    
     switch ($tipo) {
         case 'numTelefono':
     
@@ -40,6 +39,32 @@
             echo $telefono;
             
             break;
+            
+        case 'doNotCall':
+            
+            $gestion=new Expan_GestionSolicitudes();            
+            $gestion->retrieve($idGest);
+            
+            $notCall=0;
+            
+            if ($gestion !=null){
+               
+               $GLOBALS['log'] -> info('[ExpandeNegocio][doNotCall]Pillo Gestion' ); 
+                
+               $solicitud= $gestion->GetSolicitud();
+               
+               $GLOBALS['log'] -> info('[ExpandeNegocio][doNotCall]Pillo Solicitud-'.$solicitud->id ); 
+                
+               if ($solicitud !=null){           
+                    $notCall=$solicitud -> do_not_call;
+               }
+            }
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][doNotCall]LLamo-'.$notCall );          
+            
+            echo $notCall;
+            
+            break; 
             
         case 'fechaRetraso':
             

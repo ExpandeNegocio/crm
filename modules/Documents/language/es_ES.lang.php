@@ -180,4 +180,6 @@ $mod_strings = array (
   'LBL_PRODUCTS_SUBPANEL_TITLE' => 'Productos',
   'LBL_TIPO_ENVIO' => 'Tipo de envío',
   'LBL_FRANQUICIA' => 'Franquicia',
+  'LBL_REVISION_DATE' => 'Fecha de Revisión',
+  'LBL_VALID' => 'Documento válido',
 );

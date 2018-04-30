@@ -124,6 +124,24 @@ class AccionesGuardadoGestionSol {
 
             //Miramos si la GestionSolicitud a la que pasamos es de tipo 2
             if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_EN_CURSO) {
+                
+                
+                //Si es un topo pasamos a 
+                if ($bean->rating==5){
+                    
+                    $bean->estado_sol=Expan_GestionSolicitudes::ESTADO_DESCARTADO;
+                    $bean->motivo_descarte=5; //Topo
+                    
+                    $bean -> archivarLLamadas();
+                    $bean -> archivarTareas(); //Se ha cambiado varias veces de opinión (inicial mente se quitaron, luego se añadieron y ahora se quitan de nuevo)
+                    $bean -> archivarReuniones();
+                    
+                    $bean -> calcularPrioridades();
+                    $bean -> ignore_update_c = true;
+                    $bean -> save();
+                    
+                    return null;
+                }
                           
                 $mayorCheck = 0;                                                                                 
 
@@ -138,10 +156,14 @@ class AccionesGuardadoGestionSol {
                 }
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Despues de recoger telefono');
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] $estadoAnt-'.$estadoAnt);
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] $bean -> estado_sol-'.$bean -> estado_sol);
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] $bean -> chk_envio_documentacion-'.$bean -> chk_envio_documentacion);
 
                 //Si el estado cambia
                 // REALIZAMOS ENVÍO C 1
-                if ($estadoAnt != $bean -> estado_sol && ($bean -> chk_envio_documentacion == null)) {
+                if ($estadoAnt != $bean -> estado_sol && ($bean -> chk_envio_documentacion == null || $bean -> chk_envio_documentacion == 0)) {
+                                       
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entramos Envio 1');
 
                     //Si no tenemos correo debemos de programar llamada para pedir el mismo
@@ -297,7 +319,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> chk_recepcio_cuestionario = true;
                 }
 
-                //Actualizamos los chexk y fecha ENTREVISTA
+                //Actualizamos los check y fecha ENTREVISTA
                 if ($entrevista_ant != $bean -> chk_entrevista && $bean -> chk_entrevista == true) {
                     $mayorCheck = 6;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a entrevista');
@@ -309,7 +331,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> chk_entrevista = true;
                 }
                 
-                //Actualizamos los chexk y fecha envio propuesta Zona
+                //Actualizamos los check y fecha envio propuesta Zona
                 if ($propuesta_zona_ant != $bean ->chk_propuesta_zona && $bean -> chk_propuesta_zona == true) {
                     $mayorCheck = 7;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] zna propuesta');
@@ -435,7 +457,7 @@ class AccionesGuardadoGestionSol {
                         $bean -> creaLlamada('[AUT]Recepcion cuestionario', 'Cuestionario');
                         break;
                     case 6 :
-                        $bean -> creaLlamada('[AUT]Resolucion nuevas dudas', 'ResNueDudas');
+                        $bean -> creaLlamada('[AUT]Resolucion nuevas dudas', 'GESTReun');
                         break;
                     case 7 :    
                         
@@ -471,7 +493,9 @@ class AccionesGuardadoGestionSol {
                     ($bean -> estado_sol!=$estadoAnt)) {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Archivamos llamadas');
                     $bean -> archivarLLamadas();
-                    //$bean -> archivarTareas(); //cambio no se archivan las tareas
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Archivamos Tareas');
+                    $bean -> archivarTareas(); //Se ha cambiado varias veces de opinión (inicial mente se quitaron, luego se añadieron y ahora se quitan de nuevo)
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Archivamos Reuniones');
                     $bean -> archivarReuniones();
                     
                 }
@@ -550,6 +574,7 @@ class AccionesGuardadoGestionSol {
 
             $bean -> calcAvanzado();
             $bean -> calcCaliente();
+            $bean -> procesarObservaciones();
 
             if ($solicitud != null) {
 

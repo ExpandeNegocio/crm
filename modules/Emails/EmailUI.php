@@ -384,7 +384,7 @@ eoq;
         $gestion= new Expan_GestionSolicitudes();
         $gestion -> retrieve($composeData['parent_id']);
         if ($gestion!=null){
-            $toMail= $gestion->getEmail();
+            $toMail= $gestion->getEmailPrincipal();
                 
             if ($toMail!=null){
                 $composePackage['to_email_addrs']=$toMail;
@@ -501,17 +501,29 @@ eoq;
 		                      "contacts",
 		                      "leads",
 		                      "prospects",
-		                      "accounts");
+		                      "accounts",
+		                      "expan_solicitud"
+                              );
 		$filterPeopleTables = array();
 		global $app_list_strings, $app_strings;
 		$filterPeopleTables['LBL_DROPDOWN_LIST_ALL'] = $app_strings['LBL_DROPDOWN_LIST_ALL'];
 		foreach($peopleTables as $table) {
-			$module = ucfirst($table);
-            $class = substr($module, 0, strlen($module) - 1);
+		                
+            if ($table=='expan_solicitud'){
+                $module="Expan_Solicitud";
+                $class="Expan_Solicitud";
+            }else{
+                $module = ucfirst($table);
+                $class = substr($module, 0, strlen($module) - 1);
+            }
+
+            
             require_once("modules/{$module}/{$class}.php");
             $person = new $class();
 
             if (!$person->ACLAccess('list')) continue;
+            
+            
             $filterPeopleTables[$person->table_name] = $app_list_strings['moduleList'][$person->module_dir];
 		}
 		$this->smarty->assign('listOfPersons' , get_select_options_with_id($filterPeopleTables,''));
@@ -2085,7 +2097,8 @@ eoq;
 			                      "contacts",
 			                      "leads",
 			                      "prospects",
-			                      "accounts"
+			                      "accounts",
+			                      "expan_solicitud"
 			                     );
 		}else{
 			$peopleTables = array($person);
@@ -2104,8 +2117,13 @@ eoq;
 
 
 		foreach($peopleTables as $table) {
-			$module = ucfirst($table);
-            $class = substr($module, 0, strlen($module) - 1);
+            if ($table=='expan_solicitud'){
+                $module="Expan_Solicitud";
+                $class="Expan_Solicitud";
+            }else{
+                $module = ucfirst($table);
+                $class = substr($module, 0, strlen($module) - 1);
+            }
             require_once("modules/{$module}/{$class}.php");
             $person = new $class();
 			if (!$person->ACLAccess('list')) {
@@ -2157,7 +2175,8 @@ eoq;
 			                     "contacts",
 			                     "leads",
 			                     "prospects",
-			                     "accounts"
+			                     "accounts",
+			                     "expan_solicitud"
 			                    );
 
     	if ($relatedBeanInfoArr == '' || empty($relatedBeanInfoArr['related_bean_type']) )
@@ -2172,11 +2191,13 @@ eoq;
 					    $q[] = "($searchq)";
 				    }
 				}
-				if (!empty($q))
-    			    $finalQuery .= implode("\n UNION ALL \n", $q);
+				if (!empty($q)){
+				    $finalQuery .= implode("\n UNION ALL \n", $q);
+				}    			   
 			}
-			else
-				$finalQuery = $this->findEmailFromBeanIds('', $beanType, $whereArr);
+			else{
+			   $finalQuery = $this->findEmailFromBeanIds('', $beanType, $whereArr); 
+			}				
     	}
     	else
     	{
@@ -2195,16 +2216,18 @@ eoq;
     	                $q[] = '('.$this->findEmailFromBeanIds($data, $searchBean, $whereArr).')';
     	            }
     	        }
-    	        if (!empty($q))
-    	        $finalQuery .= implode("\n UNION ALL \n", $q);
+    	        if (!empty($q)){
+    	           $finalQuery .= implode("\n UNION ALL \n", $q);  
+    	        }    	        
     	    }
     	    else
     	    {
     	        if ($focus->load_relationship($beanType))
     	        {
     	            $data = $focus->$beanType->get();
-    	            if (count($data) != 0)
-    	            $finalQuery = $this->findEmailFromBeanIds($data, $beanType, $whereArr);
+    	            if (count($data) != 0){
+    	                $finalQuery = $this->findEmailFromBeanIds($data, $beanType, $whereArr);
+    	            }
     	        }
     	    }
     	}
@@ -2240,8 +2263,13 @@ eoq;
 			$whereAdd .= "{$column} LIKE '{$clause}%'";
 		}
 		$table = $beanType;
-		$module = ucfirst($table);
-	    $class = substr($module, 0, strlen($module) - 1);
+        if ($table=='expan_solicitud'){
+            $module="Expan_Solicitud";
+            $class="Expan_Solicitud";
+        }else{
+            $module = ucfirst($table);
+            $class = substr($module, 0, strlen($module) - 1);
+        }
 	    require_once("modules/{$module}/{$class}.php");
 	    $person = new $class();
 		if ($person->ACLAccess('list')) {

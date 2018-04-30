@@ -151,7 +151,30 @@ $dictionary['Expan_Solicitud'] = array(
     'len' => '255',
     'size' => '20',
   ),
+  
+  
   'cuando_empezar' => 
+  array (
+    'required' => false,
+    'name' => 'cuando_empezar',
+    'vname' => 'LBL_CUANDO_EMPEZAR',
+    'type' => 'date',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'size' => '20',
+    'enable_range_search' => false,
+  ),
+  
+ /* 'cuando_empezar' => 
   array (
     'required' => false,
     'name' => 'cuando_empezar',
@@ -174,7 +197,10 @@ $dictionary['Expan_Solicitud'] = array(
     'options' => 'cuando_empezar_list',
     'studio' => 'visible',
     'dependency' => false,
-  ),
+  ),*/
+  
+  
+  
   'observaciones_solicitud' => 
   array (
     'required' => false,
@@ -607,7 +633,7 @@ $dictionary['Expan_Solicitud'] = array(
     'required' => false,
     'name' => 'descripcion_local',
     'vname' => 'LBL_DESCRIPCION_LOCAL',
-    'type' => 'varchar',
+    'type' => 'text',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -619,8 +645,9 @@ $dictionary['Expan_Solicitud'] = array(
     'reportable' => true,
     'unified_search' => false,
     'merge_filter' => 'disabled',
-    'len' => '255',
     'size' => '20',
+    'rows' => '4',
+    'cols' => '60',
   ),
   'estado_sol' => 
   array (
@@ -978,7 +1005,7 @@ $dictionary['Expan_Solicitud'] = array(
     'required' => false,
     'name' => 'fecha_primer_contacto',
     'vname' => 'LBL_FECHA_PRIMER_CONTACTO',
-    'type' => 'datetime',
+    'type' => 'date',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -1820,8 +1847,124 @@ $dictionary['Expan_Solicitud'] = array(
     'merge_filter' => 'disabled',
     'len' => '255',
     'size' => '20',
-  )
+  ),
   
+  'tags_empresa' => 
+  array (
+    'required' => false,
+    'name' => 'tags_empresa',
+    'vname' => 'LBL_TAG_EMPRESA',
+    'type' => 'varchar',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'len' => '512',
+    'size' => '100',
+  ),
+  
+  'habilidades' => 
+  array (
+    'required' => false,
+    'name' => 'habilidades',
+    'vname' => 'LBL_HABILIDADES',
+    'type' => 'multienum',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'size' => '20',
+    'options' => 'lst_habilidades',
+    'studio' => 'visible',
+    'isMultiSelect' => true,
+    'default' => '^^',
+  ),
+  
+  'situacion_personal' => 
+  array (
+    'required' => false,
+    'name' => 'situacion_personal',
+    'vname' => 'LBL_SITUACION_PERSONAL',
+    'type' => 'multienum',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'size' => '20',
+    'options' => 'lst_situacion_personal',
+    'studio' => 'visible',
+    'isMultiSelect' => true,
+    'default' => '^^',
+  ),
+  
+  'motivos_interes' => 
+  array (
+    'required' => false,
+    'name' => 'motivos_interes',
+    'vname' => 'LBL_MOTIVOS_INTERES',
+    'type' => 'multienum',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'size' => '20',
+    'options' => 'lst_motivos_interes',
+    'studio' => 'visible',
+    'isMultiSelect' => true,
+    'default' => '^^',
+  ),
+  
+  'historial_empresa' => 
+  array (
+    'required' => false,
+    'name' => 'historial_empresa',
+    'vname' => 'LBL_HISTORIAL_EMPRESA',
+    'type' => 'multienum',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'size' => '20',
+    'options' => 'lst_historial_empresa',
+    'studio' => 'visible',
+    'isMultiSelect' => true,
+    'default' => '^^',
+  ),
   
 ),
 	'relationships'=>array (

@@ -29,13 +29,12 @@ array (
           'field' => '30',
         ),
       ),
-      'includes' => 
-      array (
-        0 => 
-        array (
-          'file' => 'modules/Accounts/Account.js',
-        ),
-      ),
+      'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
+      {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+      {sugar_getscript file="include/javascript/EditFranquicia.js"}
+      {sugar_getscript file="include/javascript/jquery.js"}
+      {sugar_getscript file="modules/Accounts/Account.js"}
+      <script type="text/javascript"> onload=inicio();</script>',
       'useTabs' => true,
       'tabDefs' => 
       array (
@@ -306,7 +305,17 @@ array (
             'label' => 'LBL_PRIORIDAD_FRAN',
           ),
         ),
-        7 => 
+       7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'config_correo',
+            'studio' => 'visible',
+            'label' => 'LBL_CONFIG_CORREO',
+          ),      
+        ),
+        
+        8 => 
         array (
           0 => 
           array (
@@ -320,7 +329,7 @@ array (
             'label' => 'LBL_CHK_C11',
           ),
         ),
-        8 => 
+        9 => 
         array (
           0 => 
           array (
@@ -334,7 +343,7 @@ array (
             'label' => 'LBL_CHK_C12',
           ),
         ),
-        9 => 
+        10 => 
         array (
           0 => 
           array (
@@ -348,7 +357,7 @@ array (
             'label' => 'LBL_CHK_C13',
           ),
         ),
-        10 => 
+        11 => 
         array (
           0 => 
           array (
@@ -362,7 +371,7 @@ array (
             'label' => 'LBL_CHK_C14',
           ),
         ),
-        11 => 
+        12 => 
         array (
           0 => array (
             'name' => 'llamar_todos',
@@ -374,7 +383,20 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_CHK_C15',
           ),
-        ),                         
+        ),       
+        13 => 
+        array (
+          0 => array (
+            'name' => 'cod_franquicia',
+            'studio' => 'visible',
+            'label' => 'LBL_COD_FRANQUICIA',
+          ),
+          1 =>  array (
+            'name' => 'proy_ERM',
+            'studio' => 'visible',
+            'label' => 'LBL_PROY_ERM',
+          ),
+        ),                      
         
       ),
       

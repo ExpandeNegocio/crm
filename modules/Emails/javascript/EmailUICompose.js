@@ -661,6 +661,11 @@ SE.autoComplete = {
         this.instances[idx]['to'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);
         this.instances[idx]['cc'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);
         this.instances[idx]['bcc'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);
+        
+        		   		alert (idx);   
+		   		alert ($("#data_parent_name0").val());
+
+        
     },
 
     refreshDataSource : function(sType, aArgs) {
@@ -957,7 +962,7 @@ SE.composeLayout = {
         	parent: SE.complexLayout,
         	border:true,
             hideOnLayout: true,
-            height: 400,
+            height: 600,
 			units: [{
 					position: "center",
 	                animate: false,

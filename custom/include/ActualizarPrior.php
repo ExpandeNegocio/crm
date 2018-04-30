@@ -15,7 +15,6 @@
     $query=$query."       g.name,  ";
     $query=$query."    CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200  ";
     $query=$query."    WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100  ";
-    $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND oportunidad_inmediata = 1 THEN 1000   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 100   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 90   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato = 1 THEN 80   ";
@@ -29,8 +28,8 @@
     $query=$query."    ELSE 0 END +IFNULL(ra.punt, 0) + IFNULL(lla.puntLLamada, 0) + IFNULL(co.puntCorreo, 0) final  ";
     $query=$query." FROM   expan_gestionsolicitudes g  ";
     $query=$query."  LEFT JOIN  ";
-    $query=$query."     (SELECT   g.id, s.rating,s.id sid,  ";
-    $query=$query."                           SUM(CASE WHEN s.rating = 1 THEN 50 WHEN s.rating = 2 THEN 30 WHEN s.rating = 3 THEN 10 ELSE 0 END) punt  ";
+    $query=$query."     (SELECT   g.id, g.rating,s.id sid,  ";
+    $query=$query."                           SUM(CASE WHEN g.rating = 1 THEN 50 WHEN g.rating = 2 THEN 30 WHEN g.rating = 3 THEN 10 ELSE 0 END) punt  ";
     $query=$query."                  FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs  ";
     $query=$query."                  WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida  ";
     $query=$query."                  GROUP BY g.id) ra  ";

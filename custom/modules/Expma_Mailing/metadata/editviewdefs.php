@@ -75,19 +75,12 @@ array (
             'name' => 'guardar_correo',
             'label' => 'LBL_GUARDAR_CORREO',
           ),
-          
-          1 => array(
-            'name'=> 'franquicias',
-            'studio'=> 'visible',
-            'label'=> 'LBL_FRANQUICIAS',
-          ),  
+          1 => 'description', 
         ),
          2 => 
         array (
           0 => 
           array (
-            'name' => 'texto_informe',
-            'label' => 'LBL_TEXTO_INFORME',
           ),
           1 => 
           array (
@@ -127,25 +120,9 @@ array (
             'label' => 'LBL_CORREOS_KO',
             'type' => 'readonly',
           ),
-        ),
+        ),               
         
-        5=> 
-        array (
-          0 => 
-          array (
-            'name' => 'fecha_envio',
-            'label' => 'LBL_FECHA_ENVIO',
-            'type' => 'readonly',
-          ),
-          1 => 
-          array (
-            'name' => 'chk_por_franquicia',
-            'label' => 'LBL_CHK_POR_FRANQUICIA',
-            'type' => 'readonly',
-           ),
-        ),
-        
-       6 => 
+       5 => 
         array (              
           0 => 
           array (
@@ -153,7 +130,13 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_CUERPO',
           ),  
-          1 => 'description', 
+          
+          1 => 
+          array (
+            'name' => 'texto_informe',
+            'label' => 'LBL_TEXTO_INFORME',
+          ),
+          
         ),
         
       ),

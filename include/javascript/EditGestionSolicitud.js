@@ -256,8 +256,32 @@ function ocultarCheck() {
 	colorearCaliente();
 	cambiarAGris(texto1);
 	cambiarAGris(texto2);
-	
+	refreshSn();
 }
+
+var refreshSn = function ()
+{
+	var refreshTime = 600000; // every 10 minutes in milliseconds
+	window.setInterval( function() {
+	    $.ajax({
+	        cache: false,
+	        type: "GET",
+	        url: "refresh_session.php",
+	        success: function(data) {
+	        	
+	        	var _form = document.getElementById('EditView');
+				 _form.action.value='Save';
+				 _form.return_action.value='EditView';  
+				 if(check_form('EditView')){
+				 	SUGAR.ajaxUI.submitForm(_form);
+				 }
+			  		
+				 return false;
+	 
+	        }
+	    });
+	}, refreshTime );
+};
 
 function validarSubOrigen() {	
 	
@@ -947,13 +971,14 @@ function abrirSolicitudLlamadas(gestion, solicitud) {
 	}
 }
 
-function validarEdicion(){
+function validarEdicion(idGestion){
 	
 	if (//validarEstadoNoAt()==false ||
 		//validarEstadoCurso()==false ||
+		validarRating(idGestion)==false ||
 		validarMotivoDescarte()==false ||
 		validarMotivoParada()==false ||
-		validarMotivoPositivo()||
+		validarMotivoPositivo()==false ||
 		validarModeloDeNegocio()==false){
 		return false;
 	}
@@ -1109,6 +1134,53 @@ function validarMotivoPositivo(){
 	
 }
 
+function validarRating(idGestion){
+	
+	url = 'index.php?entryPoint=validarGestion&gestionid=' + idGestion+'&tipo=ValidaRating';
+	
+	var resp= true;
+	 $.ajax({
+		type : "POST",
+		url : url,
+		async:false,
+		data : "gestionid=" + idGestion+'&tipo=ValidaRating',
+		
+		success : function(data) {					
+			
+			if (data==1 &&
+				$("#rating option:selected").text()==""){
+				alert ("El Rating no puede estar vacío si ya se ha contactado ");
+				resp=false;
+			}	
+			var evento = $("#expan_evento_id_c option:selected").text();				
+						
+			if ($("#tipo_origen option:selected").val()==3 && 
+				esFranquiShop(evento) && 
+				$("#expan_evento_id_c option:selected").text()==""){
+					alert ("El Rating no puede estar vacío si viene de un evento");
+					resp=false;				
+			}
+			
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se han podido abrir las gestiones hermanas - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+	return resp;
+		
+}
+
+function esFranquiShop(texto){
+	
+	texto=texto.toUpperCase();
+	if (texto.indexOf("FRANQUISHOP")==-1){
+		return false;
+	}else{
+		return true;
+	}
+}
+
 function ModPaginaLista(){
 	
 	$('#create_link').hide();
@@ -1207,9 +1279,41 @@ function colorearCaliente(){
 		$(lista[i]).parent().css( "background-color", "rgb(219,217,217)");			
 	}
 }
-	function cambiarAGris(texto){
-		
-		$(texto).css("color", "rgb(152,152,152)");
-	}
 
+function cambiarAGris(texto){
+	
+	$(texto).css("color", "rgb(152,152,152)");
+}
+/*
+var tmrReady = setInterval(isPageFullyLoaded, 100);
+ 
+function isPageFullyLoaded() {
+     if (document.readyState == "loaded" || document.readyState == "complete") {
+         subclassForms();
+         clearInterval(tmrReady);
+     }
+ }
+  
+function submitDisabled(_form, currSubmit) {
+     return function () {
+         var mustSubmit = true;
+         if (currSubmit != null)
+             mustSubmit = currSubmit();
+  
+         var els = _form.elements;
+         for (var i = 0; i < els.length; i++) {
+             if (els[i].type == "submit")
+                 if (mustSubmit)
+                     els[i].disabled = true;
+         }
+         return mustSubmit;
+     }
+}
+  
+function subclassForms() {
+    for (var f = 0; f < document.forms.length; f++) {
+        var frm = document.forms[f];
+        frm.onsubmit = submitDisabled(frm, frm.onsubmit);
+    }
+}*/
 

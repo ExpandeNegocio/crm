@@ -974,7 +974,10 @@ class Call extends SugarBean {
 
     public function getTextoObservacion(){
         
-        switch ($this -> call_type) {
+        //Se resuelve el 29/11/2017 Que no se van a añadir textos estandar
+        return'';
+        
+      /*  switch ($this -> call_type) {
             case 'ResPriDuda':
                 return "Se le resuelven principales dudas del modelo de negocio. Pendiente de reunión";
                 
@@ -1002,7 +1005,7 @@ class Call extends SugarBean {
             default:                   
                 return'';
                      
-        }
+        }*/
                 
     }
 

@@ -256,7 +256,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
             $gestion -> retrieve($row['id']);
 
             $gestion -> estado_sol=Expan_GestionSolicitudes::ESTADO_PARADO;
-            $gestion -> motivo_parada= Expan_GestionSolicitudes::PARADA_EXCLIENTE;
+            $gestion -> motivo_parada= Expan_GestionSolicitudes::PARADA_ENESPERA;
             
             //$gestion -> ignore_update_c = true;
             $gestion -> save();
@@ -269,7 +269,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
          $db = DBManagerFactory::getInstance();
         
          $query = "select id from expan_gestionsolicitudes where deleted=0 and franquicia='".$this -> id."' AND estado_sol=".Expan_GestionSolicitudes::ESTADO_PARADO;  
-         $query = $query. " AND motivo_parada=".Expan_GestionSolicitudes::PARADA_EXCLIENTE;
+         $query = $query. " AND motivo_parada=".Expan_GestionSolicitudes::PARADA_ENESPERA;
          
          $result = $db -> query($query, true);
 
@@ -290,16 +290,76 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
             
         }
     }
+    
+    
+    public function pasoaClienteParado(){
+        
+         $db = DBManagerFactory::getInstance();
+        
+         $query = "select id from expan_gestionsolicitudes where deleted=0 AND franquicia='".$this -> id."' AND estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO;  
+        
+         $result = $db -> query($query, true);
+
+         while ($row = $db -> fetchByAssoc($result)) {
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Franquicia]Gestion ID-'.$row['id']);
+            
+            $gestion = new Expan_GestionSolicitudes();
+            $gestion -> retrieve($row['id']);
+
+            $gestion -> estado_sol=Expan_GestionSolicitudes::ESTADO_PARADO;
+            $gestion -> motivo_parada= Expan_GestionSolicitudes::PARADA_ENESPERA;                       
+            
+            $gestion -> ignore_update_c = true;
+            $gestion -> save();
+            
+            $gestion->pausarLLamadas();
+            $gestion->pausarTareas();
+            $gestion->pausarReuniones();           
+            
+        }
+    }
+    
+    public function vueltaClienteParado(){
+        
+         $db = DBManagerFactory::getInstance();
+        
+         $query = "select id from expan_gestionsolicitudes where deleted=0 and franquicia='".$this -> id."' AND estado_sol=".Expan_GestionSolicitudes::ESTADO_PARADO;  
+         $query = $query. " AND motivo_parada=".Expan_GestionSolicitudes::PARADA_ENESPERA;
+         
+         $result = $db -> query($query, true);
+
+         while ($row = $db -> fetchByAssoc($result)) {
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Franquicia]Gestion ID-'.$row['id']);
+
+            $gestion = new Expan_GestionSolicitudes();
+            $gestion -> retrieve($row['id']);
+            
+            $gestion -> estado_sol=Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+            $gestion -> motivo_parada=null;
+            
+            $gestion->ignore_update_c = true;
+            $gestion->save();
+            
+            $gestion->restartLLamadas();
+            $gestion->restartTareas();
+            $gestion->restartReuniones();  
+            
+        }
+    }
+
 
     public function lanzaIncidencias($tipoEnv){
                
-        $db = DBManagerFactory::getInstance();
+        $db = DBManagerFactory::getInstance();        
+        $fechaHoy=  new DateTime();
         
         //Recogemos todas las incidencias 
         
          $query = "SELECT g.id gid, i.id iid ";
-         $query=$query."FROM   Expan_gestionsolicitudes g, expan_incidenciacorreo i ";
-         $query=$query."WHERE  g.id = i.expan_gestionsolicitudes_id AND i.deleted=0 and g.deleted=0 AND incidencia_type='".$tipoEnv."'";
+         $query=$query."FROM   expan_gestionsolicitudes g, expan_incidenciacorreo i ";
+         $query=$query."WHERE  g.id = i.expan_gestionsolicitudes_id AND i.deleted=0 and g.deleted=0 AND i.deleted=0 AND incidencia_type='".$tipoEnv."'";
          $query=$query." and g.franquicia='".$this->id."'";
         
          $result = $db -> query($query, true);
@@ -310,9 +370,19 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
             
             $gestion = new Expan_GestionSolicitudes();
             $gestion -> retrieve($row['gid']);
-
-            $salida = $gestion -> preparaCorreo($tipoEnv);
-
+                      
+            //Si enviamos el C1 es porque no está en estado 2 y por lo tanto si lo pasamos a estado 2 sigue la secuancia                       
+            if ($tipoEnv=='C1'){
+                
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Franquicia]Paso a estado 2');
+                
+                $gestion -> estado_sol=Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+                $gestion->ignore_update_c=false;
+                $gestion -> save();                                
+            }else{
+                $salida = $gestion -> preparaCorreo($tipoEnv);
+            }
+          
             $incidencia = new Expan_IncidenciaCorreo();
             $incidencia -> retrieve($row['iid']);
             
@@ -398,6 +468,40 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
         $this -> enlazarConFranquicia($llamada);
     }
+
+    function crearTarea($tipo){
+        
+        $tarea = new Task();
+        if (array_key_exists($tipoTarea, $GLOBALS['app_list_strings']['tipo_tarea_list'])){
+            $tarea -> name = $this -> name . " - " .$GLOBALS['app_list_strings']['tipo_tarea_list'][$tipoTarea];                       
+        }else{
+            $tarea -> name = $this -> name. " - " .$tipoTarea;
+        }
+        
+        $tarea -> status = "Not Started";
+        $tarea -> task_type= $tipoTarea;
+               
+        $tarea -> date_start = TimeDate::getInstance()->nowDb();
+        $tarea -> date_due = TimeDate::getInstance()->nowDb();
+        
+        if ($this->existeTarea($tipoTarea, "Not Started")==true){
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de tarea]NO se crea la tarea, ya existe otra igual para la franquicia');
+            return;
+        }   
+        
+        $tarea -> parent_id = $this -> id;
+        $tarea -> parent_type = 'Expan_Franquicia';
+        $tarea -> assigned_user_id = $this -> user_id1_c;
+        
+        $tarea -> ignore_update_c = true;
+        $tarea -> save();
+        
+        $this -> load_relationship('expan_franquicia_tasks_1');
+        $this -> expan_franquicia_tasks_1 -> add($tarea -> id);                       
+        $this -> ignore_update_c = true;
+        $this -> save();                  
+    }
+
     
     /**
      * Se calcula como 12 horas después de la fecha actual, suponiendo que se ejecutará

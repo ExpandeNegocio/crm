@@ -24,8 +24,7 @@ function procesar() {
     $experiencia = $_POST['experiencia'];
     $franContac = $_POST['franContac'];
     $local = $_POST['local'];
-    $localPropio = $_POST['localPropio'];
-    $localSup = $_POST['localSup'];
+    $localPropio = $_POST['localPropio'];    
     $localDesc = $_POST['localDesc'];
     $inversion = $_POST['inversion'];
     $recursos = $_POST['recursos'];
@@ -48,8 +47,7 @@ function procesar() {
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]experiencia-" . $experiencia);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]franContac-" . $franContac);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]local-" . $local);
-    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]localPropio-" . $localPropio);
-    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]localSup-" . $localSup);
+    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]localPropio-" . $localPropio);    
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]localDesc-" . $localDesc);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]inversion-" . $inversion);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]recursos-" . $recursos);
@@ -175,12 +173,6 @@ function procesar() {
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Local-" . $solicitud -> dispone_local);
 
-        if ($localSup != "") {
-            $solicitud -> superficie_local = $localSup;
-        }
-
-        $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Sup Local-" . $solicitud -> superficie_local);
-
         $infoLocal = "";
 
         echo "Antes Local" . "<br>";
@@ -206,7 +198,7 @@ function procesar() {
         $obsFinanci = "";
 
         if ($inversion != "") {
-            $obsFinanci = $inversion;
+            $obsFinanci = $obsFinanci . ". " . $inversion;
         }
 
         if ($recursos != "") {
@@ -216,7 +208,7 @@ function procesar() {
         
         echo "Antes Financia" . "<br>";
 
-        if ($obsFinanci != "" && $solicitud->$obsFinanci="") {
+        if ($obsFinanci != "" && $solicitud->capital_observaciones="") {
             $solicitud -> capital_observaciones =$solicitud -> capital_observaciones .'. '. $obsFinanci;
         }
 
@@ -229,39 +221,34 @@ function procesar() {
         echo "Gestion - " . $gestion->id ."<br>";
 
         if ($gestion != null) {
+            
 
             $gestion -> lnk_cuestionario = $idCuestionario;
 
-            $GLOBALS['log'] -> info("[ExpandeNegocio]   -" . $gestion -> name);
+            $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Gestion  -" . $gestion -> name);
             //ACTUALIZAR EL NOMBRE DE LA GESTION POR SI HA PUESTO OTRO NOMBRE EN EL CUESTIONARIO
              $nomApe=substr($gestion->name, 0, strpos($gestion -> name, "-"));
              $substN=substr($gestion->name, 0, strpos($gestion -> name, " "));
              $substA=substr($nomApe, strpos($nomApe, " ") + 1);
              $substfran=substr($gestion->name, strpos($gestion->name, "-"));
              
-             echo "Pasa Gestion1 " ."<br>";
-            
             if($nombre!=$substN|$apellidos!=$substA){//si se ha cambiado el nombre o el apellido
                 $nombreNuevo=$nombre." ".$apellidos." ".$substfran;
                 $gestion-> name=$nombreNuevo;//cambiar el nombre    
             }
             
-            echo "Pasa Gestion2 " ."<br>";
+            
             
             $gestion -> chk_recepcio_cuestionario = 1;
-            $gestion -> f_recepcion_cuestionario = TimeDate::getInstance()->nowDb();
-            $gestion -> candidatura_avanzada=true;
+            $fechaHoy=  new DateTime();
+            $gestion -> f_recepcion_cuestionario = $fechaHoy->format('d/m/Y H:i');
+            $gestion -> candidatura_avanzada=true;            
+            $gestion -> estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
             
-            echo "Pasa Gestion22 " ."<br>";                      
-                                   
-            $gestion -> estado_sol = '2';
+            $gestion -> asignarGestor();
             
-            echo "Pasa Gestion23 " ."<br>";
+             $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Despues asignar Gestor");
             
-            $gestion -> asignarUsuarioGestor();
-            
-            echo "Pasa Gestion3 " ."<br>";
-                
             switch ($papel) {
 
                 case "Quiero dedicarme en exclusiva a este proyecto" :
@@ -279,7 +266,9 @@ function procesar() {
                 case "Pretende ser un complemento dentro de actual negocio" :                    
                     $gestion->papel=4;
                     break;                                                           
-            }                               
+            }         
+            
+                                  
             
             switch ($recursos) {
 
@@ -294,24 +283,12 @@ function procesar() {
                 case "100% financiado por entidad bancaria" :
                     $gestion->recursos_propios=3;
                     break;                       
-            }                
+            }                            
             
-             switch ($inicio) {       
-                
-                 case "Menos de 4 meses" :
-                    $gestion->cuando_empezar=1;
-                    break;
-                    
-                 case "Entre 4-12 meses" :
-                    $gestion->cuando_empezar=4;
-                    break;
-                    
-                 case "Más de 12 meses" :
-                    $gestion->cuando_empezar=5;
-                    break;                   
-                                    
-             }
-                 
+            $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger fecha-".$inicio);               
+            $gestion->cuando_empezar=$inicio;  
+            $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Fecha Inicio Gestion-".$gestion->cuando_empezar);
+                             
             $telefono = $solicitud -> recogeTelefono();
 
             $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Tenemos telefono-" . $telefono);
@@ -361,6 +338,7 @@ function procesar() {
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Guardamos Solicitud");
     }
 
+    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms]Finaliza");
     echo "Finaliza" . "<br>";
 
 }
@@ -405,10 +383,12 @@ function localizaSolicitudPortelefono($movil, $telefono) {
     $query = $query . "trim(phone_mobile)='" . trim($movil) . "' OR ";
     $query = $query . "trim(phone_other)='" . trim($movil) . "' OR ";
     $query = $query . "trim(phone_work)='" . trim($movil) . "' OR ";
+    $query = $query . "trim(skype)='" . trim($movil) . "' OR ";
     $query = $query . "trim(phone_home)='" . trim($telefono) . "' OR ";
     $query = $query . "trim(phone_mobile)='" . trim($telefono) . "' OR ";
     $query = $query . "trim(phone_other)='" . trim($telefono) . "' OR ";
-    $query = $query . "trim(phone_work)='" . trim($telefono) . "')";
+    $query = $query . "trim(phone_work)='" . trim($telefono) . "' OR ";
+    $query = $query . "trim(skype)='" . trim($telefono) . "')";
 
     if (trim($telefono) == "") {
         $query = "SELECT s.id ";
@@ -416,6 +396,7 @@ function localizaSolicitudPortelefono($movil, $telefono) {
         $query = $query . "WHERE deleted=0 AND (trim(phone_home)='" . trim($movil) . "' OR ";
         $query = $query . "trim(phone_mobile)='" . trim($movil) . "' OR ";
         $query = $query . "trim(phone_other)='" . trim($movil) . "' OR ";
+        $query = $query . "trim(skype)='" . trim($movil) . "' OR ";
         $query = $query . "trim(phone_work)='" . trim($movil) . "')";
     }
 
@@ -425,6 +406,7 @@ function localizaSolicitudPortelefono($movil, $telefono) {
         $query = $query . "WHERE deleted=0 AND (trim(phone_home)='" . trim($telefono) . "' OR ";
         $query = $query . "trim(phone_mobile)='" . trim($telefono) . "' OR ";
         $query = $query . "trim(phone_other)='" . trim($telefono) . "' OR ";
+        $query = $query . "trim(skype)='" . trim($telefono) . "' OR ";
         $query = $query . "trim(phone_work)='" . trim($telefono) . "')";
     }
 

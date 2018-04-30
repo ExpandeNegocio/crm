@@ -83,6 +83,8 @@ function refreshJobs() {
  * Job 1
  */
 function pollMonitoredInboxes() {
+    
+    echo 'ENtra';
 
     $_bck_up = array('team_id' => $GLOBALS['current_user']->team_id, 'team_set_id' => $GLOBALS['current_user']->team_set_id);
 	$GLOBALS['log']->info('----->Scheduler fired job of type pollMonitoredInboxes()');

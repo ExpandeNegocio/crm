@@ -301,6 +301,7 @@ $app_list_strings['task_status_dom'] = array (
   'Completed' => 'Completada',
   'Canceled' => 'Cancelada',
   'Deferred' => 'Aplazada (No Usar)',
+  'Paused' => 'Pausada',
 );
 $app_list_strings['meeting_status_dom'] = array (
   'Planned' => 'Planificada',

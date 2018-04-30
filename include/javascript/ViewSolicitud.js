@@ -1,4 +1,9 @@
 
+$("#btn_view_change_log").hide();
+$("#save").hide();
+$("#delete_button").hide();
+
+
 function cambiarEstadoGestion(estado) {
 
 

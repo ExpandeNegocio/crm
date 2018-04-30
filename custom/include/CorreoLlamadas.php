@@ -6,11 +6,21 @@
     require_once ('include/SugarPHPMailer.php');
     
     $USUARIO_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
+    $CORREO_RUBEN='ruben@expandenegocio.com';
+    $NUM_DIAS_MAX_CENTRAL=15;
+    $DIR='tmp/';
+    
+          
     
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
-    $GLOBALS['log'] -> info('[ExpandeNegocio][Envo de correoMañanas]Inicio');
+    $GLOBALS['log'] -> info('[ExpandeNegocio][Envio de correo Mañanas]Inicio');
+    
+    
+    deleteFiles($DIR);
     
     $db = DBManagerFactory::getInstance();
+    
+    echo 'LLega<BR>';
     
     //No se muestran ni los de las franquicias ni los que no show_on_employees=1  
     $query = "SELECT u.id, u.user_name, e.email_address ";
@@ -26,13 +36,23 @@
         $usuario=$row['user_name'];  
         $user_id=$row['id'];                
         $idFich='Trabajos-'.$usuario.'-'.date('d-n-Y');
-        $filePath = 'tmp/' . $idFich . '.xlsx';
+        $filePath = $DIR . $idFich . '.xlsx';
         echo $filePath;
         echo "<br>";
         CreaFicheroEnvio($filePath,$user_id);
-        EnviarCorreo($row['email_address'],$filePath);    
+        EnviarCorreo($row['email_address'],from_html("Informe ".date('d-n-Y')),$filePath,'');    
         echo "Termiado";       
     }
+    
+    //Miramos si hay franquicias sin gestiones desde la central en los últimos 15 días    
+    $message=CoprobarCandidatosCentral($NUM_DIAS_MAX_CENTRAL);    
+    if ($message!=''){
+            echo 'Entra enviar correo<BR>';        
+        EnviarCorreo($CORREO_RUBEN,from_html("Franquicias sin gestiones Central ".date('d-n-Y')),null,$message);           
+    } 
+    
+    echo 'Finaliza<BR>';
+        
 
     function CreaFicheroEnvio($filePath,$user_id) {
         
@@ -64,6 +84,7 @@
         InsertaConuslta($objPHPExcel,$query,0,'Usuario Asignado-Llamadas');
         
         echo "inserta Usuario Asignado-LLamada";
+        
         
         //Llamadas por usuario  modificado 
         
@@ -157,23 +178,14 @@
         
         echo "inserta Usuario-LLamada";
         
-        //Llaadas por tipo
-       /* if ($user_id==$USUARIO_RUBEN){*/
+
         $query = "SELECT  concat(u.first_name,\" \",u.last_name) Usuario, c.call_type TipoLLamada, count(1) Numero  ";
         $query=$query."FROM     calls c , users u ";
         $query=$query."WHERE    c.status = 'Planned' AND c.date_start < CURDATE() AND c.deleted=0 and c.assigned_user_id= u.id  ";
         $query=$query."GROUP BY c.call_type,c.assigned_user_id ";
         $query=$query."order by Usuario,tipollamada ";
-
- 
-   /*     }else{
-            $query = "SELECT   c.call_type TipoLLamada, count(1) Numero ";
-            $query=$query."FROM     calls c ";
-            $query=$query."WHERE    c.status = 'Planned' AND c.date_start < CURDATE() AND deleted=0 AND assigned_user_id='".$user_id."' ";
-            $query=$query."GROUP BY c.call_type ";
-        }*/
         
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Envo de correoMañanas]Consulta Tipo Llamada'.$query);
+         $GLOBALS['log'] -> info('[ExpandeNegocio][Envo de correoMañanas]Consulta Tipo Llamada'.$query);
         
          InsertaConuslta($objPHPExcel,$query,2,'Usr-Llamadas Retrasadas Tipo');
          
@@ -196,6 +208,7 @@
         
         echo "inserta usuario Tareas";
         
+        
         //Reunion por usuario
         $query = "SELECT   concat(u.first_name, ' ', u.last_name) Nombre ";
         $query=$query."         , Sum(CASE WHEN t.status = 'Held' AND t.date_modified BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) AS 'Real. 7dias' ";
@@ -213,6 +226,7 @@
         InsertaConuslta($objPHPExcel,$query,4,'Usuarios-Reuniones');       
         
         echo "inserta reuniones";
+        
         
         //Llamadas por franquicia
         $query = "select f.name Nombre,  ";
@@ -243,10 +257,10 @@
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
         $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc ";
 
-
         InsertaConuslta($objPHPExcel,$query,5,'Franquicia-Llamadas');
         
         echo "inserta franquicia llamadas";
+        
         
         $query = "select f.name, ";
         $query=$query."  case WHEN f.tipo_cuenta=1 THEN 'CONSULTORIA' ELSE 'INTERMEDIACION' END 'Tipo Cuenta', ";
@@ -273,11 +287,11 @@
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
         $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc; ";
-
                 
         InsertaConuslta($objPHPExcel,$query,6,'Franquicia-Tareas');
         
         echo "inserta franquicia tareas";
+        
         
         //Reuniones por franquicia
         $query = "select f.name, ";
@@ -307,11 +321,11 @@
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
         $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc; ";
-
                 
         InsertaConuslta($objPHPExcel,$query,7,'Franquicia-Reuniones');               
         
         echo "inserta franquicia reuniones";
+        
         
         //Gestiones avanzadas/Calientas por franquicia
         $query = "SELECT f.name, EnCurso, Avanzadas, PorAvanzadas ,Calientes, PorCalientes ";
@@ -332,6 +346,7 @@
         InsertaConuslta($objPHPExcel,$query,8,'Franquicia-Avanzadas_Calientes');                       
         echo "inserta Gestiones avanzadas/Calientas por franquicia";
         
+        
         //Gestiones avanzadas/Calientas por Usuario
         $query = "SELECT   concat(u.first_name, ' ', u.last_name) Nombre, EnCurso, Avanzadas, PorAvanzadas, Calientes, PorCalientes ";
         $query=$query."FROM     (SELECT   f.assigned_user_id ";
@@ -350,6 +365,7 @@
         InsertaConuslta($objPHPExcel,$query,9,'Usuario-Avanzadas_Calientes');
         echo "inserta Gestiones avanzadas/Calientas por usuario";
         
+        
         //Candidaturas Calientes
         $query = "SELECT name Franquicia, Nombre, d_prov Provincia ";
         $query=$query."FROM   (SELECT   f.name, f.prime, concat(s.first_name, ' ', s.last_name) nombre, s.provincia_apertura_1 prov ";
@@ -361,7 +377,8 @@
         $query=$query."WHERE  a.prov = p.c_prov ORDER BY a.prime desc, Franquicia; ";
         
         InsertaConuslta($objPHPExcel,$query,10,'Candidaturas Calientes');
-        echo "inserta Candidaturas Calientes";               
+        echo "inserta Candidaturas Calientes";         
+              
         
         $query = "select f.name Franquicia,min(c.nombre) Tipo,count(1) NumGestiones from expan_gestionsolicitudes g, expan_franquicia f , tipo_cuenta c ";
         $query=$query."where g.estado_sol=1 and g.deleted = 0 and g.franquicia=f.id and f.tipo_cuenta=c.id ";
@@ -372,12 +389,12 @@
         echo "Inserta Gestiones No Atendidas";
         
         
-        $query = "SELECT description ";
-        $query=$query."FROM   emails e, emails_text et ";
-        $query=$query."WHERE  e.id = et.email_id AND e.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() AND  ";
+        $query = "SELECT e.name, i.name, e.date_sent, et.description  ";
+        $query=$query."FROM   emails e, emails_text et , inbound_email i ";
+        $query=$query."WHERE i.id=e.mailbox_id AND   e.id = et.email_id AND e.date_sent BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() AND   ";
         $query=$query."(from_addr LIKE '%delivery%' or from_addr LIKE '%daemon%'  or from_addr LIKE '%postmaster%') ; ";
                 
-        InsertaConuslta($objPHPExcel,$query,12,'Correos Devueltos');
+        InsertaConuslta($objPHPExcel,$query,12,'Correos Devueltos Semanal');
         echo "Correos no Atendidos";
                               
         
@@ -401,9 +418,9 @@
             $query=$query."         f.id = g.franquicia AND  ";
             $query=$query."         tipo_cuenta IN (1, 2) ";
             $query=$query."GROUP BY franquicia ";
-            $query=$query."ORDER BY f.prime desc, f.name; ";
+            $query=$query."ORDER BY tipo_cuenta,f.prime desc, f.name; ";
             
-            InsertaConuslta($objPHPExcel,$query,10,'Informe franquicias');
+            InsertaConuslta($objPHPExcel,$query,13,'Informe franquicias');
             echo "Informe franquicias";
         }
                    
@@ -442,7 +459,7 @@
         }
     }
     
-    function EnviarCorreo($emailAddr,$file){
+    function EnviarCorreo($emailAddr,$subject,$file,$body){
         $GLOBALS['log'] -> info('[ExpandeNegocio][CorreoLlamadas][Envio correos]Entra');
          
         $mail = new SugarPHPMailer();
@@ -454,15 +471,88 @@
         $mail -> FromName = $defaults['name'];
 
         $mail -> AddAddress($emailAddr, $emailAddr);
-        $mail -> Subject = from_html("Informe ".date('d-n-Y'));
+        $mail -> Subject = $subject;
+        $mail -> Body=$body;
+        $mail -> IsHTML(TRUE);
+        if ($file!=null){
+            $mail->AddAttachment($file);            
+        }        
                 
-        $mail->AddAttachment($file);
-        
         if(!$mail->Send()) {
             echo "Mailer Error: " . $mail->ErrorInfo;            
         } else {
             echo "Message sent!";
         }
                
+    }
+    
+    function deleteFiles($folder){
+                
+        $files = glob($folder.'*'); // get all file names
+        foreach($files as $file){ // iterate files
+          if(is_file($file)){
+              unlink($file); // delete file
+          }            
+        }               
+    };
+        
+    function CoprobarCandidatosCentral($numDias){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "SELECT   max(g.date_entered) last,f.name ";
+        $query=$query."FROM     expan_gestionsolicitudes g, expan_franquicia f ";
+        $query=$query."WHERE    g.franquicia = f.id AND tipo_origen = 4 AND f.tipo_cuenta in (1)  ";
+        $query=$query."  AND not( g.date_entered BETWEEN DATE_SUB(CURDATE(), INTERVAL ".$numDias." DAY) AND CURDATE()) ";
+        $query=$query."GROUP BY f.name  ORDER BY last asc;";
+        
+        echo $query."<BR>";
+       
+        //Lanzamos la consulta
+        $result = $db -> query($query, true);
+        
+        $message=$message.'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+        $message=$message."<html>";
+        $message=$message."<head>";
+        $message=$message."</head>";
+        $message=$message."<body>";
+        
+        $message=$message."<p>Listado de las franquicias de las que no se han recibido gestiones desde la central en los últimos ".$numDias." días</p>";
+        
+        $message=$message."<table style='width:80%'>";
+        $message=$message."<tr>";
+        $message=$message."<td><b>FRANQUICIA</b></td>";
+        $message=$message."<td><b>FECHA ULTIMA GESTION CENTRAL</b></td>";
+        $message=$message."</tr><tr>";
+
+        $cont=0;
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+            
+             echo "Entra Bucle<BR>";
+                   
+            $nameFran=$row["name"];
+            $last=$row["last"];
+            
+            $message=$message."<td><b>".$nameFran."</td></b>";
+            $message=$message."<td>".$last."</td>";
+            $message=$message."</tr><tr>";
+            
+            $cont++;
+            
+        }     
+        $message=$message."</tr>";
+        $message=$message."</table>";
+        $message=$message."</body>";
+        $message=$message."</html>";   
+        
+        echo $message;
+        
+        if ($cont==0){
+            return "";
+        }else{
+            return $message;
+        }              
+                     
     }
 ?>

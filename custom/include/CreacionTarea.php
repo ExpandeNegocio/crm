@@ -20,6 +20,8 @@ class controlTareas {
     public function modTareas(&$bean, $event, $arguments) {
 
         if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
+            
+
             $bean->ignore_update_c = true;           
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Tipo del que cuelga-' . $bean -> parent_type);
@@ -84,6 +86,14 @@ class controlTareas {
             
             $bean -> ignore_update_c = true;
             $bean -> save();
+            
+             //Creacion de una nueva tarea que se lleva al CRM
+            if (!isset(self::$fetchedRow[$bean -> id])) {
+                $bean->addToERM();
+            }else{
+                $bean->updateFromERM();
+            }
+            
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Se ha guardado la Tarea');
         }

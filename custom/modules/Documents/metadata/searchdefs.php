@@ -47,11 +47,12 @@
                             ),
                         'advanced_search' => array(
                                 'document_name', 
-                                'category_id', 
-                                'subcategory_id',
-                                'active_date',
-                                'exp_date',
                                 'franquicia',
+                                'template_type', 
+                                'is_valid',
+                                'active_date',                               
+                                'exp_date',   
+                                'revision_date',                             
                                'assigned_user_id' => 
 		      array (
 		        'name' => 'assigned_user_id',

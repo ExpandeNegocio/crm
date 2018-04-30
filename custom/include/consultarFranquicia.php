@@ -68,7 +68,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             
             $query = "UPDATE expan_franquicia_expan_evento_c set participacion='".$estado."' ";
             $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
-            $query=$query."AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
+            $query=$query."AND deleted=0 AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
             
             $result = $db -> query($query);
             

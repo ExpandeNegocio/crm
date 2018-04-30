@@ -28,9 +28,9 @@ class AccionesGuardado {
 		//Comprobacion de bulce infinito
 		if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
 		    
-            $bean->ignore_update_c = true;
-          
-            $this->limpiarTelefonos(); 
+            $bean->ignore_update_c = true;                 
+                      
+            $this->limpiarTelefonos($bean); 
                 
             //Creacion de una nueva solicitud
 			if (!isset(self::$fetchedRow[$bean -> id])) {
@@ -40,7 +40,8 @@ class AccionesGuardado {
 
 				$caracteres = split(',', $bean -> franquicias_secundarias);
 				$bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-                $bean -> fecha_primer_contacto=TimeDate::getInstance()->nowDb();
+                $fechaHoy=  new DateTime();
+                $bean -> fecha_primer_contacto=$fechaHoy->format('d/m/Y H:i');
                 
 				$fran = null;
  				$numFran =0;
@@ -89,15 +90,19 @@ class AccionesGuardado {
                 }
                 
 			} else {
-			                    
+			    			                   
 			    // Entramos solo en edicion 
-                $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-								
-				$textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
 
-				$db = DBManagerFactory::getInstance();
+                $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');                
+                $gestiones=$bean->expan_solicitud_expan_gestionsolicitudes_1->getBeans();
+                $gestiones = array_values($gestiones);              
 
 				//tenemos que ver si las gestiones estan creadas
+				
+				$db = DBManagerFactory::getInstance();
+                
+                $textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
+                
 				$query = "select * ";
 				$query =$query. "from  (select * from expan_franquicia where id in (" . $textoFran . ")) f where id not in( ";
 				$query =$query. "select g.franquicia from expan_gestionsolicitudes g ,expan_solicitud s ,expan_solicitud_expan_gestionsolicitudes_1_c gs ";
@@ -110,10 +115,8 @@ class AccionesGuardado {
 				$result = $db -> query($query, true);
 
 				while ($row = $db -> fetchByAssoc($result)) {
-
 					$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Creo nueva gestion desde act -' . $row["id"]);
-					$this -> crearGestion($row["id"], $bean);
-					
+					$this -> crearGestion($row["id"], $bean);					
 				}
                                                     
                 //controlamos si se pasa a rating posible topo
@@ -126,16 +129,17 @@ class AccionesGuardado {
                     $query=$query."on g.id= s.expan_soli5dcccitudes_idb ";
                     $query=$query."set estado_sol='".Expan_GestionSolicitudes::ESTADO_DESCARTADO."',motivo_descarte='".Expan_GestionSolicitudes::DESCARTE_CANDIDATO_TOPO."'; ";
                     
-                    $db -> query($query);
-                                        
+                    $db -> query($query);                                       
                 }
-                
+                           
                 //Si modificamos el nombre de la solicitud cambiamos el de las gestiones asociadas              
                 //Control de campos mofificados                
                 $this->cambiosAHijos($bean); 
-                $this->cambiosEconomicosGestion($bean);               
+                $this->cambiosEconomicosGestion($bean);    
                 
                 $bean = $this -> limpiarSuborigen($bean);
+                
+                
                 $this -> activarMaster($bean);
                 $bean -> assigned_user_id=$bean->created_by;
                 $bean -> ignore_update_c = true;
@@ -143,9 +147,9 @@ class AccionesGuardado {
                 
 			}
                 
-                //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
-                $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
-                $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
+            //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
+            $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
+            $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
 		}
 	}
 
@@ -234,9 +238,11 @@ class AccionesGuardado {
             if ($gestion==null){
                 $this->crearGestion($current_user->franquicia,$solAnt);
             }else{                
-                $gestion->estado_sol='1';
-                $gestion->ignore_update_c=true;
-                $gestion->save();
+                $gestion -> chk_envio_documentacion = false;
+                $gestion -> estado_sol = Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO;
+                $gestion -> envio_documentacion = null;
+                $gestion -> ignore_update_c=true;
+                $gestion -> save();
             }
             
             $solAnt->expan_evento_id_c=$solicitud->expan_evento_id_c;
@@ -365,36 +371,12 @@ class AccionesGuardado {
             $gestion -> recursos_propios = $bean -> recursos_propios;
             $gestion -> inversion = $bean -> capital;
             $gestion -> papel = $bean -> perfil_franquicia;
+            $gestion -> rating= $bean -> rating;
             $gestion -> perfil_ideoneo=null;
             
             //Calculamos el origen y suborigen de la gestion
-            $origen=$this->origenGestion($bean);            
-            $gestion->tipo_origen=$origen;
-            
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen de la gestion - '.$gestion->tipo_origen);
-                       
-            if ($origen==Expan_Solicitud::TIPO_ORIGEN_EXPANDENEGOCIO){
-                $gestion->subor_expande=$bean->subor_expande;                
-            }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_PORTALES){
-                $gestion->portal=$bean->portal;                              
-            }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_EVENTOS){
-                $gestion->expan_evento_id_c=$bean->expan_evento_id_c;
-                
-                $evento=new Expan_Evento();
-                $evento -> retrieve($bean->expan_evento_id_c);
-                
-                //Si el origen es un evento de tipo franquishp debemos crear llamada 
-                if ($evento->tipo_evento=="FShop"){
-                    $crearLLamadaFS=true;    
-                } 
-                
-            }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_CENTRAL){
-                $gestion->subor_central=$bean->subor_central;
-            }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_MEDIOS_COMUN){
-                $gestion->subor_medios=$bean->subor_medios;                             
-            }else if ($origen==Expan_Solicitud::TIPO_ORIGEN_MAILING){
-                $gestion->subor_mailing=$bean->subor_mailing;                             
-            }
+            $origenAnt=self::$fetchedRow[$bean -> id]['tipo_origen'];
+            $gestion -> setOrigenSuborigenFromSolicitud($bean,$origenAnt);                                          
                                  
             //Si es un topo
             if ($bean->rating=='5'){
@@ -405,7 +387,10 @@ class AccionesGuardado {
             
             //Si viene de un evento y la franquicia no paga se la pasamos a ExpandeNegocio
             
-            if ($gestion->pasoaOrigenExpandeFeria()){
+            $isOrigenExpande=$gestion->pasoaOrigenExpandeFeria();
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Paso Feria-'.$isOrigenExpande);
+            if ($isOrigenExpande==true){
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Entra a paso Expande');
                 $gestion->tipo_origen = Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO;
                 $gestion->evento_bk = $gestion->expan_evento_id_c;
                 $gestion->subor_expande = Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO;
@@ -436,7 +421,6 @@ class AccionesGuardado {
                     $gestion->save();
                 }
             }
-            
             
             $prioridad=$gestion->calcularPrioridades();
             $gestion->prioridad=$prioridad;
@@ -527,7 +511,7 @@ class AccionesGuardado {
             $query=$query."  g.franquicia = f.id AND ";
             $query=$query."  s.id='".$bean->id."') s  ";
             $query=$query."on g.id= s.expan_soli5dcccitudes_idb  ";
-            $query=$query."set estado_sol=CONCAT(COALESCE(first_name,''),COALESCE(last_name,''),COALESCE(fran,'')) ";
+            $query=$query."set name=CONCAT(COALESCE(first_name,''),' ',COALESCE(last_name,''),' - ',COALESCE(fran,'')) ";
                                               
             $db -> query($query);
             
@@ -572,6 +556,7 @@ class AccionesGuardado {
         }                
                
     }
+   
     
     function cambiosEconomicosGestion($bean) {
             
@@ -643,41 +628,7 @@ class AccionesGuardado {
             $db -> query($query);
         }
         
-    }
-
-    function origenGestion($bean){
-        
-        $origenAnt=self::$fetchedRow[$bean -> id]['tipo_origen'];
-        $origenAnt = str_replace('^', '', $origenAnt);
-        
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Inicial - '.self::$fetchedRow[$bean -> id]['tipo_origen']);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Ant Fetch - '.$fetchedRow['tipo_origen']);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Ant - '.$origenAnt);
-        
-        $listaAnt = split(',', $origenAnt);
-
-        $origenAct = str_replace('^', '', $bean->tipo_origen);
-        $listaAct = split(',', $origenAct);
-        
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Act - '.$origenAct);
-                               
-        $listaDif=array_diff($listaAct, $listaAnt);
-        
-        $origen=-1;
-                                          
-        foreach ($listaDif as $ori){
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Nuevos origenes - '.$ori);
-            $origen=$ori;
-        }      
-        
-        if ($origen==-1){
-            $origen =$listaAct[0];
-        }      
-        
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen final - '.$origen);
-        
-        return $origen;
-    }      
+    }  
 
 }
 ?>

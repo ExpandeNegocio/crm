@@ -314,7 +314,17 @@ array (
             'label' => 'LBL_PRIORIDAD_FRAN',
           ),
         ),
-        7 => 
+       7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'config_correo',
+            'studio' => 'visible',
+            'label' => 'LBL_CONFIG_CORREO',
+          ),      
+        ),  
+                              
+        8 => 
         array (
           0 => 
           array (
@@ -328,7 +338,7 @@ array (
             'label' => 'LBL_CHK_C11',
           ),
         ),
-        8 => 
+        9 => 
         array (
           0 => 
           array (
@@ -342,7 +352,7 @@ array (
             'label' => 'LBL_CHK_C12',
           ),
         ),
-        9 => 
+        10 => 
         array (
           0 => 
           array (
@@ -356,7 +366,7 @@ array (
             'label' => 'LBL_CHK_C13',
           ),
         ),
-        10 => 
+        11 => 
         array (
           0 => 
           array (
@@ -370,7 +380,7 @@ array (
             'label' => 'LBL_CHK_C14',
           ),
         ),
-        11 => 
+        12 => 
         array (
           0 => array (
             'name' => 'llamar_todos',
@@ -383,6 +393,19 @@ array (
             'label' => 'LBL_CHK_C15',
           ),
         ),
+        13 => 
+        array (
+          0 => array (
+            'name' => 'cod_franquicia',
+            'studio' => 'visible',
+            'label' => 'LBL_COD_FRANQUICIA',
+          ),
+          1 =>  array (
+            'name' => 'proy_ERM',
+            'studio' => 'visible',
+            'label' => 'LBL_PROY_ERM',
+          ),
+        ), 
       ),
       
       

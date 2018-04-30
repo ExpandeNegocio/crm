@@ -104,8 +104,7 @@ class AccionesGuardadoTel {
                     ($bean -> call_type == 'Primera' || $bean -> call_type == 'SolCorreo' || $bean -> call_type == 'InformacionAdicional') &&
                     ($gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_EVENTOS || 
                     $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO || 
-                    $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES ||
-                    $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO ))                    
+                    $gestion->tipo_origen == Expan_GestionSolicitudes::TIPO_ORIGEN_PORTALES))                    
                 {
                     $bean -> gestion_agrupada = 1;
                     $bean -> name = $solicitud -> name . ' - Gestion Agrupada - ' . $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];

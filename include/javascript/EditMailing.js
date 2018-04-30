@@ -4,7 +4,8 @@ function generarMailing(pidMailing,ptemplate,pporFranquicia) {
 	
 	if (confirm("¿Esta seguro de que desea lanzar el mailing?")) {
 		
-		var url='index.php?entryPoint=lanzarMailing&idMailing='+pidMailing +'&template='+ptemplate+'&porFranquicia='+pporFranquicia;
+		//var url='http://expandenegocio.com:8111/sugarcrm/index.php?entryPoint=lanzarMailing&idMailing='+pidMailing +'&template='+ptemplate+'&porFranquicia='+pporFranquicia;
+		 var url='index.php?entryPoint=lanzarMailing&idMailing='+pidMailing +'&template='+ptemplate+'&porFranquicia='+pporFranquicia;
 		
 		var config = { };
 	    config.title = "Enviando Correo";
@@ -13,6 +14,8 @@ function generarMailing(pidMailing,ptemplate,pporFranquicia) {
 		
 		$.ajax({
 			type : "GET",
+			dataType: "text",
+			crossDomain: true,
 			url : (url),
 			data : {idMailing: pidMailing,
 					template: ptemplate,
@@ -29,7 +32,9 @@ function generarMailing(pidMailing,ptemplate,pporFranquicia) {
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				YAHOO.SUGAR.MessageBox.hide();
-				alert('No se ha podido lanzar el mailing - ' + textStatus + ' - ' + errorThrown);
+			//	alert('El mailing se ha lanzado correctamente');
+				alert('No se ha podido reinicializar el mailing - ' + textStatus + ' - ' + errorThrown);
+				window.location='index.php?module=Expma_Mailing&action=DetailView&record=' + pidMailing;
 			}
 		});
 
@@ -66,6 +71,7 @@ function reinicializarMailing (pidMailing){
 			error : function(jqXHR, textStatus, errorThrown) {
 				YAHOO.SUGAR.MessageBox.hide();
 				alert('No se ha podido reinicializar el mailing - ' + textStatus + ' - ' + errorThrown);
+				window.location='index.php?module=Expma_Mailing&action=DetailView&record=' + pidMailing;
 			}
 		});
 
