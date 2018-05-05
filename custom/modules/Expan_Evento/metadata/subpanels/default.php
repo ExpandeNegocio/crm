@@ -62,6 +62,12 @@ $subpanel_layout = array(
             'width' => '25%',
         ),     
 		
+        'formato_participacion'=> array(
+            'vname' => 'formato_participacion',
+            'sortable' => false,            
+            'width' => '25%',
+        ), 
+        
 		'edit_button'=>array(
             'vname' => 'LBL_EDIT_BUTTON',
 			'widget_class' => 'SubPanelEditButton',
@@ -76,6 +82,11 @@ $subpanel_layout = array(
 		),
 		
          'e_participacion' =>
+         array (
+            'usage' => 'query_only',
+         ),
+         
+         'e_formato_participacion' =>
          array (
             'usage' => 'query_only',
          ),

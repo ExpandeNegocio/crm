@@ -87,36 +87,44 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $contB=0;
         $contC=0;
         $contD=0;
+        $contT=0;
+        $contSR=0;        
 
         while ($row = $db -> fetchByAssoc($result)) {
+            $cont++;
             $pos=strpos($row["first_name"], 'Dummie');
             if($pos!==false){
                 $contD=$contD+1;
             }
-            $cont=$cont+1;
             switch($row["rating"]){
                 case 1:
-                    $contAA=$contAA+1;
+                    $contAA++;
                     break;
                 case 2:
-                    $contA=$contA+1;
+                    $contA++;
                     break;
                 case 3:
-                    $contB=$contB+1;
+                    $contB++;
                     break;
                 case 4:
-                    $contC=$contC+1;
+                    $contC++;
+                    break;
+                case 5:
+                    $contT++;
+                    break;
+                case null:
+                    $contSR++;
                     break;
             }
         }  
-        $this->num_solicitudes=$cont;
         $this->total_gestiones=$cont;  
         $this->sol_rating_a_plus=$contAA;
         $this->sol_rating_a=$contA;
         $this->sol_rating_b=$contB;
         $this->sol_rating_c=$contC;
-        $this->dummies=$contD;
-                    
+        $this->sol_rating_topo=$contT;
+        $this->sol_rating_no_rating=$contSR;
+        $this->dummies=$contD;                    
         
     }
 
@@ -480,6 +488,8 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         
         $tarea -> status = "Not Started";
         $tarea -> task_type= $tipoTarea;
+        
+        $fechaHoy=  new DateTime();
                
         $tarea -> date_start = TimeDate::getInstance()->nowDb();
         $tarea -> date_due = TimeDate::getInstance()->nowDb();

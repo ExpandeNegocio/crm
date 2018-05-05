@@ -40,12 +40,12 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once('include/generic/SugarWidgets/SugarWidgetSubPanelTopButton.php');
 
-class SugarWidgetSubPanelTopChangeStateFranEvenButton extends SugarWidgetSubPanelTopButton
+class SugarWidgetSubPanelTopChangeFormatoPartFranEvenButton extends SugarWidgetSubPanelTopButton
 {
-    private $estado = "";   
+    private $formato = "";   
 
     //button_properties is a collection of properties associated with the widget_class definition. layoutmanager
-    function SugarWidgetSubPanelTopChangeStateFranEvenButton($button_properties=array())
+    function SugarWidgetSubPanelTopChangeFormatoPartFranEvenButton($button_properties=array())
     {
         $this->button_properties=$button_properties;
     }
@@ -57,14 +57,14 @@ class SugarWidgetSubPanelTopChangeStateFranEvenButton extends SugarWidgetSubPane
 
     public function getDisplayName()
     {
-        return $GLOBALS['app_strings']['LBL_CHANGE_STATE_BUTTON_LABEL'];
+        return $GLOBALS['app_strings']['LBL_CHANGE_FORMATOPART_BUTTON_LABEL'];
     }
     //widget_data is the collection of attributes associated with the button in the layout_defs file.
     function display(&$widget_data)
     {
         global $app_strings;
         
-        $estado=$widget_data['estado'];
+        $formato=$widget_data['formato'];
         
         $initial_filter = '';
 
@@ -85,19 +85,20 @@ class SugarWidgetSubPanelTopChangeStateFranEvenButton extends SugarWidgetSubPane
             if( isset($this->button_properties['module'])) {
                 $this->module_name = $this->button_properties['module'];
             }
-        }
+        }              
         
         $bot='<input type="button" name="' . $this->getWidgetId() . '" id="' . $this->getWidgetId() . '" class="button"' . "\n"
-                . ' title="' . $this->value."-".$GLOBALS['app_list_strings']['lst_tipo_participa_Evento'][$widget_data['estado']] . '"'
-            . ' value="' . $this->value."-".$GLOBALS['app_list_strings']['lst_tipo_participa_Evento'][$widget_data['estado']] . "\"\n"
-            . " onclick='cambiarEstadoFranquiciaEvento(".$widget_data['estado'].");' />\n";
-                       
-        if ($estado=='1'){
-            return '<BR><BR>'.$bot;
+                . ' title="' . $this->value."-".$GLOBALS['app_list_strings']['lst_formato_participa_Evento'][$widget_data['formato']] . '"'
+            . ' value="' . $this->value."-".$GLOBALS['app_list_strings']['lst_formato_participa_Evento'][$widget_data['formato']] . "\"\n"
+            . " onclick='cambiarFormatoFranquiciaEvento("."\"".$widget_data['formato']."\"".");' />\n";
+               
+        if ($formato=='SI'){
+          return '<BR><BR>'.$bot;        
+            
         }else{
-            return $bot;
-        }
-
+          return $bot;  
+        }          
+            
     }
 
     /**
@@ -105,7 +106,7 @@ class SugarWidgetSubPanelTopChangeStateFranEvenButton extends SugarWidgetSubPane
     */
     protected function getTitle()
     {
-       return translate('LBL_CHANGE_STATE_BUTTON_TITLE');
+       return translate('LBL_CHANGE_FORMATOPART_BUTTON_TITLE');
     }
 
     /**

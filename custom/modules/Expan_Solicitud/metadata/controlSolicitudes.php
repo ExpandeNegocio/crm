@@ -100,7 +100,7 @@
                 $ratingAnt=$rowSol['rating'];
             }
         
-            if ($ratingAct!='' && $ratingAct!=$ratingAnt){
+            if ($ratingAnt!='' && $ratingAct!='' && $ratingAct!=$ratingAnt){
                 echo 'true';
             }else{
                 echo 'false';

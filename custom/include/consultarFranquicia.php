@@ -13,6 +13,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $nomSector=$_POST["nomSector"];
     $idFranquicias=$_POST["franquicias"];
     $evento=$_POST["evento"];
+    $formato=$_POST["formato"];
     $estado=$_POST["estado"];
     $tipo=$_POST["tipo"];
     
@@ -86,6 +87,19 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                       
             break;
             
+        case 'FranEventoFormato':
+        
+            $listaFranquicias=str_replace("!","','",$idFranquicias);
+            
+            $query = "UPDATE expan_franquicia_expan_evento_c set formato_participacion='".$formato."' ";
+            $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
+            $query=$query."AND deleted=0 AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
+            
+            $result = $db -> query($query);
+                 
+            echo 'Ok';
+        
+            break;
             
         case 'FranqModeloNegocio':
             

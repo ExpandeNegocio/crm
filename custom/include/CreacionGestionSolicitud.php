@@ -345,7 +345,7 @@ class AccionesGuardadoGestionSol {
                         $bean -> chk_envio_precontrato=true;
                                         
                         if ($bean -> f_envio_precontrato == null){
-                            $bean -> f_envio_precontrato = TimeDate::getInstance()->nowDb();
+                            $bean -> f_envio_precontrato = $fechaHoy->format('d/m/Y H:i');
                         }
                         $bean -> preparaCorreo("C3");
                         $bean -> crearTarea("DOCUPerPre");
@@ -519,6 +519,14 @@ class AccionesGuardadoGestionSol {
                         $salida = $bean -> preparaCorreo("C1.4");
                     }
                 }
+                    
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && 
+                    $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_ZONA_NO_INTERES &&
+                    $bean -> estado_sol!=$estadoAnt) {
+                    if ($solicitud != null) {
+                        $salida = $bean -> preparaCorreo("C1.2");
+                    }
+                }    
                 
                 //si ha pasado a descartado con motivo, monta franquicia, se debe crear el franquiciado si es que no existía
                 if($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_DESCARTADO && 

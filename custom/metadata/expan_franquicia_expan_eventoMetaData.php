@@ -60,6 +60,14 @@ $dictionary["expan_franquicia_expan_evento"] = array (
       'len' => '2',
       'default' => '',
     ),
+    6=>
+     array (
+      'name' => 'formato_participacion',
+      'type' => 'varchar',
+      'options' => 'lst_formato_participa_Evento',      
+      'len' => '2',
+      'default' => '',
+    ),
   ),
   'indices' => 
   array (

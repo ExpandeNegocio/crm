@@ -1034,8 +1034,7 @@ class Call extends SugarBean {
     
         // Si pasamos a un estado cerrado con exito guardamos la hora
         if ($newStatus == 'Held' && $prevStatus != $newStatus) {
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Cambia la hora');
-            //$this -> date_start = TimeDate::getInstance()->nowDb();
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de llamada]Cambia la hora');           
             
             //Añadimos las observaciones y los checks de las llamadas
             if ($gestion!=null){                                                     

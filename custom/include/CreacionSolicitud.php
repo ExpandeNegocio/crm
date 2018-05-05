@@ -247,8 +247,8 @@ class AccionesGuardado {
             
             $solAnt->expan_evento_id_c=$solicitud->expan_evento_id_c;
             
-            if (strrpos($solAnt->franquicias_secundarias, "^".$gestion->franquicia."^") === false) {    
-                $solAnt->franquicias_secundarias=$solAnt->franquicias_secundarias."^".$gestion->franquicia."^";
+            if (strrpos($solAnt->franquicias_secundarias, "^".$current_user->franquicia."^") === false) {    
+                $solAnt->franquicias_secundarias=$solAnt->franquicias_secundarias.",^".$current_user->franquicia."^";
             }
             
             //tenemos que recoger los valores que esten vacíos antes y recoger el nuevo valor
@@ -258,8 +258,8 @@ class AccionesGuardado {
             
             $solAnt->perfil_profesional=$solAnt->perfil_profesional.$solicitud->perfil_profesional;
             $solAnt->assigned_user_id=$solAnt->created_by;
-            $solAnt->ignore_update_c=true;
             
+            $solAnt->ignore_update_c=true;            
             $solAnt->save();
             
             $solicitud->removeSol();

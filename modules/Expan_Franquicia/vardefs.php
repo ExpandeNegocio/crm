@@ -3358,6 +3358,28 @@ $dictionary['Expan_Franquicia'] = array(
  'importable' => 'false',
  ),
  
+  'sol_rating_topo' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_topo',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_TOPO',
+ 'importable' => 'false',
+ ),
+ 
+  'sol_rating_no_rating' =>
+ array(
+ 'massupdate' => false,
+ 'name' => 'sol_rating_no_rating',
+ 'type' => 'int',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'LBL_SOL_RATING_NO_RATING',
+ 'importable' => 'false',
+ ),
+ 
  'config_correo' => 
   array (
     'required' => false,

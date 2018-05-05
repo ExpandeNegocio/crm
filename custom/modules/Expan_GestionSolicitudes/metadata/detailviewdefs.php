@@ -44,52 +44,52 @@ array (
           ),
          3=> 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C1\',\'{$fields.id.value}\');" value="Reenviar C1">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo1" id="reenInfo1" class=""
+                    onClick="reenvioInfoDetalle(\'C1\',\'{$fields.id.value}\');" value="Reenviar C1">{/if}',
           ),
           4=> 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C2\',\'{$fields.id.value}\');" value="Reenviar C2">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo2" id="reenInfo2" class=""
+                    onClick="reenvioInfoDetalle(\'C2\',\'{$fields.id.value}\');" value="Reenviar C2">{/if}',
           ),
           5 => 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C3\',\'{$fields.id.value}\');" value="Reenviar C3">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo3" id="reenInfo3" class=""
+                    onClick="reenvioInfoDetalle(\'C3\',\'{$fields.id.value}\');" value="Reenviar C3">{/if}',
           ),
           6 => 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C4\',\'{$fields.id.value}\');" value="Reenviar C4">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo4" id="reenInfo4" class=""
+                    onClick="reenvioInfoDetalle(\'C4\',\'{$fields.id.value}\');" value="Reenviar C4">{/if}',
           ),
            7 => 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C1.1\',\'{$fields.id.value}\');" value="Reenviar C1.1">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo11" id="reenInfo11" class=""
+                    onClick="reenvioInfoDetalle(\'C1.1\',\'{$fields.id.value}\');" value="Reenviar C1.1">{/if}',
           ),
           8 => 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C1.2\',\'{$fields.id.value}\');" value="Reenviar C1.2">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo12" id="reenInfo12" class=""
+                    onClick="reenvioInfoDetalle(\'C1.2\',\'{$fields.id.value}\');" value="Reenviar C1.2">{/if}',
           ),
           9 => 
            array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C1.3\',\'{$fields.id.value}\');" value="Reenviar C1.3">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo13" id="reenInfo13" class=""
+                    onClick="reenvioInfoDetalle(\'C1.3\',\'{$fields.id.value}\');" value="Reenviar C1.3">{/if}',
           ),
           10 => 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
-                    onClick="reenvioInfo(\'C1.4\',\'{$fields.id.value}\');" value="Reenviar C1.4">{/if}',
+            'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo14" id="reenInfo14" class=""
+                    onClick="reenvioInfoDetalle(\'C1.4\',\'{$fields.id.value}\');" value="Reenviar C1.4">{/if}',
           ),
           11 =>
           array(
-             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
-                onClick="reenvioInfo(\'C1.5\',\'{$fields.id.value}\');" value="Reenviar C1.5">{/if}',
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="reenInfo15" id="reenInfo15" class=""
+                onClick="reenvioInfoDetalle(\'C1.5\',\'{$fields.id.value}\');" value="Reenviar C1.5">{/if}',
           ),
           12 =>
           array(
-             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
+             'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" 
                 onClick="envioCorreoInterlocutor(\'{$fields.id.value}\');" value="Correo interlocutor">{/if}',
           ), 
         ),

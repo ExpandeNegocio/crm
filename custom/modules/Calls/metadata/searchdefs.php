@@ -124,6 +124,16 @@ array (
         'default' => true,
         'name' => 'origen',
       ),
+      
+      'description' => 
+      array (
+        'type' => 'varchar',
+        'label' => 'LBL_DESCRIPTION',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'description',
+      ),
+      
     ),
   ),
   'templateMeta' => 

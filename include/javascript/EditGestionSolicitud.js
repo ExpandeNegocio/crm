@@ -675,7 +675,7 @@ function mostrarSuborigen(){
 }
  
 
-function reenvioInfo(tipoEnvio, id) {
+function reenvioInfoEdicion(tipoEnvio, id) {
 
 	if (confirm("¿Esta seguro de que desea reenviar la documentacion " + tipoEnvio + " para la Gestion actual?")) {
 
@@ -688,12 +688,29 @@ function reenvioInfo(tipoEnvio, id) {
 		$.ajax({
 			type : "POST",
 			url : url,
-			data : "id=" + id + "&tipoEnvio=" + tipoEnvio,
+			data : "id=" + id + "&tipoEnvio=" + tipoEnvio+"&estadoEdicion=Detalle",
 			success : function(data) {
 				YAHOO.SUGAR.MessageBox.hide();
 				if ( data.indexOf('Ok')!=-1) {
-					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio);
-					location.reload(true);
+					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio);								
+					switch(tipoEnvio) {
+					    case 'C1':
+					    	$('#chk_envio_documentacion').attr('checked', true);
+					        activarFecha("#chk_envio_documentacion", "#envio_documentacion");
+					        break;
+					    case 'C2':
+					        $('#chk_informacion_adicional').attr('checked', true);
+					        activarFecha("#chk_informacion_adicional", "#f_informacion_adicional");
+					        break;
+					    case 'C3':
+					        $('#chk_envio_precontrato').attr('checked', true);
+					        activarFecha("#chk_envio_precontrato", "#f_envio_precontrato");
+					        break;
+					    case 'C4':
+					        $('#chk_envio_contrato').attr('checked', true);
+					        activarFecha("#chk_envio_contrato", "#f_envio_contrato");
+					        break;
+					}
 				} else {
 					alert('No se ha podido reenviar la información - \\n' + data);
 				}
@@ -711,6 +728,44 @@ function reenvioInfo(tipoEnvio, id) {
 	}
 
 }
+
+function reenvioInfoDetalle(tipoEnvio, id) {
+
+	if (confirm("¿Esta seguro de que desea reenviar la documentacion " + tipoEnvio + " para la Gestion actual?")) {
+
+		var config = { };
+		config.title = "Enviando Correo";
+		config.msg = "Espere por favor... ";
+		YAHOO.SUGAR.MessageBox.show(config);
+
+		url = 'index.php?entryPoint=reenvioDoc&id=' + id + '&tipoEnvio=' + tipoEnvio;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "id=" + id + "&tipoEnvio=" + tipoEnvio+"&estadoEdicion=Detalle",
+			success : function(data) {
+				YAHOO.SUGAR.MessageBox.hide();
+				if ( data.indexOf('Ok')!=-1) {
+					alert('Se ha reenviado la documentacion de tipo ' + tipoEnvio);
+					location.reload(true);					
+				} else {
+					alert('No se ha podido reenviar la información - \\n' + data);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido enviar la documentación - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
+
+}
+
+
 
 function envioCorreoInterlocutor(id) {
 
@@ -973,10 +1028,16 @@ function abrirSolicitudLlamadas(gestion, solicitud) {
 
 function validarEdicion(idGestion){
 	
+	
+	if (validarMotivoDescarte()==false){
+		return false;
+	}else{
+		return check_form("EditView");
+	}
+	
 	if (//validarEstadoNoAt()==false ||
 		//validarEstadoCurso()==false ||
-		validarRating(idGestion)==false ||
-		validarMotivoDescarte()==false ||
+		validarRating(idGestion)==false ||		
 		validarMotivoParada()==false ||
 		validarMotivoPositivo()==false ||
 		validarModeloDeNegocio()==false){
@@ -1060,7 +1121,7 @@ function validarEstadoCurso(){
 	
 }
 
-function validarMotivoDescarte(){	
+function validarMotivoDescarte(){		
 		
 	if (($("#estado_sol option:selected").val()==4) && 
 		$("#motivo_descarte option:selected").val()==""){	
@@ -1086,6 +1147,10 @@ function validarMotivoDescarte(){
 	    $("#motivo_descarte option:selected").val()==14))
 	{
 		alert ("Si el candidato ha montado otro negocio, indícalo en la gestión");
+	}
+	
+	if ($("#estado_sol option:selected").val()==4) {
+		return true;
 	}
 	
 }

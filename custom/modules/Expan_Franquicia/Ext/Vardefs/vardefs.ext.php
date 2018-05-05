@@ -79,7 +79,36 @@ $dictionary['Expan_Franquicia']['fields']['tipo_participacion'] =
  'options' => 'lst_tipo_participa_Evento',
  'studio' => 'false',
  'source' => 'non-db',
- 'vname' => 'Tipo Parcticipa',
+ 'vname' => 'Tipo Participa',
+ 'importable' => 'false',
+ );
+ 
+$dictionary['Expan_Franquicia']['fields']['e_formato_participacion'] =
+ array (
+ 'name' => 'e_formato_participacion',
+ 'rname' => 'id',
+ 'relationship_fields'=>array('id' => 'franquicia_id', 'formato_participacion' => 'formato_participacion'),
+ 'vname' => 'LBL_CONT_ACCEPT_CANCELLED',
+ 'type' => 'relate',
+ 'link' => 'expan_franquicia_expan_evento',
+ 'link_type' => 'relationship_info',
+ 'join_link_name' => 'expan_franquicia_expan_evento',
+ 'source' => 'non-db',
+ 'importable' => 'false',
+ 'duplicate_merge'=> 'disabled',
+ 'studio' => false,
+ 'join_primary' => false,
+ );
+
+$dictionary['Expan_Franquicia']['fields']['formato_participacion'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'formato_participacion',
+ 'type' => 'enum',
+ 'options' => 'lst_formato_participa_Evento',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'Formato Participa',
  'importable' => 'false',
  );
  

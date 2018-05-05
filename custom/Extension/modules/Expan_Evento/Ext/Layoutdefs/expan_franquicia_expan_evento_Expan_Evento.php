@@ -30,6 +30,31 @@ $layout_defs["Expan_Evento"]["subpanel_setup"]['expan_franquicia_expan_evento'] 
       'widget_class' => 'SubPanelTopChangeStateFranEvenButton',
       'estado' => '3',
     ),
+    4 => 
+    array (
+      'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+      'formato' => 'SI',
+    ),
+    5 => 
+    array (
+      'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+      'formato' => 'CO',
+    ),
+    6 => 
+    array (
+      'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+      'formato' => 'SC',
+    ),
+    7 => 
+    array (
+      'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+      'formato' => 'MI',
+    ),
+    8 => 
+    array (
+      'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+      'formato' => 'MC',
+    ),
   ),
   
   'list_fields' => array(
@@ -47,7 +72,13 @@ $layout_defs["Expan_Evento"]["subpanel_setup"]['expan_franquicia_expan_evento'] 
             'vname' => 'Participacion',
             'sortable' => false,            
             'width' => '25%',
-        ),     
+        ), 
+        
+        'formato_participacion'=> array(
+            'vname' => 'formato_participacion',
+            'sortable' => false,            
+            'width' => '25%',
+        ),       
         
         'edit_button'=>array(
             'vname' => 'LBL_EDIT_BUTTON',
@@ -63,6 +94,11 @@ $layout_defs["Expan_Evento"]["subpanel_setup"]['expan_franquicia_expan_evento'] 
         ),
         
          'e_participacion' =>
+         array (
+            'usage' => 'query_only',
+         ),
+         
+         'e_formato_participacion' =>
          array (
             'usage' => 'query_only',
          ),

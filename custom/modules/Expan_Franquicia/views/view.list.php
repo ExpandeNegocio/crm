@@ -39,6 +39,15 @@ class Expan_FranquiciaViewList extends ViewList {
             echo $this->lv->display(); 
         } 
      } 
+
+    function display() {
+        $this->lv->export = false;
+        $this->lv->mergeduplicates=false;
+        parent::Display();
+        echo '<script type="text/javascript"  src="include/javascript/EditGestionSolicitud.js"></script>';
+        echo '<script type="text/javascript"> ModPaginaLista();</script>';
+    }
+
 } 
 
 ?>
