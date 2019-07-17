@@ -155,8 +155,10 @@ class CalendarActivity {
 	 * @param boolean $show_completed use to allow filtering completed events 
 	 * @return array
 	 */
- 	function get_activities($user_id, $show_tasks, $view_start_time, $view_end_time, $view, $show_calls = true, $show_completed = true)
+ 	function get_activities($user_id, $show_tasks, $view_start_time, $view_end_time, $view, $show_calls = true, $show_completed = true,$show_only_franq =false)
  	{
+ 	    $GLOBALS['log'] -> info('[CRM] Consulta ICAL-Entra-'.$show_only_franq);
+        
 		global $current_user;
 		$act_list = array();
 		$seen_ids = array();
@@ -170,6 +172,13 @@ class CalendarActivity {
 		    $completedMeetings = " AND meetings.status = 'Planned' ";
 		    $completedTasks = " AND tasks.status != 'Completed' ";
 		}
+        
+        if ($show_only_franq)
+        {
+            $completedCalls = " AND calls.call_type like 'FRAN%' ";
+            $completedMeetings = " AND meeting_type like 'FRAN%' ";
+            $completedTasks = " AND task_type like 'FRAN%' ";
+        };               
 		
 		// get all upcoming meetings, tasks due, and calls for a user
 		if(ACLController::checkAccess('Meetings', 'list', $current_user->id == $user_id)) {
@@ -203,10 +212,13 @@ class CalendarActivity {
 				if($current_user->id  == $user_id) {
 					$call->disable_row_level_security = true;
 				}
-
+        
 				$where = CalendarActivity::get_occurs_within_where_clause($call->table_name, $call->rel_users_table, $view_start_time, $view_end_time, 'date_start', $view);
 				$where .= $completedCalls;
 				$focus_calls_list = build_related_list_by_user_id($call, $user_id, $where);
+                
+                
+                $GLOBALS['log'] -> info('[CRM] Consulta ICAL-' . $where);
 
 				foreach($focus_calls_list as $call) {
 					if(isset($seen_ids[$call->id])) {
@@ -230,6 +242,8 @@ class CalendarActivity {
 				$where = CalendarActivity::get_occurs_within_where_clause('tasks', '', $view_start_time, $view_end_time, 'date_due', $view);
 				$where .= " AND tasks.assigned_user_id='$user_id' ";
 				$where .= $completedTasks;
+                
+                $GLOBALS['log'] -> info('[CRM] Consulta ICAL-' . $where);
 
 				$focus_tasks_list = $task->get_full_list("", $where, true);
 

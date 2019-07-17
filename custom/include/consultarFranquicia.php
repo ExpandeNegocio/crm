@@ -2,7 +2,7 @@
 if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
     require_once ('data/SugarBean.php');
-    
+
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
     $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Inicio' );
 
@@ -16,110 +16,333 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $formato=$_POST["formato"];
     $estado=$_POST["estado"];
     $tipo=$_POST["tipo"];
-    
+    $valor=$_POST["valor"];
+        
+    $empresa_id=$_POST["empresa_id"];
+    $telefono_mistery=$_POST["telefono_mistery"];
+    $email_mistery=$_POST["email_mistery"];
+    $nom_mistery=$_POST["nom_mistery"];
+    $nom_entrevistado=$_POST["nom_entrevistado"];
+    $num_empleados=$_POST["num_empleados"];
+    $com_negativos=$_POST["com_negativos"];
+    $com_positivos=$_POST["com_positivos"];
+    $f_entrevista=$_POST["f_entrevista"];
+    $ubicacion=$_POST["ubicacion"];
+    $id=$_POST["id"];
+
     switch ($tipo) {
         case 'SectorFromFranq':
-            
-            $sectores=array();   
-            $nomFran=str_replace(",","','",$nomFran);         
+
+            $sectores=array();
+            $nomFran=str_replace(",","','",$nomFran);
             $query="SELECT s.d_subsector sub, s.c_sector FROM expan_franquicia f, expan_m_sectores s ";
             $query=$query."WHERE replace(f.sector,'^','')=s.c_id AND f.deleted=0 AND f.name in  ('".$nomFran."');";
-            
-            $result = $db -> query($query, true);       
+
+            $result = $db -> query($query, true);
             while ($row = $db -> fetchByAssoc($result)) {
                 if (!in_array($row['sub'],$sectores)){
                     $sectores[]=$row['sub'];
                 }
                 if (!in_array($row['c_sector'],$sectores)){
                     $sectores[]=$row['c_sector'];
-                }               
-            }              
+                }
+            }
             $salida= implode("|", $sectores);
-            
+
             echo $salida;
-            
+
             break;
-        
+
         case 'FranqFromSector':
-            
+
             $franquicias=array();
             $nomSector=str_replace(",","','",$nomSector);
-            
+
     /*        $query = "SELECT f.name fran FROM expan_franquicia f, expan_m_sectores s ";
             $query=$query."WHERE replace(f.sector, '^', '') = s.c_id AND f.deleted=0 AND s.c_sector in ('".$nomSector."')"; */
-            
+
             $query = "SELECT f.name fran FROM expan_franquicia f, expan_m_sectores s ";
             $query=$query."WHERE replace(f.sector, '^', '') = s.c_id AND f.tipo_cuenta in (1,2) AND f.deleted=0 AND s.c_sector in ('".$nomSector."')";
-            
-            $result = $db -> query($query, true);       
+
+            $result = $db -> query($query, true);
             while ($row = $db -> fetchByAssoc($result)) {
                $franquicias[]=$row['fran'];
-            }              
+            }
             $salida= implode("|", $franquicias);
-            
+
             echo $salida;
-                        
-            break;             
-            
+
+            break;
+
         case 'FranqEstadoEvento':
-            
+
             //si el estado es a facturar o incluido, cambiarel origen etc
-                        
+
             $listaFranquicias=str_replace("!","','",$idFranquicias);
-            
+
             $query = "UPDATE expan_franquicia_expan_evento_c set participacion='".$estado."' ";
             $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
             $query=$query."AND deleted=0 AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
-            
+
             $result = $db -> query($query);
-            
+
             if($estado=='1'||$estado=='2'){ //se pasa a facturar o incluido, hay que cambiar las gestiones asociadas
-            
-                $query="update expan_gestionsolicitudes g join (select g.id from expan_gestionsolicitudes g, expan_franquicia f where "; 
+
+                $query="update expan_gestionsolicitudes g join (select g.id from expan_gestionsolicitudes g, expan_franquicia f where ";
                 $query=$query. " (g.evento_bk is not null and g.evento_bk<>'') and g.franquicia=f.id and g.franquicia in ('".$listaFranquicias."') ";
                 $query=$query. " and g.evento_bk='".$evento."' ";
-                $query=$query. " and g.deleted=0 and f.deleted=0) b on g.id=b.id set g.tipo_origen=3, g.expan_evento_id_c=g.evento_bk, g.evento_bk = null;";
-                
+                $query=$query. " and g.deleted=0 and f.deleted=0) b on g.id=b.id set g.tipo_origen=3, g.subor_expande=null, g.expan_evento_id_c=g.evento_bk, g.evento_bk = null;";
+
+                $GLOBALS['log'] -> info('[ExpandeNegocio][FranqEstadoEvento] cONSULTA Paso a 1-2 -'.$query);
+
                 $result = $db -> query($query);
             }
             
+            if ($estado=='3'){
+                    
+                $query = "UPDATE ";
+                $query=$query." expan_gestionsolicitudes g ";
+                $query=$query." JOIN (SELECT ";
+                $query=$query."        g.id ";
+                $query=$query."       FROM ";
+                $query=$query."        expan_gestionsolicitudes g, ";
+                $query=$query."        expan_franquicia f ";
+                $query=$query."       WHERE ";
+                $query=$query."        g.franquicia = f.id AND ";
+                $query=$query."        g.franquicia IN ('".$listaFranquicias."') AND ";
+                $query=$query."        g.expan_evento_id_c = '".$evento."' AND ";
+                $query=$query."        g.deleted = 0 AND ";
+                $query=$query."        f.deleted = 0) b ";
+                $query=$query."   ON g.id = b.id ";
+                $query=$query."SET ";
+                $query=$query." g.tipo_origen       = 1, ";
+                $query=$query." g.subor_expande = 7, ";
+                $query=$query." g.expan_evento_id_c = NULL, ";
+                $query=$query." g.evento_bk         = expan_evento_id_c; ";
+                
+                $GLOBALS['log'] -> info('[ExpandeNegocio][FranqEstadoEvento] cONSULTA Paso a 3 -'.$query);
+                        
+                $result = $db -> query($query);
+            }
+
             echo 'Ok';
-                      
+
             break;
-            
+
         case 'FranEventoFormato':
-        
+
             $listaFranquicias=str_replace("!","','",$idFranquicias);
-            
+
             $query = "UPDATE expan_franquicia_expan_evento_c set formato_participacion='".$formato."' ";
             $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
             $query=$query."AND deleted=0 AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
-            
+
             $result = $db -> query($query);
-                 
+
             echo 'Ok';
-        
+
             break;
-            
+
         case 'FranqModeloNegocio':
-            
+
             $query = "select modNeg1,modNeg2,modNeg3,modNeg4 from expan_franquicia where id='".$idFran."'";
- 
+
             $result = $db -> query($query, true);
-            
+
             while ($row = $db -> fetchByAssoc($result)) {
                $ModelosNeg=$row['modNeg1']."|";
                $ModelosNeg=$ModelosNeg.$row['modNeg2']."|";
                $ModelosNeg=$ModelosNeg.$row['modNeg3']."|";
                $ModelosNeg=$ModelosNeg.$row['modNeg4'];
-            } 
-            
+            }
+
             echo $ModelosNeg;
+
+            break;
+
+        case 'GastoAsociado':
+
+            $listaFranquicias=str_replace("!","','",$idFranquicias);
+
+            $query = "UPDATE expan_franquicia_expan_evento_c set gastos_asociados=".$valor." ";
+            $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
+            $query=$query."AND deleted=0 AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
+
+            $result = $db -> query($query);
+
+            echo 'Ok';
+
+            break;
+
+        case 'CosteAccion':
+
+            $listaFranquicias=str_replace("!","','",$idFranquicias);
+
+            $query = "UPDATE expan_franquicia_expan_evento_c set coste_accion=".$valor." ";
+            $query=$query."WHERE expan_franquicia_expan_eventoexpan_evento_idb='".$evento."'";
+            $query=$query."AND deleted=0 AND expan_franquicia_expan_eventoexpan_franquicia_ida in ('". $listaFranquicias."')";
+
+            $result = $db -> query($query);
+
+            echo 'Ok';
+
+            break;
             
-            break;            
+        case 'ListaDocumentos':                       
+      
+           /* 
+            $query = "select Franquicia, ModeloNegocio, ";
+            $query=$query."  max(case when type= 'C1' THEN doc ELSE '' END) as C1, ";
+            $query=$query."  max(case when type= 'C2' THEN doc ELSE '' END) as C2, ";
+            $query=$query."  max(case when type= 'C3' THEN doc ELSE '' END) as C3, ";
+            $query=$query."  max(case when type= 'C4' THEN doc ELSE '' END) as C4 ";
+            $query=$query."from ( ";
+            $query=$query."    select f.name as Franquicia, ";
+            $query=$query."     case WHEN modeloneg=1 THEN f.modNeg1   ";
+            $query=$query."          WHEN modeloneg=2 THEN f.modNeg2 ";
+            $query=$query."          WHEN modeloneg=3 THEN f.modNeg3 ";
+            $query=$query."          WHEN modeloneg=4 THEN f.modNeg4 ELSE  '' END as ModeloNegocio,  ";
+            $query=$query."     type, ";
+            $query=$query."     GROUP_CONCAT(DISTINCT n.filename ";
+            $query=$query."                          ORDER BY filename DESC SEPARATOR '<BR>') doc ";
+            $query=$query."    from expan_franquicia f, email_templates t, notes n ";
+            $query=$query."    where f.id=t.franquicia ";
+            $query=$query."    AND n.parent_id=t.id ";
+            $query=$query."    AND f.tipo_cuenta  in (1,2) ";
+            $query=$query."    AND f.deleted=0 and t.deleted=0 and n.deleted=0 ";
+            $query=$query."    AND type in ('C1','C2','C3','C4') ";
+            $query=$query."    group by franquicia,modeloneg, t.type  ";
+            $query=$query."    order by franquicia,modeloneg) a ";
+            $query=$query."group by franquicia, modelonegocio; "; */
+            
+            $query = "select Franquicia, ModeloNegocio,    ";
+            $query=$query."  chk_c1 as ValidadoC1,   ";
+            $query=$query."  max(case when type= 'C1' THEN doc ELSE '' END) as C1,   ";
+            $query=$query."  chk_c2 as ValidadoC2,   ";
+            $query=$query."  max(case when type= 'C2' THEN doc ELSE '' END) as C2,    ";
+            $query=$query."  chk_c3 as ValidadoC3,   ";
+            $query=$query."  max(case when type= 'C3' THEN doc ELSE '' END) as C3,   ";
+            $query=$query."  chk_c4 as ValidadoC4,   ";
+            $query=$query."  max(case when type= 'C4' THEN doc ELSE '' END) as C4    ";
+            $query=$query."from (    ";
+            $query=$query."    select f.name as Franquicia,    ";
+            $query=$query."      chk_c1,chk_c2,chk_c3,chk_c4,   ";
+            $query=$query."     case WHEN modeloneg=1 THEN coalesce(f.modNeg1,null,'')    ";
+            $query=$query."          WHEN modeloneg=2 THEN coalesce(f.modNeg2,null,'')    ";
+            $query=$query."          WHEN modeloneg=3 THEN coalesce(f.modNeg3,null,'')    ";
+            $query=$query."          WHEN modeloneg=4 THEN coalesce(f.modNeg4,null,'') ELSE  '' END as ModeloNegocio,     ";
+            $query=$query."     type,    ";
+            $query=$query."     GROUP_CONCAT(DISTINCT concat('<a style=\"color:###;\" href=\"index.php?entryPoint=download&type=Notes&id=',n.id,'\">',n.filename,' (',DATE_FORMAT(n.date_entered,'%d/%m/%Y'),')-',u.first_name,'</a>')   ";
+            $query=$query."                          ORDER BY filename DESC SEPARATOR '<BR>') doc    ";
+            $query=$query."    from expan_franquicia f, email_templates t, notes n, users u, documents_notes dn ";
+            $query=$query."    where f.id=t.franquicia    ";
+            $query=$query."    AND dn.note_id= n.id ";
+            $query=$query."    AND n.parent_id=t.id    ";
+            $query=$query."    AND f.tipo_cuenta  in (1,2)    ";
+            $query=$query."    AND f.deleted=0 and t.deleted=0 and n.deleted=0    ";
+            $query=$query."    AND type in ('C1','C2','C3','C4')    ";
+            $query=$query."    AND n.modified_user_id=u.id ";
+            $query=$query."    group by franquicia,modeloneg, t.type     ";
+            $query=$query."    order by franquicia,modeloneg) a    ";
+            $query=$query."group by franquicia, modelonegocio; ";
+
+                                                            
+           $result = $db -> query($query, true);
+            
+            $return = array();
+
+            while ($row = $db -> fetchByAssoc($result)) {                   
+                $return[] = $row;
+            }     
+                                  
+            echo json_encode($return,JSON_FORCE_OBJECT);
+                    
+            break; 
+            
+            
+        case 'ValidacionPlantillas': 
         
-        default:
+        
+            $query = "SELECT   Franquicia, ModeloNegocio,  ";
+            $query=$query."max(CASE WHEN type = 'C1' THEN doc ELSE '' END) AS C1,  ";
+            $query=$query."max(CASE WHEN type = 'C2' THEN doc ELSE '' END) AS C2,  ";
+            $query=$query."max(CASE WHEN type = 'C3' THEN doc ELSE '' END) AS C3,  ";
+            $query=$query."max(CASE WHEN type = 'C4' THEN doc ELSE '' END) AS C4 ";
+            $query=$query."FROM     (SELECT   f.name AS Franquicia, chk_c1, chk_c2, chk_c3, chk_c4,  ";
+            $query=$query."CASE WHEN modeloneg = 1 THEN f.modNeg1 WHEN modeloneg = 2 THEN f.modNeg2 WHEN modeloneg = 3 THEN f.modNeg3 WHEN modeloneg = 4 THEN f.modNeg4 ELSE '' END AS ModeloNegocio,  ";
+            $query=$query."type, GROUP_CONCAT(DISTINCT trim(concat( coalesce(u.first_name,\"\") , \" \" , coalesce(u.last_name,\"\") ,  ' - ',coalesce(t.f_revision,\"\"))  ) SEPARATOR '<BR>') doc ";
+            $query=$query."          FROM     expan_franquicia f, email_templates t, users u ";
+            $query=$query."          WHERE    f.id = t.franquicia  AND f.tipo_cuenta IN (1, 2) AND f.deleted = 0 ";
+            $query=$query."                   AND t.deleted = 0  AND type IN ('C1', 'C2', 'C3', 'C4') AND t.revisedby_user_id = u.id ";
+            $query=$query."          GROUP BY franquicia, modeloneg, t.type ";
+            $query=$query."          ORDER BY franquicia, modeloneg) a ";
+            $query=$query."GROUP BY franquicia, modelonegocio ";
+                    
+            $result = $db -> query($query, true);
             
+            $return = array();
+
+            while ($row = $db -> fetchByAssoc($result)) {                   
+                $return[] = $row;
+            }     
+                                  
+            echo json_encode($return,JSON_FORCE_OBJECT);
+                    
+            break;                 
+            
+		case 'user':
+            
+            global $current_user;     
+            echo $current_user->id;
+            
+            break; 
+            
+        case 'addMisteryFranq': 
+        
+            $query = "insert into expan_franquicia_mistery (id,id_franquiciado,empresa_id,telefono_mistery,email_mistery,nom_mistery,nom_entrevistado,num_empleados,com_negativos,com_positivos,f_entrevista,ubicacion)";
+            $query=$query."values (UUID(),UUID(),'".$empresa_id."','".$telefono_mistery."','".$email_mistery."','".$nom_mistery."','".$nom_entrevistado."','".$num_empleados."','".$com_negativos;
+            $query=$query."','".$com_positivos."',STR_TO_DATE('".$f_entrevista."','%d/%m/%Y'),'".$ubicacion."');";
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
+        
+            $result = $db -> query($query); 
+           
+            echo "Ok";
+        
+            break;  
+            
+        case 'BajaMisteryFranq':
+        
+            $query = "delete from expan_franquicia_mistery where id='".$id."'";
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta baja mistery-'.$query);
+        
+            $result = $db -> query($query);         
+        
+            echo "Ok";
+        
+            break;    
+            
+        case 'ConsultaMistery':
+        
+            $query = "select * from expan_franquicia_mistery where id='".$id."'";
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta mistery-'.$query);
+           
+            $return = array();
+            
+            $result = $db -> query($query, true);
+
+            while ($row = $db -> fetchByAssoc($result)) {                   
+                $return[] = $row;
+            }     
+                                  
+            echo json_encode($return,JSON_FORCE_OBJECT);
+                    
+            break; 
+            
+        default:
+
             break;
     }
 

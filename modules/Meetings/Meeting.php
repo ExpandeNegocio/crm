@@ -319,7 +319,37 @@ class Meeting extends SugarBean {
 		return $query;
 	}
 
+	function fill_in_additional_list_fields(){
+	       
+	    parent::fill_in_additional_list_fields();
+	    
+	        
+	    $db = DBManagerFactory::getInstance();
+	            
+        $query = "SELECT s.provincia_apertura_1 prov ";
+        $query=$query."FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, meetings m ";
+        $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND m. ";
+        $query=$query."       parent_id = g.id AND m.id = '".$this->id."'; ";
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Meeting Class][fill_provincia_solicitud]Consulta-' . $query);
+	             
+        $result = $db -> query($query, true);
 
+        while ($row = $db -> fetchByAssoc($result)) {
+            $this->provincia_solicitud = $row["prov"];
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Meeting Class][fill_provincia_solicitud]Provincia_solicitud-' . $this->provincia_solicitud);
+        } 
+                   
+        $meeting= new Meeting();
+        $meeting->retrieve($this->id);
+        if (substr($GLOBALS['app_list_strings']['tipo_reunion_list'][$meeting -> meeting_type],0,6)=="[FRAN]"){
+            $this->fran_type="FRAN";
+        }else{
+            $this->fran_type="GESTION";
+        }
+        
+   	   	  
+	}
 
 	function fill_in_additional_detail_fields() {
 		global $locale;
@@ -341,8 +371,6 @@ class Meeting extends SugarBean {
 				$GLOBALS['log']->debug("Call($this->id): contact_id = $this->contact_id");
 			}
 		}
-
-
 
 		$this->created_by_name = get_assigned_user_name($this->created_by);
 		$this->modified_by_name = get_assigned_user_name($this->modified_user_id);
@@ -469,7 +497,7 @@ class Meeting extends SugarBean {
 		} elseif (is_null($this->parent_type)) {
 			$this->parent_type = $app_list_strings['record_type_default_key'];
 		}
-
+ 
 	}
 
 	function get_list_view_data() {
@@ -884,6 +912,267 @@ class Meeting extends SugarBean {
     }
     
 
+    public function addToERM(){
+        
+        $userERM=$this->getERMUser();
+        
+        $fechaIni=substr($this->date_start,0,10);
+        $fechaFin=substr($this->date_end,0,10);
+        $horasEst=1;
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Usuario-' . $userERM);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Subject-' . $this->name);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Description-' . $this->description);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Fecha Inicio Proc-' . $fechaIni. 'Fecha Inicio Raw-'.$this->date_start);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Fecha Fin-' .$fechaFin. 'Fecha Fin Raw-'.$this->date_end );
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Tiempo Estimado-' .$horasEst. 'Tiempo Est Raw-'.$this->estimateTimeByType());
+        
+        $strInsertIssue="<issue>";
+        $strInsertIssue=$strInsertIssue."<project_id>".$this->getERMProy()."</project_id>";
+        $strInsertIssue=$strInsertIssue."<tracker_id>5</tracker_id>";
+        $strInsertIssue=$strInsertIssue."<status_id>11</status_id>";
+        $strInsertIssue=$strInsertIssue."<priority_id>44</priority_id>";
+        $strInsertIssue=$strInsertIssue."<assigned_to_id>".$userERM."</assigned_to_id>";
+        $strInsertIssue=$strInsertIssue."<subject>".$this->name."</subject>";
+        $strInsertIssue=$strInsertIssue."<start_date>".$fechaIni."</start_date>";
+        $strInsertIssue=$strInsertIssue."<due_date>".$fechaFin."</due_date>";
+        $strInsertIssue=$strInsertIssue."<description>".$this->description."</description>";
+        $strInsertIssue=$strInsertIssue."<estimated_hours>".$horasEst."</estimated_hours>";
+        $strInsertIssue=$strInsertIssue."<custom_fields type='array'>";
+        $strInsertIssue=$strInsertIssue."<custom_field id='51'>";
+        $strInsertIssue=$strInsertIssue."<value>Tareas Aperturas</value>";
+        $strInsertIssue=$strInsertIssue."</custom_field>";
+        $strInsertIssue=$strInsertIssue."</custom_fields>";
+        $strInsertIssue=$strInsertIssue."</issue>";
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Creacion Tarea-' . $strInsertIssue);
+        
+        $ch = curl_init();
+        
+        curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues.xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/xml"));
+        
+        curl_setopt($ch, CURLOPT_POST, TRUE);        
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $strInsertIssue);
+                        
+        $response = curl_exec($ch);
+                
+        $ermid=$this->getIdFromResponse($response);
+        
+        $this->ERM_tasks_id=$ermid;
+        $this-> ignore_update_c=true;
+        $this->save();
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Respuesta-').$response;
+        
+        curl_close($ch);
+        
+    }
+
+    public function updateFromERM(){
+                                          
+        $userERM=$this->getERMUser();
+                
+        $fechaIni=substr($this->date_start,0,10);
+        $fechaFin=substr($this->date_end,0,10);
+        $horasEst=1;
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]ID-' . $this->ERM_tasks_id);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Usuario-' . $userERM);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Subject-' . $this->name);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Description-' . $this->description);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Fecha Inicio Proc-' . $fechaIni. 'Fecha Inicio Raw-'.$this->date_start);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Fecha Fin-' .$fechaFin. 'Fecha Fin Raw-'.$this->date_end );
+        
+        $strInsertIssue="<issue>";
+        $strInsertIssue=$strInsertIssue."<project_id>".$this->getERMProy()."</project_id>";        
+        $strInsertIssue=$strInsertIssue."<status_id>".$this->getStatusERM()."</status_id>";       
+        $strInsertIssue=$strInsertIssue."<assigned_to_id>".$userERM."</assigned_to_id>";
+        $strInsertIssue=$strInsertIssue."<subject>".$this->name."</subject>";
+        $strInsertIssue=$strInsertIssue."<start_date>".$fechaIni."</start_date>";
+        $strInsertIssue=$strInsertIssue."<due_date>".$fechaFin."</due_date>";
+        $strInsertIssue=$strInsertIssue."<description>".$this->description."</description>";
+        $strInsertIssue=$strInsertIssue."<estimated_hours>".$horasEst."</estimated_hours>";
+        $strInsertIssue=$strInsertIssue."</issue>";     
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Peticion-'.$strInsertIssue);                                       
+        
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues/".$this->ERM_tasks_id.".xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+        
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$strInsertIssue);        
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/xml"));
+        
+        $response = curl_exec($ch);
+        curl_close($ch);
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Mod Tarea ERM]Respuesta-'.$response);
+        
+    } 
+
+
+public function getERMUser(){
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Entra-');
+        
+        $userId=$this->assigned_user_id;
+        $userERM='';
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]UsuarioId-' . $userId);
+        
+        //Si está asignada a un usuario
+        if ($userId!=null){
+            $user=new User();
+            $user -> retrieve($userId);
+            $userERM = $user -> user_ERM;           
+        }
+        
+        return $userERM;
+    }
+    
+    public function getCRMUser($ERMUser){
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Entra-');
+        
+        $userCRM='';
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select * from users where deleted=0 and user_ERM='" . $ERMUser . "'";
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][getCRMUser]Consulta usuario - ' .$query);
+
+        $result = $db -> query($query, true);       
+
+        while ($row = $db -> fetchByAssoc($result)) {                        
+            $userCRM=$row['id'];            
+        }        
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][getCRMUser]UsuarioCRM - ' .$userCRM);    
+        
+        return $userCRM;
+    }
+    
+
+    public function getStatusERM(){
+        
+        $output='';
+        
+        switch ($this->status) {
+            case 'Not Started':
+                $output='11';
+                break;
+            
+            case 'In Progress':
+                $output='2';
+                break;
+                
+            case 'Pending Input':
+                $output='13';
+                break;
+                
+            case 'Completed':
+                $output='6';
+                break;
+                
+            case 'Canceled':
+                $output='7';
+                break;                
+            
+            case 'Deferred':
+                $output='12';
+                break;                
+            
+            case 'Paused':
+                $output='13';
+                break;       
+        }
+        
+        return $output;
+        
+    }
+    
+    public function setStatustoERM($status){
+        
+        $output='';
+        
+        switch ($status) {
+            case '11':
+                $output='Not Started';
+                break;
+            
+            case '2':
+                $output='In Progress';
+                break;
+                
+            case '13':
+                $output='Pending Input';
+                break;
+                
+            case '6':
+                $output='Completed';
+                break;
+                
+            case '7':
+                $output='Canceled';
+                break;                
+            
+            case '12':
+                $output='Deferred';
+                break; 
+                
+            case '8':
+                $output='In Progress';
+                break;
+           
+            case '9':
+                $output='In Progress';
+                break; 
+                 
+            case '10':
+               $output='In Progress';
+                break;        
+            
+            case 'Paused':
+                $output='13';
+                break;       
+        }
+        
+        return $output;
+        
+    }
+    
+    public function getERMProy(){
+       $ERMProy='';
+       
+       $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]Busqueda proyecto ERM');
+       
+       //Se puede buscar por nombre
+       
+       //https://expandenegocio.easyredmine.com/projects.xml?name=01-Pre-Consultor%C3%ADa%20-%20Adagio&limit=1000&key=6db1cb022e190c19bc44dc5f94af4596ee5422d6
+       
+       $franquiciaId='';
+       if ($this->parent_type=='Expan_Franquicia'){
+           $franquiciaId=$this->parent_id;
+       }else if ($this->parent_type=='Expan_GestionSolicitudes'){
+           $gestion=new Expan_GestionSolicitudes();
+           $gestion->retrieve($this->parent_id);
+           $franquiciaId=$gestion->franquicia;                     
+       }
+       
+       $franquicia= new  Expan_Franquicia();
+       $franquicia->retrieve($franquiciaId);
+       
+       $ERMProy=$franquicia->proy_ERM;
+       
+       $GLOBALS['log'] -> info('[ExpandeNegocio][Crear Tarea ERM]ProyectoERM-' . $ERMProy);
+       
+       return  $ERMProy;
+    }
 
 } // end class def
 

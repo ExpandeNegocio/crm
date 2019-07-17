@@ -84,18 +84,6 @@ $searchFields['Expan_Solicitud'] = array (
     'vname' => 'LBL_ANY_EMAIL',
   ),
   
-  
-  'email' => 
-  array (
-    'query_type' => 'default',
-    'operator' => 'subquery',
-    'subquery' => 'SELECT eabr.bean_id FROM email_addr_bean_rel eabr JOIN email_addresses ea ON (ea.id = eabr.email_address_id) WHERE eabr.deleted=0 AND ea.email_address LIKE',
-    'db_field' => 
-    array (
-      0 => 'id',
-    ),
-    'vname' => 'LBL_ANY_EMAIL',
-  ),
   'address_street' => 
   array (
     'query_type' => 'default',

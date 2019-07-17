@@ -1,6 +1,14 @@
 /**
  * @author Penlopjo
  */
+
+
+function openParent(idParent, parentModule){
+	if (parentModule=!"undefined"){
+		window.open('index.php?module='+parentModule+'&action=EditView&record=' + idParent);
+	}
+}
+
 function retrasarLlamada(tipoRetraso, id) {
 
 	/*if (confirm("¿Esta seguro de que desea retrasar " + tipoRetraso + " la llamada actual?")) {
@@ -218,7 +226,9 @@ function crearTarea(gestionid) {
 
 }
 
-function DesactivarGS() {
+function DesactivarGS(idParent, parentModule) {
+	
+	openParent (idParent,parentModule);
 	
 	$("#status").on('change',cambioEstado);
 	
@@ -250,6 +260,10 @@ function DesactivarGS() {
 	if ($("#telefono").val()==''){
 		getTelefono();
 	}	
+	
+	if ($("#disp_contacto").val()==''){
+		getDisponibilidad();
+	}
 	
 	//Ocultamos el elemento de gestionsolicitudes	
 	$("#expan_gestionsolicitudes_calls_1_name").parent().hide();
@@ -285,19 +299,14 @@ function modificarComboTipoLlamada(){
 	
 	if(url.indexOf("Expan_Franquicia")>-1){//si es de modulo franquicias
 		indice="FRAN";
-	}else{// gestiones
-		indice="GEST";
+		for(i=1; i<nombres.length; i++){
 		
-	}
-	
-	for(i=1; i<nombres.length; i++){
-		
-		var cadena=nombres[i].trim();
-		if(cadena.indexOf(indice)){//si es de franquicia se borra
-			$("#call_type option[label='["+cadena+"']").remove();
+			var cadena=nombres[i].trim();
+			if(cadena.indexOf(indice)){//si es de franquicia se borra
+				$("#call_type option[label='["+cadena+"']").remove();
+			}		
 		}
-		
-	}
+	}	
 }
 
 function ModPaginaLista() {
@@ -317,7 +326,12 @@ function deactivateModifiedName(){
 	$("#modified_by_name").prop('disabled', true);
 }
 
-function Avisar() {
+function Avisar(repetidas) {
+
+	if ($('#status option:selected').val() == "Not Held" && repetidas>=3) {
+		alert("Enviar WhatsApp para contactar con el candidato");
+	}
+	
 	if ($('#status option:selected').val() == "Held") {
 		alert("Revisar checks y volcar informe de estado en observaciones del informe (Si es necesario)");
 	}
@@ -338,6 +352,23 @@ function getTelefono() {
 			if(titulo.indexOf("Skype")!=-1&&$("#telefono").val()==''){
 			$('#telefono').val("0");
 	}				
+		},
+		error : function(jqXHR, textStatus, errorThrown) {					
+		}
+	});
+}
+
+function getDisponibilidad() {
+	
+	var idGestion=$("#form_SubpanelQuickCreate_Calls > table > tbody > tr > td.buttons > input[type='hidden']:nth-child(7)").val();
+
+	url='index.php?entryPoint=recogeTelefonoGestion&idGest=' + idGestion+'&tipo=disp_contacto';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "idGest=" + idGestion + '&tipo=numTelefono',
+		success : function(data) {						
+			$("#disp_contacto").val(data);				
 		},
 		error : function(jqXHR, textStatus, errorThrown) {					
 		}
@@ -425,6 +456,8 @@ function addTime(hours){
 
 
 function calcularMinutosFormat(Minutos){
+	
+	var minFor='00';
 	
 	if (Minutos >= 0 && Minutos <= 7) {
 		minFor='00';

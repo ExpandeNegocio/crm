@@ -16,15 +16,23 @@ $layout_defs["Expan_GestionSolicitudes"]["subpanel_setup"]['activities'] = array
     ),
     1 => 
     array (
-      'widget_class' => 'SubPanelTopScheduleMeetingButton',
+      'widget_class' => 'SubPanelTopCreateFranqTaskButton',
     ),
     2 => 
     array (
       'widget_class' => 'SubPanelTopScheduleCallButton',
-    ),
+    ),    
     3 => 
     array (
+      'widget_class' => 'SubPanelTopScheduleFranqCallButton',
+    ),
+    4 => 
+    array (
       'widget_class' => 'SubPanelTopComposeEmailButton',
+    ),
+    5 => 
+    array (
+      'widget_class' => 'SubPanelTopScheduleMeetingButton',
     ),
   ),
   'collection_list' => 

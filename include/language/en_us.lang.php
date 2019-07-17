@@ -300,9 +300,6 @@ $app_list_strings = array (
         '' => '',
         'Mr.' => 'Mr.',
         'Ms.' => 'Ms.',
-        'Mrs.' => 'Mrs.',
-        'Dr.' => 'Dr.',
-        'Prof.' => 'Prof.',
       ),
   //time is in seconds; the greater the time the longer it takes;
   'reminder_max_time' => 90000,

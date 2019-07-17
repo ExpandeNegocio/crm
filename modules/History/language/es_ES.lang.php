@@ -123,4 +123,5 @@ $mod_strings = array (
   'NTC_NONE' => 'Ninguno',
   'LBL_ACCEPT_THIS' => '¿Aceptar?',
   'LBL_DEFAULT_SUBPANEL_TITLE' => 'Historial',
+  'LBL_LIST_TYPE'=> 'Tipo',
 );

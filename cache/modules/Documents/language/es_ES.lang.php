@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-30 17:48:10
+// created: 2019-07-16 17:41:41
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha Creación',
@@ -135,5 +135,7 @@ $mod_strings = array (
   'LBL_PRODUCTS_SUBPANEL_TITLE' => 'Productos',
   'LBL_TIPO_ENVIO' => 'Tipo de envío',
   'LBL_FRANQUICIA' => 'Franquicia',
+  'LBL_REVISION_DATE' => 'Fecha de Revisión',
+  'LBL_VALID' => 'Documento válido',
   'LBL_EXPAN_FRANQUICIA_DOCUMENTS_1_FROM_EXPAN_FRANQUICIA_TITLE' => 'Franquicia',
 );

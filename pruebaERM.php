@@ -1,19 +1,30 @@
 <?php
-$ch = curl_init();
+    $ch = curl_init();
+    
+    curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues.xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6&status_id=6&easy_query_q=Tareas%20Cuentas%20Extra&limit=1000&sort=updated_on:desc");
+    
+    //curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues.xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6&status_id=6&easy_query_q=Tareas%20Cuentas%20Extra&limit=1000&sort=updated_on:desc");
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      "Content-Type: application/xml"
+    ));
 
-//https://expandenegocio.easyredmine.com/issues.xml?sort=&offset=0&limit=1000&status_id=6&key=6db1cb022e190c19bc44dc5f94af4596ee5422d6
-
-curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues.xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
-
-
-
-//curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/projects.xml?limit=2000&key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch, CURLOPT_HEADER, FALSE);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-  "Content-Type: application/xml"
-));
-
+    echo "Entra<BR>";
+    
+    $response = curl_exec($ch);    
+    
+    echo $response;
+     
+    curl_close($ch);
+    
+    $tareas = new SimpleXMLElement($response);
+    
+    foreach ($tareas as $tarea) {
+        echo $tarea->id." - ".$tarea->subject."-".$tarea->updated_on."<BR>";
+    }
+    
 
 /*$response = curl_exec($ch);
 
@@ -32,7 +43,7 @@ foreach ($proyectos as $proyecto) {
 //echo $response;
 
 */
-
+/*
 curl_setopt($ch, CURLOPT_POST, TRUE);
 
 curl_setopt($ch, CURLOPT_POSTFIELDS, "<issue>    
@@ -101,7 +112,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, "<issue>
     </custom_fields>
 </project>');*/
 
-
+/*
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   "Content-Type: application/xml"
@@ -117,5 +128,5 @@ $issueresp = new SimpleXMLElement($response);
 
 echo "<br>";
 
-echo $issueresp->id;
+echo $issueresp->id;*/
 ?>

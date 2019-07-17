@@ -7,7 +7,7 @@ array (
     'width' => '20%',
     'label' => 'LBL_NAME',
     'link' => true,
-    'orderBy' => 'last_name',
+    'orderBy' => 'first_name',
     'default' => true,
     'related_fields' => 
     array (

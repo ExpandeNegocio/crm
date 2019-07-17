@@ -144,7 +144,14 @@ class Task extends SugarBean {
 
 	function fill_in_additional_list_fields()
 	{
-
+        parent::fill_in_additional_list_fields();
+        $task= new Task();
+        $task->retrieve($this->id);
+        if (substr($GLOBALS['app_list_strings']['tipo_tarea_list'][$task -> task_type],0,6)=="[FRAN]"){
+            $this->fran_type="FRAN";
+        }else{
+            $this->fran_type="GESTION";
+        }
 	}
 
 	function fill_in_additional_detail_fields()
@@ -399,6 +406,8 @@ class Task extends SugarBean {
     public function addToERM(){
         
         $userERM=$this->getERMUser();
+        $user= new user();
+        $user->retrieve($this->assigned_user_id);
         
         $fechaIni=substr($this->date_start,0,10);
         $fechaFin=substr($this->date_due,0,10);
@@ -414,7 +423,11 @@ class Task extends SugarBean {
         $strInsertIssue="<issue>";
         $strInsertIssue=$strInsertIssue."<project_id>".$this->getERMProy()."</project_id>";
         $strInsertIssue=$strInsertIssue."<tracker_id>5</tracker_id>";
-        $strInsertIssue=$strInsertIssue."<status_id>11</status_id>";
+        if ($user->franquicia==null){
+            $strInsertIssue=$strInsertIssue."<status_id>11</status_id>";
+        }else{
+            $strInsertIssue=$strInsertIssue."<status_id>13</status_id>";
+        }               
         $strInsertIssue=$strInsertIssue."<priority_id>44</priority_id>";
         $strInsertIssue=$strInsertIssue."<assigned_to_id>".$userERM."</assigned_to_id>";
         $strInsertIssue=$strInsertIssue."<subject>".$this->name."</subject>";
@@ -590,6 +603,11 @@ class Task extends SugarBean {
         $output='';
         
         switch ($status) {
+            
+            case '1':
+                $output='Not Started';
+                break;
+                
             case '11':
                 $output='Not Started';
                 break;
@@ -625,10 +643,7 @@ class Task extends SugarBean {
             case '10':
                $output='In Progress';
                 break;        
-            
-            case 'Paused':
-                $output='13';
-                break;       
+                 
         }
         
         return $output;

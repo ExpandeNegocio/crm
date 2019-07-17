@@ -217,12 +217,19 @@ class iCal extends vCal {
             $taskAsVTODO = false;
         }
 
+         if (!empty($_REQUEST['only_fran']) && $_REQUEST['only_fran'] == "true")
+        {
+            $only_fran = true;
+        }
+
         $acts_arr = CalendarActivity::get_activities($user_bean->id,
             !$taskAsVTODO,
             $start_date_time,
             $end_date_time,
             'month',
-            !$hide_calls);
+            !$hide_calls,
+            true,
+            $only_fran);                  
 
 
         // loop thru each activity, get start/end time in UTC, and return iCal strings

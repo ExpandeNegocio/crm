@@ -121,6 +121,14 @@ class LayoutManager
 				'form_value'=>'LNK_NEW_CALL',
 				'ACL'=>'edit',
 			),
+			'SugarWidgetSubPanelTopScheduleFranqCallButton' => array(
+                'widget_class'=>'SugarWidgetSubPanelTopScheduleFranqCallButton',
+                'module'=>'Calls',
+                'title'=>'LBL_NEW_BUTTON_TITLE',
+                'access_key'=>'LBL_NEW_BUTTON_KEY',
+                'form_value'=>'LNK_NEW_FRANQ_CALL',
+                'ACL'=>'edit',
+            ),
 			'SugarWidgetSubPanelTopCreateTaskButton' => array(
 				'widget_class'=>'SugarWidgetSubPanelTopCreateTaskButton',
 				'module'=>'Tasks',
@@ -129,6 +137,14 @@ class LayoutManager
 				'form_value'=>'LNK_NEW_TASK',
 				'ACL'=>'edit',
 			),
+	        'SugarWidgetSubPanelTopCreateFranqTaskButton' => array(
+                'widget_class'=>'SugarWidgetSubPanelTopCreateFranqTaskButton',
+                'module'=>'Tasks',
+                'title'=>'LBL_NEW_BUTTON_TITLE',
+                'access_key'=>'LBL_NEW_BUTTON_KEY',
+                'form_value'=>'LNK_NEW_FRANQ_TASK',
+                'ACL'=>'edit',
+            ),
 			'SugarWidgetSubPanelTopCreateNoteButton' => array(
 				'widget_class'=>'SugarWidgetSubPanelTopCreateNoteButton',
 				'module'=>'Notes',

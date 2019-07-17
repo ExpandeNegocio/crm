@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2017-01-07 19:16:51
+<?php /* Smarty version 2.6.11, created on 2019-07-16 17:41:53
          compiled from themes/Sugar5/tpls/_companyLogo.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'sugar_translate', 'themes/Sugar5/tpls/_companyLogo.tpl', 41, false),)), $this); ?>

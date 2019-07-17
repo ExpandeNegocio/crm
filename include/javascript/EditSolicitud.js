@@ -1,28 +1,133 @@
-
+ 
+	const USUARIO_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
+		
+	$("#tab2").hide();
 	
-		$("#pais_c").change(function(){
-			var valor=$(this).val();
-			if(valor!="SPAIN"){//es master
-				$("#master").prop("checked", true);
-				$("#master").prop('disabled', false);
-				$("#provincia_residencia_label").parent().show();
-			}else{
-				$("#master").prop("checked", false);
-				$("#provincia_residencia_label").parent().hide();
-			}
-			
-		}),
+	$("#historial_empresa").height(155);
+	$("#empresa_temp").val($("#empresa").val());	
+	
+	$("#enviar_servicios_asesora").change(function(){
+		var valor=$(this).val();
 		
-		$("#provincia_residencia").change(function(){
-			var valor=$(this).val();
-			if(valor!="100"){
-				$("#localidad_residencia").prop("disabled", true);
-			}else{
-				$("#localidad_residencia").prop("disabled", false);
-			}
-			
-		}),
+		if (valor==true){
+			$("#Asesoramiento").prop("checked", true);
+		}					
 		
+	});
+
+	$("#historial_empresa").change(function(){		
+    	actualizarHist();		
+	}),
+	
+	$("#empresa").keyup(function(e){				
+		$("#empresa_temp").val($("#empresa").val());	
+	});
+	
+	$("#empresa_temp").keyup(function(e){		
+    	$("#empresa").val($("#empresa_temp").val());
+	});
+	
+	
+	$("#pais_c").change(function(){
+		var valor=$(this).val();
+		if(valor!="SPAIN"){//es master
+			$("#master").prop("checked", true);
+			$("#master").prop('disabled', false);
+			$("#provincia_residencia_label").parent().show();
+		}else{
+			$("#master").prop("checked", false);
+			$("#provincia_residencia_label").parent().hide();
+		}
+		
+	});
+	
+	$("#chk_entrevista_previa_EN").bind("click", function() {
+		activarFecha("#chk_entrevista_previa_EN", "#f_entrevista_previa_EN");				
+	});
+	
+	$("#chk_entrevista_previa_cliente").bind("click", function() {
+		activarFecha("#chk_entrevista_previa_cliente", "#f_entrevista_previa_cliente");				
+	});
+	
+	$('#tags_empresa').keyup(function(e) {
+      if (e.keyCode == '13') {
+         e.preventDefault();
+         //your code here
+       }
+    });
+            
+    $('#franquicia_historicos').keyup(function(e) {
+      if (e.keyCode == '13') {
+         e.preventDefault();
+         //your code here
+       }
+    });
+            
+	$('#busca_motivosTagCheck').keyup(function(e) {
+      if (e.keyCode == '13') {
+         e.preventDefault();
+         //your code here
+       }
+    });
+                        
+	$('#busca_habilidadTagCheck').keyup(function(e) {
+      if (e.keyCode == '13') {
+         e.preventDefault();
+         //your code here
+       }
+    }); 
+    
+    $('#busca_sector').keyup(function(e) {  
+    	var str= $('#busca_sector').val();
+    	limpiarSector();
+    	if (str.length>2){
+    		buscarSector(str);
+    	}	
+    	
+	      if (e.keyCode == '13') {
+	         e.preventDefault();
+	        
+	       }
+     });       
+     
+    $("#dispone_local").change(function(){
+		var valor=$(this).val();
+		if(valor!="" && valor!=0){
+			$("#tab2").show();
+		}else{
+			$("#tab2").hide();
+		}
+		
+	});            
+            
+	$('#busca_sitPerTagCheck').keyup(function(e) {
+              if (e.keyCode == '13') {
+                 e.preventDefault();
+                 //your code here
+               }
+            });                                     
+	
+	$("#provincia_residencia").change(function(){
+		var valor=$(this).val();
+		if(valor!="100"){
+			$("#localidad_residencia").prop("disabled", true);
+		}else{
+			$("#localidad_residencia").prop("disabled", false);
+		}
+		
+	});
+	
+	$("#localidad_apertura_1").focus(function(){
+		loadMunicipios(1);
+	});		
+	
+	$("#localidad_apertura_2").focus(function(){
+		loadMunicipios(2);
+	});	
+	
+	$("#localidad_apertura_3").focus(function(){
+		loadMunicipios(3);
+	});
 
 	$("#franquicias_contactadas").keyup(function(){//cuando pulses la caja de texto
 		var campoF=$(this).val();	//valor del texto
@@ -39,7 +144,7 @@
 		
 		if(franqSE.length>2){//solo se hace la llamada si se han escrito 3 caracteres
 			
-			var dataFran="franquicias="+franqSE;
+			var dataFran="franquicias="+franqSE+"&tipo=franquicia";
 		
 		//llamada ajax
 		$.ajax({
@@ -67,6 +172,93 @@
 		}
 	});
 	
+	$("#franquicia_historicos").keyup(function(){//cuando pulses la caja de texto
+		var campoF=$(this).val();	//valor del texto
+		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
+		var franqHastaUlComa="";
+		for(var i=0;i<arrayFran.length-1;i++){//construir las franquicias anteriores
+			franqHastaUlComa=franqHastaUlComa+arrayFran[i]+",";
+		}
+		var longi=arrayFran.length;//cuantas hay
+		
+		var franq=arrayFran[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+		var franqSE=franq.trim(); //eliminar espacios en blanco
+		
+		
+		if(franqSE.length>2){//solo se hace la llamada si se han escrito 3 caracteres
+			
+			var dataFran="franquicias="+franqSE+"&tipo=franquicia";
+		
+		//llamada ajax
+		$.ajax({
+			type:"POST",
+			url:"index.php?entryPoint=RecogeSugerencias",
+			data: dataFran,
+			success: function(data){
+				$('#sugerencias_hist').fadeIn(500).html(data);
+				$('.sug').live('click', function(){//cuando se pulsa una
+					var fran=$(this).text();
+					if(longi==1){//borrar todo y sustituir por el nuevo valor
+						$('#franquicia_historicos').val(fran);//editar input
+					}else{//poner las anteriores, y después la nueva
+						$('#franquicia_historicos').val(franqHastaUlComa+fran);
+					}
+					
+					$('#sugerencias_hist').fadeOut(500);//quitar las sugerencias
+				});
+				
+				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias si se pulsa en otro sitio
+					$('#sugerencias_hist').fadeOut(500);
+				});
+			}
+		});
+		}
+	});
+	
+	$("#sectores_historicos").keyup(function(){//cuando pulses la caja de texto
+		var campoF=$(this).val();	//valor del texto
+		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
+		var franqHastaUlComa="";
+		for(var i=0;i<arrayFran.length-1;i++){//construir las franquicias anteriores
+			franqHastaUlComa=franqHastaUlComa+arrayFran[i]+",";
+		}
+		var longi=arrayFran.length;//cuantas hay
+		
+		var franq=arrayFran[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+		var franqSE=franq.trim(); //eliminar espacios en blanco
+		
+		
+		if(franqSE.length>2){//solo se hace la llamada si se han escrito 3 caracteres
+			
+			var dataSector="sectores="+franqSE+"&tipo=sector";
+		
+		//llamada ajax
+		$.ajax({
+			type:"POST",
+			url:"index.php?entryPoint=RecogeSugerencias",
+			data: dataSector,
+			success: function(data){
+				$('#sugerencia_sectores_hist').fadeIn(500).html(data);
+				$('.sug_sec').live('click', function(){//cuando se pulsa una
+					var fran=$(this).text();
+					if(longi==1){//borrar todo y sustituir por el nuevo valor
+						$('#sectores_historicos').val(fran);//editar input
+					}else{//poner las anteriores, y después la nueva
+						$('#sectores_historicos').val(franqHastaUlComa+fran);
+					}
+					
+					$('#sugerencia_sectores_hist').fadeOut(500);//quitar las sugerencias
+				});
+				
+				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias si se pulsa en otro sitio
+					$('#sugerencia_sectores_hist').fadeOut(500);
+				});
+			}
+		});
+		}
+	});
+	
+	
 	$("#otras_franquicias").keyup(function(){//cuando pulses la caja de texto
 		var campoF=$(this).val();	//valor del texto
 		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
@@ -82,7 +274,7 @@
 		
 		if(franqSE.length>1){//solo se hace la llamada si se han escrito 3 caracteres
 			
-			var dataFran="franquicias="+franqSE;
+			var dataFran="franquicias="+franqSE+"&tipo=franquicia";
 		
 		//llamada ajax
 		$.ajax({
@@ -167,9 +359,16 @@
 			
 			var id= $(this).attr('id').toLowerCase();
 			
-			if (id.indexOf(text.toLowerCase())!=-1){
-				$(this).parent().css( "background-color", "lightgreen");				
-			}										
+			var words = text.split(' '); 
+			
+			for (i=0;i<words.length;i++){
+				var word=words[i];
+				if (word.length>2){
+					if (id.indexOf(word.toLowerCase())!=-1){
+						$(this).parent().css( "background-color", "lightgreen");				
+					}
+				}
+			}											
 		}			
 		);
 			
@@ -189,9 +388,16 @@
 			
 			var id= $(this).attr('id').toLowerCase();
 			
-			if (id.indexOf(text.toLowerCase())!=-1){
-				$(this).parent().css( "background-color", "lightgreen");				
-			}										
+			var words = text.split(' '); 
+			
+			for (i=0;i<words.length;i++){
+				var word=words[i];
+				if (word.length>2){
+					if (id.indexOf(word.toLowerCase())!=-1){
+						$(this).parent().css( "background-color", "lightgreen");				
+					}
+				}
+			}											
 		}			
 		);
 			
@@ -211,14 +417,29 @@
 			
 			var id= $(this).attr('id').toLowerCase();
 			
-			if (id.indexOf(text.toLowerCase())!=-1){
-				$(this).parent().css( "background-color", "lightgreen");				
-			}										
+			var words = text.split(' '); 
+			
+			for (i=0;i<words.length;i++){
+				var word=words[i];
+				if (word.length>2){
+					if (id.indexOf(word.toLowerCase())!=-1){
+						$(this).parent().css( "background-color", "lightgreen");				
+					}
+				}
+			}											
 		}			
 		);
 			
 	});
 	
+
+	$("#chk_entrevista_previa_EN").bind("click", function() {
+		activarFecha("#chk_entrevista_previa_EN", "#f_entrevista_previa_EN");
+	});
+	
+	$("#chk_entrevista_previa_cliente").bind("click", function() {
+		activarFecha("#chk_entrevista_previa_cliente", "#f_entrevista_previa_cliente");
+	});
 	
 var refreshSn = function ()
 {
@@ -246,7 +467,7 @@ var refreshSn = function ()
 
 function inicio() {
 	//Ocultar los campos auxiliares	
-	ocultarCampoAux();
+	ocultarCampoAux();	
 
 	//Ponemos de solo lectura el check de candidatur caliente
 	document.getElementById("candidatura_caliente").disabled = true;
@@ -258,7 +479,10 @@ function inicio() {
 	cargarchecks("francheck", "franquicias_secundarias");
 	cargarchecks("habilidadTagCheck","habilidades");
 	cargarchecks("sitPerTagCheck","situacion_personal");
-	cargarchecks("motivosTagCheck","motivos_interes");
+	cargarchecks("motivosTagCheck","motivos_interes");	
+	
+	//Incidencia #5488 la hemos eliminado por e momento
+	//	ocultarCamposEdicion();
 	
 	pintaFranFromSector();
 
@@ -289,6 +513,8 @@ function inicio() {
 	marcaCampos();	//'<hr size="10" style="color: #0056b2;" width="200%" />'
 	cambioSeleccion();
 	
+	actualizarHist();
+	
 	cargaAccionesSol();
 	refreshSn();
 	
@@ -297,6 +523,81 @@ function inicio() {
 function cargaAccionesSol(){
 	var solId = $('[name="record"]').val();	
 	addPanelAccionesPorHacerSolicitud(solId);	
+}
+
+function getUsuario(){
+
+	url='index.php?entryPoint=herramientas';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=getUser",
+		success : function(data) {						
+			return data;				
+		},
+		error : function(jqXHR, textStatus, errorThrown) {					
+		}
+	});
+}
+
+function loadMunicipios(numComboProv){
+	
+	var provincia;
+	var $selectProv;
+	var $selectMun;
+	
+	var valSelect;
+	
+	if (numComboProv==1) {
+		$selectProv =$("#provincia_apertura_1");
+		$selectMun = $("#localidad_apertura_1");
+	}else if (numComboProv==2){
+		$selectProv =$("#provincia_apertura_2");
+		$selectMun = $("#localidad_apertura_2");
+	}else if (numComboProv==3){
+		$selectProv =$("#provincia_apertura_3");
+		$selectMun = $("#localidad_apertura_3");
+	}	
+	
+	provincia=$selectProv.val();	
+	valSelect=$selectMun.val();
+	
+	url = 'index.php?entryPoint=consultarSolicitud';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeMunicipios&provincia=" + provincia,
+		success : function(data) {								
+			
+			$selectMun.empty();
+			var parse = JSON.parse(data);				
+			var listitems = '<option value=""></option>';
+			
+			for(var i in parse) {
+				
+				 listitems += '<option value=' + parse[i].c_provmun + '>' + parse[i].d_municipio + '</option>';
+			}
+			
+			
+		/*	$.each(parse, function(key, value){
+			    listitems += '<option value=' + key + '>' + value + '</option>';
+			});*/
+			$selectMun.append(listitems);				
+			
+			if (numComboProv==1) {
+				$("#localidad_apertura_1 option[value="+ valSelect +"]").attr("selected",true);
+			}else if (numComboProv==2){
+				$("#localidad_apertura_2 option[value="+ valSelect +"]").attr("selected",true);
+			}else if (numComboProv==3){
+				$("#localidad_apertura_3 option[value="+ valSelect +"]").attr("selected",true);
+			}		
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar los documntos Entrantes- ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+	
 }
 
 function addPanelAccionesPorHacerSolicitud(solId){
@@ -372,11 +673,11 @@ function addPanelAccionesHistoricoSolicitud(solId){
 
 function addPanelDocumentosRecibidosSolicitud(solId){
 	
-	url = 'index.php?entryPoint=consultarSolicitud&tipo=RecogeDocumentosRecibidos&solId=' + solId;
+	url = 'index.php?entryPoint=consultarSolicitud&tipo=RecogeDocumentosRecibidosSolicitud&solId=' + solId;
 	$.ajax({
 		type : "POST",
 		url : url,
-		data : "tipo=RecogeDocumentosRecibidos&solId=" + solId,
+		data : "tipo=RecogeDocumentosRecibidosSolicitud&solId=" + solId,
 		success : function(data) {								
 			
 			var parse = JSON.parse(data);				
@@ -559,6 +860,10 @@ function generateTable(lista) {
 }
 
 function controlRating(solId){
+	
+	if (esCreacion()){
+		return;
+	}
 	
 	var rating=$('#rating').val();
 	
@@ -830,10 +1135,8 @@ function cargarchecks(clase, id) {
 					}
 				}
 			}
-		}		
-		
+		}			
 	}
-
 }
 
 function cambiocheck(clase, id,act) {
@@ -870,12 +1173,9 @@ function cambiocheck(clase, id,act) {
 		}		
 	}else if (clase=='francheck'){
 		getSectorFromFranq(listaSel.toString());
-			
-		//Miramos si el estamos ante una consulta
-		if ($("#btn_view_change_log")!=null){
-			if ($("#btn_view_change_log").is(":visible")){
-				alert ("Revisar el origen");
-			}		
+		
+		if (!esCreacion()){
+			alert ("Revisar el origen");
 		}
 	} 
 		
@@ -891,7 +1191,6 @@ function cambiocheck(clase, id,act) {
 			}
 		}
 	}
-
 }
 
 function ocultarCampoAux() {
@@ -918,6 +1217,12 @@ function ocultarCampoAux() {
 	
 	$("#habilidades_label").parent().hide();
 	$("#motivos_interes_label").parent().hide();
+	
+	if (getUsuario!=USUARIO_RUBEN){
+		$("#delegado_label").parent().hide();
+		
+		
+	}
 }
 
 function completoSector(nombreSector,desp,actualizo) {
@@ -933,6 +1238,37 @@ function completoSector(nombreSector,desp,actualizo) {
 	});
 
 	cambiocheck("Sectorcheck","sectores_de_interes",actualizo);
+}
+
+function ocultarCamposEdicion(){
+	
+	if (esCreacion()==false){
+		
+		var idSolicitud = $('[name="record"]').val();	
+		//alert(idSolicitud);
+	
+		url = "index.php?entryPoint=controlSolicitudes&valida=controlTiempo&solId=" + idSolicitud;
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "valida=controlTiempo&solId=" + idSolicitud,
+			success : function(data) {
+				if (data == 'true') {
+					$("#cuando_empezar").prop("disabled", true);
+					$("#cuando_empezar_trigger").hide();
+					$("#perfil_franquicia").prop("disabled", true);
+					$("#capital").prop("disabled", true);
+					$("#recursos_propios").prop("disabled", true);
+				}
+	
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('No se ha podido controlar la existencia de correo repetido - ' + textStatus + ' - ' + errorThrown);
+			}
+		});
+							
+	}
+		
 }
 
 function despliegoPliegoSector(nombreSector){
@@ -952,20 +1288,39 @@ function despliegoPliegoSector(nombreSector){
 	pintaFranFromSector();
 }
 
-function despliegoSector(nombreSector){	
-	
-	document.getElementById(nombreSector.split('_').join(' ')).checked=true;
+function activoDesSector(nombreSector){
 	
 	nombreSector=nombreSector.split(' ').join('_');
 	
-	
 	CamposImput = document.getElementsByName(nombreSector);
 
-	for (var i = 0; i < CamposImput.length; i++) {					
-		CamposImput[i].parentNode.style.display=null;		
+	for (var i = 0; i < CamposImput.length; i++) {			
+		CamposImput[i].checked = !CamposImput[i].checked ;
 	}
 	
 	pintaFranFromSector();
+	cambiocheck("Sectorcheck","sectores_de_interes",true);
+}
+
+
+
+function despliegoSector(nombreSector){	
+	
+	if (typeof nombreSector !== 'undefined'){
+		document.getElementById(nombreSector.split('_').join(' ')).checked=true;
+	
+		nombreSector=nombreSector.split(' ').join('_');
+		
+		
+		CamposImput = document.getElementsByName(nombreSector);
+	
+		for (var i = 0; i < CamposImput.length; i++) {					
+			CamposImput[i].parentNode.style.display=null;		
+		}
+		
+		pintaFranFromSector();
+	}
+
 }
 
 function pintaFranFromSector(){
@@ -1040,12 +1395,7 @@ function ControlUsuarioFran(franq) {
 		var campo = document.getElementById("save_and_continue");
 		if (campo==null){
 			$("#expan_evento_id_c option:eq(1)").prop("selected", "selected");			
-		}			 		
-		
-		var campo = document.getElementById("btn_view_change_log");
-		if (campo != null) {
-			campo.style.display = 'none';
-		}					
+		}			 							
 		
 		var campo = document.getElementById("subor_expande_label").parentNode;
 		if (campo != null) {
@@ -1080,12 +1430,7 @@ function ControlUsuarioFran(franq) {
 		var campo = document.getElementById('enviar_servicios_asesora_label');
 		if (campo != null) {
 			campo.style.display = 'none';
-		}
-		
-		var campo = document.getElementById("subor_medios_label").parentNode;
-		if (campo != null) {
-			campo.style.display = 'none';
-		}
+		}		
 
 		var campo = document.getElementById("oportunidad_inmediata_label");
 		if (campo != null) {
@@ -1172,7 +1517,44 @@ function ControlUsuarioFran(franq) {
 			campo.style.display = 'none';
 		}
 		
+		var campo = document.getElementById("crearFranquiciado");
+		if (campo != null) {
+			campo.style.display = 'none';
+		}	
 		
+		$("#rrss_label").hide();
+		$("#rrss").hide();			
+		$("#perfil_plurifranquiciado").hide();
+		$("#perfil_plurifranquiciado_label").hide();
+		$("#expan_evento_id_c").hide();
+		$("#expan_evento_id_c_label").hide();
+		
+		$("#franquicia_historicos").parent().hide();		
+		$("#inicio_franq_hst").parent().hide();
+		$("#fin_franq_hst").parent().hide();
+		$("#franquicia_satisfa").parent().hide();	
+		$("#chk_empresa_prov").parent().hide();
+		$("#chk_empresa_cli_potencial").parent().hide();
+		$("#chk_empresa_competencia").parent().hide();
+		$("#chk_empresa_alianza").parent().hide();				
+					
+		$("#chk_entrevista_previa_EN").parent().hide();
+		$("#chk_entrevista_previa_EN_label").hide();
+		
+		$("#f_entrevista_previa_EN").parent().parent().hide();
+		$("#f_entrevista_previa_EN_label").hide();
+					
+		$("#usuario_entrevista_previa_EN").parent().hide();
+		$("#usuario_entrevista_previa_EN_label").hide();		
+		
+		$("#abrirFranquiciado").hide();
+		$("#ampliarResumir").hide();				
+		
+		$("#historial_empresa").parent().hide();
+		$("#historial_empresa_label").hide();
+		
+		// Elimmnamos la opcion de capital sin entrevistar
+		$("#capital option[value='7']").remove();		
 	}
 
 }
@@ -1360,12 +1742,12 @@ function cambioSeleccion() {
 
 	varx = document.getElementById('tipo_origen');
 	for ( i = 0; opt = varx.options[i]; i++) {
-
 		if (opt.selected) {
 			mostrarSuborigenes(varx.options[i].value);
 		}
-
 	}
+		
+	marcaCampos();
 }
 
 function ocultarSuborigenes() {
@@ -1375,7 +1757,7 @@ function ocultarSuborigenes() {
 		campo.style.display = 'none';
 	}
 
-	var campo = document.getElementById("subor_expande");
+	var campo = document.getElementById("subor_expande").parentNode;
 	if (campo != null) {
 		campo.style.display = 'none';
 	}
@@ -1405,6 +1787,69 @@ function ocultarSuborigenes() {
 		campo.style.display = 'none';
 	}
 	
+}
+
+function ocultarHistoricos(){
+	$("#franquicia_historicos").parent().parent().hide();
+	$("#sectores_historicos").parent().parent().hide();
+	$("#empresa_temp").parent().parent().hide();
+	$("#inicio_franq_hst").parent().parent().hide();
+	$("#fin_franq_hst").parent().parent().hide();
+	$("#franquicia_satisfa").parent().parent().hide();	
+	$("#chk_empresa_provee").parent().parent().hide();
+	$("#chk_empresa_cli_potencial").parent().parent().hide();
+	$("#chk_empresa_competencia").parent().parent().hide();
+	$("#chk_empresa_alianza").parent().parent().hide();				
+}
+
+function mostrarHistoricosFraquicia(){
+	$("#franquicia_historicos").parent().parent().show();
+	$("#sectores_historicos").parent().parent().show();
+	$("#inicio_franq_hst").parent().parent().show();
+	$("#fin_franq_hst").parent().parent().show();
+	$("#franquicia_satisfa").parent().parent().show();					
+}
+
+function mostrarEsEmpresa(){
+	$("#empresa_temp").parent().parent().show();
+	$("#sectores_historicos").parent().parent().show();
+	$("#chk_empresa_provee").parent().parent().show();
+	$("#chk_empresa_cli_potencial").parent().parent().show();
+	$("#chk_empresa_competencia").parent().parent().show();
+	$("#chk_empresa_alianza").parent().parent().show();		
+}
+
+function mostrarSector(){
+	$("#sectores_historicos").parent().parent().show();
+}
+
+function mostrarHistoricosEmpresa(){	
+	$("#sectores_historicos").parent().parent().show();										
+}
+
+function actualizarHist(){
+	ocultarHistoricos();
+		
+	$("#historial_empresa").each(function(){			
+			
+		if ($(this).val().indexOf("EF")!=-1 || 
+			$(this).val().indexOf("EM")!=-1 ||
+			$(this).val().indexOf("FF")!=-1){
+			mostrarHistoricosFraquicia();
+		}
+		
+		if(	$(this).val().indexOf("EA")!=-1 ||
+			$(this).val().indexOf("NF")!=-1 ||
+			$(this).val().indexOf("EE")!=-1 ){
+			mostrarEsEmpresa();
+		}
+		
+		if(	$(this).val().indexOf("FA")!=-1 ||
+			$(this).val().indexOf("FE")!=-1 ){
+			mostrarSector();
+		}
+
+	});
 }
 
 function cambiarEstadoGestion(estado) {
@@ -1472,7 +1917,7 @@ function mostrarSuborigenes(i) {
 			campo.style.display = '';
 		}
 
-		var campo = document.getElementById("subor_expande");
+		var campo = document.getElementById("subor_expande").parentNode;
 		if (campo != null) {
 			campo.style.display = '';
 		}
@@ -1514,7 +1959,7 @@ function mostrarSuborigenes(i) {
 
 }
 
-function marcaCampos(){
+function marcaCampos(narcarEnt){
 	
 	$("#rating").css( "background-color", "	#FFFFCC" );
 	$("#observaciones_solicitud").css( "background-color", "	#FFFFCC" );
@@ -1522,14 +1967,39 @@ function marcaCampos(){
 	$("#perfil_plurifranquiciado").css( "background-color", "	#FFFFCC" );
 	$("#provincia_apertura_1").css( "background-color", "	#FFFFCC" );
 	$("#localidad_apertura_1").css( "background-color", "	#FFFFCC" );
-	
+		
+	$("#capital").css( "background-color", "	#FFFFCC" );	
+	$("#cuando_empezar").css( "background-color", "	#FFFFCC" );
+	$("#busca_sector").css( "background-color", "	#FFFFCC" );	
 	$("#perfil_franquicia").css( "background-color", "	#FFFFCC" );
 	$("#situacion_profesional").css( "background-color", "	#FFFFCC" );
-	$("#expan_evento_id_c").css( "background-color", "	#FFFFCC" );
+	$("#expan_evento_id_c").css( "background-color", "	#FFFFCC" );	
+	
+	var origenEvento=3;	
+		
+	if (origenSel(origenEvento)){
+		$("#f_entrevista_previa_cliente").css( "background-color", "	#FFFFCC" );
+		$("#f_entrevista_previa_EN").css( "background-color", "	#FFFFCC" );
+	}else{
+		$("#f_entrevista_previa_cliente").css( "background-color", "	#FFFFFF" );
+		$("#f_entrevista_previa_EN").css( "background-color", "	#FFFFFF" );
+	}
 	
 }
 
 var tmrReady = setInterval(isPageFullyLoaded, 100);
+
+function origenSel(tipoOrigen){
+	
+	varx = document.getElementById('tipo_origen');
+	for ( i = 0; opt = varx.options[i]; i++) {
+		if (opt.selected && tipoOrigen==opt.value) {
+			return true;
+		}
+	}
+	
+	return false;
+}
  
 function isPageFullyLoaded() {
      if (document.readyState == "loaded" || document.readyState == "complete") {
@@ -1551,7 +2021,7 @@ function submitDisabled(_form, currSubmit) {
                      els[i].disabled = true;
          }
          return mustSubmit;
-     }
+     };
 }
   
 function subclassForms() {
@@ -1565,7 +2035,7 @@ function pasoAFranquiciado(solicitud) {
 
 	var fran='';
 
-	if (confirm("¿Está seguro que desea crear un franquiciado?")) {
+	if (confirm("¿Está seguro que desea crear un franquiciado con los datos de esta solicitud?")) {
 
 		url = 'index.php?entryPoint=franquiciado&accion=1&id=' + solicitud;
 		$.ajax({
@@ -1607,10 +2077,236 @@ function pasoAFranquiciado(solicitud) {
 	
 	} else {
 		return false;
-	}
-	
-	
-	
+	}	
 
 }
 
+function mostrarCalendario(){
+	$("#calReunion").show();
+}
+
+function buscarSector(nombreSector){	
+	$(".Sectorcheck").each(function(){
+		str= $(this).attr('id');
+		console.log(str);
+		if (str.toUpperCase().lastIndexOf(nombreSector.toUpperCase())!=-1){
+			$(this).parent().css( "background-color", "orange");
+			despliegoSector($(this).attr('name'));
+		}
+    });	
+}
+
+function limpiarSector(){	
+	$(".Sectorcheck").each(function(){
+		$(this).parent().css( "background-color", "");
+    });	
+}
+
+function procesarReunion(solId){
+	if (confirm("¿Está seguro que desea marcar reunion para todas las gestiones de la solicitud?")) {
+					
+		var fecha= $("#calReunion").val();
+		
+		url = 'index.php?entryPoint=controlSolicitudes';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "valida=marcarReunion&solId="+solId+"&fecha="+fecha,
+			success : function(data) {
+				alert('Se han marcado las reuniones con éxito');				
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('No se ha podido marcar la reunion - ' + textStatus + ' - ' + errorThrown);
+			}
+		});
+		
+		$("#calReunion").hide();
+		
+	}	
+}
+
+function abrirFranquiciado(solId){
+	
+	url = 'index.php?entryPoint=franquiciado&accion=2&id=' + solId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "accion=abrir&id="+solId,
+		success : function(data) {
+			if ( data=='') {//No se ha creado el franquiciado
+				alert('No hay franquiciado asociado');
+			} else {
+				window.open ('index.php?module=Expan_Franquiciado&action=EditView&record='+data);
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido crear el franquiciado - ' + textStatus + ' - ' + errorThrown);
+
+		}
+	});		
+}
+
+function alternarVistaAmpli(){
+	
+	if ($("#ampliarResumir").val()=="Informacion Reducida"){
+		$("#ampliarResumir").val("Informacion Ampliada");
+		vistaMini();
+	}else{
+		$("#ampliarResumir").val("Informacion Reducida");
+		vistaMaxi();
+	}
+	
+}
+
+function vistaMini(){
+	
+	$("#empresa").parent().hide();
+	$("#empresa_label").hide();
+	
+	$("#skype").parent().parent().hide();
+	$("#phone_work").parent().parent().hide();
+	$("#linkedin").parent().parent().hide();
+	$("#no_correos_c").parent().parent().hide();
+	$("#do_not_call").parent().parent().hide();
+	
+	$("#no_newsletter").parent().parent().hide();
+	$("#disp_contacto").parent().parent().hide();
+	
+	$("#master").parent().parent().hide();	
+	$("#check_puertas_abiertas").parent().parent().hide();
+	
+	$("#fecha_primer_contacto").parent().hide();
+	$("#fecha_primer_contacto_label").hide();
+	$("#fecha_primer_contacto_trigger").hide();
+	
+	$("#primary_address_fieldset").hide();
+	$("#contacto_secundario").parent().parent().hide();
+	$("#phone_other").parent().parent().hide();
+	$("#oportunidad_inmediata").parent().parent().hide();
+	
+	$("#provincia_apertura_3").parent().parent().hide();
+	
+	$("#zona").parent().hide();
+	$("#zona_label").hide();
+	
+	$("#chk_entrevista_previa_cliente").parent().parent().hide();
+	$("#f_entrevista_previa_cliente").parent().parent().parent().hide();
+	$("#usuario_entrevista_previa_cliente").parent().parent().hide();
+	
+	$("#historial_empresa_multiselect").parent().hide();
+	$("#historial_empresa_label").hide();
+	
+	$("#rrss").parent().parent().hide();
+		
+	$("#capital_observaciones").parent().hide();
+	$("#capital_observaciones_label").hide();
+	
+	$("#recursos_propios").parent().parent().hide();
+	
+	$("#_label").hide();
+	
+	$("#direccion_local2").parent().parent().hide();
+	$("#ubicacion_local2").parent().parent().hide();
+	$("#descripcion_local2").parent().parent().hide();
+	
+	$("#direccion_local3").parent().parent().hide();
+	$("#ubicacion_local3").parent().parent().hide();
+	$("#descripcion_local3").parent().parent().hide();
+	
+	$("#direccion_local").parent().hide();
+	$("#direccion_local_label").hide();
+	
+	$("#ubicacion_local1").parent().hide();
+	$("#ubicacion_local1_label").hide();
+	
+	$("#tab3").hide();
+		
+}
+
+function vistaMaxi(){
+	
+	$("#empresa").parent().show();
+	$("#empresa_label").show();
+	
+	$("#skype").parent().parent().show();
+	$("#phone_work").parent().parent().show();
+	$("#linkedin").parent().parent().show();
+	$("#no_correos_c").parent().parent().show();
+	$("#do_not_call").parent().parent().show();
+	
+	$("#no_newsletter").parent().parent().show();
+	$("#disp_contacto").parent().parent().show();
+	
+	$("#master").parent().parent().show();	
+	$("#check_puertas_abiertas").parent().parent().show();
+	
+	$("#fecha_primer_contacto").parent().show();
+	$("#fecha_primer_contacto_label").show();
+	$("#fecha_primer_contacto_trigger").show();
+	
+	$("#primary_address_fieldset").show();
+	$("#contacto_secundario").parent().parent().show();
+	$("#phone_other").parent().parent().show();
+	$("#oportunidad_inmediata").parent().parent().show();
+	
+	$("#provincia_apertura_3").parent().parent().show();
+	
+	$("#zona").parent().show();
+	$("#zona_label").show();
+	
+	$("#chk_entrevista_previa_cliente").parent().parent().show();
+	$("#f_entrevista_previa_cliente").parent().parent().parent().show();
+	$("#usuario_entrevista_previa_cliente").parent().parent().show();
+	
+	$("#historial_empresa_multiselect").parent().show();
+	$("#historial_empresa_label").show();
+	
+	$("#rrss").parent().parent().show();
+		
+	$("#capital_observaciones").parent().show();
+	$("#capital_observaciones_label").show();
+	
+	$("#recursos_propios").parent().parent().show();
+	
+	$("#_label").show();
+	
+	$("#direccion_local2").parent().parent().show();
+	$("#ubicacion_local2").parent().parent().show();
+	$("#descripcion_local2").parent().parent().show();
+	
+	$("#direccion_local3").parent().parent().show();
+	$("#ubicacion_local3").parent().parent().show();
+	$("#descripcion_local3").parent().parent().show();
+	
+	$("#direccion_local").parent().show();
+	$("#direccion_local_label").show();
+	
+	$("#ubicacion_local1").parent().show();
+	$("#ubicacion_local1_label").show();
+	
+	$("#tab3").show();
+		
+}
+
+function activarFecha(check, fecha) {
+
+	if ($(check).is(':checked')) {
+		$(fecha).val(Hoy());
+
+	} else {
+		$(fecha).val("");
+	}
+
+}
+
+function Hoy() {
+	var f = new Date();
+	return pad(f.getDate(), 2) + "/" + pad(f.getMonth() + 1, 2) + "/" + f.getFullYear();
+}
+
+function pad(n, width, z) {
+	z = z || '0';
+	n = n + '';
+	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}

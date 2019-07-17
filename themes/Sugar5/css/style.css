@@ -4129,3 +4129,17 @@ label.css-label {
 	-ms-user-select: none;
 	user-select: none;
 }
+
+#irsol{
+	
+	width:200px; !important;
+}
+
+#formformCalls,#formformMeetings,#activities_correocandidato_button{
+	margin-left: 40px;
+}
+
+#formformfranqTasks input,#formformfranqCalls input,#franquicia_activities_correocandidato_button{    
+	color: red !important;
+	margin-left: 5px;
+}

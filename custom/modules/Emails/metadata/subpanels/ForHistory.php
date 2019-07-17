@@ -52,11 +52,6 @@ $subpanel_layout = array(
 			 'width'				=> '30%',
              'parent_info'          => true
 		),
-    /*    'direction' => array (
-            'vname' => 'LBL_DIRECTION',
-            'widget_class' => 'SubPanelActivitiesTypeField',
-            'width' => '15%',
-        ),*/
 		'status' => array(
 			 'vname'				=> 'LBL_LIST_STATUS',
 			 'width'				=> '15%',

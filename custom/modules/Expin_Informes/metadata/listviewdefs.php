@@ -2,6 +2,7 @@
 $module_name = 'Expin_Informes';
 $listViewDefs [$module_name] = 
 array (
+
   'NAME' => 
   array (
     'width' => '32%',

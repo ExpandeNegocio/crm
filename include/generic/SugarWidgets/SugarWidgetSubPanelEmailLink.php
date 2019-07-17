@@ -57,8 +57,6 @@ class SugarWidgetSubPanelEmailLink extends SugarWidgetField {
 		}
 		$value = $layout_def['fields'][$key];
 
-
-
 			if(isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 			else $action = '';
 

@@ -388,6 +388,30 @@
       'required' => true,
       'importable' => 'required',
     ),
+    'provincia_solicitud' => 
+    array (
+      'required' => false,
+      'name' => 'provincia_solicitud',
+      'vname' => 'LBL_PROVINCIA_SOLICITUD',
+      'type' => 'enum',
+      'massupdate' => 0,
+      'no_default' => false,
+      'comments' => '',
+      'help' => '',
+      'importable' => 'true',
+      'duplicate_merge' => 'disabled',
+      'duplicate_merge_dom_value' => '0',
+      'audited' => true,
+      'reportable' => true,
+      'unified_search' => false,
+      'merge_filter' => 'disabled',
+      'len' => 100,
+      'size' => '20',
+      'options' => 'provincias_list',
+      'studio' => 'visible',
+      'dependency' => false,
+      'source' => 'non-db',
+    ),
     'direction' => 
     array (
       'name' => 'direction',
@@ -716,6 +740,14 @@
       'reportable' => false,
       'massupdate' => false,
       'default' => 0,
+    ),
+    'fran_type' => 
+    array (
+      'name' => 'fran_type',
+      'vname' => 'Tipo',
+      'type' => 'varchar',
+      'len' => '255',
+      'source' => 'non-db',
     ),
     'asol_projecttask_activities_meetings' => 
     array (

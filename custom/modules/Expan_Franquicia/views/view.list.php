@@ -19,13 +19,15 @@ class Expan_FranquiciaViewList extends ViewList {
 
         if ($current_user->trust_user!=1){
             
+            $consulta=" tipo_cuenta not in ('6','7','8','9')";
+            
              if( $this-> where == "" ) 
             { 
-                $this->where .= " tipo_cuenta not in ('6','7','8','9')";
+                $this->where .= $consulta;
                 } 
             else 
             { 
-               $this->where .= " AND tipo_cuenta not in ('6','7','8','9')";
+               $this->where .= " AND" . $consulta;
             } 
  
         }
@@ -44,7 +46,6 @@ class Expan_FranquiciaViewList extends ViewList {
         $this->lv->export = false;
         $this->lv->mergeduplicates=false;
         parent::Display();
-        echo '<script type="text/javascript"  src="include/javascript/EditGestionSolicitud.js"></script>';
         echo '<script type="text/javascript"> ModPaginaLista();</script>';
     }
 

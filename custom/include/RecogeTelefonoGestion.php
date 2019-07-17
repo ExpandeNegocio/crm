@@ -10,7 +10,7 @@
 
     $idGest=$_POST["idGest"];
     $idCall=$_POST["idCall"];
-    $tipo=$_POST["tipo"]; 
+    $tipo=$_POST["tipo"];   
     
     switch ($tipo) {
         case 'numTelefono':
@@ -79,6 +79,33 @@
             echo $nuevaFecha;
             
             break;
+            
+        case 'disp_contacto':
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]IdGest-'.$idGest );
+            
+            $gestion=new Expan_GestionSolicitudes();            
+            $gestion->retrieve($idGest);
+            
+            $diponi="";
+            
+            if ($gestion !=null){
+               
+               $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Gestion' ); 
+                
+               $solicitud= $gestion->GetSolicitud();
+               
+               $GLOBALS['log'] -> info('[ExpandeNegocio][RecogeTelefono]Pillo Solicitud-'.$solicitud->id ); 
+                
+               if ($solicitud !=null){           
+                   $diponi=$solicitud->disp_contacto;  
+               }
+            }
+            
+            echo $diponi;
+            
+            break;
+                              
             
         default:
             

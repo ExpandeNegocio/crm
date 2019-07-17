@@ -49,7 +49,7 @@ array (
       ),
       'javascript' => '<script type="text/javascript">{$JSON_CONFIG_JAVASCRIPT}</script>{sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}<script>toggle_portal_flag();function toggle_portal_flag()  {literal} { {/literal} {$TOGGLE_JS} {literal} } {/literal} </script>
       {sugar_getscript file="include/javascript/EditLlamadas.js"}
-      <script type="text/javascript"> onload=DesactivarGS();</script>',
+      <script type="text/javascript"> onload=DesactivarGS(\'{$fields.parent_id.value}\',\'Expan_GestionSolicitudes\');</script>',
       'useTabs' => false,
       'tabDefs' => 
       array (
@@ -150,7 +150,12 @@ array (
           array (
              'name' =>'modified_by_name',     
             'label' => 'LBL_MODIFICADO_POR',
-          ),        
+          ),
+           1 => 
+          array (
+            'name' => 'disp_contacto',
+            'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+          ),
         ),
       ),
     ),

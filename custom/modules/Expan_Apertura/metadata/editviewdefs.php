@@ -6,6 +6,32 @@ array (
   array (
     'templateMeta' => 
     array (
+    'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 
+          array (
+            'customCode' => '<input type="submit" name="save" id="save" class="submit" 
+                onClick="        
+                    this.form.return_action.value=\'DetailView\'; 
+                    this.form.action.value=\'Save\';             
+                    var valido=controlarDuplicados();       
+                    return valido;" 
+                value="Guardar">',
+          ),
+          1 => 'CANCEL',
+          2 => array (
+            'customCode' => '<a href="index.php?module=Expan_GestionSolicitudes&action=DetailView&record={$fields.gestion.value}">
+               <button>Ir Gestion</button>
+            </a>',
+          ),     
+        ),
+      ),
+      
+      'javascript' => '{sugar_getscript file="include/javascript/jquery.js"}
+      {sugar_getscript file="include/javascript/EditApertura.js"}',
+    
       'maxColumns' => '2',
       'widths' => 
       array (
@@ -28,17 +54,7 @@ array (
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
-        ),
-        'LBL_PRECONTRATO' => 
-        array (
-          'newTab' => true,
-          'panelDefault' => 'expanded',
-        ),
-        'LBL_CONTRATO' => 
-        array (
-          'newTab' => true,
-          'panelDefault' => 'expanded',
-        ),
+        ),             
         'LBL_ADMINISTRACION' => 
         array (
           'newTab' => true,
@@ -64,6 +80,17 @@ array (
             'label' => 'LBL_FRANQUICIA',
           ),
         ),
+        1 => 
+        array (
+          0 => 
+          array (           
+          ),
+          1 => 
+          array (
+            'name' => 'otra_franquicia',
+            'label' => 'LBL_OTRA_FRANQUICIA',
+          ),
+        ),                
         2 => 
         array (
           0 => 
@@ -90,7 +117,21 @@ array (
             'label' => 'LBL_LOCALIDAD_APERTURA',
           ),
         ),
+        
         4 => 
+        array (
+          0 => 
+          array (
+        
+          ),
+          1 => 
+          array (
+            'name' => 'direccion',
+            'label' => 'LBL_DIRECCION',
+          ),
+        ),
+        
+        5 => 
         array (
           0 => 
           array (
@@ -105,7 +146,7 @@ array (
             'label' => 'LBL_INCIDENCIAS',   
           ), 
         ),
-        5 =>
+        6 =>
         array(
             0 => 
             array(
@@ -119,7 +160,7 @@ array (
                 'label' => 'LBL_NUM_EMPLEADOS',
             ),
         ),
-        6 =>
+        7 =>
          array(
             0 =>
             array(
@@ -133,7 +174,7 @@ array (
             ),
             
          ),
-         7 =>
+         8 =>
          array(
             0 =>
             array(
@@ -147,7 +188,7 @@ array (
             ),
             
          ),
-         8 =>
+         9 =>
          array(
             0 =>
             array(
@@ -162,458 +203,15 @@ array (
             
          ),
          
-         9 =>
-         array(
-            0 =>
-            array(
-                'name' => 'proy_ERM',
-                'label' => 'LBL_PROY_ERM',
-            ),        
-         ),
-                    
-      ),
-      'lbl_precontrato' => 
-      array (
-      
-         0 =>
-         array(
-            0 =>
-            array(
-                'name' => 'f_precontrato_firma',
-                'label' => 'LBL_FECHA_PRECONTRATO_FIRMA',
-            ),
-                      
-         ),
-      
-        1 =>
-         array(
-            0 =>
-            array(
-                'label' => 'LBL_FIRMANTE1',
-            ),
-            1 =>
-            array(
-                'label' => 'LBL_FIRMANTE2',
-            ),            
-         ),
-      
-        2 =>
-         array(
-            0 =>
-            array(
-                'name' => 'pre_fir1_first_name',
-                'label' => 'LBL_FIRST_NAME',
-            ),
-            1 =>
-            array(
-                'name' => 'pre_fir2_first_name',
-                'label' => 'LBL_FIRST_NAME',
-            ),            
-         ),
-      
-        3 =>
-         array(
-            0 =>
-            array(
-                'name' => 'pre_fir1_last_name',
-                'label' => 'LBL_LAST_NAME',
-            ),
-            1 =>
-            array(
-                'name' => 'pre_fir2_last_name',
-                'label' => 'LBL_LAST_NAME',
-            ),            
-         ),
-         
-         4 =>
-         array(
-            0 =>
-            array(
-                'name' => 'pre_fir1_NIF',
-                'label' => 'LBL_NIF',
-            ),
-            1 =>
-            array(
-                'name' => 'pre_fir2_last_name',
-                'label' => 'LBL_NIF',
-            ),
-         ),
-         
-         5 =>
-         array(
-            0 =>
-            array(
-                'name' => 'pre_fir1_vecino',
-                'label' => 'LBL_VECINO',
-            ),
-            1 =>
-            array(
-                'name' => 'pre_fir2_vecino',
-                'label' => 'LBL_VECINO',
-            ),
-         ),
-         
-         6 =>
-         array(
-            0 =>
-            array(
-                'name' => 'pre_fir1_domicilio',
-                'label' => 'LBL_DOMICILIO',
-            ),
-            1 =>
-            array(
-                'name' => 'pre_fir2_domicilio',
-                'label' => 'LBL_DOMICILIO',
-            ),
-         ),
-         
-         7 =>
-         array(
-            0 =>
-            array(
-                'label' => 'LBL_CONDICIONES',
-            ),
-         ),
-         
-         
-         8 =>
-         array(
-            0 =>
-            array(
-                'name' => 'pre_num_unidades',
-                'label' => 'LBL_PRE_NUM_UNIDADES',
-            ),
-            1 =>
-            array(
-           
-            ),
-         ),
-         
-         9 =>
-         array(
-            0 =>
-            array(
-                'name' => 'provincia_apertura',
-                'label' => 'LBL_PROVINCIA_APERTURA',
-            ),
-            1 =>
-            array(
-                'name' => 'localidad_apertura',
-                'label' => 'LBL_LOCALIDAD_APERTURA',
-            ),
-         ),        
-         
          10 =>
          array(
             0 =>
             array(
-                'name' => 'periodo_validez',
-                'label' => 'LBL_ENTREGA_CUENTA',
-            ),
-            1 =>
-            array(
-                'name' => 'entrega_cuenta',
-                'label' => 'LBL_ENTREGA_CUENTA',
-            ),
-         ),        
-         
-         11 =>
-         array(
-            0 =>
-            array(
-                'name' => 'canon_entrada',
-                'label' => 'LBL_CANON_ENTRADA',
-            ),
-            1 =>
-            array(         
-            ),
-         ),               
-        ),
-
-      
-          'LBL_CONTRATO' => 
-          array (
-          
-              0 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'f_precontrato_firma',
-                    'label' => 'LBL_FECHA_PRECONTRATO_FIRMA',
-                ),
-                          
-             ),
-          
-            1 =>
-             array(
-                0 =>
-                array(
-                    'label' => 'LBL_FIRMANTE1',
-                ),
-                1 =>
-                array(
-                    'label' => 'LBL_FIRMANTE2',
-                ),            
-             ),
-          
-            2 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'pre_fir1_first_name',
-                    'label' => 'LBL_FIRST_NAME',
-                ),
-                1 =>
-                array(
-                    'name' => 'pre_fir2_first_name',
-                    'label' => 'LBL_FIRST_NAME',
-                ),            
-             ),
-          
-            3 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'pre_fir1_last_name',
-                    'label' => 'LBL_LAST_NAME',
-                ),
-                1 =>
-                array(
-                    'name' => 'pre_fir2_last_name',
-                    'label' => 'LBL_LAST_NAME',
-                ),            
-             ),
-             
-             4 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'pre_fir1_NIF',
-                    'label' => 'LBL_NIF',
-                ),
-                1 =>
-                array(
-                    'name' => 'pre_fir2_last_name',
-                    'label' => 'LBL_NIF',
-                ),
-             ),
-             
-             5 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'pre_fir1_vecino',
-                    'label' => 'LBL_VECINO',
-                ),
-                1 =>
-                array(
-                    'name' => 'pre_fir2_vecino',
-                    'label' => 'LBL_VECINO',
-                ),
-             ),
-             
-             6 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'pre_fir1_domicilio',                  
-                    'label' => 'LBL_DOMICILIO',         
-                ),
-                1 =>
-                array(
-                    'name' => 'pre_fir2_domicilio',
-                    'label' => 'LBL_DOMICILIO',
-                ),
-             ),   
-             
-             7 =>
-             array(
-                0 =>
-                array(
-                    'label' => 'LBL_SOCIEDAD1',
-                ),
-                1 =>
-                array(
-                    'label' => 'LBL_SOCIEDAD2',
-                ),            
-             ),
-            
-            8 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_localidad',
-                    'label' => 'LBL_LOCALIDAD',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_localidad',
-                    'label' => 'LBL_LOCALIDAD',
-                ),
-             ), 
-                          
-            9 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_provincia',
-                    'label' => 'LBL_PROVINCIA',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_provincia',
-                    'label' => 'LBL_PROVINCIA',
-                ),
-             ),
-          
-            10 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_CP',
-                    'label' => 'LBL_CP',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_CP',
-                    'label' => 'LBL_CP',
-                ),
-             ),
-             
-            11 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_tomo',
-                    'label' => 'LBL_TOMO',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_tomo',
-                    'label' => 'LBL_TOMO',
-                ),
-             ),
-          
-             12 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_hoja',
-                    'label' => 'LBL_HOJA',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_hoja',
-                    'label' => 'LBL_HOJA',
-                ),
-             ),
-          
-             13 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_folio',
-                    'label' => 'LBL_FOLIO',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_folio',
-                    'label' => 'LBL_FOLIO',
-                ),
-             ),
-             
-             14 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'sociedad1_inscripcion',
-                    'label' => 'LBL_INSCRIPCION',
-                ),
-                1 =>
-                array(
-                    'name' => 'sociedad2_inscripcion',
-                    'label' => 'LBL_INSCRIPCION',
-                ),
-             ),
-             
-             15 =>
-             array(
-                0 =>
-                array(
-                    'label' => 'LBL_LOCAL',
-                ),
-                1 =>
-                array(
-                ),
-             ),
-             
-             16 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'local_municipio',
-                    'label' => 'LBL_MUNICIPIO',
-                ),
-                1 =>
-                array(
-                    'name' => 'local_municipio',
-                    'label' => 'LBL_PROVINCIA',
-                ),
-             ),
-          
-            17 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'local_CP',
-                    'label' => 'LBL_CP',
-                ),
-                1 =>
-                array(
-                    'name' => 'local_Direccion',
-                    'label' => 'LBL_DIRECCION',
-                ),
-             ),
-             
-             18 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'f_tope_apertura',
-                    'label' => 'LBL_FECHA_INICIO_CONTRATO',
-                ),
-                1 =>
-                array(
-                    'name' => 'n_cuenta',
-                    'label' => 'LBL_CUENTA',
-                ),
-             ),
-          
-             19 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'duracion_contrato',
-                    'label' => 'LBL_DURACION_CONTRATO',
-                ),
-                1 =>
-                array(
-                    'name' => 'canon_entrada_definitivo',
-                    'label' => 'LBL_CANON_ENTRADA',
-                ),
-             ),
-          
-             20 =>
-             array(
-                0 =>
-                array(
-                    'name' => 'zona_exlusividad',
-                    'label' => 'LBL_ZONA_EXCLUSIVIDAD',
-                ),
-   
-             ),
-          
-          ),
+                'name' => 'observaciones',
+                'label' => 'LBL_OBSERVACIONES',
+            ),        
+         ),                   
+      ),                        
           
           'LBL_ADMINISTRACION' => 
           array (

@@ -110,6 +110,14 @@ array (
         'width' => '10%',
         'name' => 'tipo_cuenta',
       ),
+      
+      'chk_intermediacion_pasiva'=>
+       array (
+        'label' => 'LBL_INTERMEDIACION_PASIVA',
+        'name' => 'chk_intermediacion_pasiva',
+        'width' => '10%',
+       ),
+      
       'address_country' => 
       array (
         'name' => 'address_country',
@@ -172,8 +180,7 @@ array (
         'default' => true,
         'width' => '10%',
       ),
-      
-      
+            
       'ownership' => 
       array (
         'name' => 'ownership',
@@ -190,6 +197,7 @@ array (
         'width' => '10%',
         'name' => 'sector',
       ),
+      
       
       
     ),

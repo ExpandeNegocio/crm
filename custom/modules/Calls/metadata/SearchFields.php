@@ -36,6 +36,29 @@ $searchFields['Calls'] = array (
     'vname' => 'LBL_PROVINCIA_APERTURA_1',
   ),
   
+  'disp_contacto' => 
+  array (
+    'query_type' => 'format',
+    'operator' => 'subquery',
+    'subquery' => 'select c.id from 
+              expan_gestionsolicitudes g,
+              expan_solicitud s,
+              expan_solicitud_expan_gestionsolicitudes_1_c gs,
+              calls c
+            where
+              g.id = gs.expan_soli5dcccitudes_idb AND
+              c.parent_id=g.id AND
+              s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.disp_contacto in ({0})',
+    'db_field' => 
+    array (
+      0 => 'id',
+    ),
+    'vname' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+  ),
+  
+  
+  
+  
   'date_start' => 
   array (
     'query_type' => 'default',
@@ -80,6 +103,9 @@ $searchFields['Calls'] = array (
     ),
     'type' => 'bool',
   ),
+
+ 
+  
   'range_date_entered' => 
   array (
     'query_type' => 'default',
@@ -152,4 +178,15 @@ $searchFields['Calls'] = array (
     'enable_range_search' => true,
     'is_date_field' => true,
   ),
+  'address_country' => 
+  array (
+    'query_type' => 'default',
+    'db_field' => 
+    array (
+      0 => 'primary_address_country',
+      1 => 'alt_address_country',
+    ),
+  ),
+  
+  
 );

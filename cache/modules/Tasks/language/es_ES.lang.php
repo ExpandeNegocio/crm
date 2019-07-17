@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-30 17:56:50
+// created: 2019-07-17 19:46:33
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -26,7 +26,7 @@ $mod_strings = array (
   'LBL_LIST_FORM_TITLE' => 'Lista de Tareas',
   'LBL_NEW_FORM_TITLE' => 'Nueva Tarea',
   'LBL_NEW_FORM_SUBJECT' => 'Asunto:',
-  'LBL_NEW_FORM_DUE_DATE' => 'Fecha Vencimiento:',
+  'LBL_NEW_FORM_DUE_DATE' => 'Fecha programada:',
   'LBL_NEW_FORM_DUE_TIME' => 'Hora Vencimiento:',
   'LBL_NEW_TIME_FORMAT' => '(24:00)',
   'LBL_LIST_CLOSE' => 'Cerrar',
@@ -64,7 +64,8 @@ $mod_strings = array (
   'ERR_INVALID_HOUR' => 'Por favor, introduzca una hora entre 0 y 24',
   'LBL_DEFAULT_PRIORITY' => 'Media',
   'LBL_LIST_MY_TASKS' => 'Mis Tareas Abiertas',
-  'LNK_NEW_TASK' => 'Nueva Tarea',
+  'LNK_NEW_TASK' => 'Tarea EN',
+  'LNK_NEW_FRANQ_TASK' => 'Tarea Central',
   'LNK_TASK_LIST' => 'Ver Tareas',
   'LNK_IMPORT_TASKS' => 'Importar Tareas',
   'LBL_CONTACT_FIRST_NAME' => 'Nombre del Contacto',

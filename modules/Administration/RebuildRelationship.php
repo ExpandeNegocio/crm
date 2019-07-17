@@ -65,7 +65,7 @@ foreach ( $GLOBALS['beanFiles'] as $bean => $file )
             $table_name = $focus->table_name ;
             $empty = array() ;
             if (empty ( $_REQUEST [ 'silent' ] ))
-                echo $mod_strings [ 'LBL_REBUILD_REL_PROC_META' ] . $focus->table_name . "..." ;
+                echo $mod_strings [ 'LBL_REBUILD_REL_PROC_META' ] . " " . $focus->table_name . "..." ;
             SugarBean::createRelationshipMeta ( $focus->getObjectName (), $db, $table_name, $empty, $focus->module_dir ) ;
             if (empty ( $_REQUEST [ 'silent' ] ))
                 echo $mod_strings [ 'LBL_DONE' ] . '<br>' ;
@@ -88,7 +88,7 @@ foreach ( $GLOBALS['beanFiles'] as $bean => $file )
         $table_name = $focus->table_name ;
         $empty = array() ;
         if (empty ( $_REQUEST [ 'silent' ] ))
-            echo $mod_strings [ 'LBL_REBUILD_REL_PROC_C_META' ] . $focus->table_name . "..." ;
+            echo $mod_strings [ 'LBL_REBUILD_REL_PROC_C_META' ] . " " . $focus->table_name . "..." ;
         SugarBean::createRelationshipMeta ( $focus->getObjectName (), $db, $table_name, $empty, $focus->module_dir, true ) ;
         if (empty ( $_REQUEST [ 'silent' ] ))
             echo $mod_strings [ 'LBL_DONE' ] . '<br>' ;
@@ -109,7 +109,7 @@ foreach ( $GLOBALS['beanFiles'] as $bean => $file )
         $table = isset($rel_data [ 'table' ]) ? $rel_data [ 'table' ] : "" ;
 
         if (empty ( $_REQUEST [ 'silent' ] ))
-            echo $mod_strings [ 'LBL_REBUILD_REL_PROC_C_META' ] . $rel_name . "..." ;
+            echo $mod_strings [ 'LBL_REBUILD_REL_PROC_C_META' ] . " " . $rel_name . "..." ;
         SugarBean::createRelationshipMeta ( $rel_name, $db, $table, $rel_dictionary, '' ) ;
         if (empty ( $_REQUEST [ 'silent' ] ))
             echo $mod_strings [ 'LBL_DONE' ] . '<br>' ;

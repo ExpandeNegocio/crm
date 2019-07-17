@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2017-01-07 19:16:52
+<?php /* Smarty version 2.6.11, created on 2019-07-16 17:41:53
          compiled from themes/Sugar5/tpls/_welcome.tpl */ ?>
 <?php if ($this->_tpl_vars['AUTHENTICATED']): ?>
  	

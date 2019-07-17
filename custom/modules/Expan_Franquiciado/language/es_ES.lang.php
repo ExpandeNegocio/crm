@@ -19,4 +19,6 @@ $mod_strings = array (
   'LBL_CHECK_PLURIFRANQUICIADO'=>'Plurifranquiciado de alta inversión',
   'LBL_OBSERVACIONES' => 'Observaciones franquiciado',
   'LBL_EMPRESA' => 'Empresa',
+  'LBL_FRANQUICIA' => 'Franquicia',
+  'LBL_SECTORES_HISTORICOS' => 'Sectores',
 );

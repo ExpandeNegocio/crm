@@ -138,7 +138,7 @@ $mod_strings = array (
   'LBL_EVENTO_CAMPAIGN_ID' => 'Evento (relacionado Campaña ID)',
   'LBL_EVENTO' => 'Evento',
   'LBL_OBSERVACIONES' => 'Observaciones franquiciado',
-  'LBL_ENVIAR_SERVICIOS_ASESORA' => 'Enviar servicios asesoramiento',
+  'LBL_ENVIAR_SERVICIOS_ASESORA' => 'Enviar tarifas de asesoramiento',
   'LBL_EVENTO_EXPAN_EVENTO_ID' => 'Evento (relacionado  ID)',
   'LBL_TEMPORALIZACION' => 'Cuando desea empezar',
   'LBL_FRANQUICIAPRUEBA' => 'franquiciaPRUEBA',
@@ -166,4 +166,7 @@ $mod_strings = array (
   'LBL_GESTIONESAGRUPADAS' => 'Gestiones agrupadas',
   'LBL_NEWSLETTER' => 'No enviar newsletter',
   'LBL_CHECK_PLURIFRANQUICIADO'=>'Plurifranquiciado de alta inversión',
+  'LBL_FRANQUICIA'=>'Franquicia',
+  'LBL_ESTADO'=>'Estado',
+  ''
 );

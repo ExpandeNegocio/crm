@@ -59,6 +59,14 @@ class SugarWidgetSubPanelTopComposeEmailButton extends SugarWidgetSubPanelTopBut
 			return $temp;
 		}
 		
+        $gestionId=$_GET['record'];
+        $gestion= new Expan_GestionSolicitudes();
+        $gestion->retrieve($gestionId);
+        $gestion->cambiaCorreoDefecto();
+        
+        $franquicia= new Expan_Franquicia();
+        $franquicia->retrieve($gestion->franuicia);
+        
 		global $app_strings,$current_user,$sugar_config,$beanList,$beanFiles;
 		$title = $app_strings['LBL_COMPOSE_EMAIL_BUTTON_TITLE'];
 		//$accesskey = $app_strings['LBL_COMPOSE_EMAIL_BUTTON_KEY'];
@@ -79,10 +87,10 @@ class SugarWidgetSubPanelTopComposeEmailButton extends SugarWidgetSubPanelTopBut
 			// awu: Not all beans have emailAddress property, we must account for this
 			if (isset($bean->emailAddress)){
 				$to_addrs = $bean->emailAddress->getPrimaryAddress($bean);
-				$button = "<input class='button' type='button'  value='$value'  id='". $this->getWidgetId() . "'  name='".preg_replace('[ ]', '', $value)."'   title='$title' onclick=\"location.href='mailto:$to_addrs';return false;\" />";
+				$button = "<input class='button' type='button'  value='$value'  id='". $this->getWidgetId() . "'  name='".preg_replace('[ ]', '', $value)."'   title='$title' onclick=\"location.href='mailto:$to_addrs';return false;\" />";                
 			}
 			else{
-				$button = "<input class='button' type='button'  value='$value'  id='". $this->getWidgetId() ."'  name='".preg_replace('[ ]', '', $value)."'  title='$title' onclick=\"location.href='mailto:';return false;\" />";
+				$button = "<input class='button' type='button'  value='$value'  id='". $this->getWidgetId() ."'  name='".preg_replace('[ ]', '', $value)."'  title='$title' onclick=\"location.href='mailto:';return false;\" />";                
 			}
 		} else {
 			//Generate the compose package for the quick create options.
@@ -90,9 +98,28 @@ class SugarWidgetSubPanelTopComposeEmailButton extends SugarWidgetSubPanelTopBut
             require_once('modules/Emails/EmailUI.php');
             $eUi = new EmailUI();
             $j_quickComposeOptions = $eUi->generateComposePackageForQuickCreate($composeData, http_build_query($composeData), false, $defines['focus']);
+            $franqComposeOptions=$this->getFranquiciaComposeOptions($gestion,$franquicia);
 
-            $button = "<input title='$title'  id='". $this->getWidgetId()."'onclick='SUGAR.quickCompose.init($j_quickComposeOptions);$(\".emailUILabel\").hide();' class='button' type='submit' name='".preg_replace('[ ]', '', $value)."_button' value='$value' />";
+            $button = "<input style='background: url(themes/Sugar5/images/Emails.gif) no-repeat scroll 5px;
+                padding-left:30px; background-color:#D9E3EB' title='$title'  id='". $this->getWidgetId()."'onclick='SUGAR.quickCompose.init($j_quickComposeOptions);$(\".emailUILabel\").hide();' class='button' type='submit' name='".preg_replace('[ ]', '', $value)."_button' value='$value' />";
+            $value="Correo Central";
+            $button = $button. "<input style='background: url(themes/Sugar5/images/Emails.gif) no-repeat scroll 5px;
+                padding-left:30px; background-color:#D9E3EB' title='$title'  id='franquicia_". $this->getWidgetId()."'onclick='SUGAR.quickCompose.init($franqComposeOptions);$(\".emailUILabel\").hide();' class='button' type='submit' name='".preg_replace('[ ]', '', $value)."_button' value='$value' />";
 		}
 		return $button;
 	}
+
+    function getFranquiciaComposeOptions($gestion,$franquicia){
+        
+        $composeOptions='{"fullComposeUrl":"parent_id='. $gestion->id.'&parent_type=Expan_GestionSolicitudes",';
+        $composeOptions=$composeOptions.'"composePackage":{"to_email_addrs":"'.$franquicia->correo_general.'",';
+        $composeOptions=$composeOptions.'"parent_type":"Expan_GestionSolicitudes",';
+        $composeOptions=$composeOptions.'"parent_id":"'.$gestion->id.'",';
+        $composeOptions=$composeOptions.'"parent_name":"'.$gestion->name.'",';
+        $composeOptions=$composeOptions.'"subject":null,"body":null,"attachments":[],"email_id":"",';
+        $composeOptions=$composeOptions.'"addressFrom":""}}';
+        
+        return $composeOptions;
+                   
+    }
 }

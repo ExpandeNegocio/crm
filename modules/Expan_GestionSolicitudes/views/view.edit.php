@@ -21,9 +21,12 @@
             <script language=\"javascript\">
             window.onload=function() 
             {          
-                $('#activities_nuevatarea_button').hide();
+                $('#activities_tareaen_button').hide();
+                $('#activities_tareacentral_button').hide();                
                 $('#activities_programarreunión_button').hide();
-                $('#activities_registrarllamada_button').hide();
+                $('#activities_llamadacandidato_button').hide();
+                $('#activities_llamadacentral_button').hide();
+                
             }
             </script>";
          }

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2017-01-08 12:21:08
+<?php /* Smarty version 2.6.11, created on 2019-07-17 16:53:24
          compiled from include/SugarFields/Fields/Relate/DetailView.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'sugarvar', 'include/SugarFields/Fields/Relate/DetailView.tpl', 39, false),array('function', 'sugarvar_connector', 'include/SugarFields/Fields/Relate/DetailView.tpl', 49, false),)), $this); ?>

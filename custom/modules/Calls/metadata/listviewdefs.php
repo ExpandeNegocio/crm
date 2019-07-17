@@ -104,7 +104,7 @@ array (
   
   'prioridad' => 
   array (
-    'width' => '10%',
+    'width' => '5%',
     'label' => 'LBL_PRIORIDAD',
     'default' => true,
   ),
@@ -122,6 +122,14 @@ array (
     'label' => 'LBL_GESTION_AGRUPADA',
     'default' => true,
   ),
+  
+  'repeticiones' => 
+  array (
+    'width' => '5%',
+    'label' => 'LBL_REPETICIONES',
+    'default' => true,
+  ),
+  
   
   'Accesos' => 
   array (

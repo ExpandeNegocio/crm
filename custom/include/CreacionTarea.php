@@ -22,7 +22,17 @@ class controlTareas {
         if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
             
 
-            $bean->ignore_update_c = true;           
+            $bean->ignore_update_c = true;    
+            
+            if ($_REQUEST["relate_to"]=='Expan_Empresa'){
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de Reunion]Relacionada con empresa');
+                $bean->parent_type = $_REQUEST["relate_to"];
+                $bean->parent_id= $_REQUEST["relate_id"];
+                $bean->name= $GLOBALS['app_list_strings']['tipo_tarea_list'][$bean -> task_type];
+                
+                $bean ->save();
+                return;
+            }       
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Tipo del que cuelga-' . $bean -> parent_type);
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]ID del padre-' . $bean -> parent_id);
@@ -30,7 +40,7 @@ class controlTareas {
             $gestion = null;
             $franquicia = null;
 
-            if ($bean -> parent_type = 'Expan_GestionSolicitudes') {
+            if ($bean -> parent_type == 'Expan_GestionSolicitudes') {
                 $gestion = new Expan_GestionSolicitudes();
                 $gestion -> retrieve($bean -> parent_id);
 
@@ -61,8 +71,11 @@ class controlTareas {
                 $gestion -> calcularOportunidadInmediata($this->oportunidad_inmediata);   
                 if (solicitud!=null){
                     $solicitud -> calcularOportunidadInmediata();
-                }                  
+                }     
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Despues de calculo Oportunidad Inmediata');
+                             
                 $prioridad=$gestion->calcularPrioridades();
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Despues de calculo Prioridades');
                 
                 $bean->assigned_user_id=$gestion->assigned_user_id; 
                 
@@ -81,19 +94,24 @@ class controlTareas {
                 $bean -> name = $franquicia -> name . ' - ' . $GLOBALS['app_list_strings']['tipo_tarea_list'][$bean -> task_type];
             }
             
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Antes de guardar');
 
             //Guardo al final
             
             $bean -> ignore_update_c = true;
             $bean -> save();
             
-             //Creacion de una nueva tarea que se lleva al CRM
-            if (!isset(self::$fetchedRow[$bean -> id])) {
-                $bean->addToERM();
-            }else{
-                $bean->updateFromERM();
-            }
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Despues de guardar');
             
+            if ($gestion != null) {
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Entra Modificar ERM');
+                 //Creacion de una nueva tarea que se lleva al CRM
+                if (!isset(self::$fetchedRow[$bean -> id])) {
+                    $bean->addToERM();
+                }else{
+                    $bean->updateFromERM();
+                }
+            }
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Se ha guardado la Tarea');
         }

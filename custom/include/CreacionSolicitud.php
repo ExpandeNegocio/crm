@@ -3,7 +3,9 @@
 require_once ('data/SugarBean.php');
 require_once ('modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes.php');
 require_once ('modules/Expan_Solicitud/Expan_Solicitud.php');
+require_once ('modules/Expan_Apertura/Expan_Apertura.php');
 require_once ('custom/include/CreacionGestionSolicitud.php');
+require_once ('include/utils/array_utils.php');
 
 
 class AccionesGuardado {
@@ -36,29 +38,9 @@ class AccionesGuardado {
 			if (!isset(self::$fetchedRow[$bean -> id])) {
 			                    
 				$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Asigno');
-                
-
-				$caracteres = split(',', $bean -> franquicias_secundarias);
-				$bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-                $fechaHoy=  new DateTime();
-                $bean -> fecha_primer_contacto=$fechaHoy->format('d/m/Y H:i');
-                
-				$fran = null;
- 				$numFran =0;
-
-				foreach ($caracteres as $valor) {
-
-					$valor = str_replace('^', '', $valor);
-
-					if ($valor != '') {
-						$this -> crearGestion($valor, $bean);
-						$fran = $valor;
- 						$numFran++;
-					}
-				}
-
-
-				$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Numero Franquicias' . $numFran);
+                                
+                $fechaHoy=  new DateTime(); 
+                $bean -> fecha_primer_contacto=$fechaHoy->format('d/m/Y H:i');               
 
 				//Si no tiene franquicias hay que pasarselo al usuario de asesoramiento
 				
@@ -68,60 +50,39 @@ class AccionesGuardado {
 					$valor = '380f0dc1-e38e-83e2-8c74-53df9ab90ac1';
 					$this -> crearGestion($valor, $bean);
 				}
-
-				if ($numFran == 1) {
-
-					$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Asigna Franquicia Principal');
-					$bean = $this -> limpiarSuborigen($bean);
-					$bean -> franquicia_principal = $fran;
-					$bean -> expan_franquicia_id_c = $fran;
-                    $bean -> abierta=1;
-                    $this -> activarMaster($bean);
-                    $bean -> assigned_user_id=$bean->created_by;
-                    $bean -> ignore_update_c = true;
-					$bean -> save();
-
-				}
                 
-                //Comprobamos si estamos ante una franquicia
+                //Comprobamos si estamos duplicndo la solicitud (Solo cuando se recoge desde una franquicia en 
+                //una feria o importando desde excel)
                 
-                if ($current_user->franquicia!=null){                   
+                if ($current_user->franquicia!=null) {                    
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Entra en controlSolicitudRepetida');                                       
                     $this->controlSolicitudRepetidaFranquicia($bean);
+                }else{
+                    if ($bean->from_import==1){
+                        $this -> controlSolicitudRepetidaImport($bean);
+                    }else{
+                        $this->crearGestionDesdeGestionesSecundarias($bean);
+                    }
+                    
                 }
                 
 			} else {
-			    			                   
-			    // Entramos solo en edicion 
-
+			    
+                // Entramos solo en edicion 
+			    			                                                                                                                             		
                 $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');                
-                $gestiones=$bean->expan_solicitud_expan_gestionsolicitudes_1->getBeans();
-                $gestiones = array_values($gestiones);              
+                $gestiones=$bean->expan_solicitud_expan_gestionsolicitudes_1->getBeans();                                                         
 
-				//tenemos que ver si las gestiones estan creadas
-				
-				$db = DBManagerFactory::getInstance();
-                
-                $textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
-                
-				$query = "select * ";
-				$query =$query. "from  (select * from expan_franquicia where id in (" . $textoFran . ")) f where id not in( ";
-				$query =$query. "select g.franquicia from expan_gestionsolicitudes g ,expan_solicitud s ,expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-				$query =$query. "where g.id = gs.expan_soli5dcccitudes_idb AND ";
-				$query = $query."s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted=0 AND ";
-				$query =$query. "s.id = '" . $bean -> id . "' )";
-				
-				$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Consulta -' . $query);
+                $this->crearLLamadaAddTel($bean,$gestiones); 
 
-				$result = $db -> query($query, true);
-
-				while ($row = $db -> fetchByAssoc($result)) {
-					$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Creo nueva gestion desde act -' . $row["id"]);
-					$this -> crearGestion($row["id"], $bean);					
-				}
+				//tenemos que ver si las gestiones estan creadas								              
+                $this-> buscarNuevasGestiones($bean);
                                                     
                 //controlamos si se pasa a rating posible topo
                 
                 if ($bean->rating=='5'){
+                    
+                    $db = DBManagerFactory::getInstance();
                     
                     $query = "UPDATE expan_gestionsolicitudes g JOIN (SELECT gs.expan_soli5dcccitudes_idb ";
                     $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
@@ -135,31 +96,125 @@ class AccionesGuardado {
                 //Si modificamos el nombre de la solicitud cambiamos el de las gestiones asociadas              
                 //Control de campos mofificados                
                 $this->cambiosAHijos($bean); 
-                $this->cambiosEconomicosGestion($bean);    
-                
+                $this->cambiosEconomicosGestion($bean); 
+                $this->cambioLlamadas($bean);
+                                                                                                
                 $bean = $this -> limpiarSuborigen($bean);
-                
-                
+                                    
                 $this -> activarMaster($bean);
+                $this -> actualizarResidencia($bean);
+                $this -> recogerEntPrevia($bean);
                 $bean -> assigned_user_id=$bean->created_by;
                 $bean -> ignore_update_c = true;
-                $bean -> save(); 
-                
+                $bean -> save();                 
 			}
+			
+			if ($bean->chk_entrevista_previa_EN==true || $bean->chk_entrevista_previa_cliente==true){
+                $bean -> actualizarEntrevistaPrevia();       
+            }
                 
             //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
             $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
             $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
+            $this ->crearEmpresa($bean);
+            $this->PasoFranquiciado($bean); 
 		}
 	}
 
+    function crearLLamadaAddTel($bean,$gestiones){
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] crearLLamadaAddTel - Entra');
+        $movAnt=self::$fetchedRow[$bean -> id]['phone_mobile'];
+        $movAct=$bean->phone_mobile;            
+        
+        $mov2Ant=self::$fetchedRow[$bean -> id]['phone_home'];
+        $mov2Act=$bean->phone_home;          
+
+        $telOfAnt=self::$fetchedRow[$bean -> id]['phone_work'];
+        $telOfAct=$bean->phone_work;     
+        
+        $telOtherAnt=self::$fetchedRow[$bean -> id]['phone_other'];
+        $telOtherAct=$bean->phone_other; 
+        
+        if ($movAnt=="" && $mov2Ant=="" && $telOfAnt=="" && $telOtherAnt=="" && 
+            ($movAnt!=$movAct ||  $mov2Ant!=$mov2Act ||            
+            $telOfAnt!=$telOfAct || $telOtherAnt!=$telOtherAct)){
+                
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] crearLLamadaAddTel - Dbe crear LLamadas');                
+            foreach($gestiones as $gestion){
+                if ($gestion->estado_sol==2){
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] crearLLamadaAddTel - Dbe crear LLamadas # Gestion-'. $gestion->id);
+                    
+                    $gestion->creaLlamada('[AUT]Primera', 'Primera',0);
+                }                               
+            }                          
+        }               
+    }
+
+    function crearGestionDesdeGestionesSecundarias($bean){
+        
+        $caracteres = explode(',', $bean -> franquicias_secundarias);
+        $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
+        
+        $fran = null;
+        $numFran =0;
+        
+        foreach ($caracteres as $valor) {
+        
+            $valor = str_replace('^', '', $valor);
+        
+            if ($valor != '') {
+                $this -> crearGestion($valor, $bean);
+                $fran = $valor;
+                $numFran++;
+            }
+        }               
+    }
+    
+    function actualizarResidencia($bean){
+        
+        if(trim($bean->pais_residencia)=="" ){           
+            $bean->pais_residencia=$bean->pais_c;    
+        }
+        
+        if ($bean->pais_residencia!="SPAIN"){
+            $bean->provincia_residencia=100;
+        }else{
+            if (trim($bean->provincia_residencia)==""){
+                $bean->provincia_residencia=$bean->provincia_apertura;
+            }            
+        }        
+    }
+        
+    function buscarNuevasGestiones($bean){
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Entro en buscarNuevasGestiones');
+        
+        $db = DBManagerFactory::getInstance();
+        $textoFran = str_replace('^', "'", $bean -> franquicias_secundarias);
+        
+        $query = "select * ";
+        $query =$query. "from  (select * from expan_franquicia where id in (" . $textoFran . ")) f where id not in( ";
+        $query =$query. "select g.franquicia from expan_gestionsolicitudes g ,expan_solicitud s ,expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+        $query =$query. "where g.id = gs.expan_soli5dcccitudes_idb AND ";
+        $query = $query."s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.deleted=0 AND ";
+        $query =$query. "s.id = '" . $bean -> id . "' )";
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Consulta -' . $query);
+
+        $result = $db -> query($query, true);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Creo nueva gestion desde act -' . $row["id"]);            
+            $this -> crearGestion($row["id"], $bean);                   
+        }
+    }
 
     function activarMaster($bean){
     // cambiar check de master 
         if($bean->pais_c!= "SPAIN"){
             $bean -> master=true;
         }else{//es de spain por tanto no nos interesan estos campos
-            $bean -> provincia_residencia='';
             $bean -> localidad_residencia='';
         }
     }
@@ -169,11 +224,13 @@ class AccionesGuardado {
      */
     function marcarSectores($franquicias, $idSol){
       
-          $franC=split(",", $franquicias);//obtiene el array,del string separado por comas
+          $franC=explode(",", $franquicias);//obtiene el array,del string separado por comas
                
           $db=DBManagerFactory::getInstance();
             
           for($i=0; $i<count($franC); $i++){//Recorrer todas las franquicias del array para actualizar los sectores de interes
+               
+               $numSec="";
                
                //el valor (número) del sector de esta franquicia
                $query="select substring(sector, 2, LENGTH(sector)-2) as s"; 
@@ -207,6 +264,42 @@ class AccionesGuardado {
           }        
     }
 
+    function crearEmpresa($bean){
+            
+        $empresas=$bean->franquicia_historicos.",".$bean->empresa;  
+        
+        $lstEmpresa = explode(",", $empresas);
+        
+        foreach ($lstEmpresa as $nomEmpresa){
+                    
+          if (trim($nomEmpresa)!="" && 
+              !Expan_Empresa::existeEmpresaByName(trim($nomEmpresa))){
+                  
+            $empresa=new Expan_Empresa();
+            
+            if ($nomEmpresa==$bean->empresa){
+               $empresa->empresa_type="oe";
+            }else{
+               $empresa->empresa_type="fa";
+            }
+            
+            $empresa->origen="expande";
+            $empresa->chk_es_cliente_potencial=$bean->chk_empresa_cli_potencial;
+            $emrpesa->chk_es_proveedor=$bean->chk_empresa_provee;
+            $emrpesa->chk_es_competidor=$bean->chk_empresa_competencia;
+            $emrpesa->chk_alianza=$bean->chk_empresa_alianza;
+            $empresa->name=$nomEmpresa;
+            $empresa->contacto1= $bean->first_name." ".$bean->last_name;
+            $empresa->telefono1= $bean->phone_mobile;
+            $empresa -> email1 = $solicitud -> email1;
+            $empresa -> email2 = $solicitud -> email2;
+            
+            $empresa->ignore_update_c=true;    
+            $empresa->save();
+          }      
+        }                
+    }
+    
 	function limpiarTelefonos(&$bean){
 	    
 	      $bean->phone_mobile= str_replace(' ', '', $bean->phone_mobile);
@@ -216,6 +309,8 @@ class AccionesGuardado {
 	}
     
     function controlSolicitudRepetidaFranquicia($solicitud){
+            
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Entra en controlSolicitudRepetida');
         
         global $current_user;
         $idSol='';
@@ -236,7 +331,14 @@ class AccionesGuardado {
             $gestion=$solAnt->getGestionFromFranID($current_user->franquicia);
             
             if ($gestion==null){
-                $this->crearGestion($current_user->franquicia,$solAnt);
+                if ($current_user->franquicia==null){
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud][SolicitudRepetida] Crea gestion nueva para olicitud ya existente');
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud][SolicitudRepetida] SolAnt-'.$solAnt->id);
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud][SolicitudRepetida] SolNueva-'.$solicitud->id);
+                    $this->crearGestion($current_user->franquicia,$solAnt);
+                }else{
+                    $this->buscarNuevasGestiones($solicitud);
+                }                
             }else{                
                 $gestion -> chk_envio_documentacion = false;
                 $gestion -> estado_sol = Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO;
@@ -245,25 +347,73 @@ class AccionesGuardado {
                 $gestion -> save();
             }
             
-            $solAnt->expan_evento_id_c=$solicitud->expan_evento_id_c;
-            
-            if (strrpos($solAnt->franquicias_secundarias, "^".$current_user->franquicia."^") === false) {    
-                $solAnt->franquicias_secundarias=$solAnt->franquicias_secundarias.",^".$current_user->franquicia."^";
-            }
+            $solAnt->expan_evento_id_c=$solicitud->expan_evento_id_c;          
             
             //tenemos que recoger los valores que esten vacíos antes y recoger el nuevo valor
             if (1==1){
                 
             }
             
-            $solAnt->perfil_profesional=$solAnt->perfil_profesional.$solicitud->perfil_profesional;
+            $solAnt->perfil_profesional=$solicitud->perfil_profesional;
             $solAnt->assigned_user_id=$solAnt->created_by;
             
             $solAnt->ignore_update_c=true;            
             $solAnt->save();
             
-            $solicitud->removeSol();
-                       
+            $solicitud->removeSol();                      
+        }                  
+    }
+
+    function controlSolicitudRepetidaImport($solicitud){
+            
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Entra en controlSolicitudRepetida');
+        
+        global $current_user;
+        $idSol='';
+        
+        $listaTel=$solicitud->getListaTelefono();
+        $listaCorr=$solicitud->getCorreos();
+        
+        $idSol=$this->getRepeatedbyPhone($solicitud,$listaTel);
+        if ($idSol==''){
+            $idSol=$this->getRepeatedbyEmail($solicitud,$listaCorr);
+        }
+        
+        $this->buscarNuevasGestiones($solicitud);
+        
+        // Si hemos encontrado que la solicitud ya existe debemos comprobar si ya existe la gestion o no        
+        if ($idSol!=''){
+                        
+            $solAnt=new Expan_Solicitud();
+            $solAnt->retrieve($idSol);                       
+
+            $db = DBManagerFactory::getInstance();      
+            
+            $query = "UPDATE ";
+            $query=$query." expan_solicitud_expan_gestionsolicitudes_1_c ";
+            $query=$query."SET ";
+            $query=$query." expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '".$solAnt->id."' ";
+            $query=$query."WHERE ";
+            $query=$query." expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ='".$solicitud->id."' AND ";
+            $query=$query." concat(expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida,expan_soli5dcccitudes_idb) NOT IN ";
+            $query=$query."   (SELECT ";
+            $query=$query."     concat(expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida,expan_soli5dcccitudes_idb) ";
+            $query=$query."    FROM (SELECT * FROM expan_solicitud_expan_gestionsolicitudes_1_c) a ";
+            $query=$query."    WHERE expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = ";
+            $query=$query."     '".$solAnt->id."'); ";
+                         
+            $result = $db->query($query);
+            
+            $solAnt->franquicias_secundarias=$this->getFranSec($solAnt);
+                                  
+            $solAnt->assigned_user_id=$solAnt->created_by;
+            
+            $solAnt->ignore_update_c=true;            
+            $solAnt->save();
+            
+            $solicitud -> deleted=1;
+            $solicitud -> ignore_update_c = true;
+            $solicitud -> save();              
         }                  
     }
 
@@ -306,7 +456,7 @@ class AccionesGuardado {
             $sql="SELECT s.id,e.email_address,s.first_name,s.last_name ";
             $sql=$sql."FROM   expan_solicitud s, email_addr_bean_rel r, email_addresses e ";
             $sql=$sql."WHERE s.id = r.bean_id AND s.deleted=0 AND e.id = r.email_address_id AND e.deleted=0 AND r.deleted=0 AND ";
-            $sql=$sql."e.email_address='".$email."' AND s.id <>'".$solicitud->id."'";
+            $sql=$sql."e.email_address='".$email."' AND s.id <>'".$solicitud->id." and deleted=0'";
             
             $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]getRepeatedbyEmail - Consulta - '.$sql); 
              
@@ -360,7 +510,7 @@ class AccionesGuardado {
         	$gestion = new Expan_GestionSolicitudes();
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.TimeDate::getInstance()->nowDb());
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.$gestion->date_modified);
+          //  $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Crear Gestion - '.$gestion->date_modified);
             
             $gestion->date_entered=TimeDate::getInstance()->getNow()->asDb(); 
         
@@ -397,7 +547,7 @@ class AccionesGuardado {
                 $gestion->expan_evento_id_c=null;
             }
             
-        	$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Franquicia asignada - ' . $gestion -> franquicia_c);
+        	$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Franquicia asignada - ' . $gestion -> franquicia);
         	$gestion -> save();
             
             //Actualizamos la fecha de creacion 
@@ -409,9 +559,24 @@ class AccionesGuardado {
     
         	//Se la asignamos a la solicitud
         	$bean -> ignore_update_c = true;
-            if ($bean -> expan_solicitud_expan_gestionsolicitudes_1 !=null){
-                $bean -> expan_solicitud_expan_gestionsolicitudes_1 -> add($gestion -> id);
-            }        	
+            
+            $bean -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');  
+            $bean -> expan_solicitud_expan_gestionsolicitudes_1 -> add($gestion -> id);
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Franquicias secundarias Antes-'.$bean->franquicias_secundarias);
+            
+            //Añadimos la franquicia secundaria
+            if (strrpos($bean->franquicias_secundarias, "^".$idFranq."^") === false) {
+                
+                if ( strlen ($bean->franquicias_secundaria)==0){
+                    $bean->franquicias_secundarias=$bean->franquicias_secundarias.",^".$idFranq."^";
+                }else{
+                     $bean->franquicias_secundarias="^".$idFranq."^";
+                }
+                                   
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud]Franquicias secundarias-'.$bean->franquicias_secundarias);
+            }
+                 	
         	$bean -> save();
             
             if($bean->rating!=5){//no es topo, miramos si esta el check de la franquicia para pasar automaticamente a estado 2
@@ -428,7 +593,7 @@ class AccionesGuardado {
             
             if ($crearLLamadaFS==true){
                 $telefono=$bean->recogerTelefono();
-                $gestion->creaLlamada('[AUT]Confirmacion Asistencia', 'ConfAsis');
+                $gestion->creaLlamada('[AUT]Confirmacion Asistencia', 'ConfAsis',0);
             }
         }
 	}
@@ -442,10 +607,10 @@ class AccionesGuardado {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Ant Fetch - '.$fetchedRow['tipo_origen']);
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Ant - '.$origenAnt);
         
-        $listaAnt = split(',', $origenAnt);
+        $listaAnt = explode(',', $origenAnt);
 
         $origenAct = str_replace('^', '', $bean->tipo_origen);
-        $listaAct = split(',', $origenAct);
+        $listaAct = explode(',', $origenAct);
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Solicitud] Origen Act - '.$origenAct);
                                
@@ -484,10 +649,7 @@ class AccionesGuardado {
                                                      
     }
 
-    function cambiosAHijos($bean){
-                       
-        $recursos_propiosAnt=self::$fetchedRow[$bean -> id]['recursos_propios'];
-        $recursos_propiosAct=$bean->recursos_propios;                       
+    function cambiosAHijos($bean){                                          
                
         $nombreAnt=self::$fetchedRow[$bean -> id]['first_name'];
         $nombreAct=$bean->first_name;
@@ -551,13 +713,62 @@ class AccionesGuardado {
             $query=$query."on c.id= m.id ";
             $query=$query."set telefono=m.phone_mobile; ";
             
-            $db -> query($query);
-            
+            $db -> query($query);            
         }                
                
     }
    
-    
+    function PasoFranquiciado($bean){
+                    
+        $franquicia_historicosAnt=self::$fetchedRow[$bean -> id]['franquicia_historicos'];
+        $franquicia_historicosrAct=$bean->franquicia_historicos;       
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]Entra en paso a franquiciado');
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]$franquicia_historicosAnt-'.$franquicia_historicosAnt);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]$franquicia_historicosrAct-'.$franquicia_historicosrAct);
+        
+        
+        if($franquicia_historicosAnt!=$franquicia_historicosrAct && $franquicia_historicosrAct!="") {
+                
+            $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]Antes ver existe franquiciado');                
+                        
+            $franquiciado=Expan_Franquiciado::existeFranquiciado($bean->id);
+                        
+            if($franquiciado==false) {//se crea el franquiciado a partir de la solicitud, no existe
+                $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]Antes creacion franquiciado');   
+                $franquiciado=Expan_Franquiciado::crearFranquiciado($bean,2);
+            }
+            
+            $lista=explode(",",str_replace(";",",",$franquicia_historicosrAct));
+            
+            foreach ($lista as $fran) {
+                $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]Franquicia-'.$fran); 
+                $fran=trim($fran);
+                if ($fran!=""){
+                    if (!Expan_Apertura::existeApertura($bean -> first_name . " " . $bean -> last_name . " - " . $fran) &&                    
+                        Expan_Apertura::franquiciaNoApertura($bean->name)==false){
+                            Expan_Apertura::crearAperturaOtraFran($fran,$franquiciado,$bean);
+                    }                    
+                }                               
+            }                                                                 
+        }
+    }
+
+    function  recogerEntPrevia(&$bean){        
+        
+        global $current_user;
+        
+        if ($bean->chk_entrevista_previa_EN==1 && $bean->usuario_entrevista_previa_EN==""){
+            $bean->usuario_entrevista_previa_EN=$current_user->first_name." ".$current_user->last_name;                       
+        }
+        
+        if ($bean->chk_entrevista_previa_cliente==1 && $bean->usuario_entrevista_previa_cliente==""){
+            $bean->usuario_entrevista_previa_cliente=$current_user->first_name." ".$current_user->last_name;                       
+        }
+                           
+    }
+       
     function cambiosEconomicosGestion($bean) {
             
         $cuando_empezarAnt=self::$fetchedRow[$bean -> id]['cuando_empezar'];
@@ -629,6 +840,47 @@ class AccionesGuardado {
         }
         
     }  
+    
+    function cambioLlamadas($solicitud){
+        $dispContactoAnt=self::$fetchedRow[$bean -> id]['disp_contacto'];
+        $dispContactoAct=$solicitud->disp_contacto;        
+        
+        if (dispContactoAct!=dispContactoAnt){
 
+            $db = DBManagerFactory::getInstance();            
+            
+            //Cambiamos la disponibilidad de las llamadas
+            
+            $query = "UPDATE calls c JOIN (SELECT g.id, s.phone_mobile ";
+            $query=$query."  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+            $query=$query."  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
+            $query=$query."  g.id= gs.expan_soli5dcccitudes_idb AND ";
+            $query=$query."  s.id='".$solicitud->id."') m  ";
+            $query=$query."on c.parent_id= m.id ";
+            $query=$query."set disp_contacto='".$dispContactoAct."'";
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][cambioLlamadas]Consulta-'.$query);
+
+            $db -> query($query);
+
+        }
+    }
+    
+    function getFranSec($solicitud){
+        
+        $query = "select franquicia from expan_gestionsolicitudes g , expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+        $query=$query."where gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida='".$solicitud->id."' and g.deleted=0 and gs.deleted=0 ";
+        
+        $resultSol = $db->query($sql, true);     
+        
+        $listaFran=array();        
+              
+        while ($rowSol = $db->fetchByAssoc($resultSol)){               
+            $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El correo existe');
+            $listaFran[]=$rowSol["franquicia"];                                 
+        }
+        
+       return encodeMultienumValue($listaFran);
+    }
 }
 ?>

@@ -1419,7 +1419,7 @@ SE.composeLayout = {
     },
 
     /**
-     * Writes out the signature in the email editor
+     * Writes out the signature in the email editor (idx) editor id 1,2,....
      */
     setSignature : function(idx)
     {
@@ -2270,6 +2270,7 @@ SE.composeLayout = {
      * fills drop-down values for email templates and signatures
      */
     setComposeOptions : function(idx) {
+    	
         // send from accounts
         var addressFrom = document.getElementById('addressFrom' + idx);
 

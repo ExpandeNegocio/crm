@@ -660,11 +660,7 @@ SE.autoComplete = {
         // enable refreshes of contact lists
         this.instances[idx]['to'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);
         this.instances[idx]['cc'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);
-        this.instances[idx]['bcc'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);
-        
-        		   		alert (idx);   
-		   		alert ($("#data_parent_name0").val());
-
+        this.instances[idx]['bcc'].textboxFocusEvent.subscribe(SE.autoComplete.refreshDataSource);       
         
     },
 
@@ -2309,7 +2305,7 @@ SE.composeLayout = {
 
         for(var key in this.signatures) { // iterate through assoc array
             var display = this.signatures[key];
-            var opt = new Option(display, key);
+            var opt = new Option(display, key);                       
 
             if(key == SE.userPrefs.signatures.signature_default) {
                 opt.selected = true;
@@ -2324,10 +2320,39 @@ SE.composeLayout = {
             htmlEmail.checked = true;
         } else {
         	htmlEmail.checked = false;
-        }
+        }               
+        
+        SE.composeLayout.getSignatureFromAccount(idx);
+        
+        $("#addressFrom"+idx).change(function(){        	
+        	SE.composeLayout.getSignatureFromAccount(idx);        	
+        });               
 
         SE.tinyInstances[SE.tinyInstances.currentHtmleditor].ready = true;
+                                     	
     },
+    
+    getSignatureFromAccount : function (idx){
+    	
+    	var addFrom = document.getElementById('addressFrom' + idx);    
+    	var cuenta = addFrom.options[addFrom.selectedIndex].value;
+
+    	url = 'index.php?entryPoint=composeEmail';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "tipo=getSing&accountId=" + cuenta,
+			success : function(data) {											
+				$("#signatures"+idx).val(data);	
+				SUGAR.email2.composeLayout.setSignature('1');	
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('No se ha podido cargar documentos recibidos - ' + textStatus + ' - ' + errorThrown);
+			}
+		});
+    	
+    },
+    
 
     /**
      * After compose screen is rendered, async call to get email body from Sugar

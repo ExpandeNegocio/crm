@@ -89,18 +89,9 @@ array (
         'width' => '10%',
         'name' => 'expan_evento_id_c',
       ),         
-      'franquicia_principal' => 
-      array (
-        'type' => 'enum',
-        'studio' => 'visible',
-        'label' => 'LBL_FRANQUICIA_PRINCIPAL',
-        'width' => '10%',
-        'default' => true,
-        'name' => 'franquicia_principal',
-      ),
       'franquicias_secundarias' => 
       array (
-        'type' => 'multienum',
+        'type' => 'enum',
         'studio' => 'visible',
         'label' => 'LBL_FRANQUICIAS_SECUNDARIAS',
         'width' => '10%',
@@ -116,6 +107,15 @@ array (
         'default' => true,
         'name' => 'provincia_apertura_1',
       ),
+      'pais_c'=>
+      array (
+        'type' => 'enum',
+        'studio' => 'visible',
+        'label' => 'LBL_PAIS',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'pais_c',
+      ),      
       'rating' => 
       array (
         'type' => 'enum',
@@ -195,6 +195,27 @@ array (
         'default' => true,
         'name' => 'observaciones_solicitud',
       ),
+      
+      'tags_empresa' => 
+      array (
+        'type' => 'varchar',
+        'label' => 'LBL_TAG_EMPRESA',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'tags_empresa',
+      ),
+      
+      'perfil_profesional' => 
+      array (
+        'type' => 'varchar',
+        'label' => 'LBL_PERFIL_PROFESIONAL',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'perfil_profesional',
+      ),
+      
+      
+      
 
    /*   'abierta' => 
       array (
@@ -237,14 +258,16 @@ array (
       ),
       
       
-       'oportunidad_inmediata' => 
+    'oportunidad_inmediata' => 
     array (
     'type' => 'bool',
         'default' => true,
         'label' => 'LBL_OPORTUNIDAD_INMEDIATA',
         'width' => '10%',
         'name' => 'oportunidad_inmediata',
-      ),
+    ),
+      
+      
        
     ),
   ),

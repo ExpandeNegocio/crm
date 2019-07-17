@@ -920,7 +920,7 @@ EOHTML;
         // the code and end-user application.
 
 
-        $copyright = '&copy; 2004-2013 SugarCRM Inc. The Program is provided AS IS, without warranty.  Licensed under <a href="LICENSE.txt" target="_blank" class="copyRightLink">AGPLv3</a>.<br>This program is free software; you can redistribute it and/or modify it under the terms of the <br><a href="LICENSE.txt" target="_blank" class="copyRightLink"> GNU Affero General Public License version 3</a> as published by the Free Software Foundation, including the additional permission set forth in the source code header.<br>';
+      //  $copyright = '&copy; 2004-2013 SugarCRM Inc. The Program is provided AS IS, without warranty.  Licensed under <a href="LICENSE.txt" target="_blank" class="copyRightLink">AGPLv3</a>.<br>This program is free software; you can redistribute it and/or modify it under the terms of the <br><a href="LICENSE.txt" target="_blank" class="copyRightLink"> GNU Affero General Public License version 3</a> as published by the Free Software Foundation, including the additional permission set forth in the source code header.<br>';
 
 
 
@@ -940,7 +940,7 @@ EOHTML;
         // of the "Powered by SugarCRM" logo. If the display of the logo is
         // not reasonably feasible for technical reasons, the Appropriate
         // Legal Notices must display the words "Powered by SugarCRM".
-        $attribLinkImg = "<img style='margin-top: 2px' border='0' width='120' height='34' src='include/images/poweredby_sugarcrm_65.png' alt='Powered By SugarCRM'>\n";
+      //  $attribLinkImg = "<img style='margin-top: 2px' border='0' width='120' height='34' src='include/images/poweredby_sugarcrm_65.png' alt='Powered By SugarCRM'>\n";
 
 
 		// handle resizing of the company logo correctly on the fly
@@ -986,12 +986,12 @@ EOHTML;
         $ss->assign("COMPANY_LOGO_URL",getJSPath($companyLogoURL)."&logo_md5=".$ss->get_template_vars("COMPANY_LOGO_MD5"));
 
         // Bug 38594 - Add in Trademark wording
-        $copyright .= 'SugarCRM is a trademark of SugarCRM, Inc. All other company and product names may be trademarks of the respective companies with which they are associated.<br />';
+    //    $copyright .= 'SugarCRM is a trademark of SugarCRM, Inc. All other company and product names may be trademarks of the respective companies with which they are associated.<br />';
 
         //rrs bug: 20923 - if this image does not exist as per the license, then the proper image will be displayed regardless, so no need
         //to display an empty image here.
         if(file_exists('include/images/poweredby_sugarcrm_65.png')){
-            $copyright .= $attribLinkImg;
+        //    $copyright .= $attribLinkImg;
         }
         // End Required Image
         $ss->assign('COPYRIGHT',$copyright);
@@ -1276,11 +1276,13 @@ EOHTML;
         $show_help = true
         )
     {
-        global $sugar_version, $sugar_flavor, $server_unique_key, $current_language, $action;
+        global $sugar_version, $sugar_flavor, $server_unique_key, $current_language, $action,$app_list_strings;
 
         $theTitle = "<div class='moduleTitle'>\n";
 
         $module = preg_replace("/ /","",$this->module);
+        
+        $moduleText=$app_list_strings['moduleList'][$module];
 
         $params = $this->_getModuleTitleParams();
         $index = 0;
@@ -1300,9 +1302,11 @@ EOHTML;
                 $paramString .= $this->getBreadCrumbSymbol();
             }
         }
+        
+        $moduleTitle= "[". strtoupper ($moduleText). "]";
 
         if(!empty($paramString)){
-               $theTitle .= "<h2> $paramString </h2>\n";
+               $theTitle .= "<h2> $moduleTitle - $paramString </h2>\n";
            }
 
 

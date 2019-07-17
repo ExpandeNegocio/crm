@@ -7,14 +7,27 @@ class opEdicionSolicitud {
 		global $app_list_strings;
 		$nameFran=$app_list_strings['franquicia_list'][$current_user->franquicia];
 		echo '<script language="javascript" type="text/JavaScript">function conControlUsuarioFran(){ControlUsuarioFran("'.$nameFran.'"); }; </script>';
-
+        echo '<script language="javascript" type="text/JavaScript">           
+               alert($("#otros_sectores").val().length);                                
+                if ($("#otros_sectores").val().length==0){
+                    $("#otros_sectores").val($("#busca_sector").val());                    
+                }else{
+                   $("#otros_sectores").val($("#otros_sectores").val() + "," + $("#busca_sector").val());
+                }                                
+            
+            }; </script>';                                    
+        
+        
 		//Inicializamos valores de los sectores
 		$i = 0;
+        echo '<img src="themes/Sugar5/images/searchMore.gif">'. "\n";
+        echo '<input type="text" name="busca_sector" id="busca_sector" size="30" maxlength="255" value="" title="">'. "\n";                
+        echo '<img src="themes/Sugar5/images/ProjectCopy.gif" alt="Copiar a otros sectores"  onclick="copiaBusquedaOtrosSect();" />';
 		echo "<table style='width:100%'>" . "\n";
 
 		//recogemos los sectores de la Base de datos
 		$db = DBManagerFactory::getInstance();
-		$query = "select * from expan_m_sectores order by m_orden_sector, d_subsector";
+		$query = "select * from expan_m_sectores where b_perfil=1 order by m_orden_act,m_orden_sector,d_subsector";
 
 		$result = $db -> query($query, true);
 
@@ -47,7 +60,8 @@ class opEdicionSolicitud {
 			if ($listaSectores[$j] != $sectorAnt) {
 				echo "<tr>" . "\n" . "<td>";
 				//echo "<p style='margin-left: 15px;'>" . $listaSectores[$j] . "</p>";
-				echo "<input type='checkbox' class='Sectorcheck SectorParentCheck' id='" . $listaSectores[$j] . "' value='" . $listaSectores[$j] . "' onclick='despliegoPliegoSector(\"".$listaSectores[$j]."\");' style='margin-left:15px'><label for='".$listaSectores[$j]."' class='css-label'>" . $listaSectores[$j]. "</label>". "\n";
+				echo "<input type='checkbox' class='Sectorcheck SectorParentCheck' id='" . $listaSectores[$j] . "' value='" . $listaSectores[$j] . "' onclick='despliegoPliegoSector(\"".$listaSectores[$j]."\",);' style='margin-left:15px'><label for='".$listaSectores[$j]."' class='css-label'>" . $listaSectores[$j]. "</label>". "\n";
+                echo "<input type='checkbox' onclick='despliegoPliegoSector(\"".$listaSectores[$j]."\",) ; activoDesSector(\"".$listaSectores[$j]."\",) ;'  >";
 				echo "</tr>" . "\n" . "</td>";
 				$sectorAnt = $listaSectores[$j];
 			}
@@ -100,8 +114,9 @@ class opEdicionSolicitud {
     }
 
 	function cargaFranquicias() {
-	    
+	    echo "<div>";
         echo "<input type='checkbox' class='francheck' id='Asesoramiento' value='380f0dc1-e38e-83e2-8c74-53df9ab90ac1' onclick='cambiocheck(\"francheck\",\"franquicias_secundarias\",true);' style='margin-left:15px;' > Asesoramiento<br/>";
+        echo "</div>";
 		echo "<table style='width:100%; margin-top:8px;' border='1'>" . "\n";
 		echo "<tr>\n<td>\n";
 		
@@ -188,7 +203,7 @@ class opEdicionSolicitud {
     
     function pintarListaTags($tabla,$class){
          $i = 0;
-         
+        echo '<img src="themes/Sugar5/images/searchMore.gif">';  
         echo '<input type="text" name="buscador_'.$class.'" id="busca_'.$class.'" size="50" maxlength="255" onkeypress>';  
         echo "<table style='width:100%'>" . "\n";
 
@@ -260,6 +275,37 @@ class opEdicionSolicitud {
         }
         echo"<input type='text' name='franquicias_contactadas' id='franquicias_contactadas' size='30' maxlength='255' value='".$franq."'>";
     }
+    
+    function recogerSectorHisto($idSol) {
+        
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerSectorHisto] Entra');
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select sectores_historicos from expan_solicitud where id='".$idSol."' and deleted=0;";
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerSectorHisto]Id de la solicitud: '.$idSol);
+   
+        $result = $db -> query($query);
+        while ($row = $db -> fetchByAssoc($result)) {
+            $franq=$row["sectores_historicos"];                                           
+        }
+        echo"<input type='text' name='sectores_historicos' id='sectores_historicos' size='30' maxlength='255' value='".$franq."'>";
+    }       
+    
+    function recogerFranHisto($idSol) {
+        
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranHisto] Entra');
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select franquicia_historicos from expan_solicitud where id='".$idSol."' and deleted=0;";
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranHisto]Id de la solicitud: '.$idSol);
+   
+        $result = $db -> query($query);
+        while ($row = $db -> fetchByAssoc($result)) {
+            $franq=$row["franquicia_historicos"];                                           
+        }
+        echo"<input type='text' name='franquicia_historicos' id='franquicia_historicos' size='30' maxlength='255' value='".$franq."'>";
+    }
+    
     function recogerFranNoContactadas($idSol) {
         
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
@@ -273,6 +319,21 @@ class opEdicionSolicitud {
             $franq=$row["otras_franquicias"];                                           
         }
         echo"<input type='text' name='otras_franquicias' id='otras_franquicias' size='30' maxlength='255' value='".$franq."'>";
+    }
+    
+     function recogerFranDescarte($idGest) {
+        
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas] Entra');
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select franq_apertura_desca from expan_gestionsolicitudes where id='".$idGest."' and deleted=0;";
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
+   
+        $result = $db -> query($query, true);
+        while ($row = $db -> fetchByAssoc($result)) {
+            $franq=$row["franq_apertura_desca"];                                           
+        }
+        echo"<input type='text' name='franq_apertura_desca' id='franq_apertura_desca' size='30' maxlength='255' value='".$franq."'>";
     }
     
     function recogerTagsEmpresa($idSol) {

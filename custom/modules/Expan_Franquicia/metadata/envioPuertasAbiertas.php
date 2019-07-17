@@ -27,7 +27,7 @@
         $gestion = new Expan_GestionSolicitudes();
         $gestion -> retrieve($idGest);
         
-        $gestion -> creaLlamada("[AUT]Puertas abiertas", "PAbiertas");
+        $gestion -> creaLlamada("[AUT]Puertas abiertas", "PAbiertas",0);
         
         $salida = $gestion -> preparaCorreo("C2.2");
         // if($salida=='Ok'){

@@ -12,10 +12,7 @@ $dictionary["Expan_Evento"]["fields"]["expan_franquicia_expan_evento"] = array (
   'bean_name' => 'Expan_Franquicia',
   'vname' => 'LBL_EXPAN_FRANQUICIA_EXPAN_EVENTO_FROM_EXPAN_FRANQUICIA_TITLE',
  );
-  
-
-  
-
+ 
 
 
 ?>

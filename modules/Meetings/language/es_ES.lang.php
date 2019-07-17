@@ -95,7 +95,7 @@ $mod_strings = array (
   'LBL_LIST_DATE_MODIFIED' => 'Fecha de Modificación',
   'LBL_LIST_DATE' => 'Fecha Inicio',
   'LBL_LIST_DIRECTION' => 'Dirección',
-  'LBL_LIST_DUE_DATE' => 'Fecha de programada',
+  'LBL_LIST_DUE_DATE' => 'Fecha programada',
   'LBL_LIST_FORM_TITLE' => 'Lista de Reuniones',
   'LBL_LIST_MY_MEETINGS' => 'Mis Reuniones',
   'LBL_LIST_RELATED_TO' => 'Relacionado con',
@@ -194,4 +194,5 @@ $mod_strings = array (
   'LBL_PRIORIDAD'=>'Prioridad',
   'LBL_MODIFICADO_POR'=>'Modificado por',
   'LBL_SKYPE'=>'Skype',
+  'LBL_PROVINCIA_SOLICITUD'=>'Provincia del Solicitante',
 );

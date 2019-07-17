@@ -150,7 +150,11 @@ $xtpl->assign("ASSIGNED_USER_NAME", $focus->assigned_user_name);
 
 $xtpl->assign("TYPE", $app_list_strings['emailTemplates_type_list'][$focus->type]);
 $xtpl->assign("franquicia", $focus->franquicia);
+$xtpl->assign("f_revision", $focus->f_revision);
+$xtpl->assign("revisedby_user_name", $focus->revisedby_user_name);
+
 $xtpl->assign("nombreFran", $app_list_strings['franquicia_list_todas'][$focus->franquicia]);
+
 
 
 $franObj = new Expan_Franquicia();

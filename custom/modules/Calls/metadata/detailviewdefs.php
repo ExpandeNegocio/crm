@@ -5,11 +5,11 @@ array (
   array (
     'templateMeta' => 
     
-    array(
-    'includes' => array (
+  //  array(
+    /*'includes' => array (
             0 =>array ('file' => 'include/javascript/limpiarLlamadaDetail.js',),
-            ),
-    ),
+            ),*/
+//   ),
     array (
       'form' => 
       array (
@@ -79,6 +79,8 @@ array (
           'field' => '30',
         ),
       ),
+      'javascript' => '{sugar_getscript file="include/javascript/limpiarLlamadaDetail.js"}
+      <script type="text/javascript">{$JSON_CONFIG_JAVASCRIPT}</script>',       
       'useTabs' => false,
       'tabDefs' => 
       array (
@@ -165,6 +167,19 @@ array (
             'label' => 'LBL_OPORTUNIDAD_INMEDIATA',
           ),                            
         ),
+         3 => 
+        array (
+          0 => 
+          array (
+             'name' => 'disp_contacto',
+             'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+          ),
+          1 => 
+          array (
+          ),
+        ),
+        
+        
       ),
     ),
   ),

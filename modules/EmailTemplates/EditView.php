@@ -163,6 +163,18 @@ $popup_request_data = array(
 	);
 $json = getJSONobj();
 $xtpl->assign('encoded_assigned_users_popup_request_data', $json->encode($popup_request_data));
+
+$popup_request_data = array(
+    'call_back_function' => 'set_return',
+    'form_name' => 'EditView',
+    'field_to_name_array' => array(
+        'id' => 'revisedby_user_id',
+        'user_name' => 'revisedby_user_name',
+        ),
+    );
+$json = getJSONobj();
+$xtpl->assign('encoded_revisedby_users_popup_request_data', $json->encode($popup_request_data));
+
 if(!empty($focus->assigned_user_name))
     $xtpl->assign("ASSIGNED_USER_NAME", $focus->assigned_user_name);
 
@@ -344,6 +356,9 @@ if(true) {
 	///////////////////////////////////////
     $templateType = !empty($focus->type) ? $focus->type : '';
     $franquicia = !empty($focus->franquicia) ? $focus->franquicia : '';
+    $f_revision = !empty($focus->f_revision) ? $focus->f_revision : '';
+    $usuario_rev = !empty($focus->revisedby_user_name) ? $focus->revisedby_user_name : '';
+    
   //  $franquicia = '26d31e4d-54e8-e450-e99c-58775cc600c2';//.$franquicia;
     $modeloneg = !empty($focus->modeloneg) ? $focus->modeloneg : '';
     if($has_campaign) {
@@ -375,6 +390,9 @@ if(true) {
     $xtpl->assign("FRANQ",$franquicia);
     $xtpl->assign("FRANQDROPDOWN", get_select_options_with_id($app_list_strings['franquicia_list_todas'],$franquicia));
     $xtpl->assign("MODNEG",$modeloneg);
+    
+    $xtpl->assign("FREV",$f_revision);
+    $xtpl->assign("REVISEDBY_USER_NAME",$usuario_rev);
        
 	// done and parse
 	$xtpl->parse("main.textarea");

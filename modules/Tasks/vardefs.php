@@ -344,6 +344,16 @@ $dictionary['Task'] = array('table' => 'tasks',
     'reportable'=>false,    
   ),
   
+  'fran_type' => 
+    array (
+       'name' => 'fran_type',
+        'vname' => 'Tipo',
+        'type' => 'varchar',
+        'len' => '255',
+        'source' => 'non-db',
+  
+  ),  
+  
      
 )
 ,

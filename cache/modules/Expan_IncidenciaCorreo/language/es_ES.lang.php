@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-13 17:11:28
+// created: 2019-07-17 19:44:54
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -19,12 +19,12 @@ $mod_strings = array (
   'LBL_REMOVE' => 'Quitar',
   'LBL_ASSIGNED_TO_ID' => 'Asignado a Usuario con Id',
   'LBL_ASSIGNED_TO_NAME' => 'Usuario',
+  'LNK_NEW_RECORD' => 'Crear IncidenciaCorreo',
+  'LNK_LIST' => 'Vista IncidenciaCorreo',
   'LBL_LIST_FORM_TITLE' => 'IncidenciaCorreo Lista',
   'LBL_MODULE_NAME' => 'IncidenciaCorreo',
   'LBL_MODULE_TITLE' => 'IncidenciaCorreo',
   'LBL_HOMEPAGE_TITLE' => 'Mi IncidenciaCorreo',
-  'LNK_NEW_RECORD' => 'Crear IncidenciaCorreo',
-  'LNK_LIST' => 'Vista IncidenciaCorreo',
   'LNK_IMPORT_EXPAN_INCIDENCIACORREO' => 'Importar IncidenciaCorreo',
   'LBL_SEARCH_FORM_TITLE' => 'Buscar IncidenciaCorreo',
   'LBL_HISTORY_SUBPANEL_TITLE' => 'Ver Historial',

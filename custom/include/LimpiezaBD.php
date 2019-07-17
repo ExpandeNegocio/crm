@@ -1,15 +1,56 @@
 <?php
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
-    $GLOBALS['log'] -> info('[ExpandeNegocio][Paso a Estado 3]Pruebas');
+    $GLOBALS['log'] -> info('[ExpandeNegocio][Limpieza BD]Inicio');
     
     $db = DBManagerFactory::getInstance();
     
     echo 'Iniciando Proceso';
     
-    //Limpieza de las auditorias de gestion que tienen el usuario vacio (si no se actualiza, los datos de auditoría no se ven bien)
+    //Limpiamos relaciones de Gestione y Solicitudes
     
+    $query = "delete from expan_solicitud_expan_gestionsolicitudes_1_c where deleted=1; ";
+    $result = $db -> query($query);
+        
+    $query = "DELETE FROM expan_solicitud_expan_gestionsolicitudes_1_c ";
+    $query=$query."WHERE       id IN (SELECT id ";
+    $query=$query."                   FROM   expan_solicitud_expan_gestionsolicitudes_1_c ";
+    $query=$query."                   WHERE  expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida NOT IN (SELECT id FROM expan_solicitud)); ";
+    $result = $db -> query($query);
+    
+    $query = "DELETE FROM expan_gestionsolicitudes ";
+    $query=$query."WHERE       id IN (SELECT id ";
+    $query=$query."                   FROM   expan_gestionsolicitudes ";
+    $query=$query."                   WHERE  NOT id IN (SELECT expan_soli5dcccitudes_idb FROM expan_solicitud_expan_gestionsolicitudes_1_c)); ";
+    $result = $db -> query($query);       
+            
+    //Calculamos la proovincia si esta vacia y el municipio si está ok
+    $query = "UPDATE expan_solicitud ";
+    $query=$query."SET    provincia_apertura_1 = CONVERT(left(localidad_apertura_1, 2), UNSIGNED INTEGER) ";
+    $query=$query."WHERE  localidad_apertura_1 REGEXP '^[0-9]+$' AND provincia_apertura_1 IS NULL; ";
+    $result = $db -> query($query);
+    
+    //Actualizacion de salutation
+    $query = "update expan_solicitud s ";
+    $query=$query."INNER JOIN expan_m_nombres n ";
+    $query=$query."on UCASE(trim(s.first_name)) = n.nombre ";
+    $query=$query."set s.salutation=case when n.tipo='H' then 'Mr.' else 'Ms.' end ";
+    $query=$query."WHERE length(trim(salutation))=0  AND deleted = 0 AND NOT first_name IS NULL AND dummie != 1; ";
+    $result = $db -> query($query);
+    
+    $GLOBALS['log'] -> info('[ExpandeNegocio][Limpieza BD]Calculamos la proovincia si esta vacia y el municipio si está ok');
+              
+    //Limpieza de las auditorias de gestion que tienen el usuario vacio (si no se actualiza, los datos de auditoría no se ven bien)    
     $query = "update expan_gestionsolicitudes_audit set created_by=1 where expan_gestionsolicitudes_audit.created_by is null; ";    
     $result = $db -> query($query);
+    
+    $GLOBALS['log'] -> info('[ExpandeNegocio][Limpieza BD]Limpieza de las auditorias de gestion que tienen el usuario vacio (si no se actualiza, los datos de auditoría no se ven bien)');
+    
+    //Limpieza de los correos que se han desenlazado
+    
+    $query = "delete from email_addr_bean_rel where deleted=1";
+    $result = $db -> query($query);
+    
+    $GLOBALS['log'] -> info('[ExpandeNegocio][Limpieza BD]Limpieza de las auditorias de gestion que tienen el usuario vacio (si no se actualiza, los datos de auditoría no se ven bien)');
     
     //CONS_LIMPIA_GESTIONES_VACIAS
     $query = "delete from expan_gestionsolicitudes where name=''";
@@ -42,6 +83,72 @@
     //CONS_LIMPIA_ESTADO_INI
     $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null, envio_documentacion=null, chk_envio_documentacion=null  where estado_sol = ".Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO;
     $result = $db -> query($query);
+    
+    //BORRADO DE JOBS
+    $query = "DELETE from job_queue where date_entered < DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
+    $result = $db -> query($query);
+    
+    //BORRADO DE LLAMADAS
+    $query = "delete from calls where deleted=1 and date_entered < DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
+    $result = $db -> query($query);
+    
+    $query = "delete from calls where id in( select c.id from expan_gestionsolicitudes g, calls c where g.name like '%Dummie%' and g.id=c.parent_id and g.deleted=0 ); ";
+    $result = $db -> query($query);
+    
+    //BORRADO ENLACE LLAMADAS
+    $query = "delete from expan_gestionsolicitudes_calls_1_c where deleted=1 and date_modified < DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
+    $result = $db -> query($query);
+    
+    //CONTROL FECHA DE LLAMADAS
+    $query = "update calls set date_entered=date_modified where date_entered is null";
+    $result = $db -> query($query);
+    
+    //LIMPIEZA SECTORES
+    
+    $query = "update expan_m_sectores set d_subsector= trim(d_subsector)";
+    $result = $db -> query($query);
+    
+    //CONTROL NOMBRE LLAMADAS    
+    $query = " ";
+    $query=$query."UPDATE calls c ";
+    $query=$query."       JOIN (SELECT g.name, g.id ";
+    $query=$query."             FROM   expan_gestionsolicitudes g) gss ";
+    $query=$query."         ON gss.id = c.parent_id ";
+    $query=$query."SET    c.name = concat(gss.name, c.name) ";
+    $query=$query."WHERE  c.name LIKE ' - %'; ";
+    $result = $db -> query($query);    
+    
+    //BORRADO DE SOLICITUDES EN MAILINGS
+    $query = "DELETE FROM expma_mailing_expan_solicitud_c WHERE DELETED=1";
+    $result = $db -> query($query);
+    
+    //BORRADO DE CALLS USERS  
+    $query = "DELETE from calls_users where deleted=1";
+    $result = $db -> query($query);
+    
+    $query = "delete from notes where deleted=1";
+    $result = $db -> query($query);
+    
+    $query = "DELETE FROM expan_gestionsolicitudes WHERE DELETED=1 and date_entered < DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
+    $result = $db -> query($query);
+    
+    //LIMPIAMOS TAREAS
+    
+    $query = "delete from tasks where name='' AND parent_type is null; ";
+    $result = $db -> query($query);
+    
+    
+    //CORRECCION DE LOS EVENTOS QUE ESTAN COMO TIPO DE PARTICIPACION 3
+    $query = "UPDATE expan_gestionsolicitudes  g ";
+    $query=$query."       INNER JOIN ";
+    $query=$query."       (SELECT g.id ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_franquicia_expan_evento_c ef ";
+    $query=$query."        WHERE  ef.expan_franquicia_expan_eventoexpan_franquicia_ida = g.franquicia AND g.expan_evento_id_c = ";
+    $query=$query."                 ef.expan_franquicia_expan_eventoexpan_evento_idb AND (ef.participacion = 3 || length(ef.participacion)=0) a ";
+    $query=$query."SET    tipo_origen = 1, subor_expande = 7,evento_bk=expan_evento_id_c, expan_evento_id_c=null ";
+    $query=$query."WHERE  a.id = g.id ";
+    $result = $db -> query($query);
+    
     
     //CONS_LIMPIA_ESTADO_CURSO
     $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO;
@@ -207,6 +314,13 @@
     $result = $db -> query($query);
     
     
+    //LLevamos la fecha de creacion de la gestion a la fecha de inicio de un evento si esta esta fuera del intervalo
+    
+    /*$query = "UPDATE expan_gestionsolicitudes g INNER JOIN expan_evento e ON g.expan_evento_id_c = e.id ";
+    $query=$query."SET    g.date_entered=e.fecha_celebracion ";
+    $query=$query."WHERE  g.date_entered BETWEEN e.fecha_celebracion AND DATE_ADD(e.fecha_fin, INTERVAL 1 DAY); ";*/
+    
+    
     //Limpiamos las posibles llamadas duplicadas
     
     $query = "UPDATE calls c ";
@@ -221,6 +335,22 @@
     $query=$query."SET    c.status='Archived'; ";
     $result = $db -> query($query);
     
+   /* $query = "UPDATE calls c  ";
+    $query=$query."       INNER JOIN  ";
+    $query=$query."       (SELECT id, max(date_entered) date_entered, name, count(1)  ";
+    $query=$query."          FROM     calls_bk  ";
+    $query=$query."          WHERE    deleted = 0 AND status = 'Planned'  ";
+    $query=$query."          GROUP BY name  ";
+    $query=$query."          HAVING   count(1) > 1 ";
+    $query=$query."       ) a  ";
+    $query=$query."         ON c.id =a.id ";
+    $query=$query."SET    c.status='Archived' ";
+    $result = $db -> query($query);*/
+    
+    //Limpieza llamadas no válidas
+    
+//    $query = "delete from calls where status='Planned' and deleted=0 and parent_id not in (select id from expan_gestionsolicitudes where deleted=0);";
+//    $result = $db -> query($query);
         
     //Pasamos a Archivadas las tareas del ERM finalizadas hace tiempo
     
@@ -273,7 +403,23 @@
         }           
     
     }
+
+    //Correccion problemas franquicia principal
+
+    $query = "SELECT * ";
+    $query=$query."FROM expan_solicitud s ";
+    $query=$query."WHERE INSTR(franquicias_secundarias,concat('^',franquicia_principal,'^')) = 0 AND deleted = 0; ";   
     
+    $result = $db -> query($query, true);
+    
+    echo "Cnsulta Limpieza fs - ".$query."<br>";
+    
+    while ($row = $db -> fetchByAssoc($result)) {                          
+        $list=explode('^,^', $row["franquicias_secundarias"]);        
+        $query="update expan_solicitud set franquicia_principal='".str_replace("^","",$list[0])."' where id='".$row["id"]."'";
+        echo $query."<BR>";    
+        $result2 = $db -> query($query);
+    }
     
     echo 'FinlizadoProceso';
 ?>

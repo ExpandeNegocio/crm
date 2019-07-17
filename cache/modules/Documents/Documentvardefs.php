@@ -553,7 +553,7 @@
       'importable' => 'true',
       'duplicate_merge' => 'disabled',
       'duplicate_merge_dom_value' => '0',
-      'audited' => false,
+      'audited' => true,
       'reportable' => true,
       'unified_search' => false,
       'merge_filter' => 'disabled',
@@ -562,6 +562,24 @@
       'options' => 'franquicia_list',
       'studio' => 'visible',
       'dependency' => false,
+    ),
+    'revision_date' => 
+    array (
+      'name' => 'revision_date',
+      'vname' => 'LBL_REVISION_DATE',
+      'type' => 'date',
+      'importable' => 'required',
+      'required' => true,
+      'audited' => true,
+      'display_default' => 'now',
+    ),
+    'is_valid' => 
+    array (
+      'name' => 'is_valid',
+      'vname' => 'LBL_VALID',
+      'type' => 'bool',
+      'default' => 0,
+      'reportable' => false,
     ),
     'tipo_envio' => 
     array (

@@ -1,6 +1,7 @@
 <?php
     require_once ('data/SugarBean.php');
     require_once ('modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes.php');
+    require_once ('modules/Expan_Empresa/Expan_Empresa.php');
     require_once ('modules/Expan_Solicitud/Expan_Solicitud.php');
     require_once ('modules/Expan_Franquicia/Expan_Franquicia.php');
     require_once ('modules/Calls/Call.php');
@@ -27,6 +28,18 @@
             
                //Creacion de una nueva Franquicia
                 if (!isset(self::$fetchedRow[$bean -> id])) {
+                        
+                    //Si la cuenta es de consultoria
+                    if ($bean->tipo_cuenta==1){
+                       $bean-> llamar_todos=1;
+                    }
+                    
+                    $this->CreateEmpresa($bean);
+                    
+                    $bean->name=trim($bean->name);
+                    
+                    $bean -> ignore_update_c=true;
+                    $bean -> save();
             
                 //Modificamos la franquicia
                 }else{
@@ -208,11 +221,31 @@
                     $llamarTodosAct==true){
                         $bean->creaLlamadasPortal();
                     }
+                    
+                    $bean -> procesarObservaciones();
+                    
+                    $bean -> ignore_update_c=true;
+                    $bean -> save();
                                               
                 }
             
             }
-        }    
-       
+        }
+
+        private function CreateEmpresa(&$bean){
+                
+            $empresa = new Expan_Empresa();
+            
+            $empresa->name= $bean->name;
+            $empresa->sector=$bean->sector;
+            $empresa->telefono_contacto_1=$bean->phone_office;
+            $empresa->empresa_type="fa";
+            $empresa->origen="expande";     
+            
+            $empresa->ignore_update_c = true;
+            $empresa->save();
+            
+            $bean->empresa=$empresa->id;       
+        }          
     }
 ?>

@@ -220,7 +220,12 @@ class SugarWidgetSubPanelTopChangeStateButton extends SugarWidgetSubPanelTopButt
     */
     protected function getTitle()
     {
-       return translate('LBL_CHANGE_STATE_BUTTON_TITLE');
+        if ($this->parent_bean->object_name=="Expan_Solicitud"){
+            return translate('LBL_CHANGE_STATE_BUTTON_TITLE');            
+        }else{
+            return translate('LBL_CHANGE_PART_BUTTON_LABEL'); 
+        }
+       
     }
 
     /**

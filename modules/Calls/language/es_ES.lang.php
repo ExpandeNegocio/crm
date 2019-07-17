@@ -97,7 +97,8 @@ $mod_strings = array (
   'LBL_HOURS_ABBREV' => 'h',
   'LBL_MINSS_ABBREV' => 'm',
   'LBL_COLON' => ':',
-  'LNK_NEW_CALL' => 'Registrar Llamada',
+  'LNK_NEW_FRANQ_CALL'=> 'Llamada Central',
+  'LNK_NEW_CALL' => 'Llamada Candidato',
   'LNK_NEW_MEETING' => 'Programar Reunión',
   'LNK_CALL_LIST' => 'Ver Llamadas',
   'LNK_IMPORT_CALLS' => 'Importar Llamadas',
@@ -178,4 +179,7 @@ $mod_strings = array (
   'LBL_MODIFICADO_POR'=>'Modificado por',
   'LBL_GESTION_AGRUPADA'=>'Gestión Agrupada',
   'LBL_PROVINCIA_APERTURA_1'=>'Provincia',
+  'LBL_DISPONIBILIDAD_HORARIA_CONTACTO'=>'Disponibilidad horaria contacto',
+  'LBL_REPETICIONES' => 'Repeticiones',
+  'LBL_LIST_TYPE' => 'Tipo',
 );

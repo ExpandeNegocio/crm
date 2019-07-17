@@ -46,16 +46,62 @@ class Expan_IncidenciaCorreo extends Expan_IncidenciaCorreo_sugar {
 	
     function RellenoGestion($gestion,$tipo){
         
-        $this->expan_gestionsolicitudes_id=$gestion->id;
-        $this->name=$gestion->name.'-'.$tipo;
-        $this->incidencia_type=$tipo;
+        if ($this->ExisteIncidencia($gestion,$tipo)==false && 
+            $this->ExisteEnvioAnterior($gestion,$tipo)==false){
+                
+            $this->expan_gestionsolicitudes_id=$gestion->id;
+            $this->name=$gestion->name.'-'.$tipo;
+            $this->incidencia_type=$tipo;
+            
+            $franq= new Expan_Franquicia();
+            $franq->retrieve($gestion->franquicia);        
+            $this->assigned_user_id=$franq->assigned_user_id;
+            
+            $this -> ignore_update_c = true;
+            $this -> save(); 
+        }        
+    }
+    
+    function ExisteIncidencia($gestion,$tipo){
         
-        $franq= new Expan_Franquicia();
-        $franq->retrieve($gestion->franquicia);        
-        $this->assigned_user_id=$franq->assigned_user_id;
+        $db = DBManagerFactory::getInstance();
         
-        $this -> ignore_update_c = true;
-        $this -> save();
+        $query = "select * from expan_incidenciacorreo  ";
+        $query=$query."where expan_gestionsolicitudes_id='".$gestion->id."' AND incidencia_type='".$tipo."' AND deleted=0; ";
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Consulta-'.$query);
+
+        $result = $db -> query($query, true);
+        
+        $existeInci=false;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $existeInci=true;
+        }
+        
+        return $existeInci;
+    }
+    
+    function ExisteEnvioAnterior($gestion,$tipo){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "SELECT e.id,et.name,et.type from emails e, email_templates et  ";
+        $query=$query."WHERE et.subject=e.name and parent_id='".$gestion->id."' AND et.type='".$tipo."' ";
+        $query=$query."AND e.deleted=0 AND et.deleted=0 ";
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Consulta-'.$query);
+
+        $result = $db -> query($query, true);
+        
+        $existeEnvio=false;
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $existeEnvio=true;
+        }
+        
+        return $existeEnvio;
+        
     }
     
 }

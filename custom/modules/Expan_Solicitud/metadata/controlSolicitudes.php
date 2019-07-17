@@ -8,14 +8,15 @@
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
     $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Control de duplicidades Ajax');
     
-    $valida = $_GET['valida'];
-    $telefono=$_GET['telefono'];
-    $solId=$_GET['solId'];
-    $ratingAct=$_GET['rating'];
+    $valida = $_POST['valida'];
+    $telefono=$_POST['telefono'];
+    $solId=$_POST['solId'];
+    $ratingAct=$_POST['rating'];
     
-    $idEmail=$_GET['idEmail'];
-    $email=$_GET['email'];
-    $idUser=$_GET['idUser'];
+    $idEmail=$_POST['idEmail'];
+    $email=$_POST['email'];
+    $idUser=$_POST['idUser'];
+    $fecha=$_POST['fecha'];
         
     global $current_user;
     //Comprobamos que el usuario no es de un franquicia
@@ -120,6 +121,44 @@
             $result = $db -> query($query);
         
             break;
+            
+        case 'controlTiempo':
+            
+            $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Control de tiempo entra');
+            
+            $hoy=new DateTime();
+            
+            $solicitud=new Expan_Solicitud();
+            $solicitud->retrieve($solId);
+            
+            $fechaCreacion= $solicitud->date_entered;
+            
+            $hoy->modify('-1 day');                       
+            
+            if ($fechaCreacion < $hoy){
+                echo 'true';  
+            }else{
+                echo 'false';
+            }
+            
+            break;
+        
+        case 'marcarReunion':                         
+            
+            $query = "UPDATE expan_gestionsolicitudes  g ";
+            $query=$query."       INNER JOIN (SELECT g.id ";
+            $query=$query."                   FROM   expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+            $query=$query."                   WHERE  g.id = gs.expan_soli5dcccitudes_idb AND gs.deleted = 0 AND g.deleted = 0 AND gs. ";
+            $query=$query."                          expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '".$solId."') a ";
+            $query=$query."         ON g.id = a.id ";
+            $query=$query."SET    chk_entrevista = 1, f_entrevista = '".$fecha."' ";
+            $query=$query."WHERE  g.f_entrevista IS NULL ";
+            
+                       
+            $result = $db -> query($query);
+        
+            break;
+            
     }   
     
 ?>

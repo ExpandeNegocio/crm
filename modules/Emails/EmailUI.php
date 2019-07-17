@@ -2506,25 +2506,6 @@ eoq;
 	 * returns an array of EmailTemplates that the user has access to for the compose email screen
 	 * @return array
 	 */
-/*	function getEmailTemplatesArray() {
-
-		global $app_strings;
-        $email_templates_arr = array('' => $app_strings['LBL_NONE']);
-		if(ACLController::checkAccess('EmailTemplates', 'list', true) && ACLController::checkAccess('EmailTemplates', 'view', true)) {
-			$et = new EmailTemplate();
-            $etResult = $et->db->query($et->create_new_list_query('',"",array(),array(),''));
-			//$email_templates_arr = array('' => $app_strings['LBL_NONE']);
-			while($etA = $et->db->fetchByAssoc($etResult)) {
-			    
-                $pos=strpos($etA['id'], '#E1');              
-			    if ($pos!==false){
-			        $email_templates_arr[$etA['id']] = $etA['name'];
-			    }
-			}
-		}
-
-		return $email_templates_arr;
-	}*/
 	
 	 function getEmailTemplatesArray() {
 	        	      
@@ -2541,18 +2522,40 @@ eoq;
         
         global $app_strings;
         $email_templates_arr = array('' => $app_strings['LBL_NONE']);
-        if(ACLController::checkAccess('EmailTemplates', 'list', true) && ACLController::checkAccess('EmailTemplates', 'view', true)) {
+       /* if(ACLController::checkAccess('EmailTemplates', 'list', true) && ACLController::checkAccess('EmailTemplates', 'view', true)) {
+            
+            $GLOBALS['log']->info("---------ENTRAMOS RECOGER PLANTILLAS--------------------------");
+            
+            
+             $db = DBManagerFactory::getInstance();
+    
+            $query = "select et.id,et.name from email_templates et, expan_franquicia f where et.franquicia=f.id and et.type='E1' and f.tipo_cuenta in (1,2)";
+    
+            
+            $result = $db -> query($query, true);
+                    
+            while ($row = $db -> fetchByAssoc($result)) {                   
+                
+                $email_templates_arr[$row['id']] = $row['name'];
+            }  
+        }     */
+            
+            
             $et = new EmailTemplate();
             $etResult = $et->db->query($et->create_new_list_query('',"",array(),array(),''));
             //$email_templates_arr = array('' => $app_strings['LBL_NONE']);
-            while($etA = $et->db->fetchByAssoc($etResult)) {
+            while($etA = $et->db->fetchByAssoc($etResult)) {                                              
                 
                 $pos=strpos($etA['type'], 'E1');              
                 if ($pos!==false){
-                    $email_templates_arr[$etA['id']] = $etA['name'];
+                    
+                    
+                        $email_templates_arr[$etA['id']] = $etA['name'];
+                    
+                                      
                 }
             }
-        }
+                                           
 
         return $email_templates_arr;
                
@@ -2573,7 +2576,7 @@ eoq;
             //$email_templates_arr = array('' => $app_strings['LBL_NONE']);
             while($etA = $et->db->fetchByAssoc($etResult)) {
                                         
-                if ($etA['type']==$gestion->franquicia.'E1'){
+                if ($etA['type']=='E1'){                                       
                     $email_templates_arr[$etA['id']] = $etA['name'];
                 }
             }

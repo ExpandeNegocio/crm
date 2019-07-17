@@ -18,8 +18,9 @@ class Boton {
                     var botoncunopuntotres=$('<input type="button" name="reenviarcunopuntontres" id="reenviarcunopuntotres" class="button" style="margin-right:5px;" tittle="Reenviar C1.3" onclick="reenvioDoc(\'C1.3\');" value="Reenviar C1.3">');
                     var botoncunopuntocuatro=$('<input type="button" name="reenviarcunopuntocuatro" id="reenviarcunopuntocuatro" class="button" style="margin-right:5px;" tittle="Reenviar C1.4" onclick="reenvioDoc(\'C1.4\');" value="Reenviar C1.4">');
                     var botoncunopuntocinco=$('<input type="button" name="reenviarcunopuntocinco" id="reenviarcunopuntocinco" class="button" style="margin-right:5px;" tittle="Reenviar C1.5" onclick="reenvioDoc(\'C1.5\');" value="Reenviar C1.5">');
+                    var botonEnvioFichaFranquicia=$('<BR><BR><input type="button" name="EnvioFichaConsultor" id="EnvioFichaFranquicia" class="button" style="margin-right:5px;" tittle="Envio Ficha Franquicia" onclick="envioFicha(\'franq\');" value="Envio Ficha Franquicia">');
+                    var botonEnvioFichaConsultor=$('<input type="button" name="EnvioFichaConsultor" id="EnvioFichaConsultor" class="button" style="margin-right:5px;" tittle="Envio Ficha Consultor" onclick="envioFicha(\'consultor\');" value="Envio Ficha Consultor">');
                     
-                                        
                     $(".paginationActionButtons").append(botoncuno);
                     $(".paginationActionButtons").append(botoncdos);
                     $(".paginationActionButtons").append(botonctres);
@@ -29,6 +30,8 @@ class Boton {
                     $(".paginationActionButtons").append(botoncunopuntotres);
                     $(".paginationActionButtons").append(botoncunopuntocuatro);
                     $(".paginationActionButtons").append(botoncunopuntocinco);
+                    $(".paginationActionButtons").append(botonEnvioFichaFranquicia);
+                    $(".paginationActionButtons").append(botonEnvioFichaConsultor);
          });
                 </script>
 EOQ;

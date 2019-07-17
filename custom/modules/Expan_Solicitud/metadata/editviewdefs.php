@@ -1,5 +1,24 @@
 <?php
 $module_name = 'Expan_Solicitud';
+$id=$_REQUEST["record"];
+if ($id==""){
+    $id=$_POST["record"];
+}
+if ($id==""){
+    $id=$_GET["record"];
+}
+if ($id==""){
+    $id=$_SESSION["Expan_Solicitud_detailview_record"];
+}
+
+$solicitud= new Expan_Solicitud();
+$solicitud -> retrieve($id);
+
+if ($solicitud->getFranquiciado()!=""){
+   $cutomCodeBotFranqui= '<input title="Abrir Franquiciado asociado a esta solicitud"  type="button" name="abrirFranquiciado" id="abrirFranquiciado"  
+                    onclick="abrirFranquiciado(\''.$id.'\');" value="Abrir Franquiciado">';
+}
+
 $viewdefs [$module_name] = 
 array (
   'EditView' => 
@@ -37,10 +56,19 @@ array (
             this.form.return_action.value=\'DetailView\'; 
             this.form.action.value=\'Save\';             
             var valido=validarSubOrigen(\'EditView\');
-            if (valido!=false) controlRating(\'{$fields.id.value}\');                        
-            return valido;" value="Guardar Validado">',
+            if (valido!=false) controlRating(\''.$id.'\');                        
+            return valido;" value="Guardar">',
           ),
           2 => 'CANCEL',
+          3 =>
+           array(
+            'customCode' =>$cutomCodeBotFranqui,
+          ),
+          4 =>
+           array(
+            'customCode' =>'<input title="Mostrar informacion ampliada"  type="button" name="ampliarResumir" id="ampliarResumir"  
+                    onclick="alternarVistaAmpli();" value="Informacion Reducida">',
+          ),
         ),
       ),
       'useTabs' => true,
@@ -76,9 +104,79 @@ array (
     'panels' => 
     array (
       'lbl_contact_information' => 
-      array (
-        0 => 
-        array (
+      array (        
+        
+            0 => 
+            array (
+              0 => 
+              array (
+                'name' => 'tipo_origen',
+                'studio' => 'visible',
+                'label' => 'LBL_TIPO_ORIGEN',
+                'displayParams' => array('field' => array(
+                'onChange' => 'cambioSeleccion()')),
+              ),
+              1 => 
+              array (
+                'name' => 'subor_expande',
+                'studio' => 'visible',
+                'label' => 'LBL_SUBOR_EXPANDE',
+              ),
+            ),
+            
+            1 => 
+            array (
+              0 => '',
+              1 => 
+              array (
+                'name' => 'portal',
+                'studio' => 'visible',
+                'label' => 'LBL_PORTAL',
+              ),
+            ),
+            
+            2 => 
+            array (
+              0 => '',
+              1 => 
+              array (
+                'name' => 'expan_evento_id_c',
+                'label' => 'LBL_EVENTO',
+              ),
+            ),   
+                 
+            3 => 
+            array (
+              0 => '',
+              1 => 
+              array (
+                'name' => 'subor_central',
+                'label' => 'LBL_SUBOR_CENTRAL',
+              ),
+            ), 
+                   
+            4 => 
+            array (
+              0 => '',
+              1 => 
+              array (
+                'name' => 'subor_medios',
+                'label' => 'LBL_SUBOR_MEDIOS',
+              ),
+            ),
+            
+            5 => 
+            array (
+              0 => '',
+              1 => 
+              array (
+                'name' => 'subor_mailing',
+                'label' => 'LBL_SUBOR_MAILING',
+              ),
+            ),        
+                                  
+         6 => 
+         array (
           0 => 
           array (
             'name' => 'first_name',
@@ -90,16 +188,18 @@ array (
             'label' => 'LBL_EMPRESA',
           ),
         ),
-        1 => 
+        
+        7 => 
         array (
           0 => 'last_name',
           1 => array (
             'name' => 'phone_mobile',
             'displayParams' => array('field' => array(
-            'onBlur' => 'controlTelefono(this,\'{$fields.id.value}\')')),
+            'onBlur' => 'controlTelefono(this,\''.$id.'\')')),
           ),
         ),
-        2 => 
+        
+        8 => 
         array (
           0 => 
           array (
@@ -111,7 +211,7 @@ array (
             'label' => 'LBL_HOME_PHONE',
           ),
         ),
-         3 => 
+        9 => 
         array (
           0 => array (
             'name' => 'skype',
@@ -121,8 +221,19 @@ array (
           1 => 'phone_work',
           
         ),
+        10 => 
+        array (
+          0 => array (
+            'name' => 'linkedin',
+            'comment' => 'LinkedIn',
+            'label' => 'LBL_LINKEDIN',
+          ),         
+          1 => array (           
+          ),
+          
+        ),
         
-        4 => 
+        11 => 
         array (
           0 => 
           array (
@@ -137,7 +248,7 @@ array (
           ),
         ),
         
-         5 => 
+        12 => 
         array(
             0 => 
             array(
@@ -148,11 +259,10 @@ array (
             array(
                 'name' => 'disp_contacto',
                 'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
-            ),
-            
+            ),            
         ),
         
-        6 => 
+        13 => 
         array(
             0 => 
             array(
@@ -162,13 +272,10 @@ array (
             ),
             1 => 
             array(
-                'name'=> 'check_puertas_abiertas',
-                'label'=> 'LBL_PUERTAS_ABIERTAS',
-            ),
-            
+            ),            
         ),
            
-        7 => 
+        14 => 
         array (
           0 => 
           array (
@@ -183,7 +290,7 @@ array (
           ),
         ),
         
-        8 => 
+        15 => 
         array (
           0 => 
           array (
@@ -198,7 +305,7 @@ array (
           ),
         ),
         
-        9 => 
+        16 => 
         array (
           0 => 
           array (
@@ -213,7 +320,7 @@ array (
           ),
         ),
         
-        10 => 
+        17 => 
         array (
           0 => 
           array (
@@ -228,7 +335,7 @@ array (
           ),
         ),
         
-        11 => 
+        18 => 
         array (
           0 => 
           array (
@@ -243,7 +350,36 @@ array (
           ),
         ),
         
-        12 => 
+        19 => 
+        array (
+          0 => 
+           array(
+                'name'=> 'observaciones_zona_apertura',
+                'label'=> 'LBL_OBSERVACIONES_ZONA_APERTURA',
+            ),
+          1 => 
+          array (
+            'name' => 'zona',
+            'studio' => 'visible',
+            'label' => 'LBL_ZONA',
+          ),
+        ),
+        
+        20 => 
+        array (
+          0 => 
+           array (          
+                'name'=> 'pais_residencia',
+                'label'=> 'LBL_PAIS_RESIDENCIA',
+          ),
+          1 => 
+          array (
+                'name'=> 'provincia_residencia',
+                'label'=> 'LBL_PROVINCIA_RESIDENCIA',
+          ),
+        ),
+        
+        21 => 
         array (
           0 => 
            array (          
@@ -258,31 +394,30 @@ array (
             'label' => 'LBL_CANDIDATURA_CALIENTE',
             'displayParams' => array('readOnly' => true),
           ),
-        ),
+        ),     
         
-        13 => 
+        22 => 
         array (
           0 => 
-           array (                    
+           array (          
+                'name'=> 'check_puertas_abiertas',
+                'label'=> 'LBL_PUERTAS_ABIERTAS',
           ),
           1 => 
           array (
-            'name' => 'zona',
-            'studio' => 'visible',
-            'label' => 'LBL_ZONA',
+
           ),
         ),
         
-        14 =>
+        23 =>
         array ( 
             0=> array(
                 'name' => '',
                 'customCode' => '<hr size="10" align="left" style="color: #0056b2;" width="75%" />',
-            ),
-            
+            ),            
         ), 
               
-        15 =>
+        24 =>
         array (
           0 => 
           array (
@@ -296,7 +431,7 @@ array (
           ),
         ),
         
-        16 =>
+        25 =>
         array (
           0 => 
           array (
@@ -305,93 +440,12 @@ array (
             'label' => 'LBL_OTHER_PHONE',
           ),
         ),
-             
-        17 => 
-        array (
-          0 => 
-         array (
-            'name' => 'primary_address_street',
-            'hideLabel' => true,
-            'type' => 'address',
-            'displayParams' => 
-            array (
-              'key' => 'primary',
-              'rows' => 2,
-              'cols' => 30,
-              'maxlength' => 150,
-            ),
-          ),
-          1 => (''
-          ),          
-        ),
       ),
-      'lbl_editview_panel1' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'dispone_local',
-            'label' => 'LBL_DISPONE_LOCAL',
-          ),
-          1 => 
-          array (
-            'name' => 'negocio_anterior_local',
-            'label' => 'LBL_NEGOCIO_ANTERIOR_LOCAL',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'direccion_local',
-            'label' => 'LBL_DIRECCION_LOCAL',
-          ),
-          1 => 
-          array (
-            'name' => 'superficie_local',
-            'label' => 'LBL_SUPERFICIE_LOCAL',
-          ),
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'direccion_local2',
-            'label' => 'LBL_DIRECCION_LOCAL2',
-          ),
-          1 => 
-          array (
-            'name' => 'superficie_local2',
-            'label' => 'LBL_SUPERFICIE_LOCAL2',
-          ),
-        ),
-         3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'direccion_local3',
-            'label' => 'LBL_DIRECCION_LOCAL3',
-          ),
-          1 => 
-          array (
-            'name' => 'superficie_local3',
-            'label' => 'LBL_SUPERFICIE_LOCAL3',
-          ),
-        ),
-        4 => 
-        array (
-          0 => 
-          array (
-            'name' => 'descripcion_local',
-            'label' => 'LBL_DESCRIPCION_LOCAL',
-          ),
-        ),
-
-      ),
+      
+      //------------------------------------------------------------------------------------------
       'lbl_editview_panel2' => 
       array (
-        0 => 
+        -3 => 
         array (
           0 => 
           array (
@@ -406,6 +460,55 @@ array (
             'label' => 'LBL_SECTORES_DE_INTERES',
           ),
         ),
+        
+        -2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chk_entrevista_previa_EN',
+            'studio' => 'visible',
+            'label' => 'LBL_ENTREVISTA_PREVIA_EN',
+          ),
+          1 => 
+          array (
+            'name' => 'chk_entrevista_previa_cliente',
+            'studio' => 'visible',
+            'label' => 'LBL_ENTREVISTA_PREVIA_CLIENTE',
+          ),
+        ),
+        
+        -1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'f_entrevista_previa_EN',
+            'studio' => 'visible',
+            'label' => 'LBL_FECHA_ENTREVISTA_PREVIA_EN',
+          ),
+          1 => 
+          array (
+            'name' => 'f_entrevista_previa_cliente',
+            'studio' => 'visible',
+            'label' => 'LBL_FECHA_ENTREVISTA_PREVIA_CLIENTE',
+          ),
+        ),
+                                       
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'usuario_entrevista_previa_EN',
+            'studio' => 'visible',
+            'label' => 'LBL_USUARIO_ENTREVISTA_PREVIA_EN',
+          ),
+          1 => 
+          array (
+            'name' => 'usuario_entrevista_previa_cliente',
+            'studio' => 'visible',
+            'label' => 'LBL_USUARIO_ENTREVISTA_PREVIA_CLIENTE',
+          ),
+        ),
+        
         1 => 
         array (
           0 => 
@@ -431,12 +534,164 @@ array (
           ),
           1 => 
           array (
+          
             'name' => 'historial_empresa',
             'studio' => 'visible',
-            'label' => 'LBL_HISTORIAL_EMPRESA',
+            'label' => 'LBL_HISTORIAL_EMPRESA',            
           ),
         ),
+        
         3 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'sectores_historicos',
+            'label' => 'LBL_SECTORES_HISTORICOS',
+             'customCode'=>'
+            {php}
+                include "custom/modules/Expan_Solicitud/metadata/opEdicionSolicitud.php";
+                $fran=new opEdicionSolicitud();
+                $idSol=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerSectorHisto($idSol);  
+      
+            {/php}
+            <div id="sugerencia_sectores_hist" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencia_sectores_hist"></div>',
+            ),
+        ), 
+        
+        4 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'empresa_temp',
+            'label' => 'LBL_EMPRESA_TEMP',
+          ),
+        ), 
+        
+        5 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'franquicia_historicos',
+            'label' => 'LBL_FRANQUICIA_HISTORICOS',
+            'customCode'=>'
+            {php}                
+                $fran=new opEdicionSolicitud();
+                $idSol=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerFranHisto($idSol);        
+            {/php}
+            <div id="sugerencias_hist" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencias_hist"></div>',
+            ),
+        ), 
+        
+        6 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'inicio_franq_hst',
+            'label' => 'LBL_FRANQUICIA_INICIO',
+          ),
+        ), 
+        
+        7 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'fin_franq_hst',
+            'label' => 'LBL_FRANQUICIA_CIERRE',
+          ),
+        ), 
+                      
+        8 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'franquicia_satisfa',
+            'label' => 'LBL_FRANQUICIA_SATISFA',
+          ),
+        ),
+        
+        9 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'chk_empresa_provee',
+            'label' => 'LBL_EMPRESA_PROVEE',
+          ),
+        ),
+        
+        10 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'chk_empresa_cli_potencial',
+            'label' => 'LBL_EMPRESA_CLI_POTENCIAL',
+          ),
+        ),
+        
+        11 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'chk_empresa_competencia',
+            'label' => 'LBL_EMPRESA_COMPETENCIA',
+          ),
+        ),
+        
+        12 => 
+        array (
+          0 => 
+          array (            
+          ),
+          1 => 
+          array (
+            'name' => 'chk_empresa_alianza',
+            'label' => 'LBL_EMPRESA_ALIANZA',
+          ),
+        ),
+                                             
+        13 => 
+        array (
+          0 => 
+          array (
+            'name' => 'rrss',
+            'label' => 'LBL_RRSS',
+          ),
+          1 => 
+          array (
+            'name' => 'dispone_local',
+            'label' => 'LBL_DISPONE_LOCAL',
+          ),
+        ),               
+        
+        14 => 
         array (
           0 => 
           array (
@@ -451,7 +706,7 @@ array (
           ),        
         ),
         
-        4 => 
+        15 => 
         array (
           0 => 
           array (
@@ -466,7 +721,7 @@ array (
           ),
         ),
         
-        5 => 
+        16 => 
         array (
           0 => 
           array (
@@ -476,7 +731,7 @@ array (
           ),
         ),
         
-        6 => 
+        17 => 
         array (
           0 => 
           array (
@@ -484,8 +739,7 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_SECTORES_DE_INTERES',
             'customCode' => '
-          {php}
-              include "custom/modules/Expan_Solicitud/metadata/opEdicionSolicitud.php";
+          {php}              
               $prueba=new opEdicionSolicitud();
               $prueba->cargaSectores();  
       
@@ -493,21 +747,24 @@ array (
           ),
           1 => 
           array (
-            ''
-          ),
-        ),
-        7 => 
-        array (
-          0 => 
-          array (
             'name' => 'franquicias_secundarias',
             'studio' => 'visible',
             'label' => 'LBL_FRANQUICIAS_SECUNDARIAS',
             'customCode' => '
-          {php}
+            {php}
               $prueba=new opEdicionSolicitud();
               $prueba->cargaFranquicias();      
-          {/php}',
+            {/php}',
+          ),
+        ),
+        
+        18 => 
+        array (
+          0 => 
+          array (          
+           'name' => 'otros_sectores',
+            'studio' => 'visible',
+            'label' => 'LBL_OTROS_SECTORES',                      
           ),
           1 => 
           array (
@@ -516,7 +773,8 @@ array (
             'label' => 'LBL_FRANQUICIA_PRINCIPAL',
           ),
         ),
-        8 => 
+        
+        19 => 
         array (
           0 => 
           array (
@@ -547,79 +805,17 @@ array (
                ',
           ),
         ),
-        9 => 
+        
+        20 => 
         array (
           0 => 
           array (
             'name' => 'enviar_servicios_asesora',
             'label' => 'LBL_ENVIAR_SERVICIOS_ASESORA',
           ),
-        ),
-        10 => 
-        array (
-          0 => 
-          array (
-            'name' => 'tipo_origen',
-            'studio' => 'visible',
-            'label' => 'LBL_TIPO_ORIGEN',
-            'displayParams' => array('field' => array(
-            'onChange' => 'cambioSeleccion()')),
-          ),
-          1 => 
-          array (
-            'name' => 'subor_expande',
-            'studio' => 'visible',
-            'label' => 'LBL_SUBOR_EXPANDE',
-          ),
-        ),
-        11 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'portal',
-            'studio' => 'visible',
-            'label' => 'LBL_PORTAL',
-          ),
-        ),
-        12 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'expan_evento_id_c',
-            'label' => 'LBL_EVENTO',
-          ),
-        ),        
-        13 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'subor_central',
-            'label' => 'LBL_SUBOR_CENTRAL',
-          ),
-        ),        
-        14 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'subor_medios',
-            'label' => 'LBL_SUBOR_MEDIOS',
-          ),
-        ),
-        15 => 
-        array (
-          0 => '',
-          1 => 
-          array (
-            'name' => 'subor_mailing',
-            'label' => 'LBL_SUBOR_MAILING',
-          ),
-        ),
+        ),               
         
-        16 =>
+        21 =>
         array (
           0 => array (
             'name' => 'rating',
@@ -632,8 +828,175 @@ array (
             'label' => 'LBL_PERFIL_PLURIFRANQUICIADO',
           ),
         ),
+        
+        22 =>
+        array (
+          0 => array (
+           
+          ),
+          1 => array (         
+            'name' => 'delegado',
+            'studio' => 'visible',
+            'label' => 'LBL_DELEGADO',
+          ),
+        ),
       ),
             
+       //---------------------------------------------------------------------------------------------------
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'dispone_local',
+            'label' => 'LBL_DISPONE_LOCAL',
+          ),
+          1 => 
+          array (        
+          ),
+        ),
+        1 => 
+        array (          
+          0 => array (
+            'label' => 'LBL_LOCAL1',
+          ),
+        ),
+        
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_local',
+            'label' => 'LBL_DIRECCION_LOCAL',
+          ),
+          1 => 
+          array (
+            'name' => 'superficie_local',
+            'label' => 'LBL_SUPERFICIE_LOCAL',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'ubicacion_local1',
+            'label' => 'LBL_UBICACION_LOCAL1',
+          ),
+          1 => 
+          array (           
+            'name' => 'renta_estimada_1',
+            'label' => 'LBL_RENTA_ESTIMADA',         
+          ),
+        ), 
+        
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'descripcion_local',
+            'label' => 'LBL_DESCRIPCION_LOCAL',
+          ),
+          1 => 
+          array (           
+          ),
+        ),
+        
+        5 => 
+        array (          
+          0 => array (
+            'label' => 'LBL_LOCAL2',
+          ),
+        ),
+               
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_local2',
+            'label' => 'LBL_DIRECCION_LOCAL2',
+          ),
+          1 => 
+          array (
+            'name' => 'superficie_local2',
+            'label' => 'LBL_SUPERFICIE_LOCAL2',
+          ),
+        ),
+        
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'ubicacion_local2',
+            'label' => 'LBL_UBICACION_LOCAL2',
+          ),
+          1 => 
+          array (     
+            'name' => 'renta_estimada_2',
+            'label' => 'LBL_RENTA_ESTIMADA', 
+          ),
+        ),
+        
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'descripcion_local2',
+            'label' => 'LBL_DESCRIPCION_LOCAL',
+          ),
+          1 => 
+          array (           
+          ),
+        ),
+        
+        9 => 
+        array (          
+          0 => array (
+            'label' => 'LBL_LOCAL3',
+          ),
+        ),
+        
+        10 => 
+        array (
+          0 => 
+          array (
+            'name' => 'direccion_local3',
+            'label' => 'LBL_DIRECCION_LOCAL3',
+          ),
+          1 => 
+          array (
+            'name' => 'superficie_local3',
+            'label' => 'LBL_SUPERFICIE_LOCAL3',
+          ),
+        ),
+        
+        11 => 
+        array (
+          0 => 
+          array (
+            'name' => 'ubicacion_local3',
+            'label' => 'LBL_UBICACION_LOCAL3',
+          ),
+          1 => 
+          array (   
+            'name' => 'renta_estimada_3',
+            'label' => 'LBL_RENTA_ESTIMADA', 
+          ),
+        ), 
+        
+        12 => 
+        array (
+          0 => 
+          array (
+            'name' => 'descripcion_local3',
+            'label' => 'LBL_DESCRIPCION_LOCAL',
+          ),
+          1 => 
+          array (           
+          ),
+        ),      
+      ),     
+      // ------------------------------------------------------------------------------------------------
       'LBL_EDITVIEW_PANEL_TAG' => 
       array (
       

@@ -8,18 +8,20 @@
     $db = DBManagerFactory::getInstance();
     
     $query = "select * from tasks  ";
-    $query=$query."where status not in ('Canceled','Deferred','Paused','Completed') AND ERM_tasks_id is not null";
+    $query=$query."where status not in ('Canceled','Deferred','Paused','Completed') AND length(ERM_tasks_id)>0;";
     
     $result = $db -> query($query, true);       
 
     while ($row = $db -> fetchByAssoc($result)) {
-        
-        $task= new Task();
-        $task->retrieve($row[id]);
+                       
+        $tarea= new Task();
+        $tarea->retrieve($row['id']);
                      
         $ch = curl_init();
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]rowID-'.$row['id'].' - $tarea->id - '.$tarea->id );
 
-        curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues/".$task->ERM_tasks_id.".xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
+        curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/issues/".$tarea->ERM_tasks_id.".xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HEADER, FALSE);
                 
@@ -28,22 +30,29 @@
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]Respuesta-'.$response );
         
-        $issueresp = new SimpleXMLElement($response);         
-                                    
-        
-        $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]Status-'.$issueresp->status['id'] );
-        $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]Inicio-'.$issueresp->assigned_to['id'] );
-        
-        //Modificamos el estado, el usuario asignado, descripcion
-        $task->status=$task->setStatustoERM($issueresp->status['id']);
-        $task->assigned_user_id=$task->getCRMUser($issueresp->assigned_to['id']);      
-        $task->description=$issueresp->description;         
-        
-        $task->ignore_update_c=true;
-        $task->save();
-                                  
-        $estTime=$row['est_time'];
-       
+        libxml_use_internal_errors(true);
+        $sxe = simplexml_load_string($response);
+        if ($sxe) {
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]Task válida-'. $row['ERM_tasks_id']);
+            $issueresp = new SimpleXMLElement($response);  
+            
+            $status=$tarea->setStatustoERM($issueresp->status['id']);
+            $asigUser= $tarea->getCRMUser($issueresp->assigned_to['id']);
+            $descripcion=$issueresp->description;
+            
+            $query="update tasks set status='".$status."',assigned_user_id='".$asigUser."',description='".$descripcion."' ";
+            $query=$query."where id='".$row['id']."'";      
+            
+        }else{
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]Task NO válida-'. $row['ERM_tasks_id']);
+            $status=$tarea->setStatustoERM('7');                       
+                                   
+            $query="update tasks set status='".$status."' ";
+            $query=$query."where id='".$row['id']."'"; 
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ActualizaTareasFromERM]Task NO válida-consulta-'. $query);           
+        }                   
+        $result2 = $db -> query($query);              
     }            
     
 ?>

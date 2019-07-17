@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-07 19:16:45
+// created: 2019-07-16 17:41:42
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -65,6 +65,7 @@ $mod_strings = array (
   'LBL_LIST_ACTIVE_DATE' => 'Fecha de Publicación',
   'LBL_LIST_EXP_DATE' => 'Fecha de Caducidad',
   'LBL_LIST_STATUS' => 'Estado',
+  'LBL_LIST_TYPE' => 'Tipo',
   'LBL_SF_DOCUMENT' => 'Nombre de Documento:',
   'LBL_SF_CATEGORY' => 'Categoría:',
   'LBL_SF_SUBCATEGORY' => 'Subcategoría:',

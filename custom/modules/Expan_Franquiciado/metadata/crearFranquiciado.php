@@ -54,6 +54,7 @@
                  $franq -> email1=$sol->email1;
                  $franq -> email2=$sol->email2;
                  $franq -> pais=$sol->pais_c;
+                 $franq -> origen=2;
                   
                  //guardar los cambios del franquiciado
                  $franq -> ignore_update_c = true;
@@ -62,6 +63,22 @@
                  $salida='Ok';
                  
              break;
+             
+        case 'abrir':
+                        
+            $sql="SELECT id as idF FROM expan_franquiciado ";           
+            $sql=$sql." WHERE solicitud='".$solId."' AND deleted=0;";
+             
+            $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Validadndo Telefono - Consulta - '.$sql); 
+             
+            $resultSol = $db->query($sql, true);
+            
+            while ($rowSol = $db->fetchByAssoc($resultSol)){                     
+                $salida=$row["idF"]; 
+            }
+            
+            
+            break;
     }
         echo $salida;
 ?>

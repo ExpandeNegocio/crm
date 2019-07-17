@@ -117,7 +117,7 @@
                          {MOD.LBL_FRANQUICIA}
                         </td>
                         <td width="30%" >
-                            <select name='franquicia' onchange="recogelistaNegocios(value);"  tabindex="11">{FRANQDROPDOWN}</select>
+                            <select id='franquicia' name='franquicia'  onchange="recogelistaNegocios(value);"  tabindex="11">{FRANQDROPDOWN}</select>
                         </td>
                         <td width="15%" scope="row">
                          {MOD.LBL_MODELO_NEGOCIO}
@@ -126,6 +126,56 @@
                             <select id='modeloneg' name='modeloneg' tabindex="12">{NEGDROPDOWN}</select>
                         </td>
 					</tr>
+					<tr>
+						<td width="15%" scope="row">{MOD.LBL_REVISEDBY_TO_ID}&nbsp;</td>
+						<td>
+			                  <input class="sqsEnabled" tabindex="0" autocomplete="off" id='revisedby_user_name' name='revisedby_user_name' type="text" value="{REVISEDBY_USER_NAME}">
+			                  <input id='revisedby_user_id' name='revisedby_user_id' type="hidden" value="{REVISEDBY_USER_ID}" />
+	
+			                  <span class="id-ff multiple">
+			                      <button title="{APP.LBL_SELECT_BUTTON_TITLE}" type="button" tabindex='0' class="button firstChild" value='{APP.LBL_SELECT_BUTTON_LABEL}' name="btn_validator"  id="btn_validator"
+					                onclick='open_popup("Users", 600, 400, "", true, false, {encoded_revisedby_users_popup_request_data});'>{assign_user_select}</button>
+					                <button type="button" name="btn_clr" id="btn_clr" tabindex="0" title="{APP.LBL_CLEAR_BUTTON_TITLE}" class="button lastChild"
+					                onclick="this.form.revisedby_user_name.value = ''; this.form.revisedby_user_id.value = '';" value="{APP.LBL_CLEAR_BUTTON_LABEL}" >{assign_user_clear}</button>
+			                 </span>
+			            </td>
+			            
+			            <td width="15%" scope="row">{MOD.LBL_F_REVISION}&nbsp;</td>
+			            
+			            <td colspan="3" >
+			            	
+			            	
+			            	
+			            	<input class="date_input" autocomplete="off" type="text" name="f_revision" id="f_revision" title="" tabindex="0" size="11" maxlength="10" value="{FREV}">
+				            <img src="themes/Sugar5/images/jscalendar.gif?v=OTN-CzcWQRaVWQGC3FE9gg" alt="Introducir Fecha" style="position:relative; top:6px" border="0" id="f_revision_trigger">
+				            </span></p>';
+				            
+				        <script type="text/javascript">
+				            Calendar.setup ({
+				            inputField : "f_revision",
+				            form : "EditView",
+				            ifFormat : "%d/%m/%Y %H:%M",
+				            daFormat : "%d/%m/%Y %H:%M",
+				            button : "f_revision_trigger",
+				            singleClick : true,
+				            dateStr : "",
+				            startWeekday: 1,
+				            step : 1,
+				            weekNumbers:false
+				            }
+				            );
+				            </script>
+			            	
+			            	
+						<!--	<textarea name='f_revision' tabindex='0' cols="90" rows="1" style="height: 1.6.em; overflow-y:auto; font-family:sans-serif,monospace; font-size:inherit;" id="f_revision">{FREV}</textarea> -->
+						</td>
+			            
+			            
+					</tr>
+					
+					
+					
+					
                     <tr>
                       <td width="15%" scope="row">{APP.LBL_ASSIGNED_TO}&nbsp;</td>
 		              <td>
@@ -134,7 +184,8 @@
 
 		                  <span class="id-ff multiple">
 		                      <button title="{APP.LBL_SELECT_BUTTON_TITLE}" type="button" tabindex='0' class="button firstChild" value='{APP.LBL_SELECT_BUTTON_LABEL}' name="btn_author"  id="btn_author"
-				                onclick='open_popup("Users", 600, 400, "", true, false, {encoded_assigned_users_popup_request_data});'>{assign_user_select}</button><button type="button" name="btn_clr" id="btn_clr" tabindex="0" title="{APP.LBL_CLEAR_BUTTON_TITLE}" class="button lastChild"
+				                onclick='open_popup("Users", 600, 400, "", true, false, {encoded_assigned_users_popup_request_data});'>{assign_user_select}</button>
+				                <button type="button" name="btn_clr" id="btn_clr" tabindex="0" title="{APP.LBL_CLEAR_BUTTON_TITLE}" class="button lastChild"
 				                onclick="this.form.assigned_user_name.value = ''; this.form.assigned_user_id.value = '';" value="{APP.LBL_CLEAR_BUTTON_LABEL}" >{assign_user_clear}</button>
 		                 </span>
 		              </td>

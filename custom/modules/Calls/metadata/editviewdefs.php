@@ -2,7 +2,11 @@
 
 //SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; document.EditView.return_action.value=\'DetailView\'; {if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; {/if}formSubmitCheck();;  Avisar();
 
-$guardar='SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; document.EditView.return_action.value=\'DetailView\'; {if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; {/if}formSubmitCheck();;  Avisar();';
+$guardar='SUGAR.calls.fill_invitees();document.EditView.action.value=\'Save\'; 
+document.EditView.return_action.value=\'DetailView\'; 
+{if isset($smarty.request.isDuplicate) && $smarty.request.isDuplicate eq "true"}document.EditView.return_id.value=\'\'; 
+{/if}formSubmitCheck();;  Avisar({$fields.repeticiones.value});
+';
 
 $viewdefs ['Calls'] = 
 array (
@@ -100,7 +104,7 @@ array (
       'javascript' => '{sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
         {sugar_getscript file="include/javascript/EditLlamadas.js"}
         <script type="text/javascript">{$JSON_CONFIG_JAVASCRIPT}</script>
-        <script type="text/javascript"> onload=DesactivarGS();</script>
+        <script type="text/javascript"> onload=DesactivarGS(\'{$fields.parent_id.value}\',\'Expan_GestionSolicitudes\');</script>
         <script>    name = "gestion".replace(/[\\[]/, "\\[").replace(/[\\]]/, "\\]");
                     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                     results = regex.exec(location.search);
@@ -201,7 +205,13 @@ array (
             0 =>  array (
             'name' =>'modified_by_name',     
             'label' => 'LBL_MODIFICADO_POR',
-          ),                         
+          ), 
+           1 => 
+          array (
+            'name' => 'disp_contacto',
+            'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+          ),
+                                  
         ),
       ),
     ),

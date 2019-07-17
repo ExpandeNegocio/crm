@@ -321,6 +321,7 @@ class Link2 {
         }
 
         $GLOBALS['log']->error("Unable to get proper side for link {$this->name}");
+        $GLOBALS['log']->error("Unable to get proper side for link {$this->name}");
     }
 
     /**

@@ -15,6 +15,7 @@
     $query=$query."       g.name,  ";
     $query=$query."    CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200  ";
     $query=$query."    WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100  ";
+    $query=$query."    WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_CONTRATO."' THEN 100 ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 100   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 90   ";
     $query=$query."    WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_precontrato = 1 THEN 80   ";

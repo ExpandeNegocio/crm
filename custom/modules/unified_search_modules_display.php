@@ -1,5 +1,5 @@
 <?php
-// created: 2015-01-29 13:14:19
+// created: 2019-06-26 16:58:10
 $unified_search_modules_display = array (
   'Expan_Solicitud' => 
   array (
@@ -18,6 +18,14 @@ $unified_search_modules_display = array (
     'visible' => true,
   ),
   'Meetings' => 
+  array (
+    'visible' => true,
+  ),
+  'Expan_Empresa' => 
+  array (
+    'visible' => true,
+  ),
+  'Expan_Franquicia' => 
   array (
     'visible' => true,
   ),

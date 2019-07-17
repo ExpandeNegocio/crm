@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-30 17:57:22
+// created: 2019-07-17 19:47:13
 $mod_strings = array (
   'LBL_ADD_ANOTHER_FILE' => 'Agregar Otro Archivo',
   'LBL_ADD_DOCUMENT' => 'Agregar un Documento Sugar',
@@ -66,8 +66,12 @@ $mod_strings = array (
   'LBL_ACTIVITIES_REPORTS' => 'Informe de Actividad',
   'LNK_VIEW_MY_INBOX' => 'Ver Mis Emails',
   'LBL_ASSIGNED_TO_ID' => 'Asignado a',
+  'LBL_REVISEDBY_TO_ID' => 'Revisado Por',
+  'LBL_F_REVISION' => 'Fecha de última Revision',
   'LBL_EDIT_LAYOUT' => 'Editar diseño',
   'LBL_SELECT' => 'Seleccionar',
   'LBL_ID_FF_CLEAR' => 'Limpiar',
   'LBL_TYPE' => 'Tipo',
+  'LBL_FRANQUICIA' => 'Franquicia',
+  'LBL_MODELO_NEGOCIO' => 'Modelo de Negocio',
 );

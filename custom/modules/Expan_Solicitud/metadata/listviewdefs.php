@@ -8,13 +8,13 @@ array (
     'width' => '20%',
     'label' => 'LBL_NAME',
     'link' => true,
-    'orderBy' => 'last_name',
+    'orderBy' => 'first_name',
     'default' => true,
     'related_fields' => 
     array (
       0 => 'first_name',
       1 => 'last_name',
-      2 => 'salutation',
+     // 2 => 'salutation',
     ),
   ),
   'franquicia_principal' => 

@@ -818,6 +818,26 @@ class SugarEmailAddress extends SugarBean {
 
         return $return;
     }
+    
+     function getAddressesByGUIDClean($id, $module) {
+        $return = array();
+        $module = $this->getCorrectedModule($module);
+
+        $q = "SELECT ea.email_address, ea.email_address_caps, ea.invalid_email, ea.opt_out, ea.date_created, ea.date_modified,
+                ear.id, ear.email_address_id, ear.bean_id, ear.bean_module, ear.primary_address, ear.reply_to_address, ear.deleted
+                FROM email_addresses ea LEFT JOIN email_addr_bean_rel ear ON ea.id = ear.email_address_id
+                WHERE ear.bean_module = '".$this->db->quote($module)."'
+                AND ear.bean_id = '".$this->db->quote($id)."'
+                AND ear.deleted = 0 AND ea.opt_out=0 AND ea.invalid_email=0 
+                ORDER BY ear.reply_to_address, ear.primary_address DESC";
+        $r = $this->db->query($q);
+
+        while($a = $this->db->fetchByAssoc($r, FALSE)) {
+            $return[] = $a;
+        }
+
+        return $return;
+    }
 
     /**
      * Returns the HTML/JS for the EmailAddress widget

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-08 12:20:02
+// created: 2019-07-17 16:52:44
 $dashletsFiles = array (
   'MyAccountsDashlet' => 
   array (
@@ -182,6 +182,13 @@ $dashletsFiles = array (
     'meta' => 'modules/Emails/Dashlets/MyEmailsDashlet/MyEmailsDashlet.meta.php',
     'module' => 'Emails',
   ),
+  'Expan_AperturaDashlet' => 
+  array (
+    'file' => 'modules/Expan_Apertura/Dashlets/Expan_AperturaDashlet/Expan_AperturaDashlet.php',
+    'class' => 'Expan_AperturaDashlet',
+    'meta' => 'modules/Expan_Apertura/Dashlets/Expan_AperturaDashlet/Expan_AperturaDashlet.meta.php',
+    'module' => 'Expan_Apertura',
+  ),
   'Expan_DocumentacionDashlet' => 
   array (
     'file' => 'modules/Expan_Documentacion/Dashlets/Expan_DocumentacionDashlet/Expan_DocumentacionDashlet.php',
@@ -202,6 +209,13 @@ $dashletsFiles = array (
     'class' => 'Expan_FranquiciaDashlet',
     'meta' => 'modules/Expan_Franquicia/Dashlets/Expan_FranquiciaDashlet/Expan_FranquiciaDashlet.meta.php',
     'module' => 'Expan_Franquicia',
+  ),
+  'Expan_FranquiciadoDashlet' => 
+  array (
+    'file' => 'modules/Expan_Franquiciado/Dashlets/Expan_FranquiciadoDashlet/Expan_FranquiciadoDashlet.php',
+    'class' => 'Expan_FranquiciadoDashlet',
+    'meta' => 'modules/Expan_Franquiciado/Dashlets/Expan_FranquiciadoDashlet/Expan_FranquiciadoDashlet.meta.php',
+    'module' => 'Expan_Franquiciado',
   ),
   'Expan_GestionSolicitudesDashlet' => 
   array (

@@ -423,6 +423,14 @@ class Call extends SugarBean {
 
     function fill_in_additional_list_fields(){
         parent::fill_in_additional_list_fields();
+        $call= new Call();
+        $call->retrieve($this->id);
+        
+        if (substr($GLOBALS['app_list_strings']['tipo_llamada_list'][$call -> call_type],0,6)=="[FRAN]"){
+            $this->fran_type="FRAN";
+        }else{
+            $this->fran_type="GESTION";
+        }
         $prov=$this->getProvinciaFromSol();
         $GLOBALS['log'] -> info('[ExpandeNegocio][Provincia LLamada] Provincia-'.$prov);               
         $this->provincia_apertura_1=$prov;
@@ -763,6 +771,8 @@ class Call extends SugarBean {
     }
     
     public function DuplicarLlamada() {
+        
+        global $timedate;
 
         $nuevaLlamada = new Call();
         $nuevaLlamada -> status = 'Planned';
@@ -777,8 +787,18 @@ class Call extends SugarBean {
         $nuevaLlamada -> franquicia = $this -> franquicia;
         $nuevaLlamada -> gestion_agrupada = $this -> gestion_agrupada;
         $nuevaLlamada -> created_by='1';
-        $nuevaLlamada -> oportunidad_inmediata = $this -> oportunidad_inmediata;;
-        $nuevaLlamada -> repeticiones = $this -> repeticiones + 1;
+        $nuevaLlamada -> oportunidad_inmediata = $this -> oportunidad_inmediata;
+        
+        $fechaHoy=  new DateTime();
+        
+        $llamada=$this->retrieve($this -> id);
+        
+        if (substr($this->date_entered,0,10) == $fechaHoy->format('d/m/Y')){            
+            $nuevaLlamada -> repeticiones = $this -> repeticiones;
+        }
+        else{
+            $nuevaLlamada -> repeticiones = $this -> repeticiones + 1;            
+        }              
         
         $nuevaLlamada -> call_type = $this -> call_type;
 
@@ -872,105 +892,7 @@ class Call extends SugarBean {
                 $dias = 0.166666;
             }                
         return $dias;
-    }
-
-   /*  function rellenaLlamada($gestion, $texto, $solicitud, $telefono, $tipo) {
-        
-        //Si no tiene telefono no creamos la llamada
-        if ($telefono==""){
-            return;
-        }
-
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] Entra en creacion de llamada');
-        
-        $Fran = new Expan_Franquicia();
-        $Fran -> retrieve($gestion -> franquicia);
-        
-        $gestion->archivarLLamadasPrevias();
-        
-        if ($gestion->existeLlamada($tipo, "Planned")==true){
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NO se puede añadir llamada por repetida');
-            return;
-        }
-
-        //No se llama si solo viene de portales
-         if (($solicitud -> do_not_call == 0 && $this -> tipo_origen != Expan_Solicitud::TIPO_ORIGEN_PORTALES ) || 
-            ($solicitud -> do_not_call == 0 && $this -> tipo_origen == Expan_Solicitud::TIPO_ORIGEN_PORTALES && $tipo!='Primera') ||
-            ($solicitud -> do_not_call == 0 && $this -> tipo_origen == Expan_Solicitud::TIPO_ORIGEN_PORTALES && $tipo=='Primera' && $Fran->llamar_todos == true)) {
-                                               
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] Se puede añadir llamada');
-
-            $numDias = $this -> calcularDias($solicitud, $tipo);
-
-            //Doy atributos
-            if ($gestion -> assigned_user_id == null) {
-                global $current_user;
-                $this -> assigned_user_id = $current_user -> id;
-            } else {
-                $this -> assigned_user_id = $gestion -> assigned_user_id;
-            }
-
-            $this -> duration_minutes = 15;
-            $this -> status = 'Planned';
-            //$this->description='Una descripcion';
-            $this -> parent_id = $gestion -> id;
-            $this -> parent_type = 'Expan_GestionSolicitudes';
-            $this -> reminder_time = -1;
-            $this -> direction = 'Outbound';
-            $this -> telefono = $telefono;
-            $this -> call_type = $tipo;
-            $this -> franquicia = $gestion -> franquicia;
-
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NumDias - ' . $numDias);
-
-            $fecha = date("Y-m-d H:i:s", $this -> addBusinessDays($numDias));
-
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
-            $this -> date_start = $fecha;
-
-            //Actualizamos la fecha de creacion
-            $query = "UPDATE calls SET date_entered = UTC_TIMESTAMP() WHERE id = '" . $this -> id . "'";
-            $db = DBManagerFactory::getInstance();
-            $result = $db -> query($query);
-
-            //Si es agrupada la marcamos
-
-            if ($solicitud == null){
-                $numgest=0;
-            }else{
-                $numgest = $solicitud -> NumGestionesEstado(Expan_GestionSolicitudes::ESTADO_EN_CURSO);
-            }        
-
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NumGestiones - ' . $numgest);
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] tipo llamada - ' . $this -> call_type);
-
-            if ($numgest > 1 && ($this -> call_type == 'Primera' || 
-                                 $this -> call_type == 'SolCorreo' ||
-                                 $this -> call_type == 'InformacionAdicional')) {
-                $this -> gestion_agrupada = true;
-                $this -> name = $solicitud -> name . ' - Gestion Agrupada - ' . $texto;
-                $solicitud ->AgruparLLamadas('Planned',$tipo);
-            } else {
-                $this -> gestion_agrupada = false;
-                $this -> name = $gestion -> name . ' - ' . $texto;
-            }
-
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada]Nombre llamada - ' . $this -> name);
-            $this -> ignore_update_c = true;
-            $this -> save();
-
-            //enlazamos con la gestión
-            $gestion -> load_relationship('expan_gestionsolicitudes_calls_1');
-            $gestion -> expan_gestionsolicitudes_calls_1 -> add($this -> id);
-            $gestion -> ignore_update_c = true;
-            $gestion -> save();
-            
-            $gestion->calcularPrioridades();
-        }else{
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NO se puede añadir llamada or las condiciones impuestas');
-        }
-
-    }*/
+    }   
 
     public function getTextoObservacion(){
         
@@ -1048,7 +970,7 @@ class Call extends SugarBean {
                 
             //Incidencia 3507 Si se gurda una llamada con exito                         
             if ($this->call_type=='NoLLegoInfo'){
-                $gestion ->creaLlamada('[AUT]Primera llamada', 'Primera');
+                $gestion ->creaLlamada('[AUT]Primera llamada', 'Primera',0);
             }
                                                    
         }
@@ -1095,9 +1017,11 @@ class Call extends SugarBean {
         
         //Si llevamos varias llamadas sin exito debemos pasar la gestion a un estado no localizado        
         
-        if (($this -> repeticiones >= self::MAX_REPETICIONES && $gestion->tipo_origen!=4)||
+        if (($this -> repeticiones >= self::MAX_REPETICIONES && $gestion->tipo_origen!= Expan_GestionSolicitudes::TIPO_ORIGEN_CENTRAL )||
         $this -> repeticiones >= self::MAX_REPETICIONES_CENTRAL) {
             if ($this->parent_type=='Expan_GestionSolicitudes'){
+                
+                $gestion->preparaCorreo("C1.6");
                 $gestion -> estado_sol = Expan_GestionSolicitudes::ESTADO_PARADO;
                 $gestion -> motivo_parada= Expan_GestionSolicitudes::PARADA_NO_LOCALIZADO;
                 $gestion -> motivo_descarte=null;
@@ -1105,7 +1029,7 @@ class Call extends SugarBean {
                 $gestion -> candidatura_caliente = false;
                 $gestion -> ignore_update_c = true;
                 $gestion -> save();
-                }
+            }
         } else {
             
             if ($this->parent_type=='Expan_GestionSolicitudes' && 

@@ -60,6 +60,13 @@ $subpanel_layout = array(
 			 'width' => '15%',
 			 'force_exists'=>true //this will create a fake field in the case a field is not defined
 		),
+    /*    'call_type'=>array(
+             'widget_class' => 'SubPanelActivitiesTypeField',
+             'vname' => 'LBL_LIST_TYPE',
+             'width' => '15%',
+             'force_exists'=>true //this will create a fake field in the case a field is not defined
+        ),*/
+        
 		'reply_to_status' => array(
 			 'usage'				=> 'query_only',
              'force_exists'			=> true,

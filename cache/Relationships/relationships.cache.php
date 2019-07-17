@@ -2902,321 +2902,6 @@
     'join_key_lhs' => 'role_id',
     'join_key_rhs' => 'user_id',
   ),
-  'projects_bugs' => 
-  array (
-    'name' => 'projects_bugs',
-    'table' => 'projects_bugs',
-    'fields' => 
-    array (
-      0 => 
-      array (
-        'name' => 'id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      1 => 
-      array (
-        'name' => 'bug_id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      2 => 
-      array (
-        'name' => 'project_id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      3 => 
-      array (
-        'name' => 'date_modified',
-        'type' => 'datetime',
-      ),
-      4 => 
-      array (
-        'name' => 'deleted',
-        'type' => 'bool',
-        'len' => '1',
-        'default' => '0',
-        'required' => false,
-      ),
-    ),
-    'indices' => 
-    array (
-      0 => 
-      array (
-        'name' => 'projects_bugs_pk',
-        'type' => 'primary',
-        'fields' => 
-        array (
-          0 => 'id',
-        ),
-      ),
-      1 => 
-      array (
-        'name' => 'idx_proj_bug_proj',
-        'type' => 'index',
-        'fields' => 
-        array (
-          0 => 'project_id',
-        ),
-      ),
-      2 => 
-      array (
-        'name' => 'idx_proj_bug_bug',
-        'type' => 'index',
-        'fields' => 
-        array (
-          0 => 'bug_id',
-        ),
-      ),
-      3 => 
-      array (
-        'name' => 'projects_bugs_alt',
-        'type' => 'alternate_key',
-        'fields' => 
-        array (
-          0 => 'project_id',
-          1 => 'bug_id',
-        ),
-      ),
-    ),
-    'relationships' => 
-    array (
-      'projects_bugs' => 
-      array (
-        'lhs_module' => 'Project',
-        'lhs_table' => 'project',
-        'lhs_key' => 'id',
-        'rhs_module' => 'Bugs',
-        'rhs_table' => 'bugs',
-        'rhs_key' => 'id',
-        'relationship_type' => 'many-to-many',
-        'join_table' => 'projects_bugs',
-        'join_key_lhs' => 'project_id',
-        'join_key_rhs' => 'bug_id',
-      ),
-    ),
-    'lhs_module' => 'Project',
-    'lhs_table' => 'project',
-    'lhs_key' => 'id',
-    'rhs_module' => 'Bugs',
-    'rhs_table' => 'bugs',
-    'rhs_key' => 'id',
-    'relationship_type' => 'many-to-many',
-    'join_table' => 'projects_bugs',
-    'join_key_lhs' => 'project_id',
-    'join_key_rhs' => 'bug_id',
-  ),
-  'projects_cases' => 
-  array (
-    'name' => 'projects_cases',
-    'table' => 'projects_cases',
-    'fields' => 
-    array (
-      0 => 
-      array (
-        'name' => 'id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      1 => 
-      array (
-        'name' => 'case_id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      2 => 
-      array (
-        'name' => 'project_id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      3 => 
-      array (
-        'name' => 'date_modified',
-        'type' => 'datetime',
-      ),
-      4 => 
-      array (
-        'name' => 'deleted',
-        'type' => 'bool',
-        'len' => '1',
-        'default' => '0',
-        'required' => false,
-      ),
-    ),
-    'indices' => 
-    array (
-      0 => 
-      array (
-        'name' => 'projects_cases_pk',
-        'type' => 'primary',
-        'fields' => 
-        array (
-          0 => 'id',
-        ),
-      ),
-      1 => 
-      array (
-        'name' => 'idx_proj_case_proj',
-        'type' => 'index',
-        'fields' => 
-        array (
-          0 => 'project_id',
-        ),
-      ),
-      2 => 
-      array (
-        'name' => 'idx_proj_case_case',
-        'type' => 'index',
-        'fields' => 
-        array (
-          0 => 'case_id',
-        ),
-      ),
-      3 => 
-      array (
-        'name' => 'projects_cases_alt',
-        'type' => 'alternate_key',
-        'fields' => 
-        array (
-          0 => 'project_id',
-          1 => 'case_id',
-        ),
-      ),
-    ),
-    'relationships' => 
-    array (
-      'projects_cases' => 
-      array (
-        'lhs_module' => 'Project',
-        'lhs_table' => 'project',
-        'lhs_key' => 'id',
-        'rhs_module' => 'Cases',
-        'rhs_table' => 'cases',
-        'rhs_key' => 'id',
-        'relationship_type' => 'many-to-many',
-        'join_table' => 'projects_cases',
-        'join_key_lhs' => 'project_id',
-        'join_key_rhs' => 'case_id',
-      ),
-    ),
-    'lhs_module' => 'Project',
-    'lhs_table' => 'project',
-    'lhs_key' => 'id',
-    'rhs_module' => 'Cases',
-    'rhs_table' => 'cases',
-    'rhs_key' => 'id',
-    'relationship_type' => 'many-to-many',
-    'join_table' => 'projects_cases',
-    'join_key_lhs' => 'project_id',
-    'join_key_rhs' => 'case_id',
-  ),
-  'projects_products' => 
-  array (
-    'name' => 'projects_products',
-    'table' => 'projects_products',
-    'fields' => 
-    array (
-      0 => 
-      array (
-        'name' => 'id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      1 => 
-      array (
-        'name' => 'product_id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      2 => 
-      array (
-        'name' => 'project_id',
-        'type' => 'varchar',
-        'len' => '36',
-      ),
-      3 => 
-      array (
-        'name' => 'date_modified',
-        'type' => 'datetime',
-      ),
-      4 => 
-      array (
-        'name' => 'deleted',
-        'type' => 'bool',
-        'len' => '1',
-        'default' => '0',
-        'required' => false,
-      ),
-    ),
-    'indices' => 
-    array (
-      0 => 
-      array (
-        'name' => 'projects_products_pk',
-        'type' => 'primary',
-        'fields' => 
-        array (
-          0 => 'id',
-        ),
-      ),
-      1 => 
-      array (
-        'name' => 'idx_proj_prod_project',
-        'type' => 'index',
-        'fields' => 
-        array (
-          0 => 'project_id',
-        ),
-      ),
-      2 => 
-      array (
-        'name' => 'idx_proj_prod_product',
-        'type' => 'index',
-        'fields' => 
-        array (
-          0 => 'product_id',
-        ),
-      ),
-      3 => 
-      array (
-        'name' => 'projects_products_alt',
-        'type' => 'alternate_key',
-        'fields' => 
-        array (
-          0 => 'project_id',
-          1 => 'product_id',
-        ),
-      ),
-    ),
-    'relationships' => 
-    array (
-      'projects_products' => 
-      array (
-        'lhs_module' => 'Project',
-        'lhs_table' => 'project',
-        'lhs_key' => 'id',
-        'rhs_module' => 'Products',
-        'rhs_table' => 'products',
-        'rhs_key' => 'id',
-        'relationship_type' => 'many-to-many',
-        'join_table' => 'projects_products',
-        'join_key_lhs' => 'project_id',
-        'join_key_rhs' => 'product_id',
-      ),
-    ),
-    'lhs_module' => 'Project',
-    'lhs_table' => 'project',
-    'lhs_key' => 'id',
-    'rhs_module' => 'Products',
-    'rhs_table' => 'products',
-    'rhs_key' => 'id',
-    'relationship_type' => 'many-to-many',
-    'join_table' => 'projects_products',
-    'join_key_lhs' => 'project_id',
-    'join_key_rhs' => 'product_id',
-  ),
   'projects_accounts' => 
   array (
     'name' => 'projects_accounts',
@@ -3531,6 +3216,384 @@
     'join_table' => 'projects_opportunities',
     'join_key_lhs' => 'project_id',
     'join_key_rhs' => 'opportunity_id',
+  ),
+  'projects_quotes' => 
+  array (
+    'name' => 'projects_quotes',
+    'lhs_module' => 'Project',
+    'lhs_table' => 'project',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Quotes',
+    'rhs_table' => 'quotes',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'project_relation',
+    'join_key_lhs' => 'project_id',
+    'join_key_rhs' => 'relation_id',
+    'relationship_role_column' => 'relation_type',
+    'relationship_role_column_value' => 'Quotes',
+    'fields' => 
+    array (
+      'id' => 
+      array (
+        'name' => 'id',
+        'vname' => 'LBL_ID',
+        'required' => true,
+        'type' => 'id',
+      ),
+      'project_id' => 
+      array (
+        'name' => 'project_id',
+        'vname' => 'LBL_PROJECT_ID',
+        'required' => true,
+        'type' => 'id',
+      ),
+      'relation_id' => 
+      array (
+        'name' => 'relation_id',
+        'vname' => 'LBL_PROJECT_NAME',
+        'required' => true,
+        'type' => 'id',
+      ),
+      'relation_type' => 
+      array (
+        'name' => 'relation_type',
+        'vname' => 'LBL_PROJECT_NAME',
+        'required' => true,
+        'type' => 'enum',
+        'options' => 'project_relation_type_options',
+      ),
+      'deleted' => 
+      array (
+        'name' => 'deleted',
+        'vname' => 'LBL_DELETED',
+        'type' => 'bool',
+        'required' => true,
+        'default' => '0',
+      ),
+      'date_modified' => 
+      array (
+        'name' => 'date_modified',
+        'vname' => 'LBL_DATE_MODIFIED',
+        'type' => 'datetime',
+        'required' => true,
+      ),
+    ),
+  ),
+  'projects_bugs' => 
+  array (
+    'name' => 'projects_bugs',
+    'table' => 'projects_bugs',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      1 => 
+      array (
+        'name' => 'bug_id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      2 => 
+      array (
+        'name' => 'project_id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      3 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      4 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'len' => '1',
+        'default' => '0',
+        'required' => false,
+      ),
+    ),
+    'indices' => 
+    array (
+      0 => 
+      array (
+        'name' => 'projects_bugs_pk',
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      1 => 
+      array (
+        'name' => 'idx_proj_bug_proj',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'project_id',
+        ),
+      ),
+      2 => 
+      array (
+        'name' => 'idx_proj_bug_bug',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'bug_id',
+        ),
+      ),
+      3 => 
+      array (
+        'name' => 'projects_bugs_alt',
+        'type' => 'alternate_key',
+        'fields' => 
+        array (
+          0 => 'project_id',
+          1 => 'bug_id',
+        ),
+      ),
+    ),
+    'relationships' => 
+    array (
+      'projects_bugs' => 
+      array (
+        'lhs_module' => 'Project',
+        'lhs_table' => 'project',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Bugs',
+        'rhs_table' => 'bugs',
+        'rhs_key' => 'id',
+        'relationship_type' => 'many-to-many',
+        'join_table' => 'projects_bugs',
+        'join_key_lhs' => 'project_id',
+        'join_key_rhs' => 'bug_id',
+      ),
+    ),
+    'lhs_module' => 'Project',
+    'lhs_table' => 'project',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Bugs',
+    'rhs_table' => 'bugs',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'projects_bugs',
+    'join_key_lhs' => 'project_id',
+    'join_key_rhs' => 'bug_id',
+  ),
+  'projects_cases' => 
+  array (
+    'name' => 'projects_cases',
+    'table' => 'projects_cases',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      1 => 
+      array (
+        'name' => 'case_id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      2 => 
+      array (
+        'name' => 'project_id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      3 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      4 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'len' => '1',
+        'default' => '0',
+        'required' => false,
+      ),
+    ),
+    'indices' => 
+    array (
+      0 => 
+      array (
+        'name' => 'projects_cases_pk',
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      1 => 
+      array (
+        'name' => 'idx_proj_case_proj',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'project_id',
+        ),
+      ),
+      2 => 
+      array (
+        'name' => 'idx_proj_case_case',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'case_id',
+        ),
+      ),
+      3 => 
+      array (
+        'name' => 'projects_cases_alt',
+        'type' => 'alternate_key',
+        'fields' => 
+        array (
+          0 => 'project_id',
+          1 => 'case_id',
+        ),
+      ),
+    ),
+    'relationships' => 
+    array (
+      'projects_cases' => 
+      array (
+        'lhs_module' => 'Project',
+        'lhs_table' => 'project',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Cases',
+        'rhs_table' => 'cases',
+        'rhs_key' => 'id',
+        'relationship_type' => 'many-to-many',
+        'join_table' => 'projects_cases',
+        'join_key_lhs' => 'project_id',
+        'join_key_rhs' => 'case_id',
+      ),
+    ),
+    'lhs_module' => 'Project',
+    'lhs_table' => 'project',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Cases',
+    'rhs_table' => 'cases',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'projects_cases',
+    'join_key_lhs' => 'project_id',
+    'join_key_rhs' => 'case_id',
+  ),
+  'projects_products' => 
+  array (
+    'name' => 'projects_products',
+    'table' => 'projects_products',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      1 => 
+      array (
+        'name' => 'product_id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      2 => 
+      array (
+        'name' => 'project_id',
+        'type' => 'varchar',
+        'len' => '36',
+      ),
+      3 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      4 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'len' => '1',
+        'default' => '0',
+        'required' => false,
+      ),
+    ),
+    'indices' => 
+    array (
+      0 => 
+      array (
+        'name' => 'projects_products_pk',
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      1 => 
+      array (
+        'name' => 'idx_proj_prod_project',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'project_id',
+        ),
+      ),
+      2 => 
+      array (
+        'name' => 'idx_proj_prod_product',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'product_id',
+        ),
+      ),
+      3 => 
+      array (
+        'name' => 'projects_products_alt',
+        'type' => 'alternate_key',
+        'fields' => 
+        array (
+          0 => 'project_id',
+          1 => 'product_id',
+        ),
+      ),
+    ),
+    'relationships' => 
+    array (
+      'projects_products' => 
+      array (
+        'lhs_module' => 'Project',
+        'lhs_table' => 'project',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Products',
+        'rhs_table' => 'products',
+        'rhs_key' => 'id',
+        'relationship_type' => 'many-to-many',
+        'join_table' => 'projects_products',
+        'join_key_lhs' => 'project_id',
+        'join_key_rhs' => 'product_id',
+      ),
+    ),
+    'lhs_module' => 'Project',
+    'lhs_table' => 'project',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Products',
+    'rhs_table' => 'products',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'projects_products',
+    'join_key_lhs' => 'project_id',
+    'join_key_rhs' => 'product_id',
   ),
   'acl_roles_actions' => 
   array (
@@ -4508,6 +4571,211 @@
     'join_table' => 'documents_bugs',
     'join_key_lhs' => 'document_id',
     'join_key_rhs' => 'bug_id',
+  ),
+  'expan_empresa_competidores' => 
+  array (
+    'name' => 'expan_empresa_competidores',
+    'true_relationship_type' => 'many-to-many',
+    'relationships' => 
+    array (
+      'expan_empresa_competidores' => 
+      array (
+        'lhs_module' => 'Expan_Empresa',
+        'lhs_table' => 'expan_empresa',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Expan_Empresa',
+        'rhs_table' => 'expan_empresa',
+        'rhs_key' => 'id',
+        'relationship_type' => 'many-to-many',
+        'join_table' => 'expan_empresa_competidores',
+        'join_key_lhs' => 'competidor_id',
+        'join_key_rhs' => 'empresa_id',
+      ),
+    ),
+    'table' => 'expan_empresa_competidores_c',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'varchar',
+        'len' => 36,
+      ),
+      1 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      2 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'len' => '1',
+        'default' => '0',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'empresa_id',
+        'type' => 'varchar',
+        'len' => 36,
+      ),
+      4 => 
+      array (
+        'name' => 'competidor_id',
+        'type' => 'varchar',
+        'len' => 36,
+      ),
+      5 => 
+      array (
+        'name' => 'tipo_competidor',
+        'type' => 'varchar',
+        'options' => 'lst_tipo_competidor',
+        'len' => '3',
+        'default' => '',
+      ),
+      6 => 
+      array (
+        'name' => 'competidor_principal',
+        'type' => 'bool',
+        'len' => '1',
+        'default' => '0',
+        'required' => true,
+      ),
+    ),
+    'indices' => 
+    array (
+      0 => 
+      array (
+        'name' => 'expan_empresa_competidorespk',
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      1 => 
+      array (
+        'name' => 'expan_empresa_competidores_ida1',
+        'type' => 'index',
+        'fields' => 
+        array (
+          0 => 'empresa_id',
+        ),
+      ),
+      2 => 
+      array (
+        'name' => 'expan_empresa_competidores_alt',
+        'type' => 'alternate_key',
+        'fields' => 
+        array (
+          0 => 'competidor_id',
+        ),
+      ),
+    ),
+    'lhs_module' => 'Expan_Empresa',
+    'lhs_table' => 'expan_empresa',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Empresa',
+    'rhs_table' => 'expan_empresa',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'expan_empresa_competidores',
+    'join_key_lhs' => 'competidor_id',
+    'join_key_rhs' => 'empresa_id',
+  ),
+  'expan_empresa_activities_1_calls' => 
+  array (
+    'name' => 'expan_empresa_activities_1_calls',
+    'relationships' => 
+    array (
+      'expan_empresa_activities_1_calls' => 
+      array (
+        'lhs_module' => 'Expan_Empresa',
+        'lhs_table' => 'expan_empresa',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Calls',
+        'rhs_table' => 'calls',
+        'rhs_key' => 'parent_id',
+        'relationship_type' => 'one-to-many',
+        'relationship_role_column' => 'parent_type',
+        'relationship_role_column_value' => 'Expan_Empresa',
+      ),
+    ),
+    'fields' => '',
+    'indices' => '',
+    'table' => '',
+    'lhs_module' => 'Expan_Empresa',
+    'lhs_table' => 'expan_empresa',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Calls',
+    'rhs_table' => 'calls',
+    'rhs_key' => 'parent_id',
+    'relationship_type' => 'one-to-many',
+    'relationship_role_column' => 'parent_type',
+    'relationship_role_column_value' => 'Expan_Empresa',
+  ),
+  'expan_empresa_activities_1_tasks' => 
+  array (
+    'name' => 'expan_empresa_activities_1_tasks',
+    'relationships' => 
+    array (
+      'expan_empresa_activities_1_tasks' => 
+      array (
+        'lhs_module' => 'Expan_Empresa',
+        'lhs_table' => 'expan_empresa',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Tasks',
+        'rhs_table' => 'tasks',
+        'rhs_key' => 'parent_id',
+        'relationship_type' => 'one-to-many',
+        'relationship_role_column' => 'parent_type',
+        'relationship_role_column_value' => 'Expan_Empresa',
+      ),
+    ),
+    'fields' => '',
+    'indices' => '',
+    'table' => '',
+    'lhs_module' => 'Expan_Empresa',
+    'lhs_table' => 'expan_empresa',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Tasks',
+    'rhs_table' => 'tasks',
+    'rhs_key' => 'parent_id',
+    'relationship_type' => 'one-to-many',
+    'relationship_role_column' => 'parent_type',
+    'relationship_role_column_value' => 'Expan_Empresa',
+  ),
+  'expan_empresa_activities_1_meetings' => 
+  array (
+    'name' => 'expan_empresa_activities_1_meetings',
+    'relationships' => 
+    array (
+      'expan_empresa_activities_1_meetings' => 
+      array (
+        'lhs_module' => 'Expan_Empresa',
+        'lhs_table' => 'expan_empresa',
+        'lhs_key' => 'id',
+        'rhs_module' => 'Meetings',
+        'rhs_table' => 'meetings',
+        'rhs_key' => 'parent_id',
+        'relationship_type' => 'one-to-many',
+        'relationship_role_column' => 'parent_type',
+        'relationship_role_column_value' => 'Expan_Empresa',
+      ),
+    ),
+    'fields' => '',
+    'indices' => '',
+    'table' => '',
+    'lhs_module' => 'Expan_Empresa',
+    'lhs_table' => 'expan_empresa',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Meetings',
+    'rhs_table' => 'meetings',
+    'rhs_key' => 'parent_id',
+    'relationship_type' => 'one-to-many',
+    'relationship_role_column' => 'parent_type',
+    'relationship_role_column_value' => 'Expan_Empresa',
   ),
   'asol_activity_asol_activity' => 
   array (
@@ -6001,7 +6269,31 @@
         'type' => 'varchar',
         'options' => 'lst_tipo_participa_Evento',
         'len' => '2',
+        'default' => '1',
+      ),
+      6 => 
+      array (
+        'name' => 'formato_participacion',
+        'type' => 'varchar',
+        'options' => 'lst_formato_participa_Evento',
+        'len' => '2',
         'default' => '',
+      ),
+      7 => 
+      array (
+        'name' => 'gastos_asociados',
+        'type' => 'currency',
+        'precision' => 2,
+        'len' => '6',
+        'default' => '0',
+      ),
+      8 => 
+      array (
+        'name' => 'coste_accion',
+        'type' => 'currency',
+        'precision' => 2,
+        'len' => '6',
+        'default' => '0',
       ),
     ),
     'indices' => 
@@ -9248,6 +9540,17 @@
     'rhs_key' => 'assigned_user_id',
     'relationship_type' => 'one-to-many',
   ),
+  'emailtemplates_revisedby_user' => 
+  array (
+    'name' => 'emailtemplates_revisedby_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailTemplates',
+    'rhs_table' => 'email_templates',
+    'rhs_key' => 'revisedby_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
   'notes_assigned_user' => 
   array (
     'name' => 'notes_assigned_user',
@@ -10055,6 +10358,404 @@
     'rhs_key' => 'assigned_user_id',
     'relationship_type' => 'one-to-many',
   ),
+  'expan_apertura_modified_user' => 
+  array (
+    'name' => 'expan_apertura_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Apertura',
+    'rhs_table' => 'expan_apertura',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_apertura_created_by' => 
+  array (
+    'name' => 'expan_apertura_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Apertura',
+    'rhs_table' => 'expan_apertura',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_apertura_assigned_user' => 
+  array (
+    'name' => 'expan_apertura_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Apertura',
+    'rhs_table' => 'expan_apertura',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_franquiciado_expan_apertura_1' => 
+  array (
+    'name' => 'expan_franquiciado_expan_apertura_1',
+    'rhs_module' => 'Expan_Apertura',
+    'rhs_table' => 'expan_apertura',
+    'rhs_key' => 'expan_franquiciado_id',
+    'lhs_module' => 'Expan_Franquiciado',
+    'lhs_table' => 'expan_franquiciado',
+    'lhs_key' => 'id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_clientepotencial_modified_user' => 
+  array (
+    'name' => 'expan_clientepotencial_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_ClientePotencial',
+    'rhs_table' => 'expan_clientepotencial',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_clientepotencial_created_by' => 
+  array (
+    'name' => 'expan_clientepotencial_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_ClientePotencial',
+    'rhs_table' => 'expan_clientepotencial',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_clientepotencial_assigned_user' => 
+  array (
+    'name' => 'expan_clientepotencial_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_ClientePotencial',
+    'rhs_table' => 'expan_clientepotencial',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_clientepotencial_email_addresses' => 
+  array (
+    'name' => 'expan_clientepotencial_email_addresses',
+    'lhs_module' => 'Expan_ClientePotencial',
+    'lhs_table' => 'expan_clientepotencial',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'bean_module',
+    'relationship_role_column_value' => 'Expan_ClientePotencial',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
+  'expan_clientepotencial_email_addresses_primary' => 
+  array (
+    'name' => 'expan_clientepotencial_email_addresses_primary',
+    'lhs_module' => 'Expan_ClientePotencial',
+    'lhs_table' => 'expan_clientepotencial',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'primary_address',
+    'relationship_role_column_value' => '1',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
+  'expan_empresa_modified_user' => 
+  array (
+    'name' => 'expan_empresa_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Empresa',
+    'rhs_table' => 'expan_empresa',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_empresa_created_by' => 
+  array (
+    'name' => 'expan_empresa_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Empresa',
+    'rhs_table' => 'expan_empresa',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_empresa_assigned_user' => 
+  array (
+    'name' => 'expan_empresa_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Empresa',
+    'rhs_table' => 'expan_empresa',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_empresa_email_addresses' => 
+  array (
+    'name' => 'expan_empresa_email_addresses',
+    'lhs_module' => 'Expan_Empresa',
+    'lhs_table' => 'expan_empresa',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'bean_module',
+    'relationship_role_column_value' => 'Expan_Empresa',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
+  'expan_empresa_email_addresses_primary' => 
+  array (
+    'name' => 'expan_empresa_email_addresses_primary',
+    'lhs_module' => 'Expan_Empresa',
+    'lhs_table' => 'expan_empresa',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'primary_address',
+    'relationship_role_column_value' => '1',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
   'expan_evento_modified_user' => 
   array (
     'name' => 'expan_evento_modified_user',
@@ -10617,6 +11318,437 @@
     'rhs_table' => 'expma_mailing',
     'rhs_key' => 'assigned_user_id',
     'relationship_type' => 'one-to-many',
+  ),
+  'expan_mailings_modified_user' => 
+  array (
+    'name' => 'expan_mailings_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Mailings',
+    'rhs_table' => 'expan_mailings',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_mailings_created_by' => 
+  array (
+    'name' => 'expan_mailings_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Mailings',
+    'rhs_table' => 'expan_mailings',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_mailings_assigned_user' => 
+  array (
+    'name' => 'expan_mailings_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Mailings',
+    'rhs_table' => 'expan_mailings',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'mailing_envio_interno' => 
+  array (
+    'name' => 'mailing_envio_interno',
+    'lhs_module' => 'Expma_Mailing',
+    'lhs_table' => 'expma_mailing',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Mailings',
+    'rhs_table' => 'expan_mailings',
+    'rhs_key' => 'envio',
+    'relationship_type' => 'one-to-one',
+  ),
+  'expan_proveedor_modified_user' => 
+  array (
+    'name' => 'expan_proveedor_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Proveedor',
+    'rhs_table' => 'expan_proveedor',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_proveedor_created_by' => 
+  array (
+    'name' => 'expan_proveedor_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Proveedor',
+    'rhs_table' => 'expan_proveedor',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_proveedor_assigned_user' => 
+  array (
+    'name' => 'expan_proveedor_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Proveedor',
+    'rhs_table' => 'expan_proveedor',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_proveedor_email_addresses' => 
+  array (
+    'name' => 'expan_proveedor_email_addresses',
+    'lhs_module' => 'Expan_Proveedor',
+    'lhs_table' => 'expan_proveedor',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'bean_module',
+    'relationship_role_column_value' => 'Expan_Proveedor',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
+  'expan_proveedor_email_addresses_primary' => 
+  array (
+    'name' => 'expan_proveedor_email_addresses_primary',
+    'lhs_module' => 'Expan_Proveedor',
+    'lhs_table' => 'expan_proveedor',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'primary_address',
+    'relationship_role_column_value' => '1',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
+  'expan_portales_modified_user' => 
+  array (
+    'name' => 'expan_portales_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Portales',
+    'rhs_table' => 'expan_portales',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_portales_created_by' => 
+  array (
+    'name' => 'expan_portales_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Portales',
+    'rhs_table' => 'expan_portales',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_portales_assigned_user' => 
+  array (
+    'name' => 'expan_portales_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Portales',
+    'rhs_table' => 'expan_portales',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_franquiciado_modified_user' => 
+  array (
+    'name' => 'expan_franquiciado_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Franquiciado',
+    'rhs_table' => 'expan_franquiciado',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_franquiciado_created_by' => 
+  array (
+    'name' => 'expan_franquiciado_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Franquiciado',
+    'rhs_table' => 'expan_franquiciado',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_franquiciado_assigned_user' => 
+  array (
+    'name' => 'expan_franquiciado_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_Franquiciado',
+    'rhs_table' => 'expan_franquiciado',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_franquiciado_email_addresses' => 
+  array (
+    'name' => 'expan_franquiciado_email_addresses',
+    'lhs_module' => 'Expan_Franquiciado',
+    'lhs_table' => 'expan_franquiciado',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'bean_module',
+    'relationship_role_column_value' => 'Expan_Franquiciado',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
+  ),
+  'expan_franquiciado_email_addresses_primary' => 
+  array (
+    'name' => 'expan_franquiciado_email_addresses_primary',
+    'lhs_module' => 'Expan_Franquiciado',
+    'lhs_table' => 'expan_franquiciado',
+    'lhs_key' => 'id',
+    'rhs_module' => 'EmailAddresses',
+    'rhs_table' => 'email_addresses',
+    'rhs_key' => 'id',
+    'relationship_type' => 'many-to-many',
+    'join_table' => 'email_addr_bean_rel',
+    'join_key_lhs' => 'bean_id',
+    'join_key_rhs' => 'email_address_id',
+    'relationship_role_column' => 'primary_address',
+    'relationship_role_column_value' => '1',
+    'fields' => 
+    array (
+      0 => 
+      array (
+        'name' => 'id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      1 => 
+      array (
+        'name' => 'email_address_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      2 => 
+      array (
+        'name' => 'bean_id',
+        'type' => 'id',
+        'required' => true,
+      ),
+      3 => 
+      array (
+        'name' => 'bean_module',
+        'type' => 'varchar',
+        'len' => 100,
+        'required' => true,
+      ),
+      4 => 
+      array (
+        'name' => 'primary_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      5 => 
+      array (
+        'name' => 'reply_to_address',
+        'type' => 'bool',
+        'default' => '0',
+      ),
+      6 => 
+      array (
+        'name' => 'date_created',
+        'type' => 'datetime',
+      ),
+      7 => 
+      array (
+        'name' => 'date_modified',
+        'type' => 'datetime',
+      ),
+      8 => 
+      array (
+        'name' => 'deleted',
+        'type' => 'bool',
+        'default' => 0,
+      ),
+    ),
   ),
   'syno_reports_modified_user' => 
   array (

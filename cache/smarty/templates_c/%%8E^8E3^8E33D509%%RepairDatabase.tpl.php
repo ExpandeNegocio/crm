@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2017-01-07 19:16:15
+<?php /* Smarty version 2.6.11, created on 2019-07-16 17:41:33
          compiled from modules/Administration/templates/RepairDatabase.tpl */ ?>
 
 <h3><?php echo $this->_tpl_vars['MOD']['LBL_REPAIR_DATABASE_DIFFERENCES']; ?>

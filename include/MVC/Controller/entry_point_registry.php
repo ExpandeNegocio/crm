@@ -129,9 +129,17 @@ $entry_point_registry = array(
     'cronCorreos'=>array('file' => 'custom/include/cronCorreos.php', 'auth' => false),       
     'validarGestion'=>array('file' => 'custom/modules/Expan_GestionSolicitudes/metadata/validarGestion.php', 'auth' => false),
     'consultarSolicitud'=>array('file' => 'custom/include/ConsultarSolicitud.php', 'auth' => false),
+    'consultarGestion'=>array('file' => 'custom/include/ConsultarGestion.php', 'auth' => false),
     'actTaskERM'=>array('file' => 'custom/include/ActTaskERM.php', 'auth' => false),
     'getObservacionesMemo'=>array('file' => 'custom/include/getObservacionesMemo.php', 'auth' => false),
     'procesarTags'=>array('file' => 'custom/include/procesarTags.php', 'auth' => false),
     'procesarFeria'=>array('file' => 'custom/include/procesarFeria.php', 'auth' => false),
+    'herramientas'=>array('file' => 'custom/include/herramientas.php', 'auth' => false),
+    'operarPortales'=>array('file' => 'custom/include/operarPortales.php', 'auth' => false),
+    'composeEmail'=>array('file' => 'custom/include/ComposeEmail.php', 'auth' => false),
+    'consultarEmpresa'=>array('file' => 'custom/include/ConsultarEmpresa.php', 'auth' => false),
+    'customImportProveedores'=>array('file' => 'custom/include/customImportProveedores.php', 'auth' => false),
+    'customImportCompetidores'=>array('file' => 'custom/include/customImportCompetidores.php', 'auth' => false),
+    'consultarApertura'=>array('file' => 'custom/include/ConsultarAperturas.php', 'auth' => false),
 );
 ?>

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-30 17:46:26
+// created: 2019-07-17 19:46:32
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -50,7 +50,7 @@ $mod_strings = array (
   'LBL_LIST_DATE_MODIFIED' => 'Fecha de Modificación',
   'LBL_LIST_DATE' => 'Fecha Inicio',
   'LBL_LIST_DIRECTION' => 'Dirección',
-  'LBL_LIST_DUE_DATE' => 'Fecha de Vencimiento',
+  'LBL_LIST_DUE_DATE' => 'Fecha programada',
   'LBL_LIST_FORM_TITLE' => 'Lista de Reuniones',
   'LBL_LIST_MY_MEETINGS' => 'Mis Reuniones',
   'LBL_LIST_RELATED_TO' => 'Relacionado con',
@@ -149,6 +149,7 @@ $mod_strings = array (
   'LBL_PRIORIDAD' => 'Prioridad',
   'LBL_MODIFICADO_POR' => 'Modificado por',
   'LBL_SKYPE' => 'Skype',
+  'LBL_PROVINCIA_SOLICITUD' => 'Provincia del Solicitante',
   'LBL_EXPAN_GESTIONSOLICITUDES_MEETINGS_1_FROM_EXPAN_GESTIONSOLICITUDES_TITLE' => 'GestionSolicitudes',
   'LBL_EXPAN_GESTIONSOLICITUDES_ACTIVITIES_1_MEETINGS_FROM_EXPAN_GESTIONSOLICITUDES_TITLE' => 'Actividades:GestionSolicitudes',
 );

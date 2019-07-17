@@ -81,6 +81,13 @@ $subpanel_layout = array(
             'target_module' => 'Employees',
             'width' => '10%',           
         ),
+        
+        'oportunidad_inmediata' => array (
+            'name' => 'oportunidad_inmediata',
+            'vname' => 'LBL_OPORTUNIDAD_INMEDIATA',          
+            'width' => '10%',           
+        ),
+        
 		'edit_button'=>array(
 			'vname' => 'LBL_EDIT_BUTTON',
 			 'widget_class' => 'SubPanelEditButton',

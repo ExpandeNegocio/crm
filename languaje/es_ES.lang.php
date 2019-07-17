@@ -31,8 +31,8 @@ $GLOBALS['app_list_strings']['poblacion_minima_list']=array (
 );
 $GLOBALS['app_list_strings']['situacion_profesional_list']=array (
   '' => '',
-  1 => 'Cuenta ajena',
-  2 => 'Cuenta propia',
+  1 => 'Por cuenta ajena',
+  2 => 'Por cuenta propia',
   3 => 'En busqueda',
 );
 $app_strings['LBL_GROUPTAB5_1402072762'] = 'ExpandeNegocio';
@@ -98,6 +98,15 @@ $GLOBALS['app_list_strings']['perfil_fran_list']=array (
   3 => 'Inversor',
   4 => 'Corner',
   5 => 'Colaborador',
+);
+
+$GLOBALS['app_list_strings']['tipo_mailing_list']=array (
+  '' => '',
+  'crm' => 'Desde CRM',
+  'ext' => 'Desde herramienta externa',
+  'mdf' => 'Medio de franquicias',
+  'mds' => 'Medio sectorial',
+  'fer' => 'Ferias',  
 );
 
 // Recojo valores de Franquicias *********/
@@ -189,12 +198,6 @@ $GLOBALS['app_list_strings']['papel_list']=array (
   '' => '',
 );
 
-$GLOBALS['app_list_strings']['recursos_propios_list']=array (
-  1 => '100% fondos propios',
-  2 => 'Fondos propios + Financiación',
-  3 => '100% financiado por entidad bancaria',
-  '' => '',
-);
 
 
 

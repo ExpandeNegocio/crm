@@ -112,6 +112,64 @@ $dictionary['Expan_Franquicia']['fields']['formato_participacion'] =
  'importable' => 'false',
  );
  
+ $dictionary['Expan_Franquicia']['fields']['e_gastos_asociados'] =
+ array (
+ 'name' => 'e_gastos_asociados',
+ 'rname' => 'id',
+ 'relationship_fields'=>array('id' => 'franquicia_id', 'gastos_asociados' => 'gastos_asociados'),
+ 'vname' => 'LBL_CONT_ACCEPT_CANCELLED',
+ 'type' => 'relate',
+ 'link' => 'expan_franquicia_expan_evento',
+ 'link_type' => 'relationship_info',
+ 'join_link_name' => 'expan_franquicia_expan_evento',
+ 'source' => 'non-db',
+ 'importable' => 'false',
+ 'duplicate_merge'=> 'disabled',
+ 'studio' => false,
+ 'join_primary' => false,
+ );
+
+$dictionary['Expan_Franquicia']['fields']['gastos_asociados'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'gastos_asociados',
+ 'type' => 'currency',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'Gastos Asociados',
+ 'importable' => 'false',
+ 'precision' => 2,
+ );
+ 
+$dictionary['Expan_Franquicia']['fields']['e_coste_accion'] =
+ array (
+ 'name' => 'e_coste_accion',
+ 'rname' => 'id',
+ 'relationship_fields'=>array('id' => 'franquicia_id', 'coste_accion' => 'coste_accion'),
+ 'vname' => 'LBL_CONT_ACCEPT_CANCELLED',
+ 'type' => 'relate',
+ 'link' => 'expan_franquicia_expan_evento',
+ 'link_type' => 'relationship_info',
+ 'join_link_name' => 'expan_franquicia_expan_evento',
+ 'source' => 'non-db',
+ 'importable' => 'false',
+ 'duplicate_merge'=> 'disabled',
+ 'studio' => false,
+ 'join_primary' => false,
+ );
+
+$dictionary['Expan_Franquicia']['fields']['coste_accion'] =
+ array(
+ 'massupdate' => false,
+ 'name' => 'coste_accion',
+ 'type' => 'currency',
+ 'studio' => 'false',
+ 'source' => 'non-db',
+ 'vname' => 'Coste Acción',
+ 'importable' => 'false',
+ 'precision' => 2,
+ );
+ 
 $dictionary['Expan_Franquicia']['fields']['franquicia_id'] =
  array(
  'name' => 'franquicia_id',

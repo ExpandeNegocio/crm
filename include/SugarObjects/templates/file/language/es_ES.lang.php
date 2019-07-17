@@ -95,6 +95,7 @@ $mod_strings = array (
   'LBL_LIST_ACTIVE_DATE' => 'Fecha de Publicación',
   'LBL_LIST_EXP_DATE' => 'Fecha de Caducidad',
   'LBL_LIST_STATUS' => 'Estado',
+  'LBL_LIST_TYPE' => 'Tipo',
   'LBL_SF_DOCUMENT' => 'Nombre de Documento:',
   'LBL_SF_CATEGORY' => 'Categoría:',
   'LBL_SF_SUBCATEGORY' => 'Subcategoría:',

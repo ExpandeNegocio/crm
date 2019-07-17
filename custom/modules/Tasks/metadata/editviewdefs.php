@@ -42,7 +42,7 @@ array (
       ),
       'javascript' => '{sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
         {sugar_getscript file="include/javascript/EditLlamadas.js"}              
-        <script type="text/javascript"> onload=DesactivarGS();</script>
+        <script type="text/javascript"> onload=DesactivarGS(\'{$fields.parent_id.value}\',\'Expan_GestionSolicitudes\');</script>
         <script type="text/javascript">{$JSON_CONFIG_JAVASCRIPT}</script>
         <script>    name = "gestion".replace(/[\\[]/, "\\[").replace(/[\\]]/, "\\]");
                     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),

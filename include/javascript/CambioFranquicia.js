@@ -21,7 +21,7 @@ function cambiocheck()
 
 	for (var k = 0; k < listaSel.length; k++){
 		for (var j = 0; j < listaFran.length; j++){
-			if (listaSel[k]==listaFran[j].text){
+			if (trim(listaSel[k])==trim(listaFran[j].text)){
 				listaFran[j].selected = true;	
 			}
 		}

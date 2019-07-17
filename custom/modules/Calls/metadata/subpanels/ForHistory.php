@@ -54,7 +54,7 @@ $subpanel_layout = array(
 			 'widget_class' => 'SubPanelDetailViewLink',
 			 'width' => '30%',
 		),
-		        'direction' => array (
+	    'direction' => array (
             'vname' => 'LBL_LIST_DIRECTION',
             'width' => '10%',
         ),
@@ -64,7 +64,11 @@ $subpanel_layout = array(
 			 'width' => '15%',
 			 'force_exists'=>true //this will create a fake field in the case a field is not defined
 		),
-		
+       'fran_type'=>array(            
+            'vname' => 'Tipo',
+            'force_exists'=>true,
+            'width' => '10%',
+        ),
 
 		'reply_to_status' => array(
 			 'usage'				=> 'query_only',
@@ -76,7 +80,7 @@ $subpanel_layout = array(
 			'vname' => 'LBL_LIST_DATE_ENTERED',
 			'width' => '10%',
 		),
-		      'date_modified'=>array(
+		'date_modified'=>array(
             'vname' => 'LBL_LIST_DATE_MODIFIED',
             'width' => '10%',
         ),

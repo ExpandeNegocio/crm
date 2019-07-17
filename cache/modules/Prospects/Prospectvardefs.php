@@ -297,6 +297,7 @@
       'vname' => 'LBL_HOME_PHONE',
       'type' => 'phone',
       'dbType' => 'varchar',
+      'audited' => true,
       'len' => 100,
       'unified_search' => true,
       'full_text_search' => 
@@ -333,6 +334,7 @@
       'type' => 'phone',
       'dbType' => 'varchar',
       'len' => 100,
+      'audited' => true,
       'unified_search' => true,
       'full_text_search' => 
       array (

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-13 17:11:21
+// created: 2019-07-17 19:48:54
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -19,12 +19,12 @@ $mod_strings = array (
   'LBL_REMOVE' => 'Quitar',
   'LBL_ASSIGNED_TO_ID' => 'Asignado a Usuario con Id',
   'LBL_ASSIGNED_TO_NAME' => 'Usuario',
+  'LNK_NEW_RECORD' => 'Crear Mailing',
+  'LNK_LIST' => 'Vista Mailing',
   'LBL_LIST_FORM_TITLE' => 'Mailing Lista',
   'LBL_MODULE_NAME' => 'Mailing',
   'LBL_MODULE_TITLE' => 'Mailing',
   'LBL_HOMEPAGE_TITLE' => 'Mi Mailing',
-  'LNK_NEW_RECORD' => 'Crear Mailing',
-  'LNK_LIST' => 'Vista Mailing',
   'LNK_IMPORT_EXPMA_MAILING' => 'Importar Mailing',
   'LBL_SEARCH_FORM_TITLE' => 'Buscar Mailing',
   'LBL_HISTORY_SUBPANEL_TITLE' => 'Ver Historial',
@@ -42,5 +42,9 @@ $mod_strings = array (
   'LBL_N_REENVIOS' => 'Nº de reenvios',
   'LBL_FECHA_PRIMER_ENVIO' => 'Fecha de primer Envío',
   'LBL_FECHA_ULTIMO_ENVIO' => 'Fecha de último Envío',
+  'LBL_FRANQUICIAS' => 'Franquicias',
+  'LBL_TOTALCORREOS' => 'Nº total de correos',
+  'LBL_CORREOSPROTOCOLO' => 'Nº de no envíos por protocolo',
+  'LBL_EVENTO_ASOCIADO' => 'Evento asociado',
   'LBL_EXPMA_MAILING_EXPAN_SOLICITUD_FROM_EXPAN_SOLICITUD_TITLE' => 'Solicitud',
 );

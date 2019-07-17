@@ -35,22 +35,23 @@ $searchFields['Expan_GestionSolicitudes'] = array (
     'vname' => 'LBL_PROVINCIA_APERTURA_1',
   ),
   
-  'rating' => 
+  'pais_apertura' => 
   array (
     'query_type' => 'format',
     'operator' => 'subquery',
     'subquery' => 'select g.id from 
               expan_gestionsolicitudes g,
               expan_solicitud s,
+              expan_solicitud_cstm sc,
               expan_solicitud_expan_gestionsolicitudes_1_c gs
             where
-              g.id = gs.expan_soli5dcccitudes_idb AND
-              s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.rating in ({0})',
+              g.id = gs.expan_soli5dcccitudes_idb AND s.id=sc.id_c AND
+              s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND sc.pais_c in ({0})',
     'db_field' => 
     array (
       0 => 'id',
     ),
-    'vname' => 'LBL_RATING',
+    'vname' => 'LBL_PAIS_APERTURA',
   ),
   
   'assigned_user_id' => 

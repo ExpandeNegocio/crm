@@ -17,7 +17,7 @@ function procesar() {
     $movil = $_POST['movil'];
     $telefono = $_POST['telefono'];
     $email = $_POST['email'];
-    $localidad = $_POST['localidad'];
+    $localidadNom = $_POST['localidad'];
     $provNom = $_POST['provincia'];
     $disponibilidad = $_POST['disponibilidad'];
     $situacion = $_POST['situacion'];
@@ -31,15 +31,15 @@ function procesar() {
     $inicio = $_POST['inicio'];
     $papel = $_POST['papel'];
     $idCuestionario = $_POST['idresp'];
+    $otrasPreguntas = $_POST['otrasPreguntas'];
    
-
     $GLOBALS['log'] -> info("[ExpandeNegocio][][Pruebas]IdFranq-" . $idFran);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Nombre-" . $nombre);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Apellidos-" . $apellidos);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Telefono movil-" . $movil);
     $GLOBALS['log'] -> info("[ExpandeNegocio][pprocesarGoogleFormsrocesarGoogleForms][Pruebas]Telefono-" . $telefono);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Email-" . $email);
-    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Localidad-" . $localidad);
+    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Localidad-" . $localidadNom);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Provincia-" . $provNom);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]ID-" . $idCuestionario);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]disponibilidad-" . $disponibilidad);
@@ -54,6 +54,9 @@ function procesar() {
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]inicio-" . $inicio);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]papel-" . $papel);
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Dir Cuestionario-" . $idCuestionario);
+    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Preguntas Enseña-" . $otrasPreguntas);
+    
+    echo 'Otras Preguntas - '. $otrasPreguntas. "<br>";
 
     echo "Entra2" . "<br>";
 
@@ -109,8 +112,16 @@ function procesar() {
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Provincia Sol-" . $solicitud -> provincia_apertura_1);
 
-        if ($localidad != "") {
-            $solicitud -> localidad_apertura_1 = $localidad;
+        if ($localidadNom != "") {
+            
+            $codMun = recogeMun($localidadNom);
+            
+            if ($codMun!=-1){
+                $solicitud -> localidad_apertura_1 =$codMun;
+            }else{
+                $solicitud-> observaciones_zona_apertura=$solicitud-> observaciones_zona_apertura.'\r\n'.$localidadNom;
+            }
+            
         }
 
         $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Provincia Localidad-" . $solicitud -> localidad_apertura_1);
@@ -235,9 +246,7 @@ function procesar() {
             if($nombre!=$substN|$apellidos!=$substA){//si se ha cambiado el nombre o el apellido
                 $nombreNuevo=$nombre." ".$apellidos." ".$substfran;
                 $gestion-> name=$nombreNuevo;//cambiar el nombre    
-            }
-            
-            
+            }                       
             
             $gestion -> chk_recepcio_cuestionario = 1;
             $fechaHoy=  new DateTime();
@@ -268,8 +277,7 @@ function procesar() {
                     break;                                                           
             }         
             
-                                  
-            
+                                              
             switch ($recursos) {
 
                 case "100% fondos propios" :
@@ -288,6 +296,8 @@ function procesar() {
             $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger fecha-".$inicio);               
             $gestion->cuando_empezar=$inicio;  
             $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Fecha Inicio Gestion-".$gestion->cuando_empezar);
+            
+            $gestion->otras_preguntas_formulario=$otrasPreguntas;
                              
             $telefono = $solicitud -> recogeTelefono();
 
@@ -426,6 +436,26 @@ function localizaSolicitudPortelefono($movil, $telefono) {
     $GLOBALS['log'] -> info("[ExpandeNegocio][procesarGoogleForms][localizaSolicitud]idSol-" . $idSol);
 
     return $idSol;
+}
+
+function recogeMun($localidadNom){
+           
+    $db = DBManagerFactory::getInstance();
+
+    $query = "SELECT * from expan_m_municipios where ucase(d_municipio)=ucase('" . $localidadNom . "')";
+
+    $GLOBALS['log'] -> info("[ExpandeNegocio][procesarCandidaturas][recogeCodMunicipio]consulta-" . $query);
+
+    $result = $db -> query($query, true);
+
+    $cprovMun = -1;
+
+    while ($row = $db -> fetchByAssoc($result)) {
+        $cprovMun = $row["c_provmun"];
+    }
+
+    return $cprovMun;
+    
 }
 
 function recogeProv($nombreprov) {

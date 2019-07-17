@@ -75,11 +75,19 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
     public function calculoDatosEvento(){
         $db=DBManagerFactory::getInstance();
         
-        $query="SELECT distinct(s.id), rating, s.first_name FROM  expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, ( ";
-        $query=$query." SELECT id FROM   expan_gestionsolicitudes WHERE franquicia='".$this->id."' AND ((tipo_origen = 1 AND "; 
-        $query=$query." subor_expande = 7 AND evento_bk = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') and deleted = 0) g ";  
-        $query=$query." WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida; ";
-        
+        $query = "SELECT DISTINCT (s.id), g_rating, s.first_name,u.franquicia,s.from_import ";
+        $query=$query."FROM   expan_solicitud s, ";
+        $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs, ";
+        $query=$query."       users u, ";
+        $query=$query."       (SELECT id, rating as g_rating";
+        $query=$query."        FROM   expan_gestionsolicitudes ";
+        $query=$query."        WHERE  franquicia = '".$this->id."' AND ((tipo_origen = 1 AND subor_expande = 7 AND evento_bk = ";
+        $query=$query."               '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') OR expan_evento_id_c = ";
+        $query=$query."               '".$this->expan_franquicia_expan_eventoexpan_evento_idb."') AND deleted = 0) g ";
+        $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND  ";
+        $query=$query."       s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.created_by=u.id; ";
+
+
         $result = $db -> query($query, true);
         $cont = 0;
         $contAA=0;
@@ -88,7 +96,10 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $contC=0;
         $contD=0;
         $contT=0;
-        $contSR=0;        
+        $contSR=0;  
+        $contTablet=0;
+        $contEN=0;
+        $contFran=0;      
 
         while ($row = $db -> fetchByAssoc($result)) {
             $cont++;
@@ -96,7 +107,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
             if($pos!==false){
                 $contD=$contD+1;
             }
-            switch($row["rating"]){
+            switch($row["g_rating"]){
                 case 1:
                     $contAA++;
                     break;
@@ -116,6 +127,16 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
                     $contSR++;
                     break;
             }
+            
+            if ($row["from_import"]==1){
+                $contTablet++;
+            }else{
+                if ($row["franquicia"]!=''){
+                    $contFran++;
+                }else{
+                    $contEN++;
+                }
+            }
         }  
         $this->total_gestiones=$cont;  
         $this->sol_rating_a_plus=$contAA;
@@ -124,8 +145,32 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $this->sol_rating_c=$contC;
         $this->sol_rating_topo=$contT;
         $this->sol_rating_no_rating=$contSR;
-        $this->dummies=$contD;                    
+        $this->sol_expande_franq=$contEN;
+        $this->sol_franq_misma=$contFran;
+        $this->sol_franq_tablet=$contTablet;
         
+        if ($cont!=0){
+            $this->coste_accion_solicitud=$this->coste_accion/$cont;            
+        }
+        $this->dummies=$contD;  
+        
+        
+        $query = "SELECT count(1) num ";
+        $query=$query."FROM   expan_gestionsolicitudes ";
+        $query=$query."WHERE  franquicia = '".$this->id."' AND deleted = 0 AND subor_mailing IN  ";
+        $query=$query."        (SELECT id ";
+        $query=$query."          FROM   expma_mailing ";
+        $query=$query."          WHERE  evento ='".$this->expan_franquicia_expan_eventoexpan_evento_idb."'); ";
+        
+        $result = $db -> query($query, true);
+        
+        $contMail=0;
+        
+        while ($row = $db -> fetchByAssoc($result)) {            
+            $contMail=$row["num"];
+        }
+        
+        $this->sol_mailings=$contMail;                                        
     }
 
     public function calculoDatosFranquicia(){
@@ -136,12 +181,28 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         $query=$query. " join (select count(*) as llamadasPendientes FROM calls where status='Planned' and ";
         $query=$query. " franquicia='".$this->id."' and parent_type='Expan_GestionSolicitudes' and deleted=0)b;";
         
+        
+        $query = "SELECT * ";
+        $query=$query."FROM   (SELECT count(*) AS gestionesfran ";
+        $query=$query."        FROM   expan_gestionsolicitudes ";
+        $query=$query."        WHERE  estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND franquicia = '".$this->id."' AND dummie = 0 AND deleted = 0) a ";
+        $query=$query."       JOIN (SELECT count(*) AS llamadasPendientes ";
+        $query=$query."             FROM   calls ";
+        $query=$query."             WHERE  status = 'Planned' AND franquicia = '".$this->id."' AND parent_type = 'Expan_GestionSolicitudes' AND deleted = 0) b ";
+        $query=$query."       JOIN ";
+        $query=$query."       (SELECT count(*) AS llamadasRetrasadas ";
+        $query=$query."        FROM   calls ";
+        $query=$query."        WHERE  status = 'Planned' AND franquicia = '".$this->id."' AND parent_type = 'Expan_GestionSolicitudes' AND date_start < CURDATE() ";
+        $query=$query."               AND deleted = 0) c ";
+        
+        
+        
          $result = $db -> query($query, true);
 
         while ($row = $db -> fetchByAssoc($result)) {
             $this->gestionesfran=$row["gestionesfran"];
             $this->llamadaspendientesfran=$row["llamadasPendientes"];
-            
+            $this->llamadas_retrasadas_fran=$row["llamadasRetrasadas"];
         }     
     
     }
@@ -294,7 +355,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
             $gestion->ignore_update_c = true;
             $gestion->save();
             
-            $gestion->creaLlamada('[AUT]Revision Estado', 'RevEst');
+            $gestion->creaLlamada('[AUT]Revision Estado', 'RevEst',0);
             
         }
     }
@@ -418,7 +479,7 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         while ($row = $db -> fetchByAssoc($result)) {
             $gestion = new Expan_GestionSolicitudes();
             $gestion -> retrieve($row['id']);
-            $gestion -> creaLlamada('[AUT]Primera llamada', 'Primera');      
+            $gestion -> creaLlamada('[AUT]Primera llamada', 'Primera',0);      
         }  
         
     }
@@ -607,5 +668,99 @@ class Expan_Franquicia extends Expan_Franquicia_sugar {
         return $nombreNeg;
     }
     
+    function procesarObservaciones(){
+        
+       $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Franquicia][procesarObservaciones]Entra');
+        
+       $this->preguntas_mn_t= $this->addFechaObservacion($this->preguntas_mn_t);
+       $this->objeciones_mn= $this->addFechaObservacion($this->objeciones_mn);
+       $this->solicitudes_candidato= $this->addFechaObservacion($this->solicitudes_candidato);
+       $this->informacion_competencia= $this->addFechaObservacion($this->informacion_competencia);
+       $this->mejoras= $this->addFechaObservacion($this->mejoras);
+       $this->concesiones= $this->addFechaObservacion($this->concesiones);
+       $this->preg_en_central= $this->addFechaObservacion($this->preg_en_central);
+       $this->notas_argumentario= $this->addFechaObservacion($this->notas_argumentario);      
+        
+    }
+
+    function addFechaObservacion($observaciones){
+        
+        //Secogemos cada párrafo
+        
+        $listaParr =explode("\r\n", $observaciones);
+        
+        $output="";
+        $cont=0;
+       
+        foreach ($listaParr as $par){
+           if ($par!=""){                         
+               $parConFecha=$par;
+                    
+               if ($this->validateDate(substr($par,0,10))==false){
+                     
+                  $parConFecha=''.date('d/m/Y').' - '.$parConFecha;
+                  if ($cont!=count($listaParr)){
+                      $parConFecha=$parConFecha;
+                  }
+               }
+               $output=$output.$parConFecha."\r\n";
+           }else{
+               if ($cont!=count($listaParr)-1){
+                   $output=$output."\r\n";
+               }               
+           }
+           $cont=$cont+1;
+        }
+        return $output;               
+    }      
+    
+    function validateDate($date, $format = 'd/m/Y')
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
+    
+    
+    function getCLink($Cx){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "select * from email_templates where franquicia='".$this->id."' and type='".$Cx."'";
+        
+        $result = $db -> query($query, TRUE);
+        
+        $idTemp="";
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+            $idTemp=$row["id"];
+        }
+       
+        if ($idTemp!=""){
+            $link='<a href="index.php?module=EmailTemplates&action=DetailView&record='.$idTemp.'">'.$Cx.'</a>';        
+            return $link; 
+        }
+       
+    }
+    
+    function getUser(){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $query = "select * from users where franquicia='".$this->id."'";
+        
+        $result = $db -> query($query, TRUE);
+        
+        $idUsuario="";
+
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+            $idUsuario=$row["id"];
+        }
+        
+        $user= new User();
+        $user->retrieve($idUsuario);
+        
+        return $user;
+    }
 }
 ?>

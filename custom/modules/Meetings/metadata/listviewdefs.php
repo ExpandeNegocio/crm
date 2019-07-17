@@ -117,10 +117,19 @@ array (
   
   ),
   
+  'provincia_solicitud'=>
+  array(
+    'type' => 'enum',
+    'label' => 'LBL_PROVINCIA_SOLICITUD',
+    'width' => '10%',
+    'default' => true,
+  
+  ),
+  
   'PRIORIDAD'=>
   array(
     'label' => 'LBL_PRIORIDAD',
-    'width' => '10%',
+    'width' => '5%',
     'default' => true,
   
   ),

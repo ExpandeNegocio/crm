@@ -71,14 +71,20 @@ $subpanel_layout = array(
 			'target_module' => 'Employees',
 			'width' => '10%',		
 		),
-		  'modified_by_name' => array (
+		'modified_by_name' => array (
             'name' => 'modified_by_name',
             'vname' => 'LBL_MODIFICADO_POR',
             'widget_class' => 'SubPanelDetailViewLink',
             'target_record_key' => 'modified_user_id',
             'target_module' => 'Employees',
             'width' => '10%',           
-        ),        
+        ),  
+        'oportunidad_inmediata' => array (
+            'name' => 'oportunidad_inmediata',
+            'vname' => 'LBL_OPORTUNIDAD_INMEDIATA',          
+            'width' => '10%',           
+        ), 
+                      
 		'edit_button'=>array(
 			'vname' => 'LBL_EDIT_BUTTON',
 			 'widget_class' => 'SubPanelEditButton',

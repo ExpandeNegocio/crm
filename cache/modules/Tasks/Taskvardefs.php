@@ -485,6 +485,22 @@
       'reportable' => true,
       'size' => '10',
     ),
+    'ERM_tasks_id' => 
+    array (
+      'name' => 'ERM_tasks_id',
+      'type' => 'id',
+      'group' => 'contact_name',
+      'audited' => true,
+      'reportable' => false,
+    ),
+    'fran_type' => 
+    array (
+      'name' => 'fran_type',
+      'vname' => 'Tipo',
+      'type' => 'varchar',
+      'len' => '255',
+      'source' => 'non-db',
+    ),
     'asol_projecttask_activities_tasks' => 
     array (
       'name' => 'asol_projecttask_activities_tasks',

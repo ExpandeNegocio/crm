@@ -108,6 +108,31 @@ function getUserRoles($user_id, $getAsNameArray = true){
         return $user_roles;
 }
 
+function getUserRolesid($user_id, $getAsNameArray = true){
+
+        //if we don't have it loaded then lets check against the db
+        $additional_where = '';
+        $query = "SELECT acl_roles.* ".
+            "FROM acl_roles ".
+            "INNER JOIN acl_roles_users ON acl_roles_users.user_id = '$user_id' ".
+                "AND acl_roles_users.role_id = acl_roles.id AND acl_roles_users.deleted = 0 ".
+            "WHERE acl_roles.deleted=0 ";
+
+        $result = $GLOBALS['db']->query($query);
+        $user_roles = array();
+
+        while($row = $GLOBALS['db']->fetchByAssoc($result) ){
+            $role = new ACLRole();
+            $role->populateFromRow($row);
+            if($getAsNameArray)
+                $user_roles[] = $role->id;
+            else
+                $user_roles[] = $role;
+        }
+
+        return $user_roles;
+}
+
 /**
  * static  getUserRoleNames($user_id)
  * returns a list of Role names for a given user id

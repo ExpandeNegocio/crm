@@ -194,11 +194,6 @@ $dictionary['Expan_GestionSolicitudes']['fields']['franquicia']['required']=true
 
  
 
- // created: 2014-08-11 20:42:47
-$dictionary['Expan_GestionSolicitudes']['fields']['franquicia_c']['labelValue']='franquicia';
-
- 
-
  // created: 2014-08-17 13:56:25
 
  

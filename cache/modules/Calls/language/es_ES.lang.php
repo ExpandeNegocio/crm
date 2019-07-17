@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-30 17:46:26
+// created: 2019-07-17 19:46:33
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -46,12 +46,14 @@ $mod_strings = array (
   'LBL_DURATION_MINUTES' => 'Minutos Duración:',
   'LBL_HOURS_MINUTES' => '(horas/minutos)',
   'LBL_CALL' => 'Llamada:',
-  'LBL_DATE_TIME' => 'Inicio:',
-  'LBL_TIME' => 'Hora inicio:',
+  'LBL_DATE_TIME' => 'Hora planificada:',
+  'LBL_DATE_DELAYED' => 'Hora nueva llamada:',
+  'LBL_TIME' => 'Hora planificada:',
   'LBL_HOURS_ABBREV' => 'h',
   'LBL_MINSS_ABBREV' => 'm',
   'LBL_COLON' => ':',
-  'LNK_NEW_CALL' => 'Registrar Llamada',
+  'LNK_NEW_FRANQ_CALL' => 'Llamada Central',
+  'LNK_NEW_CALL' => 'Llamada Candidato',
   'LNK_NEW_MEETING' => 'Programar Reunión',
   'LNK_CALL_LIST' => 'Ver Llamadas',
   'LNK_IMPORT_CALLS' => 'Importar Llamadas',
@@ -132,6 +134,9 @@ $mod_strings = array (
   'LBL_MODIFICADO_POR' => 'Modificado por',
   'LBL_GESTION_AGRUPADA' => 'Gestión Agrupada',
   'LBL_PROVINCIA_APERTURA_1' => 'Provincia',
+  'LBL_DISPONIBILIDAD_HORARIA_CONTACTO' => 'Disponibilidad horaria contacto',
+  'LBL_REPETICIONES' => 'Repeticiones',
+  'LBL_LIST_TYPE' => 'Tipo',
   'LBL_EXPAN_GESTIONSOLICITUDES_CALLS_1_FROM_EXPAN_GESTIONSOLICITUDES_TITLE' => 'GestionSolicitudes',
   'LBL_EXPAN_GESTIONSOLICITUDES_ACTIVITIES_1_CALLS_FROM_EXPAN_GESTIONSOLICITUDES_TITLE' => 'Actividades:GestionSolicitudes',
   'LBL_EXPAN_FRANQUICIA_CALLS_1_FROM_EXPAN_FRANQUICIA_TITLE' => 'Franquicia',

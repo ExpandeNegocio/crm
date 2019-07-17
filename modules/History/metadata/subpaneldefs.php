@@ -297,6 +297,13 @@ $layout_defs['History'] = array(
 			 		 	'vname' => 'LBL_LIST_STATUS',
 		 		 		'width' => '10%',
 					),
+					
+                    array(
+                        'name' => 'type',
+                        'vname' => 'LBL_LIST_TYPE',
+                        'width' => '10%',
+                    ),
+                    
 					array(
 			 		 	'name' => 'contact_name',
 			 		 	'module' => 'Contacts',

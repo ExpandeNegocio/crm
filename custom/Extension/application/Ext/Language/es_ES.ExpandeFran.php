@@ -35,13 +35,13 @@
  ********************************************************************************/
 
 
-$app_list_strings['moduleList']['Expan_Solicitud'] = 'Solicitud';
+$app_list_strings['moduleList']['Expan_Solicitud'] = 'Candidato';
 $app_list_strings['moduleList']['Expan_Franquicia'] = 'Franquicia';
 $app_list_strings['moduleList']['Expan_Consultora'] = 'Consultora';
 $app_list_strings['moduleList']['Expan_Evento'] = 'Evento';
 $app_list_strings['moduleList']['Expan_Documentos'] = 'Documentacion';
 $app_list_strings['moduleList']['Expan_Documentacion'] = 'Documentacion';
-$app_list_strings['moduleList']['Expan_Solicitud1'] = 'Solicitud';
+$app_list_strings['moduleList']['Expan_Solicitud1'] = 'Candidato';
 $app_list_strings['moduleList']['Expan_intermediacion_franquicia'] = 'Intermediación Franquicia';
 $app_list_strings['moduleList']['Expan_chanchullo'] = 'chanchullo';
 $app_list_strings['moduleList']['Expan_Medios'] = 'Medios';

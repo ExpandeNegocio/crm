@@ -10,6 +10,11 @@
     
             $bean -> eliminarTodasLLamadas();
             $bean -> eliminarTodasTareas();
+            
+            $solicitud=$bean->GetSolicitud();
+            $solicitud->pasaFranqiciaPrincipal();
+            $solicitud->ignore_update_c = true;
+            $solicitud->save();
         }
     }
 ?>

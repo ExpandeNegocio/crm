@@ -2,7 +2,52 @@
 $("#btn_view_change_log").hide();
 $("#save").hide();
 $("#delete_button").hide();
+$( document ).ready(function() {
+	ocultarOrigenes();
+});
 
+
+const USUARIO_VW_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
+
+getUsuario();
+getFranquicia();
+
+
+function getUsuario(){
+
+	url='index.php?entryPoint=herramientas&tipo=getUser';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=getUser",
+		success : function(data) {	
+			if (data!=USUARIO_VW_RUBEN){
+				$("#delegado_detailblock").parent().parent().hide();		
+			}									
+		},
+		error : function(jqXHR, textStatus, errorThrown) {	
+		}				
+	});
+}
+
+function getFranquicia(){
+
+	url='index.php?entryPoint=herramientas&tipo=getFran';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=getFran",
+		success : function(data) {	
+			if (data!=''){	
+				$("#crearFranquiciado").hide();		
+				$("#marcarReunion").hide();			
+				$("#tab3").hide();
+			}				
+		},
+		error : function(jqXHR, textStatus, errorThrown) {						
+		}
+	});
+}
 
 function cambiarEstadoGestion(estado) {
 
@@ -49,3 +94,30 @@ function cambiarEstadoGestion(estado) {
 	}
 
 }
+
+function ocultarOrigenes(){
+	
+	if ($("#portal").val()==''){
+		$("#portal").parent().parent().parent().hide();
+	}
+	
+	if ($("#expan_evento_id_c").val()==''){
+		$("#expan_evento_id_c").parent().parent().parent().hide();
+	}
+	
+	if ($("#subor_central").val()==''){
+		$("#subor_central").parent().parent().parent().hide();
+	}
+	
+	if ($("#subor_medios").val()==''){
+		$("#subor_medios").parent().parent().parent().hide();
+	}
+	
+	if ($("#subor_mailing").val()==''){
+		$("#subor_mailing").parent().parent().parent().hide();
+	}
+	
+	$("#first_name_detailblock").css("Font-Weight","Bold");	
+}
+
+

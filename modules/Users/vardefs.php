@@ -702,7 +702,15 @@ $dictionary['User'] = array(
         ) ,
     ) ,
 	'relationships' => array (
-  		'user_direct_reports' => array('lhs_module'=> 'Users', 'lhs_table'=> 'users', 'lhs_key' => 'id', 'rhs_module'=> 'Users', 'rhs_table'=> 'users', 'rhs_key' => 'reports_to_id', 'relationship_type'=>'one-to-many'),
+  		'user_direct_reports' => array(
+  		    'lhs_module'=> 'Users', 
+      		'lhs_table'=> 'users', 
+      		'lhs_key' => 'id', 
+      		'rhs_module'=> 'Users', 
+      		'rhs_table'=> 'users', 
+      		'rhs_key' => 'reports_to_id', 
+      		'relationship_type'=>'one-to-many'
+        ),
   		'users_users_signatures' =>
   		   array(
   		       'lhs_module'=> 'Users',

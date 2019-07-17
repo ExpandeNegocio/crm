@@ -33,29 +33,49 @@
         if ($tipoEnvio=="C1"){
            if($estadoEdicion="Detalle"){
                 $bean->envio_documentacion=$fechaHoy->format('d/m/Y H:i');
-                $bean->chk_envio_documentacion=true;
-            }            
-            $bean -> creaLlamada('[AUT]Primera llamada', 'Primera');
+                $bean->chk_envio_documentacion=true;                
+            }
+            if ($bean->estado_sol==Expan_GestionSolicitudes::ESTADO_EN_CURSO ||
+                $bean->estado_sol==Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO){
+                $bean -> creaLlamada('[AUT]Primera llamada', 'Primera',0);
+            } elseif ($bean->estado_sol==Expan_GestionSolicitudes::ESTADO_PARADO ||
+                $bean->estado_sol==Expan_GestionSolicitudes::ESTADO_DESCARTADO){
+                $bean -> creaLlamada('[REACT]Llamada de reactivacion', 'React',0);
+            }                                  
+            $bean->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+            
         }elseif ($tipoEnvio=="C2"){
             if($estadoEdicion="Detalle"){
                 $bean->f_informacion_adicional=$fechaHoy->format('d/m/Y H:i');     
                 $bean->chk_informacion_adicional=true;  
             }
-            $bean -> creaLlamada('[AUT]Llamada envio documentacion adicional', 'InformacionAdicional');
+            if ($bean->estado_sol==Expan_GestionSolicitudes::ESTADO_EN_CURSO ||
+                $bean->estado_sol==Expan_GestionSolicitudes::ESTADO_NO_ATENDIDO){
+                $bean -> creaLlamada('[AUT]Llamada envio documentacion adicional', 'InformacionAdicional',0);
+            } elseif ($bean->estado_sol==Expan_GestionSolicitudes::ESTADO_PARADO ||
+                $bean->estado_sol==Expan_GestionSolicitudes::ESTADO_DESCARTADO){
+                $bean -> creaLlamada('[REACT]Llamada de reactivacion', 'React',0);
+            }
+            $bean->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+            
         }elseif ($tipoEnvio=="C3"){
             if($estadoEdicion="Detalle"){
                 $bean->f_envio_precontrato=$fechaHoy->format('d/m/Y H:i');
                 $bean->chk_envio_precontrato=true;
             }
             $bean -> crearTarea("DOCUPerPre");    
-            $bean -> creaLlamada('[AUT]Llamada envio precontrato', 'SegPre');  
+            $bean -> creaLlamada('[AUT]Llamada envio precontrato', 'SegPre',0);              
+            $bean->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+            
+            
         }elseif ($tipoEnvio=="C4"){
             if($estadoEdicion="Detalle"){
                 $bean->f_envio_contrato=$fechaHoy->format('d/m/Y H:i');                
                 $bean->chk_envio_contrato=true;
             }
             $bean -> crearTarea("DOCUPerCon");
-            $bean -> creaLlamada('[AUT]Llamada Contrato', 'Contrato');
+            $bean -> creaLlamada('[AUT]Llamada Contrato', 'Contrato',0);
+            $bean->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
         }
                 
         $bean -> ignore_update_c = true;

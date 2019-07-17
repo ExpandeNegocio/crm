@@ -1,100 +1,81 @@
 <?php
     require_once ('data/SugarBean.php');
-    require ('lib/PHPExcel/PHPExcel.php');
-    require_once ('include/SugarPHPMailer.php');
+    require_once ('custom/include/EnvioAutoCorreos.php');
     
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
     $GLOBALS['log'] -> info('[ExpandeNegocio][correoInterlocutor]Inicio' );
 
     $idGest = $_POST['id'];
-    
+    $tipoEnv = $_POST['tipoEnv'];
+        
     $gestion=new Expan_GestionSolicitudes();
     $gestion->retrieve($idGest);
     
-    $solicitud=new Expan_Solicitud();
-    $solicitud=$gestion->GetSolicitud();
+    $solicitud=$gestion->GetSolicitud();    
+    $franquicia=$gestion->GetFranquicia();
+
+    $correoEnvio='';       
     
-    $franquicia=new Expan_Franquicia();
-    $franquicia->retrieve($gestion-> franquicia);
+    $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]Antes creacion addreses');
     
-    $correoEnvio=$franquicia->correo_general;    
+    $addresses = array( '0' => array('email_address'=>''));
+    $rcp_name="";
     
-    if($correoEnvio!=""){//Tenemos correo de la franquicia
-      //  if($cuestionario!=""){//Tenemos cuestionario
-            EnviarCorreo($correoEnvio,$gestion, $solicitud);
-       // }else{
-       //     echo 'no existe el link del cuestionario';
-       // }
-       
-    }else{
-        echo "no existe el correo de la franquicia";
-    }
-    
-    function EnviarCorreo($emailAddr,$gestion,$solicitud){
-    
-        $GLOBALS['log'] -> info('[ExpandeNegocio][CorreoInterlocutor][Envio correos]Entra');
+    $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]Despues creacion addreses');
          
-        $mail = new SugarPHPMailer();
-
-        $emailObj = new Email();
-        $defaults = $emailObj -> getSystemDefaultEmail();              
-
-        $mail -> From = $defaults['email'];
-        $mail -> FromName = $defaults['name'];
-
-        $mail -> AddAddress($emailAddr, $emailAddr);
-        $mail -> IsHTML(TRUE);
-        $mail -> Subject = from_html("Información de candidato");
-        $cuerpo="<html>\n<head><title>Información de candidato</title></head>";
-        $cuerpo=$cuerpo."<body>";
-        $cuerpo=$cuerpo."<div id='cuerpo'>";
-        $cuerpo=$cuerpo."<h3>Le pasamos el contacto y el resumen de las gestiones que hemos estado realizando con dicho candidato para que conozcas mejor su situación.
-
-Además, adjuntamos en enlace al cuestionario que nos ha rellenado para que puedas conocer mejor su perfil y características del candidato.
-
-Ante cualquier duda estamos a su disposición,</h3>";
-        $cuerpo=$cuerpo."<TABLE>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Nombre</TD>";
-        $cuerpo=$cuerpo."<TD>".$solicitud->firstName."</TD>";
-        $cuerpo=$cuerpo."</TR>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Apellidos</TD>";
-        $cuerpo=$cuerpo."<TD>".$solicitud->lastName."</TD>";
-        $cuerpo=$cuerpo."</TR>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Provincia Apertura</TD>";
-        $cuerpo=$cuerpo."<TD>".$solicitud->provincia_apertura_1."</TD>";
-        $cuerpo=$cuerpo."</TR>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Localidad Apertura</TD>";
-        $cuerpo=$cuerpo."<TD>".$solicitud->localidad_apertura_1."</TD>";
-        $cuerpo=$cuerpo."</TR>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Origen de la solicitud</TD>";
-        $cuerpo=$cuerpo."<TD>".$app_list_strings['tipo_origen_list'][$gestion->origen_sol]."</TD>";
-        $cuerpo=$cuerpo."</TR>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Suborigen de la solicitud</TD>";
-        $cuerpo=$cuerpo."<TD>".$gestion->getSuborigenDesc()."</TD>";
-        $cuerpo=$cuerpo."</TR>";
-        $cuerpo=$cuerpo."<TR>";
-        $cuerpo=$cuerpo."<TD>Trámites destacados</TD>";
-        $cuerpo=$cuerpo."<TD>".$gestion->observaciones_informe."</TD>";
-        $cuerpo=$cuerpo."</TR>";                              
-        $cuerpo=$cuerpo."</TABLE>";           
-        $cuerpo=$cuerpo."<a href='".$gestion->lnk_cuestionario."'>Enlace al formulario</p>";
-        $cuerpo=$cuerpo."</div></body></html>";
-        echo $cuerpo;
-                
-        $mail -> Body=$cuerpo;
-        
-        if(!$mail->Send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;            
-        } else {
+    switch ($tipoEnv) {
+        case 'franq' :
+            $addresses['0']['email_address']=$franquicia->correo_general;   
+            $rcp_name=$franquicia->name;        
+            break;
+        case 'consultor' :
+            $idUsuario=$franquicia->dir_cons_id_c; 
+            $usuario= new User();
+            $usuario->retrieve($idUsuario);
+            $rcp_name=$usuario->name;
             
-            echo "Ok";
-        }
-               
+            $dirCorreoEnvio=getUserEmail($idUsuario);
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]Direccion Correo envio-'.$dirCorreoEnvio);
+            
+            $addresses['0']['email_address'] = $dirCorreoEnvio;
+            break;
     }
+
+    $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]Addreses rellenas - '.$addresses['0']['email_address']);
+    
+    if($addresses['0']['email_address']!=""){//Tenemos correo de la franquicia
+        $envioAutoCorreos= new EnvioAutoCorreos();
+        $salida=$envioAutoCorreos->rellenacorreoFicha("FR",$tipoEnv,$rcp_name,$addresses,$solicitud,$franquicia,$gestion,null); 
+        echo $salida;      
+    }else{
+        if ($tipoEnv=='franq'){
+            echo "No existe el correo de la franquicia";
+        }else{
+            echo "No existe el correo del director de consultoria de la cuenta";
+        }
+        
+    }         
+            
+    
+    function getUserEmail($idUsuario){
+        
+        $db = DBManagerFactory::getInstance();
+    
+        $query = "SELECT e.email_address  ";
+        $query=$query."FROM   email_addr_bean_rel r, email_addresses e  ";
+        $query=$query."WHERE  r.bean_id = '".$idUsuario."' AND e.id = r.email_address_id AND e.deleted=0 AND r.deleted=0; ";
+        
+        $result = $db -> query($query, true);    
+        
+        $correo='';
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $correo=$row['email_address'];
+        }
+        
+        return $correo;
+        
+    }
+    
 ?>

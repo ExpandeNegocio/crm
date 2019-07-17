@@ -55,8 +55,8 @@ class Expan_SolicitudDashlet extends DashletGeneric {
 
         if(empty($def['title'])) $this->title = translate('LBL_HOMEPAGE_TITLE', 'Expan_Solicitud');
 
-        $this->searchFields = $dashletData['Expan_SolicitudDashlet']['searchFields'];
-        $this->columns = $dashletData['Expan_SolicitudDashlet']['columns'];
+        $this->searchFields = $dashletData['Expan_Solicitud']['searchFields'];
+        $this->columns = $dashletData['Expan_Solicitud']['columns'];
 
         $this->seedBean = new Expan_Solicitud();        
     }

@@ -20,11 +20,16 @@ array (
           'field' => '30',
         ),
       ),
+      'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
+      {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+      {sugar_getscript file="include/javascript/EditFranquiciado.js"}
+      {sugar_getscript file="include/javascript/jquery.js"}',
     ),
     'panels' => 
     array (
       'default' => 
-      array (
+      array (     
+      
         0 => 
         array (
           0 => 
@@ -34,8 +39,9 @@ array (
           ),
           1 => 
           array (
-            'name' => 'empresa',
-            'label' => 'LBL_EMPRESA',
+            'name' => 'estado',
+            'label' => 'LBL_ESTADO',
+            'type' => 'readonly',
           ),
         ),
         1 => 
@@ -90,7 +96,11 @@ array (
             'name'=> 'no_newsletter',
             'label'=> 'LBL_NEWSLETTER',
             ),
-            
+            1 => 
+            array(
+                'name' => 'sectores_historicos',
+                'label' => 'LBL_SECTORES_HISTORICOS',
+            ),
         ),
         6 => 
         array (

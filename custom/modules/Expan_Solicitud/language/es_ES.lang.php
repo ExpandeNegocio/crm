@@ -14,4 +14,9 @@ $mod_strings = array (
   'LBL_ENVIO_DOCUMENTACION' => 'Envío de documentación',
   'LBL_DATE_MODIFIED' => 'Última Modificación',
   'LBL_ALT_ADDRESS_POSTALCODE' => 'Código Postal',
+  'LBL_FROM_IMPORT'=>'Desde Importacion',
+  'LBL_LOCAL1' => '<H1><B>LOCAL 1</B></H1>',
+  'LBL_LOCAL2' => '<H1><B>LOCAL 2</B></H1>',
+  'LBL_LOCAL3' => '<H1><B>LOCAL 3</B></H1>',
+  'LBL_LOCAL4' => '<H1><B>LOCAL 4</B></H1>',
 );

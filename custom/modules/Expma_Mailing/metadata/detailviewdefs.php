@@ -68,7 +68,6 @@ array (
           ),
         ),
         
-
         1 => 
         array (
           0 => 
@@ -81,9 +80,22 @@ array (
             'name' => 'n_reenvios',
             'label' => 'LBL_N_REENVIOS',
           ),
-        ),
+        ),        
 
         2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'evento',
+            'label' => 'LBL_EVENTO_ASOCIADO',
+          ),
+          1 => 
+          array (
+
+          ),
+        ),
+
+        3 => 
         array (
           0 => 
           array (
@@ -96,7 +108,7 @@ array (
           ),
         ),
         
-        3 => 
+        4 => 
         array (
           0 => 
           array (
@@ -109,7 +121,7 @@ array (
           ),
         ),
                 
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -123,7 +135,7 @@ array (
           ),
         ),
         
-        5 => 
+        6 => 
         array (
           0 => 
           array (
@@ -135,8 +147,9 @@ array (
             'name' => 'correos_ko',
             'label' => 'LBL_CORREOS_KO',
           ),
-        ),             
-        6=> 
+        ),
+                     
+        7=> 
         array (
           0 => 'description',
           1 => 

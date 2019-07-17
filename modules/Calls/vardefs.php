@@ -542,7 +542,7 @@ $dictionary['Call'] = array('table' => 'calls', 'comment' => 'A Call is an activ
     'repeticiones' =>
   array(
     'name' => 'repeticiones',
-    'vname' => 'LBL_REPEATICIONES',
+    'vname' => 'LBL_REPETICIONES',
     'type' => 'int',
     'len' => 7,
     'default' => 1,
@@ -621,7 +621,39 @@ $dictionary['Call'] = array('table' => 'calls', 'comment' => 'A Call is an activ
     'source' => 'non-db',
   ),  
   
-      
+    'disp_contacto' => 
+  array (
+    'required' => false,
+    'name' => 'disp_contacto',
+    'vname' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+    'type' => 'enum',
+    'massupdate' => 0,
+    'no_default' => false,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'merge_filter' => 'disabled',
+    'len' => 100,
+    'size' => '20',
+    'options' => 'disponibilidad_horaria_list',
+    'studio' => 'visible',
+    'dependency' => false,
+  ), 
+  
+  'fran_type' => 
+    array (
+       'name' => 'fran_type',
+        'vname' => 'Tipo',
+        'type' => 'varchar',
+        'len' => '255',
+        'source' => 'non-db',
+  
+  ),    
 ),
 'indices' => array (
 	array(

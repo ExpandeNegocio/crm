@@ -35,18 +35,27 @@ array (
     array (
       'default' => 
       array (
+      
+       -1 =>
+       array(
+          0 => 
+          array (
+              'name' => 'date_entered',
+              'customCode' => '{$fields.date_entered.value} {$APP.LBL_BY} {$fields.created_by_name.value}',
+              'label' => 'Fecha creacion',
+          ),
+       ),
         0 => 
         array (
           0 => 
           array (
             'name' => 'first_name',
-            'comment' => 'First name of the contact',
             'label' => 'LBL_FIRST_NAME',
           ),
           1 => 
           array (
-            'name' => 'empresa',
-            'label' => 'LBL_EMPRESA',
+            'name' => 'estado',
+            'label' => 'LBL_ESTADO',
           ),
         ),
               1 => 
@@ -102,6 +111,12 @@ array (
             array(
                 'name' => 'no_newsletter',
                 'label' => 'LBL_NEWSLETTER',
+            ),
+            
+            1 => 
+            array(
+                'name' => 'sectores_historicos',
+                'label' => 'LBL_SECTORES_HISTORICOS',
             ),
         ),
         

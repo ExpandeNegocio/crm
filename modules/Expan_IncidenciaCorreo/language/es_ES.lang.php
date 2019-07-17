@@ -35,6 +35,8 @@
  ********************************************************************************/
 
 $mod_strings = array (
+  'LNK_NEW_RECORD'=>'Crear IncidenciaCorreo',
+  'LNK_LIST'=>'Vista IncidenciaCorreo',
   'LBL_ASSIGNED_TO_ID' => 'Asignado a Usuario con Id',
   'LBL_ASSIGNED_TO_NAME' => 'Usuario',
   'LBL_ID' => 'ID',

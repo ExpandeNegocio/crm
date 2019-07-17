@@ -370,7 +370,30 @@ $dictionary['Expma_Mailing'] = array(
     'reportable' => true,
     'merge_filter' => 'disabled',
     'studio' => 'visible', 
-  ),        
+  ),    
+  
+  'evento' => 
+      array (
+        'required' => false,
+        'name' => 'evento',
+        'vname' => 'LBL_EVENTO_ASOCIADO',
+        'type' => 'enum',
+        'massupdate' => 0,
+        'no_default' => true,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'size' => '20',
+        'options' => 'eventos_list',
+        'studio' => 'visible',        
+      ),  
+      
 ),
 	'relationships'=>array (
 ),

@@ -13,6 +13,11 @@
     $idplantilla = rawurldecode($_GET['template']);
     $porFranquicia = rawurldecode($_GET['porFranquicia']);
     
+    
+    $emailTemp = new EmailTemplate();
+    $emailTemp -> disable_row_level_security = true;
+    $emailTemp -> retrieve($idTemp);
+    
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]ID mailing-' . $idMailing);
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]ID Plantilla-' . $idplantilla);
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]PorFranquicia-' . $porFranquicia);
@@ -34,12 +39,35 @@
     //Si tenemos que enviar un mismo correo para todos y solo a los que no hemos enviado
     // if ($porFranquicia==0){
     
-    $query = "SELECT s.id as id, email_address ";
-    $query = $query . "FROM expma_mailing m, expma_mailing_expan_solicitud_c ms, expan_solicitud s, email_addr_bean_rel r, email_addresses e, expan_solicitud_cstm cs ";
-    $query = $query . "WHERE ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id AND s.id = r.bean_id AND e.id = r.email_address_id AND ";
-    $query = $query . "s.cerrada<>1 AND s.positiva<>1 AND cs.no_correos_c=0 AND cs.id_c=s.id AND enviado = 0  AND ms.deleted=0 AND e.deleted= 0 AND r.deleted=0 AND s.dummie=0 AND ";
-    $query = $query . "ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id AND m.id = '" . $idMailing . "' ";
-    $query = $query . "GROUP BY s.id, email_address";
+    $query = "SELECT ";
+    $query=$query." s.id AS id, s.tipo_origen tipoorigen, franquicia_principal, email_address ";
+    $query=$query."FROM ";
+    $query=$query." expma_mailing m, ";
+    $query=$query." expma_mailing_expan_solicitud_c ms, ";
+    $query=$query." expan_solicitud s, ";
+    $query=$query." email_addr_bean_rel r, ";
+    $query=$query." email_addresses e, ";
+    $query=$query." expan_solicitud_cstm cs, ";
+    $query=$query." email_templates et ";
+    $query=$query."WHERE ";
+    $query=$query." ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id AND ";
+    $query=$query." m.plantilla = et.id AND ";
+    $query=$query." s.id = r.bean_id AND ";
+    $query=$query." e.id = r.email_address_id AND ";
+    $query=$query." (et.franquicia = '' OR s.cerrada <> 1) AND ";
+    $query=$query." (et.franquicia = '' OR s.positiva <> 1) AND ";
+    $query=$query." cs.no_correos_c = 0 AND ";
+    $query=$query." cs.id_c = s.id AND ";
+    $query=$query." enviado = 0 AND ";
+    $query=$query." ms.deleted = 0 AND ";
+    $query=$query." e.deleted = 0 AND ";
+    $query=$query." r.deleted = 0 AND ";
+    $query=$query." s.dummie = 0 AND ";
+    $query=$query." ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id AND ";
+    $query=$query." m.id = '" . $idMailing . "' ";
+    $query=$query."GROUP BY ";
+    $query=$query." s.id, email_address ";
+
            
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]Query-' . $query);
     
@@ -49,7 +77,11 @@
     while ($rowSol = $db -> fetchByAssoc($resultSol)) {
         $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]Correo-' . $rowSol["email_address"]);
         $correos[] = $rowSol["email_address"];
-        $listaIDSol[] = $rowSol["id"];
+        
+        if (!($rowSol["tipoorigen"]==Expan_Solicitud::TIPO_ORIGEN_CENTRAL && 
+            $rowSol["franquicia_principal"]!=$emailTemp->franquicia)){            
+            $listaIDSol[] = $rowSol["id"];            
+        }              
     }
     
     if (count($correos)!=0){

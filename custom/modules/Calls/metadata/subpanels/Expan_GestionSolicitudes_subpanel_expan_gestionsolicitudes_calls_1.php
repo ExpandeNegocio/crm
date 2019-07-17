@@ -37,6 +37,15 @@ $subpanel_layout['list_fields'] = array (
     'width' => '15%',
     'default' => true,
   ),
+  
+  'type' => 
+  array (
+    'widget_class' => 'SubPanelActivitiesTypeField',
+    'vname' => 'LBL_TYPE',
+    'width' => '15%',
+    'default' => true,
+  ),
+  
   'date_start' => 
   array (
     'vname' => 'LBL_DATE_TIME',

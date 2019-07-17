@@ -25,6 +25,16 @@ class AccionesGuardadoReunion {
         if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
             
             $bean->ignore_update_c = true;
+            
+             if ($_REQUEST["relate_to"]=='Expan_Empresa'){
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de Reunion]Relacionada con empresa');
+                $bean->parent_type = $_REQUEST["relate_to"];
+                $bean->parent_id= $_REQUEST["relate_id"];
+                $bean->name= $GLOBALS['app_list_strings']['tipo_reunion_list'][$bean -> meeting_type];
+                
+                $bean ->save();
+                return;
+            }
 
             $db = DBManagerFactory::getInstance();
 
@@ -76,6 +86,16 @@ class AccionesGuardadoReunion {
             //Guardo al final
             $bean -> ignore_update_c = true;
             $bean -> save();
+            
+            if ($gestion != null) {
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Reuion]Entra Modificar ERM');
+                 //Creacion de una nueva tarea que se lleva al CRM
+                if (!isset(self::$fetchedRow[$bean -> id])) {
+                    $bean->addToERM();
+                }else{
+                    $bean->updateFromERM();
+                }
+            }
 
         }
 

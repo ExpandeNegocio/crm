@@ -77,7 +77,17 @@ array (
           ),
           1 => 'description', 
         ),
-         2 => 
+        
+        2 => 
+        array (              
+          0 => 
+          array (
+            'name' => 'evento',
+            'label' => 'LBL_EVENTO_ASOCIADO',
+          ),
+        ),
+        
+        3 => 
         array (
           0 => 
           array (
@@ -90,7 +100,7 @@ array (
           ),
         ),
         
-        3 =>
+        4 =>
         array(
             0 =>
             array(
@@ -106,7 +116,7 @@ array (
             ),
         ),
         
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -122,7 +132,7 @@ array (
           ),
         ),               
         
-       5 => 
+        6 => 
         array (              
           0 => 
           array (

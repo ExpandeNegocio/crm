@@ -4,12 +4,13 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     require_once ('data/SugarBean.php');
     
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
-    $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Inicio' );
+    $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultarSolicitud]Inicio' );
 
     $db = DBManagerFactory::getInstance();
 
     $idSol=$_POST["solId"];   
     $tipo=$_POST["tipo"];
+    $provincia=$_POST["provincia"];
     
     switch ($tipo) {
         case 'RecogeAccionesHistorico':
@@ -123,7 +124,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             }   
             break;                     
         
-        case  'RecogeDocumentosRecibidos':
+        case  'RecogeDocumentosRecibidosSolicitud':
         
             $db = DBManagerFactory::getInstance();
             
@@ -151,20 +152,20 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             
             $return = array();
             
-            $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento, Fecha ";
-            $query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha ";
-            $query=$query."          FROM   expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, emails e, notes n ";
-            $query=$query."          WHERE  g.id = gs.expan_soli5dcccitudes_idb AND e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0 ";
-            $query=$query."                 AND (e.status = 'sent') AND n.parent_id = e.id AND gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
-            $query=$query."                 = '".$idSol."' ";
-            $query=$query."          UNION ";
+            $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento, Fecha  ";
+            $query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha  ";
+            $query=$query."          FROM   expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, emails e, notes n  ";
+            $query=$query."          WHERE  g.id = gs.expan_soli5dcccitudes_idb AND e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0  ";
+            $query=$query."                 AND (e.status = 'sent') AND n.parent_id = e.id AND gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida  ";
+            $query=$query."                 = '".$idSol."'  ";
+            $query=$query."          UNION  ";
             $query=$query."          SELECT n.id nid, n.name, e.date_sent fech ";
-            $query=$query."          FROM   emails e, email_templates et, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, notes n ";
-            $query=$query."          WHERE  gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '".$idSol."' AND g.id ";
-            $query=$query."                 = gs.expan_soli5dcccitudes_idb AND e.parent_id = g.id AND n.parent_id = et.id AND e.status = 'sent' AND e.deleted ";
-            $query=$query."                 = 0 AND n.deleted = 0 AND e.name = replace(et.subject, \"'\", \"\")) yy ";
-            $query=$query."ORDER BY fecha DESC ";
-
+            $query=$query."FROM   emails e, email_templates et, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, notes n ";
+            $query=$query."WHERE  gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '".$idSol."' AND g.id = ";
+            $query=$query."         gs.expan_soli5dcccitudes_idb AND e.parent_id = g.id AND n.parent_id = et.id AND e.status = 'sent' AND e.deleted = 0 AND n ";
+            $query=$query."       .deleted = 0 AND (modeloneg IS NULL OR (modeloneg = 1 AND g.tiponegocio1 = 1) OR (modeloneg = 2 AND g.tiponegocio2 = 1) OR ";
+            $query=$query."       (modeloneg = 3 AND g.tiponegocio3 = 1) OR (modeloneg = 4 AND g.tiponegocio4 = 1)) AND e.name = replace(et.subject, \"'\", \"\")) yy  ";
+            $query=$query."ORDER BY fecha DESC ; ";
             
             $result = $db -> query($query, true);
             
@@ -174,6 +175,23 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                         
             echo json_encode($return,JSON_FORCE_OBJECT);        
             break;
+            
+        case 'RecogeMunicipios':
+            
+            $query = "select c_provmun,d_municipio from expan_m_municipios ";
+            $query=$query."where c_pro=".$provincia;
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultarSolicitud][RecogeMunicipios]Consulta-'.$query );
+            
+            $result = $db -> query($query, true);
+            
+            while ($row = $db -> fetchByAssoc($result)) {                   
+                $return[] = $row;
+            }  
+                        
+            echo json_encode($return,JSON_FORCE_OBJECT);       
+            
+            break; 
         
         default:
             

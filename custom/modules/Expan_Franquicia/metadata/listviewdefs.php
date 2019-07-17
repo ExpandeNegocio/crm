@@ -9,6 +9,9 @@ array (
     'label' => 'LBL_ACCOUNT_NAME',
     'link' => true,
     'default' => true,
+  //  'customCode' => '{$NAME_LINK}{$NAME}
+  //  <script type="text/javascript"  src="include/javascript/ListFranquicias.js"></script> 
+  //  ',
   ),
   'BILLING_ADDRESS_CITY' => 
   array (
@@ -32,6 +35,9 @@ array (
     'studio' => 'visible',
     'label' => 'LBL_TIPO_CUENTA',
     'width' => '10%',
+     'customCode' => '{$TIPO_CUENTA}
+    <script type="text/javascript"  src="include/javascript/ListFranquicias.js"></script>
+    ',
   ),
   'gestionesFran' => 
   array (
@@ -44,6 +50,13 @@ array (
   array (
     'width' => '1%',
     'label' => 'LBL_LLAMADASPENDIENTESFRAN',
+    'default'=>true,
+  ),
+  
+  'llamadas_retrasadas_fran' => 
+  array (
+    'width' => '1%',
+    'label' => 'LBL_LLAMADASRETRASADASFRAN',
     'default'=>true,
   ),
 

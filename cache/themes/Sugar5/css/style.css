@@ -195,6 +195,12 @@ input[type="submit"] {
         position: absolute;
     }
 }
+
+
+#irsol{
+	
+	width:200px; !important;
+}
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -4325,4 +4331,18 @@ label.css-label {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+#irsol{
+	
+	width:200px; !important;
+}
+
+#formformCalls,#formformMeetings,#activities_correocandidato_button{
+	margin-left: 40px;
+}
+
+#formformfranqTasks input,#formformfranqCalls input,#franquicia_activities_correocandidato_button{    
+	color: red !important;
+	margin-left: 5px;
 }

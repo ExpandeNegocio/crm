@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-07 19:16:46
+// created: 2019-07-16 17:41:43
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -19,12 +19,12 @@ $mod_strings = array (
   'LBL_REMOVE' => 'Quitar',
   'LBL_ASSIGNED_TO_ID' => 'Asignado a Usuario con Id',
   'LBL_ASSIGNED_TO_NAME' => 'Usuario',
+  'LNK_NEW_RECORD' => 'Crear Informes',
+  'LNK_LIST' => 'Vista Informes',
   'LBL_LIST_FORM_TITLE' => 'Informes Lista',
   'LBL_MODULE_NAME' => 'Informes',
   'LBL_MODULE_TITLE' => 'Informes',
   'LBL_HOMEPAGE_TITLE' => 'Mi Informes',
-  'LNK_NEW_RECORD' => 'Crear Informes',
-  'LNK_LIST' => 'Vista Informes',
   'LNK_IMPORT_EXPIN_INFORMES' => 'Importar Informes',
   'LBL_SEARCH_FORM_TITLE' => 'Buscar Informes',
   'LBL_HISTORY_SUBPANEL_TITLE' => 'Ver Historial',

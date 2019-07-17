@@ -178,12 +178,21 @@ array (
       
       'provincia_apertura_1' => 
       array (
-        'type' => 'enum',
+        'type' => 'enum',             
         'studio' => 'visible',
         'label' => 'LBL_PROVINCIA_APERTURA_1',
         'width' => '10%',
         'default' => true,
         'name' => 'provincia_apertura_1',
+      ),
+      
+      'pais_apertura' => 
+      array (
+        'type' => 'enum',
+        'label' => 'LBL_PAIS_APERTURA',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'pais_apertura',
       ),
       
       'motivo_descarte' => 

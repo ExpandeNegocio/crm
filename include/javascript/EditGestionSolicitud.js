@@ -1,7 +1,7 @@
-/**
+/*
  * @author Penlopjo
  */
-function ocultarCheck() {
+function ocultarCheck(gestionID) {
 
 	/*	$(document).on({
 	 ajaxStart: function() { alert('Entra Ajax');   },
@@ -12,6 +12,13 @@ function ocultarCheck() {
 	document.getElementById("candidatura_avanzada").disabled = true;
 	document.getElementById("candidatura_caliente").disabled = true;	
 	document.getElementById("lnk_cuestionario").disabled = true;
+	document.getElementById("otras_preguntas_formulario").disabled = true;
+	document.getElementById("fecha_precontrato_minima").disabled = true;	
+	
+	document.getElementById("usuario_entrevista_previa").disabled = true;		
+	document.getElementById("chk_entrevista_previa").disabled = true;
+	
+	
 
 	if (estado != 2) {
 
@@ -26,17 +33,32 @@ function ocultarCheck() {
 		
 		document.getElementById("chk_visitado_fran").disabled = true;
 		document.getElementById("chk_envio_precontrato").disabled = true;
-		document.getElementById("chk_visita_local").disabled = true;
-
-		document.getElementById("chk_envio_contrato").disabled = true;
-		document.getElementById("chk_visita_central").disabled = true;
+		document.getElementById("chk_visita_local").disabled = true;	
+		
 		document.getElementById("chk_posible_colabora").disabled = true;
 
 		document.getElementById("chk_responde_C1").disabled = true;
-		
-		document.getElementById("chk_envio_contrato_personal").disabled = true;
-		document.getElementById("chk_envio_precontrato_personal").disabled = true;
-		document.getElementById("chk_envio_plan_financiero_personal").disabled = true;
+		document.getElementById("chk_envio_precontrato_personal").disabled = true;				
+		document.getElementById("chk_autoriza_central").disabled = true;
+		document.getElementById("chk_operacion_autorizada").disabled = true;
+			
+		if (estado==5){
+			document.getElementById("chk_envio_contrato_personal").disabled = false;
+			document.getElementById("chk_contrato_firmado").disabled = false;
+			document.getElementById("chk_visita_central").disabled = false;
+			document.getElementById("chk_envio_plan_financiero_personal").disabled = false;
+			document.getElementById("chk_aprobacion_local").disabled = false;
+			document.getElementById("chk_precontrato_firmado").disabled = false;
+			document.getElementById("chk_envio_contrato").disabled = false;
+		}else{
+			document.getElementById("chk_envio_contrato_personal").disabled = true;
+			document.getElementById("chk_contrato_firmado").disabled = true;
+			document.getElementById("chk_visita_central").disabled = true;
+			document.getElementById("chk_envio_plan_financiero_personal").disabled = true;
+			document.getElementById("chk_aprobacion_local").disabled = true;
+			document.getElementById("chk_precontrato_firmado").disabled = true;
+			document.getElementById("chk_envio_contrato").disabled = true;
+		}
 
 	} else {
 		document.getElementById("chk_envio_documentacion").disabled = false;
@@ -60,61 +82,98 @@ function ocultarCheck() {
 		document.getElementById("chk_envio_contrato_personal").disabled = false;
 		document.getElementById("chk_envio_precontrato_personal").disabled = false;
 		document.getElementById("chk_envio_plan_financiero_personal").disabled = false;
+		
+		document.getElementById("chk_autoriza_central").disabled = false;
+		document.getElementById("chk_operacion_autorizada").disabled = false;
+		document.getElementById("chk_precontrato_firmado").disabled = false;
+		document.getElementById("chk_aprobacion_local").disabled = false;
+		document.getElementById("chk_contrato_firmado").disabled = false;
 
 	}
 
-	//Candidatura Caliente de solo lectura
 
-	//activarCanCaliente();
+	addEvents();
+	makeTabby();
+		
+	var texto1=document.getElementById("chk_responde_C1_label");
+	var texto2=document.getElementById("chk_recepcio_cuestionario_label");
+	
+	//Hacemos que las 
+	
+	
+	ocultamosSuborigen();
+	mostrarSuborigen();
+	cambiarNombreTipoNeg();
+	deactivateModifiedName();
+	ocultarModelosNegocio();
+	colorearAvanzado();
+	colorearCaliente();
+	colorearPositivo();
+	colorearCamposDocumentos();
+	cambiarAGris(texto1);
+	cambiarAGris(texto2);
+	addDelayFechareactButtons();
+	addDelayFechaInicioButtons();
+	boldCentral();
+	refreshSn();
+	cargarDocumentos();
+	//abrirSolicitud(gestionID,"EditView");
+	
+}
 
-	//Añadimos los eventos de check para fechas
+function openParent(idParent, parentModule){
+	if (parentModule=!"undefined"){
+		window.open('index.php?module='+parentModule+'&action=EditView&record=' + idParent,idParent);
+	}
+}
 
+function boldCentral(){
+	if ($("#chk_gestionado_central").is(':checked')){
+		$("#chk_gestionado_central_label").css("font-weight","Bold");			
+	}else{
+		$("#chk_gestionado_central_label").css("font-weight","");
+	}	
+}
+
+function makeTabby(){
+	
+	$("textarea").each(function(){
+    	   enableTab($(this).attr('id'));
+    });
+
+}
+
+function enableTab(id) {
+    var el = document.getElementById(id);
+    el.onkeydown = function(e) {
+        if (e.keyCode === 9) { // tab was pressed
+
+            // get caret position/selection
+            var val = this.value,
+                start = this.selectionStart,
+                end = this.selectionEnd;
+
+            // set textarea value to: text before caret + tab + text after caret
+            this.value = val.substring(0, start) + '\t' + val.substring(end);
+
+            // put caret at right position again
+            this.selectionStart = this.selectionEnd = start + 1;
+
+            // prevent the focus lose
+            return false;
+
+        }
+    };
+}
+
+function addEvents(){
+	
 	$("#chk_envio_documentacion").bind("click", function() {
 		activarFecha("#chk_envio_documentacion", "#envio_documentacion");
 	});
 
 	$("#chk_responde_C1").bind("click", function() {
 		activarFecha("#chk_responde_C1", "#f_responde_C1");		
-		//activarCanCaliente();
-	});
-	
-	$("#lnk_cuestionario_detailblock").bind("click", function() {
-		alert("Hola");
-	});
-	
-	$("#chk_resolucion_dudas").bind("click", function() {
-		activarFecha("#chk_resolucion_dudas", "#f_resolucion_dudas");
-		if (!$("#chk_resolucion_dudas").is(':checked')){
-			return;
-		}	
-		textoObs="Se le resuelven principales dudas del modelo de negocio.Pendiente de reunión";
-		if (existeTextoObserva(textoObs)==false){
-			//addFechaObserva(textoObs);
-		}
-		//activarCanCaliente();
-	});
-
-	$("#chk_recepcio_cuestionario").bind("click", function() {
-		activarFecha("#chk_recepcio_cuestionario", "#f_recepcion_cuestionario");
-		if (!$("#chk_recepcio_cuestionario").is(':checked')){
-			return;
-		}
-		textoObs="Recibido cuestionario Ampliado, perfil validado. Pendiente fecha de nueva reunion.";	
-		if (existeTextoObserva(textoObs)==false){
-		//	addFechaObserva(textoObs);
-		}	
-		//activarCanCaliente();
-	});
-
-	$("#chk_informacion_adicional").bind("click", function() {
-		activarFecha("#chk_informacion_adicional", "#f_informacion_adicional");
-		if (!$("#chk_informacion_adicional").is(':checked')){
-			return;
-		}
-		textoObs="Analizada la informacion Financiera. Le surgen dudas de …";
-		if (existeTextoObserva(textoObs)==false){
-		//	addFechaObserva(textoObs);
-		}
 		//activarCanCaliente();
 	});
 	
@@ -129,6 +188,67 @@ function ocultarCheck() {
 		}
 		//activarCanCaliente();
 	});	
+	
+	$("#chk_gestionado_central").bind("click", function() {
+		activarFecha("#chk_gestionado_central", "#f_gestionado_central");
+		boldCentral();	
+	});	
+	
+	$("#chk_resolucion_dudas").bind("click", function() {
+		activarFecha("#chk_resolucion_dudas", "#f_resolucion_dudas");
+		if (!$("#chk_resolucion_dudas").is(':checked')){
+			return;
+		}	
+		textoObs="Se le resuelven principales dudas del modelo de negocio.Pendiente de reunión";
+		if (existeTextoObserva(textoObs)==false){
+			//addFechaObserva(textoObs);
+		}
+		//activarCanCaliente();
+	});
+	
+	$("#chk_recepcio_cuestionario").bind("click", function() {
+		activarFecha("#chk_recepcio_cuestionario", "#f_recepcion_cuestionario");
+		if (!$("#chk_recepcio_cuestionario").is(':checked')){
+			return;
+		}
+		textoObs="Recibido cuestionario Ampliado, perfil validado. Pendiente fecha de nueva reunion.";	
+		if (existeTextoObserva(textoObs)==false){
+		//	addFechaObserva(textoObs);
+		}	
+		//activarCanCaliente();
+	});	
+	
+	$("#chk_autoriza_central").bind("click", function() {
+		activarFecha("#chk_autoriza_central", "#f_autoriza_central");
+		//activarCanCaliente();
+	});
+
+	$("#chk_informacion_adicional").bind("click", function() {
+		activarFecha("#chk_informacion_adicional", "#f_informacion_adicional");
+		if ($("#chk_informacion_adicional").is(':checked')){
+			
+			if ($("#inversion").val()==''){
+				alert("Debes rellenar el campo 'Capacidad de Inversión'");
+				return;
+			}
+			if ($("#cuando_empezar").val()==''){
+				alert("Debes rellenar el campo 'Inicio de actividad previsto'");
+				return;
+			}
+			
+			if ($("#papel").val()==''){
+				alert("Debes rellenar el campo 'Rol en el proyecto'");
+				return;
+			}
+			
+			if ($("#observaciones_informe").val()==''){
+				alert("Debes rellenar el campo 'Observaciones estado candidatura'");
+				return;
+			}
+			
+		}
+		
+	});
 
 	$("#chk_entrevista").bind("click", function() {
 		activarFecha("#chk_entrevista", "#f_entrevista");
@@ -139,16 +259,6 @@ function ocultarCheck() {
 		activarFecha("#chk_propuesta_zona", "#f_propuesta_zona");		
 	});
 		
-	$("#chk_envio_precontrato_personal").bind("click", function() {
-		activarFecha("#chk_envio_precontrato_personal", "#f_envio_precontrato_personal");		
-	});
-	$("#chk_envio_contrato_personal").bind("click", function() {
-		activarFecha("#chk_envio_contrato_personal", "#f_envio_contrato_personal");		
-	});
-	$("#chk_envio_plan_financiero_personal").bind("click", function() {
-		activarFecha("#chk_envio_plan_financiero_personal", "#f_envio_plan_financiero_personal");		
-	});
-
 	$("#chk_visitado_fran").bind("click", function() {
 		activarFecha("#chk_visitado_fran", "#f_visitado_fran");
 		if (!$("#chk_visitado_fran").is(':checked')){
@@ -161,10 +271,13 @@ function ocultarCheck() {
 		//activarCanCaliente();
 	});
 
-	$("#chk_envio_precontrato").bind("click", function() {
+	$("#chk_envio_precontrato").bind("click", function() {					
+					
 		activarFecha("#chk_envio_precontrato", "#f_envio_precontrato");
-		if (!$("#chk_envio_precontrato").is(':checked')){
+		if (!$("#chk_envio_precontrato").is(':checked')){			
 			return;
+		}else{
+			validarEnvio("C3");
 		}
 		textoObs="Pendiente de respuesta a la firma de precontrato";
 		if (existeTextoObserva(textoObs)==false){
@@ -184,11 +297,25 @@ function ocultarCheck() {
 		}
 		//activarCanCaliente();
 	});
-
+			
+	$("#chk_operacion_autorizada").bind("click", function() {
+		activarFecha("#chk_operacion_autorizada", "#f_operacion_autorizada");		
+	});
+	
+	$("#chk_envio_precontrato_personal").bind("click", function() {				
+		activarFecha("#chk_envio_precontrato_personal", "#f_envio_precontrato_personal");		
+	});
+	
+	$("#chk_precontrato_firmado").bind("click", function() {
+		activarFecha("#chk_precontrato_firmado", "#f_precontrato_firmado");		
+	});
+	
 	$("#chk_envio_contrato").bind("click", function() {
 		activarFecha("#chk_envio_contrato", "#f_envio_contrato");
 		if (!$("#chk_envio_contrato").is(':checked')){
 			return;
+		}else{
+			validarEnvio("C4");
 		}
 		textoObs="Revisando clausulas del contrato";
 		if (existeTextoObserva(textoObs)==false){
@@ -196,22 +323,32 @@ function ocultarCheck() {
 		}
 		//activarCanCaliente();
 	});
+	
+	$("#chk_envio_plan_financiero_personal").bind("click", function() {
+		activarFecha("#chk_envio_plan_financiero_personal", "#f_envio_plan_financiero_personal");		
+	});
+	
+	$("#chk_aprobacion_local").bind("click", function() {
+		activarFecha("#chk_aprobacion_local", "#f_aprobacion_local");		
+	});
 
 	$("#chk_visita_central").bind("click", function() {
 		activarFecha("#chk_visita_central", "#f_visita_central");
 		//activarCanCaliente();
 	});
-
-	//Activamos el cambio de texto en 
-	$("#observaciones_informe").bind("keyup", function() {
-		if (window.event.keyCode==13){
-			addFechaObserva("");
-		}
-	});
 	
 	$("#chk_posible_colabora").bind("click", function() {
 		activarFecha("#chk_posible_colabora", "#f_posible_colabora");
 	});
+	
+	$("#chk_envio_contrato_personal").bind("click", function() {
+		activarFecha("#chk_envio_contrato_personal", "#f_envio_contrato_personal");		
+	});
+	
+	$("#chk_contrato_firmado").bind("click", function() {
+		activarFecha("#chk_contrato_firmado", "#f_contrato_firmado");		
+	});	
+	
 	
 	
 	$("#observaciones_informe").bind("click", function() {
@@ -220,6 +357,13 @@ function ocultarCheck() {
 			addFechaObserva("");
 		}
 		
+	});
+	
+		//Activamos el cambio de texto en 
+	$("#observaciones_informe").bind("keyup", function() {
+		if (window.event.keyCode==13){
+			addFechaObserva("");
+		}
 	});
 	
 	$("#motivo_parada").bind("change", function() {
@@ -243,20 +387,53 @@ function ocultarCheck() {
 	.change();
 	
 	$("#motivo_descarte").bind("change",organizarMotivos()).change();
-		
-	var texto1=document.getElementById("chk_responde_C1_label");
-	var texto2=document.getElementById("chk_recepcio_cuestionario_label");
 	
-	ocultamosSuborigen();
-	mostrarSuborigen();
-	cambiarNombreTipoNeg();
-	deactivateModifiedName();
-	ocultarModelosNegocio();
-	colorearAvanzado();
-	colorearCaliente();
-	cambiarAGris(texto1);
-	cambiarAGris(texto2);
-	refreshSn();
+	
+	
+	$("#franq_apertura_desca").keyup(function(){//cuando pulses la caja de texto
+		var campoF=$(this).val();	//valor del texto
+		var arrayFran=campoF.split(","); //todas las franquicias separadas por comas en un array
+		var franq_apertura_desca="";
+		for(var i=0;i<arrayFran.length-1;i++){//construir las franquicias anteriores
+			franqHastaUlComa=franqHastaUlComa+arrayFran[i]+",";
+		}
+		var longi=arrayFran.length;//cuantas hay
+		
+		var franq=arrayFran[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+		var franqSE=franq.trim(); //eliminar espacios en blanco
+		
+		
+		if(franqSE.length>2){//solo se hace la llamada si se han escrito 3 caracteres
+			
+			var dataFran="franquicias="+franqSE+"&tipo=franquicia";
+		
+		//llamada ajax
+		$.ajax({
+			type:"POST",
+			url:"index.php?entryPoint=RecogeSugerencias",
+			data: dataFran,
+			success: function(data){
+				$('#sugerencias_franq_apertura_desca').fadeIn(500).html(data);
+				$('.sug').live('click', function(){//cuando se pulsa una
+					var fran=$(this).text();
+					if(longi==1){//borrar todo y sustituir por el nuevo valor
+						$('#franq_apertura_desca').val(fran);//editar input
+					}else{//poner las anteriores, y después la nueva
+						$('#franquicia_historicos').val(franqHastaUlComa+fran);
+					}
+					
+					$('#sugerencias_franq_apertura_desca').fadeOut(500);//quitar las sugerencias
+				});
+				
+				$('#detailpanel_3').live('click', function(){//que se cierre el cuadro de sugerencias si se pulsa en otro sitio
+					$('#sugerencias_franq_apertura_desca').fadeOut(500);
+				});
+			}
+		});
+		}
+	});
+	
+	
 }
 
 var refreshSn = function ()
@@ -282,6 +459,124 @@ var refreshSn = function ()
 	    });
 	}, refreshTime );
 };
+
+
+
+$("#iit_validado").bind("change", function() {
+	colorearCamposDocumentos();
+}).change();
+
+$("#pf_validado").bind("change", function() {
+	if ($('#pf_validado').is(':checked')){
+			
+	}else{
+		
+	}	
+}).change();
+
+function colorearCamposDocumentos(){
+	
+/*	//Recoger por candidato -- VERDE --
+	
+	var iit_aporta_local = document.getElementById("iit_aporta_local");
+	var iit_direccion_local = document.getElementById("iit_direccion_local");
+	var iit_localidad_local = document.getElementById("iit_localidad_local");
+	var iit_superficie_local = document.getElementById("iit_superficie_local");	
+	var iit_superficie_escapa_local = document.getElementById("iit_superficie_escapa_local");	
+	var iit_superficie_almacen_local = document.getElementById("iit_superficie_almacen_local");
+	var iit_instalaciones_local = document.getElementById("iit_instalaciones_local");
+	var iit_visitado_local = document.getElementById("iit_visitado_local");
+	var iit_aprobado_local = document.getElementById("iit_aprobado_local");
+	var iit_mod_neg_recomendado = document.getElementById("iit_mod_neg_recomendado");
+	var iit_localidad_recomendado = document.getElementById("iit_localidad_recomendado");
+
+	
+	var lista = new Array (iit_aporta_local,iit_direccion_local,iit_localidad_local,iit_superficie_local,iit_superficie_escapa_local,
+		iit_superficie_almacen_local,iit_instalaciones_local,iit_visitado_local,iit_aprobado_local,iit_visitado_local,iit_aprobado_local,iit_mod_neg_recomendado);
+	
+	//Quitamos primero el color
+	for (var i = 0; i < lista.length; i++) {
+		lista[i].style.Color = "rgb(0,0,0)";
+	}
+	
+	for (i in lista){
+		$(lista[i]).css( "color", "rgb(0,255,0)");			
+	}
+	
+	//Lo sabe el consultor -- AZUL --
+	
+	var iit_zona_implantacion = document.getElementById("iit_zona_implantacion");
+	var iit_direccion_local = document.getElementById("iit_direccion_local");	
+	var iit_localidad_recomendado = document.getElementById("iit_localidad_recomendado");
+	var iit_direccion_local = document.getElementById("iit_direccion_local");
+	
+	var lista = new Array (iit_zona_implantacion,iit_direccion_local,iit_localidad_recomendado,iit_direccion_local);
+	
+	//Quitamos primero el color
+	for (var i = 0; i < lista.length; i++) {
+		lista[i].parentNode.style.backgroundColor = "";
+	}
+	
+	for (i in lista){
+		lista[i].style.Color = "rgb(0,0,0)";			
+	}	
+	*/
+	
+	
+	//Recogida desde CRM -- ROJO --
+	
+	
+
+	var iit_aporta_local = document.getElementById("iit_aporta_local");
+	var iit_direccion_local = document.getElementById("iit_direccion_local");
+	var iit_localidad_local = document.getElementById("iit_localidad_local");
+	var iit_superficie_local = document.getElementById("iit_superficie_local");	
+	var iit_superficie_escapa_local = document.getElementById("iit_superficie_escapa_local");	
+	var iit_superficie_almacen_local = document.getElementById("iit_superficie_almacen_local");
+	var iit_instalaciones_local = document.getElementById("iit_instalaciones_local");
+	var iit_visitado_local = document.getElementById("iit_visitado_local");
+	var iit_aprobado_local = document.getElementById("iit_aprobado_local");
+	var iit_mod_neg_recomendado = document.getElementById("iit_mod_neg_recomendado");
+	var iit_localidad_recomendado = document.getElementById("iit_localidad_recomendado");
+	
+	var iit_zona_implantacion = document.getElementById("iit_zona_implantacion");
+	var iit_direccion_local = document.getElementById("iit_direccion_local");	
+	var iit_localidad_recomendado = document.getElementById("iit_localidad_recomendado");
+	var iit_direccion_local = document.getElementById("iit_direccion_local");
+	
+	var iit_acuerdo_exclusividad = document.getElementById("iit_acuerdo_exclusividad");
+	var iit_acuerdo_economico = document.getElementById("iit_acuerdo_economico");
+	var iit_inversion_inicial_est = document.getElementById("iit_inversion_inicial_est");
+	var iit_canon_entrada = document.getElementById("iit_canon_entrada");
+	var iit_royalty_explota = document.getElementById("iit_royalty_explota");
+	var iit_royalty_mkt = document.getElementById("iit_royalty_mkt");
+	var iit_duracion_contrato = document.getElementById("iit_duracion_contrato");
+	var iit_year_renovado = document.getElementById("iit_year_renovado");
+	var iit_max_estableci_zona = document.getElementById("iit_max_estableci_zona");
+	
+		
+	var listaR = new Array (iit_acuerdo_exclusividad,iit_acuerdo_economico,iit_inversion_inicial_est,iit_canon_entrada,iit_royalty_explota,iit_royalty_mkt,iit_duracion_contrato,iit_year_renovado,iit_max_estableci_zona);
+	
+	var listaV = new Array (iit_aporta_local,iit_direccion_local,iit_localidad_local,iit_superficie_local,iit_superficie_escapa_local,
+		iit_superficie_almacen_local,iit_instalaciones_local,iit_visitado_local,iit_aprobado_local,iit_visitado_local,iit_aprobado_local,iit_mod_neg_recomendado);
+	
+	var listaA = new Array (iit_zona_implantacion,iit_direccion_local,iit_localidad_recomendado,iit_direccion_local);
+	
+	var lista=listaR.concat(listaV);
+	lista=lista.concat(listaA);
+	
+	//Quitamos primero el color
+	for (i in lista){
+		$(lista[i]).css( "color", "rgb(0,0,0)");			
+	}
+	
+	if ($('#iit_validado').is(':checked')==false){
+		for (i in lista){
+			$(lista[i]).css( "color", "rgb(255,0,0)");			
+		}
+	}
+	
+}
 
 function validarSubOrigen() {	
 	
@@ -765,22 +1060,33 @@ function reenvioInfoDetalle(tipoEnvio, id) {
 
 }
 
+function irAperturas(solicitud){
+   
+   	var lista = solicitud.split(" - ");
+   	
+   	var url= "index.php?searchFormTab=basic_search&module=Expan_Apertura&action=index&query=true&orderBy=&sortOrder=&name_basic="+
+				lista[0]+"&current_user_only_basic=0&button=Buscar";
+	var win = window.open(url);    
+   
+}
 
 
-function envioCorreoInterlocutor(id) {
 
-	if (confirm("¿Esta seguro de que desea enviar el correo con el cuestionario  a la franquicia?")) {
+
+function envioCorreoInterlocutor(id,tipoEnv) {
+
+	if (confirm("¿Esta seguro de que desea enviar el correo con el cuestionario al consultor?")) {
 
 		var config = { };
 		config.title = "Enviando Correo";
 		config.msg = "Espere por favor... ";
 		YAHOO.SUGAR.MessageBox.show(config);
 
-		url = 'index.php?entryPoint=envioCorreoInterlocutor&id=' + id;
+		url = 'index.php?entryPoint=envioCorreoInterlocutor';
 		$.ajax({
 			type : "POST",
 			url : url,
-			data : "id=" + id,
+			data : "id=" + id+ "&tipoEnv="+tipoEnv,
 			success : function(data) {
 				YAHOO.SUGAR.MessageBox.hide();
 				if ( data.indexOf('Ok')!=-1) {
@@ -801,6 +1107,26 @@ function envioCorreoInterlocutor(id) {
 		return false;
 	}
 
+}
+
+function envioCorreoFicha(id,tipoEnv){
+	
+	url = 'index.php?entryPoint=envioCorreoInterlocutor';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "id=" + id+ "&tipoEnv="+tipoEnv,
+		success : function(data) {			
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+						
+			return false;
+
+		}
+	});
+	
+	return true;
 }
 
 function reenvioDoc(tipoEnvio) {
@@ -825,7 +1151,7 @@ function reenvioDoc(tipoEnvio) {
 		$.ajax({
 			type : "POST",
 			url : url,
-			data : "gestiones=" + idGests + "&tipoEnvio=" + tipoEnvio,
+			data : "operacion=reenvio&gestiones=" + idGests + "&tipoEnvio=" + tipoEnvio,
 			success : function(data) {
 				YAHOO.SUGAR.MessageBox.hide();
 				if ( data.indexOf('No se ha podido')==-1) {
@@ -848,6 +1174,66 @@ function reenvioDoc(tipoEnvio) {
 
 }
 
+function envioFicha(tipoEnvio){
+	if (confirm("¿Esta seguro de que desea enviar la ficha a " + tipoEnvio + " para las Gestiones actuales?")) {
+
+		var config = { };
+		var enviado;
+		config.title = "Enviando Correos";
+		config.msg = "Espere por favor... ";
+		YAHOO.SUGAR.MessageBox.show(config);
+		
+		var idGests="";
+		var lista=document.getElementsByClassName("checkbox");
+		
+		for(i=0; i<lista.length; i++){
+			if(lista[i].checked==true&& lista[i].name.indexOf("mass[]")>-1){//coger los checkbox que interesan				
+				enviado = envioCorreoFicha(idGests,tipoEnvio);				
+			}
+		}
+		
+		
+		YAHOO.SUGAR.MessageBox.hide();
+		if ( enviado ) {
+			alert('Se ha enviado el correo de interlocutor correctamente');
+		} else {
+			alert('No se ha podido enviar el correo, ' + data);
+		}
+
+	} else {
+		return false;
+		
+		
+		
+	}
+}
+
+function validarEnvio(tipoEnvio){
+	
+	var idGests = $('[name="record"]').val();	
+	
+	url = 'index.php?entryPoint=reenvioDocGestiones';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "operacion=valida&gestiones=" + idGests + "&tipoEnvio=" + tipoEnvio,
+		success : function(data) {
+			
+			if ( data==0) {
+				alert('No esta validada la plantilla de tipo ' + tipoEnvio + 
+					'\n Active el envio personalizado y envielo a traves del correo');			
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {			
+			alert('No se ha podido evaluar si el template de tipo ' + tipoEnvio + "\n"
+			 + textStatus + ' - ' + errorThrown);
+		}
+	});
+	
+}
+
+
 function abrirHermanas(id) {
 
 	url = 'index.php?entryPoint=gestionesHermanas&id=' + id;
@@ -862,7 +1248,7 @@ function abrirHermanas(id) {
 			for ( i = 0; i < gestionesId.length; i++) {
 				if (gestionesId[i] != id && gestionesId[i] != "") {
 					//alert (gestionesId[i]);
-					window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestionesId[i]);
+					window.open('index.php?module=Expan_GestionSolicitudes&action=EditView&record=' + gestionesId[i],gestionesId[i]);
 				}
 			}
 			//alert(data);
@@ -876,9 +1262,13 @@ function abrirHermanas(id) {
 
 function irSolicitud(solicitud) {
 
-	window.open ('index.php?module=Expan_Solicitud&action=EditView&record=' + solicitud);
+	window.open ('index.php?module=Expan_Solicitud&action=EditView&record=' + solicitud,solicitud).focus();
 	//window.location.href = 'index.php?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Solicitud%26action%3DEditView%26record%3D' + solicitud;
 
+}
+
+function irFranquicia(franquicia) {
+	window.open ('index.php?module=Expan_Franquicia&action=DetailView&record=' + franquicia,franquicia).focus();
 }
 
 function Hoy() {
@@ -998,12 +1388,12 @@ function eliminarAlertaCuestionario(gestion){
 
 
 function abrirGestionConsulta(gestion) {
-	window.open('index.php?module=Expan_GestionSolicitudes&action=DetailView&record=' + gestion);
+	window.open('index.php?module=Expan_GestionSolicitudes&action=DetailView&record=' + gestion,gestion).focus();
 }
 
 function abrirSolicitudLlamadas(gestion, solicitud) {
 
-	window.open('index.php?module=Expan_Solicitud&action=DetailView&record=' + solicitud);
+	window.open('index.php?module=Expan_Solicitud&action=DetailView&record=' + solicitud,solicitud);
 	if (confirm("¿Desea abrir las llamadas asociadas?")) {
 		url = 'index.php?entryPoint=recogellamadasGestion&gestionid=' + gestion;
 		$.ajax({
@@ -1014,7 +1404,7 @@ function abrirSolicitudLlamadas(gestion, solicitud) {
 				var llamadasId = data.split("#");				
 				for ( i = 0; i < llamadasId.length; i++) {					
 					if (llamadasId[i] != "") {
-						window.open('index.php?module=Calls&action=EditView&record=' + llamadasId[i]);
+						window.open('index.php?module=Calls&action=EditView&record=' + llamadasId[i],llamadasId[i]);
 					}
 				}
 			},
@@ -1028,24 +1418,107 @@ function abrirSolicitudLlamadas(gestion, solicitud) {
 
 function validarEdicion(idGestion){
 	
-	
-	if (validarMotivoDescarte()==false){
-		return false;
-	}else{
-		return check_form("EditView");
-	}
-	
 	if (//validarEstadoNoAt()==false ||
 		//validarEstadoCurso()==false ||
+		validarMotivoDescarte()==false ||
 		validarRating(idGestion)==false ||		
 		validarMotivoParada()==false ||
 		validarMotivoPositivo()==false ||
-		validarModeloDeNegocio()==false){
+		validarModeloDeNegocio()==false ||
+		validarPrecontrato()==false){			
 		return false;
 	}
-	
+
 	return check_form("EditView");
 		
+}
+
+function validarPrecontrato(){
+	
+	
+	if (document.getElementById("pre_fir1_first_name").value!=""){
+		
+		var valida = true;
+		
+		if (document.getElementById("pre_fir1_last_name").value==""){
+			$("#pre_fir1_last_name").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#pre_fir1_last_name").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (document.getElementById("pre_fir1_NIF").value==""){
+			$("#pre_fir1_NIF").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#pre_fir1_NIF").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (document.getElementById("pre_fir1_vecino").value==""){
+			$("#pre_fir1_vecino").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#pre_fir1_vecino").css("border", "#94c1e8 solid 1px");
+		}
+	
+		if (document.getElementById("pre_fir1_domicilio").value==""){
+			$("#pre_fir1_domicilio").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#pre_fir1_domicilio").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (document.getElementById("provincia_apertura_pre").value==""){
+			$("#provincia_apertura_pre").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#provincia_apertura_pre").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (document.getElementById("f_precontrato_firma").value==""){
+			$("#f_precontrato_firma").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#f_precontrato_firma").css("border", "#94c1e8 solid 1px");
+		}
+		
+		if (document.getElementById("entrega_cuenta").value==""){
+			$("#entrega_cuenta").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#entrega_cuenta").css("border", "#94c1e8 solid 1px");
+		}
+	
+		if (document.getElementById("canon_entrada").value==""){
+			$("#canon_entrada").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#canon_entrada").css("border", "#94c1e8 solid 1px");
+		}	
+		
+		if (document.getElementById("f_entrega_cuenta_pre").value!="" && 
+			document.getElementById("entrega_cuenta").value==""){
+			$("#entrega_cuenta").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#entrega_cuenta").css("border", "#94c1e8 solid 1px");
+		}	
+		
+		if (document.getElementById("f_entrega_cuenta_pre").value!="" && 
+			document.getElementById("canon_entrada").value==""){
+			$("#canon_entrada").css("border", "2px solid red");
+			valida=false;
+		}else{
+			$("#canon_entrada").css("border", "#94c1e8 solid 1px");
+		}		
+
+		if (valida==false){
+			alert("No se han rellenado todos los valores del precontrato necesarios");
+			return false;
+		}
+	}
+	
+	return true;	
 }
 
 /**
@@ -1063,7 +1536,11 @@ function validarModeloDeNegocio(){
 		
 	}else{
 		
-		if(document.getElementById("tiponegocio1").checked==false&&document.getElementById("tiponegocio2").checked==false&&document.getElementById("tiponegocio3").checked==false&&document.getElementById("tiponegocio4").checked==false){
+		if($("#estado_sol").val()==2 &&
+		   document.getElementById("tiponegocio1").checked==false&&
+		   document.getElementById("tiponegocio2").checked==false&&
+		   document.getElementById("tiponegocio3").checked==false&&
+		   document.getElementById("tiponegocio4").checked==false){
 			//ninguno chekeado y hay modelo de negocio
 			alert("Se debe seleccionar un modelo de negocio");
 			//poner en rojo los modelos de negocio
@@ -1147,6 +1624,14 @@ function validarMotivoDescarte(){
 	    $("#motivo_descarte option:selected").val()==14))
 	{
 		alert ("Si el candidato ha montado otro negocio, indícalo en la gestión");
+	}
+	
+	if ($("#estado_sol option:selected").val()==4 && $("#franq_apertura_desca").val()=="" &&
+	(	$("#motivo_descarte option:selected").val()==26 || 
+	    $("#motivo_descarte option:selected").val()==27))
+	{ 
+		alert ("Si el candidato ha montado otra franquicia, indicar cual");
+		return false;
 	}
 	
 	if ($("#estado_sol option:selected").val()==4) {
@@ -1260,55 +1745,64 @@ function organizarMotivos(){
 	
 	switch(estado) {
     case "3":    
-    	$("#motivo_parada_label").parent().show();	
+    	$("#motivo_parada_label").parent().show();
+    	$("#f_reactivacion_parado_label").parent().show();		
     	$("#motivo_descarte_label").parent().hide();
     	$("#motivo_positivo_label").parent().hide();
-    	
+    	    	
 		$("#motivo_descarte").val('');
 		$("#motivo_positivo").val('');
     	    
         break;
     case "4":
     	$("#motivo_parada_label").parent().hide();	
+    	$("#f_reactivacion_parado_label").parent().hide();
+    	
     	$("#motivo_descarte_label").parent().show();
     	$("#motivo_positivo_label").parent().hide();  
     	
+    	$("#f_reactivacion_parado_label").val('');
     	$("#motivo_parada").val('');	
 		$("#motivo_positivo").val('');      
         break;
     case "5":
     	$("#motivo_parada_label").parent().hide();	
+    	$("#f_reactivacion_parado_label").parent().hide();
     	$("#motivo_descarte_label").parent().hide();
     	$("#motivo_positivo_label").parent().show();     
     	
+    	$("#f_reactivacion_parado_label").val('');
     	$("#motivo_parada").val('');
 		$("#motivo_descarte").val('');
     	break;
     default:
-    	$("#motivo_parada_label").parent().hide();	
+    	$("#motivo_parada_label").parent().hide();
+    	$("#f_reactivacion_parado_label").parent().hide();	
     	$("#motivo_descarte_label").parent().hide();
     	$("#motivo_positivo_label").parent().hide();
+    	
+    	$("#f_reactivacion_parado_label").val('');
     	$("#motivo_parada").val('');
 		$("#motivo_descarte").val('');
 		$("#motivo_positivo").val(''); 
         break;
-}
+	}
 	
 }
 
 function colorearAvanzado(){			
 	
-	var cdudas = document.getElementById("chk_resolucion_dudas");
-	var amp_info = document.getElementById("chk_sol_amp_info");
+	var cdudas = document.getElementById("chk_resolucion_dudas");	
 	var ccuestionario = document.getElementById("chk_recepcio_cuestionario");
 	var cadicional = document.getElementById("chk_informacion_adicional");
+	var cautocentral = document.getElementById("chk_autoriza_central");	
 	var centrevista = document.getElementById("chk_entrevista");
 	var czona = document.getElementById("chk_propuesta_zona");
 	var cavanzada = document.getElementById("candidatura_avanzada");
 	var cavanzadal = document.getElementById("candidatura_avanzada");
 	$(cavanzadal).css( "background-color", "rgb(236,234,234)");	
 	
-	var lista = new Array (cdudas, ccuestionario, cadicional, centrevista, czona, cavanzada,amp_info);
+	var lista = new Array (cdudas, ccuestionario, cadicional, cautocentral, centrevista, czona, cavanzada);
 	
 	//Quitamos primero el color
 	for (var i = 0; i < lista.length; i++) {
@@ -1323,17 +1817,15 @@ function colorearCaliente(){
 	var cvisitado = document.getElementById("chk_visitado_fran");
 	var cprecontrato= document.getElementById("chk_envio_precontrato");
 	var clocal = document.getElementById("chk_visita_local");
-	var cprecontratop = document.getElementById("chk_envio_precontrato_personal");
-	var cplanpersonal = document.getElementById("chk_envio_plan_financiero_personal");
-	var ccontrato = document.getElementById("chk_envio_contrato");
-	var cvisita = document.getElementById("chk_visita_central");
-	var ccolabora = document.getElementById("chk_posible_colabora");
-	var ccontratop = document.getElementById("chk_envio_contrato_personal");
+	var copautoriza = document.getElementById("chk_operacion_autorizada");	
+	var cprecontratop = document.getElementById("chk_envio_precontrato_personal");	
+	var ccolabora = document.getElementById("chk_posible_colabora");	
 	var ccaliente = document.getElementById("candidatura_caliente");
 	var ccalientel = document.getElementById("candidatura_caliente");
 	$(ccalientel).css( "background-color", "rgb(219,217,217)");	
 	
-	var lista = new Array (cvisitado, cprecontrato, clocal, cprecontratop, cplanpersonal, ccontrato, cvisita, ccolabora, ccontratop, ccaliente);
+	var lista = new Array (cvisitado, cprecontrato, clocal, copautoriza, cprecontratop,ccaliente,ccolabora); // , 
+	//	caprobalocal, ccontrato, cvisita, ccolabora, ccontratop, ccontratofirma, );
 	
 	//Quitamos primero el color
 	for (var i = 0; i < lista.length; i++) {
@@ -1345,10 +1837,274 @@ function colorearCaliente(){
 	}
 }
 
+function colorearPositivo(){
+	
+	var ccontratop = document.getElementById("chk_envio_contrato_personal");
+	var ccontratofirma = document.getElementById("chk_contrato_firmado");
+	var cvisita = document.getElementById("chk_visita_central");
+	var cplanpersonal = document.getElementById("chk_envio_plan_financiero_personal");
+	var caprobalocal = document.getElementById("chk_aprobacion_local");
+	var ccontrato = document.getElementById("chk_envio_contrato");
+	var cprefirmado = document.getElementById("chk_precontrato_firmado");
+	
+	var lista = new Array (ccontratop,ccontratofirma,cvisita,cplanpersonal,caprobalocal,ccontrato,cprefirmado);
+	
+	//Quitamos primero el color
+	for (var i = 0; i < lista.length; i++) {
+		lista[i].parentNode.style.backgroundColor = "";
+	}
+	
+	for (i in lista){
+		$(lista[i]).parent().css( "background-color", "rgb(128,128,128)");			
+	}
+	
+}
+
 function cambiarAGris(texto){
 	
 	$(texto).css("color", "rgb(152,152,152)");
 }
+
+function addDelayFechareactButtons(){
+	
+	var div= $('<button/>',
+    {
+        id: 'add_time_f_react_buttons',        
+    });
+	
+	var M3 = $('<button/>',
+    {
+        text: '+3M',
+        click: function () { addTime(3*30*24,'f_reactivacion_parado'); return false;}
+    });
+    
+	 var M6 = $('<button/>',
+    {
+        text: '+6M',
+        click: function () { addTime(6*30.5*24,'f_reactivacion_parado'); return false;}
+    });
+    
+ 	var Y1 = $('<button/>',
+    {
+        text: '+1Y',
+        click: function () { addTime(365*24,'f_reactivacion_parado'); return false;}
+    });
+       
+	div.append(M3);
+	div.append(M6);
+	div.append(Y1);
+	
+	$("#f_reactivacion_parado_trigger").parent().append(div);
+	
+}
+
+function addDelayFechaInicioButtons(){
+	
+	var div= $('<button/>',
+    {
+        id: 'add_time_f_inicio_buttons',        
+    });
+	
+	var M3 = $('<button/>',
+    {
+        text: '+3M',
+        click: function () { addTime(3*30*24,'cuando_empezar'); return false;}
+    });
+    
+	 var M6 = $('<button/>',
+    {
+        text: '+6M',
+        click: function () { addTime(6*30.5*24,'cuando_empezar'); return false;}
+    });
+    
+ 	var Y1 = $('<button/>',
+    {
+        text: '+1Y',
+        click: function () { addTime(365*24,'cuando_empezar'); return false;}
+    });
+       
+	div.append(M3);
+	div.append(M6);
+	div.append(Y1);
+	
+	$("#cuando_empezar_trigger").parent().append(div);
+	
+}
+
+
+function addTime(hours,tipo){
+	
+	var now= new Date();			
+	var nowAdded=new Date(now.getTime() + (hours*60*60*1000));	
+	
+	Fecha=("0" + nowAdded.getDate()).slice(-2)+"/"+("0" + (nowAdded.getMonth()+1)).slice(-2)+"/"+nowAdded.getFullYear();
+	
+	if (tipo=="f_reactivacion_parado"){
+		$('#f_reactivacion_parado').val(Fecha);
+	}else{
+		$('#cuando_empezar').val(Fecha);
+	}
+								
+}
+
+function cargarDocumentos(){
+	var gestId = $('[name="record"]').val();	
+	addPanelDocumentosEnviadosGestion(gestId);	
+}
+
+function addPanelDocumentosRecibidosGestion(gestId){
+	
+	url = 'index.php?entryPoint=consultarGestion&tipo=RecogeDocumentosRecibidosGestion&gestId=' + gestId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeDocumentosRecibidosGestion&gestId=" + gestId,
+		success : function(data) {								
+			var parse = JSON.parse(data);				
+			var array=documentosGestionJsonToArray(parse);
+			
+			var div= $('<div/>',
+		    {
+		        id: 'DocumentosRecibidos',        
+		        class:'subpanelTabForm H3',
+		        html:'<H3>Documentos Recibidos</H3>',
+		    });       
+				
+			tabla=generateTable(array);																					
+			div.append(tabla);
+			$("#DocumentosEnviados").after(div);		
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar documentos recibidos - ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+}
+
+function addPanelDocumentosEnviadosGestion(gestId){
+	
+	url = 'index.php?entryPoint=consultarGestion&tipo=RecogeDocumentosEnviadosGestion&gestId=' + gestId;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=RecogeDocumentosEnviadosGestion&gestId=" + gestId,
+		success : function(data) {		
+			var parse = JSON.parse(data);				
+			var array=documentosGestionJsonToArray(parse);
+			
+			var div= $('<div/>',
+		    {
+		        id: 'DocumentosEnviados',        
+		        class:'subpanelTabForm H3',
+		        html:'<H3>Documentos Enviados</H3>',
+		    });       
+				
+			tabla=generateTable(array);																					
+			div.append(tabla);
+			$("#whole_subpanel_history").after(div);	
+			addPanelDocumentosRecibidosGestion(gestId);		
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido cargar documentos enviados - ' + textStatus + ' - ' + errorThrown);
+		}
+	});	
+}
+
+function documentosGestionJsonToArray(Json){
+	
+	var array=[];
+	
+	var arrayInt=[];
+
+	arrayInt.push('Fecha');
+	arrayInt.push('Documento');
+	arrayInt.push('');	
+	array.push(arrayInt);
+	
+	for(var i in Json) {
+		
+		var arrayInt=[];
+		
+        arrayInt.push('<img src="themes/Sugar5/images/Documents.gif?v=1DGI1bi-PiFYhwpnWfZEfg" border="0" alt="Llamadas">');        				
+		arrayInt.push(Json[i].Documento);
+		arrayInt.push(Json[i].Fecha);		
+		
+		array.push(arrayInt);
+	}
+	
+	return array;
+	
+}
+
+function generateTable(lista) {
+	
+	 var aTable =$('<table/>',
+    {    	
+    	cellpadding:'0',
+    	cellspacing:'0',
+    	width:'100%',
+    	border:'0',
+        id: 'tableTareas',        
+        class:'list view',
+    });
+	
+    var rowCount = lista.length;
+    var colmCount = lista[0].length;
+
+    // For loop for adding header .i.e th to our table
+    for (var k = 0; k < 1; k++) {
+        var fragTrow = $("<tr>", {
+            "class": "trClass"
+        }).appendTo(aTable);
+        for (var j = 0; j < colmCount; j++) {
+            $("<th>", {
+                "class": "thClass"
+            }).prependTo(fragTrow).html(unescapeHTML(lista[k][j]));
+        }
+    }
+
+    //For loop for adding data .i.e td with data to our dynamic generated table
+    for (var i = 1; i < rowCount; i < i++) {    	        	
+        var fragTrow = $("<tr>", {
+            "class": "oddListRowS1"
+        }).appendTo(aTable);
+        for (var j = 0; j < colmCount; j++) {
+            $("<td>", {
+               // "class": "tdClass",
+                "scope": "row",
+            }).appendTo(fragTrow).html(unescapeHTML(lista[i][j]));
+        }
+    }
+    return aTable;
+}
+
+function unescapeHTML(escapedHTML) {
+	if (escapedHTML==null){
+		return null;
+	}else{
+		return escapedHTML.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/&quot;/g,'');
+	}  
+}
+
+function abrirSolicitud(gestion,mode) {
+
+	url = 'index.php?entryPoint=recogeSolicitud&gestion=' + gestion;
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "gestion=" + gestion,
+		success : function(data) {	
+			if(data!=""){//se trata de una gestion				
+				window.open('index.php?module=Expan_Solicitud&action='+mode+'&record=' + data,data);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se han podido abrir para edidion la solicitud y la gestion asociada - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+}
+
 /*
 var tmrReady = setInterval(isPageFullyLoaded, 100);
  

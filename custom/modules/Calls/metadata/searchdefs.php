@@ -115,6 +115,16 @@ array (
         'name' => 'provincia_apertura_1',
       ),
       
+      'disp_contacto' => 
+      array (
+        'type' => 'enum',
+        'studio' => 'visible',
+        'label' => 'LBL_DISPONIBILIDAD_HORARIA_CONTACTO',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'disp_contacto',
+      ),
+      
      'origen' => 
       array (
         'type' => 'enum',
@@ -125,6 +135,16 @@ array (
         'name' => 'origen',
       ),
       
+      'repeticiones' => 
+      array (
+        'type' => 'int',
+        'studio' => 'visible',
+        'label' => 'LBL_REPETICIONES',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'repeticiones',
+      ),
+            
       'description' => 
       array (
         'type' => 'varchar',
@@ -133,6 +153,7 @@ array (
         'default' => true,
         'name' => 'description',
       ),
+     
       
     ),
   ),

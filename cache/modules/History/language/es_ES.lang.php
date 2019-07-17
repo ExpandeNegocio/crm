@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-08 12:21:14
+// created: 2019-07-16 17:42:15
 $mod_strings = array (
   'LBL_MODULE_NAME' => 'Historial',
   'LBL_MODULE_TITLE' => 'Historial: Inicio',
@@ -62,7 +62,7 @@ $mod_strings = array (
   'LBL_TRACK_EMAIL_BUTTON_KEY' => 'K',
   'LBL_TRACK_EMAIL_BUTTON_LABEL' => 'Archivar Email',
   'LBL_LIST_STATUS' => 'Estado',
-  'LBL_LIST_DUE_DATE' => 'Fecha de Vencimiento',
+  'LBL_LIST_DUE_DATE' => 'Fecha de programada',
   'LBL_LIST_LAST_MODIFIED' => 'Modificado',
   'NTC_NONE_SCHEDULED' => 'Nada programado.',
   'appointment_filter_dom' => 
@@ -78,4 +78,5 @@ $mod_strings = array (
   'NTC_NONE' => 'Ninguno',
   'LBL_ACCEPT_THIS' => '¿Aceptar?',
   'LBL_DEFAULT_SUBPANEL_TITLE' => 'Historial',
+  'LBL_LIST_TYPE' => 'Tipo',
 );

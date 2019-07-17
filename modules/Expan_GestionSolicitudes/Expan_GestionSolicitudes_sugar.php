@@ -57,7 +57,7 @@ class Expan_GestionSolicitudes_sugar extends Basic {
 			case 'ACL': return true;
 		}
 		return false;
-}
+    }
 		
 }
 ?>

@@ -38,7 +38,7 @@
         $gestion=new Expan_GestionSolicitudes();
         $gestion -> retrieve($idGestion);
         
-        $gestion -> creaLlamada('[AUT]Revision Estado' , 'RevEst');
+        $gestion -> creaLlamada('[AUT]Revision Estado' , 'RevEst',0);
         $gestion -> ignore_update_c=true;
         $gestion -> save();
         

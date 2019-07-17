@@ -39,6 +39,7 @@
  */
 require_once('modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes_sugar.php');
 require_once ('custom/include/EnvioAutoCorreos.php');
+
 class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
            
     const ESTADO_NO_ATENDIDO='1';
@@ -56,12 +57,15 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     const TIPO_ORIGEN_MAILING='6';
     const TIPO_ORIGEN_MEDIOS_COMUN='5';
     
+    const TIPO_SUBORIGEN_CENTRAL_BB_ANT='8';
+    
     const PARADA_POR_PROTOCOLO='1';
     
     const PARADA_ZONA_NO_INTERES='51';
     const PARADA_ENESPERA='52';
     const PARADA_NO_LOCALIZADO='53';
     const PARADA_DATOS_ERRORNEOS='54';
+    const PARADA_HASTA_NUEVO_CONTACTO='57';
     
     const PARADA_CANDIDATO_PERSONAL='11';
     const PARADA_CANDIDATO_NEGOCIO='12';
@@ -72,10 +76,11 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     const DESCARTE_PERSONAL='14';
     const DESCARTE_FRANQUICIA_MISMO_SECTOR='26';
     const DESCARTE_FRANQUICIA_OTRO_SECTOR='27';
+    const DESCARTE_FRANQUICIA_CAIDA_COLABORA='29';
     const DESCARTE_OTROS='99';
     
     const POSITIVO_PRECONTRATO='Pre';
-    const POSITIVO_FRANQUICIADO='Cont';
+    const POSITIVO_CONTRATO='Cont';
     const POSITIVO_COLABORACION='Col';    
     
     const SUBESTADO_='';
@@ -108,6 +113,16 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         }
         
         return $solicitud;
+    }
+    
+    function GetFranquicia(){
+        
+        $franquicia=null;
+        if ($this->franquicia!=null){
+            $franquicia= new Expan_Franquicia();
+            $franquicia->retrieve($this->franquicia);
+        }
+        return $franquicia;
     }
     
     function archivarLLamadas(){
@@ -274,15 +289,15 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     
     
     function asociarTareas($status, $user) {
-        echo "Entra Asociar Tareas" ."<br>";
+      //  echo "Entra Asociar Tareas" ."<br>";
         
         $this -> load_relationship('expan_gestionsolicitudes_tasks_1');
         
-        echo "Entra Asociar Tareas" ."<br>";
+    //    echo "Entra Asociar Tareas" ."<br>";
 
         foreach ($this->expan_gestionsolicitudes_tasks_1->getBeans() as $tarea) {
 
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Asociar Tareas] LLamada -' . $tarea -> id);
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Asociar Tareas] Tarea -' . $tarea -> id);
             if ($tarea -> status == $status) {
                 $tarea -> assigned_user_id = $user;
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Asociar Tareas] Usuario-' . $user);
@@ -434,6 +449,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $query=$query."       g.name,       ";
         $query=$query."       CASE WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_PRECONTRATO."' THEN 200 ";
         $query=$query."       WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_COLABORACION."' THEN 100 ";
+        $query=$query."       WHEN estado_sol='".Expan_GestionSolicitudes::POSITIVO_CONTRATO."' THEN 100 ";        
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato_personal = 1 THEN 130  ";
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_visita_central = 1 THEN 120  ";                        
         $query=$query."       WHEN estado_sol=".Expan_GestionSolicitudes::ESTADO_EN_CURSO." AND chk_envio_contrato = 1 THEN 110  ";
@@ -527,16 +543,14 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     function asignarGestor(){        
 
         //asignamos el usuario Gestor a la gestion y a todo lo que cuelga
-        $Fran = new Expan_Franquicia();
-        $Fran -> retrieve($this -> franquicia);
+        $Fran = $this->GetFranquicia();
         $this -> assigned_user_id = $Fran -> assigned_user_id;
         $this->asignarAccionesUsuario($Fran -> assigned_user_id);
     }
     
     function asignarFiltro(){
         //asignamos el usuario Filtro a la gestion y a todo lo que cuelga
-        $Fran = new Expan_Franquicia();
-        $Fran -> retrieve($this -> franquicia);
+        $Fran = $this->GetFranquicia();
         $this -> assigned_user_id = $Fran -> filtro_solicitudes;
         $this->asignarAccionesUsuario($Fran -> filtro_solicitudes);
     }    
@@ -589,7 +603,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         return false; 
     }      
     
-     public function fill_in_additional_list_fields() {        
+    public function fill_in_additional_list_fields() {        
         parent::fill_in_additional_list_fields();
               
         $db = DBManagerFactory::getInstance();
@@ -834,18 +848,12 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
     public function calcAvanzado(){
         
         if ($this->estado_sol== Expan_GestionSolicitudes::ESTADO_EN_CURSO &&
-            ($this->chk_resolucion_dudas==true ||
-            $this->chk_sol_amp_info==true ||
+            ($this->chk_resolucion_dudas==true ||            
             $this->chk_recepcio_cuestionario==true ||
             $this->chk_informacion_adicional==true ||
-            $this->chk_entrevista==true ||
-            $this->chk_visitado_fran==true ||
-            $this->chk_envio_precontrato==true ||
-            $this->chk_visita_local==true ||
-            $this->chk_envio_contrato==true ||
-            $this->chk_visita_central==true ||
-            $this->chk_propuesta_zona==true)){
-                            
+            $this->chk_autoriza_central ||
+            $this->chk_entrevista==true ||            
+            $this->chk_propuesta_zona==true)){                            
                 $this->candidatura_avanzada=true;
         }else{
             
@@ -855,6 +863,33 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             }else{
                 $this->candidatura_avanzada=false;
             }
+        }        
+    } 
+
+    public function calcCaliente(){
+        
+        if (($this->estado_sol== Expan_GestionSolicitudes::ESTADO_EN_CURSO &&
+            ($this->chk_visitado_fran==true ||
+            $this->chk_envio_precontrato==true ||
+            $this->chk_visita_local==true ||
+            $this->chk_operacion_autorizada==true ||
+            $this->chk_envio_precontrato_personal==true||
+            $this->chk_precontrato_firmado==true||
+            $this->chk_envio_plan_financiero_personal==true ||
+            $this->chk_aprobacion_local==true ||
+            $this->chk_envio_contrato==true ||
+            $this->chk_visita_central==true ||            
+            $this->chk_posible_colabora==true ||            
+            $this->chk_envio_contrato_personal ||            
+            $this->chk_contrato_firmado==true
+            ))
+            ||
+            ($this -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && 
+             $this -> motivo_positivo == Expan_GestionSolicitudes::POSITIVO_PRECONTRATO)){
+                            
+                $this->candidatura_caliente=true;
+        }else{
+            $this->candidatura_caliente=false;
         }        
     } 
 
@@ -870,29 +905,6 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             }
             return false;
     }
-    
-    public function calcCaliente(){
-        
-        if (($this->estado_sol== Expan_GestionSolicitudes::ESTADO_EN_CURSO &&
-            ($this->chk_visitado_fran==true ||
-            $this->chk_envio_precontrato==true ||
-            $this->chk_visita_local==true ||
-            $this->chk_envio_contrato==true ||
-            $this->chk_visita_central==true ||
-            $this->chk_posible_colabora==true ||
-            $this->chk_envio_precontrato_personal==true||
-            $this->chk_envio_contrato_personal==true||
-            $this->chk_envio_plan_financiero_personal==true
-            ))
-            ||
-            ($this -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && 
-             $this -> motivo_positivo == Expan_GestionSolicitudes::POSITIVO_PRECONTRATO)){
-                            
-                $this->candidatura_caliente=true;
-        }else{
-            $this->candidatura_caliente=false;
-        }        
-    } 
     
     public function creaReunion($texto, $tipo,$días){
         
@@ -925,11 +937,12 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
      
     public function creaLlamada($texto, $tipo, $retraso) {
         
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] Creamos la llamada');
+        
+        //Retraso en días
         if (!isset($retraso)){
             $retraso=0;
         }
-        
-        //Retraso en días
         
         $solicitud=$this->GetSolicitud();
         
@@ -949,8 +962,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             }
         }        
         
-        $Fran = new Expan_Franquicia();
-        $Fran -> retrieve($this -> franquicia);
+        $Fran = $this->GetFranquicia();
         
         $this->archivarLLamadasPrevias();
         
@@ -962,7 +974,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
          //No se llama si solo viene de portales
         if (($solicitud -> do_not_call == 0 && $this -> tipo_origen != Expan_Solicitud::TIPO_ORIGEN_PORTALES ) || 
             ($solicitud -> do_not_call == 0 && $this -> tipo_origen == Expan_Solicitud::TIPO_ORIGEN_PORTALES && $tipo!='Primera') ||
-            ($solicitud -> do_not_call == 0 && $this -> tipo_origen == Expan_Solicitud::TIPO_ORIGEN_PORTALES && $tipo=='Primera' && $Fran->llamar_todos == true)) {
+            ($solicitud -> do_not_call == 0 && $this -> tipo_origen == Expan_Solicitud::TIPO_ORIGEN_PORTALES && $tipo=='Primera' && $Fran->llamar_todos == true) ||
+            ($solicitud -> do_not_call == 0 && $tipo=='SolCorreo')) {
                                                
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] Se puede añadir llamada');
 
@@ -992,6 +1005,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             $llamada -> call_type = $tipo;
             $llamada -> created_by = 1;
             $llamada -> franquicia = $this -> franquicia;
+            $llamada -> disp_contacto = $solicitud -> disp_contacto;
             $llamada -> origen = $this -> tipo_origen;
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] NumDias - ' . $numDias);
@@ -1013,8 +1027,6 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                      $GLOBALS['log'] -> info('[ExpandeNegocio][Creaion de llamada] fecha - ' . $fecha);
                      $llamada -> date_start = $fecha;
                 }
-               
-
            
             }                        
             
@@ -1148,17 +1160,47 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             }
         }
     }    
+        
+    function peparaEnvioFichaAuto(){        
+
+        $franquicia=$this->GetFranquicia();
+                
+        if ($franquicia->reporte_alta_cliente==1 ){
+                        
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Expande_GestionSolicitudes][peparaEnvioFichaAuto] Entra envio' );
+            
+            $solicitud=$this->GetSolicitud();
+        
+            $addresses = array( '0' => array('email_address'=>''));
+            $addresses['0']['email_address']=$franquicia->correo_general;   
+            $rcp_name=$franquicia->name;   
+            
+            
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Expande_GestionSolicitudes][peparaEnvioFichaAuto] Antes rellenar ficha' );  
+            
+            $envioAutoCorreos = new EnvioAutoCorreos();
+                        
+            $envioAutoCorreos->rellenacorreoFicha("FA",$rcp_name,$addresses,$solicitud,$franquicia,$this); 
+        }
+        
+    }    
     
     function preparaCorreo($envio) {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expande_GestionSolicitudes][preparaCorreo] Inicio.' );
 
         //Recogemos la franquica
+        $franquicia= $this->GetFranquicia();
+        
+        if ($franquicia->parada_temp_envios==true){
+            return "La franquicia tiene el envío de correos automáticos bloqueado";
+        }
         
         $solicitud=$this->GetSolicitud();
         
         if ($solicitud==null){
              $GLOBALS['log'] -> info('[ExpandeNegocio][Expande_GestionSolicitudes][preparaCorreo] No se puede enviar correo no existe la solicitud.' );
+             return "No existe la solicutd";
         }
 
         if ($solicitud->no_correos_c == false) {
@@ -1169,57 +1211,66 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                 $this -> chk_envio_auto==1 && 
                 $this -> isDescartadoUsuario() == false ) {
                 
-                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] Previo recoger Franq.' );
-
-                //Recogemos el objeto fraqnuicia
-
-                $Fran = new Expan_Franquicia();
-                $Fran -> retrieve($this -> franquicia);
-
-                $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] Nombre de la franquicia - ' . $Fran -> name);
-
                 $db = DBManagerFactory::getInstance();
 
                 //Creamos la consulta para localizar el id del template correspondiente
                 
-                $query = "select id,type,modeloneg from email_templates where franquicia='" . $this -> franquicia . "' AND type='" . $envio . "' AND deleted=0";
+                if ($envio=="LA"){
+                    $query = "select id,type,modeloneg from email_templates where type='" . $envio . "' AND deleted=0";
+                }else{
+                    $query = "select id,type,modeloneg from email_templates where franquicia='" . $this -> franquicia . "' AND type='" . $envio . "' AND deleted=0";
+                }
+                
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] Query correo - ' . $query);
                 $result = $db -> query($query, true);
 
                 $enviado = true;
                 $idTemplate = "";
+                $salida="";
 
                 while ($row = $db -> fetchByAssoc($result)) {
                     $idTemplate = $row["id"];
                     $typeTemplate= $row["type"];                
                     $modnegTemplate=$row["modeloneg"]; 
+                    
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] ModeloNegocioTemplate - ' . $modnegTemplate);
+                    $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] TipoNegocio - ' . 
+                                        $this->tiponegocio1."-".$this->tiponegocio2."-".$this->tiponegocio3."-".$this->tiponegocio4."-");
                    
                    //Si no tiene modelo de negocio o encaja con el modelo de negocio
-                    if ($modnegTemplate==null || ($modnegTemplate==1 && $this->tiponegocio1=1)
-                                              || ($modnegTemplate==2 && $this->tiponegocio2=1)
-                                              || ($modnegTemplate==3 && $this->tiponegocio3=1)
-                                              || ($modnegTemplate==4 && $this->tiponegocio4=1)){
-                                             
+                    if ($modnegTemplate==null || ($modnegTemplate==1 && $this->tiponegocio1==1)
+                                              || ($modnegTemplate==2 && $this->tiponegocio2==1)
+                                              || ($modnegTemplate==3 && $this->tiponegocio3==1)
+                                              || ($modnegTemplate==4 && $this->tiponegocio4==1)){
+                                                                                                                                                                
                         //Comprobamos que el está validada la plantilla 
+                        
+                        $Fran = $this->GetFranquicia(); 
                                                   
-                        if ($this->plantillaValida($typeTemplate)==true){                    
+                        if ($this->plantillaValida($Fran,$typeTemplate)==true && 
+                            $Fran->tipo_cuenta!=Expan_Franquicia::TIPO_FRAN_CLIENTE_PARADO){
+                                                    
                             $envioCorreos = new EnvioAutoCorreos();
-                            if ($envioCorreos -> sendMessage($solicitud, $this, $idTemplate, $Fran) == 'Ok') {
-                                return "Ok";
+                            if ($envioCorreos -> rellenaCorreoCx($idTemplate,$solicitud,$franquicia,$this) == 'Ok') {
+                                $salida= "Ok";
                             } else {
-                                return "Alguno de los correos no han sido enviados. Posiblemente el correo no sea válido.";
+                                $salida= "Alguno de los correos no han sido enviados. Posiblemente el correo no sea válido.";
                             }
                        }else{
                            
                            $incidencia= new Expan_IncidenciaCorreo();
                            $incidencia->RellenoGestion($this,$envio);
-                           return "La plantilla de envío no está validada";
+                           $salida= "La plantilla de envío no está validada";
                        }                     
                                                   
                     }                        
                 }
-
+                
+                if ($salida!=""){
+                    return $salida;
+                }
+                
                 //Si no tenemos plantilla
                 if ($idTemplate == "") {
                     $this->crearTarea("INTPlantilla");
@@ -1270,8 +1321,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         $tarea -> date_start = TimeDate::getInstance()->nowDb();
         $tarea -> date_due = TimeDate::getInstance()->nowDb();
     
-        $franquicia = new Expan_Franquicia();
-        $franquicia -> retrieve($this -> franquicia);
+        $franquicia = $this->GetFranquicia();
         
         if ($tipoTarea=="INTPlantilla"){
             
@@ -1299,8 +1349,14 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
             }   
             
             $tarea -> parent_id = $this -> id;
-            $tarea -> parent_type = 'Expan_GestionSolicitudes';            
-            $tarea -> assigned_user_id = $this -> assigned_user_id;
+            $tarea -> parent_type = 'Expan_GestionSolicitudes';
+            
+            //Si es creacion de precontrato se le asigna a JULIA
+            if ($tipoTarea=="DOCUPerPre"){
+                $tarea -> assigned_user_id ='d36aa4a1-0a9c-15a3-d2a8-577a18132b8c';
+            }else{
+                $tarea -> assigned_user_id = $this -> assigned_user_id;
+            }                        
             $tarea -> ignore_update_c = true;
             $tarea -> save();
             //enlazamos con la gestión
@@ -1316,15 +1372,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
         
     }
 
-    function plantillaValida($typeTemplate){
-            
-        //Cargamos la franquicia
-        
-        $Fran = new Expan_Franquicia();
-        $Fran -> retrieve($this -> franquicia);              
+    function plantillaValida($Fran,$typeTemplate){                   
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] ID Plantilla - ' . $typeTemplate);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] Tipo Plantilla - ' . $porcion[1]);
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] check franquicia - ' . $Fran->chk_c1);
         $GLOBALS['log'] -> info('[ExpandeNegocio][plantillaValida] nombre franquicia - ' . $Fran->name);
 
@@ -1394,7 +1444,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
                $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Entra');
                $numElem++;
                
-               if($row['participacion']=='3' || $row['participacion']==null){
+               if($row['participacion']=='3' || $row['participacion']==null || $row['participacion']==''){
                    $GLOBALS['log'] -> info('[ExpandeNegocio][pasoaOrigenExpandeFeria]Sale por 3 null o 0');
                    return true;
                }; 
@@ -1557,7 +1607,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
            if ($par!=""){                         
                $parConFecha=$par;
                     
-               if ($this->validateDate(substr($par,0,10))==false){
+               if ($this->validateDate(substr($par,0,10))==false && !(strpos($par, " ") === 0) && !(substr($par,0,1)=="\t") &&  !(strpos($par, "-") === 0)){
                      
                   $parConFecha=''.date('d/m/Y').' - '.$parConFecha;
                   if ($cont!=count($listaParr)){
@@ -1573,13 +1623,507 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar {
            $cont=$cont+1;
         }
         return $output;               
-    }
+    }      
     
     function validateDate($date, $format = 'd/m/Y')
     {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
     }
+    
+    function cambiaCorreoDefecto(){
+        
+        global $current_user;
+        
+        $franquiciaId=$this->franquicia;
+        $franquicia= $this->GetFranquicia();
+        
+        $outbound_id="";
+        $signature_id="";
+        
+        
+        $db = DBManagerFactory::getInstance();
+        $query = "select * from inbound_email where group_id='".$current_user->id."' AND email_user='".$franquicia->correo_envio."' and deleted=0";
+        $result = $db -> query($query, true);       
 
+        while ($row = $db -> fetchByAssoc($result)) {
+            $outbound_id=$row["id"];   
+        }    
+                  
+        if ($outbound_id!=""){
+            $ie = new InboundEmail();
+            $ie->setUsersDefaultOutboundServerId($current_user, $outbound_id);
+        }
+                
+        $query = "select * from users_signatures where user_id='".$current_user->id."' AND name like '%".$franquicia->name."%' AND deleted=0";
+        $result = $db -> query($query, true);
+           
+        while ($row = $db -> fetchByAssoc($result)) {
+            $signature_id=$row["id"];   
+        }    
+        if ($signature_id!=""){
+            $current_user->setPreference('signature_default',$signature_id);
+        }                      
+
+    }
+
+    public function ActChekByDate()
+    {
+        if ($this->f_aprobacion_local!=null && $this->chk_aprobacion_local==0) 
+            {$this->chk_aprobacion_local=1;}
+        if ($this->f_autoriza_central!=null && $this->chk_autoriza_central==0) 
+            {$this->chk_autoriza_central=1;}
+        if ($this->f_contrato_firmado!=null && $this->chk_contrato_firmado==0) 
+            {$this->chk_contrato_firmado=1;}
+        if ($this->f_entrevista!=null && $this->chk_entrevista==0) 
+            {$this->chk_entrevista=1;}
+        if ($this->f_envio_contrato!=null && $this->chk_envio_contrato==0) 
+            {$this->chk_envio_contrato=1;}
+        if ($this->f_envio_contrato_personal!=null && $this->chk_envio_contrato_personal==0) 
+            {$this->chk_envio_contrato_personal=1;}
+        if ($this->f_envio_plan_financiero_personal!=null && $this->chk_envio_plan_financiero_personal==0) 
+            {$this->chk_envio_plan_financiero_personal=1;}
+        if ($this->f_envio_precontrato!=null && $this->chk_envio_precontrato==0) 
+            {$this->chk_envio_precontrato=1;}
+        if ($this->f_envio_precontrato_personal!=null && $this->chk_envio_precontrato_personal==0) 
+            {$this->chk_envio_precontrato_personal=1;}
+        if ($this->f_informacion_adicional!=null && $this->chk_informacion_adicional==0) 
+            {$this->chk_informacion_adicional=1;}
+        if ($this->f_operacion_autorizada!=null && $this->chk_operacion_autorizada==0) 
+            {$this->chk_operacion_autorizada=1;}
+        if ($this->f_posible_colabora!=null && $this->chk_posible_colabora==0) 
+            {$this->chk_posible_colabora=1;}
+        if ($this->f_precontrato_firmado!=null && $this->chk_precontrato_firmado==0) 
+            {$this->chk_precontrato_firmado=1;}
+        if ($this->f_propuesta_zona!=null && $this->chk_propuesta_zona==0) 
+            {$this->chk_propuesta_zona=1;}
+        if ($this->f_resolucion_dudas!=null && $this->chk_resolucion_dudas==0) 
+            {$this->chk_resolucion_dudas=1;}
+        if ($this->f_responde_C1!=null && $this->chk_responde_C1==0) 
+            {$this->chk_responde_C1=1;}
+        if ($this->f_sol_amp_info!=null && $this->chk_sol_amp_info==0) 
+            {$this->chk_sol_amp_info=1;}
+        if ($this->f_visita_central!=null && $this->chk_visita_central==0) 
+            {$this->chk_visita_central=1;}
+        if ($this->f_visita_local!=null && $this->chk_visita_local==0) 
+            {$this->chk_visita_local=1;}
+        if ($this->f_visitado_fran!=null && $this->chk_visitado_fran==0) 
+            {$this->chk_visitado_fran=1;}
+
+    }
+
+    public function crearTablaEntregaCuentaPrecontrato($esAdmin){
+                
+        $GLOBALS['log'] -> info('[ExpandeNegocio][crearTablaEntregaCuentaPrecontrato] EsAdmin - '.$esAdmin);        
+                                
+        if ($esAdmin==true){
+            $campos= array(
+                "Nombre" => "<b>Nombre</b>",
+                "Apellidos" => "<b>Apellidos</b>",
+                "Franquicia" => "<b>Franquicia</b>",
+                "ImporteEnt" => "<b>Importe Entregado</b>",
+                "FEnt" => "<b>Fecha de la Entrega</b>"
+            );
+        }else{
+            $campos= array(
+                "Nombre" => "<b>Nombre</b>",
+                "Apellidos" => "<b>Apellidos</b>",                               
+                "Provincia" => "<b>Provincia</b>",
+                "FEnt" => "<b>Fecha de la Entrega</b>",                
+            );
+        }
+        
+        
+        $query = "SELECT first_name Nombre, last_name Apellidos, f.name franquicia, prov.d_prov Provincia, f_entrega_cuenta_pre FEnt, entrega_cuenta ImporteEnt ";
+        $query=$query."FROM   (SELECT s.first_name, s.last_name, g.franquicia, g.provincia_apertura_pre, g.f_entrega_cuenta_pre, g.entrega_cuenta ";
+        $query=$query."        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+        $query=$query."        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND ";
+        $query=$query."               g.id = '".$this->id."') a ";
+        $query=$query."       LEFT JOIN expan_m_provincia prov ON a.provincia_apertura_pre = prov.c_prov ";
+        $query=$query."       LEFT JOIN expan_franquicia f ON f.id = a.franquicia; ";
+        
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $result = $db -> query($query, true);
+        $tabla = '<table border="1">
+                <tbody>';
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            foreach ($campos as $key => $value) {
+                $tabla = $tabla. "<tr>";
+                $tabla = $tabla."<td>".$value."</td>";
+                $tabla = $tabla."<td>".$row[$key]."</td>";                
+                $tabla = $tabla. "</tr>";
+            }
+        }      
+        
+        $tabla = $tabla. "</tbody>
+        </table>";
+        return $tabla;
+    }
+
+    public function crearTablaFichaConsultor(){
+            
+        $GLOBALS['log'] -> info('[ExpandeNegocio][crearTablaFichaConsultor]Entra');                           
+        
+        $campos= array(
+            "Nombre" => "<b>Nombre</b>",
+            "Apellidos" => "<b>Apellidos</b>",
+            "Telefono" => "<b>Teléfono</b>",
+            "email_address" => "<b>Correo</b>",
+            "Provincia" => "<b>Provincia</b>",
+            "Localidad" => "<b>Localidad</b>",            
+            "rol" => "<b>Rol en el proyecto</b>",         
+            "perfil_profesional" => "<b>Perfil Profesional</b>",
+            "situacion_profesional" => "<b>Situacion Profesional</b>",
+            "historial_empresa" => "<b>Perfil de Empresario</b>",
+            "fechaApertura" => "<b>Inicio Actividad Previsto</b>",
+            "capital" => "<b>Inversión máxima prevista</b>",
+            "recursos_propios" => "<b>Recursos Propios disponibles</b>",
+            "Observaciones" => "<b>Gestiones relacionadas</b>",
+            "rrss" => "<b>Datos extraídos RRSS</b>",
+            " " => "<b>Hitos de avances en gestión</b>",
+            "CU" => "&emsp;&emsp;&emsp;Cuestionario",
+            "IA" => "&emsp;&emsp;&emsp;Informacion ampliada",            
+            "PR" => "&emsp;&emsp;&emsp;Envío Precontrato",
+            "CON" => "&emsp;&emsp;&emsp;Envío Contrato",     
+            "lnk"  => "&emsp;&emsp;&emsp;Enlace al cuestionario",
+            "otras_fran" => "Otras Franquicias",
+            "Fecha_Creacion" => "Fecha de Creación",
+            "observa_expande" => "Observaciones ExpandeNegocio"
+             
+        );
+               
+        $db = DBManagerFactory::getInstance();        
+       
+        $query = "SELECT   nombres Nombre ";
+        $query=$query."         , Ape Apellidos ";
+        $query=$query."         , a.Telefono ";
+        $query=$query."         , ea.email_address ";
+        $query=$query."         , mun.d_municipio AS Localidad ";
+        $query=$query."         , prov.d_prov Provincia ";
+        $query=$query."         , COALESCE(obs,'') AS 'Observaciones' ";
+        $query=$query."         , rrss ";
+        $query=$query."         , Cuestionario AS 'CU', ";
+        $query=$query."         InfoAmpliada AS 'IA', ";
+        $query=$query."         Precontrato AS 'PR', ";
+        $query=$query."         Contrato AS 'CON', ";
+        $query=$query."         EnlaceCuestionario as 'lnk', ";
+        $query=$query."         case when papel=1 then 'Autoempleo' when papel=2 then 'Gestor' when papel=3 then 'Inversor' when papel=4 then 'corner' when papel=5 then 'Colaborador' else '' end as rol, ";
+        $query=$query."         perfil_profesional, ";
+        $query=$query."         case when situacion_profesional=1 then 'Cuenta Ajena' when situacion_profesional=2 then 'Cuenta propia' when situacion_profesional=3 then 'En busqueda' end as situacion_profesional, ";
+        $query=$query."         replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(historial_empresa,'^FA^','Fue autonomo'),'^FE^','Fue Empresario'),'^FF^','Fue Franquiciado'),'^EA^','Es Autonomo'),'^EE^','Es Empresario'),'^EF^','Es Franquiciado'), ";
+        $query=$query."    '^EM^','Es Multifranquiciado'),'^EB^','En Búsqueda'),'^NE^','Nunca ha tenido empresa'),'^NF^','Trabajo en negocio familiar'),'^^','') as historial_empresa, ";
+        $query=$query."         fechaApertura, ";
+        $query=$query."         case When capital=1 then 'menos de 20.000 €' when capital=2 then'20.000 - 50 000 €' when capital=3  then '50.000 - 90.000 €' when capital=4 then '90.000 - 150.000 €'  when capital=5 then 'más de 150.000 €' when capital=6 then 'Otros' when capital='7' then ";
+        $query=$query."    'Pendiente Confirmar en Reunión' ";
+        $query=$query."    end as capital, ";
+        $query=$query."         case when recursos_propios=1 then '100% de la inversion' when recursos_propios=11 then '75% de inversión' when recursos_propios=2 then '50% de inversion' when recursos_propios=3 then '25% de inversion' end as recursos_propios , ";
+        $query=$query."         Fecha_Creacion, ";
+        $query=$query."         observa_expande, ";
+        $query=$query."         tf.otras_fran ";
+        $query=$query."FROM     (SELECT   s.first_name nombres, ";
+        $query=$query."                   s.last_name Ape, ";
+        $query=$query."                   s.phone_mobile as Telefono, ";
+        $query=$query."                   g.tipo_origen AS ori, ";
+        $query=$query."                   g.portal AS portal, ";
+        $query=$query."                   g.observaciones_informe obs, ";
+        $query=$query."                   s.perfil_profesional perfil, ";
+        $query=$query."                   s.rrss, ";
+        $query=$query."                   g.papel, ";
+        $query=$query."                   g.recursos_propios, ";
+        $query=$query."                   g.cuando_empezar as fechaApertura, ";
+        $query=$query."                   date_format(g.envio_documentacion,'%e/%m/%Y') AS Dossier, ";
+        $query=$query."                   date_format(g.f_recepcion_cuestionario,'%e/%m/%Y') AS Cuestionario, ";
+        $query=$query."                   date_format(g.f_informacion_adicional,'%e/%m/%Y') AS InfoAmpliada, ";
+        $query=$query."                   date_format(g.f_envio_precontrato,'%e/%m/%Y') AS Precontrato, ";
+        $query=$query."                   date_format(g.f_envio_contrato,'%e/%m/%Y') AS Contrato, ";
+        $query=$query."                   g.lnk_cuestionario as EnlaceCuestionario, ";
+        $query=$query."                   CASE WHEN g.tiponegocio1 = 1 THEN f.modNeg1 ELSE '' END AS Negocio1, ";
+        $query=$query."                   CASE WHEN g.tiponegocio2 = 1 THEN f.modNeg2 ELSE '' END AS Negocio2, ";
+        $query=$query."                   CASE WHEN g.tiponegocio3 = 1 THEN f.modNeg3 ELSE '' END AS Negocio3, ";
+        $query=$query."                   CASE WHEN g.tiponegocio4 = 1 THEN f.modNeg3 ELSE '' END AS Negocio4, ";
+        $query=$query."                   g.cuando_empezar, ";
+        $query=$query."                   s.localidad_apertura_1 , ";
+        $query=$query."                   s.provincia_apertura_1 prov, ";
+        $query=$query."                   s.perfil_profesional, ";
+        $query=$query."                   s.situacion_profesional, ";
+        $query=$query."                   s.historial_empresa, ";
+        $query=$query."                   g.inversion as capital , ";
+        $query=$query."                   g.id AS id, ";
+        $query=$query."                   s.id as sid,                   ";
+        $query=$query."                   date_format(g.date_entered,'%e/%m/%Y') as Fecha_Creacion, ";
+        $query=$query."                   s.observaciones_solicitud as observa_expande ";
+        $query=$query."          FROM     expan_gestionsolicitudes g, expan_solicitud s, ";
+        $query=$query."                   expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_franquicia f ";
+        $query=$query."          WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = ";
+        $query=$query."                     gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id='".$this->id."' AND f.id = ";
+        $query=$query."                     g.franquicia ";
+        $query=$query."          ORDER BY f.name) AS a ";
+        $query=$query."         LEFT JOIN tipo_origen AS t ON t.id = a.ori ";
+        $query=$query."         LEFT JOIN portales p ON portal = p.id ";
+        $query=$query."         LEFT JOIN calls c ON c.parent_id = a.id ";
+        $query=$query."         LEFT JOIN emails em ON em.parent_id = a.id ";
+        $query=$query."         LEFT JOIN (select ea.email_address, bean_id from email_addresses ea, email_addr_bean_rel er ";
+        $query=$query."                    where er.email_address_id= ea.id ) ea ON ea.bean_id= a.sid ";
+        $query=$query."         LEFT JOIN (SELECT   GROUP_CONCAT(f.name) as otras_fran,s.id ";
+        $query=$query."                    FROM     expan_gestionsolicitudes g, expan_franquicia f, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+        $query=$query."                    WHERE    g.franquicia = f.id AND g.id = gs.expan_soli5dcccitudes_idb AND s.id = ";
+        $query=$query."                             gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
+        $query=$query."                    GROUP BY s.id) tf on sid= tf.id                                      ";
+        $query=$query."         LEFT JOIN expan_m_inversion inv ON inv.id = a.recursos_propios ";
+        $query=$query."         LEFT JOIN expan_m_perfil_fran pf ON pf.id = a.papel ";
+        $query=$query."         LEFT JOIN expan_m_provincia prov ON a.prov = prov.c_prov ";
+        $query=$query."         LEFT JOIN expan_m_municipios mun on a.localidad_apertura_1= mun.c_provmun ";
+        $query=$query."GROUP BY a.id ";
+        $query=$query."ORDER BY Provincia,nombre, Apellidos; ";
+       
+
+        $GLOBALS['log'] -> info('[ExpandeNegocio][crearTablaFichaConsultor]Consulta-'.$query);
+
+        
+        $solicitud=$this->GetSolicitud();
+        
+       
+        $result = $db -> query($query, true);
+        $tabla = '<table border="1">
+                <tbody>';
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            foreach ($campos as $key => $value) {
+                $tabla = $tabla. "<tr>";
+                $tabla = $tabla."<td>".$value."</td>";
+                $tabla = $tabla."<td>".$row[$key]."</td>";                
+                $tabla = $tabla. "</tr>";
+            }
+        }    
+        
+        $query = "SELECT   DISTINCT concat(DATE_FORMAT(Fecha,'%e/%m/%Y'),' - ', name  ) doc  ";
+		$query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha   ";
+		$query=$query."          FROM   expan_gestionsolicitudes g, emails e, notes n    ";
+		$query=$query."          WHERE   e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0    ";
+		$query=$query."                 AND (e.status = 'sent') AND n.parent_id = e.id AND g.id='".$this->id."'   ";
+		$query=$query."UNION    ";
+		$query=$query."SELECT n.id nid, n.name, e.date_sent fech   ";
+		$query=$query."FROM   emails e, email_templates et, expan_gestionsolicitudes g, notes n   ";
+		$query=$query."WHERE   g.id='".$this->id."' AND e.parent_id = g.id AND n.parent_id = et.id AND e.status = 'sent' AND e.deleted = 0 AND n   ";
+		$query=$query."       .deleted = 0 AND (modeloneg IS NULL OR (modeloneg = 1 AND g.tiponegocio1 = 1) OR (modeloneg = 2 AND g.tiponegocio2 = 1) OR   ";
+		$query=$query."       (modeloneg = 3 AND g.tiponegocio3 = 1) OR (modeloneg = 4 AND g.tiponegocio4 = 1)) AND e.name = replace(et.subject, \"'\", \"\")) yy    ";
+		$query=$query."ORDER BY fecha DESC ";
+
+        
+        $result = $db -> query($query, true);
+        
+        $documentos="";
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+           $documentos=$documentos.$row["doc"]."<BR>";
+        }
+        $tabla = $tabla. "<tr>";
+        $tabla = $tabla."<td width='200px'>Documentos</td>";
+        $tabla = $tabla."<td width='400px'>".$documentos."</td>";                
+        $tabla = $tabla. "</tr>";
+            
+        $tabla = $tabla. "</tbody>
+        </table>";
+                
+        return $tabla;
+        
+    }
+
+    public function crearTablaFichaFranquicia(){
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][crearTablaFichaFranquicia]Entra');                                         
+        
+        $campos= array(
+            "Nombre" => "<b>Nombre</b>",
+            "Apellidos" => "<b>Apellidos</b>",
+            "Telefono" => "<b>Teléfono</b>",
+            "email_address" => "<b>Correo</b>",
+            "Provincia" => "<b>Provincia</b>",
+            "Localidad" => "<b>Localidad</b>",            
+            "rol" => "<b>Rol en el proyecto</b>",         
+            "perfil_profesional" => "<b>Perfil Profesional</b>",
+            "situacion_profesional" => "<b>Situacion Profesional</b>",
+            "historial_empresa" => "<b>Perfil de Empresario</b>",
+            "fechaApertura" => "<b>Inicio Actividad Previsto</b>",
+            "capital" => "<b>Inversión máxima prevista</b>",
+            "recursos_propios" => "<b>Recursos Propios disponibles</b>",
+            "Observaciones" => "<b>Gestiones relacionadas</b>",
+            "rrss" => "<b>Datos extraídos RRSS</b>",
+            " " => "<b>Hitos de avances en gestión</b>",
+            "CU" => "&emsp;&emsp;&emsp;Cuestionario",
+            "IA" => "&emsp;&emsp;&emsp;Informacion ampliada",            
+            "PR" => "&emsp;&emsp;&emsp;Envío Precontrato",
+            "CON" => "&emsp;&emsp;&emsp;Envío Contrato",     
+            "lnk"  => "&emsp;&emsp;&emsp;Enlace al cuestionario"
+             
+        );
+               
+        $db = DBManagerFactory::getInstance();        
+       
+        $query = "SELECT   nombres Nombre    ";
+        $query=$query."         , Ape Apellidos    ";
+        $query=$query."         , a.Telefono ";
+        $query=$query."         , ea.email_address ";
+        $query=$query."         , mun.d_municipio AS Localidad    ";
+        $query=$query."         , prov.d_prov Provincia                    ";
+        $query=$query."         , COALESCE(obs,'') AS 'Observaciones'    ";
+        $query=$query."         , rrss   ";
+        $query=$query."         , Cuestionario AS 'CU',    ";
+        $query=$query."         InfoAmpliada AS 'IA',              ";
+        $query=$query."         Precontrato AS 'PR',   ";
+        $query=$query."         Contrato AS 'CON',  ";
+        $query=$query."         EnlaceCuestionario as 'lnk',  ";
+        $query=$query."         case when papel=1 then 'Autoempleo' when papel=2 then 'Gestor' when papel=3 then 'Inversor' when papel=4 then 'corner' when papel=5 then 'Colaborador' else '' end as rol,    ";
+        $query=$query."         perfil_profesional,    ";
+        $query=$query."         case when situacion_profesional=1 then 'Cuenta Ajena' when situacion_profesional=2 then 'Cuenta propia' when situacion_profesional=3 then 'En busqueda' end as situacion_profesional,    ";
+        $query=$query."         replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(historial_empresa,'^FA^','Fue Autonomo'),'^FE^','Fue Empresario'),'^FF^','Fue Franquiciado'),'^EA^','Es Autonomo'),'^EE^','Es Empresario'),'^EF^','Es Franquiciado'),'^EM^','Es Multifranquiciado'),'^EB^','En Búsqueda'),'^NE^','Nunca ha tenido empresa'),'^NF^','Trabajo en negocio familiar'),'^^','')as historial_empresa,    ";
+        $query=$query."         fechaApertura,    ";
+        $query=$query."         case When capital=1 then 'menos de 20.000 €' when capital=2 then'20.000 - 50 000 €' when capital=3  then '50.000 - 90.000 €' when capital=4 then '90.000 - 150.000 €'  when capital=5 then 'más de 150.000 €' when capital=6 then 'Otros' when capital='7' then 'Pendiente Confirmar en Reunión'   end as capital,    ";
+        $query=$query."         case when recursos_propios=1 then '100% de la inversion' when recursos_propios=11 then '75% de inversión' when recursos_propios=2 then '50% de inversion' when recursos_propios=3 then '25% de inversion' end as recursos_propios   ";
+        $query=$query."FROM     (SELECT   s.first_name nombres,    ";
+        $query=$query."                   s.last_name Ape,   ";
+        $query=$query."                   s.phone_mobile as Telefono, ";
+        $query=$query."                   g.tipo_origen AS ori,    ";
+        $query=$query."                   g.portal AS portal,    ";
+        $query=$query."                   g.observaciones_informe obs,    ";
+        $query=$query."                   s.perfil_profesional perfil,   ";
+        $query=$query."                   s.rrss,  ";
+        $query=$query."                   g.papel,    ";
+        $query=$query."                   g.recursos_propios,    ";
+        $query=$query."                   g.cuando_empezar as fechaApertura,    ";
+        $query=$query."                   date_format(g.envio_documentacion,'%e/%m/%Y') AS Dossier,    ";
+        $query=$query."                   date_format(g.f_recepcion_cuestionario,'%e/%m/%Y') AS Cuestionario,  ";
+        $query=$query."                   date_format(g.f_informacion_adicional,'%e/%m/%Y') AS InfoAmpliada,      ";
+        $query=$query."                   date_format(g.f_envio_precontrato,'%e/%m/%Y') AS Precontrato,                        ";
+        $query=$query."                   date_format(g.f_envio_contrato,'%e/%m/%Y') AS Contrato,    ";
+        $query=$query."                   g.lnk_cuestionario as EnlaceCuestionario,  ";
+        $query=$query."                   CASE WHEN g.tiponegocio1 = 1 THEN f.modNeg1 ELSE '' END AS Negocio1,    ";
+        $query=$query."                   CASE WHEN g.tiponegocio2 = 1 THEN f.modNeg2 ELSE '' END AS Negocio2,    ";
+        $query=$query."                   CASE WHEN g.tiponegocio3 = 1 THEN f.modNeg3 ELSE '' END AS Negocio3,    ";
+        $query=$query."                   CASE WHEN g.tiponegocio4 = 1 THEN f.modNeg3 ELSE '' END AS Negocio4,    ";
+        $query=$query."                   g.cuando_empezar,    ";
+        $query=$query."                   s.localidad_apertura_1 ,    ";
+        $query=$query."                   s.provincia_apertura_1 prov,    ";
+        $query=$query."                   s.perfil_profesional,    ";
+        $query=$query."                   s.situacion_profesional,    ";
+        $query=$query."                   s.historial_empresa,    ";
+        $query=$query."                   g.inversion as capital ,    ";
+        $query=$query."                   g.id AS id, ";
+        $query=$query."                   s.id as sid ";
+        $query=$query."          FROM     expan_gestionsolicitudes g, expan_solicitud s,    ";
+        $query=$query."                   expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_franquicia f    ";
+        $query=$query."          WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id =    ";
+        $query=$query."                     gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id='".$this->id."' AND f.id =    ";
+        $query=$query."                     g.franquicia    ";
+        $query=$query."          ORDER BY f.name) AS a    ";
+        $query=$query."         LEFT JOIN tipo_origen AS t ON t.id = a.ori    ";
+        $query=$query."         LEFT JOIN portales p ON portal = p.id    ";
+        $query=$query."         LEFT JOIN calls c ON c.parent_id = a.id    ";
+        $query=$query."         LEFT JOIN emails em ON em.parent_id = a.id    ";
+        $query=$query."         LEFT JOIN (select ea.email_address, bean_id from email_addresses ea, email_addr_bean_rel er ";
+        $query=$query."                    where er.email_address_id= ea.id )  ea ON ea.bean_id= a.sid ";
+        $query=$query."         LEFT JOIN expan_m_inversion inv ON inv.id = a.recursos_propios    ";
+        $query=$query."         LEFT JOIN expan_m_perfil_fran pf ON pf.id = a.papel    ";
+        $query=$query."         LEFT JOIN expan_m_provincia prov ON a.prov = prov.c_prov    ";
+        $query=$query."         LEFT JOIN expan_m_municipios mun on a.localidad_apertura_1= mun.c_provmun             ";
+        $query=$query."GROUP BY a.id    ";
+        $query=$query."ORDER BY Provincia,nombre, Apellidos";
+        
+        $solicitud=$this->GetSolicitud();
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][crearTablaFichaFranquicia]Consulta-'.$query);
+        
+       
+        $result = $db -> query($query, true);
+        $tabla = '<table border="1">
+                <tbody>';
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            foreach ($campos as $key => $value) {
+                $tabla = $tabla. "<tr>";
+                $tabla = $tabla."<td>".$value."</td>";
+                $tabla = $tabla."<td>".$row[$key]."</td>";                
+                $tabla = $tabla. "</tr>";
+            }
+        }    
+        
+        $query = "SELECT   DISTINCT concat(DATE_FORMAT(Fecha,'%e/%m/%Y'),' - ', name  ) doc  ";
+        $query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha   ";
+        $query=$query."          FROM   expan_gestionsolicitudes g, emails e, notes n    ";
+        $query=$query."          WHERE   e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0    ";
+        $query=$query."                 AND (e.status = 'sent') AND n.parent_id = e.id AND g.id='".$this->id."'   ";
+        $query=$query."UNION    ";
+        $query=$query."SELECT n.id nid, n.name, e.date_sent fech   ";
+        $query=$query."FROM   emails e, email_templates et, expan_gestionsolicitudes g, notes n   ";
+        $query=$query."WHERE   g.id='".$this->id."' AND e.parent_id = g.id AND n.parent_id = et.id AND e.status = 'sent' AND e.deleted = 0 AND n   ";
+        $query=$query."       .deleted = 0 AND (modeloneg IS NULL OR (modeloneg = 1 AND g.tiponegocio1 = 1) OR (modeloneg = 2 AND g.tiponegocio2 = 1) OR   ";
+        $query=$query."       (modeloneg = 3 AND g.tiponegocio3 = 1) OR (modeloneg = 4 AND g.tiponegocio4 = 1)) AND e.name = replace(et.subject, \"'\", \"\")) yy    ";
+        $query=$query."ORDER BY fecha DESC ";
+
+        
+        $result = $db -> query($query, true);
+        
+        $documentos="";
+        
+        while ($row = $db -> fetchByAssoc($result)) {
+           $documentos=$documentos.$row["doc"]."<BR>";
+        }
+        $tabla = $tabla. "<tr>";
+        $tabla = $tabla."<td width='200px'>Documentos</td>";
+        $tabla = $tabla."<td width='400px'>".$documentos."</td>";                
+        $tabla = $tabla. "</tr>";
+            
+        $tabla = $tabla. "</tbody>
+        </table>";
+                
+        return $tabla;
+        
+     }
+
+
+     public function tieneApertura(){
+         
+        $db = DBManagerFactory::getInstance();
+        $query = "select * from expan_apertura where gestion='".$this->id."' and deleted=0";
+        $result = $db -> query($query, true);     
+        
+        $GLOBALS['log'] -> info('[ExpandeNegocio][tieneApertura]Consulta-'.$query);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            return true;   
+        } 
+        
+        return false;
+     }
+    
+     public function crearTablaRespuesta(){      
+     
+      	$tabla = '<br><br><p>Una vez acabada la reunión, le solicitamos que nos comunique en un plazo de 24 horas los detalles más relevantes 
+      			de la reunión/conversación para que podamos seguir gestionando al candidato lo antes posible. Para ello le rogamos 
+      			nos reenvíe este correo contestando estos asuntos que necesitamos saber: (EN el caso de que el campo no 
+      			haya sido cumplimentado, entendemos que no hay nada relevante a ese respecto)</p><br>      			            	
+      	<table border="1">
+                <tbody>';
+                
+        $tabla=$tabla.'<tr><td width="40%">1. Percepción del perfil del franquiciado ¿Te encaja como franquiciado?</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">2. Otros aspectos a tener en cuenta del candidato relevantes no presentes en la ficha.</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">3. Percepción del grado de interés del candidato (% de posibilidad de apertura</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">4. Fecha de apertura aproximada (si la hubiese)</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">5. Preguntas pendientes de resolver (Por central o ExpandeNegocio).</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">6. Solicitudes o concesiones (concedidas o no).</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">7. Objeciones del candidato al modelo de negocio.</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%">8. EN que se ha quedado con el candidato</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%" style="padding-left: 4em;">Tareas para central</td><td width="60%"></td></tr>';
+		$tabla=$tabla.'<tr><td width="40%" style="padding-left: 4em;">Tareas para ExpandeNegocio</td><td width="60%"></td></tr>';
+                     
+                
+		$tabla = $tabla. "</tbody>
+        </table>";
+                
+        return $tabla;                
+     }
 }
 ?>

@@ -56,8 +56,11 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][NumHermanas]Solicitud ID' . $this -> id);
 
         $db = DBManagerFactory::getInstance();
-        $query = "select count(*) num from  expan_solicitud_expan_gestionsolicitudes_1_c gs where deleted=0 and gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida='" . $this -> id . "'";
-
+        
+        $query = "SELECT count(*) num ";
+        $query=$query."FROM   expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
+        $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND g.deleted=0 and gs.deleted=0 and gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '". $this -> id ."'";
+        
         $result = $db -> query($query, true);
         $num = 0;
 
@@ -115,7 +118,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $db = DBManagerFactory::getInstance();
         $query = "select count(*) num from  expan_solicitud_expan_gestionsolicitudes_1_c gs,";
         $query .= "expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g";
-        $query .= "WHERE  g.id = gs.expan_soli5dcccitudes_idb AND g.estado_sol=".Expan_GestionSolicitudes::ESTADO_DESCARTADO." AND ";
+        $query .= "WHERE g.deleted=0 AND gs.deleted=0 AND g.id = gs.expan_soli5dcccitudes_idb AND g.estado_sol=".Expan_GestionSolicitudes::ESTADO_DESCARTADO." AND ";
         $query .= "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ='" . $this -> id . "'";
 
         $result = $db -> query($query, true);
@@ -127,13 +130,13 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         return $num;
     }
 
-    function PasarGestionesEstado($estado) {
+    function PasarGestionesSubEstado($estado,$subestado) {
 
         $db = DBManagerFactory::getInstance();
 
         $query = "SELECT g.id ";
         $query = $query . "FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-        $query = $query . "WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
+        $query = $query . "WHERE g.deleted=0 and gs.deleted=0 AND g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
         $query = $query . "AND s.id = '" . $this -> id . "'";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][PasarGestionesEstado]Query' . $query);
@@ -148,6 +151,23 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
             $gestion = new Expan_GestionSolicitudes();
             $gestion -> retrieve($idGest);
+            
+            switch ($estado) {
+                case Expan_GestionSolicitudes::ESTADO_PARADO:
+                    
+                    $gestion->motivo_parada=$subestado;
+                    break;
+                    
+                case Expan_GestionSolicitudes::ESTADO_DESCARTADO:
+                
+                    $gestion->motivo_descarte=$subestado;
+                    break;
+                
+                case Expan_GestionSolicitudes::ESTADO_POSITIVO:
+                    
+                    $gestion->motivo_positivo=$subestado;
+                    break;
+            }
 
             $gestion -> estado_sol = $estado;
 
@@ -156,20 +176,16 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
         }
 
-    }
+    } 
 
     //Recoge una gestion por id Franquicia
 
-    function getGestionFromFranID($franID) {
-            
-        echo "Entra buscar Gest" ."<br>";
+    function getGestionFromFranID($franID) {           
               
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][getGestionFromFranID]Intenta RecogerFranquicia');
         
         $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
         foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
-            
-            echo "Entra Bucle" ."<br>";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][getGestionFromFranID]franquicia' . $gestion -> franquicia);
 
@@ -235,7 +251,6 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $result = $db -> query($query);
 
     }
-    
 
     function EliminarTodasLLamadas() {
 
@@ -245,9 +260,9 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = $query . " JOIN (SELECT g.id ";
         $query = $query . "             FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
         $query = $query . "             WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
-        $query = $query . "                    AND status='Planned' AND s.id = '" . $this -> id . "') t ";
+        $query = $query . "                    AND s.id = '" . $this -> id . "') t ";
         $query = $query . "         ON c.parent_id = t.id ";
-        $query = $query . "set deleted=1 ";
+        $query = $query . "set deleted=1 where status = 'Planned'";
 
         $result = $db -> query($query);
 
@@ -261,9 +276,9 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = $query . " JOIN (SELECT g.id ";
         $query = $query . "             FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
         $query = $query . "             WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
-        $query = $query . "                  AND status='Not Started' AND s.id = '" . $this -> id . "') t ";
+        $query = $query . "                   AND s.id = '" . $this -> id . "') t ";
         $query = $query . "         ON c.parent_id = t.id ";
-        $query = $query . "set deleted=1 ";
+        $query = $query . "set deleted=1 where status='Not Started'";
 
         $result = $db -> query($query);
 
@@ -312,7 +327,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = $query . " JOIN (SELECT g.id ";
         $query = $query . "             FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
         $query = $query . "             WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
-        $query = $query . "                    AND s.id = '" . $this -> id . "') t ";
+        $query = $query . "                    AND g.deleted=0 AND gs.deleted=0 AND s.id = '" . $this -> id . "') t ";
         $query = $query . "         ON c.parent_id = t.id ";
         $query = $query . "set c.status='Archived' ";
         $query = $query . "where c.date_start < CURRENT_DATE() AND status='" . $status . "'; ";
@@ -328,7 +343,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = $query . " JOIN (SELECT g.id ";
         $query = $query . "             FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
         $query = $query . "             WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
-        $query = $query . "                    AND s.id = '" . $this -> id . "') t ";
+        $query = $query . "                    AND g.deleted=0 AND gs.deleted=0 AND s.id = '" . $this -> id . "') t ";
         $query = $query . "         ON c.parent_id = t.id ";
         $query = $query . "set status='" . $status . "' ";
         if ($SoloAgrupadas == true) {
@@ -342,16 +357,14 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         
         $db = DBManagerFactory::getInstance();
         
-        
         //Recorremos todas las llamadas agrupadas de la solicitud excepto la 
         $query = "SELECT c.id cid,g.id gid ";
         $query = $query."FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, calls c ";
         $query = $query."WHERE  c.parent_id = g.id AND g.id = gs.expan_soli5dcccitudes_idb AND g.deleted=0 AND c.deleted=0 AND s.id = ";
         $query = $query."gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.id = '".$this->id."' AND gestion_agrupada=1 AND c.status='Planned' AND ";
-        $query = $query."c.parent_type='Expan_GestionSolicitudes' ";
+        $query = $query."c.parent_type='Expan_GestionSolicitudes' and c.deleted=0 AND g.deleted=0 and gs.deleted=0 ";
         $query = $query."UNION select '".$llamadaOrigen->id."' cid,'".$gestion->id."' gid from dual";
         
-         
         $result = $db -> query($query, true);
 
         while ($row = $db -> fetchByAssoc($result)) {
@@ -431,7 +444,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
     }
 
     function EliminarGestiones() {
-        // $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][EliminarGestiones]Eliminamos gestiones de la solicitud' . $this -> id);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][EliminarGestiones]Eliminamos gestiones de la solicitud' . $this -> id);
         $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
 
         foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
@@ -482,7 +495,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = "select *  ";
         $query = $query . "from  expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, calls c ";
         $query = $query . "where g.id = gs.expan_soli5dcccitudes_idb  AND ";
-        $query = $query . "c.parent_id=g.id  AND c.deleted =0 AND c.status='Planned' AND ";
+        $query = $query . "c.parent_id=g.id  AND c.deleted =0 AND c.status='Planned' AND gs.deleted=0 AND g.deleted=0 AND ";
         $query = $query . "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '" . $this -> id . "' ; ";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneLlamadasPendientes]query-' . $query);
@@ -505,7 +518,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = "select *  ";
         $query = $query . "from  expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, meetings m ";
         $query = $query . "where g.id = gs.expan_soli5dcccitudes_idb  AND ";
-        $query = $query . "m.parent_id=g.id  AND m.deleted =0 AND (m.status='Planned' OR m.status='Could') AND ";
+        $query = $query . "m.parent_id=g.id  AND m.deleted =0 AND (m.status='Planned' OR m.status='Could') AND gs.deleted=0 AND g.deleted=0 AND ";
         $query = $query . "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '" . $this -> id . "' ; ";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneReunionesPendientes]query-' . $query);
@@ -529,7 +542,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = "select *  ";
         $query = $query . "from  expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, tasks t ";
         $query = $query . "where g.id = gs.expan_soli5dcccitudes_idb  AND ";
-        $query = $query . "t.parent_id=g.id  AND t.deleted =0 AND t.status='Not Started' AND ";
+        $query = $query . "t.parent_id=g.id  AND t.deleted =0 AND t.status='Not Started' AND gs.deleted=0 AND g.deleted=0 AND ";
         $query = $query . "gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '" . $this -> id . "' ; ";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneTareasPendientes]query-' . $query);
@@ -572,8 +585,8 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $query = $query . "WHERE ";
         $query = $query . "  s.id='" . $this -> id . "' AND  ";
         $query = $query . "  g.id = gs.expan_soli5dcccitudes_idb AND ";
-        $query = $query . "  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
-        $query = $query . "  s.franquicia_principal=g.franquicia AND (g.estado_sol='".Expan_GestionSolicitudes::ESTADO_DESCARTADO."'); ";
+        $query = $query . "  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND gs.deleted=0 AND g.deleted=0 AND ";
+        $query = $query . "  s.franquicia_principal=g.franquicia AND (g.estado_sol='".Expan_GestionSolicitudes::ESTADO_DESCARTADO."' OR  g.estado_sol='".Expan_GestionSolicitudes::ESTADO_PARADO."'); ";
 
         $result = $db -> query($query, true);
 
@@ -590,12 +603,18 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         if ($this -> isPrincipalCerrada()) {
 
             $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-
+            $nueFranPrin=null;
+            
             foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestionHija) {
-                if ($gestionHija -> estado_sol != Expan_GestionSolicitudes::ESTADO_DESCARTADO) {                        
-                    $this -> franquicia_principal = $gestionHija -> franquicia;
+                if ($gestionHija -> estado_sol != Expan_GestionSolicitudes::ESTADO_DESCARTADO &&
+                    $gestionHija -> estado_sol != Expan_GestionSolicitudes::ESTADO_PARADO) {                        
+                    $nueFranPrin=$gestionHija -> franquicia;
                 }
             }
+            if ($nueFranPrin!=null){
+                $this -> franquicia_principal = $nueFranPrin;
+            }
+            
         }
 
     }
@@ -606,8 +625,8 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]Solicitud ID' . $this -> id);
         $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $this -> phone_mobile);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $this -> phone_home);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $this -> phone_work);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_home-' . $this -> phone_home);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_work-' . $this -> phone_work);
 
         if ($this -> phone_mobile != null && trim($this -> phone_mobile) != '') {
             $telefono = $this -> phone_mobile;
@@ -624,7 +643,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
     
    public function _create_proper_name_field() {
         parent::_create_proper_name_field();
-     if ($this->tipo_origen=='^1^'){
+        if ($this->tipo_origen=='^1^'){
              $this->suborigen=$GLOBALS["app_list_strings"]["subor_expande_list"][$this->subor_expande];
          } else if ($this->tipo_origen=='^2^'){
              $this->suborigen= $GLOBALS["app_list_strings"]["portal_list"][$this->portal];
@@ -649,7 +668,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
         $db = DBManagerFactory::getInstance();
         $query = "select * from expan_solicitud s,email_addr_bean_rel r,email_addresses e ";
-        $query = $query . "where s.id = r.bean_id AND e.id = r.email_address_id AND e.deleted = 0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
+        $query = $query . "where s.id = r.bean_id AND e.id = r.email_address_id AND e.deleted = 0 AND e.deleted=0 AND r.deleted=0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_solicitud][TieneCorreo]-' . $query);
 
@@ -671,7 +690,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
         $db = DBManagerFactory::getInstance();
         $query = "select e.email_address from expan_solicitud s,email_addr_bean_rel r,email_addresses e ";
-        $query = $query . "where s.id = r.bean_id AND e.id = r.email_address_id AND e.deleted = 0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
+        $query = $query . "where s.id = r.bean_id AND e.id = r.email_address_id AND r.deleted=0 AND e.deleted = 0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_solicitud][TieneCorreo]-' . $query);
 
@@ -692,7 +711,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
         $db = DBManagerFactory::getInstance();
         $query = "select e.email_address from expan_solicitud s,email_addr_bean_rel r,email_addresses e ";
-        $query = $query . "where r.primary_address=1 AND s.id = r.bean_id AND e.id = r.email_address_id AND  e.deleted = 0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
+        $query = $query . "where r.primary_address=1 AND s.id = r.bean_id AND e.id = r.email_address_id AND r.deleted=0 AND e.deleted = 0 AND s.deleted = 0 AND s.id='" . $this -> id . "'";
 
         $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_solicitud][TieneCorreo]-' . $query);
 
@@ -814,6 +833,55 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         return $origen;
     }   
     
+    function actualizarEntrevista($fecha){
+        
+        $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
 
+        foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
+           
+            $gestion -> chk_entrevista = 1;
+            if ($gestion -> f_entrevista==null){                
+                $gestion -> f_entrevista=$fecha;
+            }            
+            $gestion->ignore_update_c=true;
+            $gestion -> save();
+        }
+        
+    }  
+    
+    function getFranquiciado(){
+        
+        $db = DBManagerFactory::getInstance();
+        
+        $salida="";
+        
+        $sql="SELECT id as idF FROM expan_franquiciado ";           
+        $sql=$sql." WHERE solicitud='".$this->id."' AND deleted=0;";
+         
+        $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Validadndo Telefono - Consulta - '.$sql); 
+         
+        $resultSol = $db->query($sql, true);
+        
+        while ($rowSol = $db->fetchByAssoc($resultSol)){                     
+            $salida=$row["idF"]; 
+        }
+        
+        return $salida;
+    }
+    
+    function actualizarEntrevistaPrevia(){
+        
+        $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
+    
+        foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
+           
+            $gestion -> chk_entrevista_previa = 1;
+            $gestion-> usuario_entrevista_previa= $this-> usuario_entrevista_previa_EN . " " . $this->usuario_entrevista_previa_cliente;
+                    
+              
+            $gestion->ignore_update_c=true;
+            $gestion -> save();
+        }
+    }     
 }
 ?>

@@ -57,7 +57,7 @@ array (
           ),
           7 => 
           array (
-            'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit" 
+            'customCode' => '{if $fields.id.value!=""} <input type="button" style="width:200px;"  name="save" id="save" class="submit" 
                     onClick="abrirSolicitudGestionEdicion(\'{$fields.parent_id.value}\');" value="Editar Gestion/Solicitud">{/if}',
           ),
           8 =>

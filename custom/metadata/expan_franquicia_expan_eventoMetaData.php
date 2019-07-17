@@ -58,7 +58,7 @@ $dictionary["expan_franquicia_expan_evento"] = array (
       'type' => 'varchar',
       'options' => 'lst_tipo_participa_Evento',      
       'len' => '2',
-      'default' => '',
+      'default' => '1',
     ),
     6=>
      array (
@@ -67,6 +67,22 @@ $dictionary["expan_franquicia_expan_evento"] = array (
       'options' => 'lst_formato_participa_Evento',      
       'len' => '2',
       'default' => '',
+    ),
+    7=>
+     array (
+      'name' => 'gastos_asociados',
+      'type' => 'currency',
+      'precision' => 2,
+      'len' => '6',   
+      'default' => '0',
+    ),
+    8=>
+     array (
+      'name' => 'coste_accion',
+      'type' => 'currency',
+      'precision' => 2,
+      'len' => '6',
+      'default' => '0',
     ),
   ),
   'indices' => 

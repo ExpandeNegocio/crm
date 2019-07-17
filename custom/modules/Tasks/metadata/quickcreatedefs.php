@@ -68,7 +68,7 @@ array (
         ),
       ),
       'javascript' => '{sugar_getscript file="include/javascript/EditLlamadas.js"}
-      <script type="text/javascript"> onload=DesactivarGS();</script>',
+      <script type="text/javascript"> onload=DesactivarGS(\'{$fields.parent_id.value}\',\'Expan_GestionSolicitudes\');</script>', 
       
       'useTabs' => false,
     ),

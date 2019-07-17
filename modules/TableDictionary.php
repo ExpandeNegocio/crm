@@ -63,7 +63,7 @@ include("metadata/prospect_list_campaignsMetaData.php");
 include("metadata/prospect_lists_prospectsMetaData.php");
 include("metadata/roles_modulesMetaData.php");
 include("metadata/roles_usersMetaData.php");
-//include("metadata/project_relationMetaData.php");
+include("metadata/project_relationMetaData.php");
 include("metadata/outboundEmailMetaData.php");
 include("metadata/addressBookMetaData.php");
 include("metadata/project_bugsMetaData.php");
@@ -95,6 +95,12 @@ include("metadata/documents_casesMetaData.php");
 include("metadata/documents_bugsMetaData.php");
 include("metadata/oauth_nonce.php");
 include("metadata/cron_remove_documentsMetaData.php");
+
+include("metadata/expan_empresa_competidoresMetaData.php");
+
+include("metadata/expan_empresa_activities_1_callsMetaData.php");
+include("metadata/expan_empresa_activities_1_tasksMetaData.php");
+include("metadata/expan_empresa_activities_1_meetingsMetaData.php");
 
 if(file_exists('custom/application/Ext/TableDictionary/tabledictionary.ext.php')){
 	include('custom/application/Ext/TableDictionary/tabledictionary.ext.php');

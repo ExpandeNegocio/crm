@@ -69,6 +69,16 @@ $moduleList[] = 'Expan_Apertura';
 
 
  
+$beanList['Expan_ClientePotencial'] = 'Expan_ClientePotencial';
+$beanFiles['Expan_ClientePotencial'] = 'modules/Expan_ClientePotencial/Expan_ClientePotencial.php';
+$moduleList[] = 'Expan_ClientePotencial';
+
+ 
+$beanList['Expan_Empresa'] = 'Expan_Empresa';
+$beanFiles['Expan_Empresa'] = 'modules/Expan_Empresa/Expan_Empresa.php';
+$moduleList[] = 'Expan_Empresa';
+
+ 
  //WARNING: The contents of this file are auto-generated
 $beanList['Expan_Evento'] = 'Expan_Evento';
 $beanFiles['Expan_Evento'] = 'modules/Expan_Evento/Expan_Evento.php';
@@ -107,6 +117,22 @@ $beanList['Expma_Mailing'] = 'Expma_Mailing';
 $beanFiles['Expma_Mailing'] = 'modules/Expma_Mailing/Expma_Mailing.php';
 $moduleList[] = 'Expma_Mailing';
 
+
+ 
+$beanList['Expan_Mailings'] = 'Expan_Mailings';
+$beanFiles['Expan_Mailings'] = 'modules/Expan_Mailings/Expan_Mailings.php';
+$moduleList[] = 'Expan_Mailings';
+
+
+ 
+$beanList['Expan_Proveedor'] = 'Expan_Proveedor';
+$beanFiles['Expan_Proveedor'] = 'modules/Expan_Proveedor/Expan_Proveedor.php';
+$moduleList[] = 'Expan_Proveedor';
+
+ 
+$beanList['Expan_Portales'] = 'Expan_Portales';
+$beanFiles['Expan_Portales'] = 'modules/Expan_Portales/Expan_Portales.php';
+$moduleList[] = 'Expan_Portales';
 
  
 $beanList['Expan_Franquiciado'] = 'Expan_Franquiciado';

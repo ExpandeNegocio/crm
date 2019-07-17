@@ -35,6 +35,8 @@
  ********************************************************************************/
 
 $mod_strings = array (
+  'LNK_NEW_RECORD'=>'Crear Mailing',
+  'LNK_LIST'=>'Vista Mailing',
   'LBL_ASSIGNED_TO_ID' => 'Asignado a Usuario con Id',
   'LBL_ASSIGNED_TO_NAME' => 'Usuario',
   'LBL_ID' => 'ID',
@@ -79,4 +81,5 @@ $mod_strings = array (
   'LBL_FRANQUICIAS' => 'Franquicias',
   'LBL_TOTALCORREOS' => 'Nº total de correos',
   'LBL_CORREOSPROTOCOLO' => 'Nº de no envíos por protocolo',
+  'LBL_EVENTO_ASOCIADO' => 'Evento asociado',
 );
