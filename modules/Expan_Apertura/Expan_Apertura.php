@@ -105,7 +105,7 @@ class Expan_Apertura extends Expan_Apertura_sugar {
     function franquiciaNoApertura($nombre){
         $db = DBManagerFactory::getInstance();
 
-        $query = "select franq_excep from w_fran_excep where franq_excep='" . $nombre . "'";
+        $query = "select franq_excep from w_fran_excep where ucase(franq_excep)='" . strtoupper($nombre) . "'";
 
         $result = $db -> query($query, true);
 
