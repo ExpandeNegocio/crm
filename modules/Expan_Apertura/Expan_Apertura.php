@@ -122,7 +122,7 @@ class Expan_Apertura extends Expan_Apertura_sugar {
         $apertura = new Expan_Apertura();
         $apertura -> name = $nombre;
         $apertura -> date_entered = TimeDate::getInstance() -> getNow() -> asDb();
-        $apertura -> abierta = 0;
+        $apertura -> abierta = 1;
         $apertura -> tipo_apertura = 3;
 
         $solicitud = $gestion -> GetSolicitud();
@@ -154,7 +154,7 @@ class Expan_Apertura extends Expan_Apertura_sugar {
 
         $apertura -> name = $solicitud -> first_name . " " . $solicitud -> last_name . " - " . $franquicia;
         $apertura -> date_entered = TimeDate::getInstance() -> getNow() -> asDb();
-        $apertura -> abierta = 0;
+        $apertura -> abierta = 1;
         $apertura -> tipo_apertura = 3;
 
         $apertura -> otra_franquicia = $franquicia;

@@ -229,11 +229,11 @@ $dictionary['Expan_Franquiciado'] = array(
     'link' => true,
   ),
   
-    'provincia_apertura' => 
+    'provincia' =>
   array (
     'required' => false,
-    'name' => 'provincia_apertura',
-    'vname' => 'LBL_PROVINCIA_APERTURA',
+    'name' => 'provincia',
+    'vname' => 'LBL_PROVINCIA',
     'type' => 'enum',
     'massupdate' => 0,
     'no_default' => false,
@@ -253,11 +253,11 @@ $dictionary['Expan_Franquiciado'] = array(
     'dependency' => false,
   ),
   
-  'localidad_apertura' => 
+  'localidad' =>
   array (
     'required' => false,
-    'name' => 'localidad_apertura',
-    'vname' => 'LBL_LOCALIDAD_APERTURA',
+    'name' => 'localidad',
+    'vname' => 'LBL_LOCALIDAD',
     'type' => 'enum',
     'massupdate' => 0,
     'no_default' => false,

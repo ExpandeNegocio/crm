@@ -79,85 +79,68 @@ array (
             'label' => 'LBL_HOME_PHONE',
           ),
         ),
-         3 => 
+        3 =>
         array (
           0 => array (
-            'name' => 'skype',
-            'comment' => 'Skype del contacto',
-            'label' => 'LBL_SKYPE',
-          ),         
+              'name' => 'provincia',
+              'label' => 'LBL_PROVINCIA',
+          ),
           1 => 'phone_work',
-          
+
         ),
-        
-        4 => 
+
+        4 =>
         array (
-          0 => 
-          array (
-            'name' => 'no_correos',
-            'label' => 'LBL_NO_CORREOS',
-          ),
-          1 => 
-          array ( 
-            'name' => 'do_not_call',
-            'comment' => 'An indicator of whether contact can be called',
-            'label' => 'LBL_DO_NOT_CALL',
-          ),
+          0 =>
+              array (
+                  'name' => 'localidad',
+                  'label' => 'LBL_LOCALIDAD',
+              ),
+          1 =>
+              array (
+                  'name' => 'sectores_historicos',
+                  'label' => 'LBL_SECTORES_HISTORICOS',
+              ),
         ),
-        
+
         5 =>
-        array(
-            0 => 
-            array(
-                'name' => 'no_newsletter',
-                'label' => 'LBL_NEWSLETTER',
-            ),
-            
-            1 => 
-            array(
-                'name' => 'sectores_historicos',
-                'label' => 'LBL_SECTORES_HISTORICOS',
-            ),
-        ),
-        
-        6 => 
         array (
-          0 => 
-          array (
-            'name' => 'pais',
-            'studio' => 'visible',
-            'label' => 'LBL_PAIS',
-          ),
-          1 => 
-          array (
-            'name' => 'fecha_primer_contacto',
-            'label' => 'LBL_FECHA_PRIMER_CONTACTO',
-          ),
+          0 =>
+              array (
+                  'name' => 'pais',
+                  'studio' => 'visible',
+                  'label' => 'LBL_PAIS',
+              ),
+          1 =>
+              array (
+                  'name' => 'fecha_primer_contacto',
+                  'label' => 'LBL_FECHA_PRIMER_CONTACTO',
+              ),
         ),
-        7 => 
+
+        6 =>
         array (
-          0 => 
-          array (
-            'name' => 'origen',
-            'studio' => 'visible',
-            'label' => 'LBL_ORIGEN',
-          ),
-          1 => 
-          array (
-            'name' => 'check_plurifranquiciado',
-            'label' => 'LBL_CHECK_PLURIFRANQUICIADO',
-          ),
+          0 =>
+              array (
+                  'name' => 'origen',
+                  'studio' => 'visible',
+                  'label' => 'LBL_ORIGEN',
+              ),
+          1 =>
+              array (
+                  'name' => 'check_plurifranquiciado',
+                  'label' => 'LBL_CHECK_PLURIFRANQUICIADO',
+              ),
         ),
-        8 =>
+
+        7 =>
         array(
-            0=>
-            array(
-                'name'=>'observaciones',
-                'label'=>'LBL_OBSERVACIONES'
-            ),
+          0=>
+              array(
+                  'name'=>'observaciones',
+                  'label'=>'LBL_OBSERVACIONES'
+              ),
         ),
-        
-          
       ),
     ),
   ),
