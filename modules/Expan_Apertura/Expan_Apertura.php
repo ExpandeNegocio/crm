@@ -44,6 +44,33 @@ class Expan_Apertura extends Expan_Apertura_sugar {
         parent::Expan_Apertura_sugar();
     }
 
+    function PreparaApertura($name,$solicitud,$gestion){
+        if(Expan_Apertura::existeApertura($name)==false &&
+            Expan_Apertura::franquiciaNoApertura($name)==false) { //no está creada la apertura
+
+            $franquiciado=Expan_Franquiciado::existeFranquiciado($solicitud->id);
+
+            if($franquiciado==false) {  //se crea el franquiciado a partir de la solicitud, no existe
+                $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,4);
+            }
+            Expan_Apertura::crearApertura($name,$gestion, $franquiciado);
+        }
+    }
+
+    function PreparaAperuraCompetencia($solicitud,$gestion){
+        $name=$solicitud-> first_name ." ".$solicitud->last_name. " - Franquicia Competencia";
+
+        $franquiciado= Expan_Franquiciado::existeFranquiciado($solicitud->id);
+        if($franquiciado==false){ //se crea el franquiciado
+            $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,3);
+        }
+
+        if (Expan_Apertura::existeApertura($name)==false &&
+            Expan_Apertura::franquiciaNoApertura($gestion->name)==false){
+            Expan_Apertura::crearApertura($name, $gestion, $franquiciado);
+        }
+    }
+
     function existeApertura($nombre) {
 
         $db = DBManagerFactory::getInstance();

@@ -478,8 +478,8 @@ class AccionesGuardadoGestionSol {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]chk_firmado-'.$bean->chk_precontrato_firmado);
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]chk_firmado Antes-'.$chk_precontrato_firmado_ant);
                 
-                //Si se firma precontrato se crea apertura y se envía el C4
-                if($bean->chk_precontrato_firmado==1 && $chk_precontrato_firmado_ant!=$bean->chk_precontrato_firmado){
+                //Si se firma precontrato se envía el C4
+                if($bean->chk_precontrato_firmado==1 && $chk_contrato_firmado_ant!=$bean->chk_precontrato_firmado){
                     
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Nuevo precontrato firmado');                                            
                     
@@ -491,31 +491,20 @@ class AccionesGuardadoGestionSol {
                             $bean -> f_envio_contrato = $fechaHoy->format('d/m/Y H:i');
                         }
                     }
-                    if(Expan_Apertura::existeApertura($bean->name)==false &&
-                       Expan_Apertura::franquiciaNoApertura($bean->name)==false) {//no está creada la apertura
-                        
-                        $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]No esta creada la apertura por lo que se crea nueva'); 
-                        
-                        $franquiciado=Expan_Franquiciado::existeFranquiciado($solicitud->id);
-                        
-                        if($franquiciado==false) {//se crea el franquiciado a partir de la solicitud, no existe
-                            $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,4);
-                        }
-                        Expan_Apertura::crearApertura($bean->name, $bean, $franquiciado);
-                    
-                    }   
                     
                     $bean->estado_sol=Expan_GestionSolicitudes::ESTADO_POSITIVO;
                     $bean->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_PRECONTRATO;                                      
                 }                            
 
-                //Tenemos que realizar ENVIO C4
+                //Tenemos que realizar ENVIO C4 y crear aèrtura
                 if ($envio_contrato_ant != $bean -> chk_envio_contrato && $bean -> chk_envio_contrato == true) {
                     $mayorCheck = 11;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entramos Envio 4');
 
                     $bean -> preparaCorreo("C4");
                     $bean -> crearTarea("DOCUPerCon");
+
+                    Expan_Apertura::PreparaApertura($bean->name,$solicitud,$bean);
 
                     if ($bean -> f_envio_contrato == $fecha_envio_contrato_ant) {
                         $bean -> f_envio_contrato = $fechaHoy->format('d/m/Y H:i');
@@ -555,18 +544,9 @@ class AccionesGuardadoGestionSol {
                 }               
                 
                 //Si se firma precontrato se crea apertura y se envía el C4
-                if($bean->chk_contrato_firmado==1 && $chk_contrato_firmado_ant!=$bean->chk_contrato_firmado){                                            
-                    
-                    if(Expan_Apertura::existeApertura($bean->name)==false &&
-                       Expan_Apertura::franquiciaNoApertura($bean->name)==false) {//no está creada la apertura
-                        
-                        $franquiciado=Expan_Franquiciado::existeFranquiciado($solicitud->id);
-                        
-                        if($franquiciado==false) {//se crea el franquiciado a partir de la solicitud, no existe
-                            $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,4);
-                        }
-                        Expan_Apertura::crearApertura($bean->name, $bean, $franquiciado);                    
-                    }   
+                if($bean->chk_contrato_firmado==1 && $chk_contrato_firmado_ant!=$bean->chk_contrato_firmado){
+
+                    Expan_Apertura::PreparaApertura($bean->name,$solicitud,$bean);
                     
                     $bean->estado_sol=Expan_GestionSolicitudes::ESTADO_POSITIVO;
                     $bean->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_CONTRATO;                                      
@@ -640,8 +620,16 @@ class AccionesGuardadoGestionSol {
                 {    
                     $bean->estado_sol=Expan_GestionSolicitudes::ESTADO_DESCARTADO;
                     $bean->motivo_descarte=Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_CAIDA_COLABORA;                    
-                }   
-                
+                }
+
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
+                    $bean -> motivo_positivo=='Cont' &&
+                    $bean -> motivo_positivo!=$motivoPositivoAnt)
+                {
+                    Expan_Apertura::PreparaApertura($bean->name,$solicitud,$bean);
+                }
+
+
                 if ($bean->estado_precontrato== "PTE" && 
                 $bean->estado_precontrato!=$estadPreconAnt){
                      $envioCorreos = new EnvioAutoCorreos();
@@ -703,17 +691,8 @@ class AccionesGuardadoGestionSol {
                   ($bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_MISMO_SECTOR||
                     $bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR) &&
                     $bean -> estado_sol!=$estadoAnt){
-                                            
-                    $franquiciado= Expan_Franquiciado::existeFranquiciado($solicitud->id);
-                    if($franquiciado==false){ //se crea el franquiciado
-                        $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,3);
-                    }
-                    $name=$solicitud-> first_name ." ".$solicitud->last_name. " - Franquicia Competencia";
-                    if (Expan_Apertura::existeApertura($name)==false &&
-                        Expan_Apertura::franquiciaNoApertura($bean->name)==false){
-                            Expan_Apertura::crearApertura($name, $bean, $franquiciado);
-                    }
-                    
+
+                    PreparaAperuraCompetencia($solicitud,$bean,3);
                 }
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]tion no Estado 2');
