@@ -32,8 +32,11 @@ class AccionesGuardado {
 		    
             $bean->ignore_update_c = true;                 
                       
-            $this->limpiarTelefonos($bean); 
-                
+            $this->limpiarTelefonos($bean);
+
+            $this ->crearEmpresa($bean);
+            $this->PasoFranquiciado($bean);
+
             //Creacion de una nueva solicitud
 			if (!isset(self::$fetchedRow[$bean -> id])) {
 			                    
@@ -116,8 +119,7 @@ class AccionesGuardado {
             //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
             $this -> marcarSectores($bean -> franquicias_contactadas, $bean-> id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
             $this -> marcarSectores($bean -> otras_franquicias, $bean -> id);
-            $this ->crearEmpresa($bean);
-            $this->PasoFranquiciado($bean); 
+
 		}
 	}
 
@@ -285,9 +287,9 @@ class AccionesGuardado {
             
             $empresa->origen="expande";
             $empresa->chk_es_cliente_potencial=$bean->chk_empresa_cli_potencial;
-            $emrpesa->chk_es_proveedor=$bean->chk_empresa_provee;
-            $emrpesa->chk_es_competidor=$bean->chk_empresa_competencia;
-            $emrpesa->chk_alianza=$bean->chk_empresa_alianza;
+            $empresa->chk_es_proveedor=$bean->chk_empresa_provee;
+            $empresa->chk_es_competidor=$bean->chk_empresa_competencia;
+            $empresa->chk_alianza=$bean->chk_empresa_alianza;
             $empresa->name=$nomEmpresa;
             $empresa->contacto1= $bean->first_name." ".$bean->last_name;
             $empresa->telefono1= $bean->phone_mobile;
@@ -738,6 +740,7 @@ class AccionesGuardado {
             if($franquiciado==false) {//se crea el franquiciado a partir de la solicitud, no existe
                 $GLOBALS['log'] -> info('[ExpandeNegocio][PasoFranquiciado]Antes creacion franquiciado');   
                 $franquiciado=Expan_Franquiciado::crearFranquiciado($bean,2);
+                $franquiciado->setAddress($bean);
             }
             
             $lista=explode(",",str_replace(";",",",$franquicia_historicosrAct));

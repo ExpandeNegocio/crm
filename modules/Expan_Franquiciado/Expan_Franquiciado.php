@@ -75,9 +75,7 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] email1'.$solicitud -> email1);
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] email2'.$solicitud -> email2);
-        
-        $franquiciado -> email1 = $solicitud -> email1;
-        $franquiciado -> email2 = $solicitud -> email2;
+
         $franquiciado -> pais = $solicitud -> pais_c;
         $franquiciado -> origen = $origen;
         
@@ -95,7 +93,16 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         //guardar los cambios del franquiciado
         $franquiciado -> ignore_update_c = true;
         $franquiciado -> save();
+
+
         return $franquiciado;
+    }
+
+    public function  setAddress($solicitud){
+
+        $this -> emailAddress -> addAddress($solicitud -> email1,true);
+        $this -> emailAddress -> addAddress($solicitud -> email2,true);
+        $this->emailAddress->save($this->id, $this->module_dir);
     }
 
     public function getEstado()

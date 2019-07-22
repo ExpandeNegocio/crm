@@ -52,6 +52,7 @@ class Expan_Apertura extends Expan_Apertura_sugar {
 
             if($franquiciado==false) {  //se crea el franquiciado a partir de la solicitud, no existe
                 $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,4);
+                $franquiciado->setAddress($solicitud);
             }
             Expan_Apertura::crearApertura($name,$gestion, $franquiciado);
         }
@@ -63,6 +64,7 @@ class Expan_Apertura extends Expan_Apertura_sugar {
         $franquiciado= Expan_Franquiciado::existeFranquiciado($solicitud->id);
         if($franquiciado==false){ //se crea el franquiciado
             $franquiciado=Expan_Franquiciado::crearFranquiciado($solicitud,3);
+            $franquiciado->setAddress($solicitud);
         }
 
         if (Expan_Apertura::existeApertura($name)==false &&
