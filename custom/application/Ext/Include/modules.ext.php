@@ -69,6 +69,12 @@ $moduleList[] = 'Expan_Apertura';
 
 
  
+$beanList['Expan_CentroComercial'] = 'Expan_CentroComercial';
+$beanFiles['Expan_CentroComercial'] = 'modules/Expan_CentroComercial/Expan_CentroComercial.php';
+$moduleList[] = 'Expan_CentroComercial';
+
+
+ 
 $beanList['Expan_ClientePotencial'] = 'Expan_ClientePotencial';
 $beanFiles['Expan_ClientePotencial'] = 'modules/Expan_ClientePotencial/Expan_ClientePotencial.php';
 $moduleList[] = 'Expan_ClientePotencial';
