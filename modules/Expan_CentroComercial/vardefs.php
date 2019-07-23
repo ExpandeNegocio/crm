@@ -445,6 +445,61 @@ $dictionary['Expan_CentroComercial'] = array(
 		'cols' => '80',
 	),
 
+	'gastos_comunidad' =>
+		array(
+			'required' => false,
+			'name' => 'gastos_comunidad',
+			'vname' => 'LBL_GASTOS_COMUNIDAD',
+			'type' => 'varchar',
+			'massupdate' => 0,
+			'no_default' => false,
+			'comments' => '',
+			'help' => '',
+			'importable' => 'true',
+			'duplicate_merge' => 'disabled',
+			'duplicate_merge_dom_value' => '0',
+			'audited' => true,
+			'reportable' => true,
+			'unified_search' => false,
+			'merge_filter' => 'disabled',
+			'len' => '255',
+			'size' => '20',
+		),
+
+	'auditoria_anual' =>
+		array(
+			'required' => false,
+			'name' => 'auditoria_anual',
+			'vname' => 'LBL_AUDITORIA_ANUAL',
+			'type' => 'varchar',
+			'massupdate' => 0,
+			'no_default' => false,
+			'comments' => '',
+			'help' => '',
+			'importable' => 'true',
+			'duplicate_merge' => 'disabled',
+			'duplicate_merge_dom_value' => '0',
+			'audited' => true,
+			'reportable' => true,
+			'unified_search' => false,
+			'merge_filter' => 'disabled',
+			'len' => '255',
+			'size' => '20',
+		),
+
+	'lid_provincia' =>
+		array(
+			'name' => 'lid_provincia',
+			'vname' => 'LBL_LID_PROVINCIA',
+			'type' => 'int',
+			'len' => 5,
+			'importable' => 'false',
+			'massupdate' => false,
+			'reportable' => false,
+			'audited' => true,
+			'studio' => 'false',
+		),
+
 /////////////////RELATIONSHIP LINKS////////////////////////////
 	  'created_by_link' =>
   array (

@@ -55,15 +55,15 @@ $mod_strings = array(
   'LBL_LOCALES' => 'Numero de locales',
   'LBL_PRECIO_SUELO' => 'Precio mdedio suelo m2',
   'LBL_VALORACION_EN' => 'Valoracion EN',
-  'LBL_EMPRESA_GESTORA'=> 'Empresa gestora',
-  'LBL_DIRECCION'=> 'Dirección',
-  'LBL_OBSERVACIONES'=> 'Observaciones',
-  'LBL_TELEFONO_CONTACTO'=> 'Teléfono de contacto',
-  'LBL_WEB'=>'Web',
-  'LBL_YEAR_APERTURA'=>'Año de apertura',
-  'LBL_SUPERFICIE_ALQUILABLE'=>'Superficie alquilable',
-  'LBL_VISITANTES'=>'Numero de visitantes',
-
-
-
+  'LBL_EMPRESA_GESTORA' => 'Empresa gestora',
+  'LBL_DIRECCION' => 'Dirección',
+  'LBL_OBSERVACIONES' => 'Observaciones',
+  'LBL_TELEFONO_CONTACTO' => 'Teléfono de contacto',
+  'LBL_WEB' => 'Web',
+  'LBL_YEAR_APERTURA' => 'Año de apertura',
+  'LBL_SUPERFICIE_ALQUILABLE' => 'Superficie alquilable',
+  'LBL_VISITANTES' => 'Numero de visitantes',
+  'LBL_LID_PROVINCIA' => 'Liderazgo en la Provincia',
+  'LBL_AUDITORIA_ANUAL' => 'Auditoria anual',
+  'gastos_comunidad' => 'Gastos de comunidad',
 );

@@ -38,10 +38,16 @@ if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 $module_name = 'Expan_CentroComercial';
 $listViewDefs[$module_name] = array(
   'NAME' => array(
-    'width' => '40',
+    'width' => '10',
     'label' => 'LBL_ACCOUNT_NAME',
     'link' => true,
     'default' => true,
+  ),
+
+  'tipo_cc' => array(
+    'width' => '10',
+    'label' => 'LBL_TIPO_CC',
+    'default' => true
   ),
 
   'provincia_apertura' => array(
@@ -49,6 +55,14 @@ $listViewDefs[$module_name] = array(
     'label' => 'LBL_PROVINCIA_APERTURA',
     'default' => true
   ),
+
+  'localidad_apertura' => array(
+    'width' => '10',
+    'label' => 'LBL_LOCALIDAD_APERTURA',
+    'default' => true
+  ),
+
+
 
 );
 ?>

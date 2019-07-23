@@ -139,6 +139,31 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'gastos_comunidad',
+                        'label' => 'LBL_GASTOS_COMUNIDAD',
+                      ),
+                    1 => array(
+                      'name' => 'auditoria_anual',
+                      'label' => 'LBL_AUDITORIA_ANUAL',
+                    ),
+                  ),
+
+                8 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'lid_provincia',
+                        'label' => 'LBL_LID_PROVINCIA',
+                      ),
+                    1 => array(
+
+                    ),
+                  ),
+
+                9 =>
+                  array(
+                    0 =>
+                      array(
                         'name' => 'telefono_contacto',
                         'label' => 'LBL_TELEFONO_CONTACTO',
                       ),
