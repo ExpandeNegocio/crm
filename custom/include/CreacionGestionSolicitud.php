@@ -692,7 +692,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR) &&
                     $bean -> estado_sol!=$estadoAnt){
 
-                    PreparaAperuraCompetencia($solicitud,$bean,3);
+                    Expan_Apertura::PreparaAperuraCompetencia($solicitud,$bean,3);
                 }
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]tion no Estado 2');
