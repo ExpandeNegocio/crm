@@ -42,7 +42,7 @@ class EnvioAutoCorreos {
         $emailTemp -> retrieve($idTemp);
         
         $subject = $this->modificaMarcas($solicitud,$gestion,'',from_html($emailTemp -> subject));
-        $body = $this->modificaMarcas($bean,$gestion,'',from_html($emailTemp -> body_html));
+        $body = $this->modificaMarcas($solicitud,$gestion,'',from_html($emailTemp -> body_html));
         
         $fromName = $fran -> name;
         
@@ -89,17 +89,17 @@ class EnvioAutoCorreos {
             case "FA":
                 if ($tipoEnv=="franq"){
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Rellenar Correos Ficha]Envio a Franquicia');
-                    $tabla= $tabla . $gestion->crearTablaFichaFranquicia();
+                    $tabla= $gestion->crearTablaFichaFranquicia();
                 }else{
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Rellenar Correos Ficha]Envio a Consultor');
-                    $tabla= $tabla . $gestion->crearTablaFichaConsultor();
+                    $tabla= $gestion->crearTablaFichaConsultor();
                 }                
                 break;
             case "FR":
                 if ($tipoEnv=="franq"){
-                    $tabla= $tabla . $gestion->crearTablaFichaFranquicia();
+                    $tabla= $gestion->crearTablaFichaFranquicia();
                 }else{
-                    $tabla= $tabla . $gestion->crearTablaFichaConsultor();
+                    $tabla= $gestion->crearTablaFichaConsultor();
                 }
                 break;
             case "FPC":   
@@ -114,7 +114,7 @@ class EnvioAutoCorreos {
         $GLOBALS['log'] -> info('[ExpandeNegocio][Rellenar Correos Ficha]idTemp-'.$emailTemp -> body_html); 
         
         $subject = $this->modificaMarcas($solicitud,$gestion,'',from_html($emailTemp -> subject));
-        $body = $this->modificaMarcas($bean,$gestion,$tabla ,from_html($emailTemp -> body_html));     
+        $body = $this->modificaMarcas($solicitud,$gestion,$tabla ,from_html($emailTemp -> body_html));
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Rellenar Correos Ficha]Body'.$body);   
         
@@ -125,13 +125,17 @@ class EnvioAutoCorreos {
         $cuentaCor = new OutboundEmail();
         $cuentaCor = $cuentaCor -> getMailerByName($current_user, $fran -> correo_envio);
         
-        $mail = $this->sendMessageV2($rcpt_name,$addresses,$subject,$body,$fromName,$cuentaCor,$idTemp);
+        $mail = $this->sendMessageV2($rcpt_name,$addresses,$subject,$body,"info@expandenegocio.com",$cuentaCor,$idTemp);
         
         if (!$mail -> Send()) {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]ERROR: El envio del correo ha fallado - ' . $mail -> ErrorInfo);
             return "Error";
         } else {
-            $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Todo Ok');        
+          foreach ($addresses as $key => $value) {
+            $rcpt_email = $addresses[$key]['email_address'];
+            $this -> almacenarCorreo($mail, $rcpt_email, $gestion, "Expan_GestionSolicitudes");
+          }
+          $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Todo Ok');
             return "Ok";
         } 
     }
@@ -347,8 +351,8 @@ class EnvioAutoCorreos {
                 $this->marcarEnviadoMailing(implode(",",$arrayCorreos),$idMailing);
                 if ($mailing->guardar_correo==1){
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Envio correos]Entra Asociar Correo');
-                    $textoMai=$mailing->texto_informe." - ".$mailing->name;
-                    $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$textoMai);
+                    $textoMail=$mailing->texto_informe." - ".$mailing->name;
+                    $this -> asociarCorreoSolicitudes(implode(",",$arrayCorreos),$fran,$mail,$textoMail);
                 }
             }else{
                 $this->marcarNoEnviadoMailing(implode(",",$arrayCorreos),$idMailing);

@@ -26,7 +26,7 @@ class AccionesGuardadoTel {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada]Relacionada con empresa');
                 $bean -> parent_type = $_REQUEST["relate_to"];
                 $bean -> parent_id = $_REQUEST["relate_id"];
-                $ben -> name = $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];
+                $bean -> name = $GLOBALS['app_list_strings']['tipo_llamada_list'][$bean -> call_type];
 
                 $bean -> save();
                 return;
