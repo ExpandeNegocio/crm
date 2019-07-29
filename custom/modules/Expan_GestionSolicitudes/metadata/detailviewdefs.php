@@ -187,7 +187,7 @@ $viewdefs [$module_name] =
                     1 =>
                       array(
                         'name' => 'franquicia',
-                        'customCode' => '<a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D' . $franquicia->id . '"><span id="expan_franquicia_span" class="sugar_field" data-id-value="' . $franquicia->id . '">' . $franquicia->name . '</span></a>',
+                        'customCode' => '<a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D' . $franquicia->id . '"><span id="expan_franquicia" class="sugar_field" data-id-value="' . $franquicia->id . '">' . $franquicia->name . '</span></a>',
                         'label' => 'LBL_FRANQUICIA',
                       ),
 
