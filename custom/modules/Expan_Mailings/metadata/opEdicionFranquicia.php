@@ -7,7 +7,7 @@ class opEdicionFranquicia {
         
         echo '<select name="franquicias[]" id="franquicias" size="12" style="width: 250px" multiple="true">';
                 
-        $query = "select id,name from expan_franquicia where deleted=0 and tipo_cuenta in (1,2) ";        
+        $query = "select id,name from expan_franquicia where deleted=0 and tipo_cuenta in (1,2,5,8,3) ";
         $options= $this->getOptions($query,"name","id");
     
         echo $options;
