@@ -5,7 +5,6 @@ require_once('modules/Expan_Franquicia/Expan_Franquicia.php');
 
 class AccionesGuardadoEmpresa
 {
-
   protected static $fetchedRow = array();
 
   /**
