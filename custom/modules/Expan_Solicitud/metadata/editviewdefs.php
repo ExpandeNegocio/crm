@@ -19,6 +19,8 @@ if ($solicitud->getFranquiciado()!=""){
                     onclick="abrirFranquiciado(\''.$id.'\');" value="Abrir Franquiciado">';
 }
 
+$disponeLocal =$GLOBALS['app_list_strings']['lst_tipo_dispone_local'][$solicitud->dispone_local];
+
 $viewdefs [$module_name] = 
 array (
   'EditView' => 
@@ -851,6 +853,8 @@ array (
           array (
             'name' => 'dispone_local',
             'label' => 'LBL_DISPONE_LOCAL',
+            'customCode' =>$disponeLocal,
+
           ),
           1 => 
           array (        
