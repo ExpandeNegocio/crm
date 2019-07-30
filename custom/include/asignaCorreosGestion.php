@@ -35,7 +35,10 @@
         $db -> query($sqlUp);
     
         //Marco como recibida informacion
-        $sqlUp = "UPDATE expan_gestionsolicitudes SET chk_responde_C1=1, f_responde_C1='" . $row['date_sent'] . "' WHERE id='" . $row['id'] . "' AND chk_responde_C1=0";
+        $sqlUp = "UPDATE expan_gestionsolicitudes SET chk_responde_C1=1, f_responde_C1='" . $row['date_sent'] . "' WHERE id='" . $row['id'] . "' AND chk_responde_C1=0 AND ";
+        $sqlUp =$sqlUp. "chk_autoriza_central=0 AND chk_resolucion_dudas=0 AND chk_recepcio_cuestionario=0 AND chk_informacion_adicional=0 AND chk_entrevista=0 AND chk_propuesta_zona=0 AND ";
+        $sqlUp =$sqlUp. " chk_visitado_fran=0 AND chk_envio_precontrato=0 AND chk_visita_local=0 AND chk_operacion_autorizada=0 AND chk_envio_precontrato_personal=0 AND chk_precontrato_firmado=0 AND ";
+        $sqlUp =$sqlUp. " chk_envio_contrato=0 AND chk_aprobacion_local=0 AND chk_envio_plan_financiero_personal=0 AND chk_visita_central=0 AND chk_envio_contrato_personal=0 AND chk_contrato_firmado=0 ";
         $GLOBALS['log'] -> info("[ExpandeNegocio][Cargo correos] Actualizacion Gestion-" . $sqlUp);
         $db -> query($sqlUp);
     
