@@ -94,23 +94,23 @@ $viewdefs [$module_name] =
                       ),
                     9 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C11") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.1") . '{/if}',
                       ),
                     10 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C12") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.2") . '{/if}',
                       ),
                     11 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C13") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.3") . '{/if}',
                       ),
                     12 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C14") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.4") . '{/if}',
                       ),
                     13 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C15") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.5") . '{/if}',
                       ),
                     14 =>
                       array(

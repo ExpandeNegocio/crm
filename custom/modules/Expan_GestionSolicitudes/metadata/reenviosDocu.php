@@ -9,7 +9,7 @@
 	
 	$id = $_POST['id'];
 	$tipoEnvio = $_POST['tipoEnvio'];
-    $estadoEdicion= $_POST['estadoEdicion'];
+	$estadoEdicion= $_POST['estadoEdicion'];
 	
 	$bean = new Expan_GestionSolicitudes();
 	$bean->retrieve($id);

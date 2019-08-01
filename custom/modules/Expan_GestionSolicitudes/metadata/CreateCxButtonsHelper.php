@@ -82,23 +82,23 @@ class CreateCxButtonsHelper
         $val = $this->franquicia->chk_c4;
         break;
 
-      case 'C11':
+      case 'C1.1':
         $val = $this->franquicia->chk_c11;
         break;
 
-      case 'C12':
+      case 'C1.2':
         $val = $this->franquicia->chk_c12;
         break;
 
-      case 'C13':
+      case 'C1.3':
         $val = $this->franquicia->chk_c13;
         break;
 
-      case 'C14':
+      case 'C1.4':
         $val = $this->franquicia->chk_c14;
         break;
 
-      case 'C15':
+      case 'C1.5':
         $val = $this->franquicia->chk_c15;
         break;
     }
@@ -127,23 +127,23 @@ class CreateCxButtonsHelper
         return $this->tituloC4;
         break;
 
-      case 'C11':
+      case 'C1.1':
         return $this->tituloC11;
         break;
 
-      case 'C12':
+      case 'C1.2':
         return $this->tituloC12;
         break;
 
-      case 'C13':
+      case 'C1.3':
         return $this->tituloC13;
         break;
 
-      case 'C14':
+      case 'C1.4':
         return $this->tituloC14;
         break;
 
-      case 'C15':
+      case 'C1.5':
         return $this->tituloC15;
         break;
     }
