@@ -245,7 +245,7 @@
             $empresa->ignore_update_c = true;
             $empresa->save();
             
-            $bean->empresa=$empresa->id;       
+            $bean->empresa_id=$empresa->id;
         }          
     }
 ?>

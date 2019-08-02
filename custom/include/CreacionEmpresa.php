@@ -86,7 +86,7 @@ class AccionesGuardadoEmpresa
     }
 
     $franq->name = $bean->name;
-    $franq->empresa = $bean->id;
+    $franq->empresa_id = $bean->id;
     $franq->sector = $bean->sector;
     $franq->phone_office = $bean->telefono_contacto_1;
     $franq->ignore_update_c = true;
