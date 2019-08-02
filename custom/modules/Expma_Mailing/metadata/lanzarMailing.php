@@ -12,11 +12,10 @@
     $idMailing = rawurldecode($_GET['idMailing']);
     $idplantilla = rawurldecode($_GET['template']);
     $porFranquicia = rawurldecode($_GET['porFranquicia']);
-    
-    
+
     $emailTemp = new EmailTemplate();
     $emailTemp -> disable_row_level_security = true;
-    $emailTemp -> retrieve($idTemp);
+    $emailTemp -> retrieve($idplantilla);
     
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]ID mailing-' . $idMailing);
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]ID Plantilla-' . $idplantilla);
@@ -54,8 +53,8 @@
     $query=$query." m.plantilla = et.id AND ";
     $query=$query." s.id = r.bean_id AND ";
     $query=$query." e.id = r.email_address_id AND ";
-    $query=$query." (et.franquicia = '' OR s.cerrada <> 1) AND ";
-    $query=$query." (et.franquicia = '' OR s.positiva <> 1) AND ";
+    $query=$query." (coalesce(et.franquicia,null,'') = '' OR s.cerrada <> 1) AND ";
+    $query=$query." (coalesce(et.franquicia,null,'') = '' OR s.positiva <> 1) AND ";
     $query=$query." cs.no_correos_c = 0 AND ";
     $query=$query." cs.id_c = s.id AND ";
     $query=$query." enviado = 0 AND ";
@@ -90,4 +89,3 @@
     }
     
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]Finalizacion Lanzamiento mailing');
-?>

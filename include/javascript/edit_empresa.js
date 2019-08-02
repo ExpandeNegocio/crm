@@ -135,7 +135,7 @@ function validarEmpresa() {
         $("#positivo_cp").css("border", "#94c1e8 solid 1px");
     }
 
-    if ($( "#sector option:selected" ).text()==""){
+    if ($("#sector option:selected").text() == "") {
         alert("El Sector debe estar relleno");
         return false;
     }

@@ -1128,10 +1128,10 @@ function envioFicha(tipoEnvio) {
 
         for (i = 0; i < lista.length; i++) {
             if (lista[i].checked == true && lista[i].name.indexOf("mass[]") > -1) {//coger los checkbox que interesan
+                idGests=lista[i].value;
                 enviado = envioCorreoFicha(idGests, tipoEnvio);
             }
         }
-
 
         YAHOO.SUGAR.MessageBox.hide();
         if (enviado) {
@@ -1142,8 +1142,6 @@ function envioFicha(tipoEnvio) {
 
     } else {
         return false;
-
-
     }
 }
 
@@ -1228,7 +1226,6 @@ function activarFecha(check, fecha) {
     } else {
         $(fecha).val("");
     }
-
 }
 
 function addFechaObserva(linTexto) {
