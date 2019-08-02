@@ -2445,7 +2445,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
     'chk_c2' =>
@@ -2466,7 +2466,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -2488,7 +2488,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -2510,7 +2510,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
     'chk_c11' =>
@@ -2531,7 +2531,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -2553,7 +2553,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -2575,7 +2575,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -2597,7 +2597,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -2619,7 +2619,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -4741,7 +4741,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '255',
+        'len' => '1',
         'size' => '20',
       ),
 
@@ -4762,7 +4762,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -4783,7 +4783,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -4804,7 +4804,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -4825,7 +4825,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -4869,9 +4869,10 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
+
     'cd_perfil_franquiciado' =>
       array(
         'required' => false,
@@ -4889,27 +4890,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
-        'size' => '100',
-      ),
-    'cd_perfil_franquiciado' =>
-      array(
-        'required' => false,
-        'name' => 'cd_perfil_franquiciado',
-        'vname' => 'LBL_CD_PERFIL_FRANQUICIADO',
-        'type' => 'varchar',
-        'massupdate' => 0,
-        'no_default' => false,
-        'comments' => '',
-        'help' => '',
-        'importable' => 'true',
-        'duplicate_merge' => 'disabled',
-        'duplicate_merge_dom_value' => '0',
-        'audited' => true,
-        'reportable' => true,
-        'unified_search' => false,
-        'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
     'cd_oferta_comercial' =>
@@ -4929,7 +4910,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
     'cd_modal_negocio' =>
@@ -4949,7 +4930,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -4970,7 +4951,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -4991,7 +4972,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -5012,7 +4993,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -5033,7 +5014,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
@@ -5054,7 +5035,7 @@ $dictionary['Expan_Franquicia'] = array(
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-        'len' => '512',
+        'len' => '200',
         'size' => '100',
       ),
 
