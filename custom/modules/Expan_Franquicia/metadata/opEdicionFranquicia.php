@@ -257,7 +257,7 @@ class opEdicionFranquicia {
     
      public function showListCompetidores($idFranquicia){
         
-        echo "<p>Listado de Comperidores</p>";
+        echo "<H1>Listado de Comperidores</H1>";
         echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>

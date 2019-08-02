@@ -1871,8 +1871,117 @@ array (
       
       'LBL_EDITVIEW_COMPETIDORES' => 
       array (
+
+        0 =>
+          array (
+            0 =>
+              array (
+                'label' => 'LBL_CARACTERISTICAS_COMPETI',
+              ),
+            1 =>
+              array (
+              ),
+          ),
+
+        1 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_sector',
+                'label' => 'LBL_CD_SECTOR',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_inversion',
+                'label' => 'LBL_CD_INVERSION',
+              ),
+          ),
+
+        2 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_subsector',
+                'label' => 'LBL_CD_SUBSECTOR',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_opera_inter',
+                'label' => 'LBL_CD_OPERA_INTER',
+              ),
+          ),
+
+        3 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_actividad',
+                'label' => 'LBL_CD_ACTTIVIDAD',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_num_centros',
+                'label' => 'LBL_CD_NUM_CENTROS',
+              ),
+          ),
+
+        4 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_perfil_franquiciado',
+                'label' => 'LBL_CD_PERFIL_FRANQUICIADO',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_oferta_comercial',
+                'label' => 'LBL_CD_OFERTA_COMERCIAL',
+              ),
+          ),
+
+        5 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_modal_negocio',
+                'label' => 'LBL_CD_MODAL_NEGOCIO',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_canon',
+                'label' => 'LBL_CD_CANON',
+              ),
+          ),
+
+        6 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_royaltys',
+                'label' => 'LBL_CD_ROYALTYS',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_pobl_minima',
+                'label' => 'LBL_CD_POBL_MINIMA',
+              ),
+          ),
+
+        7 =>
+          array (
+            0 =>
+              array (
+                'name' => 'cd_caract_local',
+                'label' => 'LBL_CD_CARACT_LOCAL',
+              ),
+            1 =>
+              array (
+                'name' => 'cd_estruct_personal',
+                'label' => 'LBL_CD_ESTRUCT_PERSONAL',
+              ),
+          ),
                      
-        1 => 
+        8 =>
         array (
           0 => 
           array (
