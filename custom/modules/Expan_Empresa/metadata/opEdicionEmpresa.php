@@ -187,14 +187,15 @@ class opEdicionEmpresa {
     public function getOptionsByList ($listName){
              
         $list= $GLOBALS['app_list_strings'][$listName];
-        
+
+        $options='';
+
         foreach ($list as $clave => $valor){
-            $options=$options.'<option label="'.$valor.'" value="'.$clave.'">'.$valor;
+          $options=$options.'<option label="'.$valor.'" value="'.$clave.'">'.$valor;
             $options=$options.'</option>';  
         }                      
                    
         return $options;
-        
     }
 }
 ?>

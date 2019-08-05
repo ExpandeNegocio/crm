@@ -95,8 +95,6 @@
     		}
     		$envioCorreos=new EnvioAutoCorreos;    		
     		$envioCorreos->envioCorreosMailing($listaCorreos, $idTemplate, $listaIDSol,$cuerpo);
-    				
-    		$GLOBALS['log']->info('[ExpandeNegocio][EnviarCorreosEvento]Solicitud - '.$correo);
 		}else{
 		    //No hay plantilla
             

@@ -81,6 +81,7 @@ class opEdicionFranquicia {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id del franquiciado: '.$idFranquiciado);
    
         $result = $db -> query($query);
+        $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["franquicia"];                                           
         }
@@ -400,14 +401,13 @@ class opEdicionFranquicia {
     public function getOptionsByList ($listName){
              
         $list= $GLOBALS['app_list_strings'][$listName];
-        
+        $options='';
         foreach ($list as $clave => $valor){
             $options=$options.'<option label="'.$valor.'" value="'.$clave.'">'.$valor;
             $options=$options.'</option>';  
         }                      
                    
         return $options;
-        
     }
     
 }

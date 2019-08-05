@@ -270,6 +270,7 @@ class opEdicionSolicitud {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query);
+        $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["franquicias_contactadas"];                                           
         }
@@ -285,6 +286,7 @@ class opEdicionSolicitud {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerSectorHisto]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query);
+        $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["sectores_historicos"];                                           
         }
@@ -300,6 +302,7 @@ class opEdicionSolicitud {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranHisto]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query);
+        $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["franquicia_historicos"];                                           
         }
@@ -315,6 +318,7 @@ class opEdicionSolicitud {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query, true);
+        $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["otras_franquicias"];                                           
         }
@@ -327,9 +331,10 @@ class opEdicionSolicitud {
         
         $db = DBManagerFactory::getInstance();
         $query = "select franq_apertura_desca from expan_gestionsolicitudes where id='".$idGest."' and deleted=0;";
-        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Id de la solicitud: '.$idSol);
+        $GLOBALS['log']->info('[ExpandeNegocio][recogerFranContactadas]Consulta: '.$query);
    
         $result = $db -> query($query, true);
+        $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["franq_apertura_desca"];                                           
         }
@@ -345,6 +350,7 @@ class opEdicionSolicitud {
         $GLOBALS['log']->info('[ExpandeNegocio][recogerTagsEmpresa]Id de la solicitud: '.$idSol);
    
         $result = $db -> query($query, true);
+      $franq='';
         while ($row = $db -> fetchByAssoc($result)) {
             $franq=$row["tags_empresa"];                                           
         }
