@@ -1,5 +1,5 @@
 <?php
-// created: 2019-07-17 19:47:13
+// created: 2019-08-05 17:25:23
 $mod_strings = array (
   'LBL_ADD_ANOTHER_FILE' => 'Agregar Otro Archivo',
   'LBL_ADD_DOCUMENT' => 'Agregar un Documento Sugar',

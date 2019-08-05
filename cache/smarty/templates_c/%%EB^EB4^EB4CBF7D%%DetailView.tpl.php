@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2019-07-17 19:47:17
+<?php /* Smarty version 2.6.11, created on 2019-08-05 17:25:24
          compiled from cache/modules/Expan_Solicitud/DetailView.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'sugar_include', 'cache/modules/Expan_Solicitud/DetailView.tpl', 33, false),array('function', 'sugar_translate', 'cache/modules/Expan_Solicitud/DetailView.tpl', 40, false),array('function', 'counter', 'cache/modules/Expan_Solicitud/DetailView.tpl', 68, false),array('function', 'multienum_to_array', 'cache/modules/Expan_Solicitud/DetailView.tpl', 88, false),array('function', 'sugar_phone', 'cache/modules/Expan_Solicitud/DetailView.tpl', 402, false),array('function', 'sugar_help', 'cache/modules/Expan_Solicitud/DetailView.tpl', 1509, false),array('function', 'sugar_number_format', 'cache/modules/Expan_Solicitud/DetailView.tpl', 1634, false),array('function', 'sugar_getjspath', 'cache/modules/Expan_Solicitud/DetailView.tpl', 2950, false),array('modifier', 'strip_semicolon', 'cache/modules/Expan_Solicitud/DetailView.tpl', 78, false),array('modifier', 'escape', 'cache/modules/Expan_Solicitud/DetailView.tpl', 974, false),array('modifier', 'url2html', 'cache/modules/Expan_Solicitud/DetailView.tpl', 974, false),array('modifier', 'nl2br', 'cache/modules/Expan_Solicitud/DetailView.tpl', 974, false),)), $this); ?>
@@ -1641,72 +1641,6 @@ echo '<input type="hidden" id="is_editable" value="">';
 <?php echo smarty_function_counter(array('name' => 'fieldsUsed'), $this);?>
 
 <td width='12.5%' scope="col">
-<?php if (! $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['hidden']): ?>
-<?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'LBL_ENTREVISTA_PREVIA_CLIENTE','module' => 'Expan_Solicitud'), $this); $this->_smarty_vars['capture']['label'] = ob_get_contents();  $this->assign('label', ob_get_contents());ob_end_clean(); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['label'])) ? $this->_run_mod_handler('strip_semicolon', true, $_tmp) : smarty_modifier_strip_semicolon($_tmp)); ?>
-:
-<?php endif; ?>
-</td>
-<td width='37.5%'  >
-<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('chk_entrevista_previa_cliente','bool')" class="div_value" id="chk_entrevista_previa_cliente_detailblock" target_id="chk_entrevista_previa_cliente">
-<?php if (! $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['hidden']): ?>
-<?php echo smarty_function_counter(array('name' => 'panelFieldCount'), $this);?>
-
-
-<?php if (strval ( $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['value'] ) == '1' || strval ( $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['value'] ) == 'yes' || strval ( $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['value'] ) == 'on'): ?> 
-<?php $this->assign('checked', 'CHECKED'); ?>
-<?php else: ?>
-<?php $this->assign('checked', ""); ?>
-<?php endif; ?>
-<input type="checkbox" class="checkbox" name="<?php echo $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['name']; ?>
-" id="<?php echo $this->_tpl_vars['fields']['chk_entrevista_previa_cliente']['name']; ?>
-" value="$fields.chk_entrevista_previa_cliente.value" disabled="true" <?php echo $this->_tpl_vars['checked']; ?>
->
-<?php endif; ?>
-</div>
-</td>
-<?php echo smarty_function_counter(array('name' => 'fieldsUsed'), $this);?>
-
-<td width='12.5%' scope="col">
-<?php if (! $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['hidden']): ?>
-<?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'LBL_ENTREVISTA_PREVIA_EN','module' => 'Expan_Solicitud'), $this); $this->_smarty_vars['capture']['label'] = ob_get_contents();  $this->assign('label', ob_get_contents());ob_end_clean(); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['label'])) ? $this->_run_mod_handler('strip_semicolon', true, $_tmp) : smarty_modifier_strip_semicolon($_tmp)); ?>
-:
-<?php endif; ?>
-</td>
-<td width='37.5%'  >
-<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('chk_entrevista_previa_EN','bool')" class="div_value" id="chk_entrevista_previa_EN_detailblock" target_id="chk_entrevista_previa_EN">
-<?php if (! $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['hidden']): ?>
-<?php echo smarty_function_counter(array('name' => 'panelFieldCount'), $this);?>
-
-
-<?php if (strval ( $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['value'] ) == '1' || strval ( $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['value'] ) == 'yes' || strval ( $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['value'] ) == 'on'): ?> 
-<?php $this->assign('checked', 'CHECKED'); ?>
-<?php else: ?>
-<?php $this->assign('checked', ""); ?>
-<?php endif; ?>
-<input type="checkbox" class="checkbox" name="<?php echo $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['name']; ?>
-" id="<?php echo $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['name']; ?>
-" value="$fields.chk_entrevista_previa_EN.value" disabled="true" <?php echo $this->_tpl_vars['checked']; ?>
->
-<?php endif; ?>
-</div>
-</td>
-</tr>
-<?php $this->_smarty_vars['capture']['tr'] = ob_get_contents();  $this->assign('tableRow', ob_get_contents());ob_end_clean(); ?>
-<?php if ($this->_tpl_vars['fieldsUsed'] > 0 && $this->_tpl_vars['fieldsUsed'] != $this->_tpl_vars['fieldsHidden']): ?>
-<?php echo $this->_tpl_vars['tableRow']; ?>
-
-<?php endif; ?>
-<?php echo smarty_function_counter(array('name' => 'fieldsUsed','start' => 0,'print' => false,'assign' => 'fieldsUsed'), $this);?>
-
-<?php echo smarty_function_counter(array('name' => 'fieldsHidden','start' => 0,'print' => false,'assign' => 'fieldsHidden'), $this);?>
-
-<?php ob_start(); ?>
-<tr>
-<?php echo smarty_function_counter(array('name' => 'fieldsUsed'), $this);?>
-
-<td width='12.5%' scope="col">
 <?php if (! $this->_tpl_vars['fields']['chk_entrevista_previa_EN']['hidden']): ?>
 <?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'LBL_ENTREVISTA_PREVIA_EN','module' => 'Expan_Solicitud'), $this); $this->_smarty_vars['capture']['label'] = ob_get_contents();  $this->assign('label', ob_get_contents());ob_end_clean(); ?>
 <?php echo ((is_array($_tmp=$this->_tpl_vars['label'])) ? $this->_run_mod_handler('strip_semicolon', true, $_tmp) : smarty_modifier_strip_semicolon($_tmp)); ?>
@@ -1820,6 +1754,70 @@ echo '<input type="hidden" id="is_editable" value="">';
 <?php endif; ?>
 <span class="sugar_field" id="<?php echo $this->_tpl_vars['fields']['f_entrevista_previa_cliente']['name']; ?>
 "><?php echo $this->_tpl_vars['value']; ?>
+</span>
+<?php endif; ?>
+</div>
+</td>
+</tr>
+<?php $this->_smarty_vars['capture']['tr'] = ob_get_contents();  $this->assign('tableRow', ob_get_contents());ob_end_clean(); ?>
+<?php if ($this->_tpl_vars['fieldsUsed'] > 0 && $this->_tpl_vars['fieldsUsed'] != $this->_tpl_vars['fieldsHidden']): ?>
+<?php echo $this->_tpl_vars['tableRow']; ?>
+
+<?php endif; ?>
+<?php echo smarty_function_counter(array('name' => 'fieldsUsed','start' => 0,'print' => false,'assign' => 'fieldsUsed'), $this);?>
+
+<?php echo smarty_function_counter(array('name' => 'fieldsHidden','start' => 0,'print' => false,'assign' => 'fieldsHidden'), $this);?>
+
+<?php ob_start(); ?>
+<tr>
+<?php echo smarty_function_counter(array('name' => 'fieldsUsed'), $this);?>
+
+<td width='12.5%' scope="col">
+<?php if (! $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['hidden']): ?>
+<?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'LBL_USUARIO_ENTREVISTA_PREVIA_EN','module' => 'Expan_Solicitud'), $this); $this->_smarty_vars['capture']['label'] = ob_get_contents();  $this->assign('label', ob_get_contents());ob_end_clean(); ?>
+<?php echo ((is_array($_tmp=$this->_tpl_vars['label'])) ? $this->_run_mod_handler('strip_semicolon', true, $_tmp) : smarty_modifier_strip_semicolon($_tmp)); ?>
+:
+<?php endif; ?>
+</td>
+<td width='37.5%'  >
+<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('usuario_entrevista_previa_EN','varchar')" class="div_value" id="usuario_entrevista_previa_EN_detailblock" target_id="usuario_entrevista_previa_EN">
+<?php if (! $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['hidden']): ?>
+<?php echo smarty_function_counter(array('name' => 'panelFieldCount'), $this);?>
+
+
+<?php if (strlen ( $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['value'] ) <= 0): ?>
+<?php $this->assign('value', $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['default_value']); ?>
+<?php else: ?>
+<?php $this->assign('value', $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['value']); ?>
+<?php endif; ?> 
+<span class="sugar_field" id="<?php echo $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['name']; ?>
+"><?php echo $this->_tpl_vars['fields']['usuario_entrevista_previa_EN']['value']; ?>
+</span>
+<?php endif; ?>
+</div>
+</td>
+<?php echo smarty_function_counter(array('name' => 'fieldsUsed'), $this);?>
+
+<td width='12.5%' scope="col">
+<?php if (! $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['hidden']): ?>
+<?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'LBL_USUARIO_ENTREVISTA_PREVIA_CLIENTE','module' => 'Expan_Solicitud'), $this); $this->_smarty_vars['capture']['label'] = ob_get_contents();  $this->assign('label', ob_get_contents());ob_end_clean(); ?>
+<?php echo ((is_array($_tmp=$this->_tpl_vars['label'])) ? $this->_run_mod_handler('strip_semicolon', true, $_tmp) : smarty_modifier_strip_semicolon($_tmp)); ?>
+:
+<?php endif; ?>
+</td>
+<td width='37.5%'  >
+<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('usuario_entrevista_previa_cliente','varchar')" class="div_value" id="usuario_entrevista_previa_cliente_detailblock" target_id="usuario_entrevista_previa_cliente">
+<?php if (! $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['hidden']): ?>
+<?php echo smarty_function_counter(array('name' => 'panelFieldCount'), $this);?>
+
+
+<?php if (strlen ( $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['value'] ) <= 0): ?>
+<?php $this->assign('value', $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['default_value']); ?>
+<?php else: ?>
+<?php $this->assign('value', $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['value']); ?>
+<?php endif; ?> 
+<span class="sugar_field" id="<?php echo $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['name']; ?>
+"><?php echo $this->_tpl_vars['fields']['usuario_entrevista_previa_cliente']['value']; ?>
 </span>
 <?php endif; ?>
 </div>

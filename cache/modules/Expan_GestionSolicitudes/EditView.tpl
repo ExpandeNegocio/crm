@@ -39,16 +39,27 @@ $(node).sugarActionMenu();
 onClick="document.getElementById('candidatura_caliente').disabled = false;
 this.form.return_action.value='DetailView';                 
 this.form.action.value='Save';
-return validarEdicion('{$fields.id.value}');" value="Guardar"/> {if !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($smarty.request.return_id))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" type="button" id="CANCEL_HEADER"> {elseif !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($fields.id.value))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$fields.id.value}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {elseif empty($smarty.request.return_action) || empty($smarty.request.return_id) && !empty($fields.id.value)}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module=Expan_GestionSolicitudes'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {else}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {/if}  {if $fields.id.value!=""}<input type="button" style="color:#0000FF;" name="irfran" id="irfran" class onClick="irFranquicia('{$fields.franquicia.value}');" value="Ir Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#FF0000;" name="irsol" id="irsol" class onClick="irSolicitud('{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}');" value="Ir Solicitud"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="reenInfo1" id="reenInfo1" class title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" 
-onClick="reenvioInfoEdicion('C1','{$fields.id.value}');" value="Reenviar C1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo2" id="reenInfo2" class title="Reenvio información Adicional (C2) (Plan financiero)" 
-onClick="reenvioInfoEdicion('C2','{$fields.id.value}');" value="Reenviar C2"/>{/if} {if $fields.id.value!=""}<input type="button" disabled name="reenInfo3" id="reenInfo3" class title="Reenvio borrador precontrato (C3)" 
-onClick="reenvioInfoEdicion('C3','{$fields.id.value}');" value="Reenviar C3"/>{/if} {if $fields.id.value!=""}<input type="button" disabled name="reenInfo4" id="reenInfo4" class title="Reenvio borrador contrato (C4)" 
-onClick="reenvioInfoEdicion('C4','{$fields.id.value}');" value="Reenviar C4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo11" id="reenInfo11" class title="Reenvio correo C1.1 (Provinvia Ocupada))" 
-onClick="reenvioInfoEdicion('C1.1','{$fields.id.value}');" value="Reenviar C1.1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo12" id="reenInfo12" class title="Reenvio correo C1.2 (No puede abrir en la zona))" 
-onClick="reenvioInfoEdicion('C1.2','{$fields.id.value}');" value="Reenviar C1.2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo13" id="reenInfo13" class title="Reenvio correo C1.3 (Agradecimiento cuestionario))" 
-onClick="reenvioInfoEdicion('C1.3','{$fields.id.value}');" value="Reenviar C1.3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo14" id="reenInfo14" class title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" 
-onClick="reenvioInfoEdicion('C1.4','{$fields.id.value}');" value="Reenviar C1.4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo15" id="reenInfo15" class title="Reenvio correo C1.5 (No telefono))" 
-onClick="reenvioInfoEdicion('C1.5','{$fields.id.value}');" value="Reenviar C1.5"/>{/if} {if $fields.id.value!=""}<BR><BR> <input type="button" name="openWind" id="openWind" class onClick="abrirHermanas('{$fields.id.value}');" value="Abrir Hermanas"/>{/if} {if $fields.id.value!=""}<input type="button" name="open" id="open" class onClick="window.open('index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}');" value="CrearLlamada"/>{/if} {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_GestionSolicitudes", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
+return validarEdicion('{$fields.id.value}');" value="Guardar"/> {if !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($smarty.request.return_id))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" type="button" id="CANCEL_HEADER"> {elseif !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($fields.id.value))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$fields.id.value}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {elseif empty($smarty.request.return_action) || empty($smarty.request.return_id) && !empty($fields.id.value)}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module=Expan_GestionSolicitudes'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {else}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {/if} {if $fields.id.value!=""}<input type="button" name="irApertura" id="irApertura" class style="color:#0000FF;" 
+onClick="irAperturas('{$fields.name.value}');" value="Ir Aperturas"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#FF0000;" name="irfran" id="irfran" class onClick="irFranquicia('{$fields.franquicia.value}');" value="Ir Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#00BC9F;" name="irsol" id="irsol" class onClick="irSolicitud('{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}');" value="Ir Solicitud"/>{/if} {if $fields.id.value!=""}<BR> <BR/><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#0000FF;" 
+title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" onClick="reenvioInfoDetalle('C1','{$fields.id.value}'); " value="Reenviar C1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio información Adicional (C2) (Plan financiero)" disabled
+onClick="reenvioInfoDetalle('C2','{$fields.id.value}'); " value="Reenviar C2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador precontrato (C3)" disabled
+onClick="reenvioInfoDetalle('C3','{$fields.id.value}'); " value="Reenviar C3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador contrato (C4)" disabled
+onClick="reenvioInfoDetalle('C4','{$fields.id.value}'); " value="Reenviar C4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.1 (Provinvia Ocupada))" disabled
+onClick="reenvioInfoDetalle('C1.1','{$fields.id.value}'); " value="Reenviar C1.1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.2 (No puede abrir en la zona))" disabled
+onClick="reenvioInfoDetalle('C1.2','{$fields.id.value}'); " value="Reenviar C1.2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.3 (Agradecimiento cuestionario))" disabled
+onClick="reenvioInfoDetalle('C1.3','{$fields.id.value}'); " value="Reenviar C1.3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" disabled
+onClick="reenvioInfoDetalle('C1.4','{$fields.id.value}'); " value="Reenviar C1.4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.5 (No telefono))" disabled
+onClick="reenvioInfoDetalle('C1.5','{$fields.id.value}'); " value="Reenviar C1.5"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="save" id="fichaFranquicia" 
+onClick="envioCorreoInterlocutor('{$fields.id.value}','franq');" value="Envio Ficha Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" name="save" id="fichaConsultor" 
+onClick="envioCorreoInterlocutor('{$fields.id.value}','consultor');" value="Envio Ficha Consultor"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="openWind" id="openWind" class onClick="abrirHermanas('{$fields.id.value}');" value="Abrir Hermanas"/>{/if} {if $fields.id.value!=""}<input type="button" name="open" id="open" class onClick="window.open('index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}');" value="CrearLlamada"/>{/if} {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_GestionSolicitudes", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
 </td>
 <td align='right'>
 {$PAGINATION}
@@ -6481,7 +6492,7 @@ SyncToHidden(e.result.raw.key);
 {assign var="value" value=$fields.otras_preguntas_formulario.value }
 {/if}  
 <textarea  id='{$fields.otras_preguntas_formulario.name}' name='{$fields.otras_preguntas_formulario.name}'
-rows="20" 
+rows="15" 
 cols="80" 
 title='' tabindex="0" 
  >{$value}</textarea>
@@ -6519,37 +6530,10 @@ title='' tabindex="0"
 {assign var="value" value=$fields.preguntas_mn_t.value }
 {/if}  
 <textarea  id='{$fields.preguntas_mn_t.name}' name='{$fields.preguntas_mn_t.name}'
-rows="20" 
+rows="15" 
 cols="80" 
 title='' tabindex="0" 
  >{$value}</textarea>
-<td valign="top" id='preg_en_central_label' width='12.5%' scope="col">
-{capture name="label" assign="label"}{sugar_translate label='LBL_PREG_EN_CENTRAL' module='Expan_GestionSolicitudes'}{/capture}
-{$label|strip_semicolon}:
-</td>
-{counter name="fieldsUsed"}
-
-<td valign="top" width='37.5%' >
-{counter name="panelFieldCount"}
-
-{if empty($fields.preg_en_central.value)}
-{assign var="value" value=$fields.preg_en_central.default_value }
-{else}
-{assign var="value" value=$fields.preg_en_central.value }
-{/if}  
-<textarea  id='{$fields.preg_en_central.name}' name='{$fields.preg_en_central.name}'
-rows="20" 
-cols="80" 
-title='' tabindex="0" 
- >{$value}</textarea>
-</tr>
-{/capture}
-{if $fieldsUsed > 0 }
-{$tableRow}
-{/if}
-{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
-{capture name="tr" assign="tableRow"}
-<tr>
 <td valign="top" id='objeciones_mn_label' width='12.5%' scope="col">
 {capture name="label" assign="label"}{sugar_translate label='LBL_OBJECIONES_MN' module='Expan_GestionSolicitudes'}{/capture}
 {$label|strip_semicolon}:
@@ -6567,10 +6551,18 @@ title='' tabindex="0"
 {assign var="value" value=$fields.objeciones_mn.value }
 {/if}  
 <textarea  id='{$fields.objeciones_mn.name}' name='{$fields.objeciones_mn.name}'
-rows="20" 
+rows="15" 
 cols="80" 
 title='' tabindex="0" 
  >{$value}</textarea>
+</tr>
+{/capture}
+{if $fieldsUsed > 0 }
+{$tableRow}
+{/if}
+{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
+{capture name="tr" assign="tableRow"}
+<tr>
 <td valign="top" id='solicitudes_candidato_label' width='12.5%' scope="col">
 {capture name="label" assign="label"}{sugar_translate label='LBL_SOLICITUDES_CANDIDATO' module='Expan_GestionSolicitudes'}{/capture}
 {$label|strip_semicolon}:
@@ -6588,7 +6580,26 @@ title='' tabindex="0"
 {assign var="value" value=$fields.solicitudes_candidato.value }
 {/if}  
 <textarea  id='{$fields.solicitudes_candidato.name}' name='{$fields.solicitudes_candidato.name}'
-rows="20" 
+rows="15" 
+cols="80" 
+title='' tabindex="0" 
+ >{$value}</textarea>
+<td valign="top" id='concesiones_label' width='12.5%' scope="col">
+{capture name="label" assign="label"}{sugar_translate label='LBL_CONCESIONES' module='Expan_GestionSolicitudes'}{/capture}
+{$label|strip_semicolon}:
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
+{counter name="panelFieldCount"}
+
+{if empty($fields.concesiones.value)}
+{assign var="value" value=$fields.concesiones.default_value }
+{else}
+{assign var="value" value=$fields.concesiones.value }
+{/if}  
+<textarea  id='{$fields.concesiones.name}' name='{$fields.concesiones.name}'
+rows="10" 
 cols="80" 
 title='' tabindex="0" 
  >{$value}</textarea>
@@ -6600,27 +6611,6 @@ title='' tabindex="0"
 {counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
 {capture name="tr" assign="tableRow"}
 <tr>
-<td valign="top" id='informacion_proveedores_label' width='12.5%' scope="col">
-{capture name="label" assign="label"}{sugar_translate label='LBL_INFORMACION_PROVEEDORES' module='Expan_GestionSolicitudes'}{/capture}
-{$label|strip_semicolon}:
-{capture name="popupText" assign="popupText"}{sugar_translate label="Informacion de proveedores que nos proporciona el solicitante en las conversaciones mantenidas" module='Expan_GestionSolicitudes'}{/capture}
-{sugar_help text=$popupText WIDTH=-1}
-</td>
-{counter name="fieldsUsed"}
-
-<td valign="top" width='37.5%' >
-{counter name="panelFieldCount"}
-
-{if empty($fields.informacion_proveedores.value)}
-{assign var="value" value=$fields.informacion_proveedores.default_value }
-{else}
-{assign var="value" value=$fields.informacion_proveedores.value }
-{/if}  
-<textarea  id='{$fields.informacion_proveedores.name}' name='{$fields.informacion_proveedores.name}'
-rows="20" 
-cols="80" 
-title='' tabindex="0" 
- >{$value}</textarea>
 <td valign="top" id='informacion_competencia_label' width='12.5%' scope="col">
 {capture name="label" assign="label"}{sugar_translate label='LBL_INFORMACION_COMPETENCIA' module='Expan_GestionSolicitudes'}{/capture}
 {$label|strip_semicolon}:
@@ -6638,7 +6628,102 @@ title='' tabindex="0"
 {assign var="value" value=$fields.informacion_competencia.value }
 {/if}  
 <textarea  id='{$fields.informacion_competencia.name}' name='{$fields.informacion_competencia.name}'
-rows="20" 
+rows="15" 
+cols="80" 
+title='' tabindex="0" 
+ >{$value}</textarea>
+<td valign="top" id='informacion_proveedores_label' width='12.5%' scope="col">
+{capture name="label" assign="label"}{sugar_translate label='LBL_INFORMACION_PROVEEDORES' module='Expan_GestionSolicitudes'}{/capture}
+{$label|strip_semicolon}:
+{capture name="popupText" assign="popupText"}{sugar_translate label="Informacion de proveedores que nos proporciona el solicitante en las conversaciones mantenidas" module='Expan_GestionSolicitudes'}{/capture}
+{sugar_help text=$popupText WIDTH=-1}
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
+{counter name="panelFieldCount"}
+
+{if empty($fields.informacion_proveedores.value)}
+{assign var="value" value=$fields.informacion_proveedores.default_value }
+{else}
+{assign var="value" value=$fields.informacion_proveedores.value }
+{/if}  
+<textarea  id='{$fields.informacion_proveedores.name}' name='{$fields.informacion_proveedores.name}'
+rows="15" 
+cols="80" 
+title='' tabindex="0" 
+ >{$value}</textarea>
+</tr>
+{/capture}
+{if $fieldsUsed > 0 }
+{$tableRow}
+{/if}
+{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
+{capture name="tr" assign="tableRow"}
+<tr>
+<td valign="top" id='_label' width='12.5%' scope="col">
+{capture name="label" assign="label"}{sugar_translate label='---------------------------------' module='Expan_GestionSolicitudes'}{/capture}
+{$label|strip_semicolon}:
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
+{counter name="panelFieldCount"}
+-----------------------------------------------------------------------------------------------------------------------------
+<td valign="top" id='_label' width='12.5%' scope="col">
+{capture name="label" assign="label"}{sugar_translate label='---------------------------------' module='Expan_GestionSolicitudes'}{/capture}
+{$label|strip_semicolon}:
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
+{counter name="panelFieldCount"}
+-----------------------------------------------------------------------------------------------------------------------------
+</tr>
+{/capture}
+{if $fieldsUsed > 0 }
+{$tableRow}
+{/if}
+{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
+{capture name="tr" assign="tableRow"}
+<tr>
+<td valign="top" id='preg_en_central_label' width='12.5%' scope="col">
+{capture name="label" assign="label"}{sugar_translate label='LBL_PREG_EN_CENTRAL' module='Expan_GestionSolicitudes'}{/capture}
+{$label|strip_semicolon}:
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
+{counter name="panelFieldCount"}
+
+{if empty($fields.preg_en_central.value)}
+{assign var="value" value=$fields.preg_en_central.default_value }
+{else}
+{assign var="value" value=$fields.preg_en_central.value }
+{/if}  
+<textarea  id='{$fields.preg_en_central.name}' name='{$fields.preg_en_central.name}'
+rows="15" 
+cols="80" 
+title='' tabindex="0" 
+ >{$value}</textarea>
+<td valign="top" id='mejoras_label' width='12.5%' scope="col">
+{capture name="label" assign="label"}{sugar_translate label='LBL_MEJORAS' module='Expan_GestionSolicitudes'}{/capture}
+{$label|strip_semicolon}:
+{capture name="popupText" assign="popupText"}{sugar_translate label="Mejoras a implementar detectadas en las conversaciones mantenidas" module='Expan_GestionSolicitudes'}{/capture}
+{sugar_help text=$popupText WIDTH=-1}
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
+{counter name="panelFieldCount"}
+
+{if empty($fields.mejoras.value)}
+{assign var="value" value=$fields.mejoras.default_value }
+{else}
+{assign var="value" value=$fields.mejoras.value }
+{/if}  
+<textarea  id='{$fields.mejoras.name}' name='{$fields.mejoras.name}'
+rows="15" 
 cols="80" 
 title='' tabindex="0" 
  >{$value}</textarea>
@@ -6667,7 +6752,7 @@ title='' tabindex="0"
 {assign var="value" value=$fields.notas_argumentario.value }
 {/if}  
 <textarea  id='{$fields.notas_argumentario.name}' name='{$fields.notas_argumentario.name}'
-rows="20" 
+rows="15" 
 cols="80" 
 title='' tabindex="0" 
  >{$value}</textarea>
@@ -6677,54 +6762,6 @@ title='' tabindex="0"
 {counter name="fieldsUsed"}
 
 <td valign="top" width='37.5%' >
-</tr>
-{/capture}
-{if $fieldsUsed > 0 }
-{$tableRow}
-{/if}
-{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
-{capture name="tr" assign="tableRow"}
-<tr>
-<td valign="top" id='concesiones_label' width='12.5%' scope="col">
-{capture name="label" assign="label"}{sugar_translate label='LBL_CONCESIONES' module='Expan_GestionSolicitudes'}{/capture}
-{$label|strip_semicolon}:
-</td>
-{counter name="fieldsUsed"}
-
-<td valign="top" width='37.5%' >
-{counter name="panelFieldCount"}
-
-{if empty($fields.concesiones.value)}
-{assign var="value" value=$fields.concesiones.default_value }
-{else}
-{assign var="value" value=$fields.concesiones.value }
-{/if}  
-<textarea  id='{$fields.concesiones.name}' name='{$fields.concesiones.name}'
-rows="10" 
-cols="80" 
-title='' tabindex="0" 
- >{$value}</textarea>
-<td valign="top" id='mejoras_label' width='12.5%' scope="col">
-{capture name="label" assign="label"}{sugar_translate label='LBL_MEJORAS' module='Expan_GestionSolicitudes'}{/capture}
-{$label|strip_semicolon}:
-{capture name="popupText" assign="popupText"}{sugar_translate label="Mejoras a implementar detectadas en las conversaciones mantenidas" module='Expan_GestionSolicitudes'}{/capture}
-{sugar_help text=$popupText WIDTH=-1}
-</td>
-{counter name="fieldsUsed"}
-
-<td valign="top" width='37.5%' >
-{counter name="panelFieldCount"}
-
-{if empty($fields.mejoras.value)}
-{assign var="value" value=$fields.mejoras.default_value }
-{else}
-{assign var="value" value=$fields.mejoras.value }
-{/if}  
-<textarea  id='{$fields.mejoras.name}' name='{$fields.mejoras.name}'
-rows="20" 
-cols="80" 
-title='' tabindex="0" 
- >{$value}</textarea>
 </tr>
 {/capture}
 {if $fieldsUsed > 0 }
@@ -10307,16 +10344,27 @@ title='' tabindex="0"
 onClick="document.getElementById('candidatura_caliente').disabled = false;
 this.form.return_action.value='DetailView';                 
 this.form.action.value='Save';
-return validarEdicion('{$fields.id.value}');" value="Guardar"/> {if !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($smarty.request.return_id))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" type="button" id="CANCEL_FOOTER"> {elseif !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($fields.id.value))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$fields.id.value}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {elseif empty($smarty.request.return_action) || empty($smarty.request.return_id) && !empty($fields.id.value)}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module=Expan_GestionSolicitudes'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {else}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {/if}  {if $fields.id.value!=""}<input type="button" style="color:#0000FF;" name="irfran" id="irfran" class onClick="irFranquicia('{$fields.franquicia.value}');" value="Ir Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#FF0000;" name="irsol" id="irsol" class onClick="irSolicitud('{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}');" value="Ir Solicitud"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="reenInfo1" id="reenInfo1" class title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" 
-onClick="reenvioInfoEdicion('C1','{$fields.id.value}');" value="Reenviar C1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo2" id="reenInfo2" class title="Reenvio información Adicional (C2) (Plan financiero)" 
-onClick="reenvioInfoEdicion('C2','{$fields.id.value}');" value="Reenviar C2"/>{/if} {if $fields.id.value!=""}<input type="button" disabled name="reenInfo3" id="reenInfo3" class title="Reenvio borrador precontrato (C3)" 
-onClick="reenvioInfoEdicion('C3','{$fields.id.value}');" value="Reenviar C3"/>{/if} {if $fields.id.value!=""}<input type="button" disabled name="reenInfo4" id="reenInfo4" class title="Reenvio borrador contrato (C4)" 
-onClick="reenvioInfoEdicion('C4','{$fields.id.value}');" value="Reenviar C4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo11" id="reenInfo11" class title="Reenvio correo C1.1 (Provinvia Ocupada))" 
-onClick="reenvioInfoEdicion('C1.1','{$fields.id.value}');" value="Reenviar C1.1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo12" id="reenInfo12" class title="Reenvio correo C1.2 (No puede abrir en la zona))" 
-onClick="reenvioInfoEdicion('C1.2','{$fields.id.value}');" value="Reenviar C1.2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo13" id="reenInfo13" class title="Reenvio correo C1.3 (Agradecimiento cuestionario))" 
-onClick="reenvioInfoEdicion('C1.3','{$fields.id.value}');" value="Reenviar C1.3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo14" id="reenInfo14" class title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" 
-onClick="reenvioInfoEdicion('C1.4','{$fields.id.value}');" value="Reenviar C1.4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo15" id="reenInfo15" class title="Reenvio correo C1.5 (No telefono))" 
-onClick="reenvioInfoEdicion('C1.5','{$fields.id.value}');" value="Reenviar C1.5"/>{/if} {if $fields.id.value!=""}<BR><BR> <input type="button" name="openWind" id="openWind" class onClick="abrirHermanas('{$fields.id.value}');" value="Abrir Hermanas"/>{/if} {if $fields.id.value!=""}<input type="button" name="open" id="open" class onClick="window.open('index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}');" value="CrearLlamada"/>{/if} {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_GestionSolicitudes", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
+return validarEdicion('{$fields.id.value}');" value="Guardar"/> {if !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($smarty.request.return_id))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" type="button" id="CANCEL_FOOTER"> {elseif !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($fields.id.value))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$fields.id.value}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {elseif empty($smarty.request.return_action) || empty($smarty.request.return_id) && !empty($fields.id.value)}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module=Expan_GestionSolicitudes'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {else}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {/if} {if $fields.id.value!=""}<input type="button" name="irApertura" id="irApertura" class style="color:#0000FF;" 
+onClick="irAperturas('{$fields.name.value}');" value="Ir Aperturas"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#FF0000;" name="irfran" id="irfran" class onClick="irFranquicia('{$fields.franquicia.value}');" value="Ir Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#00BC9F;" name="irsol" id="irsol" class onClick="irSolicitud('{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}');" value="Ir Solicitud"/>{/if} {if $fields.id.value!=""}<BR> <BR/><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#0000FF;" 
+title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" onClick="reenvioInfoDetalle('C1','{$fields.id.value}'); " value="Reenviar C1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio información Adicional (C2) (Plan financiero)" disabled
+onClick="reenvioInfoDetalle('C2','{$fields.id.value}'); " value="Reenviar C2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador precontrato (C3)" disabled
+onClick="reenvioInfoDetalle('C3','{$fields.id.value}'); " value="Reenviar C3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador contrato (C4)" disabled
+onClick="reenvioInfoDetalle('C4','{$fields.id.value}'); " value="Reenviar C4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.1 (Provinvia Ocupada))" disabled
+onClick="reenvioInfoDetalle('C1.1','{$fields.id.value}'); " value="Reenviar C1.1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.2 (No puede abrir en la zona))" disabled
+onClick="reenvioInfoDetalle('C1.2','{$fields.id.value}'); " value="Reenviar C1.2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.3 (Agradecimiento cuestionario))" disabled
+onClick="reenvioInfoDetalle('C1.3','{$fields.id.value}'); " value="Reenviar C1.3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" disabled
+onClick="reenvioInfoDetalle('C1.4','{$fields.id.value}'); " value="Reenviar C1.4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.5 (No telefono))" disabled
+onClick="reenvioInfoDetalle('C1.5','{$fields.id.value}'); " value="Reenviar C1.5"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="save" id="fichaFranquicia" 
+onClick="envioCorreoInterlocutor('{$fields.id.value}','franq');" value="Envio Ficha Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" name="save" id="fichaConsultor" 
+onClick="envioCorreoInterlocutor('{$fields.id.value}','consultor');" value="Envio Ficha Consultor"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="openWind" id="openWind" class onClick="abrirHermanas('{$fields.id.value}');" value="Abrir Hermanas"/>{/if} {if $fields.id.value!=""}<input type="button" name="open" id="open" class onClick="window.open('index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}');" value="CrearLlamada"/>{/if} {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_GestionSolicitudes", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
 </div>
 </form>
 {$set_focus_block}

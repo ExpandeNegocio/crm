@@ -23,16 +23,25 @@ SUGAR.util.doWhen(function(){
 <input type="hidden" name="action" value="EditView">
 <input type="hidden" name="sugar_body_only">
 </form>
-<div class="action_buttons">{if $bean->aclAccess("edit")}<input title="{$APP.LBL_EDIT_BUTTON_TITLE}" accessKey="{$APP.LBL_EDIT_BUTTON_KEY}" class="button primary" onclick="var _form = document.getElementById('formDetailView'); _form.return_module.value='Expan_GestionSolicitudes'; _form.return_action.value='DetailView'; _form.return_id.value='{$id}'; _form.action.value='EditView';SUGAR.ajaxUI.submitForm(_form);" type="button" name="Edit" id="edit_button" value="{$APP.LBL_EDIT_BUTTON_LABEL}">{/if}  {if $bean->aclAccess("delete")}<input title="{$APP.LBL_DELETE_BUTTON_TITLE}" accessKey="{$APP.LBL_DELETE_BUTTON_KEY}" class="button" onclick="var _form = document.getElementById('formDetailView'); _form.return_module.value='Expan_GestionSolicitudes'; _form.return_action.value='ListView'; _form.action.value='Delete'; if(confirm('{$APP.NTC_DELETE_CONFIRMATION}')) SUGAR.ajaxUI.submitForm(_form);" type="submit" name="Delete" value="{$APP.LBL_DELETE_BUTTON_LABEL}" id="delete_button">{/if}  {if $fields.id.value!=""}<input type="button" style="color:#0000FF;" name="irsol" id="irfran" class onClick="irFranquicia('{$fields.franquicia.value}');" value="Ir Franquicia"/>{/if} {if $fields.id.value!=""}<input title="Abrir en otra pantalla la solicitud de la que depende la gestion actual" style="color:#FF0000;" type="button" name="irsol" id="irsol" class onClick="irSolicitud('{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}');" value="Editar Candidato"/>{/if} {if $fields.id.value!=""}<BR> <BR/><input 
-type="button" name="reenInfo1" id="reenInfo1" class title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" onClick="reenvioInfoDetalle('C1','{$fields.id.value}'); " value="Reenviar C1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo2" id="reenInfo2" class title="Reenvio información Adicional (C2) (Plan financiero)" 
-onClick="reenvioInfoDetalle('C2','{$fields.id.value}');" value="Reenviar C2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo3" id="reenInfo3" class title="Reenvio borrador precontrato (C3)" 
-onClick="reenvioInfoDetalle('C3','{$fields.id.value}');" value="Reenviar C3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo4" id="reenInfo4" class title="Reenvio borrador contrato (C4)" 
-onClick="reenvioInfoDetalle('C4','{$fields.id.value}');" value="Reenviar C4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo11" id="reenInfo11" class title="Reenvio correo C1.1 (Provinvia Ocupada))" 
-onClick="reenvioInfoDetalle('C1.1','{$fields.id.value}');" value="Reenviar C1.1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo12" id="reenInfo12" class title="Reenvio correo C1.2 (No puede abrir en la zona))" 
-onClick="reenvioInfoDetalle('C1.2','{$fields.id.value}');" value="Reenviar C1.2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo13" id="reenInfo13" class title="Reenvio correo C1.3 (Agradecimiento cuestionario))" 
-onClick="reenvioInfoDetalle('C1.3','{$fields.id.value}');" value="Reenviar C1.3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo14" id="reenInfo14" class title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" 
-onClick="reenvioInfoDetalle('C1.4','{$fields.id.value}');" value="Reenviar C1.4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo15" id="reenInfo15" class title="Reenvio correo C1.5 (No telefono))" 
-onClick="reenvioInfoDetalle('C1.5','{$fields.id.value}');" value="Reenviar C1.5"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="save" id="fichaFranquicia" 
+<div class="action_buttons">{if $bean->aclAccess("edit")}<input title="{$APP.LBL_EDIT_BUTTON_TITLE}" accessKey="{$APP.LBL_EDIT_BUTTON_KEY}" class="button primary" onclick="var _form = document.getElementById('formDetailView'); _form.return_module.value='Expan_GestionSolicitudes'; _form.return_action.value='DetailView'; _form.return_id.value='{$id}'; _form.action.value='EditView';SUGAR.ajaxUI.submitForm(_form);" type="button" name="Edit" id="edit_button" value="{$APP.LBL_EDIT_BUTTON_LABEL}">{/if}  {if $bean->aclAccess("delete")}<input title="{$APP.LBL_DELETE_BUTTON_TITLE}" accessKey="{$APP.LBL_DELETE_BUTTON_KEY}" class="button" onclick="var _form = document.getElementById('formDetailView'); _form.return_module.value='Expan_GestionSolicitudes'; _form.return_action.value='ListView'; _form.action.value='Delete'; if(confirm('{$APP.NTC_DELETE_CONFIRMATION}')) SUGAR.ajaxUI.submitForm(_form);" type="submit" name="Delete" value="{$APP.LBL_DELETE_BUTTON_LABEL}" id="delete_button">{/if}  {if $fields.id.value!=""}<input type="button" name="irApertura" id="irApertura" class style="color:#0000FF;" 
+onClick="irAperturas('{$fields.name.value}');" value="Ir Aperturas"/>{/if} {if $fields.id.value!=""}<input type="button" style="color:#FF0000;" name="irsol" id="irfran" class onClick="irFranquicia('{$fields.franquicia.value}');" value="Ir Franquicia"/>{/if} {if $fields.id.value!=""}<input title="Abrir en otra pantalla la solicitud de la que depende la gestion actual" style="color:#00BC9F;" type="button" name="irsol" id="irsol" class onClick="irSolicitud('{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}');" value="Editar Candidato"/>{/if} {if $fields.id.value!=""}<BR> <BR/><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#0000FF;" 
+title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" onClick="reenvioInfoDetalle('C1','{$fields.id.value}'); " value="Reenviar C1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio información Adicional (C2) (Plan financiero)" disabled
+onClick="reenvioInfoDetalle('C2','{$fields.id.value}'); " value="Reenviar C2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador precontrato (C3)" disabled
+onClick="reenvioInfoDetalle('C3','{$fields.id.value}'); " value="Reenviar C3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador contrato (C4)" disabled
+onClick="reenvioInfoDetalle('C4','{$fields.id.value}'); " value="Reenviar C4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.1 (Provinvia Ocupada))" disabled
+onClick="reenvioInfoDetalle('C1.1','{$fields.id.value}'); " value="Reenviar C1.1"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.2 (No puede abrir en la zona))" disabled
+onClick="reenvioInfoDetalle('C1.2','{$fields.id.value}'); " value="Reenviar C1.2"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.3 (Agradecimiento cuestionario))" disabled
+onClick="reenvioInfoDetalle('C1.3','{$fields.id.value}'); " value="Reenviar C1.3"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" disabled
+onClick="reenvioInfoDetalle('C1.4','{$fields.id.value}'); " value="Reenviar C1.4"/>{/if} {if $fields.id.value!=""}<input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.5 (No telefono))" disabled
+onClick="reenvioInfoDetalle('C1.5','{$fields.id.value}'); " value="Reenviar C1.5"/>{/if} {if $fields.id.value!=""}<BR><BR><input type="button" name="save" id="fichaFranquicia" 
 onClick="envioCorreoInterlocutor('{$fields.id.value}','franq');" value="Envio Ficha Franquicia"/>{/if} {if $fields.id.value!=""}<input type="button" name="save" id="fichaConsultor" 
 onClick="envioCorreoInterlocutor('{$fields.id.value}','consultor');" value="Envio Ficha Consultor"/><BR <BR/>{/if} {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_GestionSolicitudes", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
 </div>
@@ -117,15 +126,7 @@ echo '<input type="hidden" id="is_editable" value="">';
 <div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('franquicia','enum')" class="div_value" id="franquicia_detailblock" target_id="franquicia">
 {if !$fields.franquicia.hidden}
 {counter name="panelFieldCount"}
-
-
-{if is_string($fields.franquicia.options)}
-<input type="hidden" class="sugar_field" id="{$fields.franquicia.name}" value="{ $fields.franquicia.options }">
-{ $fields.franquicia.options }
-{else}
-<input type="hidden" class="sugar_field" id="{$fields.franquicia.name}" value="{ $fields.franquicia.value }">
-{ $fields.franquicia.options[$fields.franquicia.value]}
-{/if}
+<span id="franquicia" class="sugar_field"><a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D34e1c623-cbb8-26f8-6d4f-573193efc8ee"><span id="expan_franquicia" class="sugar_field" data-id-value="34e1c623-cbb8-26f8-6d4f-573193efc8ee">Adagio Cantabile</span></a></span>
 {/if}
 </div>
 </td>
@@ -2163,7 +2164,7 @@ $irClick = "";
 if (strlen($link)!=0){
 $irClick="Abrir Cuestionario";
 }                      
-echo "<a target=\"_blank\" onclick=\"eliminarAlertaCuestionario('".$id."')\" href=\"".$link."\">".$irClick."<//a>";                      
+echo "<a target=\"_blank\" onclick=\"eliminarAlertaCuestionario('".$id."')\" href=\"".$link."\">".$irClick."</a>";                      
 {/php}</span>
 {/if}
 </div>

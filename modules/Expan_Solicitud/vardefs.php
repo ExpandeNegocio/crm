@@ -1942,8 +1942,6 @@ $dictionary['Expan_Solicitud'] = array(
     'len' => 100,
     'size' => '20',
     'options' => 'recursos_propios_list',
-    'studio' => 'visible',
-    'dependency' => false,
   ),
   
   'dummie' => 

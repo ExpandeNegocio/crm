@@ -45,11 +45,11 @@ $viewdefs [$module_name] =
                   ),
               ),
             'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
-      {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
-      {sugar_getscript file="include/javascript/EditGestionSolicitud.js"}
-      {sugar_getscript file="modules/Documents/documents.js"}
-      {sugar_getscript file="cache/include/javascript/sugar_grp_yui_widgets.js"}
-      {sugar_getscript file="include/javascript/include.js"}
+                              {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+                              {sugar_getscript file="include/javascript/EditGestionSolicitud.js"}
+                              {sugar_getscript file="modules/Documents/documents.js"}
+                              {sugar_getscript file="cache/include/javascript/sugar_grp_yui_widgets.js"}
+                              {sugar_getscript file="include/javascript/include.js"}
       <script type="text/javascript"> onload=ocultarCheck(\'{$fields.id.value}\');</script>',
             'form' =>
               array(

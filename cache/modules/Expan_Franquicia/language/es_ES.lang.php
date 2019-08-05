@@ -1,5 +1,5 @@
 <?php
-// created: 2019-07-17 19:48:54
+// created: 2019-08-05 18:26:31
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de insercción',
@@ -372,6 +372,21 @@ $mod_strings = array (
   'LBL_AYUDA_FINANCIERA' => 'Ayuda financiera',
   'LBL_CENTROS_CERRADOS_ULT_YEAR' => 'Centros cerrados Ultimo año',
   'LBL_LOCALIZACION_FRANQ' => 'Localizacion de la franquicia',
+  'LBL_CARACTERISTICAS_COMPETI' => '<H1>Características del competidor directo</H1>',
+  'LBL_CD_SECTOR' => 'Sector',
+  'LBL_CD_SUBSECTOR' => 'Subsector',
+  'LBL_CD_ACTTIVIDAD' => 'Actividad',
+  'LBL_CD_PERFIL_FRANQUICIADO' => 'Perfil del franquiciado',
+  'LBL_CD_MODAL_NEGOCIO' => 'Modalidades de negocio',
+  'LBL_CD_ROYALTYS' => 'Royaltys',
+  'LBL_CD_CARACT_LOCAL' => 'Carecteristicas del local',
+  'LBL_CD_INVERSION' => 'Inversión',
+  'LBL_CD_OPERA_INTER' => 'Opera internacionalmente',
+  'LBL_CD_NUM_CENTROS' => 'Nº centros totales',
+  'LBL_CD_OFERTA_COMERCIAL' => 'Oferta comercial',
+  'LBL_CD_CANON' => 'Canon',
+  'LBL_CD_POBL_MINIMA' => 'Poblacion Mínima',
+  'LBL_CD_ESTRUCT_PERSONAL' => 'Estructura Personal',
   'LBL_EXPAN_FRANQUICIA_DOCUMENTS_1_FROM_DOCUMENTS_TITLE' => 'Documentos',
   'LBL_EXPAN_FRANQUICIA_CALLS_1_FROM_CALLS_TITLE' => 'Llamadas',
   'LBL_EXPAN_FRANQUICIA_TASKS_1_FROM_TASKS_TITLE' => 'Tareas',

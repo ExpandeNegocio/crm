@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2019-07-17 19:47:44
+<?php /* Smarty version 2.6.11, created on 2019-08-05 18:26:32
          compiled from themes/Sugar5/tpls/header.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "themes/Sugar5/tpls/_head.tpl", 'smarty_include_vars' => array()));

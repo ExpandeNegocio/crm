@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1a4048c4-8206-4a5f-8c04-a517dc9ff0a4" name="crm" url="http://expandenegocio.com/sugarcrm">
+        <fileTransfer host="ftp.geonegocio.com" port="21" rootFolder="/expandenegocio.com/sugarcrm">
+          <advancedOptions>
+            <advancedOptions passiveMode="true" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

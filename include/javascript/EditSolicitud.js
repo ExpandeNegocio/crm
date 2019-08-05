@@ -83,7 +83,9 @@
     	limpiarSector();
     	if (str.length>2){
     		buscarSector(str);
-    	}	
+    	}else{
+			limpiaBuscarSector();
+		}
     	
 	      if (e.keyCode == '13') {
 	         e.preventDefault();
@@ -1273,19 +1275,20 @@ function ocultarCamposEdicion(){
 }
 
 function despliegoPliegoSector(nombreSector){
-	
-	nombreSector=nombreSector.split(' ').join('_');
-	
-	CamposImput = document.getElementsByName(nombreSector);
 
-	for (var i = 0; i < CamposImput.length; i++) {			
-		if (CamposImput[i].parentNode.style.display==''){
-			CamposImput[i].parentNode.style.display='none';
-		}else{
-			CamposImput[i].parentNode.style.display=null;
+	if (typeof nombreSector !== 'undefined') {
+		nombreSector = nombreSector.split(' ').join('_');
+
+		CamposImput = document.getElementsByName(nombreSector);
+
+		for (var i = 0; i < CamposImput.length; i++) {
+			if (CamposImput[i].parentNode.style.display == '') {
+				CamposImput[i].parentNode.style.display = 'none';
+			} else {
+				CamposImput[i].parentNode.style.display = null;
+			}
 		}
 	}
-	
 	pintaFranFromSector();
 }
 
@@ -2095,6 +2098,14 @@ function buscarSector(nombreSector){
 			despliegoSector($(this).attr('name'));
 		}
     });	
+}
+
+function limpiaBuscarSector(){
+	$(".Sectorcheck").each(function(){
+		str= $(this).attr('id');
+		console.log(str);
+		despliegoPliegoSector($(this).attr('name'));
+	});
 }
 
 function limpiarSector(){	

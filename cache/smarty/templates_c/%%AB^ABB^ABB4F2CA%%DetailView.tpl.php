@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.11, created on 2019-07-17 19:44:52
+<?php /* Smarty version 2.6.11, created on 2019-08-05 16:42:09
          compiled from cache/modules/Expan_GestionSolicitudes/DetailView.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'sugar_include', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 44, false),array('function', 'sugar_translate', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 51, false),array('function', 'counter', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 83, false),array('function', 'sugar_ajax_url', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 103, false),array('function', 'sugar_number_format', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 154, false),array('function', 'sugar_help', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 293, false),array('function', 'sugar_getjspath', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 6015, false),array('modifier', 'strip_semicolon', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 93, false),array('modifier', 'escape', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 1900, false),array('modifier', 'url2html', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 1900, false),array('modifier', 'nl2br', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 1900, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'sugar_include', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 53, false),array('function', 'sugar_translate', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 60, false),array('function', 'counter', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 92, false),array('function', 'sugar_ajax_url', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 112, false),array('function', 'sugar_number_format', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 155, false),array('function', 'sugar_help', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 294, false),array('function', 'sugar_getjspath', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 6016, false),array('modifier', 'strip_semicolon', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 102, false),array('modifier', 'escape', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 1901, false),array('modifier', 'url2html', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 1901, false),array('modifier', 'nl2br', 'cache/modules/Expan_GestionSolicitudes/DetailView.tpl', 1901, false),)), $this); ?>
 
 
 <script language="javascript">
@@ -39,27 +39,37 @@ SUGAR.util.doWhen(function(){
 " accessKey="<?php echo $this->_tpl_vars['APP']['LBL_DELETE_BUTTON_KEY']; ?>
 " class="button" onclick="var _form = document.getElementById('formDetailView'); _form.return_module.value='Expan_GestionSolicitudes'; _form.return_action.value='ListView'; _form.action.value='Delete'; if(confirm('<?php echo $this->_tpl_vars['APP']['NTC_DELETE_CONFIRMATION']; ?>
 ')) SUGAR.ajaxUI.submitForm(_form);" type="submit" name="Delete" value="<?php echo $this->_tpl_vars['APP']['LBL_DELETE_BUTTON_LABEL']; ?>
-" id="delete_button"><?php endif; ?>  <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" style="color:#0000FF;" name="irsol" id="irfran" class onClick="irFranquicia('<?php echo $this->_tpl_vars['fields']['franquicia']['value']; ?>
-');" value="Ir Franquicia"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input title="Abrir en otra pantalla la solicitud de la que depende la gestion actual" style="color:#FF0000;" type="button" name="irsol" id="irsol" class onClick="irSolicitud('<?php echo $this->_tpl_vars['fields']['expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida']['value']; ?>
-');" value="Editar Candidato"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><BR> <BR/><input 
-type="button" name="reenInfo1" id="reenInfo1" class title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" onClick="reenvioInfoDetalle('C1','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-'); " value="Reenviar C1"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo2" id="reenInfo2" class title="Reenvio información Adicional (C2) (Plan financiero)" 
+" id="delete_button"><?php endif; ?>  <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="irApertura" id="irApertura" class style="color:#0000FF;" 
+onClick="irAperturas('<?php echo $this->_tpl_vars['fields']['name']['value']; ?>
+');" value="Ir Aperturas"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" style="color:#FF0000;" name="irsol" id="irfran" class onClick="irFranquicia('<?php echo $this->_tpl_vars['fields']['franquicia']['value']; ?>
+');" value="Ir Franquicia"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input title="Abrir en otra pantalla la solicitud de la que depende la gestion actual" style="color:#00BC9F;" type="button" name="irsol" id="irsol" class onClick="irSolicitud('<?php echo $this->_tpl_vars['fields']['expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida']['value']; ?>
+');" value="Editar Candidato"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><BR> <BR/><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#0000FF;" 
+title="Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)" onClick="reenvioInfoDetalle('C1','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
+'); " value="Reenviar C1"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio información Adicional (C2) (Plan financiero)" disabled
 onClick="reenvioInfoDetalle('C2','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C2"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo3" id="reenInfo3" class title="Reenvio borrador precontrato (C3)" 
+'); " value="Reenviar C2"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador precontrato (C3)" disabled
 onClick="reenvioInfoDetalle('C3','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C3"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo4" id="reenInfo4" class title="Reenvio borrador contrato (C4)" 
+'); " value="Reenviar C3"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio borrador contrato (C4)" disabled
 onClick="reenvioInfoDetalle('C4','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C4"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo11" id="reenInfo11" class title="Reenvio correo C1.1 (Provinvia Ocupada))" 
+'); " value="Reenviar C4"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.1 (Provinvia Ocupada))" disabled
 onClick="reenvioInfoDetalle('C1.1','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C1.1"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo12" id="reenInfo12" class title="Reenvio correo C1.2 (No puede abrir en la zona))" 
+'); " value="Reenviar C1.1"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.2 (No puede abrir en la zona))" disabled
 onClick="reenvioInfoDetalle('C1.2','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C1.2"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo13" id="reenInfo13" class title="Reenvio correo C1.3 (Agradecimiento cuestionario))" 
+'); " value="Reenviar C1.2"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.3 (Agradecimiento cuestionario))" disabled
 onClick="reenvioInfoDetalle('C1.3','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C1.3"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo14" id="reenInfo14" class title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" 
+'); " value="Reenviar C1.3"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.4 (Reenvío C1 no cuestionario))" disabled
 onClick="reenvioInfoDetalle('C1.4','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C1.4"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo15" id="reenInfo15" class title="Reenvio correo C1.5 (No telefono))" 
+'); " value="Reenviar C1.4"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="reenInfo1" id="reenInfo1" class style="color:#FF0000;" 
+title="Reenvio correo C1.5 (No telefono))" disabled
 onClick="reenvioInfoDetalle('C1.5','<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
-');" value="Reenviar C1.5"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><BR><BR><input type="button" name="save" id="fichaFranquicia" 
+'); " value="Reenviar C1.5"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><BR><BR><input type="button" name="save" id="fichaFranquicia" 
 onClick="envioCorreoInterlocutor('<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
 ','franq');" value="Envio Ficha Franquicia"/><?php endif; ?> <?php if ($this->_tpl_vars['fields']['id']['value'] != ""): ?><input type="button" name="save" id="fichaConsultor" 
 onClick="envioCorreoInterlocutor('<?php echo $this->_tpl_vars['fields']['id']['value']; ?>
@@ -174,21 +184,7 @@ echo '<input type="hidden" id="is_editable" value="">';
 <?php if (! $this->_tpl_vars['fields']['franquicia']['hidden']): ?>
 <?php echo smarty_function_counter(array('name' => 'panelFieldCount'), $this);?>
 
-
-
-<?php if (is_string ( $this->_tpl_vars['fields']['franquicia']['options'] )): ?>
-<input type="hidden" class="sugar_field" id="<?php echo $this->_tpl_vars['fields']['franquicia']['name']; ?>
-" value="<?php echo $this->_tpl_vars['fields']['franquicia']['options']; ?>
-">
-<?php echo $this->_tpl_vars['fields']['franquicia']['options']; ?>
-
-<?php else: ?>
-<input type="hidden" class="sugar_field" id="<?php echo $this->_tpl_vars['fields']['franquicia']['name']; ?>
-" value="<?php echo $this->_tpl_vars['fields']['franquicia']['value']; ?>
-">
-<?php echo $this->_tpl_vars['fields']['franquicia']['options'][$this->_tpl_vars['fields']['franquicia']['value']]; ?>
-
-<?php endif; ?>
+<span id="franquicia" class="sugar_field"><a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D34e1c623-cbb8-26f8-6d4f-573193efc8ee"><span id="expan_franquicia" class="sugar_field" data-id-value="34e1c623-cbb8-26f8-6d4f-573193efc8ee">Adagio Cantabile</span></a></span>
 <?php endif; ?>
 </div>
 </td>
@@ -2806,7 +2802,7 @@ $irClick = "";
 if (strlen($link)!=0){
 $irClick="Abrir Cuestionario";
 }                      
-echo "<a target=\"_blank\" onclick=\"eliminarAlertaCuestionario('".$id."')\" href=\"".$link."\">".$irClick."<//a>";                      
+echo "<a target=\"_blank\" onclick=\"eliminarAlertaCuestionario('".$id."')\" href=\"".$link."\">".$irClick."</a>";                      
  ?></span>
 <?php endif; ?>
 </div>
@@ -3075,7 +3071,7 @@ echo "<a target=\"_blank\" onclick=\"eliminarAlertaCuestionario('".$id."')\" hre
 <?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'LBL_NOTAS_ARGUMENTARIO','module' => 'Expan_GestionSolicitudes'), $this); $this->_smarty_vars['capture']['label'] = ob_get_contents();  $this->assign('label', ob_get_contents());ob_end_clean(); ?>
 <?php echo ((is_array($_tmp=$this->_tpl_vars['label'])) ? $this->_run_mod_handler('strip_semicolon', true, $_tmp) : smarty_modifier_strip_semicolon($_tmp)); ?>
 :
-<?php ob_start();  echo smarty_function_sugar_translate(array('label' => 'Información recogida del franquiciador','module' => 'Expan_GestionSolicitudes'), $this); $this->_smarty_vars['capture']['popupText'] = ob_get_contents();  $this->assign('popupText', ob_get_contents());ob_end_clean(); ?>
+<?php ob_start();  echo smarty_function_sugar_translate(array('label' => "Información recogida del franquiciador",'module' => 'Expan_GestionSolicitudes'), $this); $this->_smarty_vars['capture']['popupText'] = ob_get_contents();  $this->assign('popupText', ob_get_contents());ob_end_clean(); ?>
 <?php echo smarty_function_sugar_help(array('text' => $this->_tpl_vars['popupText'],'WIDTH' => 400), $this);?>
 
 <?php endif; ?>

@@ -40,7 +40,7 @@ onClick="
 this.form.return_action.value='DetailView'; 
 this.form.action.value='Save';             
 var valido=validarSubOrigen('EditView');
-if (valido!=false) controlRating('61cccb14-2e85-56e2-820b-552a9d20f5d5');                        
+if (valido!=false) controlRating('25dae510-72d3-42d4-bc3c-5672d684e9f6');                        
 return valido;" value="Guardar"/> {if !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($smarty.request.return_id))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" type="button" id="CANCEL_HEADER"> {elseif !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($fields.id.value))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$fields.id.value}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {elseif empty($smarty.request.return_action) || empty($smarty.request.return_id) && !empty($fields.id.value)}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module=Expan_Solicitud'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {else}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_HEADER"> {/if} <input title="Mostrar informacion ampliada" type="button" name="ampliarResumir" id="ampliarResumir" 
 onclick="alternarVistaAmpli();" value="Informacion Reducida"/> {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_Solicitud", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
 </td>
@@ -1771,7 +1771,7 @@ value='{$value}' title=''      >
 {else}
 {assign var="value" value=$fields.phone_mobile.value }
 {/if}  
-<input type='text' name='{$fields.phone_mobile.name}' id='{$fields.phone_mobile.name}' size='30' maxlength='100' value='{$value}' title='' tabindex='0'	  class="phone"  onBlur="controlTelefono(this,'61cccb14-2e85-56e2-820b-552a9d20f5d5')">
+<input type='text' name='{$fields.phone_mobile.name}' id='{$fields.phone_mobile.name}' size='30' maxlength='100' value='{$value}' title='' tabindex='0'	  class="phone"  onBlur="controlTelefono(this,'25dae510-72d3-42d4-bc3c-5672d684e9f6')">
 </tr>
 {/capture}
 {if $fieldsUsed > 0 }
@@ -7354,7 +7354,7 @@ value='{$value}' title=''      >
 </td>
 {counter name="fieldsUsed"}
 
-<td valign="top" width='37.5%' colspan='3'>
+<td valign="top" width='37.5%' >
 {counter name="panelFieldCount"}
 
 {if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
@@ -7565,6 +7565,12 @@ SyncToHidden(e.result.raw.key);
 </script> 
 {/literal}
 {/if}
+<td valign="top" id='_label' width='12.5%' scope="col">
+&nbsp;
+</td>
+{counter name="fieldsUsed"}
+
+<td valign="top" width='37.5%' >
 </tr>
 {/capture}
 {if $fieldsUsed > 0 }
@@ -8604,215 +8610,7 @@ SyncToHidden(e.result.raw.key);
 
 <td valign="top" width='37.5%' >
 {counter name="panelFieldCount"}
-
-{if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
-<select name="{$fields.dispone_local.name}" 
-id="{$fields.dispone_local.name}" 
-title=''       
->
-{if isset($fields.dispone_local.value) && $fields.dispone_local.value != ''}
-{html_options options=$fields.dispone_local.options selected=$fields.dispone_local.value}
-{else}
-{html_options options=$fields.dispone_local.options selected=$fields.dispone_local.default}
-{/if}
-</select>
-{else}
-{assign var="field_options" value=$fields.dispone_local.options }
-{capture name="field_val"}{$fields.dispone_local.value}{/capture}
-{assign var="field_val" value=$smarty.capture.field_val}
-{capture name="ac_key"}{$fields.dispone_local.name}{/capture}
-{assign var="ac_key" value=$smarty.capture.ac_key}
-<select style='display:none' name="{$fields.dispone_local.name}" 
-id="{$fields.dispone_local.name}" 
-title=''          
->
-{if isset($fields.dispone_local.value) && $fields.dispone_local.value != ''}
-{html_options options=$fields.dispone_local.options selected=$fields.dispone_local.value}
-{else}
-{html_options options=$fields.dispone_local.options selected=$fields.dispone_local.default}
-{/if}
-</select>
-<input
-id="{$fields.dispone_local.name}-input"
-name="{$fields.dispone_local.name}-input"
-size="30"
-value="{$field_val|lookup:$field_options}"
-type="text" style="vertical-align: top;">
-<span class="id-ff multiple">
-<button type="button"><img src="{sugar_getimagepath file="id-ff-down.png"}" id="{$fields.dispone_local.name}-image"></button><button type="button"
-id="btn-clear-{$fields.dispone_local.name}-input"
-title="Clear"
-onclick="SUGAR.clearRelateField(this.form, '{$fields.dispone_local.name}-input', '{$fields.dispone_local.name}');sync_{$fields.dispone_local.name}()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
-</span>
-{literal}
-<script>
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal} = [];
-{/literal}
-{literal}
-(function (){
-var selectElem = document.getElementById("{/literal}{$fields.dispone_local.name}{literal}");
-if (typeof select_defaults =="undefined")
-select_defaults = [];
-select_defaults[selectElem.id] = {key:selectElem.value,text:''};
-//get default
-for (i=0;i<selectElem.options.length;i++){
-if (selectElem.options[i].value==selectElem.value)
-select_defaults[selectElem.id].text = selectElem.options[i].innerHTML;
-}
-//SUGAR.AutoComplete.{$ac_key}.ds = 
-//get options array from vardefs
-var options = SUGAR.AutoComplete.getOptionsArray("");
-YUI().use('datasource', 'datasource-jsonschema',function (Y) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds = new Y.DataSource.Function({
-source: function (request) {
-var ret = [];
-for (i=0;i<selectElem.options.length;i++)
-if (!(selectElem.options[i].value=='' && selectElem.options[i].innerHTML==''))
-ret.push({'key':selectElem.options[i].value,'text':selectElem.options[i].innerHTML});
-return ret;
-}
-});
-});
-})();
-{/literal}
-{literal}
-YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", "node","node-event-simulate", function (Y) {
-{/literal}
-SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{$fields.dispone_local.name}-input');
-SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{$fields.dispone_local.name}-image');
-SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{$fields.dispone_local.name}');
-{literal}
-function SyncToHidden(selectme){
-var selectElem = document.getElementById("{/literal}{$fields.dispone_local.name}{literal}");
-var doSimulateChange = false;
-if (selectElem.value!=selectme)
-doSimulateChange=true;
-selectElem.value=selectme;
-for (i=0;i<selectElem.options.length;i++){
-selectElem.options[i].selected=false;
-if (selectElem.options[i].value==selectme)
-selectElem.options[i].selected=true;
-}
-if (doSimulateChange)
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('change');
-}
-//global variable 
-sync_{/literal}{$fields.dispone_local.name}{literal} = function(){
-SyncToHidden();
-}
-function syncFromHiddenToWidget(){
-var selectElem = document.getElementById("{/literal}{$fields.dispone_local.name}{literal}");
-//if select no longer on page, kill timer
-if (selectElem==null || selectElem.options == null)
-return;
-var currentvalue = SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value');
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.simulate('keyup');
-for (i=0;i<selectElem.options.length;i++){
-if (selectElem.options[i].value==selectElem.value && document.activeElement != document.getElementById('{/literal}{$fields.dispone_local.name}-input{literal}'))
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value',selectElem.options[i].innerHTML);
-}
-}
-YAHOO.util.Event.onAvailable("{/literal}{$fields.dispone_local.name}{literal}", syncFromHiddenToWidget);
-{/literal}
-SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
-SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
-SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
-if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
-{/literal}
-SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
-{literal}
-}
-{/literal}
-if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
-{/literal}
-SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
-{literal}
-}
-{/literal}
-SUGAR.AutoComplete.{$ac_key}.optionsVisible = false;
-{literal}
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
-activateFirstItem: true,
-{/literal}
-minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
-queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
-zIndex: 99999,
-{literal}
-source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
-resultTextLocator: 'text',
-resultHighlighter: 'phraseMatch',
-resultFilters: 'phraseMatch',
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover = function(ex){
-var hover = YAHOO.util.Dom.getElementsByClassName('dccontent');
-if(hover[0] != null){
-if (ex) {
-var h = '1000px';
-hover[0].style.height = h;
-}
-else{
-hover[0].style.height = '';
-}
-}
-}
-if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
-// expand the dropdown options upon focus
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function () {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.sendRequest('');
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = true;
-});
-}
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('click', function(e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('click');
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('dblclick', function(e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('dblclick');
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function(e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('focus');
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mouseup', function(e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mouseup');
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('mousedown', function(e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('mousedown');
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('blur', function(e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.simulate('blur');
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible = false;
-var selectElem = document.getElementById("{/literal}{$fields.dispone_local.name}{literal}");
-//if typed value is a valid option, do nothing
-for (i=0;i<selectElem.options.length;i++)
-if (selectElem.options[i].innerHTML==SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.get('value'))
-return;
-//typed value is invalid, so set the text and the hidden to blank
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.set('value', select_defaults[selectElem.id].text);
-SyncToHidden(select_defaults[selectElem.id].key);
-});
-// when they click on the arrow image, toggle the visibility of the options
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputImage.ancestor().on('click', function () {
-if (SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.optionsVisible) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.blur();
-} else {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.focus();
-}
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('query', function () {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputHidden.set('value', '');
-});
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('visibleChange', function (e) {
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.expandHover(e.newVal); // expand
-});
-// when they select an option, set the hidden input with the KEY, to be saved
-SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.ac.on('select', function(e) {
-SyncToHidden(e.result.raw.key);
-});
-});
-</script> 
-{/literal}
-{/if}
+En propiedad
 <td valign="top" id='_label' width='12.5%' scope="col">
 &nbsp;
 </td>
@@ -10727,7 +10525,7 @@ onClick="
 this.form.return_action.value='DetailView'; 
 this.form.action.value='Save';             
 var valido=validarSubOrigen('EditView');
-if (valido!=false) controlRating('61cccb14-2e85-56e2-820b-552a9d20f5d5');                        
+if (valido!=false) controlRating('25dae510-72d3-42d4-bc3c-5672d684e9f6');                        
 return valido;" value="Guardar"/> {if !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($smarty.request.return_id))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" type="button" id="CANCEL_FOOTER"> {elseif !empty($smarty.request.return_action) && ($smarty.request.return_action == "DetailView" && !empty($fields.id.value))}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=DetailView&module={$smarty.request.return_module}&record={$fields.id.value}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {elseif empty($smarty.request.return_action) || empty($smarty.request.return_id) && !empty($fields.id.value)}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module=Expan_Solicitud'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {else}<input title="{$APP.LBL_CANCEL_BUTTON_TITLE}" accessKey="{$APP.LBL_CANCEL_BUTTON_KEY}" class="button" onclick="SUGAR.ajaxUI.loadContent('index.php?action=index&module={$smarty.request.return_module}&record={$smarty.request.return_id}'); return false;" type="button" name="button" value="{$APP.LBL_CANCEL_BUTTON_LABEL}" id="CANCEL_FOOTER"> {/if} <input title="Mostrar informacion ampliada" type="button" name="ampliarResumir" id="ampliarResumir" 
 onclick="alternarVistaAmpli();" value="Informacion Reducida"/> {if $bean->aclAccess("detail")}{if !empty($fields.id.value) && $isAuditEnabled}<input id="btn_view_change_log" title="{$APP.LNK_VIEW_CHANGE_LOG}" class="button" onclick='open_popup("Audit", "600", "400", "&record={$fields.id.value}&module_name=Expan_Solicitud", true, false,  {ldelim} "call_back_function":"set_return","form_name":"EditView","field_to_name_array":[] {rdelim} ); return false;' type="button" value="{$APP.LNK_VIEW_CHANGE_LOG}">{/if}{/if}<div class="clear"></div></div>
 </div>
@@ -10736,9 +10534,10 @@ onclick="alternarVistaAmpli();" value="Informacion Reducida"/> {if $bean->aclAcc
 <!-- Begin Meta-Data Javascript -->
 {sugar_getscript file="include/javascript/popup_parent_helper.js"}
 {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
-{sugar_getscript file="include/javascript/EditSolicitud.js"}
-{sugar_getscript file="include/javascript/jquery.js"}
+{sugar_getscript file="cache/include/javascript/sugar_grp_yui_widgets.js"}
+{sugar_getscript file="include/javascript/EditSolicitud.js"}                              
 {sugar_getscript file="modules/Documents/documents.js"}
+{sugar_getscript file="include/javascript/include.js"}
 <script type="text/javascript"> onload=inicio();</script>
 <!-- End Meta-Data Javascript -->
 <script>SUGAR.util.doWhen("document.getElementById('EditView') != null",

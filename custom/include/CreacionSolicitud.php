@@ -794,7 +794,7 @@ class AccionesGuardado
 
   }
 
-  function activarMaster($bean)
+  function activarMaster(&$bean)
   {
     // cambiar check de master
     if ($bean->pais_c != "SPAIN") {
@@ -804,7 +804,7 @@ class AccionesGuardado
     }
   }
 
-  function actualizarResidencia($bean)
+  function actualizarResidencia(&$bean)
   {
 
     if (trim($bean->pais_residencia) == "") {
@@ -815,7 +815,7 @@ class AccionesGuardado
       $bean->provincia_residencia = 100;
     } else {
       if (trim($bean->provincia_residencia) == "") {
-        $bean->provincia_residencia = $bean->provincia_apertura;
+        $bean->provincia_residencia = $bean->provincia_apertura_1;
       }
     }
   }

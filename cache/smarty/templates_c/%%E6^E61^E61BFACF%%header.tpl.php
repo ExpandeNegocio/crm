@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.11, created on 2019-07-17 16:52:48
+<?php /* Smarty version 2.6.11, created on 2019-08-05 16:02:37
          compiled from modules/Calendar/tpls/header.tpl */ ?>
 
 <?php if ($this->_tpl_vars['controls']): ?>

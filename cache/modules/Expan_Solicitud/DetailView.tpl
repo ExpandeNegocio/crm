@@ -1241,57 +1241,6 @@ echo '<input type="hidden" id="is_editable" value="">';
 <tr>
 {counter name="fieldsUsed"}
 <td width='12.5%' scope="col">
-{if !$fields.chk_entrevista_previa_cliente.hidden}
-{capture name="label" assign="label"}{sugar_translate label='LBL_ENTREVISTA_PREVIA_CLIENTE' module='Expan_Solicitud'}{/capture}
-{$label|strip_semicolon}:
-{/if}
-</td>
-<td width='37.5%'  >
-<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('chk_entrevista_previa_cliente','bool')" class="div_value" id="chk_entrevista_previa_cliente_detailblock" target_id="chk_entrevista_previa_cliente">
-{if !$fields.chk_entrevista_previa_cliente.hidden}
-{counter name="panelFieldCount"}
-
-{if strval($fields.chk_entrevista_previa_cliente.value) == "1" || strval($fields.chk_entrevista_previa_cliente.value) == "yes" || strval($fields.chk_entrevista_previa_cliente.value) == "on"} 
-{assign var="checked" value="CHECKED"}
-{else}
-{assign var="checked" value=""}
-{/if}
-<input type="checkbox" class="checkbox" name="{$fields.chk_entrevista_previa_cliente.name}" id="{$fields.chk_entrevista_previa_cliente.name}" value="$fields.chk_entrevista_previa_cliente.value" disabled="true" {$checked}>
-{/if}
-</div>
-</td>
-{counter name="fieldsUsed"}
-<td width='12.5%' scope="col">
-{if !$fields.chk_entrevista_previa_EN.hidden}
-{capture name="label" assign="label"}{sugar_translate label='LBL_ENTREVISTA_PREVIA_EN' module='Expan_Solicitud'}{/capture}
-{$label|strip_semicolon}:
-{/if}
-</td>
-<td width='37.5%'  >
-<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('chk_entrevista_previa_EN','bool')" class="div_value" id="chk_entrevista_previa_EN_detailblock" target_id="chk_entrevista_previa_EN">
-{if !$fields.chk_entrevista_previa_EN.hidden}
-{counter name="panelFieldCount"}
-
-{if strval($fields.chk_entrevista_previa_EN.value) == "1" || strval($fields.chk_entrevista_previa_EN.value) == "yes" || strval($fields.chk_entrevista_previa_EN.value) == "on"} 
-{assign var="checked" value="CHECKED"}
-{else}
-{assign var="checked" value=""}
-{/if}
-<input type="checkbox" class="checkbox" name="{$fields.chk_entrevista_previa_EN.name}" id="{$fields.chk_entrevista_previa_EN.name}" value="$fields.chk_entrevista_previa_EN.value" disabled="true" {$checked}>
-{/if}
-</div>
-</td>
-</tr>
-{/capture}
-{if $fieldsUsed > 0 && $fieldsUsed != $fieldsHidden}
-{$tableRow}
-{/if}
-{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
-{counter name="fieldsHidden" start=0 print=false assign="fieldsHidden"}
-{capture name="tr" assign="tableRow"}
-<tr>
-{counter name="fieldsUsed"}
-<td width='12.5%' scope="col">
 {if !$fields.chk_entrevista_previa_EN.hidden}
 {capture name="label" assign="label"}{sugar_translate label='LBL_ENTREVISTA_PREVIA_EN' module='Expan_Solicitud'}{/capture}
 {$label|strip_semicolon}:
@@ -1382,6 +1331,57 @@ echo '<input type="hidden" id="is_editable" value="">';
 {assign var="value" value=$fields.f_entrevista_previa_cliente.value }
 {/if}
 <span class="sugar_field" id="{$fields.f_entrevista_previa_cliente.name}">{$value}</span>
+{/if}
+</div>
+</td>
+</tr>
+{/capture}
+{if $fieldsUsed > 0 && $fieldsUsed != $fieldsHidden}
+{$tableRow}
+{/if}
+{counter name="fieldsUsed" start=0 print=false assign="fieldsUsed"}
+{counter name="fieldsHidden" start=0 print=false assign="fieldsHidden"}
+{capture name="tr" assign="tableRow"}
+<tr>
+{counter name="fieldsUsed"}
+<td width='12.5%' scope="col">
+{if !$fields.usuario_entrevista_previa_EN.hidden}
+{capture name="label" assign="label"}{sugar_translate label='LBL_USUARIO_ENTREVISTA_PREVIA_EN' module='Expan_Solicitud'}{/capture}
+{$label|strip_semicolon}:
+{/if}
+</td>
+<td width='37.5%'  >
+<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('usuario_entrevista_previa_EN','varchar')" class="div_value" id="usuario_entrevista_previa_EN_detailblock" target_id="usuario_entrevista_previa_EN">
+{if !$fields.usuario_entrevista_previa_EN.hidden}
+{counter name="panelFieldCount"}
+
+{if strlen($fields.usuario_entrevista_previa_EN.value) <= 0}
+{assign var="value" value=$fields.usuario_entrevista_previa_EN.default_value }
+{else}
+{assign var="value" value=$fields.usuario_entrevista_previa_EN.value }
+{/if} 
+<span class="sugar_field" id="{$fields.usuario_entrevista_previa_EN.name}">{$fields.usuario_entrevista_previa_EN.value}</span>
+{/if}
+</div>
+</td>
+{counter name="fieldsUsed"}
+<td width='12.5%' scope="col">
+{if !$fields.usuario_entrevista_previa_cliente.hidden}
+{capture name="label" assign="label"}{sugar_translate label='LBL_USUARIO_ENTREVISTA_PREVIA_CLIENTE' module='Expan_Solicitud'}{/capture}
+{$label|strip_semicolon}:
+{/if}
+</td>
+<td width='37.5%'  >
+<div style="width: 100%; min-height: 10px;" ondblclick="EDV.show_edit('usuario_entrevista_previa_cliente','varchar')" class="div_value" id="usuario_entrevista_previa_cliente_detailblock" target_id="usuario_entrevista_previa_cliente">
+{if !$fields.usuario_entrevista_previa_cliente.hidden}
+{counter name="panelFieldCount"}
+
+{if strlen($fields.usuario_entrevista_previa_cliente.value) <= 0}
+{assign var="value" value=$fields.usuario_entrevista_previa_cliente.default_value }
+{else}
+{assign var="value" value=$fields.usuario_entrevista_previa_cliente.value }
+{/if} 
+<span class="sugar_field" id="{$fields.usuario_entrevista_previa_cliente.name}">{$fields.usuario_entrevista_previa_cliente.value}</span>
 {/if}
 </div>
 </td>

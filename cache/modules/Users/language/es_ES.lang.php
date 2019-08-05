@@ -1,5 +1,5 @@
 <?php
-// created: 2019-07-16 17:41:33
+// created: 2019-08-02 18:58:24
 $mod_strings = array (
   'LBL_DELETE_USER_CONFIRM' => 'Al eliminar el registro de Usuario, el registroo correspondiente de Empreado también será eliminado. Una vez el usuario ha sido eliminado, es posible que las definiciones de workflow e informes que involucren al usuario tengan que ser actualizados.<br /><br />Haga clic en Aceptar para eliminar el registro de Usuario. Tras hacer clic en Aceptar, le será otorgada la capacidad de reasignar los registros asignados al usuario a otro usuario.',
   'LBL_DELETE_GROUP_CONFIRM' => '¿Está seguro de que desea eliminar este Usuario de Grupo? Haga clic en Aceptar para eliminar el registro de Usuario.<br />Tras Aceptar, le será otorgada la capacidad de reasignar los registros asignados del Usuario de Grupo a otro usuario.',

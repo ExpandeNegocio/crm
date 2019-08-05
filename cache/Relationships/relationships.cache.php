@@ -10402,6 +10402,28 @@
     'lhs_key' => 'id',
     'relationship_type' => 'one-to-many',
   ),
+  'expan_centrocomercial_modified_user' => 
+  array (
+    'name' => 'expan_centrocomercial_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_CentroComercial',
+    'rhs_table' => 'expan_centrocomercial',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'expan_centrocomercial_created_by' => 
+  array (
+    'name' => 'expan_centrocomercial_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'Expan_CentroComercial',
+    'rhs_table' => 'expan_centrocomercial',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
   'expan_clientepotencial_modified_user' => 
   array (
     'name' => 'expan_clientepotencial_modified_user',

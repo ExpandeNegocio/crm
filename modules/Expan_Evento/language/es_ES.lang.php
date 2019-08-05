@@ -106,4 +106,5 @@ $mod_strings = array (
   'LBL_REVISTAS' => 'Numero de revistas',
   'LBL_FECHA_FIN' => 'Fecha finalización',
   'LBL_OBSERVACIONES' => 'Observaciones',
+  'LBL_IMPORT_EVENTOS' => ' Franquicias de Evento',
 );

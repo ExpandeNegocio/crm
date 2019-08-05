@@ -42,10 +42,11 @@ $viewdefs [$module_name] =
                   ),
               ),
             'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
-      {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
-      {sugar_getscript file="include/javascript/EditSolicitud.js"}
-      {sugar_getscript file="include/javascript/jquery.js"}
-      {sugar_getscript file="modules/Documents/documents.js"}
+                              {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+                              {sugar_getscript file="cache/include/javascript/sugar_grp_yui_widgets.js"}
+                              {sugar_getscript file="include/javascript/EditSolicitud.js"}                              
+                              {sugar_getscript file="modules/Documents/documents.js"}
+                              {sugar_getscript file="include/javascript/include.js"}
       <script type="text/javascript"> onload=inicio();</script>',
             'form' =>
               array(
@@ -714,8 +715,11 @@ $viewdefs [$module_name] =
                     0 =>
                       array(
                         'name' => 'recursos_propios',
-                        'studio' => 'visible',
                         'label' => 'LBL_RECURSOS_PROPIOS',
+                      ),
+                    1 =>
+                      array(
+
                       ),
                   ),
 

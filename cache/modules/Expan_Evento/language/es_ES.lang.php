@@ -1,5 +1,5 @@
 <?php
-// created: 2019-07-16 17:41:42
+// created: 2019-08-05 16:47:22
 $mod_strings = array (
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -72,6 +72,7 @@ $mod_strings = array (
   'LBL_REVISTAS' => 'Numero de revistas',
   'LBL_FECHA_FIN' => 'Fecha finalización',
   'LBL_OBSERVACIONES' => 'Observaciones',
+  'LBL_IMPORT_EVENTOS' => ' Franquicias de Evento',
   'LBL_EXPAN_FRANQUICIA_EXPAN_EVENTO_FROM_EXPAN_FRANQUICIA_TITLE' => 'Franquicia',
   'LBL_DETAIL_VIEW_ADMINISTRACION' => 'Administracion',
   'LBL_COSTE_ACCION' => 'Coste Acciion',
