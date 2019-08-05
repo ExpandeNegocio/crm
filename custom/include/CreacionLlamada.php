@@ -58,7 +58,9 @@ class AccionesGuardadoTel {
                 if ($bean -> parent_type == 'Expan_Franquicia') {
                     //$franquicia -> archivarLlamadas("Planned");//por si se tienen que archivar en algun momento
                 } else {
+                  if ($bean->call_type!='FRANOtra'){
                     $solicitud -> ArchivarLLamadas("Planned");
+                  }
                 }
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion de llamada]Entro');

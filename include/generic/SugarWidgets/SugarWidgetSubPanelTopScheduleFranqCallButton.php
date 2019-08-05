@@ -90,36 +90,8 @@ class SugarWidgetSubPanelTopScheduleFranqCallButton extends SugarWidgetSubPanelT
     $button .= '<input type="hidden" name="return_id" value="' . $defines['focus']->id . "\" />\n";
     $button .= '<input type="hidden" name="record" value="" />';
 
-    // TODO: move this out and get $additionalFormFields working properly
-  /*  if (empty($additionalFormFields['parent_type'])) {
-      if ($defines['focus']->object_name == 'Contact') {
-        $additionalFormFields['parent_type'] = 'Accounts';
-      } else {
-        $additionalFormFields['parent_type'] = "Expan_Franquicia";
-      }
-    }
-    if (empty($additionalFormFields['parent_name'])) {
-      if ($defines['focus']->object_name == 'Contact') {
-        $additionalFormFields['parent_name'] = $defines['focus']->account_name;
-        $additionalFormFields['account_name'] = $defines['focus']->account_name;
-      } else {
-        $additionalFormFields['parent_name'] = $defines['focus']->name;
-      }
-    }
-    if (empty($additionalFormFields['parent_id'])) {
-      if ($defines['focus']->object_name == 'Contact') {
-        $additionalFormFields['parent_id'] = $defines['focus']->account_id;
-        $additionalFormFields['account_id'] = $defines['focus']->account_id;
-      } else {
-        $additionalFormFields['parent_id'] = $defines['focus']->id;
-      }
-    }*/
-
-   /* $additionalFormFields['parent_type'] = "Expan_Franquicia";
-    $additionalFormFields['parent_name'] = $franquicia->name;
-    $additionalFormFields['parent_id'] = $franquicia->id;*/
-    $additionalFormFields['relate_to'] = "Expan_Franquicia";
-    $additionalFormFields['relate_id'] = $franquicia->id;
+    $additionalFormFields['relate_to'] = "Expan_Gestionsolicitudes";
+    $additionalFormFields['relate_id'] = $defines['focus']->id;
 
     $additionalFormFields['telefono'] = $franquicia->phone_office;
     $additionalFormFields['call_type'] = 'FRANOtra';

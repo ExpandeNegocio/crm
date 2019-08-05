@@ -2,7 +2,8 @@
 	const USUARIO_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
 		
 	$("#tab2").hide();
-	
+	$("#save_and_continue").hide();
+
 	$("#historial_empresa").height(155);
 	$("#empresa_temp").val($("#empresa").val());	
 	

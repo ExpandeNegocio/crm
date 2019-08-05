@@ -7,6 +7,8 @@ function ocultarCheck(gestionID) {
      ajaxStart: function() { alert('Entra Ajax');   },
      ajaxStop: function() { alert('Cierra Ajax'); }
      });*/
+    $("#save_and_continue").hide();
+
     estado = document.getElementById("estado_sol").value;
     document.getElementById("oportunidad_inmediata").disabled = true;
     document.getElementById("candidatura_avanzada").disabled = true;
