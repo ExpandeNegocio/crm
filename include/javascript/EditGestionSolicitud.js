@@ -131,8 +131,10 @@ function openParent(idParent, parentModule) {
 function boldCentral() {
     if ($("#chk_gestionado_central").is(':checked')) {
         $("#chk_gestionado_central_label").css("font-weight", "Bold");
+        $("#f_gestionado_central_label").css("font-weight", "Bold");
     } else {
         $("#chk_gestionado_central_label").css("font-weight", "");
+        $("#f_gestionado_central_label").css("font-weight", "");
     }
 }
 

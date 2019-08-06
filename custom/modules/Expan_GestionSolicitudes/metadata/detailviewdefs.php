@@ -12,6 +12,14 @@ $franquicia->retrieve($gestion->franquicia);
 
 $createButtonsHelper = new CreateCxButtonsHelper($gestion, $franquicia);
 
+if ($gestion->chk_gestionado_central==1){
+  $textoGestCentral="<B>Gestionado por Central:</B>";
+  $textoFGestCentral="<B>Fecha Gestionado por Central:</B>";
+}else{
+  $textoGestCentral="Gestionado por Central:";
+  $textoFGestCentral="Fecha Gestionado por Central:";
+}
+
 if ($gestion->tieneApertura()) {
   $botonApertura = '{if $fields.id.value!=""} <input type="button" name="irApertura" id="irApertura" class="" style="color:#0000FF;"
                     onClick="irAperturas(\'{$fields.name.value}\');" value="Ir Aperturas">{/if}';
@@ -270,12 +278,12 @@ $viewdefs [$module_name] =
                     0 =>
                       array(
                         'name' => 'chk_gestionado_central',
-                        'label' => 'LBL_CHK_GESTIONADO_CENTRAL',
+                        'label' => $textoGestCentral,
                       ),
                     1 =>
                       array(
                         'name' => 'f_gestionado_central',
-                        'label' => 'LBL_F_GESTIONADO_CENTRAL',
+                        'label' => $textoFGestCentral,
                       ),
                   ),
 

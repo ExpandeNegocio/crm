@@ -6,7 +6,7 @@ colorearAvanzado();
 colorearCaliente();
 colorearPositivo();
 cargarDocumentos();
-boldCentral();
+//boldCentral();
 
 var gestionID=getSearchParams('record');
 //abrirSolicitud(gestionID,"DetailView");
@@ -18,10 +18,12 @@ function getSearchParams(k){
 }
 
 function boldCentral(){
-	if ($("#chk_gestionado_central_detailblock").is(':checked')){
-		$("#chk_gestionado_central_detailblock").parent().css("font-weight","Bold");			
+	if ($("#chk_gestionado_central_span").is(':checked')){
+		$("#chk_gestionado_central_span").parent().css("font-weight","Bold");
+		alert("Entra Negrita");
 	}else{
-		$("#chk_gestionado_central_detailblock").parent().css("font-weight","");
+		$("#chk_gestionado_central_span").parent().css("font-weight","Bold");
+		alert("Entra Limpio");
 	}	
 }
 
