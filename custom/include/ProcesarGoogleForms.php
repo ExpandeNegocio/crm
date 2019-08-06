@@ -236,90 +236,7 @@ function procesar()
     echo "Gestion - " . $gestion->id . "<br>";
 
     if ($gestion != null) {
-
-
-      $gestion->lnk_cuestionario = $idCuestionario;
-
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Gestion  -" . $gestion->name);
-      //ACTUALIZAR EL NOMBRE DE LA GESTION POR SI HA PUESTO OTRO NOMBRE EN EL CUESTIONARIO
-      $nomApe = substr($gestion->name, 0, strpos($gestion->name, "-"));
-      $substN = substr($gestion->name, 0, strpos($gestion->name, " "));
-      $substA = substr($nomApe, strpos($nomApe, " ") + 1);
-      $substfran = substr($gestion->name, strpos($gestion->name, "-"));
-
-      if ($nombre != $substN | $apellidos != $substA) {//si se ha cambiado el nombre o el apellido
-        $nombreNuevo = $nombre . " " . $apellidos . " " . $substfran;
-        $gestion->name = $nombreNuevo;//cambiar el nombre
-      }
-
-      $gestion->chk_recepcio_cuestionario = 1;
-      $fechaHoy = new DateTime();
-      $gestion->f_recepcion_cuestionario = $fechaHoy->format('d/m/Y H:i');
-      $gestion->candidatura_avanzada = true;
-      $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
-
-      $gestion->asignarGestor();
-
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Despues asignar Gestor");
-
-      switch ($papel) {
-
-        case "Quiero dedicarme en exclusiva a este proyecto" :
-          $gestion->papel = 1;
-          break;
-
-        case "Pretendo compaginar este proyecto con mi trabajo actual" :
-          $gestion->papel = 2;
-          break;
-
-        case "Aporto el capital de la inversión del proyecto" :
-          $gestion->papel = 3;
-          break;
-
-        case "Pretende ser un complemento dentro de actual negocio" :
-          $gestion->papel = 4;
-          break;
-      }
-
-
-      switch ($recursos) {
-
-        case "100% fondos propios" :
-          $gestion->recursos_propios = 1;
-          break;
-
-        case "Fondos propios + Financiación" :
-          $gestion->recursos_propios = 2;
-          break;
-
-        case "100% financiado por entidad bancaria" :
-          $gestion->recursos_propios = 3;
-          break;
-      }
-
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger fecha-" . $inicio);
-      $gestion->cuando_empezar = $inicio;
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Fecha Inicio Gestion-" . $gestion->cuando_empezar);
-
-      $gestion->otras_preguntas_formulario = $otrasPreguntas;
-
-      $telefono = $solicitud->recogeTelefono();
-
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Tenemos telefono-" . $telefono);
-
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]PrevioEnvios");
-
-      //Creamos Las llamadas y las tareas
-      $gestion->creaLlamada('[AUT]Recepcion cuestionario', 'Cuestionario');
-      $gestion->crearTarea("DOCURevCu");
-
-      //Enviamos un correo con plantilla 1.3
-      $gestion->preparaCorreo("C1.3");
-
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]PostEnvios");
-      $gestion->ignore_update_c = true;
-      $gestion->save();
-      $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Guardamos Gestion");
+      updateGest($idCuestionario, $gestion, $nombre, $apellidos, $papel, $recursos, $inicio, $otrasPreguntas, $solicitud);
     }
 
     $solicitudCaliente = $gestion->candidatura_caliente;
@@ -354,6 +271,93 @@ function procesar()
   $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms]Finaliza");
   echo "Finaliza" . "<br>";
 
+}
+
+
+function updateGest($idCuestionario, $gestion, $nombre, $apellidos, $papel, $recursos, $inicio, $otrasPreguntas, Expan_Solicitud $solicitud)
+{
+  $gestion->lnk_cuestionario = $idCuestionario;
+
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Gestion  -" . $gestion->name);
+  //ACTUALIZAR EL NOMBRE DE LA GESTION POR SI HA PUESTO OTRO NOMBRE EN EL CUESTIONARIO
+  $nomApe = substr($gestion->name, 0, strpos($gestion->name, "-"));
+  $substN = substr($gestion->name, 0, strpos($gestion->name, " "));
+  $substA = substr($nomApe, strpos($nomApe, " ") + 1);
+  $substfran = substr($gestion->name, strpos($gestion->name, "-"));
+
+  if ($nombre != $substN | $apellidos != $substA) {//si se ha cambiado el nombre o el apellido
+    $nombreNuevo = $nombre . " " . $apellidos . " " . $substfran;
+    $gestion->name = $nombreNuevo;//cambiar el nombre
+  }
+
+  $gestion->chk_recepcio_cuestionario = 1;
+  $fechaHoy = new DateTime();
+  $gestion->f_recepcion_cuestionario = $fechaHoy->format('d/m/Y H:i');
+  $gestion->candidatura_avanzada = true;
+  $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+
+  $gestion->asignarGestor();
+
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Despues asignar Gestor");
+
+  switch ($papel) {
+
+    case "Quiero dedicarme en exclusiva a este proyecto" :
+      $gestion->papel = 1;
+      break;
+
+    case "Pretendo compaginar este proyecto con mi trabajo actual" :
+      $gestion->papel = 2;
+      break;
+
+    case "Aporto el capital de la inversión del proyecto" :
+      $gestion->papel = 3;
+      break;
+
+    case "Pretende ser un complemento dentro de actual negocio" :
+      $gestion->papel = 4;
+      break;
+  }
+
+
+  switch ($recursos) {
+
+    case "100% fondos propios" :
+      $gestion->recursos_propios = 1;
+      break;
+
+    case "Fondos propios + Financiación" :
+      $gestion->recursos_propios = 2;
+      break;
+
+    case "100% financiado por entidad bancaria" :
+      $gestion->recursos_propios = 3;
+      break;
+  }
+
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger fecha-" . $inicio);
+  $gestion->cuando_empezar = $inicio;
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Fecha Inicio Gestion-" . $gestion->cuando_empezar);
+
+  $gestion->otras_preguntas_formulario = $otrasPreguntas;
+
+  $telefono = $solicitud->recogeTelefono();
+
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Tenemos telefono-" . $telefono);
+
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]PrevioEnvios");
+
+  //Creamos Las llamadas y las tareas
+  $gestion->creaLlamada('[AUT]Recepcion cuestionario', 'Cuestionario');
+  $gestion->crearTarea("DOCURevCu");
+
+  //Enviamos un correo con plantilla 1.3
+  $gestion->preparaCorreo("C1.3");
+
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]PostEnvios");
+  $gestion->ignore_update_c = true;
+  $gestion->save();
+  $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Guardamos Gestion");
 }
 
 function localizaSolicitudPoremail($email)
@@ -483,5 +487,3 @@ function recogeProv($nombreprov)
 
   return $cprov;
 }
-
-?>
