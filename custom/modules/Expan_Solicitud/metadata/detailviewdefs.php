@@ -15,7 +15,7 @@ $solicitud = new Expan_Solicitud();
 $solicitud->retrieve($id);
 
 if ($solicitud->getFranquiciado() != "") {
-  $cutomCodeBotFranqui = '<input title="Abrir Franquiciado asociado a esta solicitud"  type="button" name="abrirFranquiciado" id="abrirFranquiciado"  
+  $cutomCodeBotFranqui = '<input title="Abrir Franquiciado asociado a esta solicitud"  type="button" name="openFranquiciado" id="openFranquiciado"  
                     onclick="abrirFranquiciado(\'' . $id . '\');" value="Abrir Franquiciado">';
 }
 

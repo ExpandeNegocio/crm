@@ -86,7 +86,7 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
 
         $franquiciado -> sectores_historicos = $solicitud -> sectores_historicos;
 
-        $franquiciado -> solicitud = $solicitud -> id;
+        $franquiciado -> solicitud_id = $solicitud -> id;
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Antes guardado');
 
@@ -122,4 +122,3 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
     }
 
 }
-?>

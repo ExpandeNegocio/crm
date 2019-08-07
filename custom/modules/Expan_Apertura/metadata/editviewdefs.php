@@ -1,4 +1,49 @@
 <?php
+
+$id = $_REQUEST["record"];
+if ($id == "") {
+  $id = $_POST["record"];
+}
+if ($id == "") {
+  $id = $_GET["record"];
+}
+if ($id == "") {
+  $id = $_SESSION["Expan_Apertura_detailview_record"];
+}
+
+$apertura = new Expan_Apertura();
+$apertura->retrieve($id);
+
+function getBotonGoGest(Expan_Apertura $apertura)
+{
+  $goGestion = "";
+  if ($apertura->gestion == "") {
+    $goGestion = '<a href="javascript:void(0)" style="cursor: default;">
+               <input disabled style="cursor: default;" type="button" value="Ir Gestion">
+            </a>';
+  } else {
+    $goGestion = '<a href="index.php?module=Expan_GestionSolicitudes&action=DetailView&record={$fields.gestion.value} ">
+               <button>Ir Gestion</button>
+            </a>';
+  }
+  return $goGestion;
+}
+
+function getBotonGoFcdo(Expan_Apertura $apertura)
+{
+  $goFcdo = "";
+  if ($apertura->expan_franquiciado_id == "") {
+    $goFcdo = '<a href="javascript:void(0)" style="cursor: default;">
+               <input disabled style="cursor: default;" type="button" value="Ir Franquiciado">
+            </a>';
+  } else {
+    $goFcdo = '<a href="index.php?module=Expan_Franquiciado&action=DetailView&record={$fields.expan_franquiciado_id.value} ">
+               <button>Ir Franquiciado</button>
+            </a>';
+  }
+  return $goFcdo;
+}
+
 $module_name = 'Expan_Apertura';
 $viewdefs [$module_name] = 
 array (
@@ -22,10 +67,11 @@ array (
           ),
           1 => 'CANCEL',
           2 => array (
-            'customCode' => '<a href="index.php?module=Expan_GestionSolicitudes&action=DetailView&record={$fields.gestion.value}">
-               <button>Ir Gestion</button>
-            </a>',
-          ),     
+            'customCode' => getBotonGoGest($apertura),
+          ),
+          3 => array (
+            'customCode' => getBotonGoFcdo($apertura),
+          ),
         ),
       ),
       

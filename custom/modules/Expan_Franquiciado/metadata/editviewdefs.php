@@ -66,8 +66,8 @@ array (
          3 => 
         array (
           0 => array (
-              'name' => 'provincia_apertura',
-              'label' => 'LBL_PROVINCIA_APERTURA',
+              'name' => 'provincia',
+              'label' => 'LBL_PROVINCIA',
           ),         
           1 => 'phone_work',
           
@@ -77,8 +77,8 @@ array (
         array (
           0 => 
           array (
-              'name' => 'localidad_apertura',
-              'label' => 'LBL_LOCALIDAD_APERTURA',
+              'name' => 'localidad',
+              'label' => 'LBL_LOCALIDAD',
           ),
           1 => 
           array (
@@ -123,6 +123,12 @@ array (
             array(
                 'name'=>'observaciones',
                 'label'=>'LBL_OBSERVACIONES'
+            ),
+          1 =>
+            array(
+              'name' => 'solicitud',
+              'label' => 'LBL_SOLICITUD',
+              'customCode' => '<a href="index.php?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Solicitud%26action%3DDetailView%26record%3D{$fields.solicitud_id.value}">{$fields.solicitud.value}</a><div />',
             ),
         ),
       ),

@@ -22,6 +22,7 @@ $mod_strings = array (
   'LBL_FRANQUICIA' => 'Franquicia',
   'LBL_SECTORES_HISTORICOS' => 'Sectores',
   'LBL_ESTADO' => 'Estado',
-    'LBL_PROVINCIA' => 'Provincia',
-    'LBL_LOCALIDAD' => 'Localidad',
+  'LBL_PROVINCIA' => 'Provincia',
+  'LBL_LOCALIDAD' => 'Localidad',
+  'LBL_SOLICITUD'=>'Candidato'
 );

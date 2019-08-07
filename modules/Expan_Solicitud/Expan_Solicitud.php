@@ -92,7 +92,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
     
     function AgruparLLamadas($estado,$call_type){
                 
-        if (in_array($tipoTarea, $GLOBALS['app_list_strings']['tipo_llamada_list'])){
+        if (in_array($call_type, $GLOBALS['app_list_strings']['tipo_llamada_list'])){
             $nomLLamada = $GLOBALS['app_list_strings']['tipo_llamada_list'][$call_type];                       
         }else{
             $nomLLamada = "Llamada sin definir";
@@ -505,7 +505,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
             $llamadasAbiertas = true;
         }
 
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneLlamadasPendientes]Salida-'.$reunionesAbiertas);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneLlamadasPendientes]Salida-'.$llamadasAbiertas);
 
         return $llamadasAbiertas;
     }
@@ -552,7 +552,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
             $tareasPendientes = true;
         }
         
-        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneTareasPendientes]Salida-'.$reunionesAbiertas);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][TieneTareasPendientes]Salida-'.$tareasPendientes);
 
         return $tareasPendientes;
     }
@@ -777,10 +777,10 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
         $phone_list = array();
 
-        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]Solicitud ID' . $solicitud -> id);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $solicitud -> phone_mobile);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $solicitud -> phone_home);
-        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $solicitud -> phone_work);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]Solicitud ID' . $this -> id);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $this -> phone_mobile);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $this -> phone_home);
+        $GLOBALS['log'] -> info('[ExpandeNegocio][RecogerTelefono]phone_mobile-' . $this -> phone_work);
 
         if ($this -> phone_mobile != null && trim($this -> phone_mobile) != '') {
             $phone_list[] = str_replace(" ", "", $this -> phone_mobile);
@@ -856,14 +856,14 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $salida="";
         
         $sql="SELECT id as idF FROM expan_franquiciado ";           
-        $sql=$sql." WHERE solicitud='".$this->id."' AND deleted=0;";
+        $sql=$sql." WHERE solicitud_id='".$this->id."' AND deleted=0;";
          
         $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Validadndo Telefono - Consulta - '.$sql); 
          
         $resultSol = $db->query($sql, true);
         
         while ($rowSol = $db->fetchByAssoc($resultSol)){                     
-            $salida=$row["idF"]; 
+            $salida=$rowSol["idF"];
         }
         
         return $salida;
