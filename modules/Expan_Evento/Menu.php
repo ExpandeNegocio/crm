@@ -40,5 +40,10 @@ global $mod_strings, $app_strings, $sugar_config;
  
 if(ACLController::checkAccess('Expan_Evento', 'edit', true))$module_menu[]=Array("index.php?module=Expan_Evento&action=EditView&return_module=Expan_Evento&return_action=DetailView", $mod_strings['LNK_NEW_RECORD'],"CreateExpan_Evento", 'Expan_Evento');
 if(ACLController::checkAccess('Expan_Evento', 'list', true))$module_menu[]=Array("index.php?module=Expan_Evento&action=index&return_module=Expan_Evento&return_action=DetailView", $mod_strings['LNK_LIST'],"Expan_Evento", 'Expan_Evento');
-if(ACLController::checkAccess('Expan_Evento', 'import_eventos', true))$module_menu[]=Array("index.php?entryPoint=customImportEventoss&accion=showLoad", $mod_strings['LBL_IMPORT_EVENTOS'],"Import", 'Expan_Evento');
+
+if ($_GET["record"]!=null){
+  $id=$this->bean->id;
+  if(ACLController::checkAccess('Expan_Evento', 'import_eventos', true))$module_menu[]=Array("index.php?entryPoint=customImportEventos&accion=showLoad&evento=".$id, $mod_strings['LBL_IMPORT_EVENTOS'],"Import", 'Expan_Evento');
+}
+
 ?>
