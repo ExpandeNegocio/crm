@@ -546,18 +546,24 @@
         InsertarDescripcion($objPHPExcel,$descripcion,'Franquicias no dadas de alta');
         
         //Listado de sectores no dados de alta
-        limpiaSectores(); 
-        
-        $query = "select s.first_name Nombre, s.last_name Apellido, 'Solicitud' Modulo,DATE_FORMAT(s.date_entered, '%d/%m/Y') Fecha, w.name_sector Sector   ";
-        $query=$query."from w_sector w , expan_solicitud s   ";
-        $query=$query."where w.id_sol=s.id and w.name_sector not in (select d_subsector from expan_m_sectores)   ";
-        $query=$query."AND ucase(w.name_sector) not in (select ucase (sector_excep) from w_sector_excep)   ";
-        $query=$query."UNION ALL ";
-        $query=$query."select e.name Nombre, '' Apellido, 'Empresa' Modulo, DATE_FORMAT(e.date_entered, '%d/%m/Y') Fecha, w.name_sector Sector   ";
-        $query=$query."from w_sector w , expan_empresa e ";
-        $query=$query."where w.id_sol=e.id and w.name_sector not in (select d_subsector from expan_m_sectores)   ";
-        $query=$query."AND ucase(w.name_sector) not in (select ucase (sector_excep) from w_sector_excep)   ";
+        limpiaSectores();
 
+        $query = "SELECT s.first_name Nombre, s.last_name Apellido, 'Solicitud' Modulo, DATE_FORMAT(s.date_entered, '%d/%m/Y') Fecha, w.name_sector Sector ";
+        $query=$query."FROM   w_sector w, expan_solicitud s ";
+        $query=$query."WHERE  w.id_sol = s.id AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase(d_subsector) FROM expan_m_sectores) AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase(c_sector) FROM expan_m_sectores) AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase(c_grupo_act) FROM expan_m_sectores) AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase (sector_excep) FROM w_sector_excep) ";
+        $query=$query."UNION ALL ";
+        $query=$query."SELECT e.name Nombre, '' Apellido, 'Empresa' Modulo, DATE_FORMAT(e.date_entered, '%d/%m/Y') Fecha, w.name_sector Sector ";
+        $query=$query."FROM   w_sector w, expan_empresa e ";
+        $query=$query."WHERE  w.id_sol = e.id AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase(d_subsector) FROM expan_m_sectores) AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase(c_sector) FROM expan_m_sectores) AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase(c_grupo_act) FROM expan_m_sectores) AND  ";
+        $query=$query."  ucase(w.name_sector) NOT IN (SELECT ucase (sector_excep) FROM w_sector_excep); ";
+        $query=$query." ";
         
         echo $query."<br>";
                       
