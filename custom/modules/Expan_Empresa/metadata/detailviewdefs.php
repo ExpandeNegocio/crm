@@ -296,27 +296,7 @@ array (
           ),
         ),
         
-        17 => 
-        array (
-          0 => 
-          array (
-            'name' => 'observaciones',
-            'label' => 'LBL_OBSERVACIONES',
-          ),   
-          1 => array (          
-          ),
-        ),
-                
-        18 => 
-        array (
-          0 => 
-          array (          
-            'label' => 'LBL_DIRECCION',
-          ),   
-         
-        ),
-        
-        19 => 
+        17 =>
         array (
           0 => 
           array (
@@ -329,7 +309,7 @@ array (
           ),
         ),
         
-        20 => 
+        18 =>
         array (
           0 => 
           array (
@@ -342,7 +322,7 @@ array (
           ),
         ),
         
-        21 => 
+        19 =>
         array (
           0 => 
           array (
@@ -354,7 +334,7 @@ array (
           ),
         ),
         
-        22 => 
+        20 =>
         array (
           0 => 
           array (
@@ -366,14 +346,16 @@ array (
           ),
         ),
                 
-        23 => 
+        21 =>
         array (
           0 => 
           array (
             'name' => 'observaciones',
             'label' => 'LBL_OBSERVACIONES',
           ),   
-          1 => array (          
+          1 => array (
+            'name' => 'date_entered',
+            'label' => 'LBL_DATE_ENTERED',
           ),
         ),                             
       ),

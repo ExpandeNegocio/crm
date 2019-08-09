@@ -424,7 +424,8 @@ array (
             'name' => 'observaciones',
             'label' => 'LBL_OBSERVACIONES',
           ),   
-          1 => array (          
+          1 => array (
+
           ),
         ), 
         
