@@ -202,8 +202,18 @@
     $query=$query."set g.date_entered =e.fecha_celebracion ";
     $query=$query."where e.tipo_evento='FShop' and g.date_entered>STR_TO_DATE('20/10/2017','%d/%m/%Y') and g.deleted=0; ";
     $result = $db -> query($query);
-        
-        
+
+    //Actualizar las
+
+    $query = "UPDATE inbound_email b ";
+    $query=$query."       INNER JOIN (SELECT s.id as sid , ie.id as ieid ";
+    $query=$query."                   FROM   inbound_email ie, users_signatures s ";
+    $query=$query."                   WHERE  ie.name LIKE s.name) a ";
+    $query=$query."         ON b.id = a.ieid ";
+    $query=$query."SET   template_id = sid ";
+    $query=$query."where not sid is null; ";
+    $result = $db -> query($query);
+
     //Copia de capos de solicitud a gestiones si las gestiones están vacías
     
     

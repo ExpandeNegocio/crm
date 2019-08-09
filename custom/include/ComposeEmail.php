@@ -14,15 +14,18 @@
             $db = DBManagerFactory::getInstance();
             $query = $query = "select * from inbound_email where id='".$accountId."'";
 
+              $GLOBALS['log'] -> info('[ExpandeNegocio][composeEmail]Query-'.$query);
+
             $result = $db -> query($query, true);       
     
             while ($row = $db -> fetchByAssoc($result)) {
                 $templateId=$row["template_id"];   
-            }    
+            }
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][composeEmail]TemplateId-'.$templateId);
             
             echo $templateId;
 
-            
             break;
         
         default:
