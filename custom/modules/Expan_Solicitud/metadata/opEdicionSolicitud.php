@@ -1,7 +1,7 @@
 <?php
 class opEdicionSolicitud {
 
-	function cargaSectores() {
+	function cargaSectores($search=true) {
 		
 		global $current_user;
 		global $app_list_strings;
@@ -20,9 +20,11 @@ class opEdicionSolicitud {
         
 		//Inicializamos valores de los sectores
 		$i = 0;
-        echo '<img src="themes/Sugar5/images/searchMore.gif">'. "\n";
-        echo '<input type="text" name="busca_sector" id="busca_sector" size="30" maxlength="255" value="" title="">'. "\n";                
-        echo '<img src="themes/Sugar5/images/ProjectCopy.gif" alt="Copiar a otros sectores"  onclick="copiaBusquedaOtrosSect();" />';
+		if ($search==true) {
+      echo '<img id="search_sector" src="themes/Sugar5/images/searchMore.gif">' . "\n";
+      echo '<input type="text" name="busca_sector" id="busca_sector" size="30" maxlength="255" value="" title="">' . "\n";
+      echo '<img id="copy_sector" src="themes/Sugar5/images/ProjectCopy.gif" alt="Copiar a otros sectores"  onclick="copiaBusquedaOtrosSect();" />';
+    }
 		echo "<table style='width:100%'>" . "\n";
 
 		//recogemos los sectores de la Base de datos

@@ -37,6 +37,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 $module_name = 'Expan_Empresa';
 $OBJECT_NAME = 'Expan_Empresa';
+echo '<script type="text/javascript"  src="include/javascript/ListEmpresa.js"></script>';
 $listViewDefs[$module_name] = array(
 	'NAME' => array(
 		'width' => '30', 

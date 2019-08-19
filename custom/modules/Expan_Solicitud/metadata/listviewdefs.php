@@ -1,6 +1,8 @@
 <?php
 $module_name = 'Expan_Solicitud';
 
+echo '<script type="text/javascript"  src="include/javascript/ListSolicitud.js"></script>';
+
 $listViewDefs [$module_name] = 
 array (
   'NAME' => 

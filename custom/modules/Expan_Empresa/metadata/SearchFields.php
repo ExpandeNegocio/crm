@@ -48,8 +48,6 @@ $searchFields[$module_name] =
 		'name' => array( 'query_type'=>'default'),
 		'empresa_type' => array( 'query_type'=>'default'),
 		'origen' => array( 'query_type'=>'default'),
-        'sector' => array( 'query_type'=>'default'),
-        
-		
+		'sector' => array( 'query_type'=>'default'),
 	);
 ?>

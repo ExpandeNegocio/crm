@@ -114,6 +114,7 @@ $entry_point_registry = array(
     'CorregirLlamadas'=>array('file' => 'custom/include/CorregirLlamadas.php', 'auth' => false),
     'CrearLlamadasDiarias'=>array('file' => 'custom/include/CrearLlamadasDiarias.php', 'auth' => false),
     'consultarFranquicia'=>array('file' => 'custom/include/consultarFranquicia.php', 'auth' => false),
+    'consultarSectores'=>array('file' => 'custom/include/ConsultarSectores.php', 'auth' => false),
     'LimpiezaBD'=>array('file' => 'custom/include/LimpiezaBD.php', 'auth' => false),
     'KillSleepSQL'=>array('file' => 'custom/include/killSleepSQL.php', 'auth' => false),
     'CrearLlamadaRecorFran'=>array('file' => 'custom/include/CrearLlamadaRecorFran.php', 'auth' => false),
