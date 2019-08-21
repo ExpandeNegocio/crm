@@ -309,6 +309,7 @@ class EnvioAutoCorreos
 
     $this->marcadoProtocolo($idMailing, $idFran);
     $this->marcarDummies($idMailing);
+    $this->marcadoNovalido($idMailing);
 
     $arrayCorreos = array();
     foreach ($listaCorreos as $bccer) {
@@ -443,6 +444,26 @@ class EnvioAutoCorreos
     $query = $query . "WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "' ; ";
 
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]marcadoProtocolo:' . $query);
+
+    $db->query($query);
+  }
+
+  public function marcadoNovalido($idMailing){
+    $db = DBManagerFactory::getInstance();
+
+    $query = "UPDATE expma_mailing_expan_solicitud_c  ";
+    $query=$query."SET enviado=0, motivo_no_envio = 'Correo no valido/Rehusado'  ";
+    $query=$query."WHERE  ";
+    $query=$query."   expma_mailing_expan_solicitudexpma_mailing_ida= '" . $idMailing . "' AND  ";
+    $query=$query."   expma_mailing_expan_solicitudexpan_solicitud_idb IN   ";
+    $query=$query."    (SELECT r.bean_id  ";
+    $query=$query."    FROM email_addr_bean_rel r,email_addresses e  ";
+    $query=$query."    WHERE  ";
+    $query=$query."     e.id = r.email_address_id AND e.deleted=0 AND (e.invalid_email=1 OR e.opt_out=1) AND ";
+    $query=$query."     e.deleted=0 AND r.deleted=0) ; ";
+
+
+    $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]marcadoNovalido:' . $query);
 
     $db->query($query);
   }
