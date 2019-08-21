@@ -30,7 +30,8 @@ $viewdefs [$module_name] =
                   ),
               ),
             'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
-                            {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}                            
+                            {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
+                            {sugar_getscript file="include/javascript/EditCentroComercial.js"}                                
                             {sugar_getscript file="include/javascript/jquery.js"}',
             'useTabs' => true,
             'tabDefs' =>

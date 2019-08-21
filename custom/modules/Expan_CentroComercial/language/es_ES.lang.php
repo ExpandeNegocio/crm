@@ -65,5 +65,5 @@ $mod_strings = array(
   'LBL_VISITANTES' => 'Numero de visitantes',
   'LBL_LID_PROVINCIA' => 'Liderazgo en la Provincia',
   'LBL_AUDITORIA_ANUAL' => 'Auditoria anual',
-  'gastos_comunidad' => 'Gastos de comunidad',
+  'LBL_GASTOS_COMUNIDAD' => 'Gastos de comunidad',
 );

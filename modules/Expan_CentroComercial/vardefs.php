@@ -356,7 +356,7 @@ $dictionary['Expan_CentroComercial'] = array(
 		'merge_filter' => 'disabled',
 		'size' => '20',
 		'studio' => 'visible',
-		'rows' => '4',
+		'rows' => '8',
 		'cols' => '60',
 	),
 
