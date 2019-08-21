@@ -225,10 +225,8 @@ $viewdefs [$module_name] =
 
                     1 =>
                       array(
-
-                        'name' => 'date_entered',
-                        'customCode' => '{$fields.date_entered.value} {$APP.LBL_BY} {$fields.created_by_name.value}',
-                        'label' => 'Fecha creacion',
+                        'name' => 'candidatura_avanzada',
+                        'label' => 'LBL_CANDIDATURA_AVANZADA',
                       ),
                   ),
                 3 =>
@@ -240,8 +238,9 @@ $viewdefs [$module_name] =
                       ),
                     1 =>
                       array(
-                        'name' => 'candidatura_avanzada',
-                        'label' => 'LBL_CANDIDATURA_AVANZADA',
+                        'name' => 'date_entered',
+                        'customCode' => '{$fields.date_entered.value} {$APP.LBL_BY} {$fields.created_by_name.value}',
+                        'label' => 'Fecha creacion',
                       ),
                   ),
                 4 =>
@@ -666,7 +665,10 @@ $viewdefs [$module_name] =
                 34 =>
                   array(
                     0 =>
-                      array(),
+                      array(
+                        'name' => 'franq_apertura_desca',
+                        'label' => 'LBL_FRANQ_APERTURA_DESCARTE',
+                      ),
                     1 =>
                       array(
                         'name' => 'motivo_positivo',
