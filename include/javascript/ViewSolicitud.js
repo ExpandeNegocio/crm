@@ -11,7 +11,7 @@ const USUARIO_VW_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
 
 getUsuario();
 getFranquicia();
-
+muestraLocal();
 
 function getUsuario(){
 
@@ -120,4 +120,12 @@ function ocultarOrigenes(){
 	$("#first_name_detailblock").css("Font-Weight","Bold");	
 }
 
+function muestraLocal(){
 
+	var valor=$("#dispone_local_detailblock").val();
+	if(valor!="" && valor!=0){
+		$("#tab2").show();
+	}else{
+		$("#tab2").hide();
+	}
+}

@@ -34,7 +34,7 @@
     $query=$query."INNER JOIN expan_m_nombres n ";
     $query=$query."on UCASE(trim(s.first_name)) = n.nombre ";
     $query=$query."set s.salutation=case when n.tipo='H' then 'Mr.' else 'Ms.' end ";
-    $query=$query."WHERE length(trim(salutation))=0  AND deleted = 0 AND NOT first_name IS NULL AND dummie != 1; ";
+    $query=$query."WHERE (salutation='' or salutation is null)  AND deleted = 0 AND NOT first_name IS NULL AND dummie != 1; ";
     $result = $db -> query($query);
     
     $GLOBALS['log'] -> info('[ExpandeNegocio][Limpieza BD]Calculamos la proovincia si esta vacia y el municipio si está ok');

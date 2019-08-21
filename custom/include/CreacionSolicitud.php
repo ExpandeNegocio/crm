@@ -814,7 +814,7 @@ class AccionesGuardado
     if ($bean->pais_residencia != "SPAIN") {
       $bean->provincia_residencia = 100;
     } else {
-      if (trim($bean->provincia_residencia) == "") {
+      if (trim($bean->provincia_residencia) == "" || $bean->provincia_residencia==null) {
         $bean->provincia_residencia = $bean->provincia_apertura_1;
       }
     }
