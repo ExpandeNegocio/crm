@@ -40,7 +40,11 @@
         
             if ($telefono!=''){
                 $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Validadndo Telefono');
-                
+
+                if ($current_user->franquicia!=null){
+                  echo '';
+                  return;
+                }
                 $telefono=str_replace(" ", "", $telefono);
                 
                 $sql="SELECT id ";
@@ -52,14 +56,46 @@
                  
                 $resultSol = $db->query($sql, true);        
                 while ($rowSol = $db->fetchByAssoc($resultSol)){
-                    if ($current_user->franquicia==null){
-                        $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El telefono existe');                     
-                        echo $rowSol['id'];
-                        return;               
-                    }else{
-                        echo '';
-                        return;
-                    }
+                  $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El telefono existe');
+                  echo $rowSol['id'];
+                  return;
+                }
+
+                // Probamos si es un topo
+                $query = "SELECT name ";
+                $query=$query."FROM expan_empresa ";
+                $query=$query."WHERE ";
+                $query=$query."movil1 =".$telefono." OR ";
+                $query=$query."movil2 =".$telefono." OR ";
+                $query=$query."telefono_contacto_1 =".$telefono." OR ";
+                $query=$query."telefono_contacto_2 =".$telefono." OR ";
+                $query=$query."telefono_contacto_3 =".$telefono." OR ";
+                $query=$query."telefono_contacto_observa1 =".$telefono." OR ";
+                $query=$query."telefono_contacto_observa2 =".$telefono." OR ";
+                $query=$query."telefono_contacto_observa3 =".$telefono." OR ";
+                $query=$query."telefono1 =".$telefono." OR ";
+                $query=$query."telefono2 =".$telefono;
+                $query=$query." UNION ";
+                $query=$query."SELECT name ";
+                $query=$query."FROM expan_franquicia  ";
+                $query=$query."where phone_office =".$telefono."  OR ";
+                $query=$query."phone_alternate =".$telefono."  OR ";
+                $query=$query."telefono_intermediacion =".$telefono."  OR ";
+                $query=$query."telefono_contacto_2 =".$telefono."  OR ";
+                $query=$query."telefono_alternativo_2 =".$telefono."  OR ";
+                $query=$query."telefono_administracion =".$telefono."  OR ";
+                $query=$query."movil_intermediacion =".$telefono."  OR ";
+                $query=$query."movil_general_2 =".$telefono."  OR ";
+                $query=$query."movil_general =".$telefono."  OR ";
+                $query=$query."movil_administracion  =".$telefono;
+
+                $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]Validadndo Telefono - Consulta - '.$query);
+
+                $resultSol = $db->query($query, true);
+                while ($rowSol = $db->fetchByAssoc($resultSol)){
+                  $GLOBALS['log']->info('[ExpandeNegocio][ControlSolicitudes]El telefono existe');
+                  echo $rowSol['name'];
+                  return;
                 }
             }
             break;

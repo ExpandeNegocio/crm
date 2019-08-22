@@ -1573,10 +1573,14 @@ function controlTelefono(telefono, solId) {
 		success : function(data) {
 			if (data != '') {
 				$("#phone_mobile").css("border", "2px solid red");
-				if (confirm ("El telefono ya esta asociado a otra solicitud, \n¿Desea abrirla?")){
-					//alert(data);
-					window.open ('index.php?module=Expan_Solicitud&action=EditView&record='+data);
-				}							
+				if (data.length==36 && data.indexOf("-")!=-1) {
+					if (confirm("El telefono ya esta asociado a otra solicitud, \n¿Desea abrirla?")) {
+						//alert(data);
+						window.open('index.php?module=Expan_Solicitud&action=EditView&record=' + data);
+					}
+				} else {
+					alert("El telefono se corresponde con uno de los telefonos de la empresa/franquicia - "+ data + " Puede ser un topo")
+				}
 				return false;
 			} else {
 				$("#phone_mobile").css("border", "#94c1e8 solid 1px");
