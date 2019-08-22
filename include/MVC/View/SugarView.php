@@ -293,6 +293,8 @@ class SugarView
         global $mod_strings;
         global $current_language;
 
+        $max_tabs=30;
+
         $GLOBALS['app']->headerDisplayed = true;
 
         $themeObject = SugarThemeRegistry::current();
@@ -466,9 +468,10 @@ class SugarView
             // get the module list
             $moduleTopMenu = array();
 
-            $max_tabs = $current_user->getPreference('max_tabs');
+          //  $max_tabs = $current_user->getPreference('max_tabs');
+
             // Attempt to correct if max tabs count is extremely high.
-            if ( !isset($max_tabs) || $max_tabs <= 0 || $max_tabs > 10 ) {
+            if ( !isset($max_tabs) || $max_tabs <= 0 ) {
                 $max_tabs = $GLOBALS['sugar_config']['default_max_tabs'];
                 $current_user->setPreference('max_tabs', $max_tabs, 0, 'global');
             }
@@ -510,9 +513,11 @@ class SugarView
                 $groupedTabsClass = new GroupedTabStructure();
                 $modules = query_module_access_list($current_user);
                 //handle with submoremodules
-                $max_tabs = $current_user->getPreference('max_tabs');
+
+                //$max_tabs = $current_user->getPreference('max_tabs');
+
                 // If the max_tabs isn't set incorrectly, set it within the range, to the default max sub tabs size
-                if ( !isset($max_tabs) || $max_tabs <= 0 || $max_tabs > 10){
+                if ( !isset($max_tabs) || $max_tabs <= 0){
                     // We have a default value. Use it
                     if(isset($GLOBALS['sugar_config']['default_max_tabs'])){
                         $max_tabs = $GLOBALS['sugar_config']['default_max_tabs'];
