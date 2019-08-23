@@ -679,8 +679,28 @@ Que acciones de expansion han hecho',
         'reportable' => true,
         'unified_search' => false,
         'merge_filter' => 'disabled',
-      ),    
-  
+      ),
+
+      'chk_proveedor_activo' =>
+        array (
+          'required' => false,
+          'name' => 'chk_proveedor_activo',
+          'vname' => 'LBL_PROVEEDOR_ACTIVO',
+          'type' => 'bool',
+          'massupdate' => 0,
+          'default' => '0',
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+        ),
+
       'condiciones_generales' => 
       array (
         'required' => false,
@@ -711,9 +731,42 @@ Política de devoluciones
         'studio' => 'visible',
         'rows' => '4',
         'cols' => '60',
-      ),  
-    
-  // ---- DATOS ALIANZA -------------------------------------------------------------------------------------------------
+      ),
+
+      'condiciones_especiales_en' =>
+        array (
+          'required' => false,
+          'name' => 'condiciones_especiales_en',
+          'vname' => 'LBL_CONDICIONES_ESPECIALES_EN',
+          'type' => 'text',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => 'Ofertas/descuentos
+Pedido mínimo
+Formas de pago
+Condiciones de portes
+Plazos de entrega
+Rappel a la Central
+Rappel a franquiciado
+Garantía de producto
+Política de devoluciones
+        ',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'size' => '20',
+          'studio' => 'visible',
+          'rows' => '4',
+          'cols' => '60',
+        ),
+
+
+      // ---- DATOS ALIANZA -------------------------------------------------------------------------------------------------
   
   'estado_alia' => 
   array (

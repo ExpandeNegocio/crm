@@ -2,6 +2,10 @@ $("#chk_es_proveedor").change(function () {
     renderProveedorTab();
 });
 
+$("#chk_proveedor_cliente").change(function () {
+    renderProveedorTab();
+});
+
 $("#chk_es_competidor").change(function () {
     renderCompetidorTab();
 });
@@ -58,7 +62,11 @@ function renderProveedorTab() {
 
         $("a:contains('Mistery')").show();
         $("a:contains('Datos Proveedor Generales')").show();
-        $("a:contains('Datos Proveedor por Franquicia')").show();
+        if ($("#chk_proveedor_cliente").is(':checked')){
+            $("a:contains('Datos Proveedor por Franquicia')").show();
+        }else{
+            $("a:contains('Datos Proveedor por Franquicia')").hide();
+        }
     } else {
         $("a:contains('Mistery')").hide();
         $("a:contains('Datos Proveedor Generales')").hide();

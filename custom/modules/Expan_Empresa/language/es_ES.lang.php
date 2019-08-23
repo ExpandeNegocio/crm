@@ -1,35 +1,35 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
  * Free Software Foundation with the addition of the following permission added
  * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
  * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
  * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License along with
  * this program; if not, see http://www.gnu.org/licenses or write to the Free
  * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
- * 
+ *
  * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
  * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- * 
+ *
  * The interactive user interfaces in modified source and object code versions
  * of this program must display Appropriate Legal Notices, as required under
  * Section 5 of the GNU Affero General Public License version 3.
- * 
+ *
  * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
  * these Appropriate Legal Notices must retain the display of the "Powered by
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
@@ -38,15 +38,14 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  ********************************************************************************/
 
 /*********************************************************************************
-
  * Description:  Defines the Spanish language pack for the base application.
  * Portions created by REDK Ingeniería del Software S.L..
  * All Rights Reserved.
  * Contributor(s): REDK Software Engineering (www.redk.net)
  ********************************************************************************/
- 
 
-$mod_strings = array (
+
+$mod_strings = array(
   'ACCOUNT_REMOVE_PROJECT_CONFIRM' => '¿Está seguro de que desea quitar esta cuenta de este proyecto?',
   'ERR_DELETE_RECORD' => 'Debe especificar un número de registro para eliminar la cuenta.',
   'LBL_ACCOUNT_NAME' => 'Nombre de Cuenta:',
@@ -141,62 +140,62 @@ $mod_strings = array (
   'LBL_EDIT_BUTTON' => 'Editar',
   'LBL_REMOVE' => 'Quitar',
   'LBL_FECHA_CONTACTO' => 'Fecha de contacto',
-  'LBL_CONTACTO1' => '<H1><B>CONTACTO 1</H1></B>',    
+  'LBL_CONTACTO1' => '<H1><B>CONTACTO 1</H1></B>',
   'LBL_CONTACTO2' => '<H1><B>CONTACTO 2</H1></B>',
   'LBL_CONTACTO' => 'Nombre cntacto',
   'LBL_TITULO_DIRECCION' => '<H1><B>DIRECCION</H1></B>',
-  'LBL_DATOS_GENERALES' => 'Datos generales de la empresa', 
-  'LBL_DATOS_PROVEEDORES_GENERAL'=>'Datos Proveedor Generales',
-  'LBL_DATOS_PROVEEDORES_FRANQUICIA'=>'Datos Proveedor por Franquicia',
-  'LBL_DATOS_PROPUESTA'=>'Datos propuesta',
+  'LBL_DATOS_GENERALES' => 'Datos generales de la empresa',
+  'LBL_DATOS_PROVEEDORES_GENERAL' => 'Datos Proveedor Generales',
+  'LBL_DATOS_PROVEEDORES_FRANQUICIA' => 'Datos Proveedor por Franquicia',
+  'LBL_DATOS_PROPUESTA' => 'Datos propuesta',
   'LBL_DATOS_COMPETIDOR' => 'Datos competidor',
   'LBL_DATOS_ALIANZA' => 'Datos alianza',
-  
-    'LBL_ALIANZA' => 'Alianza',
-    'LBL_PRINCIPALES_PROD_SERV' => 'Principales productos y servicios',
-    'LBL_AMBITO_ACTUACION' => 'Ambito de actuación',
-    'LBL_ZONAS_NO_OPERA' => 'Zonas en las que no opera',
-    'LBL_SEDES' => 'Sedes',
-    'LBL_OBSERVACIONES_PROVEEDOR' => 'Observaciones del proveedor',
-    'LBL_INTRANET_CATALOGO' => 'Intranet / Catalogo virtual',
-    'LBL_CERT_CALIDAD' => 'Certificaciones de calidad',
-    'LBL_PROVEEDOR_CLIENTE' => 'Proveedor del cliente',
-    'LBL_CARGO' => 'Cargo',
-    'LBL_TELEFONO' => 'Telefono',
-    'LBL_MOVIL' => 'Movil',
-    'LBL_DIRECCION' => 'Direccion',
-    'LBL_CODIGO_POSTAL' => 'Código Postal',
-    'LBL_CCAA' => 'CCAA',
-    'LBL_PROVINCIA' => 'Provincia',
-    'LBL_POBLACION' => 'Poblacion',
-    'LBL_WEB' => 'Web',
-    'LBL_OBSERVACIONES' => 'Observaciones',
-    'LBL_FECHA_CONTACTO' => 'Fecha de contacto',
-    'LBL_SECTOR'=> 'Sector de actividad',
-    'LBL_CIF' => 'Cif',
-    'LBL_ACTIVIDAD_PRINCIPAL' => 'Actividad principal',
-    'LBL_FECHA_CONTACTO' => 'Primer contacto',
-    'LBL_ORIGEN' => 'Origen',
-    'LBL_ES_PROVEEDOR' => 'Es proveedor',
-    'LBL_ES_COMPETIDOR' => 'Es competidor',
-    'LBL_ES_CLIENTE_POTENCIAL' => 'Es cliente potencial',
-    'LBL_ESTADO' => 'Estado',
+
+  'LBL_ALIANZA' => 'Alianza',
+  'LBL_PRINCIPALES_PROD_SERV' => 'Principales productos y servicios',
+  'LBL_AMBITO_ACTUACION' => 'Ambito de actuación',
+  'LBL_ZONAS_NO_OPERA' => 'Zonas en las que no opera',
+  'LBL_SEDES' => 'Sedes',
+  'LBL_OBSERVACIONES_PROVEEDOR' => 'Observaciones del proveedor',
+  'LBL_INTRANET_CATALOGO' => 'Intranet / Catalogo virtual',
+  'LBL_CERT_CALIDAD' => 'Certificaciones de calidad',
+  'LBL_PROVEEDOR_CLIENTE' => 'Proveedor del cliente',
+  'LBL_CARGO' => 'Cargo',
+  'LBL_TELEFONO' => 'Telefono',
+  'LBL_MOVIL' => 'Movil',
+  'LBL_DIRECCION' => 'Direccion',
+  'LBL_CODIGO_POSTAL' => 'Código Postal',
+  'LBL_CCAA' => 'CCAA',
+  'LBL_PROVINCIA' => 'Provincia',
+  'LBL_POBLACION' => 'Poblacion',
+  'LBL_WEB' => 'Web',
+  'LBL_OBSERVACIONES' => 'Observaciones',
+  'LBL_FECHA_CONTACTO' => 'Fecha de contacto',
+  'LBL_SECTOR' => 'Sector de actividad',
+  'LBL_CIF' => 'Cif',
+  'LBL_ACTIVIDAD_PRINCIPAL' => 'Actividad principal',
+  'LBL_FECHA_CONTACTO' => 'Primer contacto',
+  'LBL_ORIGEN' => 'Origen',
+  'LBL_ES_PROVEEDOR' => 'Es proveedor',
+  'LBL_ES_COMPETIDOR' => 'Es competidor',
+  'LBL_ES_CLIENTE_POTENCIAL' => 'Es cliente potencial',
+  'LBL_ESTADO' => 'Estado',
   'LBL_OBSERVACIONES_ESTADO' => 'Observaciones Estado',
   'LBL_CORTO_PLAZO' => 'Cliente a Corto Plazo',
   'LBL_INTERESA' => 'Nos interesa',
   'LBL_DECISION' => 'Decision',
   'LBL_PLAZO' => 'Plazo posible inicio',
-  'LBL_TIPO_PROPUESTA' => 'Tipo de propuesta',  
+  'LBL_TIPO_PROPUESTA' => 'Tipo de propuesta',
   'LBL_ENVIO_PROPUESTA' => 'Envío propuesta',
-  'LBL_OBSERVACIONES_PROPUESTA' =>'Observaciones propuesta',
+  'LBL_OBSERVACIONES_PROPUESTA' => 'Observaciones propuesta',
   'LBL_FRANQUICIA' => 'Franqucicia',
   'LBL_INFORMACION_PROYECTO' => 'Información del proyecto',
   'LBL_DATOS_GENERALES' => 'Datos Generales',
   'LBL_DATOS_PROPUESTA' => 'Propuesta',
   'LBL_CONSULTORA' => 'Consultora',
   'LBL_ALTA_NEWS' => 'Alta Newsletter',
-  'LBL_FECHA_INICIO_ALIANZA'=>'Fecha inico de alianza',
-  'LBL_FECHA_RESTRICCION_ALIANZA'=>'Fecha restriccion de alianza',
+  'LBL_FECHA_INICIO_ALIANZA' => 'Fecha inico de alianza',
+  'LBL_FECHA_RESTRICCION_ALIANZA' => 'Fecha restriccion de alianza',
   'LBL_CONDICIONES_ALIANZA' => 'Condiciones acordadas',
   'LBL_ALIANZA_CENTRAL' => 'Alianza por servicios a Central',
   'LBL_ALIANZA_FDO' => 'Alianza por servicios a franquiciado',
@@ -207,9 +206,12 @@ $mod_strings = array (
   'LBL_CAMBIAR_TIPO_COMPETI' => 'Cambio tipo competidor',
   'LBL_TIPO_COMPETI' => 'Tipo de competidor',
   'LBL_COMPETIDOR_PRINCIPAL' => 'Competidor principal',
-    'LNK_NEW_RECORD' => 'Crear Empresa',
-    'LNK_LIST' => 'Vista Empresa',
-    'LBL_IMPORT_PROVEEDORES' => 'Importar Proveedores',
-    'LBL_IMPORT_COMPETIDORES'=> 'Importar Competidores',
-    'LBL_IMPORT_EMRPESAS' => 'Importar Empresas',
+  'LNK_NEW_RECORD' => 'Crear Empresa',
+  'LNK_LIST' => 'Vista Empresa',
+  'LBL_IMPORT_PROVEEDORES' => 'Importar Proveedores',
+  'LBL_IMPORT_COMPETIDORES' => 'Importar Competidores',
+  'LBL_IMPORT_EMRPESAS' => 'Importar Empresas',
+  'LBL_CONDICIONES_GENERALES' => 'Condiciones Generales',
+  'LBL_CONDICIONES_ESPECIALES_EN' => 'Condiciones especiales EN',
+  'LBL_PROVEEDOR_ACTIVO' => 'Proveedor activo',
 );
