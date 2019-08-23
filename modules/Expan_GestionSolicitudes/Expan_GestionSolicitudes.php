@@ -1247,8 +1247,11 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
               $Fran->tipo_cuenta != Expan_Franquicia::TIPO_FRAN_CLIENTE_PARADO) {
 
               $envioCorreos = new EnvioAutoCorreos();
-              if ($envioCorreos->rellenaCorreoCx($idTemplate, $solicitud, $franquicia, $this) == 'Ok') {
+              $resp= $envioCorreos->rellenaCorreoCx($idTemplate, $solicitud, $franquicia, $this);
+              if ($resp == 'Ok') {
                 $salida = "Ok";
+              } elseif($resp == "SinCorreoValido") {
+                $salida = "Ninguno de los correos del candidato es válido";
               } else {
                 $salida = "Alguno de los correos no han sido enviados. Posiblemente el correo no sea válido.";
               }

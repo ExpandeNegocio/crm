@@ -35,7 +35,14 @@ class EnvioAutoCorreos
 
     $sea = new SugarEmailAddress;
     $addresses = $sea->getAddressesByGUIDClean($solicitud->id, 'Expan_Solicitud');
-    $addresses[$solicitud->correo_secundario] = $solicitud->contacto_secundario;
+
+    if ( $solicitud->contacto_secundario|= null &&  $solicitud->contacto_secundario!=''){
+      $addresses[$solicitud->correo_secundario] = $solicitud->contacto_secundario;
+    }
+
+    if (count($addresses)==0){
+      return "SinCorreoValido";
+    }
 
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Num Direcciones de correo-' . count($addresses));
 
