@@ -188,12 +188,15 @@ class AccionesGuardado
 
       $GLOBALS['log']->info('[ExpandeNegocio][PasoFranquiciado]Antes ver existe franquiciado');
 
-      $franquiciado = Expan_Franquiciado::existeFranquiciado($bean->id);
+      $franquiciadoId = Expan_Franquiciado::existeFranquiciado($bean->id);
 
-      if ($franquiciado == false) {//se crea el franquiciado a partir de la solicitud, no existe
+      if ($franquiciadoId == false) {//se crea el franquiciado a partir de la solicitud, no existe
         $GLOBALS['log']->info('[ExpandeNegocio][PasoFranquiciado]Antes creacion franquiciado');
         $franquiciado = Expan_Franquiciado::crearFranquiciado($bean, 2);
         $franquiciado->setAddress($bean);
+      }else{
+        $franquiciado= new Expan_Franquiciado();
+        $franquiciado->retrieve($franquiciadoId);
       }
 
       $lista = explode(",", str_replace(";", ",", $franquicia_historicosrAct));

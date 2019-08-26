@@ -81,8 +81,8 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         
         $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Antes nuevos campos');
         
-        $franquiciado -> provincia_apertura = $solicitud -> provincia_apertura_1;
-        $franquiciado -> localidad_apertura = $solicitud -> localidad_apertura_1;
+        $franquiciado -> provincia = $solicitud -> provincia_apertura_1;
+        $franquiciado -> localidad = $solicitud -> localidad_apertura_1;
 
         $franquiciado -> sectores_historicos = $solicitud -> sectores_historicos;
 
@@ -93,7 +93,6 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         //guardar los cambios del franquiciado
         $franquiciado -> ignore_update_c = true;
         $franquiciado -> save();
-
 
         return $franquiciado;
     }

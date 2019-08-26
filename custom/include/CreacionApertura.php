@@ -26,12 +26,10 @@ class AccionesGuardadoApertura {
             $gestion->retrieve($bean->id);
             $solicitud=$gestion->GetSolicitud();
             
-            $f_entrega_cuenta_cont_antt=self::$fetchedRow[$bean -> id]['f_entrega_cuenta_cont'];
+            $f_entrega_cuenta_cont_ant=self::$fetchedRow[$bean -> id]['f_entrega_cuenta_cont'];
             
              // Creacion de Apertura
              if (!isset(self::$fetchedRow[$bean -> id])) {
-                 
-                 
                  
                  
              // Modificacion de Apertura    
@@ -46,20 +44,17 @@ class AccionesGuardadoApertura {
                     
                     $addresses['0']['email_address']="administracion@expandenegocio.com"; 
                     $rcp_name="Administracion ExpandeNegocio";  
-                    $salida=$envioAutoCorreos->rellenacorreoFicha("FC",$rcp_name,$addresses,$solicitud,$franquicia,null,$bean); 
+               //     $salida=$envioAutoCorreos->rellenacorreoFicha("FC",$rcp_name,$addresses,$solicitud,$franquicia,null,$bean);
                     
                 /*   $addresses['0']['email_address']=$franquicia->correo_general; 
                     $rcp_name=$franquicia->name;  
                     $salida=$envioAutoCorreos->rellenacorreoFicha("FC",$rcp_name,$addresses,$solicitud,$franquicia,null,$bean);
                      */
-                     
                  }
-                                  
              }      
             
             //Actualizamos el estado del franquiciado
             $this->actualizaEstadoFranquiciado($bean);
-         
         }        
     }
 
@@ -71,7 +66,5 @@ class AccionesGuardadoApertura {
             $franquiciado -> ignore_update_c = true;
             $franquiciado -> save();
         }
-    } 
-    
+    }
 }
-?>
