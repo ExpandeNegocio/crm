@@ -20,8 +20,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * this program; if not, see http://www.gnu.org/licenses or write to the Free
  * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
- * 
- * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ ,+ xbbnbfjjd
  * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
  *      
  * The interactive user interfaces in modified source and object code versions
@@ -29,10 +28,10 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * Section 5 of the GNU Affero General Public License version 3.
  * 
  * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
- * these Appropriate Legal Notices must retain the display of the "Powered by
+ * these Appropriate Legal Notices must retain the display of the "Powered by`6u¬
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
- * "Powered by SugarCRM".
+ * "Powered by SugarCRM".´´´´ñ
  ********************************************************************************/
 
 
@@ -43,7 +42,7 @@ if(ACLController::checkAccess('Expan_Evento', 'list', true))$module_menu[]=Array
 
 if ($_GET["record"]!=null){
   $id=$this->bean->id;
-  if(ACLController::checkAccess('Expan_Evento', 'import_eventos', true))$module_menu[]=Array("index.php?entryPoint=customImportEventos&accion=showLoad&evento=".$id, $mod_strings['LBL_IMPORT_EVENTOS'],"Import", 'Expan_Evento');
+  if(ACLController::checkAccess('Expan_Evento', 'import', true))$module_menu[]=Array("index.php?entryPoint=customImportEventos&accion=showLoad&evento=".$id, $mod_strings['LBL_IMPORT_EVENTOS'],"Import", 'Expan_Evento');
 }
 
 ?>
