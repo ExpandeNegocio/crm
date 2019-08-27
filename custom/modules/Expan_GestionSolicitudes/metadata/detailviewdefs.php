@@ -7,8 +7,13 @@ $module_name = 'Expan_GestionSolicitudes';
 $gestion = new Expan_GestionSolicitudes();
 $gestion->retrieve($focus->id);
 
+$idFranquicia=$gestion->franquicia;
+
 $franquicia = new Expan_Franquicia();
 $franquicia->retrieve($gestion->franquicia);
+
+$franquiaid=$franquicia->id;
+$franquiciaName=$franquicia->name;
 
 $createButtonsHelper = new CreateCxButtonsHelper($gestion, $franquicia);
 
@@ -28,9 +33,6 @@ if ($gestion->tieneApertura()) {
                     onClick="irAperturas(\'{$fields.name.value}\');" value="Ir Aperturas">{/if}';
 }
 
-//echo '<script type="text/javascript"> onload=abrirSolicitud(\'{$fields.id.value}\',\'DetailView\');</script>';
-//$_SESSION[Expan_GestionSolicitudes_detailview_record],\'DetailView\'
-//echo '<script type="text/javascript"> onload=abrirSolicitud("'.$_SESSION[Expan_GestionSolicitudes_detailview_record].'","DetailView");</script>';
 $viewdefs [$module_name] =
   array(
     'DetailView' =>
@@ -195,7 +197,7 @@ $viewdefs [$module_name] =
                     1 =>
                       array(
                         'name' => 'franquicia',
-                        'customCode' => '<a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D' . $franquicia->id . '"><span id="expan_franquicia" class="sugar_field" data-id-value="' . $franquicia->id . '">' . $franquicia->name . '</span></a>',
+                        'customCode' => '<a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D' . $franquiaid . '"><span id="expan_franquicia" class="sugar_field" data-id-value="' . $franquiaid . '">' . $franquiciaName . '</span></a>',
                         'label' => 'LBL_FRANQUICIA',
                       ),
 
@@ -764,7 +766,7 @@ $viewdefs [$module_name] =
                         'label' => '{php}
                       $idfran=$this->_tpl_vars["bean"]->franquicia;
                       $Fran = new Expan_Franquicia();
-                      $Fran -> retrieve($idfran);
+                      $Fran -> retrieve($idfran);                      
                       echo $Fran->modNeg3;                      
                  {/php}',
                       ),
