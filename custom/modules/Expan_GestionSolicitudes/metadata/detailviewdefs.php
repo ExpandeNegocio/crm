@@ -197,7 +197,15 @@ $viewdefs [$module_name] =
                     1 =>
                       array(
                         'name' => 'franquicia',
-                        'customCode' => '<a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D' . $franquiaid . '"><span id="expan_franquicia" class="sugar_field" data-id-value="' . $franquiaid . '">' . $franquiciaName . '</span></a>',
+                        'customCode' => '{php}
+                                              $franquicia= new expan_franquicia();
+                                              $franquicia->retrieve($this->_tpl_vars["bean"]->franquicia);
+
+                                              echo "<a href=\"?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D".$franquicia->id."\"><span id=\"expan_franquicia\" class=\"sugar_field\" data-id-value=\"\"";
+                                              echo $franquicia->id;
+                                              echo "\">".$franquicia->name."</span></a>";
+                                        {/php}',
+                        //'<a href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DExpan_Franquicia%26action%3DDetailView%26record%3D' . $franquicia->id . '"><span id="expan_franquicia" class="sugar_field" data-id-value="' . $franquicia->id . '">' . $franquicia->name . '</span></a>',
                         'label' => 'LBL_FRANQUICIA',
                       ),
 
