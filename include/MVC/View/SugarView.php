@@ -574,7 +574,7 @@ class SugarView
                     $extraTabs = array_splice($topTabs,$max_tabs);
                 }
                 // Make sure the current module is accessable through one of the top tabs
-                if ( !isset($topTabs[$moduleTab]) ) {
+             /*   if ( !isset($topTabs[$moduleTab]) ) {
                     // Nope, we need to add it.
                     // First, take it out of the extra menu, if it's there
                     if ( isset($extraTabs[$moduleTab]) ) {
@@ -589,7 +589,7 @@ class SugarView
                     if ( !empty($moduleTab) ) {
                         $topTabs[$moduleTab] = $app_list_strings['moduleList'][$moduleTab];
                     }
-                }
+                }*/
 
 
                 /*
