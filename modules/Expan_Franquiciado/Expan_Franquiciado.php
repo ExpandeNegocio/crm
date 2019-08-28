@@ -44,20 +44,56 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         parent::Expan_Franquiciado_sugar();
     }
 
-    function existeFranquiciado($solId) {
+ /*   function existeFranquiciado($solId) {
 
         $db = DBManagerFactory::getInstance();
 
-        $sql = "SELECT id as idF FROM   expan_franquiciado f, ";
-        $sql = $sql . " (select phone_home as phf, phone_mobile as pmf from expan_solicitud where id='" . $solId . "') b ";
-        $sql = $sql . " WHERE  (phone_home =phf OR phone_home=pmf OR phone_mobile =phf OR phone_mobile=pmf) AND deleted=0;";
+        $query = "SELECT f.id AS idF ";
+        $query=$query."FROM   expan_franquiciado f, expan_solicitud s ";
+        $query=$query."WHERE  s.id = '" . $solId . "' AND (f.phone_home = s.phone_home OR f.phone_home = s.phone_mobile OR f. ";
+        $query=$query."       phone_mobile = ";
+        $query=$query."       s.phone_home OR f.phone_mobile = s.phone_mobile) AND f.deleted = 0; ";
 
-        $resultSol = $db -> query($sql, true);
 
-        while ($rowSol = $db -> fetchByAssoc($resultSol)) {
-            return $rowSol["idF"];
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Consulta'.$query);
+
+        $result = $db -> query($query);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+            $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Entra Bucle-'.$row["idF"]);
+            return $row["idF"];
         }
         return false;
+    }*/
+
+    function existeFranquiciado($solId) {
+
+      $db = DBManagerFactory::getInstance();
+
+      $solicitud=new Expan_Solicitud();
+      $solicitud->retrieve($solId);
+
+      /*    $sql = "SELECT id as idF FROM expan_franquiciado ";
+          $sql = $sql . " (select phone_home as phf, phone_mobile as pmf from expan_solicitud where id='" . $solId . "') b ";
+          $sql = $sql . " WHERE  (phone_home =phf OR phone_home=pmf OR phone_mobile =phf OR phone_mobile=pmf) AND deleted=0;";*/
+
+      $query = "SELECT f.id AS idF ";
+      $query=$query."FROM expan_franquiciado  ";
+      $query=$query."WHERE deleted = 0; ";
+
+      $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Consulta'.$query);
+
+      $result = $db -> query($query);
+
+      while ($row = $db -> fetchByAssoc($result)) {
+
+        if ($solicitud->phone_home==$row["phone_home"] || $solicitud->phone_home==$row["phone_mobile"] ||
+            $solicitud->phone_mobile==$row["phone_home"] || $solicitud->phone_mobile==$row["phone_mobile"]){
+            return $row["idF"];
+          }
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Entra Bucle-'.$row["idF"]);
+      }
+      return false;
     }
 
     public function crearFranquiciado($solicitud, $origen = 0) {
@@ -108,7 +144,7 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
     {
         $db = DBManagerFactory::getInstance();
 
-        $sql = "SELECT abierta FROM expan_apertura where expan_franquiciado_id='".$this->id."'";
+        $sql = "SELECT abierta FROM expan_apertura where deleted=0 and expan_franquiciado_id='".$this->id."'";
 
         $resultSol = $db -> query($sql, true);
 
@@ -119,5 +155,4 @@ class Expan_Franquiciado extends Expan_Franquiciado_sugar {
         }
         return "EX";
     }
-
 }
