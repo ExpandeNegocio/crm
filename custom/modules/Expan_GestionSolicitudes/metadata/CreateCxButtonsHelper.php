@@ -13,6 +13,7 @@ class CreateCxButtonsHelper
   private $titleTag = '#title#';
   private $cxTag = '#Cx#';
   private $enableTag = '#Enabled#';
+  private $idTag = '#id#';
 
   private $tituloC1 = 'Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)';
   private $tituloC2 = 'Reenvio información Adicional (C2) (Plan financiero)';
@@ -25,7 +26,7 @@ class CreateCxButtonsHelper
   private $tituloC15 = 'Reenvio correo C1.5 (No telefono))';
 
 
-  private $sendCxButton = '<input type="button" name="reenInfo1" id="reenInfo1" class="" #colorCx#
+  private $sendCxButton = '<input type="button" name="reenInfo" id="#id#" class="" #colorCx#
                         title="#title#" #Enabled#
                         onClick="reenvioInfoDetalle(\'#Cx#\',\'{$fields.id.value}\'); " value="Reenviar #Cx#">';
 
@@ -40,9 +41,11 @@ class CreateCxButtonsHelper
     $color = $this->calculateCxColor($cx);
     $title = $this->getTitle($cx);
     $enable = $this->calculateEnable($cx);
+    $id="reenvio".str_replace(".","_",$cx);
 
     $button = $this->sendCxButton;
 
+    $button = str_replace($this->idTag, $id, $button);
     $button = str_replace($this->colorTag, $color, $button);
     $button = str_replace($this->titleTag, $title, $button);
     $button = str_replace($this->cxTag, $cx, $button);
@@ -52,7 +55,7 @@ class CreateCxButtonsHelper
 
   }
 
-  private function calculateCxColor($c)
+  public function calculateCxColor($c)
   {
     $val = $this->cxActivo($c);
 
@@ -63,7 +66,7 @@ class CreateCxButtonsHelper
     }
   }
 
-  private function cxActivo($c)
+  public function cxActivo($c)
   {
     switch ($c) {
       case 'C1':

@@ -115,6 +115,8 @@ function ocultarCheck(gestionID) {
     cambiarAGris(texto2);
     addDelayFechareactButtons();
     addDelayFechaInicioButtons();
+    coloreaBotonesCx();
+    activarDesBotonesCx();
     boldCentral();
     refreshSn();
     cargarDocumentos();
@@ -167,6 +169,50 @@ function enableTab(id) {
 
         }
     };
+}
+
+function coloreaBotonesCx(){
+    var cxs=["C1","C2","C3","C4","C1.1","C1.2","C1.3","C1.4","C1.5"];
+
+    var gestId = $('[name="record"]').val();
+    url = 'index.php?entryPoint=consultarGestion';
+
+    cxs.forEach(function (valor) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "tipo=colorBotonesReenvio&cx="+valor+"&gestId=" + gestId,
+            success: function (data) {
+                if (data=='style="color:#0000FF;"'){
+                    $("#reenvio"+valor.replace(".","_")).css("color","blue");
+                }else{
+                    $("#reenvio"+valor.replace(".","_")).css("color","red");
+                }
+            },
+        });
+    })
+}
+
+function activarDesBotonesCx(){
+    var cxs=["C1","C2","C3","C4","C1.1","C1.2","C1.3","C1.4","C1.5"];
+
+    var gestId = $('[name="record"]').val();
+    url = 'index.php?entryPoint=consultarGestion';
+
+    cxs.forEach(function (valor) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "tipo=actDesBotonesReenvio&cx="+valor+"&gestId=" + gestId,
+            success: function (data) {
+                if (data==0){
+                    $("#reenvio"+valor.replace(".","_")).prop( "disabled", true )
+                }else{
+                    $("#reenvio"+valor.replace(".","_")).prop( "disabled", false )
+                }
+            },
+        });
+    })
 }
 
 function addEvents() {
