@@ -12,6 +12,7 @@ $("#chk_es_competidor").change(function () {
 
 $("#chk_es_cliente_potencial").change(function () {
     renderPropuestaTab();
+    renderTrabajaConsultora();
 });
 
 $("#chk_alianza").change(function () {
@@ -109,7 +110,8 @@ function renderConsultora() {
 }
 
 function renderTrabajaConsultora() {
-    if ($("#empresa_type option:selected").text() == "Franquicia") {
+    if ($("#empresa_type option:selected").text() == "Franquicia" ||
+        $("#chk_es_cliente_potencial").is(':checked')) {
         $("#chk_trabaja_consultora_label").parent().show();
     } else {
         $("#chk_trabaja_consultora_label").parent().hide();

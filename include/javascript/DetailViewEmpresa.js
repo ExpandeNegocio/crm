@@ -1,6 +1,6 @@
 
-
 coloreaSectores();
+renderConsultora();
 
 function coloreaSectores(){
 	
@@ -27,6 +27,13 @@ function coloreaSectores(){
 			alert ('Error pintando sectores');			
 		}
 	});
-	
+}
 
+function renderTrabajaConsultora() {
+	if ($("#empresa_type_detailblock").text() == "Franquicia" ||
+		$("chk_es_cliente_potencial_detailblock").is(':checked'))  {
+		$("#chk_trabaja_consultora_detailblock").parent().parent().show();
+	} else {
+		$("#chk_trabaja_consultora_detailblock").parent().parent().hide();
+	}
 }

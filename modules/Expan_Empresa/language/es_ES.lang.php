@@ -1,35 +1,35 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
  * Free Software Foundation with the addition of the following permission added
  * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
  * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
  * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License along with
  * this program; if not, see http://www.gnu.org/licenses or write to the Free
  * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
- * 
+ *
  * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
  * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- * 
+ *
  * The interactive user interfaces in modified source and object code versions
  * of this program must display Appropriate Legal Notices, as required under
  * Section 5 of the GNU Affero General Public License version 3.
- * 
+ *
  * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
  * these Appropriate Legal Notices must retain the display of the "Powered by
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
@@ -38,15 +38,14 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  ********************************************************************************/
 
 /*********************************************************************************
-
  * Description:  Defines the Spanish language pack for the base application.
  * Portions created by REDK Ingeniería del Software S.L..
  * All Rights Reserved.
  * Contributor(s): REDK Software Engineering (www.redk.net)
  ********************************************************************************/
- 
 
-$mod_strings = array (
+
+$mod_strings = array(
   'ACCOUNT_REMOVE_PROJECT_CONFIRM' => '¿Está seguro de que desea quitar esta cuenta de este proyecto?',
   'ERR_DELETE_RECORD' => 'Debe especificar un número de registro para eliminar la cuenta.',
   'LBL_ACCOUNT_NAME' => 'Nombre de Cuenta:',
@@ -150,7 +149,7 @@ $mod_strings = array (
   'LBL_NOM_CENTRAL_MISTERY' => 'Nombre del contacto central',
   'LBL_CORREO_CENTRAL_MISTERY' => 'Correo central',
   'LBL_TELEFONO_CENTRAL_MISTERY' => 'Teléfono central',
-  
+
   'LBL_CONST_YEAR' => 'Año de constitución',
   'LBL_FCREACION_CADENA' => 'Fecha de creación de la cadena',
   'LBL_LOCALES_PROPIOS' => 'Nº de locales propios',
@@ -158,31 +157,31 @@ $mod_strings = array (
   'SUP_LOCAL_MIN' => 'Superficie de local mínima',
   'LBL_ZONA_PRIORITARIA' => 'Zona prioritaria',
   'LBL_POSICIONAMIENTO_ONLINE' => 'Posicionamiento online',
-  
+
   'LBL_INTERES_EN' => 'Interes ExpandeNegocio',
   'LBL_ENCAJE_CLIENTE' => 'Encaje cliente',
   'LBL_CONSULTORA_FRANQUICIA' => 'Consultora de franquicia',
   'LBL_ESTADO_PROYECTO' => 'Estado del proyecto',
   'LBL_HISTORICO_CONVERSACION' => 'Que le decimos',
   'LBL_PRODUCTOS_SERVICIOS' => 'Productos y servicios',
-  'LBL_NOTICIAS'=>'Noticias',
-  'LBL_OTROS_SECTORES' =>'Otros sectores no recogidos',
-  
+  'LBL_NOTICIAS' => 'Noticias',
+  'LBL_OTROS_SECTORES' => 'Otros sectores no recogidos',
+
   'LBL_F_TOMA_DATOS' => 'Fecha de ultima toma de datos',
   'LBL_POBLACION_MIN' => 'Poblacion mínima',
-  
+
   'LBL_LOCALES_FRANQUICIADOS' => 'Locales franquiciados',
-  
+
   'LBL_OTROS_REQUISITOS' => 'Otros requisitos',
   'LBL_INVERSION' => 'Inversión (Canon incluido)',
   'LBL_CANON_ENTRADA' => 'Canon de entrada',
   'LBL_ROYALTY_EXPLOTACION' => 'Royalty de explotación',
   'LBL_FONDO_MARKETING' => 'Fondo de marketing',
   'LBL_DURACION_CONTRATO' => 'Duración del contrato',
-  'LBL_AYUDA_FINANCIERA' =>'Ayuda financiera',
+  'LBL_AYUDA_FINANCIERA' => 'Ayuda financiera',
   'LBL_PERSONAL_NECESARIO' => 'Personal necesario',
-  'LBL_PERFIL_CANDIDATO' =>'Perfil del candidato',
-  'LBL_ELEM_DIFERENCIALES'=>'Elementos diferenciales',  
+  'LBL_PERFIL_CANDIDATO' => 'Perfil del candidato',
+  'LBL_ELEM_DIFERENCIALES' => 'Elementos diferenciales',
   'LBL_FERIAS' => 'Ferias a las que asiste',
   'LBL_PORTALES' => 'Presencia en portales',
   'LBL_MAILINGS' => 'Mailings detectados',
@@ -194,6 +193,8 @@ $mod_strings = array (
   'LBL_CIERRES_PROPIOS' => 'Cierres centros propios',
   'LBL_CIERRES_FRANQUICIADOS' => 'Cierres centros franquiciados',
   'LBL_APERTURAS_EXTRANJERO' => 'Aperturas extranjero',
-  'LBL_CIERRES_EXTRANJERO'=> 'Cierres extranjero',
-  
+  'LBL_CIERRES_EXTRANJERO' => 'Cierres extranjero',
+  'LBL_RAZON_SOCIAL' => 'Razón social',
+  'LBL_PAIS' => 'País',
+
 );

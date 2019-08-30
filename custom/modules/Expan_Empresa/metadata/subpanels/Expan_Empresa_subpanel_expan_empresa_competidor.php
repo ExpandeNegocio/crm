@@ -1,7 +1,7 @@
 <?php 
 
 $layout_defs["Expan_Empresa"]["subpanel_setup"]['expan_empresa_competidor'] = array (
-      'order' => 100,
+      'order' => 1,
       'module' => 'Expan_Empresa',
       'subpanel_name' => 'default',
       'sort_order' => 'desc',

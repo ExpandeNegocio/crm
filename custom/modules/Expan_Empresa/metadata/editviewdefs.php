@@ -122,6 +122,21 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'razon_social',
+                        'label' => 'LBL_RAZON_SOCIAL',
+                      ),
+                    1 =>
+                      array(
+                        'name' => 'cif',
+                        'label' => 'LBL_CIF',
+                      ),
+                  ),
+
+
+                2 =>
+                  array(
+                    0 =>
+                      array(
                         'name' => 'empresa_type',
                         'label' => 'LBL_TYPE',
                       ),
@@ -132,7 +147,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                2 =>
+                3 =>
                   array(
                     0 =>
                       array(),
@@ -143,7 +158,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                3 =>
+                4 =>
                   array(
                     0 =>
                       array(),
@@ -154,7 +169,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                4 =>
+                5 =>
                   array(
                     0 =>
                       array(),
@@ -165,7 +180,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                5 =>
+                6 =>
                   array(
                     0 =>
                       array(
@@ -179,7 +194,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                6 =>
+                7 =>
                   array(
                     0 =>
                       array(
@@ -187,12 +202,11 @@ $viewdefs [$module_name] =
                         'label' => 'LBL_EMAIL',
                       ),
                     1 => array(
-                      'name' => 'cif',
-                      'label' => 'LBL_CIF',
+
                     ),
                   ),
 
-                7 =>
+                8 =>
                   array(
                     0 =>
                       array(
@@ -205,7 +219,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                8 =>
+                9 =>
                   array(
                     0 =>
                       array(
@@ -218,7 +232,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                9 =>
+                10 =>
                   array(
                     0 =>
                       array(
@@ -231,7 +245,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                10 =>
+                11 =>
                   array(
                     0 =>
                       array(
@@ -244,7 +258,18 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                11 =>
+                12 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'pais',
+                        'label' => 'LBL_PAIS',
+                      ),
+                    1 => array(
+                    ),
+                  ),
+
+                13 =>
                   array(
                     0 =>
                       array(
@@ -257,7 +282,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                12 =>
+                14 =>
                   array(
                     0 =>
                       array(
@@ -267,7 +292,7 @@ $viewdefs [$module_name] =
                     1 => array(),
                   ),
 
-                13 =>
+                15 =>
                   array(
                     0 =>
                       array(
@@ -277,7 +302,7 @@ $viewdefs [$module_name] =
                     1 => array(),
                   ),
 
-                14 =>
+                16 =>
                   array(
                     0 =>
                       array(
@@ -297,7 +322,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                15 =>
+                17 =>
                   array(
                     0 =>
                       array(
@@ -307,7 +332,7 @@ $viewdefs [$module_name] =
                     1 => array(),
                   ),
 
-                16 =>
+                18 =>
                   array(
                     0 =>
                       array(
@@ -317,7 +342,7 @@ $viewdefs [$module_name] =
                     1 => array(),
                   ),
 
-                17 =>
+                19 =>
                   array(
                     0 =>
                       array(
@@ -328,7 +353,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                18 =>
+                20 =>
                   array(
                     0 =>
                       array(
@@ -341,7 +366,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                19 =>
+                21 =>
                   array(
                     0 =>
                       array(
@@ -354,7 +379,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                20 =>
+                22 =>
                   array(
                     0 =>
                       array(
@@ -367,7 +392,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                21 =>
+                23 =>
                   array(
                     0 =>
                       array(
@@ -380,7 +405,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                22 =>
+                24 =>
                   array(
                     0 =>
                       array(
@@ -393,7 +418,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                23 =>
+                25 =>
                   array(
                     0 =>
                       array(
@@ -406,7 +431,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                24 =>
+                26 =>
                   array(
                     0 =>
                       array(
@@ -415,8 +440,6 @@ $viewdefs [$module_name] =
                       ),
                     1 => array(),
                   ),
-
-
               ),
           ),
       ),

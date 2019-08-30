@@ -78,7 +78,6 @@ $viewdefs [$module_name] =
             'LBL_DATOS_GENERALES' =>
               array(
 
-
                 0 =>
                   array(
                     0 =>
@@ -88,12 +87,27 @@ $viewdefs [$module_name] =
                       ),
                     1 =>
                       array(
+                        'name' => 'origen',
+                        'label' => 'LBL_ORIGEN',
+                      ),
+                  ),
+
+                1 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'razon_social',
+                        'label' => 'LBL_RAZON_SOCIAL',
+                      ),
+                    1 =>
+                      array(
                         'name' => 'cif',
                         'label' => 'LBL_CIF',
                       ),
                   ),
 
-                1 =>
+
+                2 =>
                   array(
                     0 =>
                       array(
@@ -107,7 +121,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                2 =>
+                3 =>
                   array(
                     0 =>
                       array(),
@@ -118,7 +132,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                3 =>
+                4 =>
                   array(
                     0 =>
                       array(),
@@ -129,7 +143,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                4 =>
+                5 =>
                   array(
                     0 =>
                       array(),
@@ -140,7 +154,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                5 =>
+                6 =>
                   array(
                     0 =>
                       array(
@@ -154,7 +168,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                6 =>
+                7 =>
                   array(
                     0 =>
                       array(
@@ -162,21 +176,7 @@ $viewdefs [$module_name] =
                         'label' => 'LBL_EMAIL',
                       ),
                     1 => array(
-                      'name' => 'origen',
-                      'label' => 'LBL_ORIGEN',
-                    ),
-                  ),
 
-                7 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'sector',
-                        'label' => 'LBL_SECTOR',
-                      ),
-                    1 => array(
-                      'name' => 'actividad_principal',
-                      'label' => 'LBL_ACTIVIDAD_PRINCIPAL',
                     ),
                   ),
 
@@ -184,112 +184,42 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
-                        'name' => 'otros_sectores',
-                        'label' => 'LBL_OTROS_SECTORES',
+                        'name' => 'telefono_contacto_1',
+                        'label' => 'LBL_TELEFONO_CONTACTO1',
                       ),
-                    1 => array(),
+                    1 => array(
+                      'name' => 'telefono_contacto_observa1',
+                      'label' => 'LBL_TELEFONO_CONTACTO_OBSERVA1',
+                    ),
                   ),
 
                 9 =>
                   array(
                     0 =>
                       array(
-                        'name' => 'fecha_contacto',
-                        'label' => 'LBL_FECHA_CONTACTO',
+                        'name' => 'telefono_contacto_2',
+                        'label' => 'LBL_TELEFONO_CONTACTO2',
                       ),
-                    1 => array(),
+                    1 => array(
+                      'name' => 'telefono_contacto_observa2',
+                      'label' => 'LBL_TELEFONO_CONTACTO_OBSERVA2',
+                    ),
                   ),
 
                 10 =>
                   array(
                     0 =>
                       array(
-                        'label' => 'LBL_CONTACTO1',
+                        'name' => 'telefono_contacto_3',
+                        'label' => 'LBL_TELEFONO_CONTACTO3',
                       ),
                     1 => array(
-                      'label' => 'LBL_CONTACTO2',
+                      'name' => 'telefono_contacto_observa3',
+                      'label' => 'LBL_TELEFONO_CONTACTO_OBSERVA3',
                     ),
                   ),
 
                 11 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'contacto1',
-                        'label' => 'LBL_CONTACTO',
-                      ),
-                    1 => array(
-                      'name' => 'contacto2',
-                      'label' => 'LBL_CONTACTO',
-                    ),
-                  ),
-
-                12 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'cargo1',
-                        'label' => 'LBL_CARGO',
-                      ),
-                    1 => array(
-                      'name' => 'cargo2',
-                      'label' => 'LBL_CARGO',
-                    ),
-                  ),
-
-                13 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'telefono1',
-                        'label' => 'LBL_TELEFONO',
-                      ),
-                    1 => array(
-                      'name' => 'telefono2',
-                      'label' => 'LBL_TELEFONO',
-                    ),
-                  ),
-
-                14 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'movil1',
-                        'label' => 'LBL_MOVIL',
-                      ),
-                    1 => array(
-                      'name' => 'movil2',
-                      'label' => 'LBL_MOVIL',
-                    ),
-                  ),
-
-                15 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'email_con_1',
-                        'label' => 'LBL_EMAIL',
-                      ),
-                    1 => array(
-                      'name' => 'email_con_2',
-                      'label' => 'LBL_EMAIL',
-                    ),
-                  ),
-
-                16 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'observacion_con_1',
-                        'label' => 'LBL_OBSERVACIONES_CONTACTO',
-                      ),
-                    1 => array(
-                      'name' => 'observacion_con_2',
-                      'label' => 'LBL_OBSERVACIONES_CONTACTO',
-                    ),
-                  ),
-
-                17 =>
                   array(
                     0 =>
                       array(
@@ -302,7 +232,18 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                18 =>
+                12 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'pais',
+                        'label' => 'LBL_PAIS',
+                      ),
+                    1 => array(
+                    ),
+                  ),
+
+                13 =>
                   array(
                     0 =>
                       array(
@@ -315,7 +256,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                19 =>
+                14 =>
                   array(
                     0 =>
                       array(
@@ -325,7 +266,7 @@ $viewdefs [$module_name] =
                     1 => array(),
                   ),
 
-                20 =>
+                15 =>
                   array(
                     0 =>
                       array(
@@ -335,17 +276,143 @@ $viewdefs [$module_name] =
                     1 => array(),
                   ),
 
+                16 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'sector_arbol',
+                        'studio' => 'visible',
+                        'label' => 'LBL_SECTOR',
+                        'customCode' => '
+              {php}
+                  include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";
+                  $prueba=new opEdicionFranquicia();
+                  $prueba->cargaSectores();  
+              {/php}',
+                      ),
+                    1 => array(
+                      'name' => 'actividad_principal',
+                      'label' => 'LBL_ACTIVIDAD_PRINCIPAL',
+                    ),
+                  ),
+
+                17 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'otros_sectores',
+                        'label' => 'LBL_OTROS_SECTORES',
+                      ),
+                    1 => array(),
+                  ),
+
+                18 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'fecha_contacto',
+                        'label' => 'LBL_FECHA_CONTACTO',
+                      ),
+                    1 => array(),
+                  ),
+
+                19 =>
+                  array(
+                    0 =>
+                      array(
+                        'label' => 'LBL_CONTACTO1',
+                      ),
+                    1 => array(
+                      'label' => 'LBL_CONTACTO2',
+                    ),
+                  ),
+
+                20 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'contacto1',
+                        'label' => 'LBL_CONTACTO',
+                      ),
+                    1 => array(
+                      'name' => 'contacto2',
+                      'label' => 'LBL_CONTACTO',
+                    ),
+                  ),
+
                 21 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'cargo1',
+                        'label' => 'LBL_CARGO',
+                      ),
+                    1 => array(
+                      'name' => 'cargo2',
+                      'label' => 'LBL_CARGO',
+                    ),
+                  ),
+
+                22 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'telefono1',
+                        'label' => 'LBL_TELEFONO',
+                      ),
+                    1 => array(
+                      'name' => 'telefono2',
+                      'label' => 'LBL_TELEFONO',
+                    ),
+                  ),
+
+                23 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'movil1',
+                        'label' => 'LBL_MOVIL',
+                      ),
+                    1 => array(
+                      'name' => 'movil2',
+                      'label' => 'LBL_MOVIL',
+                    ),
+                  ),
+
+                24 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'email_con_1',
+                        'label' => 'LBL_EMAIL',
+                      ),
+                    1 => array(
+                      'name' => 'email_con_2',
+                      'label' => 'LBL_EMAIL',
+                    ),
+                  ),
+
+                25 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'observacion_con_1',
+                        'label' => 'LBL_OBSERVACIONES_CONTACTO',
+                      ),
+                    1 => array(
+                      'name' => 'observacion_con_2',
+                      'label' => 'LBL_OBSERVACIONES_CONTACTO',
+                    ),
+                  ),
+
+                26 =>
                   array(
                     0 =>
                       array(
                         'name' => 'observaciones',
                         'label' => 'LBL_OBSERVACIONES',
                       ),
-                    1 => array(
-                      'name' => 'date_entered',
-                      'label' => 'LBL_DATE_ENTERED',
-                    ),
+                    1 => array(),
                   ),
               ),
           ),
