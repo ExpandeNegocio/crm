@@ -2,8 +2,8 @@
 if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once('data/SugarBean.php');
-require_once('custom/Modules/Expan_GestionSolicitudes/metadata/CreateCxButtonsHelper.php');
-require_once('Modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes.php');
+require_once('custom/modules/Expan_GestionSolicitudes/metadata/CreateCxButtonsHelper.php');
+require_once('modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes.php');
 
 $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
 $GLOBALS['log']->info('[ExpandeNegocio][ConsultaFranquicia]Inicio');
