@@ -22,8 +22,6 @@ class AccionesGuardadoGestionSol {
 
     function guardadoGestionSolicitud(&$bean, $event, $arguments) {
 
-        $LINEA = '#-------------------------------------------------------#';
-
         //Comprobacion de bulce infinito
         if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {                       
             
@@ -32,7 +30,6 @@ class AccionesGuardadoGestionSol {
             
             $bean->ActChekByDate();
 
-            $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Entramos en control bucle');
 
             //debemos distinguir cuando estamos creanado una nueva GestionSolicitud
@@ -154,6 +151,9 @@ class AccionesGuardadoGestionSol {
             //Recogemos la solicitud asociada a la gestion
 
             $solicitud = $bean -> GetSolicitud();
+            $franquiciaid = $bean -> franquicia;
+            $franquicia= new Expan_Franquicia();
+            $franquicia->retrieve($franquiciaid);
             
             if ($solicitud== null){
                 return;
@@ -161,8 +161,7 @@ class AccionesGuardadoGestionSol {
 
             //Miramos si la GestionSolicitud a la que pasamos es de tipo 2
             if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_EN_CURSO) {
-                
-                
+
                 //Si es un topo pasamos a 
                 if ($bean->rating==5){
                     
@@ -331,7 +330,7 @@ class AccionesGuardadoGestionSol {
                     $mayorCheck = 4;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entramos Envio 2');
 
-                    $salida=$bean -> preparaCorreo("C2");                    
+                    $bean -> preparaCorreo("C2");
                     
                     if ($bean -> f_informacion_adicional == $fecha_envio_informacion_adicional_ant) {
                         $bean -> f_informacion_adicional = $fechaHoy->format('d/m/Y H:i');
@@ -461,11 +460,10 @@ class AccionesGuardadoGestionSol {
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]Hay entrega a cuenta');                                                                                                                      
                         
                     $envioAutoCorreos= new EnvioAutoCorreos();
-                    $franquicia=$bean->franquicia;
                     
                     $addresses['0']['email_address']="administracion@expandenegocio.com"; 
                     $rcp_name="Administracion ExpandeNegocio";  
-                    $salida=$envioAutoCorreos->rellenacorreoFicha("FPC",$rcp_name,$addresses,$solicitud,$franquicia,$bean,null); 
+                    $salida=$envioAutoCorreos->rellenacorreoFicha("FPC","cons",$rcp_name,$addresses,$solicitud,$franquiciaid,$bean,null);
                     
                     $bean->chk_precontrato_firmado=1;
                     
@@ -496,7 +494,7 @@ class AccionesGuardadoGestionSol {
                     $bean->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_PRECONTRATO;                                      
                 }                            
 
-                //Tenemos que realizar ENVIO C4 y crear aèrtura
+                //Tenemos que realizar ENVIO C4 y crear apertura
                 if ($envio_contrato_ant != $bean -> chk_envio_contrato && $bean -> chk_envio_contrato == true) {
                     $mayorCheck = 11;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entramos Envio 4');
@@ -504,7 +502,8 @@ class AccionesGuardadoGestionSol {
                     $bean -> preparaCorreo("C4");
                     $bean -> crearTarea("DOCUPerCon");
 
-                    Expan_Apertura::PreparaApertura($bean->name,$solicitud,$bean);
+                    $nameAperura=$solicitud->first_name." ".$solicitud->last_name."-".$franquicia->name;
+                    Expan_Apertura::PreparaApertura($nameAperura,$solicitud,$bean);
 
                     if ($bean -> f_envio_contrato == $fecha_envio_contrato_ant) {
                         $bean -> f_envio_contrato = $fechaHoy->format('d/m/Y H:i');
@@ -546,7 +545,8 @@ class AccionesGuardadoGestionSol {
                 //Si se firma precontrato se crea apertura y se envía el C4
                 if($bean->chk_contrato_firmado==1 && $chk_contrato_firmado_ant!=$bean->chk_contrato_firmado){
 
-                    Expan_Apertura::PreparaApertura($bean->name,$solicitud,$bean);
+                  $nameAperura=$solicitud->first_name." ".$solicitud->last_name."-".$franquicia->name;
+                  Expan_Apertura::PreparaApertura($nameAperura,$solicitud,$bean);
                     
                     $bean->estado_sol=Expan_GestionSolicitudes::ESTADO_POSITIVO;
                     $bean->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_CONTRATO;                                      
@@ -626,7 +626,8 @@ class AccionesGuardadoGestionSol {
                     $bean -> motivo_positivo=='Cont' &&
                     $bean -> motivo_positivo!=$motivoPositivoAnt)
                 {
-                    Expan_Apertura::PreparaApertura($bean->name,$solicitud,$bean);
+                  $nameAperura=$solicitud->first_name." ".$solicitud->last_name."-".$franquicia->name;
+                  Expan_Apertura::PreparaApertura($nameAperura,$solicitud,$bean);
                 }
 
 
@@ -674,7 +675,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_DATOS_ERRORNEOS &&                    
                     $estadoAnt==Expan_GestionSolicitudes::ESTADO_EN_CURSO) {
                     if ($solicitud != null) {
-                        $salida = $bean -> preparaCorreo("C1.4");
+                        $bean -> preparaCorreo("C1.4");
                     }
                 }
                     
@@ -682,7 +683,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> motivo_parada == Expan_GestionSolicitudes::PARADA_ZONA_NO_INTERES &&
                     $bean -> estado_sol!=$estadoAnt) {
                     if ($solicitud != null) {
-                        $salida = $bean -> preparaCorreo("C1.2");
+                        $bean -> preparaCorreo("C1.2");
                     }
                 }    
                 
@@ -692,7 +693,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> motivo_descarte == Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_OTRO_SECTOR) &&
                     $bean -> estado_sol!=$estadoAnt){
 
-                    Expan_Apertura::PreparaAperuraCompetencia($solicitud,$bean,3);
+                    Expan_Apertura::PreparaAperuraCompetencia($solicitud,$bean);
                 }
 
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud]tion no Estado 2');
@@ -785,4 +786,3 @@ class AccionesGuardadoGestionSol {
     }
 
 }
-?>

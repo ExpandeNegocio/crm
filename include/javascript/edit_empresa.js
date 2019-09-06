@@ -697,7 +697,7 @@ function cambiarCompetidor(tipoComp) {
             data: "tipo=CambioCompetidor" + "&tipoComp=" + tipoComp + "&idEmpresa=" + idEempresa + "&idCompetidores=" + idCompetidores,
             success: function (data) {
                 YAHOO.SUGAR.MessageBox.hide();
-                if (data == "Ok") {
+                if (data.toUpperCase() == "OK") {
                     document.location.reload();
                 } else {
                     alert("No se han podido cambiar el tipo de los competidores seleccionados " + estado);
@@ -728,7 +728,7 @@ function cambiarCompPrincipal() {
             data: "tipo=CompetidorPrincipal" + "&idEmpresa=" + idEempresa + "&idCompetidores=" + idCompetidores,
             success: function (data) {
                 YAHOO.SUGAR.MessageBox.hide();
-                if (data == "Ok") {
+                if (data.toUpperCase() == "OK") {
                     document.location.reload();
                 } else {
                     alert("No se han podido cambiar el competidor principal " + estado);

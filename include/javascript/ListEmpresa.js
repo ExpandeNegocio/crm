@@ -1,5 +1,5 @@
 
-renderSectores();
+//renderSectores();
 
 function renderSectores(){
 
@@ -65,9 +65,9 @@ function cambiocheck(clase, id,act) {
     }
 
     for (var k = 0; k < listaSel.length; k++) {
-        for (var j = 0; j < listaFran.length; j++) {
-            if (listaSel[k] == listaFran[j].text) {
-                listaFran[j].selected = true;
+        for (var l = 0; l < listaFran.length; l++) {
+            if (listaSel[k] == listaFran[l].text) {
+                listaFran[l].selected = true;
             }
         }
     }

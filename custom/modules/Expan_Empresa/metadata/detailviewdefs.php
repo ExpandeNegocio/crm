@@ -280,15 +280,9 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
-                        'name' => 'sector_arbol',
+                        'name' => 'sector',
                         'studio' => 'visible',
                         'label' => 'LBL_SECTOR',
-                        'customCode' => '
-              {php}
-                  include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";
-                  $prueba=new opEdicionFranquicia();
-                  $prueba->cargaSectores();  
-              {/php}',
                       ),
                     1 => array(
                       'name' => 'actividad_principal',

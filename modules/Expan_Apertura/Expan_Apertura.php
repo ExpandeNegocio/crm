@@ -42,12 +42,12 @@ require_once('modules/Expan_Apertura/Expan_Apertura_sugar.php');
 class Expan_Apertura extends Expan_Apertura_sugar
 {
 
-  function Expan_Apertura()
+  function __construct()
   {
     parent::Expan_Apertura_sugar();
   }
 
-  function PreparaApertura($name, $solicitud, $gestion)
+  static function PreparaApertura($name, $solicitud, $gestion)
   {
     if (Expan_Apertura::existeApertura($name) == false &&
       Expan_Apertura::franquiciaNoApertura($name) == false) { //no está creada la apertura
@@ -69,7 +69,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
     }
   }
 
-  function existeApertura($nombre)
+  static function existeApertura($nombre)
   {
 
     $db = DBManagerFactory::getInstance();
@@ -98,7 +98,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
     return false;
   }
 
-  function crearApertura($nombre, $gestion, $franquiciado)
+  static function crearApertura($nombre, $gestion, $franquiciado)
   {
 
     $GLOBALS['log']->info('[ExpandeNegocio][crearApertura]Se crea apertura');
@@ -132,7 +132,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
     $apertura->save();
   }
 
-  function PreparaAperuraCompetencia($solicitud, $gestion)
+  static function PreparaAperuraCompetencia($solicitud, $gestion)
   {
     $name = $solicitud->first_name . " " . $solicitud->last_name . " - Franquicia Competencia";
 

@@ -6,7 +6,9 @@ elemento = document.getElementById('InicioDocumentos');
 
 if (elemento==null){
 
-	renderSectores();
+	if (document.getElementById('Sectores_div')==null){
+		//renderSectores();
+	}
 	addSearchAct();
 
 	var div= $('<div/>',

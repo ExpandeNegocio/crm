@@ -29,6 +29,16 @@ function coloreaSectores(){
 	});
 }
 
+function renderConsultora() {
+	if ($("#chk_trabaja_consultora option:selected").text() == "Si") {
+		$("#consultora_label").show();
+		$("#consultora").parent().show();
+	} else {
+		$("#consultora_label").hide();
+		$("#consultora").parent().hide();
+	}
+}
+
 function renderTrabajaConsultora() {
 	if ($("#empresa_type_detailblock").text() == "Franquicia" ||
 		$("chk_es_cliente_potencial_detailblock").is(':checked'))  {
@@ -36,4 +46,91 @@ function renderTrabajaConsultora() {
 	} else {
 		$("#chk_trabaja_consultora_detailblock").parent().parent().hide();
 	}
+}
+
+function cambiarCompPrincipal() {
+
+	if (confirm("¿Esta seguro de que quieres cambiar el competidor principal?")) {
+
+		var idCompetidores = getListaCompetidores();
+		var idEempresa = $("input[name$=\"record\"]").val();
+
+		url = "index.php?entryPoint=consultarEmpresa";
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: "tipo=CompetidorPrincipal" + "&idEmpresa=" + idEempresa + "&idCompetidores=" + idCompetidores,
+			success: function (data) {
+				YAHOO.SUGAR.MessageBox.hide();
+				if (data.toUpperCase() == "OK") {
+					document.location.reload();
+				} else {
+					alert("No se han podido cambiar el competidor principal " + estado);
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				alert("No se han podido cambiar el competidor principal - " + textStatus + " - " + errorThrown);
+			}
+		});
+
+	} else {
+		return false;
+	}
+
+}
+
+function getListaCompetidores() {
+
+	//Recogemos la lista de competidores a cambiar
+
+	var lista = document.getElementsByClassName("checkbox");
+
+	var idCompetidores = "";
+	var prim = true;
+
+	var CHK_STR = "checkbox_display_prueba-";
+
+	for (i = 0; i < lista.length; i++) {
+		if (lista[i].checked == true && lista[i].name.indexOf(CHK_STR) != -1) {
+			if (prim == true) {
+				idCompetidores = lista[i].name.replace(CHK_STR, "");
+			} else {
+				idCompetidores = idCompetidores + "#" + lista[i].name.replace(CHK_STR, "");
+			}
+			prim = false;
+		}
+	}
+
+	return idCompetidores;
+}
+
+function cambiarCompetidor(tipoComp) {
+
+	if (confirm("¿Esta seguro de que quieres cambiar el tipo de competidor?")) {
+
+		var idCompetidores = getListaCompetidores();
+		var idEempresa = $("input[name$=\"record\"]").val();
+
+		url = "index.php?entryPoint=consultarEmpresa";
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: "tipo=CambioCompetidor" + "&tipoComp=" + tipoComp + "&idEmpresa=" + idEempresa + "&idCompetidores=" + idCompetidores,
+			success: function (data) {
+				YAHOO.SUGAR.MessageBox.hide();
+				if (data.toUpperCase() == "OK") {
+					document.location.reload();
+				} else {
+					alert("No se han podido cambiar el tipo de los competidores seleccionados " + estado);
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				alert("No se han podido cambiar el tipo de los competidores seleccionados - " + textStatus + " - " + errorThrown);
+			}
+		});
+
+	} else {
+		return false;
+	}
+
 }
