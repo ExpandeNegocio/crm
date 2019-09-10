@@ -27,6 +27,7 @@ class AccionesGuardadoApertura {
             $solicitud=$gestion->GetSolicitud();
             
             $f_entrega_cuenta_cont_ant=self::$fetchedRow[$bean -> id]['f_entrega_cuenta_cont'];
+            $f_abierta_ant=self::$fetchedRow[$bean -> id]['abierta'];
             
              // Creacion de Apertura
              if (!isset(self::$fetchedRow[$bean -> id])) {
@@ -52,7 +53,10 @@ class AccionesGuardadoApertura {
                      */
                  }
              }      
-            
+
+             if ($f_abierta_ant!=$bean->abierta && $bean->abierta==0){
+               $this->actualizaCotratoCaido($bean);
+             }
             //Actualizamos el estado del franquiciado
             $this->actualizaEstadoFranquiciado($bean);
         }        
@@ -66,5 +70,15 @@ class AccionesGuardadoApertura {
             $franquiciado -> ignore_update_c = true;
             $franquiciado -> save();
         }
+    }
+
+    private function actualizaCotratoCaido($bean){
+      if ($bean->gestion!=''){
+        $gestion= new Expan_GestionSolicitudes();
+        $gestion->retrieve($bean->gestion);
+
+        $gestion->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_CAI_CONTRATO;
+        $gestion->save();
+      }
     }
 }

@@ -623,6 +623,21 @@ class AccionesGuardadoGestionSol {
                 }
 
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
+                  $bean -> motivo_positivo=='CaiCon' &&
+                  $bean -> motivo_positivo!=$motivoPositivoAnt)
+                {
+                  $aperturaId=$bean->getApertura();
+                  if ($aperturaId!=''){
+                    $apertura= new Expan_Apertura();
+                    $apertura->retrieve($aperturaId);
+
+                    $apertura->abierta=0;
+                    $apertura->save();
+                  }
+
+                }
+
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
                     $bean -> motivo_positivo=='Cont' &&
                     $bean -> motivo_positivo!=$motivoPositivoAnt)
                 {

@@ -83,6 +83,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
   const POSITIVO_PRECONTRATO = 'Pre';
   const POSITIVO_CONTRATO = 'Cont';
   const POSITIVO_COLABORACION = 'Col';
+  const POSITIVO_CAI_CONTRATO = 'CaiCon';
 
   const SUBESTADO_ = '';
   const SUBESTADO_CENTRAL = 'Visita Central';
@@ -2177,6 +2178,21 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
     }
 
     return false;
+  }
+
+  public function getApertura()
+  {
+    $db = DBManagerFactory::getInstance();
+    $query = "select id from expan_apertura where gestion='" . $this->id . "' and deleted=0";
+    $result = $db->query($query, true);
+
+    $GLOBALS['log']->info('[ExpandeNegocio][tieneApertura]Consulta-' . $query);
+
+    while ($row = $db->fetchByAssoc($result)) {
+      return $row["id"];
+    }
+
+    return '';
   }
 
   public function crearTablaRespuesta()
