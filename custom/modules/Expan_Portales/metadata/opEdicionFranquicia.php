@@ -3,11 +3,14 @@ class opEdicionFranquicia {
         
     public function showInterfaz($idPortal,$view){        
         
-        echo '<p>Franquicias</p>';
-        
+        echo '<h2>Franquicias</h2>';
+        echo '<br>';
+
+        echo '<p>Mostrar solo Fraquicias EN<input type="checkbox" id="chk_franquicias_EN" name="chk_franquicias_EN" checked></p>';
+
         echo '<select name="franquicias[]" id="franquicias" size="12" style="width: 250px" multiple="true">';
                 
-        $query = "select id,name from expan_franquicia where deleted=0 and tipo_cuenta in (1,2,3,4,5) order by name ";
+        $query = "select id,name from expan_franquicia where deleted=0 and tipo_cuenta in (1,2,3) order by name ";
         $options= $this->getOptions($query,"name","id");
     
         echo $options;
@@ -105,16 +108,17 @@ class opEdicionFranquicia {
         $query=$query."order by f.name; ";
  
         $output=$output. "<div id='ListaPeriodos'>"; 
-        $output=$output."<select name='select' id='year' onchange='yearChange(\"".$idportal."\")'>";
+        $output=$output."<p>Año <select name='select' id='year' onchange='yearChange(\"".$idportal."\")'>";
         
         $thisYear= date('Y');
         
         for ($i=0;$i<10;$i++){
             $output=$output. "<option value='".($thisYear+$i)."'>".($thisYear+$i)."</option>";
         }         
-        $output=$output. "</select>";
-
-        $output=$output. "<p>Listado de meses</p>";
+        $output=$output. "</select></p>";
+        $output=$output. "<br>";
+        $output=$output. "<h2>Listado de meses</h2>";
+        $output=$output. "<br>";
         $output=$output. "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>

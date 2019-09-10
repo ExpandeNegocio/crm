@@ -18,9 +18,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $f_fin=$_POST["f_fin"];
     $coste=$_POST["coste"];
     $year=$_POST["year"];
-    
-    
-     $db = DBManagerFactory::getInstance();
+    $soloEN=$_POST["soloEN"];
         
     switch ($tipo) {
         case 'AltaFranquicia':                    
@@ -50,6 +48,26 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $codigo=$op->listaFranquicias($portal,$year);
             echo $codigo;
             
+            break;
+
+        case 'getFran':
+
+            $return = array();
+
+            if ($soloEN=='true'){
+              $query = "select id,name from expan_franquicia where deleted=0 and tipo_cuenta in (1,2,3) order by name ";
+            }else{
+              $query = "select id,name from expan_franquicia where deleted=0 and tipo_cuenta in (1,2,3,4,5) order by name ";
+            }
+
+            $result = $db->query($query, true);
+
+            while ($row = $db->fetchByAssoc($result)) {
+              $return[] = $row;
+            }
+
+            echo json_encode($return, JSON_FORCE_OBJECT);
+
             break;
         
         default:

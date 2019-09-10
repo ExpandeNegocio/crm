@@ -1,6 +1,9 @@
 soloLectura();
 
-
+$('#chk_franquicias_EN').change(function()
+{
+	fillFranquicias(this.checked==true);
+});
 
 
 function soloLectura(){	
@@ -134,4 +137,24 @@ function validarDatos(listFranPak, f_ini, f_fin, coste){
 	
 	return true;
 	
+}
+
+function fillFranquicias(soloEN){
+
+	url = 'index.php?entryPoint=operarPortales';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=getFran&soloEN="+soloEN,
+		success : function(data) {
+			$('#franquicias').empty();
+            var Json = JSON.parse(data);
+            for (var i in Json) {
+                $('#franquicias').append('<option value=' + Json[i].id + '>' + Json[i].name + '</option>');
+            }
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('No se ha podido recoger la lista de franquicias - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
 }
