@@ -1450,6 +1450,29 @@ $dictionary['Expan_Franquicia'] = array(
         'quicksearch' => 'enabled',
         'studio' => 'visible',
       ),
+
+    'num_aperuras_reg' =>
+      array(
+        'required' => false,
+        'source' => 'non-db',
+        'name' => 'num_aperuras_reg',
+        'vname' => 'LBL_NUM_APERURAS_REG',
+        'type' => 'int',
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '255',
+        'size' => '20',
+        'rname' => 'name',
+        'studio' => 'visible',
+      ),
+
     'estado_fran' =>
       array(
         'required' => false,

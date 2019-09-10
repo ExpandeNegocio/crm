@@ -221,7 +221,18 @@ array (
             'label' => 'LBL_RED_EXTRANGERA',
           ),
         ),
-        8 => 
+        8 =>
+          array (
+            0 =>
+              array (
+                'name' => 'num_aperuras_reg',
+                'label' => 'LBL_NUM_APERURAS_REG',
+              ),
+            1 =>
+              array (
+              ),
+          ),
+        9 =>
         array (
           0 => 
           array (
@@ -234,7 +245,7 @@ array (
             'label' => 'LBL_CIFRA_NEGOCIO_GRUPO',
           ),
         ),
-        9 => 
+        10 =>
         array (
           0 => 
           array (
@@ -248,7 +259,7 @@ array (
             'label' => 'LBL_AEF',
           ),
         ),
-        10 => 
+        11 =>
         array (
           0 => 
           array (
@@ -263,7 +274,7 @@ array (
           ),
         ),
         
-        11 => 
+        12 =>
         array (
           0 => 
           array (
@@ -276,7 +287,7 @@ array (
             'label' => 'LBL_ELEMENTOS_DIFERENCIALES',
           ),
         ),
-        12 => 
+        13 =>
         array (
           0 => 
           array (
@@ -289,7 +300,7 @@ array (
             'label' => 'LBL_AYUDA_FINANCIERA',
           ),
         ),
-        13 => 
+        14 =>
         array (
           0 => 
           array (
@@ -302,8 +313,7 @@ array (
             'label' => 'LBL_CENTROS_CERRADOS_ULT_YEAR',
           ),
         ),
-        
-        14 =>
+        15 =>
         array(
             0=> array(
                 
