@@ -414,7 +414,24 @@
     
     }
 
-    //Correccion problemas franquicia principal
+    //Campos que se pueden perder por guardado automático
+
+  $query = "UPDATE ";
+  $query=$query." expan_gestionsolicitudes g ";
+  $query=$query." JOIN expan_gestionsolicitudes_audit a ON g.id = a.parent_id ";
+  $query=$query."SET ";
+  $query=$query." g.observaciones_descarte = a.before_value_text ";
+  $query=$query."WHERE ";
+  $query=$query." g.deleted = 0 AND ";
+  $query=$query." a.after_value_text = '' AND ";
+  $query=$query." a.field_name = 'observaciones_descarte' AND ";
+  $query=$query." (g.observaciones_descarte = '' OR ";
+  $query=$query."  g.observaciones_descarte IS NULL); ";
+
+  $result = $db -> query($query);
+
+
+//Correccion problemas franquicia principal
 
     $query = "SELECT * ";
     $query=$query."FROM expan_solicitud s ";
