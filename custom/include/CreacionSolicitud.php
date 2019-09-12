@@ -327,7 +327,9 @@ class AccionesGuardado
       $bean->save();
 
       if ($bean->rating != 5) {//no es topo, miramos si esta el check de la franquicia para pasar automaticamente a estado 2
-        if ($franq->chk_c1 == 1) {//se puede pasar a estado 2
+        if ($franq->chk_c1 == 1 ||
+            ($bean->tipo_origen==Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO &&
+             $bean->subor_expande==Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDE_BB_ANT)) {//se puede pasar a estado 2
           $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
           $gestion->ignore_update_c = false;
           $gestion->save();

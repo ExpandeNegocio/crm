@@ -59,6 +59,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
   const TIPO_ORIGEN_MEDIOS_COMUN = '5';
 
   const TIPO_SUBORIGEN_CENTRAL_BB_ANT = '8';
+  const TIPO_SUBORIGEN_EXPANDE_BB_ANT = '10';
 
   const PARADA_POR_PROTOCOLO = '1';
 
