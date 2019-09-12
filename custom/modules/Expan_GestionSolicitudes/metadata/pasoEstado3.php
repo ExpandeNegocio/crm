@@ -95,6 +95,8 @@
         
         if ($row["ReactivacionAut"]==1){
             $gestion ->estado_sol=Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+            $gestion->calcAvanzado();
+            $gestion->calcCaliente();
         } 
                 
         $gestion ->save();
