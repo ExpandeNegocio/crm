@@ -740,6 +740,13 @@ function validarSubOrigen() {
     return check_form("EditView");
 }
 
+function mensajeParadoDescartado(){
+
+    if ($("#estado_sol").val() == 3 || $("#estado_sol").val() == 4){
+        alert ("¿Hay DUDAS, OBJECIONES, MEJORAS O SOLICITUDES que reflejar de este candidato?")
+    }
+
+}
 
 /**
  *Oculta el encabezado de los modelos de negocio cuando no los hay
@@ -1413,7 +1420,7 @@ function validarEdicion(idGestion) {
         validarPrecontrato() == false) {
         return false;
     }
-
+    mensajeParadoDescartado();
     return check_form("EditView");
 
 }
