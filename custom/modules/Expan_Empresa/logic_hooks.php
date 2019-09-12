@@ -9,6 +9,9 @@ $hook_array['before_save'][] = Array(1, 'CreaEmpresa', 'custom/include/CreacionE
 $hook_array['after_save'] = Array();
 $hook_array['after_save'][] = Array(1, 'ModEmpresa', 'custom/include/CreacionEmpresa.php', 'AccionesGuardadoEmpresa', 'ModificacionEmpresa');
 
+$hook_array['after_relationship_add'] = Array();
+$hook_array['after_relationship_add'][] = Array(1, 'AsignarRel', 'custom/include/CreacionEmpresa.php', 'AccionesGuardadoEmpresa', 'ActualizarRel');
+
 ?>
 
 

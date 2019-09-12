@@ -93,4 +93,35 @@ class AccionesGuardadoEmpresa
     $franq->save();
   }
 
+  function ActualizarRel(&$bean, $event, $arguments)
+  {
+    if (!isset($bean->ignore_update_c) || $bean->ignore_update_c === false) {
+
+      $db = DBManagerFactory::getInstance();
+
+      $query="select * from expan_empresa_competidores_c where empresa_id='".$arguments["related_id"]." and competidor=".$arguments["id"]."' and deleted=0";
+
+      $result = $db -> query($query, true);
+
+      $existeRel = false;
+
+      while ($row = $db -> fetchByAssoc($result)) {
+        $existeRel=true;
+      }
+
+      if (!$existeRel){
+
+        global $timedate;
+        $time_now=TimeDate::getInstance()->nowDb();
+
+        $query=" insert  into expan_empresa_competidores_c ";
+        $query=$query."(id,deleted,date_modified,empresa_id,competidor_id,tipo_competidor,competidor_principal) values ";
+        $query=$query."(uuid(),0,'".$time_now."','".$arguments["related_id"]."','".$arguments["id"]."',null,0)";
+
+        $db -> query($query);
+      }
+
+    }
+  }
+
 }
