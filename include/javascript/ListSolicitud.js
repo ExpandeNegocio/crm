@@ -1,5 +1,6 @@
-
-renderSectores();
+document.addEventListener("DOMContentLoaded", function(event) {
+    renderSectores();
+});
 
 function renderSectores(){
 

@@ -37,7 +37,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 $vardefs= array (  
 'fields' => array (
-   'name' => 
+   'name' =>
   array (
     'name' => 'name',
     'type' => 'name',
@@ -120,6 +120,7 @@ $vardefs= array (
     'size' => '20',
     'options' => 'lst_sectores_completo',
     'studio' => 'visible',
+    'isMultiSelect' => true,
     'dependency' => false,
   ),
   

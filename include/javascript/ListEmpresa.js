@@ -1,8 +1,10 @@
-
-//renderSectores();
+document.addEventListener("DOMContentLoaded", function(event) {
+    renderSectores();
+});
 
 function renderSectores(){
 
+    $("#sector_advanced").hide();
     url = 'index.php?entryPoint=consultarSectores';
     $.ajax({
         type : "POST",
@@ -14,11 +16,9 @@ function renderSectores(){
                     id: 'Sectores_div',
                 });
 
-            $("[name='sector_advanced[]']").after(div);
+            $("#sector_advanced").after(div);
 
             div.append(data);
-            $("[name='sector_advanced[]']").hide();
-            document.getElementsByName("sector_advanced[]")[0].style.display = "none";
 
         },
         error : function(jqXHR, textStatus, errorThrown) {

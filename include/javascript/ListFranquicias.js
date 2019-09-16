@@ -1,26 +1,27 @@
 /**
  * @author Penlopjo
  */
+document.addEventListener("DOMContentLoaded", function(event) {
+    elemento = document.getElementById('InicioDocumentos');
 
-elemento = document.getElementById('InicioDocumentos');
+    if (elemento==null){
 
-if (elemento==null){
+        if (document.getElementById('Sectores_div')==null){
+            //renderSectores();
+        }
+        //addSearchAct();
 
-	if (document.getElementById('Sectores_div')==null){
-		//renderSectores();
-	}
-	//addSearchAct();
+        var div= $('<div/>',
+        {
+            id: 'InicioDocumentos',
+            class:'subpanelTabForm',
+        });
 
-	var div= $('<div/>',
-    {
-        id: 'InicioDocumentos',
-        class:'subpanelTabForm',
-    });
+        $("#content").after(div);
 
-    $("#content").after(div);
-
-	addPanelListaDocumentos();
-}
+        addPanelListaDocumentos();
+    }
+});
 
 function addPanelListaDocumentos(){
 

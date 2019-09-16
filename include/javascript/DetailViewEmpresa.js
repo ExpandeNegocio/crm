@@ -1,6 +1,7 @@
-
-coloreaSectores();
-renderConsultora();
+document.addEventListener("DOMContentLoaded", function(event) {
+	coloreaSectores();
+	renderConsultora();
+});
 
 function coloreaSectores(){
 	

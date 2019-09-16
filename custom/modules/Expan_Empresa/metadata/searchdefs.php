@@ -57,15 +57,25 @@
 							'name',										
 							'empresa_type',
 							'origen',
-							'sector',
+							'sector' =>
+								array (
+									'type' => 'enum',
+									'default' => true,
+									'studio' => 'visible',
+									'label' => 'LBL_SECTOR',
+									'width' => '10%',
+									'name' => 'sector',
+								),
 							'chk_es_proveedor',
 							'chk_es_competidor',
 							
 						),
 					),
  			   );
-               
-               global $current_user;
+
+global $current_user;
+
+echo "USUario-".$current_user->id;
 
 if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6' || $current_user->id=='1'
 ){
@@ -75,7 +85,15 @@ if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6' || $current_user-
         'name',                                       
         'empresa_type',
         'origen',
-        'sector',
+				'sector' =>
+					array (
+						'type' => 'multienum',
+						'default' => true,
+						'studio' => 'visible',
+						'label' => 'LBL_SECTOR',
+						'width' => '10%',
+						'name' => 'sector',
+					),
         'chk_es_proveedor',
         'chk_es_competidor',
         'chk_es_cliente_potencial',
