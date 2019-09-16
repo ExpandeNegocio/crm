@@ -9,7 +9,7 @@ if (elemento==null){
 	if (document.getElementById('Sectores_div')==null){
 		//renderSectores();
 	}
-	addSearchAct();
+	//addSearchAct();
 
 	var div= $('<div/>',
     {
