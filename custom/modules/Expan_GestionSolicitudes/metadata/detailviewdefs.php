@@ -1313,6 +1313,16 @@ $viewdefs [$module_name] =
                     0 =>
                       array(),
                     1 =>
+                      array('name' => 'importe_entrega_cuenta',
+                        'label' => 'LBL_IMPORTE_ENTREGA_CUENTA_PRE',
+                      ),
+                  ),
+
+                16 =>
+                  array(
+                    0 =>
+                      array(),
+                    1 =>
                       array('name' => 'observacion_precontrato',
                         'label' => 'LBL_OBSERVACION_PRECONTRATO',
 
@@ -1866,7 +1876,6 @@ $viewdefs [$module_name] =
                       array(
                         'name' => 'entrega_cuenta_cont',
                         'label' => 'LBL_ENTREGA_CUENTA_CONT',
-
                       ),
                     1 =>
                       array(
@@ -1892,7 +1901,10 @@ $viewdefs [$module_name] =
                 32 =>
                   array(
                     0 =>
-                      array(),
+                      array(
+                        'name' => 'importe_entrega_cuenta_cont',
+                        'label' => 'LBL_IMPORTE_ENTREGA_CUENTA_CONT',
+                      ),
                     1 =>
                       array(
                         'name' => 'entidad_fin_franquiciador',
@@ -1907,7 +1919,7 @@ $viewdefs [$module_name] =
                     1 =>
                       array(
                         'name' => 'inversion_inicial',
-                        'label' => 'LBL_ENTIDAD_FIN_FRANQUICIADOR',
+                        'label' => 'LBL_INVERSION_INICIAL',
                       ),
                   ),
 
@@ -1955,8 +1967,6 @@ $viewdefs [$module_name] =
                       ),
                   ),
               ),
-
-
           ),
       ),
   );

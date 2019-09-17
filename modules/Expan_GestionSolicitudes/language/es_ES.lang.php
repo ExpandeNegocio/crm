@@ -185,7 +185,7 @@ $mod_strings = array (
     'LBL_IIT_CANON_ENTRADA' => 'Canon de entrada',
     'LBL_IIT_ROYALTY_EXPLOTA' => 'Royalty de explotación',
     'LBL_IIT_ROYALTY_MKT' => 'Royalty de marketing',
-    'LBL_IIT_DURACION_CONTRAT0' => 'Duración del contrato',
+    'LBL_IIT_DURACION_CONTRAT0' => 'Duración del Contrato',
     'LBL_IIT_YEAR_RENOVADO' => 'Años renovación',
     'LBL_IIT_MAX_ESTABLECI_ZONA' => 'Máximos establecimientos por zona',
     'LBL_CANDIDATO' => '<b><H1>Datos a recoger del candidato</H1></b>',
@@ -199,4 +199,6 @@ $mod_strings = array (
     'LBL_ESTADO_PRECONTRATO' => 'Estado Precontrato',
     'LBL_CHK_GESTIONADO_CENTRAL' => 'Gestionado por Central',
     'LBL_F_GESTIONADO_CENTRAL' => 'Fecha Gestionado por Central',
+  'LBL_IMPORTE_ENTREGA_CUENTA_PRE'=> 'Importe entrega a cuenta Precontrato',
+  'LBL_IMPORTE_ENTREGA_CUENTA_CONT'=> 'Importe entrega a cuenta Contrato',
 );

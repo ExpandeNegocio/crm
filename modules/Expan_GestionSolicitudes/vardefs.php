@@ -2861,6 +2861,17 @@ $dictionary['Expan_GestionSolicitudes'] = array(
         'comment' => 'Entrega a cuenta al firmar el precontrato',
         'merge_filter' => 'selected',                
     ),
+
+    'importe_entrega_cuenta' =>
+      array (
+        'name' => 'importe_entrega_cuenta',
+        'vname' => 'LBL_IMPORTE_ENTREGA_CUENTA_PRE',
+        'type' => 'varchar',
+        'len' => '100',
+        'audited' => true,
+        'comment' => 'Entrega a cuenta al firmar el precontrato',
+        'merge_filter' => 'selected',
+      ),
     
     'entrega_cuenta_cont' =>
     array (
@@ -2872,6 +2883,17 @@ $dictionary['Expan_GestionSolicitudes'] = array(
         'comment' => 'Entrega a cuenta al firmar el precontrato',
         'merge_filter' => 'selected',                
     ),
+
+    'importe_entrega_cuenta_cont' =>
+      array (
+        'name' => 'importe_entrega_cuenta_cont',
+        'vname' => 'LBL_IMPORTE_ENTREGA_CUENTA_CONT',
+        'type' => 'varchar',
+        'len' => '100',
+        'audited' => true,
+        'comment' => 'Entrega a cuenta al firmar el precontrato',
+        'merge_filter' => 'selected',
+      ),
   
     'canon_entrada' =>
     array (
@@ -4456,7 +4478,7 @@ $dictionary['Expan_GestionSolicitudes'] = array(
       'local_Direccion' => 
       array (
         'required' => false,
-        'name' => 'local1_Direccion',
+        'name' => 'local_Direccion',
         'vname' => 'LBL_DIRECCION',
         'type' => 'varchar',
         'massupdate' => 0,
