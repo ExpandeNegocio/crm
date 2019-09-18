@@ -606,7 +606,7 @@
 
 
       //Creiterios de competidor por franquicia
-      $query = "SELECT empresa_id, f.name Franquicia, ";
+      $query = "SELECT  f.name Franquicia, ";
       $query=$query."cd_sector as Sector, ";
       $query=$query."cd_subsector as Subsector, ";
       $query=$query."cd_acttividad as Actividad, ";
