@@ -269,16 +269,16 @@ class opEdicionFranquicia {
                      
                      
         $db = DBManagerFactory::getInstance();
-        
-        $query = "SELECT e.id, e.name, CASE WHEN a.tipo_competidor = 'CD' THEN 'Competidor Directo' ELSE 'Competidor Indirecto' END AS tipo_comp, CASE WHEN a.competidor_principal = 1 THEN 'x' ELSE '' END AS compt_principal ";
-        $query=$query."FROM   (SELECT ec.competidor_id, ec.tipo_competidor, ec.competidor_principal ";
-        $query=$query."        FROM   expan_empresa e, expan_empresa_competidores_c ec, expan_franquicia f ";
-        $query=$query."        WHERE  ec.empresa_id = e.id AND e.id = f.empresa AND f.id = '".$idFranquicia."' AND ec.deleted = 0) a ";
-        $query=$query."       LEFT JOIN expan_empresa e ON a.competidor_id = e.id; ";
-        $query=$query." ";
 
-        
-        $result = $db -> query($query, true);     
+       $query = "SELECT e.id, e.name, CASE WHEN c.tipo_competidor = 'CD' THEN 'Competidor Directo' ELSE 'Competidor Indirecto' END AS tipo_comp, CASE WHEN c.competidor_principal = 1 THEN 'x' ELSE '' END AS compt_principal  ";
+       $query=$query."FROM   expan_empresa e, expan_empresa_competidores_c c ";
+       $query=$query."WHERE e.id= c.competidor_id and c.empresa_id  IN (SELECT e.id ";
+       $query=$query."                FROM   expan_franquicia f, expan_empresa e ";
+       $query=$query."                WHERE  f.empresa_id = e.id AND f.id='".$idFranquicia."') ";
+       $query=$query."                order by e.name; ";
+
+
+       $result = $db -> query($query, true);
         while ($row = $db -> fetchByAssoc($result)) {
             echo "<tr>";            
             echo "<td><button type='button' onclick='window.open(\"index.php?module=Expan_Empresa&action=DetailView&record=".$row["id"]."\");'> V</button></td>";
