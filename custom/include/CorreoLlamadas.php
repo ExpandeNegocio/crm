@@ -602,6 +602,55 @@
                              "Se ordena por número de dias que han pasado desde el último alta"); 
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Fq sin Gest de Central');
+
+
+
+      //Creiterios de competidor por franquicia
+      $query = "SELECT empresa_id, f.name Franquicia, ";
+      $query=$query."cd_sector as Sector, ";
+      $query=$query."cd_subsector as Subsector, ";
+      $query=$query."cd_acttividad as Actividad, ";
+      $query=$query."cd_inversion as Inversion, ";
+      $query=$query."cd_opera_inter as \"Opera internacionamente\", ";
+      $query=$query."cd_num_centros as \"Nº Centros\", ";
+      $query=$query."cd_perfil_franquiciado as \"Perfil\", ";
+      $query=$query."cd_oferta_comercial as \"Oferta comercial\", ";
+      $query=$query."cd_modal_negocio as \"Modalidades de negocio\", ";
+      $query=$query."cd_canon as Canon, ";
+      $query=$query."cd_royaltys as Royalties, ";
+      $query=$query."cd_pobl_minima as \"Poblacion minima\", ";
+      $query=$query."cd_caract_local as \"Caracteríaticas del local\", ";
+      $query=$query."cd_estruct_personal as \"Estructura personal\" ";
+      $query=$query."                FROM   expan_franquicia f ";
+      $query=$query."                WHERE   tipo_cuenta IN (1, 2) and deleted=0 order by f.name; ";
+
+      // echo "<BR>".$query."<BR>";
+
+      InsertaConsulta($objPHPExcel,$query,'Criterios competidor');
+
+      $descripcion = array("Criterios para que se considere un competidor de la franquicia",
+        "Se ordena por nombre");
+
+      InsertarDescripcion($objPHPExcel,$descripcion,'Fq sin Gest de Central');
+
+
+      //listado de competidores por franquicia
+      $query = "SELECT (select name from expan_empresa where id=c.empresa_id) as Franquicia,e.name as Competidor, c.tipo_competidor, c.competidor_principal ";
+      $query=$query."FROM   expan_empresa e, expan_empresa_competidores_c c ";
+      $query=$query."WHERE e.id= c.competidor_id and c.empresa_id  IN (SELECT e.id ";
+      $query=$query."                FROM   expan_franquicia f, expan_empresa e ";
+      $query=$query."                WHERE  f.empresa_id = e.id AND f.tipo_cuenta IN (1, 2) and f.deleted=0) ";
+      $query=$query."                order by franquicia,e.name; ";
+
+
+      // echo "<BR>".$query."<BR>";
+
+      InsertaConsulta($objPHPExcel,$query,'Competidores');
+
+      $descripcion = array("listado de competidores por franquicia",
+        "Se ordena por nombre de la franquicia");
+
+      InsertarDescripcion($objPHPExcel,$descripcion,'Fq sin Gest de Central');
         
         
         $user=new User();

@@ -1926,7 +1926,7 @@ array (
           array (
             0 =>
               array (
-                'name' => 'cd_actividad',
+                'name' => 'cd_acttividad',
                 'label' => 'LBL_CD_ACTTIVIDAD',
               ),
             1 =>
