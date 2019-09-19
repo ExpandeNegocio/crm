@@ -36,7 +36,7 @@ class AccionesGuardadoEmpresa
 
         switch ($bean->empresa_type) {
           case 'fa':
-            $this->copyFranquicia($bean);
+            $bean->copyFranquicia($bean);
             break;
 
           default:
@@ -55,42 +55,11 @@ class AccionesGuardadoEmpresa
 
         if (($estadoCPAct != $estadoCPAnt && $estadoCPAct == "pos") ||
           ($empresa_typeAnt != $empresa_typeAct && $empresa_typeAct = "fa")) {
-          $this->copyFranquicia($bean);
+          $bean->copyFranquicia($bean);
         }
 
       }
     }
-  }
-
-  private function copyFranquicia($bean)
-  {
-
-    $franq = new Expan_Franquicia();
-
-    switch ($bean->positivo_cp) {
-      case 'con':
-        $franq->tipo_cuenta = 1;
-        break;
-
-      case 'int':
-        $franq->tipo_cuenta = 2;
-        break;
-
-      case 'ssd':
-        $franq->tipo_cuenta = 3;
-        break;
-
-      default:
-        $franq->tipo_cuenta = 4;
-        break;
-    }
-
-    $franq->name = $bean->name;
-    $franq->empresa_id = $bean->id;
-    $franq->sector = $bean->sector;
-    $franq->phone_office = $bean->telefono_contacto_1;
-    $franq->ignore_update_c = true;
-    $franq->save();
   }
 
   function ActualizarRel(&$bean, $event, $arguments)

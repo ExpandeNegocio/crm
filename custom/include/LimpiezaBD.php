@@ -447,6 +447,38 @@
         echo $query."<BR>";    
         $result2 = $db -> query($query);
     }
-    
+
+    //Correccion empresas franquicia sin Franquicia asociada
+
+    $query = "SELECT id ";
+    $query=$query."FROM   expan_empresa ";
+    $query=$query."WHERE  empresa_type = 'fa' AND deleted = 0 AND name NOT IN (SELECT name ";
+    $query=$query."                                                            FROM   expan_franquicia ";
+    $query=$query."                                                            WHERE  deleted = 0); ";
+
+    $result = $db -> query($query, true);
+
+    while ($row = $db -> fetchByAssoc($result)) {
+      $emp= new Expan_Empresa();
+      $emp->retrieve($row["id"]);
+      $emp->copyFranquicia();
+    }
+
+    //Correccion Franqucia sin empresa
+
+    $query = "SELECT id ";
+    $query=$query."FROM   expan_franquicia ";
+    $query=$query."WHERE  deleted = 0 AND name NOT IN (SELECT name ";
+    $query=$query."                                    FROM   expan_empresa ";
+    $query=$query."                                    WHERE  empresa_type = 'fa' AND deleted = 0); ";
+
+    $result = $db -> query($query, true);
+
+    while ($row = $db -> fetchByAssoc($result)) {
+      $fran= new Expan_Franquicia();
+      $fran->retrieve($row["id"]);
+      $fran->CreateEmpresa();
+    }
+
     echo 'FinlizadoProceso';
 ?>

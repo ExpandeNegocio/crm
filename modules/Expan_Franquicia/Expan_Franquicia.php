@@ -803,4 +803,25 @@ class Expan_Franquicia extends Expan_Franquicia_sugar
 
     return $user;
   }
+
+  public function CreateEmpresa(){
+
+    $empresa = new Expan_Empresa();
+
+    $empresa->name= $this->name;
+    $empresa->sector=$this->sector;
+    $empresa->telefono_contacto_1=$this->phone_office;
+    $empresa -> email1=$this->email1;
+    $empresa -> email2=$this->email2;
+    $empresa->empresa_type="fa";
+    $empresa->origen="expande";
+
+    $empresa->ignore_update_c = true;
+    $empresa->save();
+
+    $this->empresa_id=$empresa->id;
+
+    $this -> ignore_update_c=true;
+    $this -> save();
+  }
 }

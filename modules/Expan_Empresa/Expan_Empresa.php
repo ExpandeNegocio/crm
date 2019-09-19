@@ -59,6 +59,37 @@ class Expan_Empresa extends Expan_Empresa_sugar {
         return false;
         
     }
+
+  public function copyFranquicia()
+  {
+
+    $franq = new Expan_Franquicia();
+
+    switch ($this->positivo_cp) {
+      case 'con':
+        $franq->tipo_cuenta = 1;
+        break;
+
+      case 'int':
+        $franq->tipo_cuenta = 2;
+        break;
+
+      case 'ssd':
+        $franq->tipo_cuenta = 3;
+        break;
+
+      default:
+        $franq->tipo_cuenta = 4;
+        break;
+    }
+
+    $franq->name = $this->name;
+    $franq->empresa_id = $this->id;
+    $franq->sector = $this->sector;
+    $franq->phone_office = $this->telefono_contacto_1;
+    $franq->ignore_update_c = true;
+    $franq->save();
+  }
 	
 }
 ?>

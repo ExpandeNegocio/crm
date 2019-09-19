@@ -34,12 +34,9 @@
                        $bean-> llamar_todos=1;
                     }
 
-                    $this->CreateEmpresa($bean);
-
                     $bean->name=trim($bean->name);
 
-                    $bean -> ignore_update_c=true;
-                    $bean -> save();
+                    $bean->CreateEmpresa();
 
                 //Modificamos la franquicia
                 }else{
@@ -230,24 +227,6 @@
                 }
 
             }
-        }
-
-        private function CreateEmpresa(&$bean){
-
-            $empresa = new Expan_Empresa();
-
-            $empresa->name= $bean->name;
-            $empresa->sector=$bean->sector;
-            $empresa->telefono_contacto_1=$bean->phone_office;
-            $empresa -> email1=$bean->email1;
-            $empresa -> email2=$bean->email2;
-            $empresa->empresa_type="fa";
-            $empresa->origen="expande";
-
-            $empresa->ignore_update_c = true;
-            $empresa->save();
-
-            $bean->empresa_id=$empresa->id;
         }
     }
 ?>
