@@ -93,4 +93,14 @@ class AccionesGuardadoEmpresa
     }
   }
 
+  public function BorrarEmpresa(&$bean, $event, $arguments){
+
+    $db = DBManagerFactory::getInstance();
+
+    $query="update expan_franquicia set deleted=1 where empresa_id='".$bean->id."'";
+
+    $db -> query($query);
+
+  }
+
 }

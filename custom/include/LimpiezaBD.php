@@ -361,6 +361,7 @@
     
 //    $query = "delete from calls where status='Planned' and deleted=0 and parent_id not in (select id from expan_gestionsolicitudes where deleted=0);";
 //    $result = $db -> query($query);
+
         
     //Pasamos a Archivadas las tareas del ERM finalizadas hace tiempo
     

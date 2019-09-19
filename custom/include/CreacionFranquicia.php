@@ -19,6 +19,16 @@
             }
         }
 
+        public function BorrarFranquicia (&$bean, $event, $arguments){
+
+          $db = DBManagerFactory::getInstance();
+
+          $query="update expan_empresa set deleted=1 where id='".$bean->empresa_id."'";
+
+          $db -> query($query);
+
+        }
+
         public function ModificacionFranq(&$bean, $event, $arguments) {
 
             if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
