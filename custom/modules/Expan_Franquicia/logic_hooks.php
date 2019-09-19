@@ -10,6 +10,6 @@ $hook_array['after_save'] = Array();
 $hook_array['after_save'][] = Array(1, 'AsignarTelefonoD', 'custom/include/CreacionFranquicia.php', 'AccionesGuardadoFranq', 'ModificacionFranq');
 
 $hook_array['before_delete'] = Array();
-$hook_array['before_delete'][] = Array(2, 'EliminaFranquicia', 'custom/include/CreacionFranquicia.php','AccionesGuardadoEmpresa', 'BorrarFranquicia');
+$hook_array['before_delete'][] = Array(2, 'EliminaFranquicia', 'custom/include/CreacionFranquicia.php','AccionesGuardadoFranq', 'BorrarFranquicia');
 
 ?>
