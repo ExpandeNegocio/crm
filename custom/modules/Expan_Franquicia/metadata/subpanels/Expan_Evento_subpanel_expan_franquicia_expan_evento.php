@@ -44,7 +44,7 @@ if  ($current_user->id=='875daf39-76a9-4eb7-2fbc-53c7fa8dec18' ||
       ),
     
       'tipo_participacion'=> array(
-        'vname' => 'Participacion tipo',
+        'vname' => 'Tipo de Participacion',
         'sortable' => false,            
         'width' => '15%',
       ), 
@@ -212,7 +212,7 @@ if  ($current_user->id=='875daf39-76a9-4eb7-2fbc-53c7fa8dec18' ||
       ),
     
       'tipo_participacion'=> array(
-        'vname' => 'Participacion tipo',
+        'vname' => 'Tipo de Participacion',
         'sortable' => false,            
         'width' => '15%',
       ), 
