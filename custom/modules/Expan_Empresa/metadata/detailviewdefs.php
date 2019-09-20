@@ -78,6 +78,19 @@ $viewdefs [$module_name] =
             'LBL_DATOS_GENERALES' =>
               array(
 
+                -1 =>
+                  array(
+                    0 =>
+                      array(
+                        'name' => 'date_entered',
+                        'label' => 'LBL_DATE_ENTERED',
+                      ),
+                    1 =>
+                      array(
+
+                      ),
+                  ),
+
                 0 =>
                   array(
                     0 =>

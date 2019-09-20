@@ -120,6 +120,20 @@ array (
       //Datos de la franquicia
       'lbl_account_information' => 
       array (
+
+        -1 =>
+          array(
+            0 =>
+              array(
+                'name' => 'date_entered',
+                'label' => 'LBL_DATE_ENTERED',
+              ),
+            1 =>
+              array(
+
+              ),
+          ),
+
         0 => 
         array (
           0 => 'name',
