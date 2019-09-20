@@ -54,7 +54,7 @@ class AccionesGuardadoApertura {
                  }
              }      
 
-             if ($f_abierta_ant!=$bean->abierta && $bean->abierta==0){
+             if ($f_abierta_ant!=$bean->abierta && $bean->abierta==2){
                $this->actualizaCotratoCaido($bean);
              }
             //Actualizamos el estado del franquiciado

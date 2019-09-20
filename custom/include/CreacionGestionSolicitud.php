@@ -631,7 +631,7 @@ class AccionesGuardadoGestionSol {
                     $apertura= new Expan_Apertura();
                     $apertura->retrieve($aperturaId);
 
-                    $apertura->abierta=0;
+                    $apertura->abierta=2;
                     $apertura->save();
                   }
 
