@@ -80,8 +80,7 @@ $viewdefs [$module_name] =
                 'name' => 'correo_contacto',
                 'label' => 'LBL_CORREO_CONTACTO',
               ),
-            ),      
-                           
+            ),
           ),
           
           'LBL_DETAIL_VIEW_FRANQUICIAS' =>          

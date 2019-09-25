@@ -365,7 +365,7 @@ function localizaSolicitudPoremail($email)
 
   $db = DBManagerFactory::getInstance();
 
-  $query = "SELECT s.id";
+  $query = "SELECT s.id ";
   $query = $query . "FROM   expan_solicitud s, email_addr_bean_rel r, email_addresses e ";
   $query = $query . "WHERE s.id = r.bean_id AND s.deleted=0 AND e.id = r.email_address_id AND lower(trim(e.email_address))='" . strtolower(trim($email)) . "'";
 

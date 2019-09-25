@@ -4,8 +4,7 @@
     require_once ('modules/Expan_Solicitud/Expan_Solicitud.php');
     require ('lib/PHPExcel/PHPExcel.php');
     require_once ('include/SugarPHPMailer.php');
-    
-    $USUARIO_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
+
     $ROL_ADMINISTRACION='d3986de5-b388-658b-c656-5392fbb0c529';
     $CORREO_RUBEN='ruben@expandenegocio.com';
     $NUM_DIAS_MAX_CENTRAL=15;
@@ -14,6 +13,7 @@
     $TIPO_EVENTO_ALTA='ALTA';
     $TIPO_EVENTO_INICIO='INICIO';
     $TIPO_EVENTO_FACTURCION='FACTURCION';
+
     $DIR='tmp/';         
     
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
@@ -41,7 +41,7 @@
         $filePath = $DIR . $idFich . '.xlsx';
         echo $filePath."<br>";
         CreaFicheroEnvioDiario($filePath,$user_id);
-        EnviarCorreo($row['email_address'],from_html("Informe ".date('d-n-Y')),$filePath,'');  
+        EnviarCorreo($row['email_address'],from_html("Informe ".date('d-n-Y')),$filePath,'');
      
         echo "USUARIO-".$user_id."<br>";
         
@@ -70,7 +70,7 @@
             }
             // Indicacion de franquicias de evento
             $eventosInicioAlta=controlInicioEvento($NUM_DIAS_ANTES_EVENTO_ALTA_FRANQUICIA);
-            if (count($eventosInicio)!=0){
+            if (count($eventosInicioAlta)!=0){
                 $bodyCorreo=CrearCuerpoCorreoEvento($eventosInicioAlta,$TIPO_EVENTO_INICIO);
                 EnviarCorreo($row['email_address'],from_html("Quedan ".$NUM_DIAS_ANTES_EVENTO_ALTA_FRANQUICIA. " para la celebracion de un evento"),null,$bodyCorreo); 
                 createTask("Validar datos de eventos para los que falta un mes");
@@ -650,8 +650,7 @@
       $descripcion = array("listado de competidores por franquicia",
         "Se ordena por nombre de la franquicia");
 
-      InsertarDescripcion($objPHPExcel,$descripcion,'Fq sin Gest de Central');
-        
+      InsertarDescripcion($objPHPExcel,$descripcion,'Competidores');
         
         $user=new User();
         $user -> retrieve($user_id);
@@ -686,7 +685,8 @@
             
             echo "Informe franquicias<BR>";
         }
-        
+
+        $USUARIO_RUBEN='71f40543-2702-4095-9d30-536f529bd8b6';
         if ($user_id==$USUARIO_RUBEN){
             
             $query = "SELECT Nombre, Apellidos, m.d_municipio Localidad, Telefono, Correo, Franquicia, Tipo, F_Entrada ";
@@ -1010,10 +1010,7 @@
         $colPestaña = 'A';
         $colDescrip = 'B';
                
-        $filaIni=BuscarFila($objPHPExcel,$pagina);         
-        
-        
-        echo "Fila-".$fil."<BR>";            
+        $filaIni=BuscarFila($objPHPExcel,$pagina);
         
         $objPHPExcel -> setActiveSheetIndex($pagina) -> setCellValue($colPestaña . $filaIni, $nomPestaña);
         
@@ -1122,7 +1119,7 @@
         //Lanzamos la consulta
         $result = $db -> query($query, true);
         
-        $message=$message.'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+        $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
         $message=$message."<html>";
         $message=$message."<head>";
         $message=$message."</head>";
@@ -1168,13 +1165,17 @@
     function CrearCuerpoCorreoEvento($listaEventos,$tipo)
     {
             
-        $message=$message.'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+        $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
         $message=$message."<html>";
         $message=$message."<head>";
         $message=$message."</head>";
         $message=$message."<body>";
-        
-        switch ($tipo) {
+
+      $TIPO_EVENTO_ALTA='ALTA';
+      $TIPO_EVENTO_INICIO='INICIO';
+      $TIPO_EVENTO_FACTURCION='FACTURCION';
+
+      switch ($tipo) {
             case $TIPO_EVENTO_INICIO:
                 $message=$message."<p>Listado de eventos queda un mes para su inicio.</p>";
                 $message=$message."<p>Es necesario validar los datos del mismo y añadir las franquicias asistentes.</p>";
