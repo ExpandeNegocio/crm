@@ -15,8 +15,11 @@ class EnvioAutoCorreos
   const MARC_EMAIL = '#email#';
   const MARC_MOVIL = '#movil#';
   const MARC_FRANQUICIA = '#franquicia#';
+  const MARC_FRANQUICIA_ID = '#franquiciaid#';
   const MARC_TABLA = '#tabla#';
   const MARC_BODY = '#body#';
+  const MARC_GESTION_ID ='#gestionid#';
+  const MARC_SOLICITUD_ID ='#solicitud#';
 
   const USUARIOS_POR_CORREO = 1;
 
@@ -79,9 +82,11 @@ class EnvioAutoCorreos
     }
   }
 
-  function modificaMarcas($solicitud, $gestion, $tabla, $texto)
+  function modificaMarcas($solicitud, $gestion, $tabla, $text)
   {
-    $text = str_replace(self::MARC_NOMBRE, $solicitud->first_name, $texto);
+    $text = str_replace(self::MARC_GESTION_ID, $gestion->id, $text);
+    $text = str_replace(self::MARC_SOLICITUD_ID, $solicitud->id, $text);
+    $text = str_replace(self::MARC_NOMBRE, $solicitud->first_name, $text);
     $text = str_replace(self::MARC_APELLIDO, $solicitud->last_name, $text);
     $text = str_replace(self::MARC_MOVIL, $solicitud->phone_mobile, $text);
     $text = str_replace(self::MARC_TABLA, $tabla, $text);
@@ -98,6 +103,7 @@ class EnvioAutoCorreos
     $franquicia = new Expan_Franquicia();
     $franquicia->retrieve($gestion->id);
 
+    $text = str_replace(self::MARC_FRANQUICIA_ID, $franquicia->id, $text);
     $text = str_replace(self::MARC_FRANQUICIA, $franquicia->name, $text);
 
     return $text;
