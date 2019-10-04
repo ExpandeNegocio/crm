@@ -58,6 +58,7 @@ class AccionesGuardadoGestionSol {
             $chk_contrato_firmado_ant="";
             $pre_fir1_first_name_ant="";
             $chk_gestionado_central_ant="";
+            $rating_ant="";
 
             while ($row = $db -> fetchByAssoc($result)) {
 
@@ -113,6 +114,7 @@ class AccionesGuardadoGestionSol {
                 $usuario_ant = $row["assigned_user_id"];
                 
                 $motivoPositivoAnt =$row["motivo_positivo"];
+                $rating_ant=$row["rating"];
                 
                 if (isset($row["f_entrega_cuenta_pre"])){$f_entrega_cuenta_pre_ant=$row["f_entrega_cuenta_pre"];}
                                 
@@ -788,6 +790,7 @@ class AccionesGuardadoGestionSol {
 
                 //Miramos si se ha cerrado una gestion de franquicia principal
                 $solicitud -> pasaFranqiciaPrincipal();
+                $solicitud -> actualizaRating();
 
                 $solicitud -> ignore_update_c = true;
                 $solicitud -> save();

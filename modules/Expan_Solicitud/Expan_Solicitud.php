@@ -459,6 +459,22 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         $this -> EliminarTodasTareas();
     }
 
+    function actualizaRating(){
+
+      $rating=1000;
+
+      $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
+
+      foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
+        if ($gestion -> estado_sol == Expan_GestionSolicitudes::ESTADO_EN_CURSO && $gestion->rating<$rating) {
+          $rating=$gestion->rating;
+        }
+      }
+      if ($rating!=1000){
+        $this->rating=$rating;
+      }
+    }
+
     function actualizaEstadoAECP() {
         //Actualizamos los estados de las solicitudes
 
