@@ -402,7 +402,7 @@ class AccionesGuardadoGestionSol {
                     $bean -> chk_propuesta_zona = true;
                 }
 
-                //Actualizamos los chexk y fecha visitado fran
+                //Actualizamos los check y fecha visitado fran
                 if ($visitado_fran_ant != $bean -> chk_visitado_fran && $bean -> chk_visitado_fran == true) {
                     $mayorCheck = 8;
                     $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Cambio a estado fran ant');
@@ -614,6 +614,10 @@ class AccionesGuardadoGestionSol {
                 
                 //Los demas estados que no son el dos
             } else {
+
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PRECANDIDATO && $estadoAnt!=$bean -> estado_sol) {
+                  $salida = $bean -> preparaCorreo("C0.1");
+                }
                 
                 //Si pasamos a un estado positivo caida
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO && 

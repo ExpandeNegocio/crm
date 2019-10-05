@@ -634,7 +634,20 @@ array (
       //-----------------------------------------------------------------------------------------------------------------------------
       'LBL_ENVIOS_AUTOMATIZADOS'=>
       array(
-      
+
+        -1 =>
+          array (
+            0 =>
+              array (
+                'name' => 'chk_c01',
+                'studio' => 'visible',
+                'label' => 'LBL_CHK_C01',
+              ),
+            1 =>  array (
+
+            ),
+          ),
+
         0 => 
         array (
           0 => 
@@ -768,8 +781,28 @@ array (
             'label' => 'LBL_TIPO_DOCUMENTO_C4',
           ),
         ),
+
+        9 =>
+          array (
+            0 =>
+              array (
+                'name' => 'Enlace_C01',
+                'studio' => 'visible',
+                'customCode' => '
+            {php}            
+               $idfran=$this->_tpl_vars["bean"]->id;
+               $Fran = new Expan_Franquicia();
+               $Fran -> retrieve($idfran);
+               echo $Fran->getCLink("C0.1");     
+            {/php}',
+                'label' => 'LBL_ENLACE_C01',
+              ),
+            1 =>
+              array (
+              ),
+          ),
         
-        9 => 
+        10 =>
         array (
           0 => 
           array (
@@ -798,7 +831,7 @@ array (
             'label' => 'LBL_ENLACE_C2',
           ),
         ),
-        10 => 
+        11 =>
         array (
           0 => 
           array (
@@ -815,20 +848,100 @@ array (
           ),
           1 => 
            array (
-            'name' => 'Enlace_C3',
+            'name' => 'Enlace_C4',
             'studio' => 'visible',
             'customCode' => '
             {php}            
                $idfran=$this->_tpl_vars["bean"]->id;
                $Fran = new Expan_Franquicia();
                $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C3");     
+               echo $Fran->getCLink("C4");     
             {/php}',
-            'label' => 'LBL_ENLACE_C3',
+            'label' => 'LBL_ENLACE_C4',
           ),
         ),
+
+        12 =>
+          array (
+            0 =>
+              array (
+                'name' => 'Enlace_C11',
+                'studio' => 'visible',
+                'customCode' => '
+            {php}            
+               $idfran=$this->_tpl_vars["bean"]->id;
+               $Fran = new Expan_Franquicia();
+               $Fran -> retrieve($idfran);
+               echo $Fran->getCLink("C1.1");     
+            {/php}',
+                'label' => 'LBL_ENLACE_C11',
+              ),
+            1 =>
+              array (
+                'name' => 'Enlace_C12',
+                'studio' => 'visible',
+                'customCode' => '
+            {php}            
+               $idfran=$this->_tpl_vars["bean"]->id;
+               $Fran = new Expan_Franquicia();
+               $Fran -> retrieve($idfran);
+               echo $Fran->getCLink("C1.2");     
+            {/php}',
+                'label' => 'LBL_ENLACE_C12',
+              ),
+          ),
+
+        13 =>
+          array (
+            0 =>
+              array (
+                'name' => 'Enlace_C13',
+                'studio' => 'visible',
+                'customCode' => '
+            {php}            
+               $idfran=$this->_tpl_vars["bean"]->id;
+               $Fran = new Expan_Franquicia();
+               $Fran -> retrieve($idfran);
+               echo $Fran->getCLink("C1.3");     
+            {/php}',
+                'label' => 'LBL_ENLACE_C13',
+              ),
+            1 =>
+              array (
+                'name' => 'Enlace_C14',
+                'studio' => 'visible',
+                'customCode' => '
+            {php}            
+               $idfran=$this->_tpl_vars["bean"]->id;
+               $Fran = new Expan_Franquicia();
+               $Fran -> retrieve($idfran);
+               echo $Fran->getCLink("C1.4");     
+            {/php}',
+                'label' => 'LBL_ENLACE_C14',
+              ),
+          ),
+
+        14 =>
+          array (
+            0 =>
+              array (
+                'name' => 'Enlace_C15',
+                'studio' => 'visible',
+                'customCode' => '
+            {php}            
+               $idfran=$this->_tpl_vars["bean"]->id;
+               $Fran = new Expan_Franquicia();
+               $Fran -> retrieve($idfran);
+               echo $Fran->getCLink("C1.5");     
+            {/php}',
+                'label' => 'LBL_ENLACE_C15',
+              ),
+            1 =>
+              array (
+              ),
+          ),
       
-       11 => 
+       15 =>
         array (
           0 => 
           array (

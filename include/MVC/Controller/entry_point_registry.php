@@ -144,5 +144,9 @@ $entry_point_registry = array(
     'customImportEventos'=>array('file' => 'custom/include/customImportEventos.php', 'auth' => false),
     'consultarApertura'=>array('file' => 'custom/include/ConsultarAperturas.php', 'auth' => false),
     'pruebas' =>array('file' => 'custom/include/pruebas.php', 'auth' => false),
+    'downloadDoc' => array('file' => 'custom/landing/DownloadDoc.php', 'auth' => false),
+    'mailingGest' => array('file' => 'custom/landing/mailingGest.php', 'auth' => false),
+    'processLanding' => array('file' => 'custom/landing/processLanding.php', 'auth' => false),
+    'unsubscribeEmail' => array('file' => 'custom/landing/unsubscribeEmail.php', 'auth' => false),
 );
 ?>

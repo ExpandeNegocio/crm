@@ -80,59 +80,63 @@ $viewdefs [$module_name] =
                     onClick="irSolicitud(\'{$fields.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida.value}\');" value="Ir Solicitud">{/if}',
                       ),
 
-
                     5 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""}<BR> <BR>' . $createButtonsHelper->createCxButton("C1") . '{/if}',
                       ),
+
                     6 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C2") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1") . '{/if}',
                       ),
                     7 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C3") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C2") . '{/if}',
                       ),
                     8 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C4") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C3") . '{/if}',
                       ),
                     9 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.1") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C4") . '{/if}',
                       ),
                     10 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.2") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.1") . '{/if}',
                       ),
                     11 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.3") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.2") . '{/if}',
                       ),
                     12 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.4") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.3") . '{/if}',
                       ),
                     13 =>
                       array(
-                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.5") . '{/if}',
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.4") . '{/if}',
                       ),
                     14 =>
+                      array(
+                        'customCode' => '{if $fields.id.value!=""}' . $createButtonsHelper->createCxButton("C1.5") . '{/if}',
+                      ),
+                    15 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""} <BR><BR><input type="button" name="save" id="fichaFranquicia" 
                 onClick="envioCorreoInterlocutor(\'{$fields.id.value}\',\'franq\');" value="Envio Ficha Franquicia">{/if}',
                       ),
-                    15 =>
+                    16 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="fichaConsultor" 
                 onClick="envioCorreoInterlocutor(\'{$fields.id.value}\',\'consultor\');" value="Envio Ficha Consultor">{/if}',
                       ),
-                    16 =>
+                    17 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""}<BR><BR><input type="button" name="openWind" id="openWind" class="" 
                     onClick="abrirHermanas(\'{$fields.id.value}\');" value="Abrir Hermanas">{/if}',
                       ),
-                    17 =>
+                    18 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""} <input type="button" name="open" id="open" class="" 
                     onClick="window.open(\'index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}\');" value="CrearLlamada">{/if}',

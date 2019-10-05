@@ -130,6 +130,10 @@ switch ($accion) {
     validateFile($target_file);
 
     $linea = 0;
+    $cargadas=0;
+    $noCargadas=0;
+    $yaCargado=0;
+    $noCargaEmpresa=0;
     //Abrimos nuestro archivo
     $archivo = fopen($target_file, "r");
 
@@ -148,7 +152,7 @@ switch ($accion) {
 
         $franquicia = $datos[$campoFranquicia];
 
-        $idFranq = getFranquiciaId($franquicia);
+        $idFranq = getFranquiciaId(str_replace("'","''",$franquicia));
         if ($idFranq != "") {
           if (getFranquiciaEnEventoId($idFranq, $idEvento)=="") {
 
@@ -166,15 +170,19 @@ switch ($accion) {
 
             if ($result==false){
               echo "<BR>La franquicia " . $franquicia . " NO se ha podido insertar";
+              $noCargadas++;
             }else{
               echo "<BR>La franquicia " . $franquicia . " se ha insertado correctamente";
+              $cargadas++;
             }
 
           } else {
-            echo "<BR>La franquicia " . $franquicia . " ya está cargada en el evento por lo qu no se procsará";
+            echo "<BR>La franquicia " . $franquicia . " ya está cargada en el evento por lo qu no se procesará";
+            $yaCargado++;
           }
         } else {
-          echo "<BR>La franquicia " . $franquicia . " no está dada de alta como franquicia en el CRM por lo qu no se procsará";
+          echo "<BR>La franquicia " . $franquicia . " no está dada de alta como franquicia en el CRM por lo qu no se procesará";
+          $noCargaEmpresa++;
         }
 
       }
@@ -183,6 +191,12 @@ switch ($accion) {
     fclose($archivo);
 
     echo "<BR><BR>Proceso de carga finalizado<BR>";
+
+    echo "Lineas Totales de carga : ".$linea."<BR>";
+    echo "Franquicias Cargadas : ".$cargadas."<BR>";
+    echo "Franquicias No Cargadas por algun problema : ".$noCargadas."<BR>";
+    echo "Franquicias No Cargadas por ya estar cargadas : ".$yaCargado."<BR>";
+    echo "Franquicias No dadas de alta : ".$noCargaEmpresa."<BR>";
 
     echo '<a href="index.php?module=Expan_Evento&action=DetailView&record='.$idEvento.'">
              <input type="button" value="Volver al evento" />

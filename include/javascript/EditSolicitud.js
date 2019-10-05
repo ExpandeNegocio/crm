@@ -909,8 +909,7 @@ function cambioRating(rating,solId){
 	});
 }
 function validarSubOrigen() {	
-	
-	
+
 	var Nombre= document.getElementById("first_name");
 	var Apellidos= document.getElementById("last_name");
 	
@@ -1075,12 +1074,20 @@ function validarSubOrigen() {
 			$("#rating").css("border", "#94c1e8 solid 1px");
 		}
 		
-		if (o.selected == true && o.value == 1 && rating == "" && esCreacion()) {
+		if (o.selected == true && o.value == 1 && $("#subor_expande").val()!=10 && rating == "" && esCreacion()) {
 			$("#rating").css("border", "2px solid red");
 			alert("El rating es obligatorio si el origen es expandenegocio");
 			return false;
 		}else {
 			$("#rating").css("border", "#94c1e8 solid 1px");
+		}
+
+		if (o.selected == true && o.value == 1 && $("#subor_expande").val()==10 && rating == "") {
+			$("#tags_empresa").css("border", "2px solid red");
+			alert("Es obligatorio recoger tags si el origen es precandidato");
+			return false;
+		}else {
+			$("#tags_empresa").css("border", "#94c1e8 solid 1px");
 		}
 		
 		if (o.selected == true && o.value == 3 && perfilFran == "" && esCreacion()) {

@@ -2450,6 +2450,28 @@ $dictionary['Expan_Franquicia'] = array(
         'size' => '20',
       ),
 
+      'chk_c01' =>
+          array(
+        'required' => false,
+        'name' => 'chk_c01',
+        'vname' => 'LBL_CHK_C1',
+        'type' => 'bool',
+        'massupdate' => 1,
+        'default' => '0',
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '1',
+        'size' => '20',
+          ),
+
     'chk_c1' =>
       array(
         'required' => false,

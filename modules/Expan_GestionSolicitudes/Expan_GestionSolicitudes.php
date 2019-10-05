@@ -43,6 +43,7 @@ require_once('custom/include/EnvioAutoCorreos.php');
 class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
 {
 
+  const ESTADO_PRECANDIDATO = '0';
   const ESTADO_NO_ATENDIDO = '1';
   const ESTADO_EN_CURSO = '2';
   const ESTADO_PARADO = '3';
