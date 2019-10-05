@@ -721,6 +721,20 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'subestado_precandidato',
+                        'studio' => 'visible',
+                        'label' => 'LBL_SUBESTADO_PRECANDIDATO',
+                      ),
+                    1 =>
+                      array(
+                        'name' => '',
+                      ),
+                  ),
+
+                38 =>
+                  array(
+                    0 =>
+                      array(
                         'name' => 'observaciones_informe',
                         'studio' => 'visible',
                         'label' => 'LBL_OBSERVACIONES_INFORME',
@@ -733,7 +747,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                38 =>
+                39 =>
                   array(
                     0 =>
                       array(
@@ -765,7 +779,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                39 =>
+                40 =>
                   array(
                     0 =>
                       array(
@@ -780,7 +794,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                40 =>
+                41 =>
                   array(
                     0 =>
                       array(
@@ -795,7 +809,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                41 =>
+                42 =>
                   array(
                     0 =>
                       array(
@@ -810,7 +824,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                42 =>
+                43 =>
                   array(
                     0 =>
                       array(
@@ -825,7 +839,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                43 =>
+                44 =>
                   array(
                     0 => 'assigned_user_name',
                     1 =>
@@ -844,7 +858,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                44 =>
+                45 =>
                   array(
                     0 => array(
                       'name' => 'modified_by_name',

@@ -330,6 +330,7 @@ class AccionesGuardado
         if (str_replace('^','',$bean->tipo_origen)==Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO &&
              $bean->subor_expande==Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDE_BB_ANT) {//se puede pasar a estado 2
           $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_PRECANDIDATO;
+          $gestion->subestado_precandidato= 1;
         }else{
           $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
         }

@@ -1739,42 +1739,63 @@ function organizarMotivos() {
             $("#f_reactivacion_parado_label").parent().show();
             $("#motivo_descarte_label").parent().hide();
             $("#motivo_positivo_label").parent().hide();
+            $("#subestado_precandidato_label").parent().hide();
 
             $("#motivo_descarte").val('');
             $("#motivo_positivo").val('');
+            $("#subestado_precandidato").val('');
 
             break;
         case "4":
             $("#motivo_parada_label").parent().hide();
             $("#f_reactivacion_parado_label").parent().hide();
-
             $("#motivo_descarte_label").parent().show();
             $("#motivo_positivo_label").parent().hide();
+            $("#subestado_precandidato_label").parent().hide();
 
             $("#f_reactivacion_parado_label").val('');
             $("#motivo_parada").val('');
             $("#motivo_positivo").val('');
+            $("#subestado_precandidato").val('');
             break;
         case "5":
             $("#motivo_parada_label").parent().hide();
             $("#f_reactivacion_parado_label").parent().hide();
             $("#motivo_descarte_label").parent().hide();
             $("#motivo_positivo_label").parent().show();
+            $("#subestado_precandidato_label").parent().hide();
 
             $("#f_reactivacion_parado_label").val('');
             $("#motivo_parada").val('');
             $("#motivo_descarte").val('');
+            $("#subestado_precandidato").val('');
             break;
-        default:
+
+        case "0":
             $("#motivo_parada_label").parent().hide();
             $("#f_reactivacion_parado_label").parent().hide();
             $("#motivo_descarte_label").parent().hide();
             $("#motivo_positivo_label").parent().hide();
+            $("#subestado_precandidato_label").parent().show();
 
             $("#f_reactivacion_parado_label").val('');
             $("#motivo_parada").val('');
             $("#motivo_descarte").val('');
             $("#motivo_positivo").val('');
+            break;
+
+        default:
+            $("#motivo_parada_label").parent().hide();
+            $("#f_reactivacion_parado_label").parent().hide();
+            $("#motivo_descarte_label").parent().hide();
+            $("#motivo_positivo_label").parent().hide();
+            $("#subestado_precandidato_label").parent().hide();
+
+            $("#f_reactivacion_parado_label").val('');
+            $("#motivo_parada").val('');
+            $("#motivo_descarte").val('');
+            $("#motivo_positivo").val('');
+            $("#subestado_precandidato").val('');
             break;
     }
 

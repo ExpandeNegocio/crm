@@ -37,36 +37,41 @@ if  ($current_user->id=='875daf39-76a9-4eb7-2fbc-53c7fa8dec18' ||
           'widget_class' => 'SubPanelTopChangeStateFranEvenButton',
           'estado' => '3',
         ),
-        4 => 
+        4 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeStateFranEvenButton',
+            'estado' => '4',
+          ),
+        5 =>
         array (
           'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
           'formato' => 'SI',
         ),
-        5 => 
+        6 =>
         array (
           'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
           'formato' => 'CO',
         ),
-        6 => 
+        7 =>
         array (
           'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
           'formato' => 'SC',
         ),
-        7 => 
+        8 =>
         array (
           'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
           'formato' => 'MI',
         ),
-        8 => 
+        9 =>
         array (
           'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
           'formato' => 'MC',
         ),
-        9 => 
+        10 =>
         array (
           'widget_class' => 'SubPanelTopChangeGastoAsociadoFranEvenButton',      
         ),   
-        10 => 
+        11 =>
         array (
           'widget_class' => 'SubPanelTopChangeCosteAccionFranEvenButton',      
         ), 
@@ -197,33 +202,46 @@ if  ($current_user->id=='875daf39-76a9-4eb7-2fbc-53c7fa8dec18' ||
           'widget_class' => 'SubPanelTopChangeStateFranEvenButton',
           'estado' => '3',
         ),
-        4 => 
-        array (
-          'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
-          'formato' => 'SI',
-        ),
-        5 => 
-        array (
-          'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
-          'formato' => 'CO',
-        ),
-        6 => 
-        array (
-          'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
-          'formato' => 'SC',
-        ),
-        7 => 
-        array (
-          'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
-          'formato' => 'MI',
-        ),
-        8 => 
-        array (
-          'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
-          'formato' => 'MC',
-        ),               
+        4 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeStateFranEvenButton',
+            'estado' => '4',
+          ),
+        5 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+            'formato' => 'SI',
+          ),
+        6 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+            'formato' => 'CO',
+          ),
+        7 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+            'formato' => 'SC',
+          ),
+        8 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+            'formato' => 'MI',
+          ),
+        9 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeFormatoPartFranEvenButton',
+            'formato' => 'MC',
+          ),
+        10 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeGastoAsociadoFranEvenButton',
+          ),
+        11 =>
+          array (
+            'widget_class' => 'SubPanelTopChangeCosteAccionFranEvenButton',
+          ),
       ),
-      
+
       'list_fields' => array(
             'name'=>array(
                 'vname' => 'LBL_NAME',

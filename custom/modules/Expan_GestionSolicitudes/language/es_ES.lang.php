@@ -100,4 +100,5 @@ $mod_strings = array (
 'LBL_ENTREGA_CUENTA_CONT' => 'Entrega a cuenta contrato',
 'LBL_USUARIO_ENTREVISTA_PREVIA' => 'Usuario de entrevista previa',
 'LBL_PAIS_APERTURA' => 'Pais Apertura',
+  'LBL_SUBESTADO_PRECANDIDATO'=>'Estado precandidato',
 );
