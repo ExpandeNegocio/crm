@@ -1049,6 +1049,14 @@ function validarSubOrigen() {
 		}else {
 			$("#capital").css("border", "#94c1e8 solid 1px");
 		}
+
+		if (o.selected == true && o.value == 3 && $("#recursos_propios").val() == "" && esCreacion()) {
+			$("#recursos_propios").css("border", "2px solid red");
+			alert("El campo recursos propios obligatorio si el origen es evento");
+			return false;
+		}else {
+			$("#recursos_propios").css("border", "#94c1e8 solid 1px");
+		}
 		
 		if (o.selected == true && o.value == 3 && situacion_profesional == "" && esCreacion()) {
 			$("#situacion_profesional").css("border", "2px solid red");
@@ -1983,7 +1991,8 @@ function marcaCampos(narcarEnt){
 	$("#provincia_apertura_1").css( "background-color", "	#FFFFCC" );
 	$("#localidad_apertura_1").css( "background-color", "	#FFFFCC" );
 		
-	$("#capital").css( "background-color", "	#FFFFCC" );	
+	$("#capital").css( "background-color", "	#FFFFCC" );
+	$("#recursos_propios").css( "background-color", "	#FFFFCC" );
 	$("#cuando_empezar").css( "background-color", "	#FFFFCC" );
 	$("#busca_sector").css( "background-color", "	#FFFFCC" );	
 	$("#perfil_franquicia").css( "background-color", "	#FFFFCC" );
@@ -2221,9 +2230,6 @@ function vistaMini(){
 	$("#historial_empresa_label").hide();
 	
 	$("#rrss").parent().parent().hide();
-		
-	$("#capital_observaciones").parent().hide();
-	$("#capital_observaciones_label").hide();
 	
 	$("#recursos_propios").parent().parent().hide();
 	
@@ -2286,9 +2292,6 @@ function vistaMaxi(){
 	$("#historial_empresa_label").show();
 	
 	$("#rrss").parent().parent().show();
-		
-	$("#capital_observaciones").parent().show();
-	$("#capital_observaciones_label").show();
 	
 	$("#recursos_propios").parent().parent().show();
 	

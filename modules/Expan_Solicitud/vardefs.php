@@ -248,26 +248,7 @@ $dictionary['Expan_Solicitud'] = array(
     'studio' => 'visible',
     'dependency' => false,
   ),
-  'capital_observaciones' => 
-  array (
-    'required' => false,
-    'name' => 'capital_observaciones',
-    'vname' => 'LBL_CAPITAL_OBSERVACIONES',
-    'type' => 'varchar',
-    'massupdate' => 0,
-    'no_default' => false,
-    'comments' => '',
-    'help' => '',
-    'importable' => 'true',
-    'duplicate_merge' => 'disabled',
-    'duplicate_merge_dom_value' => '0',
-    'audited' => true,
-    'reportable' => true,
-    'unified_search' => false,
-    'merge_filter' => 'disabled',
-    'len' => '255',
-    'size' => '20',
-  ),
+
   'sectores_de_interes' => 
   array (
     'required' => false,
@@ -1926,7 +1907,7 @@ $dictionary['Expan_Solicitud'] = array(
     'required' => false,
     'name' => 'recursos_propios',
     'vname' => 'LBL_RECURSOS_PROPIOS',
-    'type' => 'enum',
+    'type' => 'varchar',
     'massupdate' => '1',
     'no_default' => false,
     'default' => '',
@@ -1939,9 +1920,8 @@ $dictionary['Expan_Solicitud'] = array(
     'reportable' => true,
     'unified_search' => false,
     'merge_filter' => 'disabled',
-    'len' => 100,
-    'size' => '20',
-    'options' => 'recursos_propios_list',
+    'len' => 150,
+    'size' => '60',
   ),
   
   'dummie' => 

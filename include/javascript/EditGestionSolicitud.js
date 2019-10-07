@@ -280,6 +280,11 @@ function addEvents() {
                 alert("Debes rellenar el campo 'Capacidad de Inversión'");
                 return;
             }
+            if ($("#recursos_propios").val() == '') {
+                alert("Debes rellenar el campo 'Recursos propios disponibles'");
+                return;
+            }
+
             if ($("#cuando_empezar").val() == '') {
                 alert("Debes rellenar el campo 'Inicio de actividad previsto'");
                 return;

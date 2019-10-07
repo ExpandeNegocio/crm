@@ -699,31 +699,17 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
-                        'name' => 'capital',
-                        'studio' => 'visible',
-                        'label' => 'LBL_CAPITAL',
-                      ),
-                    1 =>
-                      array(
-                        'name' => 'capital_observaciones',
-                        'label' => 'LBL_CAPITAL_OBSERVACIONES',
-                      ),
-                  ),
-
-                16 =>
-                  array(
-                    0 =>
-                      array(
                         'name' => 'recursos_propios',
                         'label' => 'LBL_RECURSOS_PROPIOS',
                       ),
-                    1 =>
-                      array(
-
-                      ),
+                    1 =>array(
+                      'name' => 'capital',
+                      'studio' => 'visible',
+                      'label' => 'LBL_CAPITAL',
+                    ),
                   ),
 
-                17 =>
+                16 =>
                   array(
                     0 =>
                       array(
@@ -750,7 +736,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                18 =>
+                17 =>
                   array(
                     0 =>
                       array(
@@ -766,7 +752,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                19 =>
+                18 =>
                   array(
                     0 =>
                       array(
@@ -798,7 +784,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                20 =>
+                19 =>
                   array(
                     0 =>
                       array(
@@ -807,7 +793,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                21 =>
+                20 =>
                   array(
                     0 => array(
                       'name' => 'rating',
@@ -821,7 +807,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                22 =>
+                21 =>
                   array(
                     0 => array(),
                     1 => array(

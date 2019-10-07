@@ -175,6 +175,11 @@ function procesar()
       }
     }
 
+    $recursos=$inversion.".".$recursos;
+    if ($recursos!=''){
+      $solicitud->recursos_propios=$recursos;
+    }
+
     $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Otras Franq-" . $solicitud->otras_franquicias);
 
     if ($local != "") {
@@ -209,23 +214,6 @@ function procesar()
     }
 
     $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Desc Local-" . $solicitud->descripcion_local);
-
-    $obsFinanci = "";
-
-    if ($inversion != "") {
-      $obsFinanci = $obsFinanci . ". " . $inversion;
-    }
-
-    if ($recursos != "") {
-      $obsFinanci = $obsFinanci . ". " . $recursos;
-
-    }
-
-    echo "Antes Financia" . "<br>";
-
-    if ($obsFinanci != "" && $solicitud->capital_observaciones = "") {
-      $solicitud->capital_observaciones = $solicitud->capital_observaciones . '. ' . $obsFinanci;
-    }
 
     $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger gestion");
 
@@ -319,21 +307,7 @@ function updateGest($idCuestionario, $gestion, $nombre, $apellidos, $papel, $rec
       break;
   }
 
-
-  switch ($recursos) {
-
-    case "100% fondos propios" :
-      $gestion->recursos_propios = 1;
-      break;
-
-    case "Fondos propios + Financiación" :
-      $gestion->recursos_propios = 2;
-      break;
-
-    case "100% financiado por entidad bancaria" :
-      $gestion->recursos_propios = 3;
-      break;
-  }
+  $gestion->recursos_propios = $recursos;
 
   $GLOBALS['log']->info("[ExpandeNegocio][procesarGoogleForms][Pruebas]Antes coger fecha-" . $inicio);
   $gestion->cuando_empezar = $inicio;
