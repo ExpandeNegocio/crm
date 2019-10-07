@@ -94,13 +94,7 @@
      });       
      
     $("#dispone_local").change(function(){
-		var valor=$(this).val();
-		if(valor!="" && valor!=0){
-			$("#tab2").show();
-		}else{
-			$("#tab2").hide();
-		}
-		
+		renderLocal();
 	});            
             
 	$('#busca_sitPerTagCheck').keyup(function(e) {
@@ -520,7 +514,16 @@ function inicio() {
 	
 	cargaAccionesSol();
 	refreshSn();
-	
+	renderLocal();
+}
+
+function renderLocal(){
+	var valor=$("#dispone_local").val();
+	if(valor!="" && valor!=0){
+		$("#tab2").show();
+	}else{
+		$("#tab2").hide();
+	}
 }
 
 function cargaAccionesSol(){
