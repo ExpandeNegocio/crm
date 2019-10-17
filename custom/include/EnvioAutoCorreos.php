@@ -19,7 +19,7 @@ class EnvioAutoCorreos
   const MARC_TABLA = '#tabla#';
   const MARC_BODY = '#body#';
   const MARC_GESTION_ID ='#gestionid#';
-  const MARC_SOLICITUD_ID ='#solicitud#';
+  const MARC_SOLICITUD_ID ='#solicitudid#';
 
   const USUARIOS_POR_CORREO = 1;
 
