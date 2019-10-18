@@ -73,12 +73,18 @@ class Expan_Evento extends Expan_Evento_sugar {
         $this->total_rating_real_topo = $this->GestionesRating(false,5);
         $this->total_rating_real_norating = $this->GestionesNoRating(false);
                 
-       $this->total_rating_orig_a_plus = $this->OriginalRating(false,1);
+        $this->total_rating_orig_a_plus = $this->OriginalRating(false,1);
         $this->total_rating_orig_a = $this->OriginalRating(false,2);
         $this->total_rating_orig_b = $this->OriginalRating(false,3);
         $this->total_rating_orig_c = $this->OriginalRating(false,4);
         $this->total_rating_orig_topo = $this->OriginalRating(false,5);
-        $this->total_rating_orig_norating = $this->GestionOrgigiNoRating(false);     
+        $this->total_rating_orig_norating = $this->GestionOrgigiNoRating(false);
+
+        $this->citas_solicitadas = $this->CitasSolicitadas();
+        $this->citas_realizadas_con_cita = $this->CitasRealizadasConCita();
+        $this->citas_realizadas_sin_cita = $this->CitasRealizadasSinCita();
+        $this->citas_canceladas = $this->CitasCanceladas();
+        $this->citas_no_acuden = $this->CitasNoAcuden();
         
         if($this->id!=""){//ficha de evento concreto
             $this->addFranquiciasNoInscritas();
@@ -724,6 +730,98 @@ class Expan_Evento extends Expan_Evento_sugar {
         return $numGestiones;     
         
     }
-   
+
+    public function CitasSolicitadas(){
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select count(1) num from expan_gestionsolicitudes g, expan_evento e  ";
+      $query=$query."where g.deleted=0 and expan_evento_id_c='$this->id' and g.expan_evento_id_c=e.id  and g.date_entered<=e.fecha_celebracion";
+
+      $numGestiones=0;
+
+      $result = $db -> query($query, true);
+
+      while ($row = $db -> fetchByAssoc($result)) {
+        $numGestiones = $row["num"];
+      }
+
+      return $numGestiones;
+    }
+
+    public function CitasRealizadasConCita(){
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select count(1) num from expan_gestionsolicitudes g, expan_evento e  ";
+      $query=$query."where g.deleted=0 and expan_evento_id_c='$this->id' and g.expan_evento_id_c=e.id ";
+      $query=$query."and g.date_entered<e.fecha_celebracion and g.chk_entrevista_previa=1";
+
+      $numGestiones=0;
+
+      $result = $db -> query($query, true);
+
+      while ($row = $db -> fetchByAssoc($result)) {
+        $numGestiones = $row["num"];
+      }
+
+      return $numGestiones;
+    }
+
+  public function CitasRealizadasSinCita(){
+    $db = DBManagerFactory::getInstance();
+
+    $query = "select count(1) num from expan_gestionsolicitudes g, expan_evento e  ";
+    $query=$query."where g.deleted=0 and expan_evento_id_c='$this->id' and g.expan_evento_id_c=e.id ";
+    $query=$query."and g.date_entered>=e.fecha_celebracion and g.chk_entrevista_previa=1";
+
+    $numGestiones=0;
+
+    $result = $db -> query($query, true);
+
+    while ($row = $db -> fetchByAssoc($result)) {
+      $numGestiones = $row["num"];
+    }
+
+    return $numGestiones;
+  }
+
+  public function CitasCanceladas(){
+    $db = DBManagerFactory::getInstance();
+
+    $query = "select count(1) num from expan_gestionsolicitudes g, expan_evento e  ";
+    $query=$query."where g.deleted=0 and expan_evento_id_c='$this->id' and g.expan_evento_id_c=e.id ";
+    $query=$query."and chk_entrevista_previa_cancelada=1";
+
+    $numGestiones=0;
+
+    $result = $db -> query($query, true);
+
+    while ($row = $db -> fetchByAssoc($result)) {
+      $numGestiones = $row["num"];
+    }
+
+    return $numGestiones;
+  }
+
+
+
+  public function CitasNoAcuden(){
+    $db = DBManagerFactory::getInstance();
+
+    $query = "select count(1) num from expan_gestionsolicitudes g, expan_evento e  ";
+    $query=$query."where g.deleted=0 and expan_evento_id_c='$this->id' and g.expan_evento_id_c=e.id ";
+    $query=$query."and g.date_entered<=e.fecha_celebracion and g.chk_entrevista_previa=0";
+
+    $numGestiones=0;
+
+    $result = $db -> query($query, true);
+
+    while ($row = $db -> fetchByAssoc($result)) {
+      $numGestiones = $row["num"];
+    }
+
+    return $numGestiones;
+  }
+
 }
 ?>

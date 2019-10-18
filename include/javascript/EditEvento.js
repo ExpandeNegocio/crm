@@ -33,6 +33,12 @@ function estadisticasReadOnly(){
 	$("#sol_unicas").prop("disabled",true);
 	$("#empresas_ratio_sg").prop("disabled",true);
 	$("#ratio_medio_formato").prop("disabled",true);
+
+	$("#citas_solicitadas").prop("disabled",true);
+	$("#citas_realizadas_con_cita").prop("disabled",true);
+	$("#citas_realizadas_sin_cita").prop("disabled",true);
+	$("#citas_canceladas").prop("disabled",true);
+	$("#citas_no_acuden").prop("disabled",true);
 }
 
 function ocultaAdministracion(){
@@ -97,7 +103,7 @@ function cambiarEstadoFranquiciaEvento(estado) {
             data : "tipo=FranqEstadoEvento" + "&estado=" + estado + "&evento="+ idEvento + "&franquicias=" + idFranquicias,
             success : function(data) {
                 YAHOO.SUGAR.MessageBox.hide();
-                if ( data = "Ok") {
+                if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se han podido cambiar el estado a las franquicias seleccionadas  " + estado);
@@ -126,7 +132,7 @@ function cambiarFormatoFranquiciaEvento(formato) {
             data : "tipo=FranEventoFormato&formato=" + formato + "&evento="+ idEvento + "&franquicias=" + idFranquicias,
             success : function(data) {
                 YAHOO.SUGAR.MessageBox.hide();
-                if ( data = "Ok") {
+                if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se han podido cambiar el formato a las franquicias seleccionadas  " + formato);
@@ -159,7 +165,7 @@ function cambiarGastosAsociadosFranquiciaEvento(){
 	            data : "tipo=GastoAsociado&valor=" + valor + "&evento="+ idEvento + "&franquicias=" + idFranquicias,
 	            success : function(data) {
 	                YAHOO.SUGAR.MessageBox.hide();
-	                if ( data = "Ok") {
+	                if ( data == "Ok") {
 	                    document.location.reload();                 
 	                } else {
 	                    alert("No se han podido cambiar el gasto asociado a las franquicias seleccionadas");
@@ -172,7 +178,7 @@ function cambiarGastosAsociadosFranquiciaEvento(){
 			
 		}else{
 			alert ("No es un numero");
-			return;
+
 		}
     }
 	
@@ -195,7 +201,7 @@ function cambiarCosteAccionFranquiciaEvento(){
 	            data : "tipo=CosteAccion&valor=" + valor + "&evento="+ idEvento + "&franquicias=" + idFranquicias,
 	            success : function(data) {
 	                YAHOO.SUGAR.MessageBox.hide();
-	                if ( data = "Ok") {
+	                if ( data == "Ok") {
 	                    document.location.reload();                 
 	                } else {
 	                    alert("No se han podido cambiar el gasto asociado a las franquicias seleccionadas");
@@ -208,7 +214,6 @@ function cambiarCosteAccionFranquiciaEvento(){
 			
 		}else{
 			alert ("No es un numero");
-			return;
 		}
     }
 	

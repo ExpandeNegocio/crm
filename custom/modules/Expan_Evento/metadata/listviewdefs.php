@@ -23,7 +23,7 @@ array (
     'width' => '10%',
     'default' => true,
   ),
-  
+
   'fecha_celebracion'=>
   array (
     'type' => 'date',
@@ -31,5 +31,13 @@ array (
     'width' => '10%',
     'default' => true,
   ),
+
+  'tipo_evento'=>
+  array(
+    'type' => 'varchar',
+    'label' => 'LBL_TIPO_EVENTO',
+    'width' => '10%',
+    'default' => true,
+  )
 );
 ?>

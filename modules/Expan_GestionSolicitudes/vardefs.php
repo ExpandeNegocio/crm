@@ -309,28 +309,50 @@ $dictionary['Expan_GestionSolicitudes'] = array(
     'enable_range_search' => false,
   ),
   
-  'chk_entrevista_previa' => 
-  array (
-    'required' => false,
-    'name' => 'chk_entrevista_previa',
-    'vname' => 'LBL_ENTREVISTA_PREVIA',
-    'type' => 'bool',
-    'massupdate' => 0,
-    'default' => '0',
-    'no_default' => false,
-    'comments' => '',
-    'help' => '',
-    'importable' => 'true',
-    'duplicate_merge' => 'disabled',
-    'duplicate_merge_dom_value' => '0',
-    'audited' => true,
-    'reportable' => true,
-    'unified_search' => false,
-    'merge_filter' => 'disabled',
-    'len' => '255',
-    'size' => '20',
-    'popupHelp' => 'Presencial, virtual o entrevista preconcertada en feria',
-  ),
+  'chk_entrevista_previa' =>
+      array (
+        'required' => false,
+        'name' => 'chk_entrevista_previa',
+        'vname' => 'LBL_ENTREVISTA_PREVIA',
+        'type' => 'bool',
+        'massupdate' => 0,
+        'default' => '0',
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '255',
+        'size' => '20',
+        'popupHelp' => 'Presencial, virtual o entrevista preconcertada en feria',
+      ),
+
+    'chk_entrevista_previa_cancelada' =>
+      array (
+        'required' => false,
+        'name' => 'chk_entrevista_previa_cancelada',
+        'vname' => 'LBL_ENTREVISTA_PREVIA_CANCELADA',
+        'type' => 'bool',
+        'massupdate' => 0,
+        'default' => '0',
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '255',
+        'size' => '20',
+      ),
   
   'f_entrevista_previa' => 
   array (
@@ -1856,7 +1878,6 @@ $dictionary['Expan_GestionSolicitudes'] = array(
     'enable_range_search' => false,
   ),
   
-  
   'papel'=>
   array (
     'required' => false,
@@ -2814,7 +2835,6 @@ $dictionary['Expan_GestionSolicitudes'] = array(
       'audited' => true,
       'comment' => 'Numero de unidade de negocio a adquirir',
       'default' => null,
-      'audited' => true,
       'reportable' => false,
       'unified_search' => false,
     ),

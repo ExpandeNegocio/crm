@@ -354,7 +354,59 @@ if  ($current_user->id=='875daf39-76a9-4eb7-2fbc-53c7fa8dec18' ||
                 'name' => 'ratio_medio_formato',
                 'label' => 'LBL_RATIO_MEDIO_FORMATO',
               ),            
-            ),                 
+            ),
+            17 =>
+              array (
+                0 =>
+                  array (
+
+                  ),
+                1 =>
+                  array (
+
+                  ),
+              ),
+
+            18 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'citas_solicitadas',
+                    'label' => 'LBL_CITAS_SOLICITADAS',
+                  ),
+                1 =>
+                  array (
+
+                  ),
+              ),
+
+            19 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'citas_realizadas_con_cita',
+                    'label' => 'LBL_CITAS_REALIZADAS_CON_CITA',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'citas_canceladas',
+                    'label' => 'LBL_CITAS_CANCELADAS',
+                  ),
+              ),
+
+            20 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'citas_realizadas_sin_cita',
+                    'label' => 'LBL_CITAS_REALIZADAS_SIN_CITA',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'citas_no_acuden',
+                    'label' => 'LBL_CITAS_NO_ACUDEN',
+                  ),
+              ),
           ),
           
           'LBL_DETAIL_VIEW_ADMINISTRACION' =>
@@ -746,10 +798,61 @@ else{
                 'name' => 'ratio_medio_formato',
                 'label' => 'LBL_RATIO_MEDIO_FORMATO',
               ),
-            ),                           
-             
+            ),
+
+            17 =>
+              array (
+                0 =>
+                  array (
+
+                  ),
+                1 =>
+                  array (
+
+                  ),
+              ),
+
+            18 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'citas_solicitadas',
+                    'label' => 'LBL_CITAS_SOLICITADAS',
+                  ),
+                1 =>
+                  array (
+
+                  ),
+              ),
+
+            19 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'citas_realizadas_con_cita',
+                    'label' => 'LBL_CITAS_REALIZADAS_CON_CITA',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'citas_canceladas',
+                    'label' => 'LBL_CITAS_CANCELADAS',
+                  ),
+              ),
+
+            20 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'citas_realizadas_sin_cita',
+                    'label' => 'LBL_CITAS_REALIZADAS_SIN_CITA',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'citas_no_acuden',
+                    'label' => 'LBL_CITAS_NO_ACUDEN',
+                  ),
+              ),
           ),
-               
         ),
       ),
     ); 
