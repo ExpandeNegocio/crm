@@ -388,7 +388,25 @@ $dictionary['Expan_Empresa'] = array(
         'massupdate' => 0,
         'no_default' => false,
         'comments' => '',
-        'help' => '',
+        'help' => 'NO SON FRANQUICIA
+
+Porque quieren Franquiciar.
+Le han pedido franquicias.
+Años de actividad.
+Nº de centros.
+Nº de empleados necesarios.
+Inversion Necesaria.
+Cual es su punto diferencial.
+Competencia directa.
+
+SON FRANQUICIA Y TRABAJAN CON CONSULTORA
+
+Porque quieren cambiar de consultora. Porque no siguen con la expansion con ellos.
+Cuanto tiempo llevan con ellos.
+Cuantas franquicias han conseguido.
+Reciben informes mensuales.
+Cuando se les acaba el contrato con ellos.
+Que acciones de expansion han hecho',
         'importable' => 'true',
         'duplicate_merge' => 'disabled',
         'duplicate_merge_dom_value' => '0',
@@ -475,25 +493,6 @@ $dictionary['Expan_Empresa'] = array(
         'massupdate' => 0,
         'no_default' => false,
         'comments' => '',
-        'help' => 'NO SON FRANQUICIA
-
-Porque quieren Franquiciar.
-Le han pedido franquicias.
-Años de actividad.
-Nº de centros.
-Nº de empleados necesarios.
-Inversion Necesaria.
-Cual es su punto diferencial.
-Competencia directa.
-
-SON FRANQUICIA Y TRABAJAN CON CONSULTORA
-
-Porque quieren cambiar de consultora. Porque no siguen con la expansion con ellos.
-Cuanto tiempo llevan con ellos.
-Cuantas franquicias han conseguido.
-Reciben informes mensuales.
-Cuando se les acaba el contrato con ellos.
-Que acciones de expansion han hecho',
         'importable' => 'true',
         'duplicate_merge' => 'disabled',
         'duplicate_merge_dom_value' => '0',
@@ -531,27 +530,6 @@ Que acciones de expansion han hecho',
 
     // ---- DATOS  PROVEEDORES --------------------------------------------------------------------------------------------
 
-
-    'actividad_principal' =>
-      array(
-        'required' => false,
-        'name' => 'actividad_principal',
-        'vname' => 'LBL_ACTIVIDAD_PRINCIPAL',
-        'type' => 'varchar',
-        'massupdate' => 0,
-        'no_default' => false,
-        'comments' => '',
-        'help' => '',
-        'importable' => 'true',
-        'duplicate_merge' => 'disabled',
-        'duplicate_merge_dom_value' => '0',
-        'audited' => true,
-        'reportable' => true,
-        'unified_search' => false,
-        'merge_filter' => 'disabled',
-        'len' => '255',
-        'size' => '20',
-      ),
 
     'principales_prod_serv' =>
       array(

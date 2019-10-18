@@ -236,7 +236,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'email_con_1',
     'vname' => 'LBL_EMAIL',
-    'type' => 'varchar',
+    'type' => 'email',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -257,7 +257,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'observacion_con_1',
     'vname' => 'LBL_OBSERVACIONES_CONTACTO',
-    'type' => 'varchar',
+    'type' => 'text',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -269,8 +269,8 @@ $vardefs= array (
     'reportable' => true,
     'unified_search' => false,
     'merge_filter' => 'disabled',
-    'len' => '255',
-    'size' => '20',
+    'rows' => '4',
+    'cols' => '80',
   ),
   
   'contacto2' => 
@@ -291,7 +291,7 @@ $vardefs= array (
     'unified_search' => false,
     'merge_filter' => 'disabled',
     'len' => '255',
-    'size' => '20',
+    'size' => '60',
   ),
   
   'cargo2' => 
@@ -364,7 +364,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'email_con_2',
     'vname' => 'LBL_EMAIL',
-    'type' => 'varchar',
+    'type' => 'email',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -385,7 +385,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'observacion_con_2',
     'vname' => 'LBL_OBSERVACIONES_CONTACTO',
-    'type' => 'varchar',
+    'type' => 'text',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -397,8 +397,8 @@ $vardefs= array (
     'reportable' => true,
     'unified_search' => false,
     'merge_filter' => 'disabled',
-    'len' => '255',
-    'size' => '20',
+    'rows' => '4',
+    'cols' => '80',
   ),
   
   'observaciones' => 

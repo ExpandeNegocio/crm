@@ -362,6 +362,16 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'observaciones',
+                        'label' => 'LBL_OBSERVACIONES',
+                      ),
+                    1 => array(),
+                  ),
+
+                20 =>
+                  array(
+                    0 =>
+                      array(
                         'label' => 'LBL_CONTACTO1',
                       ),
                     1 => array(
@@ -369,7 +379,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                20 =>
+                21 =>
                   array(
                     0 =>
                       array(
@@ -382,7 +392,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                21 =>
+                22 =>
                   array(
                     0 =>
                       array(
@@ -395,7 +405,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                22 =>
+                23 =>
                   array(
                     0 =>
                       array(
@@ -408,7 +418,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                23 =>
+                24 =>
                   array(
                     0 =>
                       array(
@@ -421,7 +431,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                24 =>
+                25 =>
                   array(
                     0 =>
                       array(
@@ -434,7 +444,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                25 =>
+                26 =>
                   array(
                     0 =>
                       array(
@@ -445,16 +455,6 @@ $viewdefs [$module_name] =
                       'name' => 'observacion_con_2',
                       'label' => 'LBL_OBSERVACIONES_CONTACTO',
                     ),
-                  ),
-
-                26 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'observaciones',
-                        'label' => 'LBL_OBSERVACIONES',
-                      ),
-                    1 => array(),
                   ),
               ),
           ),
@@ -489,8 +489,6 @@ $viewdefs [$module_name]['EditView']['panels']['LBL_DATOS_PROVEEDORES_GENERAL'] 
           ),
         1 =>
           array(
-            'name' => 'actividad_principal',
-            'label' => 'LBL_ACTIVIDAD_PRINCIPAL',
           ),
       ),
 
@@ -971,8 +969,8 @@ if ($current_user->id == '71f40543-2702-4095-9d30-536f529bd8b6' || $current_user
         array(
           0 =>
             array(
-              'name' => 'chk_franquicia',
-              'label' => 'LBL_FRANQUICIA',
+              'name' => 'consultora',
+              'label' => 'LBL_CONSULTORA',
             ),
           1 =>
             array(),
