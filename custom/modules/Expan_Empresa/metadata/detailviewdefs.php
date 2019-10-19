@@ -818,7 +818,7 @@ $viewdefs [$module_name]['DetailView']['panels']['LBL_DATOS_COMPETIDOR'] =
 
 global $current_user;
 
-if ($current_user->id == '71f40543-2702-4095-9d30-536f529bd8b6'
+if ($current_user->id == '71f40543-2702-4095-9d30-536f529bd8b6' || $current_user->id == '1'
 ) {
 
 

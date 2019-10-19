@@ -3,6 +3,52 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	renderConsultora();
 });
 
+renderProveedorTab();
+renderPropuestaTab();
+renderCompetidorTab();
+renderAlianzaTab();
+
+function renderProveedorTab() {
+	if ($("#chk_es_proveedor").is(':checked')) {
+
+		$("a:contains('Mistery')").show();
+		$("a:contains('Datos Proveedor Generales')").show();
+		if ($("#chk_proveedor_cliente").is(':checked')){
+			$("a:contains('Datos Proveedor por Franquicia')").show();
+		}else{
+			$("a:contains('Datos Proveedor por Franquicia')").hide();
+		}
+	} else {
+		$("a:contains('Mistery')").hide();
+		$("a:contains('Datos Proveedor Generales')").hide();
+		$("a:contains('Datos Proveedor por Franquicia')").hide();
+	}
+}
+
+function renderCompetidorTab() {
+	if ($("#chk_es_competidor").is(':checked')) {
+		$("a:contains('Datos competidor')").show();
+	} else {
+		$("a:contains('Datos competidor')").hide();
+	}
+}
+
+function renderAlianzaTab() {
+	if ($("#chk_alianza").is(':checked')) {
+		$("a:contains('Datos alianza')").show();
+	} else {
+		$("a:contains('Datos alianza')").hide();
+	}
+}
+
+function renderPropuestaTab() {
+	if ($("#chk_es_cliente_potencial").is(':checked')) {
+		$("a:contains('Propuesta')").show();
+	} else {
+		$("a:contains('Propuesta')").hide();
+	}
+}
+
 function coloreaSectores(){
 	
 	url='index.php?entryPoint=herramientas';

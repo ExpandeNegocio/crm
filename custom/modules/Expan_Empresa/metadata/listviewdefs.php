@@ -63,14 +63,21 @@ $listViewDefs[$module_name] = array(
     
 );
 
+	global $current_user;
+
+	$GLOBALS['log'] -> info('[ExpandeNegocio][listviewdef Empresa]$current_user->id-' . $current_user->id);
+
 if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6'
 ){
+	$GLOBALS['log'] -> info('[ExpandeNegocio][listviewdef Empresa]entra if');
 
     $listViewDefs[$module_name]['chk_es_cliente_potencial'] =  array(
             'width' => '10', 
             'label' => 'LBL_ES_CLIENTE_POTENCIAL',         
             'default' => true);                
-}   
+}else{
+	$GLOBALS['log'] -> info('[ExpandeNegocio][listviewdef Empresa]entra else');
+}
 
 $listViewDefs[$module_name]['chk_alianza'] =  array(
             'width' => '10', 

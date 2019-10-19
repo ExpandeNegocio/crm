@@ -492,7 +492,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'provincia',
     'vname' => 'LBL_PROVINCIA',
-    'type' => 'varchar',
+    'type' => 'enum',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -507,6 +507,7 @@ $vardefs= array (
     'len' => 100,
     'size' => '20',    
     'studio' => 'visible',
+    'options' => 'provinciasInternacional_list',
     'dependency' => false,
   ),
   
@@ -515,7 +516,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'poblacion',
     'vname' => 'LBL_POBLACION',
-    'type' => 'varchar',
+    'type' => 'enum',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -531,6 +532,7 @@ $vardefs= array (
     'size' => '20',    
     'studio' => 'visible',
     'dependency' => false,
+    'options' => 'municipios_list',
   ),
   
   'ccaa' => 
@@ -538,7 +540,7 @@ $vardefs= array (
     'required' => false,
     'name' => 'ccaa',
     'vname' => 'LBL_CCAA',
-    'type' => 'varchar',
+    'type' => 'enum',
     'massupdate' => 0,
     'no_default' => false,
     'comments' => '',
@@ -554,8 +556,9 @@ $vardefs= array (
     'size' => '20',    
     'studio' => 'visible',
     'dependency' => false,
+    'options' => 'ccaa_list',
   ),
-  
+
   'web' => 
   array (
     'required' => false,

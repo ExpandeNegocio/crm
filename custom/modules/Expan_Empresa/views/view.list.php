@@ -17,6 +17,8 @@ class Expan_EmpresaViewList extends ViewList {
 
         global $current_user;
 
+       $GLOBALS['log'] -> info('[ExpandeNegocio][ViewList Empresa]$current_user->trust_user-' . $current_user->trust_user);
+
         if ($current_user->trust_user!=1){
             
             $consulta=' chk_es_cliente_potencial=0';

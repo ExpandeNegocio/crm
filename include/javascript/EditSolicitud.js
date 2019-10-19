@@ -114,15 +114,15 @@
 		
 	});
 	
-	$("#localidad_apertura_1").focus(function(){
+	$("#localidad_apertura_1").change(function(){
 		loadMunicipios(1);
 	});		
 	
-	$("#localidad_apertura_2").focus(function(){
+	$("#localidad_apertura_2").change(function(){
 		loadMunicipios(2);
 	});	
 	
-	$("#localidad_apertura_3").focus(function(){
+	$("#localidad_apertura_3").change(function(){
 		loadMunicipios(3);
 	});
 
