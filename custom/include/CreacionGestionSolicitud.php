@@ -787,7 +787,12 @@ class AccionesGuardadoGestionSol {
                     if ($bean -> candidatura_avanzada == true && $cand_avan_ant != $bean -> candidatura_avanzada){                                                                   
                         $bean -> asignarGestor();                        
                     } 
-                }                                
+                }
+
+                if ($bean->cuando_empezar!='' && $bean->cuando_empezar!=null &&
+                    $solicitud->cuando_empezar!='' && $solicitud->cuando_empezar!=null){
+                  $bean->cuando_empezar=$solicitud->cuando_empezar;
+                }
 
                 $bean -> ignore_update_c = true;
                 $bean -> save();
