@@ -142,6 +142,7 @@ $entry_point_registry = array(
     'customImportProveedores'=>array('file' => 'custom/include/customImportProveedores.php', 'auth' => false),
     'customImportCompetidores'=>array('file' => 'custom/include/customImportCompetidores.php', 'auth' => false),
     'customImportEventos'=>array('file' => 'custom/include/customImportEventos.php', 'auth' => false),
+    'loadTemplates'=>array('file' => 'custom/include/loadTemplates.php', 'auth' => false),
     'consultarApertura'=>array('file' => 'custom/include/ConsultarAperturas.php', 'auth' => false),
     'pruebas' =>array('file' => 'custom/include/pruebas.php', 'auth' => false),
     'downloadDoc' => array('file' => 'custom/landing/DownloadDoc.php', 'auth' => false),
