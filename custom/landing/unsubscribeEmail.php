@@ -1,6 +1,15 @@
 <?php
 
-  $solId=$_GET["solID"];
+  $solId=$_GET["solId"];
+
+  $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
+
+  $GLOBALS['log'] -> info('[ExpandeNegocio][Baja de correo]Inicio');
+
+
+  $GLOBALS['log'] -> info('[ExpandeNegocio][Baja de correo]Solicitud-'.$solId);
+
+  $db = DBManagerFactory::getInstance();
 
   $query = "UPDATE email_addresses ";
   $query=$query."SET    email_addresses.opt_out = 1 ";
@@ -15,3 +24,5 @@
 
   $query = "update expan_solicitud_cstm set no_correos_c=1 where id_c='$solId'; ";
   $db -> query($query, true);
+
+  echo $_GET['callback'] . '(' . "{'resp' : 'ok'}" . ')';

@@ -52,22 +52,40 @@ function downloadfile(idDoc,idGest){
 }
 
 function unsubscribe(solId){
-    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&solId='+ solId;
-    $.ajax({
-        type : "GET",
-        url : url,
-        dataType: 'jsonp',
-        crossDomain: true,
-        data : "solId="+ solId,
 
-        success : function(data) {
+    var sel=false;
 
-            if ( data.resp != "") {
-                window.location = "https://www.expandenegocio.com/sugarcrm/upload/"+data.resp;
+    if ($("#chkExpande").prop('checked')){
+        registerAction(solId,"BE","");
+        sel=true;
+    }
+    if ($("#chkFranquicia").prop('checked')){
+        registerAction(solId,"BF","");
+        sel=true;
+    }
+
+    if (sel){
+        url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&solId='+ solId;
+        $.ajax({
+            type : "GET",
+            url : url,
+            dataType: 'jsonp',
+            crossDomain: true,
+            data : "solId="+ solId,
+
+            success : function(data) {
+
+                if ( data.resp != "") {
+                    alert("La solicitud de baja se ha procesado con exito");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                alert('No se ha podido dar de baja el usuario - ' + textStatus + ' - ' + errorThrown);
             }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            alert('No se ha podido descargar el documento - ' + textStatus + ' - ' + errorThrown);
-        }
-    });
+        });
+    }else{
+        alert('Es necesario seleccionar alguno de las opciones para dar de baja la cuenta de correo');
+    }
+
+
 }

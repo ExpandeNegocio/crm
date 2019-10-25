@@ -45,9 +45,9 @@
     $first_name=$row["first_name"];
     $last_name=$row["last_name"];
     $telefono=$row["phone_mobile"];
-    $franquiciaId=["franquiciaid"];
-    $franquiciaName=["franquicianame"];
-    $solId=["SolId"];
+    $franquiciaId=$row["franquiciaId"];
+    $franquiciaName=$row["franquicianame"];
+    $solId=$row["solId"];
     break;
   }
 
@@ -67,5 +67,6 @@
   $html = str_replace(MARC_FRANQUICIA_ID, $franquiciaId, $html);
   $html = str_replace(MARC_FRANQUICIA, $franquicia, $html);
   $html = str_replace(MARC_GESTION_ID, $idGest, $html);
+  $html = str_replace(MARC_SOLICITUD_ID, $solId, $html);
 
   echo $html;
