@@ -157,7 +157,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
         
             if ($name!=''){
                                 
-                $query = "SELECT id from expan_empresa where ucase(name)=ucase('".$name."') and id!='".$idEmpresa."'";
+                $query = "SELECT id from expan_empresa where ucase(trim(name))=ucase(trim('".$name."')) and id!='".$idEmpresa."'";
                 
                 $GLOBALS['log']->info('[ExpandeNegocio][ControlEmpresas]Validadndo nombre - Consulta - '.$query); 
                  
@@ -169,11 +169,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                     return;                  
                 }
                 echo '';
-    
             }
-        
             break;
-            
             
         case 'CambioCompetidor':
             

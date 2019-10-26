@@ -11,6 +11,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $idSol=$_POST["solId"];   
     $tipo=$_POST["tipo"];
     $provincia=$_POST["provincia"];
+    $ccaa=$_POST["ccaa"];
     
     switch ($tipo) {
         case 'RecogeAccionesHistorico':
@@ -191,9 +192,26 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                         
             echo json_encode($return,JSON_FORCE_OBJECT);       
             
-            break; 
-        
-        default:
+            break;
+
+        case 'RecogeProvincias':
+
+          $query = "select c_prov,d_prov from expan_m_provincia ";
+          $query=$query."where c_ca=".$ccaa;
+
+          $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultarSolicitud][RecogeMunicipios]Consulta-'.$query );
+
+          $result = $db -> query($query, true);
+
+          while ($row = $db -> fetchByAssoc($result)) {
+            $return[] = $row;
+          }
+
+          echo json_encode($return,JSON_FORCE_OBJECT);
+
+          break;
+
+      default:
             
             break;
     }

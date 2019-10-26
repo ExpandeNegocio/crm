@@ -387,8 +387,7 @@ class Expan_Evento extends Expan_Evento_sugar {
             $NumSol = $row["num"];
         } 
         
-        return $NumSol;               
-        
+        return $NumSol;
     }      
     
     public function TotalGestFranNoPart($ConDummies){
@@ -563,8 +562,6 @@ class Expan_Evento extends Expan_Evento_sugar {
             $query=$query."               = 0 AND rating = '".$tipo."') g ";
             $query=$query."WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
             $query=$query."group by s.id) a;  ";
-                       
-            
         }
                        
         $result = $db -> query($query, true);

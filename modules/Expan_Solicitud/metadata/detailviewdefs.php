@@ -8,7 +8,7 @@ array (
     array (
         'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
       {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
-      {sugar_getscript file="include/javascript/EditSolicitud.js"}
+      {sugar_getscript file="include/javascript/Expan_Solicitud/EditViewSolicitud.js"}
       {sugar_getscript file="include/javascript/jquery.js"}
       {sugar_getscript file="modules/Documents/documents.js"}
       {sugar_getscript file="include/javascript/ViewSolicitud.js"}

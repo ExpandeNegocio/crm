@@ -160,7 +160,8 @@ $mod_strings = array(
 
   'LBL_INTERES_EN' => 'Interes ExpandeNegocio',
   'LBL_ENCAJE_CLIENTE' => 'Encaje cliente',
-  'LBL_CONSULTORA_FRANQUICIA' => 'Consultora de franquicia',
+  'LBL_CONSULTORA_FRANQUICIA' => 'Ha TRABAJADO con Consultora',
+  'LBL_CONSULTORA_FRANQUICIA_HABLA' => 'Ha HABLADO con consultora',
   'LBL_ESTADO_PROYECTO' => 'Estado del proyecto',
   'LBL_HISTORICO_CONVERSACION' => 'Que le decimos',
   'LBL_PRODUCTOS_SERVICIOS' => 'Productos y servicios',
@@ -196,5 +197,6 @@ $mod_strings = array(
   'LBL_CIERRES_EXTRANJERO' => 'Cierres extranjero',
   'LBL_RAZON_SOCIAL' => 'Razón social',
   'LBL_PAIS' => 'País',
-
+  'LBL_MOTIVO_NO_ENCAJA' => 'Motivo por el que no le encaja',
+  'LBL_MOTIVO_NO_GUSTA' => 'Motivo por el que no le gusta',
 );

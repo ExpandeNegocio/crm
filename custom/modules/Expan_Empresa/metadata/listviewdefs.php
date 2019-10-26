@@ -37,50 +37,105 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 $module_name = 'Expan_Empresa';
 $OBJECT_NAME = 'Expan_Empresa';
-echo '<script type="text/javascript"  src="include/javascript/ListEmpresa.js"></script>';
-$listViewDefs[$module_name] = array(
-	'NAME' => array(
-		'width' => '30', 
-		'label' => 'LBL_NAME', 
-		'link' => true,
-        'default' => true), 
-    'empresa_type' => array(
-        'width' => '20', 
-        'label' => 'LBL_TYPE',         
-        'default' => true), 
-    'empresa_type' => array(
-        'width' => '20', 
-        'label' => 'LBL_TYPE',         
-        'default' => true), 
-    'chk_es_proveedor' => array(
-        'width' => '10', 
-        'label' => 'LBL_ES_PROVEEDOR',         
-        'default' => true), 
-    'chk_es_competidor' => array(
-        'width' => '10', 
-        'label' => 'LBL_ES_COMPETIDOR',         
-        'default' => true),     
-    
-);
+echo '<script type="text/javascript"  src="include/javascript/Expan_Empresa/ListViewEmpresa.js"></script>';
+
 
 	global $current_user;
 
 	$GLOBALS['log'] -> info('[ExpandeNegocio][listviewdef Empresa]$current_user->id-' . $current_user->id);
 
-if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6'
-){
-	$GLOBALS['log'] -> info('[ExpandeNegocio][listviewdef Empresa]entra if');
+if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6' || $current_user->id=='1')
+{
+	$listViewDefs[$module_name] = array(
+		'NAME' => array(
+			'width' => '30',
+			'label' => 'LBL_NAME',
+			'link' => true,
+			'default' => true),
+		'empresa_type' => array(
+			'width' => '20',
+			'label' => 'LBL_TYPE',
+			'default' => true),
+		'origen' => array(
+			'width' => '10',
+			'label' => 'LBL_ORIGEN',
+			'default' => true),
+		'pais' => array(
+			'width' => '10',
+			'label' => 'LBL_PAIS',
+			'default' => true),
+		'ccaa' => array(
+			'width' => '10',
+			'label' => 'LBL_CCAA',
+			'default' => true),
+		'sector' => array(
+			'width' => '10',
+			'label' => 'LBL_SECTOR',
+			'default' => true),
+		'fecha_contacto' => array(
+			'width' => '10',
+			'label' => 'LBL_FECHA_CONTACTO',
+			'default' => true),
+		'rating' => array(
+			'width' => '10',
+			'label' => 'LBL_RATING',
+			'default' => true),
+		'estado_cp' => array(
+			'width' => '10',
+			'label' => 'LBL_ESTADO',
+			'default' => true),
+		'decision' => array(
+			'width' => '10',
+			'label' => 'LBL_DECISION',
+			'default' => true),
+		'f_plazo' => array(
+			'width' => '10',
+			'label' => 'LBL_PLAZO',
+			'default' => true),
+		'chk_corto_plazo' => array(
+			'width' => '10',
+			'label' => 'LBL_CORTO_PLAZO',
+			'default' => true),
+		'chk_es_proveedor' => array(
+			'width' => '10',
+			'label' => 'LBL_ES_PROVEEDOR',
+			'default' => true),
+		'chk_es_competidor' => array(
+			'width' => '10',
+			'label' => 'LBL_ES_COMPETIDOR',
+			'default' => true),
+		'chk_es_cliente_potencial' => array(
+			'width' => '10',
+			'label' => 'LBL_ES_CLIENTE_POTENCIAL',
+			'default' => true),
+		'chk_alianza' => array(
+			'width' => '10',
+			'label' => 'LBL_ALIANZA',
+			'default' => true),
+	);
 
-    $listViewDefs[$module_name]['chk_es_cliente_potencial'] =  array(
-            'width' => '10', 
-            'label' => 'LBL_ES_CLIENTE_POTENCIAL',         
-            'default' => true);                
 }else{
-	$GLOBALS['log'] -> info('[ExpandeNegocio][listviewdef Empresa]entra else');
+	$listViewDefs[$module_name] = array(
+		'NAME' => array(
+			'width' => '30',
+			'label' => 'LBL_NAME',
+			'link' => true,
+			'default' => true),
+		'empresa_type' => array(
+			'width' => '20',
+			'label' => 'LBL_TYPE',
+			'default' => true),
+		'chk_es_proveedor' => array(
+			'width' => '10',
+			'label' => 'LBL_ES_PROVEEDOR',
+			'default' => true),
+		'chk_es_competidor' => array(
+			'width' => '10',
+			'label' => 'LBL_ES_COMPETIDOR',
+			'default' => true),
+		'chk_alianza' => array(
+			'width' => '10',
+			'label' => 'LBL_ALIANZA',
+			'default' => true),
+	);
 }
-
-$listViewDefs[$module_name]['chk_alianza'] =  array(
-            'width' => '10', 
-            'label' => 'LBL_ALIANZA',         
-            'default' => true);        
-?>

@@ -151,7 +151,6 @@ $mod_strings = array (
     'LBL_POBLACION' => 'Poblacion',
     'LBL_WEB' => 'Web',
     'LBL_OBSERVACIONES' => 'Observaciones',
-    'LBL_FECHA_CONTACTO' => 'Fecha de contacto',
     'LBL_SECTOR'=> 'Sector de actividad',
     'LBL_CIF' => 'Cif',
     'LBL_ACTIVIDAD_PRINCIPAL' => 'Actividad principal',
@@ -164,5 +163,6 @@ $mod_strings = array (
     'LBL_TELEFONO_CONTACTO3' => 'Telefono de contacto 3',
     'LBL_TELEFONO_CONTACTO_OBSERVA3' => 'Observaciones telefono 3',
     'LBL_OBSERVACIONES_CONTACTO' => 'Observaciones del contacto',
+  'LBL_AMBITO_EMPRESA'  => 'Ambito de la empresa',
     
 );

@@ -23,7 +23,7 @@ array (
       ),
       'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
       {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
-      {sugar_getscript file="include/javascript/EditSolicitud.js"}
+      {sugar_getscript file="include/javascript/EditViewSolicitud.js"}
       {sugar_getscript file="modules/Documents/documents.js"}
       <script type="text/javascript"> onload=inicio();</script>',
       'form' => 

@@ -19,6 +19,10 @@ $("#chk_alianza").change(function () {
     renderAlianzaTab();
 });
 
+$("#encaje_cliente").change(function () {
+    renderMotivos();
+});
+
 $("#empresa_type").change(function () {
     renderTrabajaConsultora();
 });
@@ -45,38 +49,47 @@ $("#chk_trabaja_consultora").change(function () {
     renderConsultora();
 });
 
-$("#provincia").change(function(){
+$("#provincia").change(function () {
     loadMunicipios();
 });
 
+$("#ccaa").change(function () {
+    loadProvincias();
+});
 
-renderProveedorTab();
-renderPropuestaTab();
-renderCompetidorTab();
-renderAlianzaTab();
-renderTrabajaConsultora();
-renderConsultora();
-renderTipoPositivo();
-marcarCamposImportantes();
-cargarchecks("Sectorcheck", "sector");
-fechaPrimerContactoHoy();
-$("#sector_label").parent().hide();
+document.addEventListener("DOMContentLoaded", function (event) {
+    renderProveedorTab();
+    renderPropuestaTab();
+    renderCompetidorTab();
+    renderAlianzaTab();
+    renderTrabajaConsultora();
+    renderConsultora();
+    renderTipoPositivo();
+    marcarCamposImportantes();
+    cargarchecks("Sectorcheck", "sector");
+    fechaPrimerContactoHoy();
+    renderMotivos();
+    hide();
+    refreshSn();
+});
 
-function renderProveedorTab() {
-    if ($("#chk_es_proveedor").is(':checked')) {
-
-        $("a:contains('Mistery')").show();
-        $("a:contains('Datos Proveedor Generales')").show();
-        if ($("#chk_proveedor_cliente").is(':checked')){
-            $("a:contains('Datos Proveedor por Franquicia')").show();
-        }else{
-            $("a:contains('Datos Proveedor por Franquicia')").hide();
-        }
+function renderMotivos() {
+    if ($("#encaje_cliente option:selected").val() == "ne") {
+        $("#motivo_no_encaja").parent().parent().show();
     } else {
-        $("a:contains('Mistery')").hide();
-        $("a:contains('Datos Proveedor Generales')").hide();
-        $("a:contains('Datos Proveedor por Franquicia')").hide();
+        $("#motivo_no_encaja").parent().parent().hide();
     }
+
+    if ($("#encaje_cliente option:selected").val() == "eng") {
+        $("#motivo_no_gusta").parent().parent().show();
+    } else {
+        $("#motivo_no_gusta").parent().parent().hide();
+    }
+}
+
+function hide() {
+    $("#activities_correocandidato_button").hide();
+    $("#sector_label").parent().hide();
 }
 
 function renderCompetidorTab() {
@@ -228,6 +241,13 @@ function validarEmpresa() {
             $("#actividad_principal").css("border", "#94c1e8 solid 1px");
         }
 
+        if ($("#estado_cp").val() == "" && $("#chk_es_cliente_potencial").is(':checked')) {
+            $("#estado_cp").css("border", "2px solid red");
+            alert("El estado debe estar relleno");
+            return false;
+        } else {
+            $("#estado_cp").css("border", "#94c1e8 solid 1px");
+        }
 
     }
 
@@ -482,21 +502,6 @@ function editFranquicia(id) {
         }
     });
 
-}
-
-function despliegoPliegoSector(nombreSector) {
-
-    nombreSector = nombreSector.split(' ').join('_');
-
-    CamposImput = document.getElementsByName(nombreSector);
-
-    for (var i = 0; i < CamposImput.length; i++) {
-        if (CamposImput[i].parentNode.style.display == '') {
-            CamposImput[i].parentNode.style.display = 'none';
-        } else {
-            CamposImput[i].parentNode.style.display = null;
-        }
-    }
 }
 
 function activoDesSector(nombreSector) {
@@ -786,36 +791,71 @@ function addFechaNoticias(linTexto) {
 
 }
 
-function loadMunicipios(){
+function loadProvincias() {
+
+    var ccaa;
+    var valSelect;
+
+    valSelect = $("#provincia").val();
+    ccaa = $("#ccaa").val();
+
+    url = 'index.php?entryPoint=consultarSolicitud';
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "tipo=RecogeProvincias&ccaa=" + ccaa,
+        success: function (data) {
+
+            $("#provincia").empty();
+            var parse = JSON.parse(data);
+            var listitems = '<option value=""></option>';
+
+            for (var i in parse) {
+                listitems += '<option value=' + parse[i].c_prov + '>' + parse[i].d_prov + '</option>';
+            }
+            $("#provincia").append(listitems);
+
+            $("#poblacion option[value=" + valSelect + "]").attr("selected", true);
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+
+            alert()
+        }
+    });
+
+}
+
+
+function loadMunicipios() {
 
     var provincia;
     var valSelect;
 
-    provincia=$("#provincia").val();
-    valSelect=$("#poblacion").val();
+    provincia = $("#provincia").val();
+    valSelect = $("#poblacion").val();
 
     url = 'index.php?entryPoint=consultarSolicitud';
     $.ajax({
-        type : "POST",
-        url : url,
-        data : "tipo=RecogeMunicipios&provincia=" + provincia,
-        success : function(data) {
+        type: "POST",
+        url: url,
+        data: "tipo=RecogeMunicipios&provincia=" + provincia,
+        success: function (data) {
 
             $("#poblacion").empty();
             var parse = JSON.parse(data);
             var listitems = '<option value=""></option>';
 
-            for(var i in parse) {
+            for (var i in parse) {
 
                 listitems += '<option value=' + parse[i].c_provmun + '>' + parse[i].d_municipio + '</option>';
             }
             $("#poblacion").append(listitems);
 
-            $("#poblacion option[value="+ valSelect +"]").attr("selected",true);
+            $("#poblacion option[value=" + valSelect + "]").attr("selected", true);
 
         },
-        error : function(jqXHR, textStatus, errorThrown) {
-            alert('No se ha podido cargar los documntos Entrantes- ' + textStatus + ' - ' + errorThrown);
+        error: function (jqXHR, textStatus, errorThrown) {
         }
     });
 

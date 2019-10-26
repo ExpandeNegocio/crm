@@ -9,10 +9,10 @@ array (
     'templateMeta' => 
     array (
       'javascript' => '
-      {sugar_getscript file="include/javascript/CambioFranquicia.js"}',
+      {sugar_getscript file="include/javascript/Expande_Franquicia/CambioFranquicia.js"}',
       
       'includes' => array (
-                        0 =>array ('file' => 'include/javascript/CambioFranquicia.js',),
+                        0 =>array ('file' => 'include/javascript/Expande_Franquicia/CambioFranquicia.js',),
                     ),
       'form' => 
       array (

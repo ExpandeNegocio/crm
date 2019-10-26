@@ -1,27 +1,33 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	coloreaSectores();
 	renderConsultora();
+	renderProveedorTab();
+	renderPropuestaTab();
+	renderCompetidorTab();
+	renderMotivos();
+	renderAlianzaTab();
+	hide();
 });
 
-renderProveedorTab();
-renderPropuestaTab();
-renderCompetidorTab();
-renderAlianzaTab();
+function hide(){
+	$("#activities_correocandidato_button").hide();
+}
 
-function renderProveedorTab() {
-	if ($("#chk_es_proveedor").is(':checked')) {
-
-		$("a:contains('Mistery')").show();
-		$("a:contains('Datos Proveedor Generales')").show();
-		if ($("#chk_proveedor_cliente").is(':checked')){
-			$("a:contains('Datos Proveedor por Franquicia')").show();
-		}else{
-			$("a:contains('Datos Proveedor por Franquicia')").hide();
-		}
+function renderMotivos(){
+	if ($("#encaje_cliente option:selected").text() == "ne") {
+		$("#motivo_no_encaja_label").show();
+		$("#motivo_no_encaja").parent().show();
 	} else {
-		$("a:contains('Mistery')").hide();
-		$("a:contains('Datos Proveedor Generales')").hide();
-		$("a:contains('Datos Proveedor por Franquicia')").hide();
+		$("#motivo_no_encaja_label").hide();
+		$("#motivo_no_encaja").parent().hide();
+	}
+
+	if ($("#encaje_cliente option:selected").text() == "eng") {
+		$("#motivo_no_gusta_label").show();
+		$("#motivo_no_gusta").parent().show();
+	} else {
+		$("#motivo_no_gusta_label").hide();
+		$("#motivo_no_gusta").parent().hide();
 	}
 }
 
@@ -42,7 +48,8 @@ function renderAlianzaTab() {
 }
 
 function renderPropuestaTab() {
-	if ($("#chk_es_cliente_potencial").is(':checked')) {
+
+	if ($("#chk_es_cliente_potencial").is(':checked') || $("#chk_es_cliente_potencial_detailblock").is(':checked') ) {
 		$("a:contains('Propuesta')").show();
 	} else {
 		$("a:contains('Propuesta')").hide();
@@ -124,31 +131,6 @@ function cambiarCompPrincipal() {
 		return false;
 	}
 
-}
-
-function getListaCompetidores() {
-
-	//Recogemos la lista de competidores a cambiar
-
-	var lista = document.getElementsByClassName("checkbox");
-
-	var idCompetidores = "";
-	var prim = true;
-
-	var CHK_STR = "checkbox_display_prueba-";
-
-	for (i = 0; i < lista.length; i++) {
-		if (lista[i].checked == true && lista[i].name.indexOf(CHK_STR) != -1) {
-			if (prim == true) {
-				idCompetidores = lista[i].name.replace(CHK_STR, "");
-			} else {
-				idCompetidores = idCompetidores + "#" + lista[i].name.replace(CHK_STR, "");
-			}
-			prim = false;
-		}
-	}
-
-	return idCompetidores;
 }
 
 function cambiarCompetidor(tipoComp) {
