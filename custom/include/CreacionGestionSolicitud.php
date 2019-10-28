@@ -680,6 +680,11 @@ class AccionesGuardadoGestionSol {
                     
                 }
 
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO &&
+                  $bean -> estado_sol!=$estadoAnt && $bean -> f_reactivacion_parado != null){
+                  $bean -> f_reactivacion_parado = null;
+                }
+
                 //Si no localizamos para una gestión, debemos de pasar el resto de gestiones de la solicitud al mismo estado
                 //4 - No localizado
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PARADO && 
