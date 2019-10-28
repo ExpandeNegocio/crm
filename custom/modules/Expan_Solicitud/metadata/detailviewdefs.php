@@ -42,8 +42,8 @@ $viewdefs [$module_name] =
 
             'includes' =>
               array(
-                0 => array('file' => 'include/javascript/EditViewSolicitud.js',),
-                1 => array('file' => 'include/javascript/ViewSolicitud.js',),
+                0 => array('file' => 'include/javascript/Expan_Solicitud/EditViewSolicitud.js',),
+                1 => array('file' => 'include/javascript/Expan_Solicitud/DetailViewSolicitud.js',),
                 2 => array('onload' => 'cargaAccionesSol();',),
 
               ),
@@ -53,8 +53,8 @@ $viewdefs [$module_name] =
                       {sugar_getscript file="include/javascript/Expan_Solicitud/EditViewSolicitud.js"}
                       {sugar_getscript file="include/javascript/jquery.js"}        
                       {sugar_getscript file="modules/Documents/documents.js"}
-                      {sugar_getscript file="include/javascript/ViewSolicitud.js"}
-                      <script type="text/javascript"> onload=cargaAccionesSol();</script>',
+                      {sugar_getscript file="include/javascript/Expan_Solicitud/DetailViewSolicitud.js"}
+                      <script type="text/javascript"> onload="cargaAccionesSol()";</script>',
 
             'form' =>
               array(

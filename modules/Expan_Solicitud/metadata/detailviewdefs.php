@@ -11,7 +11,7 @@ array (
       {sugar_getscript file="include/javascript/Expan_Solicitud/EditViewSolicitud.js"}
       {sugar_getscript file="include/javascript/jquery.js"}
       {sugar_getscript file="modules/Documents/documents.js"}
-      {sugar_getscript file="include/javascript/ViewSolicitud.js"}
+      {sugar_getscript file="include/javascript/DetailViewSolicitud.js"}
       <script type="text/javascript"> onload=cargaAccionesSol();</script>', 
       'form' => 
       array (
