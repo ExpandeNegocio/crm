@@ -437,6 +437,8 @@ $("#chk_entrevista_previa_cliente").bind("click", function () {
     activarFecha("#chk_entrevista_previa_cliente", "#f_entrevista_previa_cliente");
 });
 
+renderLocal();
+
 function inicio() {
     //Ocultar los campos auxiliares
     ocultarCampoAux();
@@ -489,7 +491,7 @@ function inicio() {
 
     cargaAccionesSol();
     refreshSn();
-    renderLocal();
+  //  renderLocal();
 }
 
 function renderLocal() {
