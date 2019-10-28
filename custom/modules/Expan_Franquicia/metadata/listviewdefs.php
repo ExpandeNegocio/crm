@@ -10,7 +10,7 @@ array (
     'link' => true,
     'default' => true,
   //  'customCode' => '{$NAME_LINK}{$NAME}
-  //  <script type="text/javascript"  src="include/javascript/ListFranquicias.js"></script> 
+  //  <script type="text/javascript"  src="include/javascript/Expan_Franquicia/ListViewFranquicia.js"></script>
   //  ',
   ),
   'BILLING_ADDRESS_CITY' => 
@@ -36,7 +36,7 @@ array (
     'label' => 'LBL_TIPO_CUENTA',
     'width' => '10%',
      'customCode' => '{$TIPO_CUENTA}
-    <script type="text/javascript"  src="include/javascript/ListFranquicias.js"></script>
+    <script type="text/javascript"  src="include/javascript/Expan_Franquicia/ListViewFranquicia.js"></script>
     ',
   ),
   'gestionesFran' => 
