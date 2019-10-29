@@ -55,6 +55,16 @@ $searchdefs [$module_name] =
                 'width' => '10%',
                 'name' => 'candidatura_caliente',
               ),
+
+            'chk_gestionado_central' =>
+              array(
+                'type' => 'bool',
+                'default' => true,
+                'label' => 'LBL_CHK_GESTIONADO_CENTRAL',
+                'width' => '10%',
+                'name' => 'chk_gestionado_central',
+              ),
+
             'chk_visita_central' =>
               array(
                 'type' => 'bool',
