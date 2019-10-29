@@ -475,7 +475,7 @@ function inicio() {
     if (campo != null) {
         campo.style.display = 'none';
     }
-    var campo = document.getElementById("btn_clr_created_by_name");
+    campo = document.getElementById("btn_clr_created_by_name");
     if (campo != null) {
         campo.style.display = 'none';
     }
