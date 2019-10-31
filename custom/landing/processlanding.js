@@ -18,7 +18,6 @@ function cargaLanding(idGest) {
 function acceptPrivPolitics(idDoc,idGest){
 
     if ($("#chkAccept").prop('checked')){
-        registerAction(idGest,"DF",idDoc);
         downloadfile(idDoc,idGest);
     }else{
         alert("Para poder descargar el dossier es necesario aceptar las condiciones");
@@ -42,6 +41,7 @@ function downloadfile(idDoc,idGest){
         success : function(data) {
 
             if ( data.resp != "") {
+                registerAction(idGest,"DF",data.resp);
                 window.location = "https://www.expandenegocio.com/sugarcrm/upload/"+data.resp;
             }
         },

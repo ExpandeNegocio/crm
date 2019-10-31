@@ -169,30 +169,36 @@ function addPanelDocumentosEnviadosGestion(gestId){
 	});	
 }
 
-function documentosGestionJsonToArray(Json){
-	
-	var array=[];
-	
-	var arrayInt=[];
+function documentosGestionJsonToArray(Json, contipo) {
 
-	arrayInt.push('Fecha');
-	arrayInt.push('Documento');
-	arrayInt.push('');	
-	array.push(arrayInt);
-	
-	for(var i in Json) {
-		
-		var arrayInt=[];
-		
-        arrayInt.push('<img src="themes/Sugar5/images/Documents.gif?v=1DGI1bi-PiFYhwpnWfZEfg" border="0" alt="Llamadas">');        				
+	var array = [];
+
+	var arrayIntIni = [];
+
+	if (contipo) {
+		arrayIntIni.push('Tipo');
+	}
+	arrayIntIni.push('Fecha');
+	arrayIntIni.push('Documento');
+
+
+	arrayIntIni.push('');
+	array.push(arrayIntIni);
+
+	for (var i in Json) {
+		var arrayInt = [];
+
+		arrayInt.push('<img src="themes/Sugar5/images/Documents.gif?v=1DGI1bi-PiFYhwpnWfZEfg" border="0" alt="Llamadas">');
 		arrayInt.push(Json[i].Documento);
-		arrayInt.push(Json[i].Fecha);		
-		
+		arrayInt.push(Json[i].Fecha);
+		if (contipo){
+			arrayInt.push(Json[i].tipo);
+		}
+
 		array.push(arrayInt);
 	}
-	
+
 	return array;
-	
 }
 
 function generateTable(lista) {

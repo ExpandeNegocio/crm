@@ -39,7 +39,7 @@ array (
       array (
         0 => 
         array (
-          'file' => 'include/javascript/DetailViewGestionSolicitud.js',
+          'file' => 'include/javascript/Expan_Gestionsolicitudes/DetailViewGestionSolicitudes.js',
         ),
       ),
       0 => 

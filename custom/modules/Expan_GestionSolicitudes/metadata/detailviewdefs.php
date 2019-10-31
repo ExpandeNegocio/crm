@@ -42,8 +42,8 @@ $viewdefs [$module_name] =
 
             'includes' => array(
               0 => array('file' => 'include/javascript/limpiarReunionDetail.js',),
-              1 => array('file' => 'include/javascript/DetailViewGestionSolicitud.js',),
-              2 => array('file' => 'include/javascript/EditGestionSolicitud.js',),
+              1 => array('file' => 'include/javascript/Expan_Gestionsolicitudes/DetailViewGestionSolicitudes.js',),
+              2 => array('file' => 'include/javascript/Expan_Gestionsolicitudes/EditGestionSolicitudes.js',),
               3 => array('file' => 'include/javascript/popup_parent_helper.js',),
               4 => array('file' => 'cache/include/javascript/sugar_grp_jsolait.js',),
               5 => array('file' => 'modules/Documents/documents.js',),

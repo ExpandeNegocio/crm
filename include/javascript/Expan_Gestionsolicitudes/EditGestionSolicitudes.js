@@ -1996,7 +1996,7 @@ function addPanelDocumentosRecibidosGestion(gestId) {
         data: "tipo=RecogeDocumentosRecibidosGestion&gestId=" + gestId,
         success: function (data) {
             var parse = JSON.parse(data);
-            var array = documentosGestionJsonToArray(parse);
+            var array = documentosGestionJsonToArray(parse,false);
 
             var div = $('<div/>',
                 {
@@ -2025,7 +2025,7 @@ function addPanelDocumentosEnviadosGestion(gestId) {
         data: "tipo=RecogeDocumentosEnviadosGestion&gestId=" + gestId,
         success: function (data) {
             var parse = JSON.parse(data);
-            var array = documentosGestionJsonToArray(parse);
+            var array = documentosGestionJsonToArray(parse,true);
 
             var div = $('<div/>',
                 {
@@ -2046,30 +2046,36 @@ function addPanelDocumentosEnviadosGestion(gestId) {
     });
 }
 
-function documentosGestionJsonToArray(Json) {
+function documentosGestionJsonToArray(Json, contipo) {
 
     var array = [];
 
     var arrayIntIni = [];
 
+
+    if (contipo) {
+        arrayIntIni.push('Tipo');
+    }
     arrayIntIni.push('Fecha');
     arrayIntIni.push('Documento');
+
     arrayIntIni.push('');
     array.push(arrayIntIni);
 
     for (var i in Json) {
-
         var arrayInt = [];
 
         arrayInt.push('<img src="themes/Sugar5/images/Documents.gif?v=1DGI1bi-PiFYhwpnWfZEfg" border="0" alt="Llamadas">');
         arrayInt.push(Json[i].Documento);
         arrayInt.push(Json[i].Fecha);
+        if (contipo){
+            arrayInt.push(Json[i].tipo);
+        }
 
         array.push(arrayInt);
     }
 
     return array;
-
 }
 
 function generateTable(lista) {
@@ -2139,37 +2145,3 @@ function abrirSolicitud(gestion, mode) {
         }
     });
 }
-
-/*
-var tmrReady = setInterval(isPageFullyLoaded, 100);
- 
-function isPageFullyLoaded() {
-     if (document.readyState == "loaded" || document.readyState == "complete") {
-         subclassForms();
-         clearInterval(tmrReady);
-     }
- }
-  
-function submitDisabled(_form, currSubmit) {
-     return function () {
-         var mustSubmit = true;
-         if (currSubmit != null)
-             mustSubmit = currSubmit();
-  
-         var els = _form.elements;
-         for (var i = 0; i < els.length; i++) {
-             if (els[i].type == "submit")
-                 if (mustSubmit)
-                     els[i].disabled = true;
-         }
-         return mustSubmit;
-     }
-}
-  
-function subclassForms() {
-    for (var f = 0; f < document.forms.length; f++) {
-        var frm = document.forms[f];
-        frm.onsubmit = submitDisabled(frm, frm.onsubmit);
-    }
-}*/
-

@@ -42,18 +42,23 @@ switch ($tipo) {
 
     $return = array();
 
-    $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento, Fecha  ";
-    $query = $query . "FROM     (SELECT n.id nid, n.name, e.date_sent fecha  ";
-    $query = $query . "          FROM   expan_gestionsolicitudes g,  emails e, notes n  ";
-    $query = $query . "          WHERE e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0  ";
-    $query = $query . "                 AND (e.status = 'sent') AND n.parent_id = e.id AND g.id= '" . $idGest . "'  ";
-    $query = $query . "          UNION  ";
-    $query = $query . "          SELECT n.id nid, n.name, e.date_sent fech ";
-    $query = $query . "FROM   emails e, email_templates et, expan_gestionsolicitudes g, notes n ";
-    $query = $query . "WHERE  g.id = '" . $idGest . "' AND e.parent_id = g.id AND n.parent_id = et.id AND e.status = 'sent' AND e.deleted = 0 AND n ";
-    $query = $query . "       .deleted = 0 AND (modeloneg IS NULL OR (modeloneg = 1 AND g.tiponegocio1 = 1) OR (modeloneg = 2 AND g.tiponegocio2 = 1) OR ";
-    $query = $query . "       (modeloneg = 3 AND g.tiponegocio3 = 1) OR (modeloneg = 4 AND g.tiponegocio4 = 1)) AND e.name = replace(et.subject, \"'\", \"\")) yy  ";
-    $query = $query . "ORDER BY fecha DESC ; ";
+    $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento, Fecha,tipo    ";
+    $query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha , 'Enviado' as tipo ";
+    $query=$query."          FROM   expan_gestionsolicitudes g,  emails e, notes n   ";
+    $query=$query."          WHERE e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0   ";
+    $query=$query."                 AND (e.status = 'sent') AND n.parent_id = e.id AND g.id= '" . $idGest . "'   ";
+    $query=$query."          UNION ALL  ";
+    $query=$query."          SELECT n.id nid, n.name, e.date_sent fecha, 'Enviado' as tipo  ";
+    $query=$query."          FROM   emails e, email_templates et, expan_gestionsolicitudes g, notes n  ";
+    $query=$query."          WHERE  g.id = '" . $idGest . "' AND e.parent_id = g.id AND n.parent_id = et.id AND e.status = 'sent' AND e.deleted = 0 AND n  ";
+    $query=$query."            .deleted = 0 AND (modeloneg IS NULL OR (modeloneg = 1 AND g.tiponegocio1 = 1) OR (modeloneg = 2 AND g.tiponegocio2 = 1) OR  ";
+    $query=$query."            (modeloneg = 3 AND g.tiponegocio3 = 1) OR (modeloneg = 4 AND g.tiponegocio4 = 1)) AND e.name = replace(et.subject, \"'\", \"\") ";
+    $query=$query."          UNION ALL ";
+    $query=$query."          select dr.id , dr.filename , a.f_accion, 'Descargado' as tipo  ";
+    $query=$query."          from expan_mailing_actions a,document_revisions dr  ";
+    $query=$query."          where gestion_id='" . $idGest . "' and dr.id= a.c_doc and c_accion='DF' and deleted=0 group by gestion_id, c_doc                       ";
+    $query=$query."       ) yy   ";
+    $query=$query."ORDER BY fecha DESC   ";
 
     $result = $db->query($query, true);
 
