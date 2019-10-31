@@ -119,4 +119,5 @@ $mod_strings = array (
   'LBL_TYPE' => 'Tipo',
   'LBL_FRANQUICIA' => 'Franquicia',
   'LBL_MODELO_NEGOCIO' => 'Modelo de Negocio',
+  'LBL_LANDING' => 'Utiliza Landing',
 );

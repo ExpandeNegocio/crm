@@ -199,4 +199,5 @@ $mod_strings = array(
   'LBL_PAIS' => 'País',
   'LBL_MOTIVO_NO_ENCAJA' => 'Motivo por el que no le encaja',
   'LBL_MOTIVO_NO_GUSTA' => 'Motivo por el que no le gusta',
+  'LBL_LANDING'=>'Utiliza Landing',
 );

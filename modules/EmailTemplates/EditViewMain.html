@@ -127,6 +127,24 @@
                         </td>
 					</tr>
 					<tr>
+						<td width="15%" scope="row">
+							{MOD.LBL_LANDING}
+						</td>
+						<td width="30%" >
+							<input  name="toggle_landing"  id="toggle_landing" onclick="var landing = document.getElementById('chk_landing');
+																							if(document.getElementById('toggle_landing').checked == true) {
+																								landing.value = 1;
+																							} else {
+																								landing.value = 0;
+																							}" type="checkbox" {CHKLANDING_CHECKED}/>
+							<input  name="chk_landing"  id="chk_landing"  type="hidden" value='{CHKLANDING_VALUE}'/>
+						</td>
+						<td width="15%" scope="row">
+						</td>
+						<td width="30%" >
+						</td>
+					</tr>
+					<tr>
 						<td width="15%" scope="row">{MOD.LBL_REVISEDBY_TO_ID}&nbsp;</td>
 						<td>
 			                  <input class="sqsEnabled" tabindex="0" autocomplete="off" id='revisedby_user_name' name='revisedby_user_name' type="text" value="{REVISEDBY_USER_NAME}">

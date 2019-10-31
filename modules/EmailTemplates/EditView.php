@@ -393,8 +393,15 @@ if(true) {
     
     $xtpl->assign("FREV",$f_revision);
     $xtpl->assign("REVISEDBY_USER_NAME",$usuario_rev);
-       
-	// done and parse
+
+    if(isset($focus->chk_landing) && $focus->chk_landing){
+      $xtpl->assign("CHKLANDING_CHECKED","CHECKED");
+      $xtpl->assign("CHKLANDING_VALUE","1");
+    }else{//set value to 0
+      $xtpl->assign("CHKLANDING_VALUE","0");
+    }
+
+  // done and parse
 	$xtpl->parse("main.textarea");
 }
 

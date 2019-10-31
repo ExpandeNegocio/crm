@@ -82,6 +82,20 @@ function toggle_text_only(firstRun) {
     update_textarea_button();
 }
 
+function toggle_landing(firstRun) {
+	if (typeof(firstRun) == 'undefined')
+		firstRun = false;
+	var landing = document.getElementById('landing');
+
+	if(document.getElementById('toggle_landing').checked == true) {
+		landing.value = 1;
+	} else {
+		landing.value = 0;
+	}
+}
+
+
+
 function update_textarea_button()
 {
 	if(document.getElementById('text_div').style.display == 'none') {

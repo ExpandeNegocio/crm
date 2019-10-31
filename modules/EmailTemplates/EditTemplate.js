@@ -24,7 +24,6 @@ function cambiaModeloNeg(data){
 	
 }
 
-
 function recogelistaNegocios(franquicia,modNeg){
 	
 	url = 'index.php?entryPoint=consultarFranquicia&idFran=' + franquicia +"&tipo=FranqModeloNegocio";
@@ -49,24 +48,13 @@ function recogelistaNegocios(franquicia,modNeg){
 	
 }
 
-/*
-function cargaNegocio(franquicia,modNeg){
-	url = 'index.php?entryPoint=consultarFranquicia&idFran=' + franquicia +"&tipo=FranqModeloNegocio";
-	$.ajax({
-		type : "POST",
-		url : url,
-		data : "idFran=" + franquicia +"&tipo=FranqModeloNegocio",
-		success : function(data) {
+function toggle_landing() {
 
-			if (data!=null){
-				cambiaModeloNeg(data);
-				alert (modNeg);
-				$('#modeloneg').val(modNeg);
-			}			
+	var landing = document.getElementById('landing');
 
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			return null;
-		}
-	});
-}*/
+	if(document.getElementById('toggle_landing').checked == true) {
+		landing.value = 1;
+	} else {
+		landing.value = 0;
+	}
+}

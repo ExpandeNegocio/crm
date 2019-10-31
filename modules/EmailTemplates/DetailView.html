@@ -81,8 +81,13 @@
 		<td><slot>{modneg}</slot></td>
 		<td scope="row"><slot>{MOD.LBL_DESCRIPTION}</slot></td>
 		<td><slot>{DESCRIPTION}&nbsp;</slot></td>
-		
-		
+	</tr>
+	<tr>
+		<td scope="row" width='15%'><slot>{MOD.LBL_LANDING}</slot></td>
+		<td><slot><input id='toggle_landing' type="checkbox" disabled="disabled" {CHKLANDING_CHECKED} /></slot>
+
+		<td scope="row"><slot></slot></td>
+		<td><slot></slot></td>
 	</tr>
 	<tr>
 		<td scope="row" width='15%'><slot>{APP.LBL_DATE_ENTERED}</slot></td>

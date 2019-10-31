@@ -138,6 +138,9 @@ $xtpl->assign("MODIFIED_BY", $focus->modified_by_name);
 if(isset($focus->text_only) && $focus->text_only){
     $xtpl->assign("TEXT_ONLY_CHECKED","CHECKED");
 }
+if(isset($focus->chk_landing) && $focus->chk_landing){
+		$xtpl->assign("CHKLANDING_CHECKED","CHECKED");
+}
 $xtpl->assign("NAME", $focus->name);
 
 $xtpl->assign("DESCRIPTION", $focus->description);

@@ -109,6 +109,7 @@ class EmailTemplate extends SugarBean {
 		'accept_status_id',
 		'accept_status_name',
 		'franquicia',
+		'chk_landing',
 	);
 
     /**
