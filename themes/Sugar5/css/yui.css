@@ -5680,7 +5680,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 
 .yui-navset li em {
     font-style: normal;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: bold;
     color:#666;
 }
@@ -5799,7 +5799,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
     border: solid #a3a3a3;
     border-width: 1px 0 0;
     cursor: hand;
-    padding: 1px 10px 1px;
+    padding: 1px 7px 1px;
     left: 0;
     right: 0;
     bottom: 0;

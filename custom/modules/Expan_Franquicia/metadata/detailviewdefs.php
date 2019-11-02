@@ -155,7 +155,7 @@ array (
           1 =>
           array(
            'name' => 'chk_intermediacion_pasiva',
-            'label' => 'LBL_TIPO_CUENTA',          
+            'label' => 'LBL_INTERMEDIACION_PASIVA',
           ),
         ),
         
@@ -222,19 +222,7 @@ array (
             'label' => 'LBL_CENTROS_EXTRANJEROS_FRANQUI',
           ),
         ),
-        7 => 
-        array (
-          0 => 
-          array (
-            'name' => 'red_spain',
-            'label' => 'LBL_RED_SPAIN',
-          ),
-          1 => 
-          array (
-            'name' => 'red_extrangera',
-            'label' => 'LBL_RED_EXTRANGERA',
-          ),
-        ),
+
         8 =>
           array (
             0 =>
@@ -326,16 +314,6 @@ array (
             'name' => 'centros_cerrados_ult_year',
             'label' => 'LBL_CENTROS_CERRADOS_ULT_YEAR',
           ),
-        ),
-        15 =>
-        array(
-            0=> array(
-                
-                'name'=>'prime',
-                'studio' =>'visible',
-                'label' =>'LBL_PRIME',
-            
-            ),
         ),
       ),
     
@@ -469,24 +447,9 @@ array (
         array (
           0 => 
           array (
-            'name' => 'tipo_ficha',
-            'studio' => 'visible',
-            'label' => 'LBL_TIPO_FICHA',
-          ),
-          1 => 
-          array (
             'name' => 'zona',
             'studio' => 'visible',
             'label' => 'LBL_ZONA',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'logotipo',
-            'studio' => 'visible',
-            'label' => 'LBL_LOGOTIPO',
           ),
           1 => 
           array (
@@ -494,20 +457,8 @@ array (
             'label' => 'LBL_VIDEO',
           ),
         ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'exclusion_de_sector',
-            'label' => 'LBL_EXCLUSION_DE_SECTOR',
-          ),
-          1 => 
-          array (
-            'name' => 'exclusion_de_subsector',
-            'label' => 'LBL_EXCLUSION_DE_SUBSECTOR',
-          ),
-        ),
-        3 => 
+
+        1 =>
         array (
           0 => 
           array (
@@ -519,7 +470,7 @@ array (
           array (            
           ),
         ),
-        4 => 
+        2 =>
         array (
           0 => 
           array (
@@ -532,7 +483,7 @@ array (
             'label' => 'LBL_CORREO_ENVIO',
           ),
         ),
-         5 => 
+        3 =>
         array (
           0 => 
           array (
@@ -547,7 +498,7 @@ array (
           ),
         ),
          
-        6 => 
+        4 =>
         array (
           0 => 
           array (
@@ -555,13 +506,9 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_FILTRO_SOLICITUDES',
           ),
-          1 =>  array (
-            'name' => 'prioridad',
-            'studio' => 'visible',
-            'label' => 'LBL_PRIORIDAD_FRAN',
-          ),
+          1 =>  array (),
         ),
-       7 => 
+       5 =>
         array (
           0 => 
           array (
@@ -571,7 +518,7 @@ array (
           ),      
         ),  
         
-        8 => 
+        6 =>
         array (
           0 => array (
             'name' => 'llamar_todos',
@@ -579,20 +526,13 @@ array (
             'label' => 'LBL_LLAMAR_TODOS',
           ),
           1 =>  array (
-            'name' => 'chk_c15',
-            'studio' => 'visible',
-            'label' => 'LBL_CHK_C15',
-          ),
-        ),
-        9 => 
-        array (
-          0 => array (
             'name' => 'parada_temp_envios',
             'studio' => 'visible',
             'label' => 'LBL_PARADA_TEMP_ENVIOS',
-          ),          
+          ),
         ),
-        10 => 
+
+        7 =>
         array (
           0 => array (
             'name' => 'cod_franquicia',
@@ -605,7 +545,7 @@ array (
             'label' => 'LBL_PROY_ERM',
           ),                            
         ),   
-        11 => 
+        8 =>
         array (
           0 => array (
             'name' => 'correo_drive',
@@ -615,8 +555,8 @@ array (
           1 =>  array (            
           ),
         ),  
-        
-        12 => 
+
+        9 =>
         array (
           0 => array (
             'name' => 'carpeta_drive',
@@ -1559,9 +1499,7 @@ array (
           ),
           1 => 
           array (
-            'name' => 'zona_exclisiva',
-            'studio' => 'visible',
-            'label' => 'LBL_ZONA_EXCLISIVA',
+
           ),
         ),
         8 => 
