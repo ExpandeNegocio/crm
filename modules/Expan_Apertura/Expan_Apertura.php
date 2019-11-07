@@ -134,7 +134,13 @@ class Expan_Apertura extends Expan_Apertura_sugar
 
   static function PreparaAperuraCompetencia($solicitud, $gestion)
   {
-    $name = $solicitud->first_name . " " . $solicitud->last_name . " - Franquicia Competencia";
+    if ($gestion->franq_apertura_desca=="" || $gestion->franq_apertura_desca==null){
+      $nomFran="Franquicia de la competencia";
+    }
+    else{
+      $nomFran=$gestion->franq_apertura_desca;
+    }
+    $name = $solicitud->first_name . " " . $solicitud->last_name . "-".$nomFran;
 
     $franquiciado = Expan_Franquiciado::existeFranquiciado($solicitud->id);
     if ($franquiciado == false) { //se crea el franquiciado
