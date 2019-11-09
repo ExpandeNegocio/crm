@@ -141,7 +141,7 @@ $("#busca_motivosTagCheck").keyup(function(){//cuando pulses la caja de texto
 		}			
 		);
 			
-	});	
+	});
 
 function inicio() {	
 	document.getElementById("config_correo").disabled = true;
@@ -165,8 +165,10 @@ function clean(){
 	$("#proveedor_list_label").hide();
 	$("#competidor_insert_label").hide();
 	$("#competidor_list_label").hide();
-	$("#mistery_insert_label").hide();
-	$("#mistery_list_label").hide();
+	$("#mistery_list_fdo_label").hide();
+	$("#mistery_list_central_label").hide();
+	$("#mistery_insert_fdo_label").hide();
+	$("#mistery_insert_central_label").hide();
 }
 
 function makeTabby(){
@@ -174,7 +176,6 @@ function makeTabby(){
     $("textarea").each(function(){
     	   enableTab($(this).attr('id'));
     });
-
 }
 
 function enableTab(id) {
@@ -288,9 +289,9 @@ function cambiocheck(clase, id,act) {
 	}
 	
 	for (var k = 0; k < listaSel.length; k++) {
-		for (var j = 0; j < listaFran.length; j++) {
-			if (trim(listaSel[k]) == trim(listaFran[j].text)) {
-				listaFran[j].selected = true;
+		for (var l = 0; l < listaFran.length; j++) {
+			if (trim(listaSel[k]) == trim(listaFran[l].text)) {
+				listaFran[l].selected = true;
 			}
 		}
 	}
@@ -489,7 +490,7 @@ function addProveedorEmpresa(idFranquicia){
 			
 			success : function(data) {
 				
-				if ( data = "Ok") {
+				if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se ha podido guardar las condiciones");
@@ -521,7 +522,7 @@ function deleteProveedor(id){
 					"id=" + id,
 			
 			success : function(data) {
-				if ( data = "Ok") {
+				if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se ha podido guardar las condiciones");
@@ -604,38 +605,44 @@ function editProveedor(id){
 	
 }
 
-function addMisteryFranq(idFranquicia){
+function addMisteryFranqCentral(idFranquicia){
 			
-	var nom_entrevistado=$("#nom_entrevistado").val();
+	var nom_central=$("#nom_central").val();
 	var ubicacion=$("#ubicacion").val();
-	var f_entrevista=$("#f_entrevista").val();
-	var nom_mistery=$("#nom_mistery").val();
-	var telefono_mistery=$("#telefono_mistery").val();
-	var email_mistery=$("#email_mistery").val();
-	var num_empleados=$("#num_empleados").val();
-	var com_positivos=$("#com_positivos").val();
-	var com_negativos=$("#com_negativos").val();
+	var f_entrevista=$("#f_entrevista_central").val();
+	var correo_central=$("#correo_central").val();
+	var cargo_central=$("#cargo_central").val();
+	var telefono_central=$("#telefono_central").val();
+	var nom_utilizado=$("#nom_utilizado").val();
+	var correo_utilizado=$("#correo_utilizado").val();
+	var telefono_utilizado=$("#telefono_utilizado").val();
+	var catalogos=$("#catalogos").val();
+	var usuario=$("#usuario").val();
+	var informacion_obtenida=$("#informacion_obtenida").val();
 
-	if (confirm("¿Quiere crear condiciones del proveedor para la franquicia?")) {
+	if (confirm("¿Quiere añadir el mistery?")) {
 
 		url = 'index.php?entryPoint=consultarFranquicia';
 		$.ajax({
 			type : "POST",
 			url : url,
-			data :  "tipo=addMisteryFranq&" + 
-					"nom_entrevistado=" + nom_entrevistado + "&" +
+			data :  "tipo=addMisteryFranqCentral&" +
+					"idFranquicia=" + idFranquicia + "&" +
+					"nom_central=" + nom_central + "&" +
 					"ubicacion=" + ubicacion + "&" +
 					"f_entrevista=" + f_entrevista + "&" +
-					"nom_mistery=" + nom_mistery + "&" +
-					"telefono_mistery=" + telefono_mistery + "&" +
-					"email_mistery=" + email_mistery + "&" +
-					"num_empleados=" + num_empleados + "&" +
-					"com_positivos=" + com_positivos + "&" +
-					"com_negativos=" + com_negativos,
-			
+					"correo_central=" + correo_central + "&" +
+					"cargo_central="+ cargo_central + "&" +
+					"telefono_central=" + telefono_central + "&" +
+					"nom_utilizado=" + nom_utilizado + "&" +
+					"correo_utilizado=" + correo_utilizado + "&" +
+					"telefono_utilizado=" + telefono_utilizado + "&" +
+					"catalogos=" + catalogos + "&" +
+					"informacion_obtenida=" + informacion_obtenida + "&" +
+					"usuario=" + usuario,
 			success : function(data) {
 				
-				if ( data = "Ok") {
+				if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se ha podido guardar el mistery");
@@ -654,7 +661,99 @@ function addMisteryFranq(idFranquicia){
 	}	
 }
 
-function deleteMistery(id){
+
+function addMisteryFranqFdo(idFranquicia){
+
+	var nom_entrevistado=$("#nom_entrevistado_fdo").val();
+	var telefono_entrevistado=$("#telefono_entrevistado_fdo").val();
+	var email_entrevistado=$("#email_entrevistado_fdo").val();
+	var ubicacion=$("#ubicacion_fdo").val();
+
+	var f_entrevista=$("#f_entrevista_fdo").val();
+	var usuario=$("#usuario_fdo").val();
+	var nom_utilizado=$("#nom_utilizado_fdo").val();
+	var correo_utilizado=$("#correo_utilizado_fdo").val();
+	var telefono_utilizado=$("#telefono_utilizado_fdo").val();
+	var tipo_entrevista=$("#tipo_entrevista_fdo").val();
+	var year_fran=$("#year_fran_fdo").val();
+	var nivel_satisfaccion=$("#nivel_satisfaccion_fdo").val();
+	var informacion_proporcionada=$("#informacion_proporcionada_fdo").val();
+	var informacion_obtenida=$("#informacion_obtenida_fdo").val();
+
+	if (confirm("¿Quiere añadir el mistery?")) {
+
+		url = 'index.php?entryPoint=consultarFranquicia';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data :  "tipo=addMisteryFranqFdo&" +
+				"idFranquicia=" + idFranquicia + "&" +
+				"nom_entrevistado=" + nom_entrevistado + "&" +
+				"telefono_entrevistado=" + telefono_entrevistado + "&" +
+				"email_entrevistado=" + email_entrevistado + "&" +
+				"ubicacion=" + ubicacion + "&" +
+				"f_entrevista=" + f_entrevista + "&" +
+				"nom_utilizado=" + nom_utilizado + "&" +
+				"correo_utilizado=" + correo_utilizado + "&" +
+				"telefono_utilizado=" + telefono_utilizado + "&" +
+				"tipo_entrevista=" + tipo_entrevista + "&" +
+				"year_fran=" + year_fran + "&" +
+				"nivel_satisfaccion=" + nivel_satisfaccion + "&" +
+				"informacion_proporcionada=" + informacion_proporcionada + "&" +
+				"informacion_obtenida=" + informacion_obtenida + "&" +
+				"usuario=" + usuario,
+			success : function(data) {
+
+				if ( data == "Ok") {
+					document.location.reload();
+				} else {
+					alert("No se ha podido guardar el mistery");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido guardar el mistery - ' + textStatus + ' - ' + errorThrown);
+			}
+		});
+
+	} else {
+		return false;
+	}
+}
+
+function deleteMisteryCentral(id){
+
+	if (confirm("¿Quiere eliminar el mistery seleccionado?")) {
+
+		url = 'index.php?entryPoint=consultarFranquicia';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "tipo=BajaMisteryFranqCentral&" +
+				"id=" + id,
+
+			success : function(data) {
+				if ( data == "Ok") {
+					document.location.reload();
+				} else {
+					alert("No se ha podido eliminar el mistery");
+				}
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido borrar el mistery seleccionado - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
+
+}
+
+function deleteMisteryFdo(id){
 	
 	if (confirm("¿Quiere eliminar el mistery seleccionado?")) {
 
@@ -662,20 +761,19 @@ function deleteMistery(id){
 		$.ajax({
 			type : "POST",
 			url : url,
-			data : "tipo=BajaMisteryFranq&" +  
+			data : "tipo=BajaMisteryFranqFdo&" +
 					"id=" + id,
 			
 			success : function(data) {
-				if ( data = "Ok") {
+				if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se ha podido eliminar el mistery");
                 }
-				
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				YAHOO.SUGAR.MessageBox.hide();
-				alert('No se ha podido borrar las condiciones - ' + textStatus + ' - ' + errorThrown);
+				alert('No se ha podido borrar el mistery seleccionado - ' + textStatus + ' - ' + errorThrown);
 
 			}
 		});
@@ -686,28 +784,31 @@ function deleteMistery(id){
 	
 }
 
-function editMistery(id){
+function editMisteryCentral(id){
 		
 	url = 'index.php?entryPoint=consultarFranquicia';
 	$.ajax({
 		type : "POST",
 		url : url,
-		data : "tipo=ConsultaMistery&" +  
+		data : "tipo=ConsultaMisteryCentral&" +
 				"id=" + id,
 		
 		success : function(data) {
 			
-			var json = JSON.parse(data);					
-			
-			$("#nom_entrevistado").val(json[0].nom_entrevistado);
+			var json = JSON.parse(data);
+
+			$("#nom_central").val(json[0].nom_central);
 			$("#ubicacion").val(json[0].ubicacion);
-			$("#f_entrevista").val(json[0].f_entrevista);			
-			$("#nom_mistery").val(json[0].nom_mistery);
-			$("#telefono_mistery").val(json[0].telefono_mistery);
-			$("#email_mistery").val(json[0].email_mistery);
-			$("#num_empleados").val(json[0].num_empleados);
-			$("#com_positivos").val(json[0].com_positivos);
-			$("#com_negativos").val(json[0].com_negativos);
+			$("#f_entrevista_fdo").val(json[0].f_entrevista);
+			$("#correo_central").val(json[0].correo_central);
+			$("#cargo_central").val(json[0].cargo_central);
+			$("#telefono_central").val(json[0].telefono_central);
+			$("#nom_utilizado").val(json[0].nom_utilizado);
+			$("#correo_utilizado").val(json[0].correo_utilizado);
+			$("#telefono_utilizado").val(json[0].telefono_utilizado);
+			$("#catalogos").val(json[0].catalogos);
+			$("#usuario").val(json[0].usuario);
+			$("#informacion_obtenida").val(json[0].informacion_obtenida);
 			
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -716,5 +817,43 @@ function editMistery(id){
 
 		}
 	});
-	
+}
+
+function editMisteryFdo(id){
+
+	url = 'index.php?entryPoint=consultarFranquicia';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=ConsultaMisteryFdo&" +
+			"id=" + id,
+
+		success : function(data) {
+
+			var json = JSON.parse(data);
+
+			$("#nom_entrevistado_fdo").val(json[0].nom_entrevistado);
+			$("#telefono_entrevistado_fdo").val(json[0].telefono_entrevistado);
+			$("#email_entrevistado_fdo").val(json[0].correo_entrevistado);
+			$("#ubicacion_fdo").val(json[0].ubicacion);
+
+			$("#f_entrevista_fdo").val(json[0].f_entrevista);
+			$("#usuario_fdo").val(json[0].id_usuario);
+			$("#nom_utilizado_fdo").val(json[0].nom_utilizado);
+			$("#correo_utilizado_fdo").val(json[0].email_utilizado);
+			$("#telefono_utilizado_fdo").val(json[0].telefono_utilizado);
+			$("#tipo_entrevista_fdo").val(json[0].tipo_entrevista);
+			$("#year_fran_fdo").val(json[0].year_fran);
+			$("#nivel_satisfaccion_fdo").val(json[0].nivel_satisfaccion);
+			$("#informacion_proporcionada_fdo").val(json[0].informacion_proporcionada);
+			$("#informacion_obtenida_fdo").val(json[0].informacion_obtenida);
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			YAHOO.SUGAR.MessageBox.hide();
+			alert('No se ha podido borrar las condiciones - ' + textStatus + ' - ' + errorThrown);
+
+		}
+	});
+
 }

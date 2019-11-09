@@ -326,14 +326,14 @@
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."RIGHT JOIN users u on u.id=f.assigned_user_id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
-        $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc ";
+        $query=$query."order by f.tipo_cuenta,  f.name, Total_Planificadas desc ";
 
         InsertaConsulta($objPHPExcel,$query,'Franquicia-Llamadas');
         
         $descripcion = array("Datos relacionados con franquicia, centrado en llamadas",
                              "Las columnas son: Nombre, Tipo de cueta (consultoría-intermediacion), Si la franquicia tiene contratado portales",
                              "Llamadas realizadas los útimos 7 días, llamadas realizadas ayer, llamadas por hacer, retrasadas primera llamada (llamadas con fechaplanificada antes de hoy), retrasadas resto, total planificadas y director de expansión",
-                             "Ordenadas por tipo de cuenta, si son prime, por nombre de franquicia y total planificadas");
+                             "Ordenadas por tipo de cuenta,  por nombre de franquicia y total planificadas");
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Franquicia-Llamadas');
         
@@ -364,14 +364,14 @@
         $query=$query."    GROUP BY g.franquicia) a ";
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
-        $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc; ";
+        $query=$query."order by f.tipo_cuenta, f.name, Total_Planificadas desc; ";
                 
         InsertaConsulta($objPHPExcel,$query,'Franquicia-Tareas');
         
         $descripcion = array("Datos de tareas agruadas por franquicia",
                              "Las columnas son: Nombre, Tipo de cueta (consultoría-intermediacion),",
                              "Tareas realizadas los útimos 7 días, tareas realizadas ayer, tareas canceladas los últimos 7 días, tareas canceladas ayer, tareas por hacer (tareas con fecha planificada para hoy o posterior), retrasadas (tareas con fecha planificada anterior a hoy), total planificadas",
-                             "Ordenadas por tipo de cuenta, si son prime, por nombre de franquicia y total planificadas");
+                             "Ordenadas por tipo de cuenta, por nombre de franquicia y total planificadas");
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Franquicia-Tareas');
         
@@ -407,7 +407,7 @@
         $query=$query."    GROUP BY g.franquicia) a ";
         $query=$query."RIGHT JOIN expan_franquicia f on a.franquicia = f.id ";
         $query=$query."where f.deleted=0 and f.tipo_cuenta in (1,2) ";
-        $query=$query."order by f.tipo_cuenta, f.prime desc, f.name, Total_Planificadas desc; ";
+        $query=$query."order by f.tipo_cuenta, f.name, Total_Planificadas desc; ";
                 
         InsertaConsulta($objPHPExcel,$query,'Franquicia-Reuniones');           
         
@@ -415,7 +415,7 @@
                              "Las columnas son: Nombre, Tipo de cueta (consultoría-intermediacion),",
                              "Reuniones realizadas los útimos 7 días, Reuniones realizadas ayer, Reuniones realizadas sin exito los útimos 7 días, Reuniones realizadas sin exito ayer", 
                              "reuniones por hacer (reuniones con fecha planificada para hoy o posterior), retrasadas (reniones con fecha planificada anterior a hoy), total planificadas, reuniones posibles",
-                             "Ordenadas por tipo de cuenta, si son prime, por nombre de franquicia y total planificadas"); 
+                             "Ordenadas por tipo de cuenta, por nombre de franquicia y total planificadas");
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Franquicia-Reuniones');
         
@@ -436,14 +436,14 @@
         $query=$query."join expan_franquicia f ";
         $query=$query."on f.id=a.f_id ";
         $query=$query."where f.tipo_cuenta in (1,2)  ";
-        $query=$query."order by f.prime desc, Calientes desc,Avanzadas desc; ";
+        $query=$query."order by Calientes desc,Avanzadas desc; ";
         
         InsertaConsulta($objPHPExcel,$query,'Franquicia-Avanzadas_Calientes');     
         
         $descripcion = array("Numero de gestiones agrupadas por franquicia",
                              "Las columnas son: Nombre de la franquicia, gestiones en estado 2 (en curso), gestiones en curso avanzadas, porcentaje de avanzadas respecto a las que están en curso ,",
                              "gestiones en curso calientes, porcentaje de calientes respecto a las que están en curso", 
-                             "Ordenadas por: si son prime primero, por numero de avanzadas"); 
+                             "Ordenadas por: numero de avanzadas");
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Franquicia-Avanzadas_Calientes');
                           
@@ -478,19 +478,19 @@
                 
         //Candidaturas Calientes
         $query = "SELECT name Franquicia, Nombre, d_prov Provincia  ";
-        $query=$query."FROM   (SELECT   f.name, f.prime, concat(COALESCE(s.first_name,NULL,''), ' ', COALESCE(s.last_name,NULL,'')) nombre, s.provincia_apertura_1 prov  ";
+        $query=$query."FROM   (SELECT   f.name, concat(COALESCE(s.first_name,NULL,''), ' ', COALESCE(s.last_name,NULL,'')) nombre, s.provincia_apertura_1 prov  ";
         $query=$query."        FROM     expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_franquicia f  ";
         $query=$query."        WHERE    f.id = g.franquicia AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id =  ";
         $query=$query."                   gs.expan_soli5dcccitudes_idb AND g.candidatura_caliente = 1 AND g.deleted = 0  ";
         $query=$query."        ORDER BY f.name) a  ";
         $query=$query."       JOIN expan_m_provincia p  ";
-        $query=$query."WHERE  a.prov = p.c_prov ORDER BY a.prime desc, Franquicia  ";
+        $query=$query."WHERE  a.prov = p.c_prov ORDER BY Franquicia  ";
         
         InsertaConsulta($objPHPExcel,$query,'Candidaturas Calientes');
         
         $descripcion = array("Listado de candidaturas calientes",
                              "Las columnas son: franquicia solicitda, nombre y provincia,",
-                             "Ordenadas por: si la franquicia es prime, nombre de la franquicia"); 
+                             "Ordenadas por: nombre de la franquicia");
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Usuario-Avanzadas_Calientes');
         
@@ -672,14 +672,14 @@
             $query=$query."         f.id = g.franquicia AND  ";
             $query=$query."         tipo_cuenta IN (1, 2) ";
             $query=$query."GROUP BY franquicia ";
-            $query=$query."ORDER BY tipo_cuenta,f.prime desc, f.name; ";
+            $query=$query."ORDER BY tipo_cuenta, f.name; ";
             
             InsertaConsulta($objPHPExcel,$query,'Informe franquicias');
             
             $descripcion = array("Informe de gestiones creadas por franquicia en los últims 30 días",
                              "Las colunas son: Nombre de la franquicia, gestiones que hay ahora mismo en estado caliente, gestiones creadas, gestiones creadas con origen expandenegocio, estiones creadas con origen portales ",
                              "gestiones creadas con origen eventos, estiones creadas con origen central, estiones creadas con origen medios de comunicacion, estiones creadas con origen mailing",
-                             "Se ordena por tipo de cuenta, si son prime y por el nombre"); 
+                             "Se ordena por tipo de cuenta y por el nombre");
         
             InsertarDescripcion($objPHPExcel,$descripcion,'Fq sin Gest de Central');
             

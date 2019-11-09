@@ -80,8 +80,13 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
-                  'LBL_DATOS_MISTERY' =>
-                    array(
+                  'LBL_EDITVIEW_MISTERY_CENTRAL' =>
+                    array (
+                      'newTab' => true,
+                      'panelDefault' => 'expanded',
+                    ),
+                  'LBL_EDITVIEW_MISTERY_FDO' =>
+                    array (
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
@@ -1080,78 +1085,59 @@
 
   }
 
-
   // ---- DATOS DE MISTERY ----------------------------------------------------------------------------
 
-  $viewdefs [$module_name]['EditView']['panels']['LBL_DATOS_MISTERY'] =
+  $viewdefs [$module_name]['EditView']['panels']['LBL_EDITVIEW_MISTERY_CENTRAL'] =
     array(
       0 =>
-        array(
+        array (
           0 =>
-            array(
-              'name' => 'nom_central_mistery',
-              'label' => 'LBL_NOM_CENTRAL_MISTERY',
+            array (
+              'name' => 'mistery_insert_central',
+              'customCode'=>
+                '{php}
+            $idFranq=$this->_tpl_vars["bean"]->id;   
+            $op=new opEdicionFranquicia();                
+            $op->showInterfazMisteryCentral($idFranq);        
+        {/php}',
             ),
-          1 =>
-            array(
-              'name' => 'nom_mistery',
-              'label' => 'LBL_NOM_MISTERY',
-            ),
-        ),
 
-      1 =>
-        array(
-          0 =>
-            array(
-              'name' => 'correo_central_mistery',
-              'label' => 'LBL_CORREO_CENTRAL_MISTERY',
-            ),
-          1 =>
-            array(
-              'name' => 'correo_mistery',
-              'label' => 'LBL_CORREO_MISTERY',
-            ),
-        ),
-
-      2 =>
-        array(
-          0 =>
-            array(
-              'name' => 'telefono_central_mistery',
-              'label' => 'LBL_TELEFONO_CENTRAL_MISTERY',
-            ),
-          1 =>
-            array(
-              'name' => 'telefono_mistery',
-              'label' => 'LBL_TELEFONO_MISTERY',
-            ),
-        ),
-
-      3 =>
-        array(
-          0 =>
-            array(
-              'name' => 'f_entrevista_mistery',
-              'label' => 'LBL_FECHA_MISTERY',
-            ),
-          1 =>
-            array(),
-        ),
-
-      4 =>
-        array(
-          0 =>
-            array(
-              'name' => 'ubicacion_mistery',
-              'label' => 'LBL_UBICACION_MISTERY',
-            ),
-          1 =>
-            array(
-              'name' => 'catalogos_mistery',
-              'label' => 'LBL_CATALOGO_MISTERY',
-            ),
+          1=> array (
+            'name' => 'mistery_list_central',
+            'customCode' =>'
+          {php}              
+              $idfranq=$this->_tpl_vars["bean"]->id;                           
+              $op=new opedicionfranquicia();
+              $op->showlistmisteryCentral($idfranq);
+          {/php}',
+          ),
         ),
     );
 
+  $viewdefs [$module_name]['EditView']['panels']['LBL_EDITVIEW_MISTERY_FDO'] =
+    array(
+      0 =>
+        array (
+          0 =>
+            array (
+              'name' => 'mistery_insert_fdo',
+              'customCode'=>
+                '{php}
+                    $idFranq=$this->_tpl_vars["bean"]->id;   
+                    $op=new opEdicionFranquicia();                
+                    $op->showInterfazMisteryFdo($idFranq);        
+                {/php}',
+            ),
 
+          1=> array (
+            'name' => 'mistery_list_fdo',
+            'customCode' =>'
+          {php}              
+              $idfranq=$this->_tpl_vars["bean"]->id;                           
+              $op=new opedicionfranquicia();
+              $op->showlistmisteryfdo($idfranq);
+          {/php}',
+          ),
+        ),
+    );
 ?>

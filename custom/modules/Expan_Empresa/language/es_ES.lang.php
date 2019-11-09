@@ -214,4 +214,6 @@ $mod_strings = array(
   'LBL_CONDICIONES_GENERALES' => 'Condiciones Generales',
   'LBL_CONDICIONES_ESPECIALES_EN' => 'Condiciones especiales EN',
   'LBL_PROVEEDOR_ACTIVO' => 'Proveedor activo',
+  'LBL_EDITVIEW_MISTERY_FDO' => 'Misterys Fdo',
+  'LBL_EDITVIEW_MISTERY_CENTRAL' => 'Misterys Central',
 );

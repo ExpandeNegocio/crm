@@ -90,6 +90,10 @@ function renderMotivos() {
 function hide() {
     $("#activities_correocandidato_button").hide();
     $("#sector_label").parent().hide();
+    $("#mistery_list_fdo_label").hide();
+    $("#mistery_list_central_label").hide();
+    $("#mistery_insert_fdo_label").hide();
+    $("#mistery_insert_central_label").hide();
 }
 
 function renderCompetidorTab() {

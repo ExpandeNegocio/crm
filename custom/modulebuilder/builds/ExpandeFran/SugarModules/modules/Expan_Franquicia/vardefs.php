@@ -2403,6 +2403,9 @@ $dictionary['Expan_Franquicia'] = array(
     'studio' => 'visible',
     'dependency' => false,
   ),
+
+
+
 ),
 	'relationships'=>array (
 ),

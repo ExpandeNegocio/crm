@@ -12,6 +12,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $idFran=$_POST["idFran"];
     $nomSector=$_POST["nomSector"];
     $idFranquicias=$_POST["franquicias"];
+    $idFranquicia=$_POST["idFranquicia"];
     $evento=$_POST["evento"];
     $formato=$_POST["formato"];
     $estado=$_POST["estado"];
@@ -19,16 +20,28 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $valor=$_POST["valor"];
         
     $empresa_id=$_POST["empresa_id"];
-    $telefono_mistery=$_POST["telefono_mistery"];
-    $email_mistery=$_POST["email_mistery"];
-    $nom_mistery=$_POST["nom_mistery"];
-    $nom_entrevistado=$_POST["nom_entrevistado"];
-    $num_empleados=$_POST["num_empleados"];
-    $com_negativos=$_POST["com_negativos"];
-    $com_positivos=$_POST["com_positivos"];
-    $f_entrevista=$_POST["f_entrevista"];
-    $ubicacion=$_POST["ubicacion"];
     $id=$_POST["id"];
+
+    $nom_central=$_POST["nom_central"];
+    $ubicacion=$_POST["ubicacion"];
+    $f_entrevista=$_POST["f_entrevista"];
+    $correo_central=$_POST["correo_central"];
+    $cargo_central=$_POST["cargo_central"];
+    $telefono_central=$_POST["telefono_central"];
+    $nom_utilizado=$_POST["nom_utilizado"];
+    $correo_utilizado=$_POST["correo_utilizado"];
+    $telefono_utilizado=$_POST["telefono_utilizado"];
+    $catalogos=$_POST["catalogos"];
+    $usuario=$_POST["usuario"];
+    $informacion_obtenida=$_POST["informacion_obtenida"];
+
+    $nom_entrevistado = $_POST["nom_entrevistado"];
+    $telefono_entrevistado = $_POST["telefono_entrevistado"];
+    $tipo_entrevista = $_POST["tipo_entrevista"];
+    $email_entrevistado = $_POST["email_entrevistado"];
+    $year_fran = $_POST["year_fran"];
+    $nivel_satisfaccion = $_POST["nivel_satisfaccion"];
+    $informacion_proporcionada = $_POST["informacion_proporcionada"];
 
     switch ($tipo) {
         case 'SectorFromFranq':
@@ -188,32 +201,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
             break;
             
-        case 'ListaDocumentos':                       
-      
-           /* 
-            $query = "select Franquicia, ModeloNegocio, ";
-            $query=$query."  max(case when type= 'C1' THEN doc ELSE '' END) as C1, ";
-            $query=$query."  max(case when type= 'C2' THEN doc ELSE '' END) as C2, ";
-            $query=$query."  max(case when type= 'C3' THEN doc ELSE '' END) as C3, ";
-            $query=$query."  max(case when type= 'C4' THEN doc ELSE '' END) as C4 ";
-            $query=$query."from ( ";
-            $query=$query."    select f.name as Franquicia, ";
-            $query=$query."     case WHEN modeloneg=1 THEN f.modNeg1   ";
-            $query=$query."          WHEN modeloneg=2 THEN f.modNeg2 ";
-            $query=$query."          WHEN modeloneg=3 THEN f.modNeg3 ";
-            $query=$query."          WHEN modeloneg=4 THEN f.modNeg4 ELSE  '' END as ModeloNegocio,  ";
-            $query=$query."     type, ";
-            $query=$query."     GROUP_CONCAT(DISTINCT n.filename ";
-            $query=$query."                          ORDER BY filename DESC SEPARATOR '<BR>') doc ";
-            $query=$query."    from expan_franquicia f, email_templates t, notes n ";
-            $query=$query."    where f.id=t.franquicia ";
-            $query=$query."    AND n.parent_id=t.id ";
-            $query=$query."    AND f.tipo_cuenta  in (1,2) ";
-            $query=$query."    AND f.deleted=0 and t.deleted=0 and n.deleted=0 ";
-            $query=$query."    AND type in ('C1','C2','C3','C4') ";
-            $query=$query."    group by franquicia,modeloneg, t.type  ";
-            $query=$query."    order by franquicia,modeloneg) a ";
-            $query=$query."group by franquicia, modelonegocio; "; */
+        case 'ListaDocumentos':
             
             $query = "select Franquicia, ModeloNegocio,    ";
             $query=$query."  chk_c1 as ValidadoC1,   ";
@@ -246,7 +234,6 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $query=$query."    order by franquicia,modeloneg) a    ";
             $query=$query."group by franquicia, modelonegocio; ";
 
-                                                            
            $result = $db -> query($query, true);
             
             $return = array();
@@ -257,11 +244,9 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                                   
             echo json_encode($return,JSON_FORCE_OBJECT);
                     
-            break; 
+            break;
             
-            
-        case 'ValidacionPlantillas': 
-        
+        case 'ValidacionPlantillas':
         
             $query = "SELECT   Franquicia, ModeloNegocio,  ";
             $query=$query."max(CASE WHEN type = 'C1' THEN doc ELSE '' END) AS C1,  ";
@@ -290,30 +275,48 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                     
             break;                 
             
-		case 'user':
+		    case 'user':
             
             global $current_user;     
             echo $current_user->id;
             
             break; 
             
-        case 'addMisteryFranq': 
-        
-            $query = "insert into expan_franquicia_mistery (id,id_franquiciado,empresa_id,telefono_mistery,email_mistery,nom_mistery,nom_entrevistado,num_empleados,com_negativos,com_positivos,f_entrevista,ubicacion)";
-            $query=$query."values (UUID(),UUID(),'".$empresa_id."','".$telefono_mistery."','".$email_mistery."','".$nom_mistery."','".$nom_entrevistado."','".$num_empleados."','".$com_negativos;
-            $query=$query."','".$com_positivos."',STR_TO_DATE('".$f_entrevista."','%d/%m/%Y'),'".$ubicacion."');";
-            
+        case 'addMisteryFranqFdo':
+
+            $query = "INSERT INTO expan_empresa_mistery_fdo  ";
+            $query=$query."(id,franquicia_id,empresa_id,nom_entrevistado,telefono_entrevistado,correo_entrevistado,ubicacion,f_entrevista,id_usuario,nom_utilizado,email_utilizado,telefono_utilizado,tipo_entrevista,year_fran,nivel_satisfaccion,informacion_proporcionada,informacion_obtenida)   ";
+            $query=$query."VALUES   ";
+            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_entrevistado','$telefono_entrevistado','$email_entrevistado','$ubicacion',STR_TO_DATE('$f_entrevista','%d/%m/%Y'),'$usuario','$nom_utilizado','$correo_utilizado','$telefono_utilizado','$tipo_entrevista','$year_fran','$nivel_satisfaccion','$informacion_proporcionada','$informacion_obtenida'); ";
+
+
+
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
-        
-            $result = $db -> query($query); 
-           
+
+            $result = $db -> query($query);
+
             echo "Ok";
+
+            break;
+
+        case 'addMisteryFranqCentral':
+
+            $query = "INSERT INTO expan_empresa_mistery_central ";
+            $query=$query."(id,franquicia_id,empresa_id,nom_central,correo_central,cargo_central,telefono_central,nom_utilizado,id_usuario,correo_utilizado,telefono_utilizado,f_entrevista,catalogos,ubicacion,informacion_obtenida)  ";
+            $query=$query."VALUES  ";
+            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_central','$correo_central','$cargo_central','$telefono_central','$nom_utilizado','$usuario','$correo_utilizado','$telefono_utilizado',STR_TO_DATE('$f_entrevista', '%d/%m/%Y'),'$catalogos','$ubicacion','$informacion_obtenida')";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
+
+            $result = $db -> query($query);
+
+            echo "Ok";
+
+            break;
+
+        case 'BajaMisteryFranqFdo':
         
-            break;  
-            
-        case 'BajaMisteryFranq':
-        
-            $query = "delete from expan_franquicia_mistery where id='".$id."'";
+            $query = "delete from expan_empresa_mistery_fdo where id='".$id."'";
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta baja mistery-'.$query);
         
@@ -321,11 +324,23 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
         
             echo "Ok";
         
-            break;    
+            break;
+
+        case 'BajaMisteryFranqCentral':
+
+            $query = "delete from expan_empresa_mistery_central where id='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta baja mistery-'.$query);
+
+            $result = $db -> query($query);
+
+            echo "Ok";
+
+            break;
             
-        case 'ConsultaMistery':
+        case 'ConsultaMisteryFdo':
         
-            $query = "select * from expan_franquicia_mistery where id='".$id."'";
+            $query = "select * from expan_empresa_mistery_fdo where id='".$id."'";
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta mistery-'.$query);
            
@@ -339,8 +354,26 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                                   
             echo json_encode($return,JSON_FORCE_OBJECT);
                     
-            break; 
-            
+            break;
+
+        case 'ConsultaMisteryCentral':
+
+            $query = "select * from expan_empresa_mistery_central where id='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta mistery-'.$query);
+
+            $return = array();
+
+            $result = $db -> query($query, true);
+
+            while ($row = $db -> fetchByAssoc($result)) {
+                $return[] = $row;
+            }
+
+            echo json_encode($return,JSON_FORCE_OBJECT);
+
+            break;
+
         default:
 
             break;
