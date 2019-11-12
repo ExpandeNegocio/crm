@@ -110,6 +110,7 @@ $entry_point_registry = array(
     'recogeTelefonoGestion'=>array('file' => 'custom/include/RecogeTelefonoGestion.php', 'auth' => false),
     'recogeSkypeGestion'=>array('file' => 'custom/include/RecogeSkypeGestion.php', 'auth' => false),
     'correoLlamadas'=>array('file' => 'custom/include/CorreoLlamadas.php', 'auth' => false),
+    'correoSemanal'=>array('file' => 'custom/include/CorreoSemanal.php', 'auth' => false),
     'actualizarPrior'=>array('file' => 'custom/include/ActualizarPrior.php', 'auth' => false),
     'CorregirLlamadas'=>array('file' => 'custom/include/CorregirLlamadas.php', 'auth' => false),
     'CrearLlamadasDiarias'=>array('file' => 'custom/include/CrearLlamadasDiarias.php', 'auth' => false),
