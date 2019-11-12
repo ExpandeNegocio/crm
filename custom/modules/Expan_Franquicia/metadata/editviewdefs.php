@@ -115,7 +115,7 @@
                     ),
                 ),
             ),
-          'panels' =>
+            'panels' =>
             array(
 
               //-----------------------------------------------------------------------------------------------------------------------------
@@ -463,7 +463,7 @@
                       ),
                   ),
 
-                  9=>
+                  9 =>
                     array(
                       0 =>
                         array(
@@ -663,15 +663,13 @@
                           'studio' => 'visible',
                           'label' => 'LBL_FILTRO_SOLICITUDES',
                         ),
-                      1 =>
-                        array(),
+                      1 => array(),
                     ),
                   5 =>
                     array(
                       0 =>
                         array(
                           'name' => 'config_correo',
-                          'studio' => 'visible',
                           'label' => 'LBL_CONFIG_CORREO',
                         ),
                     ),
@@ -680,12 +678,10 @@
                     array(
                       0 => array(
                         'name' => 'llamar_todos',
-                        'studio' => 'visible',
                         'label' => 'LBL_LLAMAR_TODOS',
                       ),
                       1 => array(
                         'name' => 'parada_temp_envios',
-                        'studio' => 'visible',
                         'label' => 'LBL_PARADA_TEMP_ENVIOS',
                       ),
                     ),
@@ -694,21 +690,17 @@
                     array(
                       0 => array(
                         'name' => 'cod_franquicia',
-                        'studio' => 'visible',
                         'label' => 'LBL_COD_FRANQUICIA',
                       ),
                       1 => array(
                         'name' => 'proy_ERM',
-                        'studio' => 'visible',
                         'label' => 'LBL_PROY_ERM',
                       ),
                     ),
-
                   8 =>
                     array(
                       0 => array(
                         'name' => 'correo_drive',
-                        'studio' => 'visible',
                         'label' => 'LBL_CORREO_DRIVE',
                       ),
                       1 => array(),
@@ -723,7 +715,6 @@
                       ),
                       1 => array(
                         'name' => 'lnk_cuestionario',
-                        'studio' => 'visible',
                         'label' => 'LBL_CUESTIONARIO',
                       ),
                     ),
@@ -902,12 +893,12 @@
                           'name' => 'Enlace_C1',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C1");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C1");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C1',
                         ),
                       1 =>
@@ -915,12 +906,12 @@
                           'name' => 'Enlace_C2',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C2");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C2");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C2',
                         ),
                     ),
@@ -931,12 +922,12 @@
                           'name' => 'Enlace_C3',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C3");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C3");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C3',
                         ),
                       1 =>
@@ -944,12 +935,12 @@
                           'name' => 'Enlace_C4',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C4");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C4");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C4',
                         ),
                     ),
@@ -961,12 +952,12 @@
                           'name' => 'Enlace_C11',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C1.1");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C1.1");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C11',
                         ),
                       1 =>
@@ -974,12 +965,12 @@
                           'name' => 'Enlace_C12',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C1.2");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C1.2");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C12',
                         ),
                     ),
@@ -991,12 +982,12 @@
                           'name' => 'Enlace_C13',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C1.3");     
-            {/php}',
+                          {php}            
+                             $idfran=$this->_tpl_vars["bean"]->id;
+                             $Fran = new Expan_Franquicia();
+                             $Fran -> retrieve($idfran);
+                             echo $Fran->getCLink("C1.3");     
+                          {/php}',
                           'label' => 'LBL_ENLACE_C13',
                         ),
                       1 =>
@@ -1004,12 +995,12 @@
                           'name' => 'Enlace_C14',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C1.4");     
-            {/php}',
+                          {php}            
+                             $idfran=$this->_tpl_vars["bean"]->id;
+                             $Fran = new Expan_Franquicia();
+                             $Fran -> retrieve($idfran);
+                             echo $Fran->getCLink("C1.4");     
+                          {/php}',
                           'label' => 'LBL_ENLACE_C14',
                         ),
                     ),
@@ -1021,12 +1012,12 @@
                           'name' => 'Enlace_C15',
                           'studio' => 'visible',
                           'customCode' => '
-            {php}            
-               $idfran=$this->_tpl_vars["bean"]->id;
-               $Fran = new Expan_Franquicia();
-               $Fran -> retrieve($idfran);
-               echo $Fran->getCLink("C1.5");     
-            {/php}',
+                            {php}            
+                               $idfran=$this->_tpl_vars["bean"]->id;
+                               $Fran = new Expan_Franquicia();
+                               $Fran -> retrieve($idfran);
+                               echo $Fran->getCLink("C1.5");     
+                            {/php}',
                           'label' => 'LBL_ENLACE_C15',
                         ),
                       1 =>
@@ -1107,6 +1098,7 @@
                           'studio' => 'visible',
                           'label' => 'LBL_VALNEG15',
                         ),
+                      1 => array(),
                     ),
 
                   5 =>
@@ -1723,7 +1715,6 @@
                         ),
                     ),
 
-
                   1 =>
                     array(
                       0 =>
@@ -1863,13 +1854,11 @@
                       0 =>
                         array(
                           'name' => 'informacion_competencia',
-                          'studio' => 'visible',
                           'label' => 'LBL_INFORMACION_COMPETENCIA',
                         ),
                       1 =>
                         array(
                           'name' => 'concesiones',
-                          'studio' => 'visible',
                           'label' => 'LBL_CONCESIONES',
                         ),
                     ),
@@ -1879,13 +1868,11 @@
                       0 =>
                         array(
                           'name' => 'mem_argumento_venta',
-                          'studio' => 'visible',
                           'label' => 'LBL_ARGUMENTO_VENTA',
                         ),
                       1 =>
                         array(
                           'name' => 'mem_acuerdo_reunion',
-                          'studio' => 'visible',
                           'label' => 'LBL_ACUERDO_REUNION',
                         ),
                     ),
@@ -1919,7 +1906,6 @@
                           'studio' => 'visible',
                           'label' => 'LBL_TIPO_REUNION',
                         ),
-
                     ),
 
                   16 =>
@@ -1930,14 +1916,8 @@
                           'studio' => 'visible',
                           'label' => 'LBL_CONTENIDO_REUNION',
                         ),
-
                     ),
 
-                  17 =>
-                    array(
-                      0 =>
-                        array(),
-                    ),
                 ),
 
               // ---- DATOS PERFIL IDONEO ------------------------------------------------------------------------------------------------------------
@@ -1985,7 +1965,6 @@
                         ),
                     ),
 
-
                   3 =>
                     array(
                       0 =>
@@ -2013,7 +1992,6 @@
                         ),
                     ),
                 ),
-
 
               // ---- PROVEEDORES -------------------------------------------------------------------------------------------------
 
@@ -2240,4 +2218,3 @@
             ),
         ),
     );
-?>
