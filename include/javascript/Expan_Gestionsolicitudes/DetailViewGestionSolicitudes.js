@@ -119,7 +119,7 @@ function addPanelDocumentosRecibidosGestion(gestId){
 		data : "tipo=RecogeDocumentosRecibidosGestion&gestId=" + gestId,
 		success : function(data) {								
 			var parse = JSON.parse(data);				
-			var array=documentosGestionJsonToArray(parse);
+			var array=documentosGestionJsonToArray(parse,false);
 			
 			var div= $('<div/>',
 		    {
@@ -148,7 +148,7 @@ function addPanelDocumentosEnviadosGestion(gestId){
 		data : "tipo=RecogeDocumentosEnviadosGestion&gestId=" + gestId,
 		success : function(data) {		
 			var parse = JSON.parse(data);				
-			var array=documentosGestionJsonToArray(parse);
+			var array=documentosGestionJsonToArray(parse,true);
 			
 			var div= $('<div/>',
 		    {
