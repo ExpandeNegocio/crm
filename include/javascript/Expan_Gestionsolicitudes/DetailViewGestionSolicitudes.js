@@ -230,14 +230,14 @@ function generateTable(lista) {
 
     //For loop for adding data .i.e td with data to our dynamic generated table
     for (var i = 1; i < rowCount; i < i++) {    	        	
-        var fragTrow = $("<tr>", {
+        var fragTrow2 = $("<tr>", {
             "class": "oddListRowS1"
         }).appendTo(aTable);
-        for (var j = 0; j < colmCount; j++) {
+        for (var l = 0; l < colmCount; l++) {
             $("<td>", {
                // "class": "tdClass",
                 "scope": "row",
-            }).appendTo(fragTrow).html(unescapeHTML(lista[i][j]));
+            }).appendTo(fragTrow2).html(unescapeHTML(lista[i][l]));
         }
     }
     return aTable;
