@@ -47,7 +47,7 @@
     echo $filePath . "<br>";
     CreaFicheroEnvioSemanal($filePath, $user_id);
 
-    EnviarCorreo($row['email_address'], from_html("Informe semanal " . date('d-n-Y')), $filePath, '');
+ //   EnviarCorreo($row['email_address'], from_html("Informe semanal " . date('d-n-Y')), $filePath, '');
 
     echo "Terminado<BR>";
     echo "---------------------------------------------------------------------------------<BR><BR>";
