@@ -504,9 +504,6 @@ class AccionesGuardadoGestionSol {
                     $bean -> preparaCorreo("C4");
                     $bean -> crearTarea("DOCUPerCon");
 
-                    $nameAperura=$solicitud->first_name." ".$solicitud->last_name."-".$franquicia->name;
-                    Expan_Apertura::PreparaApertura($nameAperura,$solicitud,$bean);
-
                     if ($bean -> f_envio_contrato == $fecha_envio_contrato_ant) {
                         $bean -> f_envio_contrato = $fechaHoy->format('d/m/Y H:i');
                     }
