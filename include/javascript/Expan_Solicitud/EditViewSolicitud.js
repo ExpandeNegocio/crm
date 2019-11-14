@@ -1071,7 +1071,7 @@ function validarSubOrigen() {
             $("#rating").css("border", "#94c1e8 solid 1px");
         }
 
-        if (o.selected == true && o.value == 1 && $("#subor_expande").val() == 10 && rating == "") {
+        if (o.selected == true && o.value == 1 && $("#subor_expande").val() == 10 && $("#tags_empresa").val() == "") {
             $("#tags_empresa").css("border", "2px solid red");
             alert("Es obligatorio recoger tags si el origen es precandidato");
             return false;
