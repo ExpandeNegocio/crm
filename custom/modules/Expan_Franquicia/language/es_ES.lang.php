@@ -53,5 +53,9 @@ $mod_strings = array(
   'LBL_ALIANZA' => 'Alianza',
   'LBL_OBSERVACIONES_CONTACTO' =>'Observaciones de contacto',
   'LBL_CCAA' => 'CA',
-
+  'LBL_PROVINCIA' => 'Provincia',
+  'LBL_LOCALIDAD' => 'Localidad',
+  'LBL_PROPIEDAD' => 'Propiedad',
+  'LBL_SUPERFICIE_LOCAL' => 'Superficie',
+  'LBL_RENTA_ESTIMADA' => 'Renta stimada',
 );

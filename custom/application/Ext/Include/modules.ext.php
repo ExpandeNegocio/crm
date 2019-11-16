@@ -117,6 +117,11 @@ $beanFiles['Expin_Informes'] = 'modules/Expin_Informes/Expin_Informes.php';
 $moduleList[] = 'Expin_Informes';
 
 
+
+  $beanList['Expan_Local'] = 'Expan_Local';
+  $beanFiles['Expan_Local'] = 'modules/Expan_Local/Expan_Local.php';
+  $moduleList[] = 'Expan_Local';
+
  
  //WARNING: The contents of this file are auto-generated
 $beanList['Expma_Mailing'] = 'Expma_Mailing';

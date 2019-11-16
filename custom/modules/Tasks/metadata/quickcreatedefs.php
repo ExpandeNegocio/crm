@@ -167,8 +167,6 @@ array (
             'label' => 'LBL_MODIFICADO_POR',
           ),
         ),
-        
-        
       ),
     ),
   ),

@@ -98,6 +98,30 @@ $layout_defs["Expan_Franquicia"]["subpanel_setup"]['expan_franquicia_expan_event
 );
 
 
+ // created: 2016-11-29 19:35:36
+$layout_defs["Expan_Franquicia"]["subpanel_setup"]['expan_franquicia_expan_local_1'] = array (
+  'order' => 100,
+  'module' => 'Expan_Local',
+  'subpanel_name' => 'default',
+  'sort_order' => 'asc',
+  'sort_by' => 'id',
+  'title_key' => 'LBL_EXPAN_FRANQUICIA_EXPAN_LOCAL_1_FROM_EXPAN_FRANQUICIA_TITLE',
+  'get_subpanel_data' => 'expan_franquicia_expan_local_1',
+  'top_buttons' => 
+  array (
+    0 => 
+    array (
+      'widget_class' => 'SubPanelTopButtonQuickCreate',
+    ),
+    1 => 
+    array (
+      'widget_class' => 'SubPanelTopSelectButton',
+      'mode' => 'MultiSelect',
+    ),
+  ),
+);
+
+
  // created: 2015-12-22 08:00:19
 $layout_defs["Expan_Franquicia"]["subpanel_setup"]['expan_franquicia_tasks_1'] = array (
   'order' => 100,
