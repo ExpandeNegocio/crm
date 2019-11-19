@@ -44,7 +44,7 @@
     var $new_schema = true;
     var $module_dir = 'Expan_Local';
     var $object_name = 'Expan_Local';
-    var $table_name = 'Expan_Local';
+    var $table_name = 'expan_local';
     var $importable = false;
     var $disable_row_level_security = true; // to ensure that modules created and deployed under CE will continue to function under team security if the instance is upgraded to PRO
     var $id;

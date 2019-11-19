@@ -1,10 +1,13 @@
 const USUARIO_RUBEN = '71f40543-2702-4095-9d30-536f529bd8b6';
 
-$("#tab2").hide();
-$("#save_and_continue").hide();
+    $("#tab2").hide();
+    $("#save_and_continue").hide();
 
-$("#historial_empresa").height(155);
-$("#empresa_temp").val($("#empresa").val());
+    $("#historial_empresa").height(155);
+    $("#empresa_temp").val($("#empresa").val());
+
+ //   $("#expan_solicitud_expan_local_1_nuevo_button").hide();
+
 
 $("#enviar_servicios_asesora").change(function () {
     var valor = $(this).val();
@@ -113,15 +116,15 @@ $("#provincia_residencia").change(function () {
 
 });
 
-$("#localidad_apertura_1").change(function () {
+$("#provincia_apertura_1").change(function () {
     loadMunicipios(1);
 });
 
-$("#localidad_apertura_2").change(function () {
+$("#provincia_apertura_2").change(function () {
     loadMunicipios(2);
 });
 
-$("#localidad_apertura_3").change(function () {
+$("#provincia_apertura_3").change(function () {
     loadMunicipios(3);
 });
 
@@ -439,6 +442,7 @@ $("#chk_entrevista_previa_cliente").bind("click", function () {
 
 renderLocal();
 
+
 function inicio() {
     //Ocultar los campos auxiliares
     ocultarCampoAux();
@@ -490,6 +494,7 @@ function inicio() {
     actualizarHist();
 
     cargaAccionesSol();
+
     refreshSn();
   //  renderLocal();
 }

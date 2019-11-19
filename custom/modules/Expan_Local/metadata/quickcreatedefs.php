@@ -67,8 +67,8 @@
                     'field' => '30',
                   ),
                 ),
-              'javascript' => '{sugar_getscript file="include/javascript/EditLlamadas.js"}
-                                <script type="text/javascript"> onload=DesactivarGS(\'{$fields.parent_id.value}\',\'Expan_GestionSolicitudes\');</script>',
+              'javascript' => '{sugar_getscript file="include/javascript/Expan_Local/QuickCreateExpan_Local.js"}
+                                <script type="text/javascript"> onload=CargaProvMun(); </script>',
               'useTabs' => false,
             ),
           'panels' =>

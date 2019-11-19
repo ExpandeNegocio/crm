@@ -53,7 +53,7 @@
         'provincia' =>
           array(
             'name' => 'provincia',
-            'label' => 'LBL_ASSIGNED_TO',
+            'label' => 'LBL_PROVINCIA',
             'type' => 'enum',
             'default' => true,
             'width' => '10%',
@@ -62,7 +62,7 @@
         'localidad' =>
           array(
             'name' => 'localidad',
-            'label' => 'LBL_PROPIEDAD',
+            'label' => 'LBL_LOCALIDAD',
             'type' => 'enum',
             'default' => true,
             'width' => '10%',
@@ -72,7 +72,7 @@
         'provincia' =>
           array(
             'name' => 'provincia',
-            'label' => 'LBL_ASSIGNED_TO',
+            'label' => 'LBL_PROVINCIA',
             'type' => 'enum',
             'default' => true,
             'width' => '10%',
@@ -81,7 +81,7 @@
         'localidad' =>
           array(
             'name' => 'localidad',
-            'label' => 'LBL_PROPIEDAD',
+            'label' => 'LBL_LOCALIDAD',
             'type' => 'enum',
             'default' => true,
             'width' => '10%',
