@@ -96,7 +96,7 @@ $('#busca_sector').keyup(function (e) {
 });
 
 $("#dispone_local").change(function () {
-    renderLocal();
+   // renderLocal();
 });
 
 $('#busca_sitPerTagCheck').keyup(function (e) {
@@ -440,7 +440,7 @@ $("#chk_entrevista_previa_cliente").bind("click", function () {
     activarFecha("#chk_entrevista_previa_cliente", "#f_entrevista_previa_cliente");
 });
 
-renderLocal();
+//renderLocal();
 
 
 function inicio() {
@@ -1379,7 +1379,7 @@ function ControlUsuarioFran(franq) {
             campo.style.display = 'none';
         }
 
-        var campo = document.getElementById("tab3");
+        var campo = document.getElementById("tab2");
         if (campo != null) {
             campo.style.display = 'none';
         }
@@ -2234,7 +2234,7 @@ function vistaMini() {
     $("#ubicacion_local1").parent().hide();
     $("#ubicacion_local1_label").hide();
 
-    $("#tab3").hide();
+    $("#tab2").hide();
 
 }
 
@@ -2296,7 +2296,7 @@ function vistaMaxi() {
     $("#ubicacion_local1").parent().show();
     $("#ubicacion_local1_label").show();
 
-    $("#tab3").show();
+    $("#tab2").show();
 
 }
 

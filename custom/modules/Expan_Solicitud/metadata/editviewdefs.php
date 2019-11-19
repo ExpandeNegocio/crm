@@ -83,11 +83,11 @@ $viewdefs [$module_name] =
                     'newTab' => true,
                     'panelDefault' => 'expanded',
                   ),
-                'LBL_EDITVIEW_PANEL1' =>
+           /*     'LBL_EDITVIEW_PANEL1' =>
                   array(
                     'newTab' => true,
                     'panelDefault' => 'expanded',
-                  ),
+                  ),*/
                 'LBL_EDITVIEW_PANEL4' =>
                   array(
                     'newTab' => true,
@@ -820,7 +820,7 @@ $viewdefs [$module_name] =
               ),
 
             //---------------------------------------------------------------------------------------------------
-            'lbl_editview_panel1' =>
+    /*        'lbl_editview_panel1' =>
               array(
                 0 =>
                   array(
@@ -970,7 +970,7 @@ $viewdefs [$module_name] =
                     1 =>
                       array(),
                   ),
-              ),
+              ),*/
             // ------------------------------------------------------------------------------------------------
             'LBL_EDITVIEW_PANEL_TAG' =>
               array(
