@@ -1211,14 +1211,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
 
         $db = DBManagerFactory::getInstance();
 
-        //Creamos la consulta para localizar el id del template correspondiente
+        //Creamos la consulta para localizar el i ($envio == "LA")d del template correspondiente
 
         if ($envio == "LA") {
-          $query = "select id,type,modeloneg from email_templates where type='" . $envio . "' AND deleted=0";
-        } else {
+          $query = "select id,type,modeloneg from email_templates where type='$envio' AND deleted=0";
+        } else if  ($envio == "C0.1") {
           $query = "select id,type,modeloneg from email_templates where franquicia='" . $this->franquicia . "' AND type='" . $envio . "' AND deleted=0";
         }
-
 
         $GLOBALS['log']->info('[ExpandeNegocio][Modificacion GestionSolicitud Envio Correo] Query correo - ' . $query);
         $result = $db->query($query, true);
