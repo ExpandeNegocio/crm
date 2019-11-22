@@ -417,22 +417,21 @@
 
     //Campos que se pueden perder por guardado automático
 
-  $query = "UPDATE ";
-  $query=$query." expan_gestionsolicitudes g ";
-  $query=$query." JOIN expan_gestionsolicitudes_audit a ON g.id = a.parent_id ";
-  $query=$query."SET ";
-  $query=$query." g.observaciones_descarte = a.before_value_text ";
-  $query=$query."WHERE ";
-  $query=$query." g.deleted = 0 AND ";
-  $query=$query." a.after_value_text = '' AND ";
-  $query=$query." a.field_name = 'observaciones_descarte' AND ";
-  $query=$query." (g.observaciones_descarte = '' OR ";
-  $query=$query."  g.observaciones_descarte IS NULL); ";
+    $query = "UPDATE ";
+    $query=$query." expan_gestionsolicitudes g ";
+    $query=$query." JOIN expan_gestionsolicitudes_audit a ON g.id = a.parent_id ";
+    $query=$query."SET ";
+    $query=$query." g.observaciones_descarte = a.before_value_text ";
+    $query=$query."WHERE ";
+    $query=$query." g.deleted = 0 AND ";
+    $query=$query." a.after_value_text = '' AND ";
+    $query=$query." a.field_name = 'observaciones_descarte' AND ";
+    $query=$query." (g.observaciones_descarte = '' OR ";
+    $query=$query."  g.observaciones_descarte IS NULL); ";
 
-  $result = $db -> query($query);
+    $result = $db -> query($query);
 
-
-//Correccion problemas franquicia principal
+    //Correccion problemas franquicia principal
 
     $query = "SELECT * ";
     $query=$query."FROM expan_solicitud s ";
@@ -449,6 +448,20 @@
         $result2 = $db -> query($query);
     }
 
+    //Correccion problemas franquicias principal
+
+    $query = "update expan_solicitud ";
+    $query=$query."inner join (SELECT s.id, concat('^', GROUP_CONCAT(g.franquicia SEPARATOR '^,^'), '^') fs ";
+    $query=$query."FROM   expan_solicitud s, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."WHERE   g.id = gs.expan_soli5dcccitudes_idb AND ";
+    $query=$query."  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND ";
+    $query=$query."LENGTH(franquicias_secundarias) = 65535 AND s.deleted = 0 and g.deleted=0 and gs.deleted=0 ";
+    $query=$query."group by s.id) a ";
+    $query=$query."set franquicias_secundarias= a.fs ";
+    $query=$query."where LENGTH(franquicias_secundarias) = 65535 ";
+
+    $result = $db -> query($query);
+
     //Correccion empresas franquicia sin Franquicia asociada
 
     $query = "SELECT id ";
@@ -464,6 +477,7 @@
       $emp->retrieve($row["id"]);
       $emp->copyFranquicia();
     }
+
 
     //Correccion Franqucia sin empresa
 
