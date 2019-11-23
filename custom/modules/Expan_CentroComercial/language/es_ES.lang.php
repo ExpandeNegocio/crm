@@ -48,8 +48,8 @@ if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 $mod_strings = array(
   'ACCOUNT_REMOVE_PROJECT_CONFIRM' => '¿Está seguro de que desea quitar esta cuenta de este proyecto?',
   'LBL_DATOS_GENERALES' => 'Datos Generales',
-  'LBL_LOCALIDAD_APERTURA' => 'Localidad de apertura',
-  'LBL_PROVINCIA_APERTURA' => 'Provincia de apertura',
+  'LBL_LOCALIDAD' => 'Localidad de apertura',
+  'LBL_PROVINCIA' => 'Provincia de apertura',
   'LBL_CODIGO_POSTAL' => 'Codigo Postal',
   'LBL_TIPO_CC' => 'Tipo de Centro Comercial',
   'LBL_LOCALES' => 'Numero de locales',

@@ -52,13 +52,13 @@ $listViewDefs[$module_name] = array(
 
   'provincia_apertura' => array(
     'width' => '10',
-    'label' => 'LBL_PROVINCIA_APERTURA',
+    'label' => 'LBL_PROVINCIA',
     'default' => true
   ),
 
   'localidad_apertura' => array(
     'width' => '10',
-    'label' => 'LBL_LOCALIDAD_APERTURA',
+    'label' => 'LBL_LOCALIDAD',
     'default' => true
   ),
 

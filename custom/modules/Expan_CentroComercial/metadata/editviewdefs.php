@@ -31,7 +31,7 @@ $viewdefs [$module_name] =
               ),
             'javascript' => '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
                             {sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
-                            {sugar_getscript file="include/javascript/EditCentroComercial.js"}                                
+                            {sugar_getscript file="include/javascript/Expan_CentroComercial/EditViewCentroComercial.js"}                                
                             {sugar_getscript file="include/javascript/jquery.js"}',
             'useTabs' => true,
             'tabDefs' =>
@@ -67,11 +67,11 @@ $viewdefs [$module_name] =
                     0 =>
                       array(
                         'name' => 'provincia_apertura',
-                        'label' => 'LBL_PROVINCIA_APERTURA',
+                        'label' => 'LBL_PROVINCIA',
                       ),
                     1 => array(
                       'name' => 'localidad_apertura',
-                      'label' => 'LBL_LOCALIDAD_APERTURA',
+                      'label' => 'LBL_LOCALIDAD',
                     ),
                   ),
 

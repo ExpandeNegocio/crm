@@ -62,11 +62,11 @@ $viewdefs [$module_name] =
                     0 =>
                       array(
                         'name' => 'provincia_apertura',
-                        'label' => 'LBL_PROVINCIA_APERTURA',
+                        'label' => 'LBL_PROVINCIA',
                       ),
                     1 => array(
                       'name' => 'localidad_apertura',
-                      'label' => 'LBL_LOCALIDAD_APERTURA',
+                      'label' => 'LBL_LOCALIDAD',
                     ),
                   ),
 
