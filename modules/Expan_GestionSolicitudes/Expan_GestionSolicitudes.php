@@ -1316,42 +1316,28 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
     $GLOBALS['log']->info('[ExpandeNegocio][plantillaValida] check franquicia - ' . $Fran->chk_c1);
     $GLOBALS['log']->info('[ExpandeNegocio][plantillaValida] nombre franquicia - ' . $Fran->name);
 
-    if ($typeTemplate == "C1") {
-      if ($Fran->chk_c1 == true) {
+    if ($typeTemplate == "C1" && $Fran->chk_c1 == true) {
         return true;
-      }
-    } else if ($typeTemplate == "C1.1") {
-      if ($Fran->chk_c11 == true) {
+    } else if ($typeTemplate == "C1.1" && $Fran->chk_c11 == true) {
         return true;
-      }
-    } else if ($typeTemplate == "C1.2") {
-      if ($Fran->chk_c12 == true) {
+    } else if ($typeTemplate == "C1.2" && $Fran->chk_c12 == true) {
         return true;
-      }
-    } else if ($typeTemplate == "C1.3") {
-      if ($Fran->chk_c13 == true) {
-        return true;
-      }
-    } else if ($typeTemplate == "C1.4") {
-      if ($Fran->chk_c14 == true) {
-        return true;
-      }
-    } else if ($typeTemplate == "C1.5") {
-      if ($Fran->chk_c15 == true) {
-        return true;
-      }
-    } else if ($typeTemplate == "C2") {
-      if ($Fran->chk_c2 == true) {
-        return true;
-      }
-    } else if ($typeTemplate == "C3") {
-      if ($Fran->chk_c3 == true) {
-        return true;
-      }
-    } else if ($typeTemplate == "C4") {
-      if ($Fran->chk_c4 == true) {
-        return true;
-      }
+    } else if ($typeTemplate == "C1.3" && $Fran->chk_c13 == true) {
+      return true;
+    } else if ($typeTemplate == "C1.4" && $Fran->chk_c14 == true) {
+      return true;
+    } else if ($typeTemplate == "C1.5" && $Fran->chk_c15 == true) {
+      return true;
+    } else if ($typeTemplate == "C2" && $Fran->chk_c2 == true) {
+      return true;
+    } else if ($typeTemplate == "C3" && $Fran->chk_c3 == true) {
+      return true;
+    } else if ($typeTemplate == "C4" && $Fran->chk_c4 == true) {
+      return true;
+    } else if ($typeTemplate == "C5" && $Fran->chk_c5 == true) {
+      return true;
+    } else if ($typeTemplate == "C0.1" && $Fran->chk_c01 == true) {
+      return true;
     }
 
     $this->crearTarea("INTPlantilla");

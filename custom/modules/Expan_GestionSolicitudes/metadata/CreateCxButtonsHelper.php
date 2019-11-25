@@ -15,6 +15,7 @@ class CreateCxButtonsHelper
   private $enableTag = '#Enabled#';
   private $idTag = '#id#';
 
+  private $tituloC01 = 'Reenvo informacion precandidato';
   private $tituloC1 = 'Reenvio documentación inicial (C1) (Cuestionario, dosier y multimedia)';
   private $tituloC2 = 'Reenvio información Adicional (C2) (Plan financiero)';
   private $tituloC3 = 'Reenvio borrador precontrato (C3)';
@@ -69,6 +70,11 @@ class CreateCxButtonsHelper
   public function cxActivo($c)
   {
     switch ($c) {
+
+      case 'C0.1':
+        $val = $this->franquicia->chk_c01;
+        break;
+
       case 'C1':
         $val = $this->franquicia->chk_c1;
         break;
@@ -149,6 +155,11 @@ class CreateCxButtonsHelper
       case 'C1.5':
         return $this->tituloC15;
         break;
+
+      case 'C0.1':
+        return $this->tituloC01;
+        break;
+
     }
 
   }
