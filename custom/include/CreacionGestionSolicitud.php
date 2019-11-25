@@ -612,7 +612,8 @@ class AccionesGuardadoGestionSol {
                 //Los demas estados que no son el dos
             } else {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entra otros estados');
-                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PRECANDIDATO && $estadoAnt!=$bean -> estado_sol) {
+                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PRECANDIDATO && $estadoAnt!=$bean -> estado_sol &&
+                    $bean ->subestado_precandidato == Expan_GestionSolicitudes::ESTADO_PRE_ENV_MAILING) {
                   $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entra envio C0.1');
                   $salida = $bean -> preparaCorreo("C0.1");
                 }

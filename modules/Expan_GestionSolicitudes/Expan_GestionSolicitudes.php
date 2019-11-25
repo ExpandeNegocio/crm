@@ -50,6 +50,8 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
   const ESTADO_DESCARTADO = '4';
   const ESTADO_POSITIVO = '5';
 
+  const ESTADO_PRE_ENV_MAILING='3';
+
   const TIPO_SUBORIGEN_EXPANDENEGOCIOEVENTO = '7';
 
   const TIPO_ORIGEN_CENTRAL = '4';
