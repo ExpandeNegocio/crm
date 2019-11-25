@@ -1,13 +1,12 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-	coloreaSectores();
-	renderConsultora();
-	renderProveedorTab();
-	renderPropuestaTab();
-	renderCompetidorTab();
-	renderMotivos();
-	renderAlianzaTab();
-	hide();
-});
+
+coloreaSectores();
+renderConsultora();
+renderProveedorTab();
+renderPropuestaTab();
+renderCompetidorTab();
+renderMotivos();
+renderAlianzaTab();
+hide();
 
 function hide(){
 	$("#activities_correocandidato_button").hide();
@@ -32,7 +31,7 @@ function renderMotivos(){
 }
 
 function renderCompetidorTab() {
-	if ($("#chk_es_competidor").is(':checked')) {
+	if ($("#chk_es_competidor_detailblock").is(':checked')) {
 		$("a:contains('Datos competidor')").show();
 	} else {
 		$("a:contains('Datos competidor')").hide();
@@ -40,7 +39,7 @@ function renderCompetidorTab() {
 }
 
 function renderAlianzaTab() {
-	if ($("#chk_alianza").is(':checked')) {
+	if ($("#chk_alianza_detailblock").is(':checked')) {
 		$("a:contains('Datos alianza')").show();
 	} else {
 		$("a:contains('Datos alianza')").hide();
@@ -49,7 +48,7 @@ function renderAlianzaTab() {
 
 function renderPropuestaTab() {
 
-	if ($("#chk_es_cliente_potencial").is(':checked') || $("#chk_es_cliente_potencial_detailblock").is(':checked') ) {
+	if ($("#chk_es_cliente_potencial_detailblock").is(':checked') ) {
 		$("a:contains('Propuesta')").show();
 	} else {
 		$("a:contains('Propuesta')").hide();
@@ -73,8 +72,7 @@ function coloreaSectores(){
 				for (var i=0; i < listSector.length; i++) {
 					var sector=listSector[i] ;
 					$('li').filter(function() { return $.text([this]) === sector; }).css("background-color","green");
-   				} 
-
+   				}
 			}				
 		},
 		error : function(jqXHR, textStatus, errorThrown) {			

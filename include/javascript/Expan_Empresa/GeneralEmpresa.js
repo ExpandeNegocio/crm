@@ -24,7 +24,7 @@ function getListaCompetidores() {
 }
 
 function renderProveedorTab() {
-    if ($("#chk_es_proveedor").is(':checked')) {
+    if ($("#chk_es_proveedor_detailblock").is(':checked')) {
 
         $("a:contains('Datos Proveedor Generales')").show();
         if ($("#chk_proveedor_cliente").is(':checked')){

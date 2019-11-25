@@ -629,40 +629,12 @@
             ),
           1 =>
             array(
-              'name' => 'num_locales_franquiciados',
-              'label' => 'LBL_LOCALES_FRANQUICIADOS',
+              'name' => 'num_locales_extran',
+              'label' => 'LBL_LOCALES_EXTRAN',
             ),
         ),
 
       2 =>
-        array(
-          0 =>
-            array(
-              'name' => 'num_locales_extran',
-              'label' => 'LBL_LOCALES_EXTRAN',
-            ),
-          1 =>
-            array(
-              'name' => 'poblacion_min',
-              'label' => 'LBL_POBLACION_MIN',
-            ),
-        ),
-
-      3 =>
-        array(
-          0 =>
-            array(
-              'name' => 'sup_local_min',
-              'label' => 'SUP_LOCAL_MIN',
-            ),
-          1 =>
-            array(
-              'name' => 'zona_prioritaria_antece',
-              'label' => 'LBL_ZONA_PRIORITARIA',
-            ),
-        ),
-
-      4 =>
         array(
           0 =>
             array(
@@ -671,124 +643,11 @@
             ),
           1 =>
             array(
-              'name' => 'otros_requisitos',
-              'label' => 'LBL_OTROS_REQUISITOS',
+
             ),
         ),
 
-      5 =>
-        array(
-          0 =>
-            array(
-              'name' => 'inversion',
-              'label' => 'LBL_INVERSION',
-            ),
-          1 =>
-            array(
-              'name' => 'canon_entrada',
-              'label' => 'LBL_CANON_ENTRADA',
-            ),
-        ),
-
-      6 =>
-        array(
-          0 =>
-            array(
-              'name' => 'royalty_explotacion',
-              'label' => 'LBL_ROYALTY_EXPLOTACION',
-            ),
-          1 =>
-            array(
-              'name' => 'fondo_marketing',
-              'label' => 'LBL_FONDO_MARKETING',
-            ),
-        ),
-
-      7 =>
-        array(
-          0 =>
-            array(
-              'name' => 'duracion_contrato',
-              'label' => 'LBL_DURACION_CONTRATO',
-            ),
-          1 =>
-            array(
-              'name' => 'ayuda_financiera',
-              'label' => 'LBL_AYUDA_FINANCIERA',
-            ),
-        ),
-
-      8 =>
-        array(
-          0 =>
-            array(
-              'name' => 'personal_necesario',
-              'label' => 'LBL_PERSONAL_NECESARIO',
-            ),
-          1 =>
-            array(
-              'name' => 'perfil_candidato',
-              'label' => 'LBL_PERFIL_CANDIDATO',
-            ),
-        ),
-
-      9 =>
-        array(
-          0 =>
-            array(
-              'name' => 'elementos_diferenciales',
-              'label' => 'LBL_ELEM_DIFERENCIALES',
-            ),
-          1 =>
-            array(
-              'name' => 'posicionamiento_online',
-              'label' => 'LBL_POSICIONAMIENTO_ONLINE',
-            ),
-        ),
-
-      10 =>
-        array(
-          0 =>
-            array(
-              'name' => 'ferias',
-              'label' => 'LBL_FERIAS',
-            ),
-          1 =>
-            array(
-              'name' => 'portales',
-              'label' => 'LBL_PORTALES',
-            ),
-        ),
-
-      11 =>
-        array(
-          0 =>
-            array(
-              'name' => 'mailings',
-              'label' => 'LBL_MAILINGS',
-            ),
-          1 =>
-            array(
-              'name' => 'publicaciones',
-              'label' => 'LBL_PUBLICACIONES',
-            ),
-        ),
-
-      12 =>
-        array(
-          0 =>
-            array(
-              'name' => 'marketing_digital',
-              'label' => 'LBL_MARKETING_DIGITAL',
-            ),
-          1 =>
-            array(
-              'name' => 'otras_acciones',
-              'label' => 'LBL_OTRAS_ACCIONES',
-            ),
-        ),
-
-      13 =>
+      3 =>
         array(
           0 =>
             array(
@@ -797,26 +656,12 @@
             ),
           1 =>
             array(
-              'name' => 'aperturas_franquiciados',
-              'label' => 'LBL_APERTURAS_FRANQUICIADOS',
-            ),
-        ),
-
-      14 =>
-        array(
-          0 =>
-            array(
               'name' => 'cierres_propios',
               'label' => 'LBL_CIERRES_PROPIOS',
             ),
-          1 =>
-            array(
-              'name' => 'cierres_franquiciados',
-              'label' => 'LBL_CIERRES_FRANQUICIADOS',
-            ),
         ),
 
-      15 =>
+      4 =>
         array(
           0 =>
             array(
@@ -828,22 +673,6 @@
               'name' => 'cierres_extranjero',
               'label' => 'LBL_CIERRES_EXTRANJERO',
             ),
-        ),
-
-      16 =>
-        array(
-          0 =>
-            array(
-              'name' => 'web',
-              'label' => 'LBL_WEB',
-              'type' => 'readonly',
-            ),
-          1 =>
-            array(
-              'name' => 'noticias',
-              'label' => 'LBL_NOTICIAS',
-            ),
-
         ),
     );
 
