@@ -2197,21 +2197,21 @@
                           'name' => 'mistery_insert_fdo',
                           'customCode' =>
                             '{php}
-                $idFranq=$this->_tpl_vars["bean"]->id;   
-                $op=new opEdicionFranquicia();                
-                $op->showInterfazMisteryFdo($idFranq);        
-            {/php}',
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showInterfazMisteryFdo($idFranq);        
+                            {/php}',
                         ),
 
                       1 => array(
                         'name' => 'mistery_list_fdo',
                         'customCode' => '
-              {php}              
-                  $idfranq=$this->_tpl_vars["bean"]->id;                           
-                  $op=new opedicionfranquicia();
-                  $cadena = $op->showlistmisteryfdo($idfranq);
-                  echo $cadena;
-              {/php}',
+                        {php}              
+                            $idfranq=$this->_tpl_vars["bean"]->id;                           
+                            $op=new opedicionfranquicia();
+                            $cadena = $op->showlistmisteryfdo($idfranq);
+                            echo $cadena;
+                        {/php}',
                       ),
                     ),
                 ),

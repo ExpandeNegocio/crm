@@ -73,11 +73,6 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
-                  'LBL_EDITVIEW_MISTERY_FDO' =>
-                    array (
-                      'newTab' => true,
-                      'panelDefault' => 'expanded',
-                    ),
                 ),
             ),
           'panels' =>
@@ -1044,34 +1039,6 @@
           ),
         ),
     );
-
-  $viewdefs [$module_name]['DetailView']['panels']['LBL_EDITVIEW_MISTERY_FDO'] =
-    array(
-      0 =>
-        array (
-          0 =>
-            array (
-              'name' => 'mistery_insert_fdo',
-              'customCode'=>
-                '{php}
-            $idFranq=$this->_tpl_vars["bean"]->id;   
-            $op=new opEdicionFranquicia();                
-            $op->showInterfazMisteryCentral($idFranq);        
-        {/php}',
-            ),
-
-          1=> array (
-            'name' => 'mistery_list_fdo',
-            'customCode' =>'
-          {php}              
-              $idfranq=$this->_tpl_vars["bean"]->id;                           
-              $op=new opedicionfranquicia();
-              $op->showlistmisteryCentral($idfranq);
-          {/php}',
-          ),
-        ),
-    );
-
 
 ?>
 

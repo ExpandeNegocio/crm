@@ -1,3 +1,5 @@
+$("#_detailblock").hide();
+
 function cambiocheck()
 {
 

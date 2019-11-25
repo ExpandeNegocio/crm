@@ -85,11 +85,6 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
-                  'LBL_EDITVIEW_MISTERY_FDO' =>
-                    array (
-                      'newTab' => true,
-                      'panelDefault' => 'expanded',
-                    ),
                 ),
             ),
           'panels' =>
@@ -1108,36 +1103,11 @@
           {php}              
               $idfranq=$this->_tpl_vars["bean"]->id;                           
               $op=new opedicionfranquicia();
-              $op->showlistmisteryCentral($idfranq);
+              $lista=$op->showlistmisteryCentral($idfranq);
+              echo $lista;
           {/php}',
           ),
         ),
     );
 
-  $viewdefs [$module_name]['EditView']['panels']['LBL_EDITVIEW_MISTERY_FDO'] =
-    array(
-      0 =>
-        array (
-          0 =>
-            array (
-              'name' => 'mistery_insert_fdo',
-              'customCode'=>
-                '{php}
-                    $idFranq=$this->_tpl_vars["bean"]->id;   
-                    $op=new opEdicionFranquicia();                
-                    $op->showInterfazMisteryFdo($idFranq);        
-                {/php}',
-            ),
-
-          1=> array (
-            'name' => 'mistery_list_fdo',
-            'customCode' =>'
-          {php}              
-              $idfranq=$this->_tpl_vars["bean"]->id;                           
-              $op=new opedicionfranquicia();
-              $op->showlistmisteryfdo($idfranq);
-          {/php}',
-          ),
-        ),
-    );
 ?>

@@ -57,21 +57,19 @@ $("#ccaa").change(function () {
     loadProvincias();
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
-    renderProveedorTab();
-    renderPropuestaTab();
-    renderCompetidorTab();
-    renderAlianzaTab();
-    renderTrabajaConsultora();
-    renderConsultora();
-    renderTipoPositivo();
-    marcarCamposImportantes();
-    cargarchecks("Sectorcheck", "sector");
-    fechaPrimerContactoHoy();
-    renderMotivos();
-    hide();
-    refreshSn();
-});
+renderProveedorTab();
+renderPropuestaTab();
+renderCompetidorTab();
+renderAlianzaTab();
+renderTrabajaConsultora();
+renderConsultora();
+renderTipoPositivo();
+marcarCamposImportantes();
+cargarchecks("Sectorcheck", "sector");
+fechaPrimerContactoHoy();
+renderMotivos();
+hide();
+refreshSn();
 
 function renderMotivos() {
     if ($("#encaje_cliente option:selected").val() == "ne") {
@@ -173,20 +171,12 @@ function validarEmpresa() {
 
     if ($("#chk_es_competidor").attr("checked")) {
 
-        if ($("#web").val() == "") {
-            $("#web").css("border", "2px solid red");
-            alert("La web debe estar rellena");
+      /*  if ($("#ccaa").val() == "") {
+            $("#ccaa").css("border", "2px solid red");
+            alert("La comunidad autónoma debe estar rellena");
             return false;
         } else {
-            $("#web").css("border", "#94c1e8 solid 1px");
-        }
-
-        if ($("#poblacion").val() == "") {
-            $("#poblacion").css("border", "2px solid red");
-            alert("La poblacion debe estar rellena");
-            return false;
-        } else {
-            $("#poblacion").css("border", "#94c1e8 solid 1px");
+            $("#ccaa").css("border", "#94c1e8 solid 1px");
         }
 
         if ($("#provincia").val() == "") {
@@ -197,20 +187,20 @@ function validarEmpresa() {
             $("#provincia").css("border", "#94c1e8 solid 1px");
         }
 
+        if ($("#poblacion").val() == "") {
+            $("#poblacion").css("border", "2px solid red");
+            alert("La poblacion debe estar rellena");
+            return false;
+        } else {
+            $("#poblacion").css("border", "#94c1e8 solid 1px");
+        }
+
         if ($("#codigo_postal").val() == "") {
             $("#codigo_postal").css("border", "2px solid red");
             alert("El código postal debe estar relleno");
             return false;
         } else {
             $("#codigo_postal").css("border", "#94c1e8 solid 1px");
-        }
-
-        if ($("#ccaa").val() == "") {
-            $("#ccaa").css("border", "2px solid red");
-            alert("La comunidad autónoma debe estar rellena");
-            return false;
-        } else {
-            $("#ccaa").css("border", "#94c1e8 solid 1px");
         }
 
         if ($("#direccion").val() == "") {
@@ -235,7 +225,7 @@ function validarEmpresa() {
             return false;
         } else {
             $("#Expan_Empresa0emailAddress0").css("border", "#94c1e8 solid 1px");
-        }
+        } */
 
         if ($("#actividad_principal").val() == "") {
             $("#actividad_principal").css("border", "2px solid red");
@@ -830,7 +820,6 @@ function loadProvincias() {
 
 }
 
-
 function loadMunicipios() {
 
     var provincia;
@@ -862,5 +851,127 @@ function loadMunicipios() {
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
+}
 
+function addMisteryFranqCentral(idFranquicia){
+
+    var nom_central=$("#nom_central").val();
+    var ubicacion=$("#ubicacion").val();
+    var f_entrevista=$("#f_entrevista_central").val();
+    var correo_central=$("#correo_central").val();
+    var cargo_central=$("#cargo_central").val();
+    var telefono_central=$("#telefono_central").val();
+    var nom_utilizado=$("#nom_utilizado").val();
+    var correo_utilizado=$("#correo_utilizado").val();
+    var telefono_utilizado=$("#telefono_utilizado").val();
+    var catalogos=$("#catalogos").val();
+    var usuario=$("#usuario").val();
+    var informacion_obtenida=$("#informacion_obtenida").val();
+
+    if (confirm("¿Quiere añadir el mistery?")) {
+
+        url = 'index.php?entryPoint=consultarFranquicia';
+        $.ajax({
+            type : "POST",
+            url : url,
+            data :  "tipo=addMisteryFranqCentral&" +
+                "idFranquicia=" + idFranquicia + "&" +
+                "nom_central=" + nom_central + "&" +
+                "ubicacion=" + ubicacion + "&" +
+                "f_entrevista=" + f_entrevista + "&" +
+                "correo_central=" + correo_central + "&" +
+                "cargo_central="+ cargo_central + "&" +
+                "telefono_central=" + telefono_central + "&" +
+                "nom_utilizado=" + nom_utilizado + "&" +
+                "correo_utilizado=" + correo_utilizado + "&" +
+                "telefono_utilizado=" + telefono_utilizado + "&" +
+                "catalogos=" + catalogos + "&" +
+                "informacion_obtenida=" + informacion_obtenida + "&" +
+                "usuario=" + usuario,
+            success : function(data) {
+
+                if ( data == "Ok") {
+                    document.location.reload();
+                } else {
+                    alert("No se ha podido guardar el mistery");
+                }
+
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                YAHOO.SUGAR.MessageBox.hide();
+                alert('No se ha podido guardar el mistery - ' + textStatus + ' - ' + errorThrown);
+
+            }
+        });
+
+    } else {
+        return false;
+    }
+}
+
+function deleteMisteryCentral(id){
+
+    if (confirm("¿Quiere eliminar el mistery seleccionado?")) {
+
+        url = 'index.php?entryPoint=consultarFranquicia';
+        $.ajax({
+            type : "POST",
+            url : url,
+            data : "tipo=BajaMisteryFranqCentral&" +
+                "id=" + id,
+
+            success : function(data) {
+                if ( data == "Ok") {
+                    document.location.reload();
+                } else {
+                    alert("No se ha podido eliminar el mistery");
+                }
+
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                YAHOO.SUGAR.MessageBox.hide();
+                alert('No se ha podido borrar el mistery seleccionado - ' + textStatus + ' - ' + errorThrown);
+
+            }
+        });
+
+    } else {
+        return false;
+    }
+
+}
+
+function editMisteryCentral(id){
+
+    url = 'index.php?entryPoint=consultarFranquicia';
+    $.ajax({
+        type : "POST",
+        url : url,
+        data : "tipo=ConsultaMisteryCentral&" +
+            "id=" + id,
+
+        success : function(data) {
+
+            var json = JSON.parse(data);
+
+            $("#nom_central").val(json[0].nom_central);
+            $("#ubicacion").val(json[0].ubicacion);
+            $("#f_entrevista_fdo").val(json[0].f_entrevista);
+            $("#correo_central").val(json[0].correo_central);
+            $("#cargo_central").val(json[0].cargo_central);
+            $("#telefono_central").val(json[0].telefono_central);
+            $("#nom_utilizado").val(json[0].nom_utilizado);
+            $("#correo_utilizado").val(json[0].correo_utilizado);
+            $("#telefono_utilizado").val(json[0].telefono_utilizado);
+            $("#catalogos").val(json[0].catalogos);
+            $("#usuario").val(json[0].usuario);
+            $("#informacion_obtenida").val(json[0].informacion_obtenida);
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            YAHOO.SUGAR.MessageBox.hide();
+            alert('No se ha podido borrar las condiciones - ' + textStatus + ' - ' + errorThrown);
+
+        }
+    });
 }

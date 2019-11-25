@@ -59,6 +59,7 @@
           }
 
         }
+        $this->cloneFranquicia($bean);
       }
     }
 

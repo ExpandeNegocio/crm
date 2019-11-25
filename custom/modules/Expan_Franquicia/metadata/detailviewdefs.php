@@ -2090,21 +2090,20 @@
 
               'LBL_EDITVIEW_MISTERY_CENTRAL' =>
                 array(
-
                   1 =>
                     array(
                       0 =>
-                        array(),
-
-                      1 => array(
-                        'name' => 'mistery_list_central',
-                        'customCode' => '
+                        array(
+                          'name' => 'mistery_list_central',
+                          'customCode' => '
                           {php}              
                               $idfranq=$this->_tpl_vars["bean"]->id;                           
                               $op=new opedicionfranquicia();
                               $cadena=$op->showlistmisteryCentral($idfranq);                  
                               echo $cadena;
                           {/php}',
+                        ),
+                      1 => array(
                       ),
                     ),
                 ),
@@ -2116,16 +2115,20 @@
                   1 =>
                     array(
                       0 =>
-                        array(),
-
-                      1 => array(
-                        'name' => 'mistery_list_fdo',
-                        'customCode' => '
+                        array(
+                          'name' => 'mistery_list_fdo',
+                          'customCode' => '
                           {php}              
                               $idfranq=$this->_tpl_vars["bean"]->id;                           
                               $op=new opedicionfranquicia();
-                              $op->showlistmisteryfdo($idfranq);
+                              $list=$op->showlistmisteryfdo($idfranq);
+                              echo $list;
                           {/php}',
+
+                        ),
+
+                      1 => array(
+
                       ),
                     ),
                 ),
