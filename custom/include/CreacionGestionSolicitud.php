@@ -40,6 +40,7 @@ class AccionesGuardadoGestionSol {
             $result = $db -> query($query, true);
 
             $estadoAnt = "";
+            $subPreAnt="";
             $recepcio_cuestionario_ant="";
             $informacion_adicional_ant="";
             $sol_amp_info_ant="";
@@ -105,6 +106,7 @@ class AccionesGuardadoGestionSol {
                 $fecha_aprobacion_local_ant = $row["f_aprobacion_local"];
                 
                 $estadPreconAnt=$row["estado_precontrato"];
+                $subPreAnt=$row["subestado_precandidato"];
                                 
                 $pre_fir1_first_name_ant=$row["pre_fir1_first_name"];
                 
@@ -612,8 +614,11 @@ class AccionesGuardadoGestionSol {
                 //Los demas estados que no son el dos
             } else {
                 $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entra otros estados');
-                if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PRECANDIDATO && $estadoAnt!=$bean -> estado_sol &&
-                    $bean ->subestado_precandidato == Expan_GestionSolicitudes::ESTADO_PRE_ENV_MAILING) {
+                if (($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PRECANDIDATO && $estadoAnt!=$bean -> estado_sol &&
+                    $bean ->subestado_precandidato == Expan_GestionSolicitudes::ESTADO_PRE_ENV_MAILING) ||
+                  ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_PRECANDIDATO && $bean ->subestado_precandidato!=$subPreAnt &&
+                    $bean ->subestado_precandidato == Expan_GestionSolicitudes::ESTADO_PRE_ENV_MAILING)
+                ) {
                   $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion GestionSolicitud] Entra envio C0.1');
                   $salida = $bean -> preparaCorreo("C0.1");
                 }
