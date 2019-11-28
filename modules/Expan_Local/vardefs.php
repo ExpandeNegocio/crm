@@ -107,7 +107,7 @@
           'merge_filter' => 'disabled',
           'len' => 100,
           'size' => '20',
-          'options' => 'municipios_list',
+          'options' => 'municipiosCC_list',
           'studio' => 'visible',
           'dependency' => false,
         ),

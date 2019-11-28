@@ -40,7 +40,7 @@ function loadMunicipios() {
     $.ajax({
         type: "POST",
         url: url,
-        data: "tipo=RecogeMunicipios&provincia=" + provincia,
+        data: "tipo=RecogeMunicipiosCC&provincia=" + provincia,
         success: function (data) {
 
             $("#localidad").empty();
@@ -48,7 +48,7 @@ function loadMunicipios() {
             var listitems = '<option value=""></option>';
 
             for (var i in parse) {
-                listitems += '<option value=' + parse[i].c_provmun + '>' + parse[i].d_municipio + '</option>';
+                listitems += '<option value=' + parse[i].cod + '>' + parse[i].nombre + '</option>';
             }
 
             $("#localidad").append(listitems);

@@ -583,7 +583,9 @@
             $query=$query."        WHERE    s.franquicia_principal = f.id AND s.id = r.bean_id AND e.id = r.email_address_id AND delegado IS NULL AND s.deleted ";
             $query=$query."                 = 0 ";
             $query=$query."        GROUP BY e.email_address) a ";
-            $query=$query."      LEFT JOIN expan_m_municipios m ON c_provmun = a.localidad_apertura_1; ";
+            $query=$query."      LEFT JOIN (SELECT id c_provmun, name d_municipio ";
+            $query=$query."                              FROM   expan_centrocomercial ";
+            $query=$query."                              UNION ALL SELECT c_provmun cod, d_municipio FROM expan_m_municipios) m ON c_provmun = a.localidad_apertura_1; ";
 
             
             InsertaConsulta($objPHPExcel,$query,'Delegado - Agente');           

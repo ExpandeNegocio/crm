@@ -202,10 +202,10 @@
     $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 21 DAY) AND DATE_SUB(CURDATE(), INTERVAL 15 DAY) THEN 1 ELSE 0 END) \"-2 semana\",  ";
     $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND DATE_SUB(CURDATE(), INTERVAL 22 DAY) THEN 1 ELSE 0 END) \"-3 semana\",                                          ";
     $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Este mes\",  ";
-    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND DATE_SUB(CURDATE(), INTERVAL 31 DAY) THEN 1 ELSE 0 END) \"Ultimos 30 días\", ";
-    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 90 DAY) AND DATE_SUB(CURDATE(), INTERVAL 61 DAY) THEN 1 ELSE 0 END) \"-1 Mes\", ";
-    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 120 DAY) AND DATE_SUB(CURDATE(), INTERVAL 91 DAY) THEN 1 ELSE 0 END) \"-2 Mes\", ";
-    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 150 DAY) AND DATE_SUB(CURDATE(), INTERVAL 121 DAY) THEN 1 ELSE 0 END) \"-3 Mes\" ";
+    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND DATE_SUB(CURDATE(), INTERVAL 31 DAY) THEN 1 ELSE 0 END) \"-1 Mes\", ";
+    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 90 DAY) AND DATE_SUB(CURDATE(), INTERVAL 61 DAY) THEN 1 ELSE 0 END) \"-2 Mes\", ";
+    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 120 DAY) AND DATE_SUB(CURDATE(), INTERVAL 91 DAY) THEN 1 ELSE 0 END) \"-3 Mes\", ";
+    $query=$query."          sum(CASE WHEN g.chk_recepcio_cuestionario = 1 AND g.f_recepcion_cuestionario BETWEEN DATE_SUB(CURDATE(), INTERVAL 150 DAY) AND DATE_SUB(CURDATE(), INTERVAL 121 DAY) THEN 1 ELSE 0 END) \"-4 Mes\" ";
     $query=$query."FROM     expan_gestionsolicitudes g, expan_franquicia f  ";
     $query=$query."WHERE    g.deleted = 0 AND   ";
     $query=$query."         f.id = g.franquicia AND   ";

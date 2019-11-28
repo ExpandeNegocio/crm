@@ -177,10 +177,15 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             echo json_encode($return,JSON_FORCE_OBJECT);        
             break;
             
-        case 'RecogeMunicipios':
-            
-            $query = "select c_provmun,d_municipio from expan_m_municipios ";
-            $query=$query."where c_pro=".$provincia;
+        case 'RecogeMunicipiosCC':
+
+            $query = "select cod, nombre  ";
+            $query=$query."from ( select 1 orden,id cod, concat('--',name) nombre ";
+            $query=$query."        from expan_centrocomercial where provincia_apertura=$provincia  ";
+            $query=$query."        union all ";
+            $query=$query."        select 2 orden, c_provmun cod, d_municipio nombre ";
+            $query=$query."        from expan_m_municipios where c_pro=$provincia) a ";
+            $query=$query."order by orden, nombre ";
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultarSolicitud][RecogeMunicipios]Consulta-'.$query );
             
@@ -192,6 +197,23 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
                         
             echo json_encode($return,JSON_FORCE_OBJECT);       
             
+            break;
+
+        case 'RecogeMunicipios':
+
+            $query = "select c_provmun,d_municipio from expan_m_municipios ";
+            $query=$query."where c_pro=".$provincia;
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultarSolicitud][RecogeMunicipios]Consulta-'.$query );
+
+            $result = $db -> query($query, true);
+
+            while ($row = $db -> fetchByAssoc($result)) {
+              $return[] = $row;
+            }
+
+            echo json_encode($return,JSON_FORCE_OBJECT);
+
             break;
 
         case 'RecogeProvincias':

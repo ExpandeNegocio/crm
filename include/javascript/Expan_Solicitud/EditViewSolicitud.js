@@ -553,7 +553,7 @@ function loadMunicipios(numComboProv) {
     $.ajax({
         type: "POST",
         url: url,
-        data: "tipo=RecogeMunicipios&provincia=" + provincia,
+        data: "tipo=RecogeMunicipiosCC&provincia=" + provincia,
         success: function (data) {
 
             $selectMun.empty();
@@ -561,14 +561,9 @@ function loadMunicipios(numComboProv) {
             var listitems = '<option value=""></option>';
 
             for (var i in parse) {
-
-                listitems += '<option value=' + parse[i].c_provmun + '>' + parse[i].d_municipio + '</option>';
+                listitems += '<option value=' + parse[i].cod + '>' + parse[i].nombre + '</option>';
             }
 
-
-            /*	$.each(parse, function(key, value){
-                    listitems += '<option value=' + key + '>' + value + '</option>';
-                });*/
             $selectMun.append(listitems);
 
             if (numComboProv == 1) {

@@ -1943,7 +1943,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
     $query = $query . "         LEFT JOIN expan_m_inversion inv ON inv.id = a.recursos_propios ";
     $query = $query . "         LEFT JOIN expan_m_perfil_fran pf ON pf.id = a.papel ";
     $query = $query . "         LEFT JOIN expan_m_provincia prov ON a.prov = prov.c_prov ";
-    $query = $query . "         LEFT JOIN expan_m_municipios mun on a.localidad_apertura_1= mun.c_provmun ";
+    $query = $query . "         LEFT JOIN (SELECT id c_provmun, name d_municipio ";
+    $query = $query . "                                     FROM   expan_centrocomercial ";
+    $query = $query . "                                     UNION ALL SELECT c_provmun cod, d_municipio FROM expan_m_municipios) mun on a.localidad_apertura_1= mun.c_provmun ";
     $query = $query . "GROUP BY a.id ";
     $query = $query . "ORDER BY Provincia,nombre, Apellidos; ";
 
@@ -2097,7 +2099,10 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
     $query = $query . "         LEFT JOIN expan_m_inversion inv ON inv.id = a.recursos_propios    ";
     $query = $query . "         LEFT JOIN expan_m_perfil_fran pf ON pf.id = a.papel    ";
     $query = $query . "         LEFT JOIN expan_m_provincia prov ON a.prov = prov.c_prov    ";
-    $query = $query . "         LEFT JOIN expan_m_municipios mun on a.localidad_apertura_1= mun.c_provmun             ";
+    $query = $query . "         LEFT JOIN (SELECT id c_provmun, name d_municipio
+                                            FROM   expan_centrocomercial
+                                            UNION ALL
+                                            SELECT c_provmun cod, d_municipio FROM expan_m_municipios) mun on a.localidad_apertura_1= mun.c_provmun             ";
     $query = $query . "GROUP BY a.id    ";
     $query = $query . "ORDER BY Provincia,nombre, Apellidos";
 
