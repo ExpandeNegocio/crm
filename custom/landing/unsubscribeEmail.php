@@ -25,4 +25,17 @@
   $query = "update expan_solicitud_cstm set no_correos_c=1 where id_c='$solId'; ";
   $db -> query($query, true);
 
+  $solicitud=new Expan_Solicitud();
+  $solicitud->retrieve($solId);
+
+  $solicitud->load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
+
+    //Pasamos a descartadas las gestiones
+  foreach ($solicitud->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
+    $gestion->estado_sol= Expan_GestionSolicitudes::ESTADO_DESCARTADO;
+    $gestion->motivo_descarte=Expan_GestionSolicitudes::DESCARTE_CORREO;
+
+    $gestion->save();
+  }
+
   echo $_GET['callback'] . '(' . "{'resp' : 'ok'}" . ')';

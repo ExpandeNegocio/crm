@@ -83,6 +83,7 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
   const DESCARTE_FRANQUICIA_OTRO_SECTOR = '27';
   const DESCARTE_FRANQUICIA_CAIDA_COLABORA = '29';
   const DESCARTE_OTROS = '99';
+  const DESCARTE_CORREO = '152';
 
   const POSITIVO_PRECONTRATO = 'Pre';
   const POSITIVO_CONTRATO = 'Cont';
