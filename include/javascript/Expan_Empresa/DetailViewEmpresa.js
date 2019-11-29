@@ -1,12 +1,15 @@
 
-coloreaSectores();
-renderConsultora();
-renderProveedorTab();
-renderPropuestaTab();
-renderCompetidorTab();
-renderMotivos();
-renderAlianzaTab();
-hide();
+
+
+	coloreaSectores();
+	renderConsultora();
+	renderProveedorTab();
+	renderPropuestaTab();
+	renderCompetidorTab();
+	renderMotivos();
+	renderAlianzaTab();
+	hide();
+
 
 function hide(){
 	$("#activities_correocandidato_button").hide();
@@ -31,7 +34,8 @@ function renderMotivos(){
 }
 
 function renderCompetidorTab() {
-	if ($("#chk_es_competidor_detailblock").is(':checked')) {
+	if ($("#chkCompetidor").is(':checked') &&
+		$("#empresa_type_detailblock").text().trim() !="Franquicia") {
 		$("a:contains('Datos competidor')").show();
 	} else {
 		$("a:contains('Datos competidor')").hide();
@@ -39,7 +43,8 @@ function renderCompetidorTab() {
 }
 
 function renderAlianzaTab() {
-	if ($("#chk_alianza_detailblock").is(':checked')) {
+
+	if ($("#chkAlianza").is(':checked')) {
 		$("a:contains('Datos alianza')").show();
 	} else {
 		$("a:contains('Datos alianza')").hide();
@@ -48,7 +53,7 @@ function renderAlianzaTab() {
 
 function renderPropuestaTab() {
 
-	if ($("#chk_es_cliente_potencial_detailblock").is(':checked') ) {
+	if ($("#chkPotencial").is(':checked') ) {
 		$("a:contains('Propuesta')").show();
 	} else {
 		$("a:contains('Propuesta')").hide();
@@ -160,4 +165,19 @@ function cambiarCompetidor(tipoComp) {
 		return false;
 	}
 
+}
+
+function renderProveedorTab() {
+	if ($("#chk_es_cliente_potencial_span").is(':checked')) {
+
+		$("a:contains('Datos Proveedor Generales')").show();
+		if ($("#chkProveedor").is(':checked')){
+			$("a:contains('Datos Proveedor por Franquicia')").show();
+		}else{
+			$("a:contains('Datos Proveedor por Franquicia')").hide();
+		}
+	} else {
+		$("a:contains('Datos Proveedor Generales')").hide();
+		$("a:contains('Datos Proveedor por Franquicia')").hide();
+	}
 }

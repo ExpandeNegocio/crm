@@ -22,18 +22,3 @@ function getListaCompetidores() {
 
     return idCompetidores;
 }
-
-function renderProveedorTab() {
-    if ($("#chk_es_proveedor_detailblock").is(':checked')) {
-
-        $("a:contains('Datos Proveedor Generales')").show();
-        if ($("#chk_proveedor_cliente").is(':checked')){
-            $("a:contains('Datos Proveedor por Franquicia')").show();
-        }else{
-            $("a:contains('Datos Proveedor por Franquicia')").hide();
-        }
-    } else {
-        $("a:contains('Datos Proveedor Generales')").hide();
-        $("a:contains('Datos Proveedor por Franquicia')").hide();
-    }
-}

@@ -95,7 +95,8 @@ function hide() {
 }
 
 function renderCompetidorTab() {
-    if ($("#chk_es_competidor").is(':checked')) {
+    if ($("#chk_es_competidor").is(':checked') &&
+        $("#empresa_type option:selected").text() != "Franquicia" ) {
         $("a:contains('Datos competidor')").show();
     } else {
         $("a:contains('Datos competidor')").hide();
@@ -974,4 +975,19 @@ function editMisteryCentral(id){
 
         }
     });
+}
+
+function renderProveedorTab() {
+    if ($("#chk_es_proveedor").is(':checked')) {
+
+        $("a:contains('Datos Proveedor Generales')").show();
+        if ($("#chk_proveedor_cliente").is(':checked')){
+            $("a:contains('Datos Proveedor por Franquicia')").show();
+        }else{
+            $("a:contains('Datos Proveedor por Franquicia')").hide();
+        }
+    } else {
+        $("a:contains('Datos Proveedor Generales')").hide();
+        $("a:contains('Datos Proveedor por Franquicia')").hide();
+    }
 }

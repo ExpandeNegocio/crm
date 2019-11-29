@@ -188,11 +188,14 @@
         if (self::$fetchedRow[$bean->id]['provincia'] != $bean->provincia && $bean->provincia != "") {
           $franquicia->direccion_provincia = $bean->provincia;
         }
+        if (self::$fetchedRow[$bean->id]['poblacion'] != $bean->poblacion && $bean->poblacion != "") {
+          $franquicia->direccion_localidad =$GLOBALS['app_list_strings']['municipios_list'][$bean->poblacion];
+        }
         if (self::$fetchedRow[$bean->id]['ccaa'] != $bean->ccaa && $bean->ccaa != "") {
           $franquicia->ccaa = $bean->ccaa;
         }
         if (self::$fetchedRow[$bean->id]['pais'] != $bean->pais && $bean->pais != "") {
-          $franquicia->pais = $bean->pais;
+          $franquicia->direccion_pais = $bean->pais;
         }
         if (self::$fetchedRow[$bean->id]['codigo_postal'] != $bean->codigo_postal && $bean->codigo_postal != "") {
           $franquicia->direccion_codigo_postal = $bean->codigo_postal;

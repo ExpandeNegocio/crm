@@ -397,6 +397,24 @@
                         'label' => 'LBL_OBSERVACIONES_CONTACTO',
                       ),
                     ),
+
+                  28 =>
+                    array(
+                      0 =>
+                        array(
+                              'name' => 'checks_js',
+                              'customCode' => '         
+                                {php}                             
+                                     $idEmpresa=$this->_tpl_vars["bean"]->id;                    
+                                    include "custom/modules/Expan_Empresa/metadata/opEdicionEmpresa.php";
+                                    $op=new opEdicionEmpresa();
+                                    $op->getchecks($idEmpresa);
+                                {/php}',
+                        ),
+                      1 => array(
+
+                      ),
+                    ),
                 ),
             ),
         ),
@@ -512,8 +530,7 @@
 
             'customCode' => '         
       {php}                             
-           $idProveedor=$this->_tpl_vars["bean"]->id;                    
-          include "custom/modules/Expan_Empresa/metadata/opEdicionEmpresa.php";
+           $idProveedor=$this->_tpl_vars["bean"]->id;                              
           $op=new opEdicionEmpresa();
           $op->showInterfazProveedorEmpresa($idProveedor,"EditView");
       {/php}',

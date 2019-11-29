@@ -184,6 +184,38 @@ class opEdicionEmpresa {
         
     }
 
+    public function getchecks($idEmpresa){
+
+      $empresa= new Expan_Empresa();
+      $empresa->retrieve($idEmpresa);
+
+      $potencial="";
+      if ($empresa->chk_es_cliente_potencial){
+        $potencial="checked";
+      }
+
+      $proveedor="";
+      if ($empresa->chk_es_proveedor){
+        $proveedor="checked";
+      }
+
+      $competidor="";
+      if ($empresa->chk_es_competidor){
+        $competidor="checked";
+      }
+
+      $alianza="";
+      if ($empresa->chk_alianza){
+        $alianza="checked";
+      }
+
+      echo '<tr hidden><td></td> <td><input type="checkbox" id="chkPotencial" name="chkPotencial" '.$potencial.' ></td></tr>';
+      echo '<tr hidden><td></td> <td><input type="checkbox" id="chkProveedor" name="chkProveedor" '.$proveedor.' ></td></tr>';
+      echo '<tr hidden><td></td> <td><input type="checkbox" id="chkCompetidor" name="chkCompetidor" '.$competidor.' ></td></tr>';
+      echo '<tr hidden><td></td> <td><input type="checkbox" id="chkAlianza" name="chkAlianza" '.$alianza.' ></td></tr>';
+
+    }
+
     public function getOptionsByList ($listName){
              
         $list= $GLOBALS['app_list_strings'][$listName];
