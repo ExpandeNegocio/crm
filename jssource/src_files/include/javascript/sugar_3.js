@@ -723,6 +723,12 @@ trim = YAHOO.lang.trim;
 
 
 function check_form(formname) {
+
+	if(!navigator.onLine) {
+		alert("No hay conexion por loq ue no se puede guardar. Espere hasta que la conexión se restablezca");
+		return false;
+	}
+
 	if (typeof(siw) != 'undefined' && siw
 		&& typeof(siw.selectingSomething) != 'undefined' && siw.selectingSomething)
 			return false;

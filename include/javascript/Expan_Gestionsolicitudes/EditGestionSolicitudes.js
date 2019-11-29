@@ -1415,6 +1415,11 @@ function abrirSolicitudLlamadas(gestion, solicitud) {
 
 function validarEdicion(idGestion) {
 
+    if(!navigator.onLine) {
+        alert("No hay conexion por loq ue no se puede guardar. Espere hasta que la conexión se restablezca");
+       return false;
+    }
+
     if (//validarEstadoNoAt()==false ||
     //validarEstadoCurso()==false ||
         validarMotivoDescarte() == false ||

@@ -890,6 +890,11 @@ function cambioRating(rating, solId) {
 
 function validarSubOrigen() {
 
+    if(!navigator.onLine) {
+        alert("No hay conexion por loq ue no se puede guardar. Espere hasta que la conexión se restablezca");
+        return false;
+    }
+
     var Nombre = document.getElementById("first_name");
     var Apellidos = document.getElementById("last_name");
 

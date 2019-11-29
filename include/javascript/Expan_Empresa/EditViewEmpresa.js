@@ -155,6 +155,11 @@ function clean() {
 
 function validarEmpresa() {
 
+    if(!navigator.onLine) {
+        alert("No hay conexion por loq ue no se puede guardar. Espere hasta que la conexión se restablezca");
+        return false;
+    }
+
     if ($("#estado_cp option:selected").text() == "Positivo" &&
         $("#positivo_cp option:selected").text() == "") {
 
