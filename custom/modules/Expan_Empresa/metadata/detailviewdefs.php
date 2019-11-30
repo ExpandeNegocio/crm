@@ -883,6 +883,8 @@
               $idfranq=$this->_tpl_vars["bean"]->id;                           
               $op=new opedicionfranquicia();
               $op->showlistmisteryCentral($idfranq);
+              $lista=$op->showlistmisteryCentral($idfranq);
+              echo $lista;
           {/php}',
           ),
         ),

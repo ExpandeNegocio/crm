@@ -631,7 +631,7 @@ class AccionesGuardadoGestionSol {
                     $bean->estado_sol=Expan_GestionSolicitudes::ESTADO_DESCARTADO;
                     $bean->motivo_descarte=Expan_GestionSolicitudes::DESCARTE_FRANQUICIA_CAIDA_COLABORA;                    
                 }
-
+                  //Si se cae un contrato se debe cerrar la apertura
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
                   $bean -> motivo_positivo=='CaiCon' &&
                   $bean -> motivo_positivo!=$motivoPositivoAnt)

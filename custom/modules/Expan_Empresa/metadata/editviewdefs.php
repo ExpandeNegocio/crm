@@ -931,7 +931,7 @@
             'customCode' =>'
           {php}              
               $idfranq=$this->_tpl_vars["bean"]->id;                           
-              $op=new opedicionfranquicia();
+              $op=new opedicionFranquicia();
               $lista=$op->showlistmisteryCentral($idfranq);
               echo $lista;
           {/php}',

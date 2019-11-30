@@ -884,89 +884,80 @@ $viewdefs [$module_name] =
                   ),
 
               ),
-            'LBL_EDITVIEW_OBSERVACIONES' =>
-              array(
 
-                0 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'preguntas_mn_t',
-                        'studio' => 'visible',
-                        'label' => 'LBL_PREGUNTAS_MN_T',
-                      ),
-                    1 =>
-                      array(
-                        'name' => 'preg_en_central',
-                        'studio' => 'visible',
-                        'label' => 'LBL_PREG_EN_CENTRAL',
-                      ),
-                  ),
+              'LBL_EDITVIEW_OBSERVACIONES' =>
+                array(
 
-                1 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'objeciones_mn',
-                        'studio' => 'visible',
-                        'label' => 'LBL_OBJECIONES_MN',
+                  0 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'preguntas_mn_t',
+                          'label' => 'LBL_PREGUNTAS_MN_T',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'objeciones_mn',
+                          'label' => 'LBL_OBJECIONES_MN',
+                        ),
+                    ),
 
-                      ),
-                    1 =>
-                      array(
-                        'name' => 'solicitudes_candidato',
-                        'studio' => 'visible',
-                        'label' => 'LBL_SOLICITUDES_CANDIDATO',
+                  1 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'solicitudes_candidato',
+                          'label' => 'LBL_SOLICITUDES_CANDIDATO',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'concesiones',
+                          'label' => 'LBL_CONCESIONES',
+                        ),
+                    ),
 
-                      ),
-                  ),
+                  2 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'informacion_competencia',
+                          'label' => 'LBL_INFORMACION_COMPETENCIA',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'informacion_proveedores',
+                          'label' => 'LBL_INFORMACION_PROVEEDORES',
+                        ),
+                    ),
 
-                2 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'informacion_proveedores',
-                        'studio' => 'visible',
-                        'label' => 'LBL_INFORMACION_PROVEEDORES',
-                      ),
-                    1 =>
-                      array(
-                        'name' => 'informacion_competencia',
-                        'studio' => 'visible',
-                        'label' => 'LBL_INFORMACION_COMPETENCIA',
-                      ),
-                  ),
+                  3 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'preg_en_central',
+                          'label' => 'LBL_PREG_EN_CENTRAL',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'mejoras',
+                          'label' => 'LBL_MEJORAS',
+                        ),
+                    ),
 
-                3 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'notas_argumentario',
-                        'studio' => 'visible',
-                        'label' => 'LBL_NOTAS_ARGUMENTARIO',
-                      ),
-                    1 =>
-                      array(),
-                  ),
+                  4 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'notas_argumentario',
+                          'label' => 'LBL_NOTAS_ARGUMENTARIO',
+                        ),
+                      1 =>
+                        array(),
+                    ),
+                ),
 
-                4 =>
-                  array(
-                    0 =>
-                      array(
-                        'name' => 'concesiones',
-                        'studio' => 'visible',
-                        'label' => 'LBL_CONCESIONES',
-                      ),
-                    1 =>
-                      array(
-                        'name' => 'mejoras',
-                        'studio' => 'visible',
-                        'label' => 'LBL_MEJORAS',
-                      ),
-                  ),
-              ),
 
-            // --- IIT --------------------------------------------
+                // --- IIT --------------------------------------------
 
             'LBL_IIT' =>
               array(
