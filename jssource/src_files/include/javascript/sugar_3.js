@@ -725,7 +725,7 @@ trim = YAHOO.lang.trim;
 function check_form(formname) {
 
 	if(!navigator.onLine) {
-		alert("No hay conexion por loq ue no se puede guardar. Espere hasta que la conexión se restablezca");
+		alert("No hay conexion por lo que no se puede guardar. Espere hasta que la conexión se restablezca");
 		return false;
 	}
 

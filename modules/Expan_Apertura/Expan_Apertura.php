@@ -98,7 +98,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
     return false;
   }
 
-  static function crearApertura($nombre, $gestion, $franquiciado)
+  public static function crearApertura($nombre, $gestion, $franquiciado)
   {
 
     $GLOBALS['log']->info('[ExpandeNegocio][crearApertura]Se crea apertura');
@@ -142,10 +142,13 @@ class Expan_Apertura extends Expan_Apertura_sugar
     }
     $name = $solicitud->first_name . " " . $solicitud->last_name . "-".$nomFran;
 
-    $franquiciado = Expan_Franquiciado::existeFranquiciado($solicitud->id);
-    if ($franquiciado == false) { //se crea el franquiciado
+    $franquiciado_id = Expan_Franquiciado::existeFranquiciado($solicitud->id);
+    if ($franquiciado_id == false) { //se crea el franquiciado
       $franquiciado = Expan_Franquiciado::crearFranquiciado($solicitud, 3);
       $franquiciado->setAddress($solicitud);
+    }else{
+      $franquiciado = new Expan_Franquiciado();
+      $franquiciado->retrieve($franquiciado_id);
     }
 
     if (Expan_Apertura::existeApertura($name) == false &&
