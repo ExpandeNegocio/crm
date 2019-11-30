@@ -1416,7 +1416,7 @@ function abrirSolicitudLlamadas(gestion, solicitud) {
 function validarEdicion(idGestion) {
 
     if(!navigator.onLine) {
-        alert("No hay conexion por loq ue no se puede guardar. Espere hasta que la conexión se restablezca");
+        alert("No hay conexión por lo que no se puede guardar. Espere hasta que la conexión se restablezca. Anota los datos por si no vuelve la conexion (puedes hacer una foto)");
        return false;
     }
 
