@@ -641,10 +641,9 @@ class AccionesGuardadoGestionSol {
                     $apertura= new Expan_Apertura();
                     $apertura->retrieve($aperturaId);
 
-                    $apertura->abierta=2;
+                    $apertura->abierta=Expan_Apertura::ABIERTO_NO;
                     $apertura->save();
                   }
-
                 }
 
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&

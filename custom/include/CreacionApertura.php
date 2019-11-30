@@ -31,8 +31,7 @@ class AccionesGuardadoApertura {
             
              // Creacion de Apertura
              if (!isset(self::$fetchedRow[$bean -> id])) {
-                 
-                 
+
              // Modificacion de Apertura    
              }else{
                  
@@ -54,8 +53,9 @@ class AccionesGuardadoApertura {
                  }
              }      
 
-             if ($f_abierta_ant!=$bean->abierta && $bean->abierta==2){
-               $this->actualizaCotratoCaido($bean);
+             if ($f_abierta_ant!=$bean->abierta &&
+               $bean->abierta== Expan_Apertura::ABIERTO_NO ){
+                $this->actualizaCotratoCaido($bean);
              }
             //Actualizamos el estado del franquiciado
             $this->actualizaEstadoFranquiciado($bean);
@@ -77,7 +77,9 @@ class AccionesGuardadoApertura {
         $gestion= new Expan_GestionSolicitudes();
         $gestion->retrieve($bean->gestion);
 
-        $gestion->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_CAI_CONTRATO;
+        if ($gestion->estado_sol=Expan_GestionSolicitudes::ESTADO_POSITIVO){
+          $gestion->motivo_positivo=Expan_GestionSolicitudes::POSITIVO_CAI_CONTRATO;
+        }
         $gestion->save();
       }
     }

@@ -42,6 +42,12 @@ require_once('modules/Expan_Apertura/Expan_Apertura_sugar.php');
 class Expan_Apertura extends Expan_Apertura_sugar
 {
 
+  const ABIERTO_SI = 1;
+  const ABIERTO_NO = 2;
+
+  const TIPO_APERTURA_PROPIA=2;
+  const TIPO_APERTURA_FRANQUICIADA=3;
+
   function __construct()
   {
     parent::Expan_Apertura_sugar();
@@ -106,8 +112,8 @@ class Expan_Apertura extends Expan_Apertura_sugar
     $apertura = new Expan_Apertura();
     $apertura->name = $nombre;
     $apertura->date_entered = TimeDate::getInstance()->getNow()->asDb();
-    $apertura->abierta = 1;
-    $apertura->tipo_apertura = 3;
+    $apertura->abierta = Expan_Apertura::ABIERTO_SI;
+    $apertura->tipo_apertura = Expan_Apertura::TIPO_APERTURA_FRANQUICIADA;
 
     $solicitud = $gestion->GetSolicitud();
 
@@ -144,7 +150,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
 
     $franquiciado_id = Expan_Franquiciado::existeFranquiciado($solicitud->id);
     if ($franquiciado_id == false) { //se crea el franquiciado
-      $franquiciado = Expan_Franquiciado::crearFranquiciado($solicitud, 3);
+      $franquiciado = Expan_Franquiciado::crearFranquiciado($solicitud, Expan_Franquiciado::ORIGEN_CADENA_NO_EN);
       $franquiciado->setAddress($solicitud);
     }else{
       $franquiciado = new Expan_Franquiciado();
@@ -157,13 +163,15 @@ class Expan_Apertura extends Expan_Apertura_sugar
     }
   }
 
-  function aperturaRepetida($provincia, $franquicia, $otraFran)
+  function aperturaRepetida($provincia, $franquicia, $otraFran,$aperturaId)
   {
 
     $db = DBManagerFactory::getInstance();
 
-    $query = "select id from expan_apertura where provincia_apertura='" . $provincia . "' and ";
-    $query = $query . "(franquicia='" . $franquicia . "' or  (otra_franquicia='" . $otraFran . "' and otra_franquicia<>'')) and deleted=0; ";
+    $query = "SELECT id ";
+    $query=$query."FROM   expan_apertura ";
+    $query=$query."WHERE  provincia_apertura = '$provincia' AND id <> '$aperturaId' AND (franquicia = '$franquicia' OR (otra_franquicia = '$otraFran' ";
+    $query=$query."       AND otra_franquicia <> '')) AND deleted = 0 ";
 
     $GLOBALS['log']->info('[ExpandeNegocio][crearApertura]Consulta-' . $query);
 
@@ -184,8 +192,8 @@ class Expan_Apertura extends Expan_Apertura_sugar
 
     $apertura->name = $solicitud->first_name . " " . $solicitud->last_name . " - " . $franquicia;
     $apertura->date_entered = TimeDate::getInstance()->getNow()->asDb();
-    $apertura->abierta = 1;
-    $apertura->tipo_apertura = 3;
+    $apertura->abierta = Expan_Apertura::ABIERTO_SI;
+    $apertura->tipo_apertura = TIPO_APERTURA_FRANQUICIADA::TIPO_APERTURA_FRANQUICIADA;
 
     if ($solicitud != null) {
       if ($solicitud->provincia_apertura_1 != null && $solicitud->provincia_apertura_1 !="") {

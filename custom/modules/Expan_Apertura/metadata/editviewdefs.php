@@ -61,7 +61,7 @@ array (
                 onClick="        
                     this.form.return_action.value=\'DetailView\'; 
                     this.form.action.value=\'Save\';             
-                    var valido=controlarDuplicados();       
+                    var valido=controlarDuplicados(\'{$fields.id.value}\');       
                     return valido;" 
                 value="Guardar">',
           ),

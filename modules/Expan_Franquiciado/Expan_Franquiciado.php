@@ -43,6 +43,8 @@ require_once('modules/Expan_Solicitud/Expan_Solicitud.php');
 class Expan_Franquiciado extends Expan_Franquiciado_sugar
 {
 
+  const ORIGEN_CADENA_NO_EN=3;
+
   function __construct()
   {
     parent::Expan_Franquiciado_sugar();

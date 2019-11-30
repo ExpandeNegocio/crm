@@ -1,11 +1,6 @@
 
+function controlarDuplicados(aperturaid){
 
-
-
-
-function controlarDuplicados(){
-	
-	
 	var provincia=$("#provincia_apertura").val()+"";	
 	var franquicia=$("#franquicia").val()+"";
 	var otra_franquicia=$("#otra_franquicia").val()+"";
@@ -19,7 +14,7 @@ function controlarDuplicados(){
 		    type : "POST",
 		    url : url,
 		    async:false,
-		    data : "tipo=duplicados&provincia="+provincia+"&franquicia="+franquicia+"&otra_franquicia="+otra_franquicia,
+		    data : "tipo=duplicados&provincia="+provincia+"&franquicia="+franquicia+"&otra_franquicia="+otra_franquicia+"&aperturaId="+aperturaid ,
 		    success : function(data) {
 		    	if (data=='true'){
 					var r = confirm("Ya existe una apertura para esa franquicia en esa provincia. ¿Realmente desea crear la apertura?");
@@ -29,7 +24,6 @@ function controlarDuplicados(){
 					  salida=false; 
 					} 
 		    	}
-
 		    },
 		    error : function(jqXHR, textStatus, errorThrown) {
 		        alert("No se han podido cambiar el estado a las franquicias seleccionadas - " + textStatus + " - " + errorThrown);            
@@ -38,5 +32,4 @@ function controlarDuplicados(){
 	}
 	
 	return salida;
-	
 }
