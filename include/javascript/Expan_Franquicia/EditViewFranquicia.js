@@ -289,7 +289,7 @@ function cambiocheck(clase, id,act) {
 	}
 	
 	for (var k = 0; k < listaSel.length; k++) {
-		for (var l = 0; l < listaFran.length; j++) {
+		for (var l = 0; l < listaFran.length; l++) {
 			if (trim(listaSel[k]) == trim(listaFran[l].text)) {
 				listaFran[l].selected = true;
 			}
