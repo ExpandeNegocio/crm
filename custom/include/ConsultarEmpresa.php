@@ -187,7 +187,9 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             break;
             
         case 'CompetidorPrincipal':
-            
+
+            $idCompetidores=str_replace("#","','",$idCompetidores);
+
             $query ="update expan_empresa_competidores_c set competidor_principal=0 where empresa_id='".$idEmpresa."'";
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaEmpresa]Consulta-'.$query);        
