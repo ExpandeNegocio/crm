@@ -6,13 +6,15 @@
 
   $GLOBALS['log'] -> info('[ExpandeNegocio][Baja de correo]Inicio');
 
-  $GLOBALS['log'] -> info('[ExpandeNegocio][Baja de correo]Gestion-'.gestId);
+  $GLOBALS['log'] -> info('[ExpandeNegocio][Baja de correo]Gestion-'.$gestId);
 
   // Recogemos el id de solicitud
   $gestion=new Expan_GestionSolicitudes();
   $gestion->retrieve($gestId);
   $solicitud=$gestion->GetSolicitud();
   $solId=$solicitud->id;
+
+  $GLOBALS['log'] -> info('[ExpandeNegocio][Baja de correo]Gestion-'.$solId);
 
   $db = DBManagerFactory::getInstance();
 
