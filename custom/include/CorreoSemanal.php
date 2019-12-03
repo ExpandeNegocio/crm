@@ -335,21 +335,22 @@
       "Se ordena por nombre de la franquicia");
 
     InsertarDescripcion($objPHPExcel, $descripcion, 'Formularios recibidos');
-
-
+    
     // Número de bajas
 
-    $query = "SELECT   f.name as Franquicia ,        ";
-    $query=$query."        sum(CASE WHEN ma.c_accion='BE' and ma.f_accion BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Num Bajas Expande\", ";
-    $query=$query."        sum(CASE WHEN ma.c_accion='BF' and ma.f_accion BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 1 ELSE 0 END) \"Num Bajas Franquicia\" ";
-    $query=$query."FROM     expan_gestionsolicitudes g, expan_franquicia f , (select gestion_id,c_accion, min(f_accion) f_accion from expan_mailing_actions group by gestion_id, c_accion) ma ";
-    $query=$query."WHERE    f.id = g.franquicia AND   ";
-    $query=$query."         g.id=ma.gestion_id AND          ";
-    $query=$query."         tipo_cuenta IN (1, 2) AND ";
-    $query=$query."         g.deleted = 0 AND           ";
-    $query=$query."         f.deleted = 0           ";
-    $query=$query."GROUP BY franquicia  ";
-    $query=$query."ORDER BY tipo_cuenta, f.name ; ";
+    $query = "SELECT   f.name as Franquicia ,         ";
+    $query=$query."        sum(CASE WHEN ma.c_accion='BE' and ma.f_accion BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END) \"Num Bajas Expande Ultimos 7 dias\",  ";
+    $query=$query."        sum(CASE WHEN ma.c_accion='BF' and ma.f_accion BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) THEN 1 ELSE 0 END) \"Num Bajas Franquicia Ultimos 7 dias\", ";
+    $query=$query."        sum(CASE WHEN ma.c_accion='BE' and ma.f_accion THEN 1 ELSE 0 END) \"Num Bajas Expande Total\",  ";
+    $query=$query."        sum(CASE WHEN ma.c_accion='BF' and ma.f_accion THEN 1 ELSE 0 END) \"Num Bajas Franquicia Total\"  ";
+    $query=$query."FROM     expan_gestionsolicitudes g, expan_franquicia f , (select gestion_id,c_accion, min(f_accion) f_accion from expan_mailing_actions group by gestion_id, c_accion) ma  ";
+    $query=$query."WHERE    f.id = g.franquicia AND    ";
+    $query=$query."         g.id=ma.gestion_id AND           ";
+    $query=$query."         tipo_cuenta IN (1, 2) AND  ";
+    $query=$query."         g.deleted = 0 AND            ";
+    $query=$query."         f.deleted = 0            ";
+    $query=$query."GROUP BY franquicia   ";
+    $query=$query."ORDER BY tipo_cuenta, f.name ";
 
 // echo "<BR>".$query."<BR>";
 

@@ -51,27 +51,27 @@ function downloadfile(idDoc,idGest){
     });
 }
 
-function unsubscribe(solId){
+function unsubscribe(gestId){
 
     var sel=false;
 
     if ($("#chkExpande").prop('checked')){
-        registerAction(solId,"BE","");
+        registerAction(gestId,"BE","");
         sel=true;
     }
     if ($("#chkFranquicia").prop('checked')){
-        registerAction(solId,"BF","");
+        registerAction(gestId,"BF","");
         sel=true;
     }
 
     if (sel){
-        url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&solId='+ solId;
+        url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&gestId='+ gestId;
         $.ajax({
             type : "GET",
             url : url,
             dataType: 'jsonp',
             crossDomain: true,
-            data : "solId="+ solId,
+            data : "gestId="+ gestId,
 
             success : function(data) {
 
@@ -86,6 +86,4 @@ function unsubscribe(solId){
     }else{
         alert('Es necesario seleccionar alguno de las opciones para dar de baja la cuenta de correo');
     }
-
-
 }
