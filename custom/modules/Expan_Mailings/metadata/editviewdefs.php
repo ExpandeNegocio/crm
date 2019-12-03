@@ -77,8 +77,9 @@ $viewdefs [$module_name] =
               ),
               1 => 
               array (
-                'name' => 'envio_name',
-                'label' => 'LBL_MAILING_INTERNO',              ),
+                'name' => 'mailings_enviados_medio',
+                'label' => 'LBL_MAILINGS_ENVIADOS_MEDIO',
+              ),
             ),    
             
             2 => 
@@ -90,8 +91,6 @@ $viewdefs [$module_name] =
               ),
               1 => 
               array (
-                'name' => 'mailings_enviados_medio',
-                'label' => 'LBL_MAILINGS_ENVIADOS_MEDIO',
               ),
             ),  
             
@@ -99,27 +98,28 @@ $viewdefs [$module_name] =
             array (
               0 => 
               array (
-                'name' => 'f_ultima_entrada',
-                'label' => 'LBL_F_ULTIMA_ENTRADA',  
+                'name' => 'mailing_interno_link',
+                'label' => 'LBL_MAILING_INTERNO',
               ),
               1 => 
               array (
-                'name' => 'plantilla',
-                'label' => 'LBL_PLANTILLA',
+                'name' => 'f_ultima_entrada',
+                'label' => 'LBL_F_ULTIMA_ENTRADA',
               ),
             ),   
             
             4 => 
             array (
-              0 => 
-              array (
-                    'name' => 'herramienta_envio',
-                'label' => 'LBL_HERRAMIENTA_ENVIO',
-              ),
-              1 => 
-              array (
-
-              ),
+              0 =>
+                array (
+                  'name' => 'plantilla',
+                  'label' => 'LBL_PLANTILLA',
+                ),
+              1 =>
+                array (
+                  'name' => 'herramienta_envio',
+                  'label' => 'LBL_HERRAMIENTA_ENVIO',
+                ),
             ),                                            
           ),                     
           

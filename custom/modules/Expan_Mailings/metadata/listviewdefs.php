@@ -1,5 +1,5 @@
 <?php
-$module_name = 'Expan_Portales';
+$module_name = 'Expan_Mailings';
 $listViewDefs [$module_name] = 
 array (
   'NAME' => 
@@ -9,14 +9,14 @@ array (
     'default' => true,
     'link' => true,
   ),
-  
-  'persona_contacto' => 
-  array (
-    'width' => '32%',
-    'label' => 'LBL_PERSONA_CONTACTO',
-    'default' => true,
-    'link' => true,
-  ),
+
+  'FECHA_ENVIO' =>
+    array (
+      'width' => '32%',
+      'label' => 'LBL_F_ENVIO',
+      'default' => true,
+      'link' => true,
+    ),
   
   
 );

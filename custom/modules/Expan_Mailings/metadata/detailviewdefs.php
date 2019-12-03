@@ -91,8 +91,6 @@ $viewdefs [$module_name] =
               ),
               1 => 
               array (
-                'name' => 'mailings_enviados_medio',
-                'label' => 'LBL_MAILINGS_ENVIADOS_MEDIO',
               ),
             ),  
             
