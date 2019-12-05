@@ -22,3 +22,34 @@ function getListaCompetidores() {
 
     return idCompetidores;
 }
+
+function cambiarCompPrincipal(activo) {
+
+    if (confirm("¿Esta seguro de que quieres cambiar el competidor principal?")) {
+
+        var idCompetidores = getListaCompetidores();
+        var idEempresa = $("input[name$=\"record\"]").val();
+
+        url = "index.php?entryPoint=consultarEmpresa";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "tipo=CompetidorPrincipal" + "&idEmpresa=" + idEempresa + "&idCompetidores=" + idCompetidores+ "&activo=" + activo,
+            success: function (data) {
+                YAHOO.SUGAR.MessageBox.hide();
+                if (data.toUpperCase() == "OK") {
+                    document.location.reload();
+                } else {
+                    alert("No se han podido cambiar el competidor principal " + estado);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("No se han podido cambiar el competidor principal - " + textStatus + " - " + errorThrown);
+            }
+        });
+
+    } else {
+        return false;
+    }
+
+}

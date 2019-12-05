@@ -2428,7 +2428,12 @@ $app_strings = array (
   'LBL_CHANGE_STATE_BUTTON_LABEL' => 'Cambiar Estado',
   
   'LBL_CHANGE_TIPOCOMPETI_PRIN_BUTTON_LABEL' => 'Pasar a principal',
-  'LBL_CHANGE_TIPOCOMPETI_PRIN_BUTTON_TITLE' => 'Pasar a principal',  
+  'LBL_CHANGE_TIPOCOMPETI_PRIN_BUTTON_TITLE' => 'Pasar a principal',
+
+  'LBL_DELETE_TIPOCOMPETI_PRIN_BUTTON_LABEL' => 'Eliminar como principal',
+  'LBL_DELETE_TIPOCOMPETI_PRIN_BUTTON_TITLE' => 'Eliminar como principal',
+
+
   'LBL_CHANGE_TIPOCOMPETI_BUTTON_LABEL' => 'Cambiar',     
   'LBL_CHANGE_TIPOCOMPETI_BUTTON_TITLE' => 'Cambiar tipo Competidor [Alt+T]', 
   'LBL_CHANGE_STATE_BUTTON_TITLE' => 'Cambiar Estado [Alt+T]',

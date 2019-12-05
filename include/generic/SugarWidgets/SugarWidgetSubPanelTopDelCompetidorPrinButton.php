@@ -40,12 +40,12 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once('include/generic/SugarWidgets/SugarWidgetSubPanelTopButton.php');
 
-class SugarWidgetSubPanelTopChangeCompetidorPrinButton extends SugarWidgetSubPanelTopButton
+class SugarWidgetSubPanelTopDelCompetidorPrinButton extends SugarWidgetSubPanelTopButton
 {
     private $formato = "";   
 
     //button_properties is a collection of properties associated with the widget_class definition. layoutmanager
-    function SugarWidgetSubPanelTopChangeCompetidorPrinButton($button_properties=array())
+    function SugarWidgetSubPanelTopDelCompetidorPrinButton($button_properties=array())
     {
         $this->button_properties=$button_properties;
     }
@@ -57,7 +57,7 @@ class SugarWidgetSubPanelTopChangeCompetidorPrinButton extends SugarWidgetSubPan
 
     public function getDisplayName()
     {
-        return $GLOBALS['app_strings']['LBL_CHANGE_TIPOCOMPETI_PRIN_BUTTON_LABEL'];
+        return $GLOBALS['app_strings']['LBL_DELETE_TIPOCOMPETI_PRIN_BUTTON_LABEL'];
     }
     //widget_data is the collection of attributes associated with the button in the layout_defs file.
     function display(&$widget_data)
@@ -89,7 +89,7 @@ class SugarWidgetSubPanelTopChangeCompetidorPrinButton extends SugarWidgetSubPan
         
         $bot='<input type="button" name="' . $this->getWidgetId() . '" id="' . $this->getWidgetId() . '" class="button"' . "\n"
                 . ' title="' . $this->value . '"' . ' value="' . $this->value . "\"\n"
-            . " onclick='cambiarCompPrincipal(1);' />\n";
+            . " onclick='cambiarCompPrincipal(0);' />\n";
                
          return $bot;                            
     }
@@ -99,7 +99,7 @@ class SugarWidgetSubPanelTopChangeCompetidorPrinButton extends SugarWidgetSubPan
     */
     protected function getTitle()
     {
-       return translate('LBL_CHANGE_TIPOCOMPETI_PRIN_BUTTON_TITLE');
+       return translate('LBL_DELETE_TIPOCOMPETI_PRIN_BUTTON_TITLE');
     }
 
     /**

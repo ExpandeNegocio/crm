@@ -48,6 +48,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $name=$_POST['name'];
     $tipoComp=$_POST["tipoComp"];
     $idCompetidores=$_POST["idCompetidores"];
+    $activo=$_POST["activo"];
     
     
     $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaEmpresa]tipo-'.$tipo );
@@ -189,13 +190,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
         case 'CompetidorPrincipal':
 
             $idCompetidores=str_replace("#","','",$idCompetidores);
-
-            $query ="update expan_empresa_competidores_c set competidor_principal=0 where empresa_id='".$idEmpresa."'";
             
-            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaEmpresa]Consulta-'.$query);        
-            $result = $db -> query($query);
-            
-            $query ="update expan_empresa_competidores_c set competidor_principal=1 where empresa_id='".$idEmpresa."' and competidor_id in('".$idCompetidores."')";
+            $query ="update expan_empresa_competidores_c set competidor_principal=$activo where empresa_id='".$idEmpresa."' and competidor_id in('".$idCompetidores."')";
             
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaEmpresa]Consulta-'.$query);        
             $result = $db -> query($query);     
