@@ -491,13 +491,15 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
-                        'name' => 'usuario_entrevista_previa_EN',
-                        'label' => 'LBL_USUARIO_ENTREVISTA_PREVIA_EN',
+                        'name' => 'perfil_franquicia',
+                        'studio' => 'visible',
+                        'label' => 'LBL_PERFIL_FRANQUICIA',
                       ),
                     1 =>
                       array(
-                        'name' => 'usuario_entrevista_previa_cliente',
-                        'label' => 'LBL_USUARIO_ENTREVISTA_PREVIA_CLIENTE',
+                        'name' => 'situacion_profesional',
+                        'studio' => 'visible',
+                        'label' => 'LBL_SITUACION_PROFESIONAL',
                       ),
                   ),
 
