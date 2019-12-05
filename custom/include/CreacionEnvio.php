@@ -20,7 +20,6 @@ class controlEnvios {
 
         //Creación
         if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
-            
 
             $bean->ignore_update_c = true;           
 
