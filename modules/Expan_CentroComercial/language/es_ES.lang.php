@@ -44,7 +44,6 @@ if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * Contributor(s): REDK Software Engineering (www.redk.net)
  ********************************************************************************/
 
-
 $mod_strings = array(
   'LBL_ID' => 'ID',
   'LBL_DATE_ENTERED' => 'Fecha de Creación',
@@ -65,4 +64,6 @@ $mod_strings = array(
   'LNK_NEW_RECORD' => 'Crear Centro Comercial',
   'LNK_LIST' => 'Vista Centro Comercial',
   'LBL_IMPORT' => 'Importar Centros Comerciales',
+  'LBL_PROVINCIA_APERTURA' => 'Provincia',
+  'LBL_LOCALIDAD_APERTURA' => 'Localidad',
 );

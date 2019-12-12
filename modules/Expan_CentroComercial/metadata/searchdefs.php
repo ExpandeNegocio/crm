@@ -54,7 +54,13 @@ $searchdefs[$module_name] = array(
     ),
     'advanced_search' => array(
       'name',
-      array('name' => 'assigned_user_id', 'label' => 'LBL_ASSIGNED_TO', 'type' => 'enum', 'function' => array('name' => 'get_user_array', 'params' => array(false))),
+      'provincia_apertura',
+      'localidad_apertura',
+      'tipo_cc',
+      'valoracion_en',
+      'lid_provincia',
+      'empresa_gestora',
+
     ),
   ),
 );
