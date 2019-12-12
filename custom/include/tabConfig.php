@@ -1,83 +1,66 @@
 <?php
-// created: 2018-12-15 11:44:30
-$GLOBALS['tabStructure'] = array (
-  'LBL_TABGROUP_SALES' => 
-  array (
-    'label' => 'LBL_TABGROUP_SALES',
-    'modules' => 
-    array (
-      0 => 'Home',
-      1 => 'Accounts',
-      2 => 'Contacts',
-      3 => 'Opportunities',
-      4 => 'Leads',
-      5 => 'Expan_Solicitud',
-    ),
-  ),
-  'LBL_TABGROUP_MARKETING' => 
-  array (
-    'label' => 'LBL_TABGROUP_MARKETING',
-    'modules' => 
-    array (
-      0 => 'Home',
-      1 => 'Accounts',
-      2 => 'Contacts',
-      3 => 'Leads',
-      4 => 'Campaigns',
-      5 => 'Prospects',
-      6 => 'ProspectLists',
-    ),
-  ),
-  'LBL_TABGROUP_SUPPORT' => 
-  array (
-    'label' => 'LBL_TABGROUP_SUPPORT',
-    'modules' => 
-    array (
-      0 => 'Home',
-      1 => 'Accounts',
-      2 => 'Contacts',
-      3 => 'Cases',
-      4 => 'Bugs',
-    ),
-  ),
-  'LBL_TABGROUP_ACTIVITIES' => 
-  array (
-    'label' => 'LBL_TABGROUP_ACTIVITIES',
-    'modules' => 
-    array (
-      0 => 'Home',
-      1 => 'Calendar',
-      2 => 'Calls',
-      3 => 'Meetings',
-      4 => 'Emails',
-      5 => 'Tasks',
-      6 => 'Notes',
-    ),
-  ),
-  'LBL_TABGROUP_COLLABORATION' => 
-  array (
-    'label' => 'LBL_TABGROUP_COLLABORATION',
-    'modules' => 
-    array (
-      0 => 'Home',
-      1 => 'Emails',
-      2 => 'Documents',
-      3 => 'Project',
-    ),
-  ),
-  'LBL_GROUPTAB5_1402072762' => 
-  array (
-    'label' => 'LBL_GROUPTAB5_1402072762',
-    'modules' => 
-    array (
-      0 => 'Expan_Franquicia',
-      1 => 'Expan_Solicitud',
-      2 => 'Expan_GestionSolicitudes',
-      3 => 'Calls',
-      4 => 'Project',
-      5 => 'Tasks',
-      6 => 'Calendar',
-      7 => 'Expan_Portales',
-    ),
-  ),
-);
+// created: 2019-12-12 19:04:58
+  $GLOBALS['tabStructure'] = array (
+    'LBL_GROUPTAB_CANDIDATOS' =>
+      array (
+        'label' => 'LBL_GROUPTAB_CANDIDATOS',
+        'modules' =>
+          array (
+            0 => 'Expan_Solicitud',
+            1 => 'Expan_GestionSolicitudes',
+          ),
+      ),
+    'LBL_GROUPTAB_ACTIVIDADES' =>
+      array (
+        'label' => 'LBL_GROUPTAB_ACTIVIDADES',
+        'modules' =>
+          array (
+            0 => 'Calls',
+            1 => 'Tasks',
+            2 => 'Meetings',
+            3 => 'Emails',
+            4 => 'Calendar',
+          ),
+      ),
+    'LBL_GROUPTAB_FRANQUICIA' =>
+      array (
+        'label' => 'LBL_GROUPTAB_FRANQUICIA',
+        'modules' =>
+          array (
+            0 => 'Expan_Franquicia',
+            1 => 'Documents',
+            2 => 'Expan_Franquiciado',
+            3 => 'Expan_Apertura',
+          ),
+      ),
+    'LBL_GROUPTAB_EMPRESA' =>
+      array (
+        'label' => 'LBL_GROUPTAB_EMPRESA',
+        'modules' =>
+          array (
+            0 => 'Expan_Empresa',
+          ),
+      ),
+    'LBL_GROUPTAB_ACCIONES' =>
+      array (
+        'label' => 'LBL_GROUPTAB_ACCIONES',
+        'modules' =>
+          array (
+            0 => 'Expan_Evento',
+            1 => 'Expan_Portales',
+            2 => 'Expan_Mailings',
+          ),
+      ),
+    'LBL_GROUPTAB_OTROS' =>
+      array (
+        'label' => 'LBL_GROUPTAB_OTROS',
+        'modules' =>
+          array (
+            0 => 'Expin_Informes',
+            1 => 'Expan_IncidenciaCorreo',
+            2 => 'Expan_CentroComercial',
+            3 => 'Expma_Mailing',
+            4 => 'Expan_Local',
+          ),
+      ),
+  );
