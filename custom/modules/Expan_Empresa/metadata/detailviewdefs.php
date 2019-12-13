@@ -872,7 +872,7 @@
                 include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";
             $idFranq=$this->_tpl_vars["bean"]->id;   
             $op=new opEdicionFranquicia();                
-            $op->showInterfazMisteryCentral($idFranq);        
+            $op->showInterfazMisteryCentral($idFranq,"DetailView");        
         {/php}',
             ),
 

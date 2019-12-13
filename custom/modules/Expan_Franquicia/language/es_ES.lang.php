@@ -58,4 +58,5 @@ $mod_strings = array(
   'LBL_PROPIEDAD' => 'Propiedad',
   'LBL_SUPERFICIE_LOCAL' => 'Superficie',
   'LBL_RENTA_ESTIMADA' => 'Renta stimada',
+  'LBL_EDITVIEW_MISTERY_PREGUNTAS' => 'Mistery Preguntas',
 );

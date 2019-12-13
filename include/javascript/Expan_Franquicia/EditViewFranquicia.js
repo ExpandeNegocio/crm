@@ -169,6 +169,8 @@ function clean(){
 	$("#mistery_list_central_label").hide();
 	$("#mistery_insert_fdo_label").hide();
 	$("#mistery_insert_central_label").hide();
+	$("#mistery_list_preguntas_label").hide();
+	$("#mistery_insert_preguntas_label").hide();
 }
 
 function makeTabby(){
@@ -620,6 +622,8 @@ function addMisteryFranqCentral(idFranquicia){
 	var usuario=$("#usuario").val();
 	var informacion_obtenida=$("#informacion_obtenida").val();
 
+	var preguntas=createPreguntasPost("chk_fdo");
+
 	if (confirm("¿Quiere añadir el mistery?")) {
 
 		url = 'index.php?entryPoint=consultarFranquicia';
@@ -639,28 +643,67 @@ function addMisteryFranqCentral(idFranquicia){
 					"telefono_utilizado=" + telefono_utilizado + "&" +
 					"catalogos=" + catalogos + "&" +
 					"informacion_obtenida=" + informacion_obtenida + "&" +
-					"usuario=" + usuario,
+					"usuario=" + usuario + preguntas,
 			success : function(data) {
-				
 				if ( data == "Ok") {
                     document.location.reload();                 
                 } else {
                     alert("No se ha podido guardar el mistery");
                 }
-
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				YAHOO.SUGAR.MessageBox.hide();
 				alert('No se ha podido guardar el mistery - ' + textStatus + ' - ' + errorThrown);
-
 			}
 		});
-
 	} else {
 		return false;
 	}	
 }
 
+function createPreguntasPost(tipo){
+	var preguntasParam="";
+	var numPreg=0;
+
+	$(".preguntas_"+tipo).each(function(){
+		preguntasParam=preguntasParam+"&idpreg"+numPreg+"="+ $(this).attr('id') +"&respuesta"+numPreg+"="+$(this).val()
+		numPreg++;
+	});
+
+	if (numPreg==0){
+		preguntasParam= "";
+	}else{
+		preguntasParam=preguntasParam+"&numPreg="+numPreg;
+	}
+	return preguntasParam;
+}
+
+function getPreguntas(idFranquiciado){
+	url = 'index.php?entryPoint=consultarFranquicia';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=ConsultarPreguntasMistery&" +
+			"id=" + idFranquiciado,
+
+		success : function(data) {
+
+			var json = JSON.parse(data);
+
+			for (var i in json) {
+				$(".preguntas").each(function(){
+					if ($(this).attr('id')==json[i].id_pregunta){
+						$(this).val(json[i].respuesta);
+					}
+				});
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			YAHOO.SUGAR.MessageBox.hide();
+			alert('No se ha podido cargar el mistery de la central - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+}
 
 function addMisteryFranqFdo(idFranquicia){
 
@@ -679,6 +722,8 @@ function addMisteryFranqFdo(idFranquicia){
 	var nivel_satisfaccion=$("#nivel_satisfaccion_fdo").val();
 	var informacion_proporcionada=$("#informacion_proporcionada_fdo").val();
 	var informacion_obtenida=$("#informacion_obtenida_fdo").val();
+
+	var preguntas=createPreguntasPost("chk_fdo");
 
 	if (confirm("¿Quiere añadir el mistery?")) {
 
@@ -701,7 +746,7 @@ function addMisteryFranqFdo(idFranquicia){
 				"nivel_satisfaccion=" + nivel_satisfaccion + "&" +
 				"informacion_proporcionada=" + informacion_proporcionada + "&" +
 				"informacion_obtenida=" + informacion_obtenida + "&" +
-				"usuario=" + usuario,
+				"usuario=" + usuario + preguntas,
 			success : function(data) {
 
 				if ( data == "Ok") {
@@ -813,7 +858,7 @@ function editMisteryCentral(id){
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			YAHOO.SUGAR.MessageBox.hide();
-			alert('No se ha podido borrar las condiciones - ' + textStatus + ' - ' + errorThrown);
+			alert('No se ha podido cargar el mistery de la central - ' + textStatus + ' - ' + errorThrown);
 
 		}
 	});
@@ -848,12 +893,123 @@ function editMisteryFdo(id){
 			$("#informacion_proporcionada_fdo").val(json[0].informacion_proporcionada);
 			$("#informacion_obtenida_fdo").val(json[0].informacion_obtenida);
 
+			getPreguntas(id);
+
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			YAHOO.SUGAR.MessageBox.hide();
-			alert('No se ha podido borrar las condiciones - ' + textStatus + ' - ' + errorThrown);
+			alert('No se ha podido cargar el mistery fdo - ' + textStatus + ' - ' + errorThrown);
 
 		}
 	});
 
+}
+
+function addPreguntaMistery(idFranquicia){
+
+	var pregunta=$("#pregunta_mistery").val();
+
+	var chk_fdo=0;
+	var chk_central=0;
+
+	if ($("#chk_fdo").attr( "checked" )){
+		chk_fdo=1;
+	}
+
+	if ($("#chk_central").attr( "checked" )){
+		chk_central=1;
+	}
+
+	if (confirm("¿Quiere añadir la pregunta?")) {
+
+		url = 'index.php?entryPoint=consultarFranquicia';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data :  "tipo=addMisteryFranqPregunta&" +
+				"idFranquicia=" + idFranquicia + "&" +
+				"pregunta=" + pregunta + "&" +
+				"chk_fdo=" + chk_fdo + "&" +
+				"chk_central=" + chk_central,
+			success : function(data) {
+
+				if ( data == "Ok") {
+					document.location.reload();
+				} else {
+					alert("No se ha podido guardar la pregunta");
+				}
+				return true;
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido guardar la pregunta - ' + textStatus + ' - ' + errorThrown);
+			}
+		});
+	} else {
+		return false;
+	}
+}
+
+function editMisteryPregunta(id){
+
+	url = 'index.php?entryPoint=consultarFranquicia';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=ConsultaMisteryPregunta&" +
+			"id=" + id,
+
+		success : function(data) {
+
+			var json = JSON.parse(data);
+
+			$("#pregunta_mistery").val(json[0].pregunta);
+
+			if (json[0].chk_fdo==1){
+				$("#chk_fdo").prop('checked', true);
+			}else{
+				$("#chk_fdo").prop('checked', false);
+			}
+
+			if (json[0].chk_central==1){
+				$("#chk_central").prop('checked', true);
+			}else{
+				$("#chk_central").prop('checked', false);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			YAHOO.SUGAR.MessageBox.hide();
+			alert('No se ha podido recoger los datos de la pregunta - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+}
+
+function deleteMisteryPregunta(id){
+
+	if (confirm("¿Quiere eliminar la pregunta?")) {
+
+		url = 'index.php?entryPoint=consultarFranquicia';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "tipo=BajaMisteryFranqPregunta&" +
+				"id=" + id,
+
+			success : function(data) {
+				if ( data == "Ok") {
+					document.location.reload();
+				} else {
+					alert("No se ha podido eliminar el mistery");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido borrar el mistery seleccionado - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
 }

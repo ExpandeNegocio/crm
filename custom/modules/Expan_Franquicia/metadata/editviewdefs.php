@@ -113,6 +113,11 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
+                  'LBL_EDITVIEW_MISTERY_PREGUNTAS' =>
+                    array(
+                      'newTab' => true,
+                      'panelDefault' => 'expanded',
+                    ),
                 ),
             ),
             'panels' =>
@@ -2169,7 +2174,7 @@
                             '{php}
                 $idFranq=$this->_tpl_vars["bean"]->id;   
                 $op=new opEdicionFranquicia();                
-                $op->showInterfazMisteryCentral($idFranq);        
+                $op->showInterfazMisteryCentral($idFranq,"EditView");        
             {/php}',
                         ),
 
@@ -2215,6 +2220,38 @@
                       ),
                     ),
                 ),
+              // ---- MISTERY PREGUNTAS--------------------------------------------------------------------
+
+              'LBL_EDITVIEW_MISTERY_PREGUNTAS' =>
+                array(
+
+                  1 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'mistery_insert_preguntas',
+                          'customCode' =>
+                            '{php}
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showInterfazMisteryPreguntas($idFranq);        
+                            {/php}',
+                        ),
+
+                      1 => array(
+                        'name' => 'mistery_list_preguntas',
+                        'customCode' => '
+                        {php}              
+                            $idfranq=$this->_tpl_vars["bean"]->id;                           
+                            $op=new opedicionfranquicia();
+                            $cadena = $op->showlistmisteryPreguntas($idfranq);
+                            echo $cadena;
+                        {/php}',
+                      ),
+                    ),
+                ),
+
+
             ),
         ),
     );

@@ -325,7 +325,7 @@
 
     }
 
-    public function showInterfazMisteryCentral($idFranq)
+    public function showInterfazMisteryCentral($idFranq,$view)
     {
 
       echo '<table class="yui3-skin-sam edit view panelContainer">
@@ -379,13 +379,15 @@
       echo '<td>Información obtenida</td>';
       echo '<td><textarea id="informacion_obtenida" name="informacion_obtenida" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
 
+      $this->getPreguntas($idFranq,'chk_central');
+
       echo '<tr><td><p><button type="button" onclick="addMisteryFranqCentral(\'' . $idFranq . '\')">Añadir</button></p></td></tr>';
 
       echo '</tbody></table>';
 
     }
 
-    public function showInterfazMisteryFdo($idFranq)
+    public function showInterfazMisteryFdo($idFranq,$view)
     {
 
       echo '<table class="yui3-skin-sam edit view panelContainer">
@@ -446,6 +448,8 @@
       echo '<td><textarea id="informacion_proporcionada_fdo" name="informacion_proporcionada" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
       echo '<td>Información obtenida</td>';
       echo '<td><textarea id="informacion_obtenida_fdo" name="informacion_obtenida" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
+
+      $this->getPreguntas($idFranq,'chk_fdo');
 
       echo '<tr><td><p><button type="button" onclick="addMisteryFranqFdo(\'' . $idFranq . '\')">Añadir</button></p></td></tr>';
 
@@ -540,6 +544,87 @@
         echo '<option value="'.$row["id"].'">'.$row["user_name"].'</option>';
       }
     }
-  }
 
-?>
+    public function showInterfazMisteryPreguntas($idFranq){
+      echo '<table class="yui3-skin-sam edit view panelContainer">
+               <tbody>';
+      echo '<tr>';
+      echo '<td>Pregunta</td>';
+      echo '<td><textarea id="pregunta_mistery" name="pregunta_mistery" rows="2" cols="60" title="" tabindex="0"></textarea></td></tr>';
+      echo '<tr><td>Pregunta para Franquiciado</td> <td><input type="checkbox" id="chk_fdo" name="chk_fdo" ></td></tr>';
+      echo '<tr><td>Pregunta para Central</td> <td><input type="checkbox" id="chk_central" name="chk_central" ></td></tr>';
+
+      echo '<tr><td><p><button type="button" onclick="addPreguntaMistery(\'' . $idFranq . '\')">Añadir</button></p></td></tr>';
+
+      echo '</tbody></table>';
+    }
+
+    public function showlistmisteryPreguntas($idFranquicia)
+    {
+      $cadena="";
+
+      $cadena.= "<p>Preguntas Mistery</p>";
+      $cadena.= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th></th><th></th><th>Pregunta</th><th>Para central</th><th>Para Franquiciado</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select id,pregunta ";
+      $query = $query . "from expan_franquicia_pregunta_mis  ";
+      $query = $query . "where franquicia_id='$idFranquicia'";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+
+        $x_fdo="";
+        $x_central="";
+        if ($row["chk_fdo"]==1){
+          $x_central="x";
+        }
+        if ($row["chk_central"]==1){
+          $x_central="x";
+        }
+
+        $cadena.= "<tr>";
+        $cadena.= "<td><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
+        $cadena.= "<td><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
+
+        $cadena.= "<td scope='row'>" . $row["pregunta"] . "</td>";
+        $cadena.= "<td scope='row'>" . $x_central . "</td>";
+        $cadena.= "<td scope='row'>" . $x_fdo . "</td>";
+        $cadena.= "</tr>";
+      }
+
+      $cadena.= "</tbody>
+        </table>";
+      return $cadena;
+    }
+
+    /**
+     * @param $idFranq
+     */
+    private function getPreguntas($idFranq,$tipo)
+    {
+      echo '<td><H2>Preguntas</H2>></td></tr>';
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select id,pregunta ";
+      $query = $query . "from expan_franquicia_pregunta_mis  ";
+      $query = $query . "where franquicia_id='$idFranq' and $tipo=1";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        $id = $row["id"];
+        $pregunta = $row["pregunta"];
+        echo '<td>' . $pregunta . '</td>';
+        echo '<td><textarea class="preguntas_'.$tipo.'" id="'.$id.'" name="'.$id.'" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
+      }
+    }
+
+  }

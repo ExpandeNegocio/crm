@@ -922,7 +922,7 @@
                 '{php}
             $idFranq=$this->_tpl_vars["bean"]->id;   
             $op=new opEdicionFranquicia();                
-            $op->showInterfazMisteryCentral($idFranq);        
+            $op->showInterfazMisteryCentral($idFranq,"EditView");        
         {/php}',
             ),
 

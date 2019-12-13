@@ -18,6 +18,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $estado=$_POST["estado"];
     $tipo=$_POST["tipo"];
     $valor=$_POST["valor"];
+    $pregunta=$_POST["pregunta"];
         
     $empresa_id=$_POST["empresa_id"];
     $id=$_POST["id"];
@@ -42,6 +43,11 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $year_fran = $_POST["year_fran"];
     $nivel_satisfaccion = $_POST["nivel_satisfaccion"];
     $informacion_proporcionada = $_POST["informacion_proporcionada"];
+
+    $chk_central=$_POST["chk_central"];
+    $chk_fdo=$_POST["chk_fdo"];
+
+    $numPreg=$_POST["numPreg"];
 
     switch ($tipo) {
         case 'SectorFromFranq':
@@ -284,16 +290,32 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             
         case 'addMisteryFranqFdo':
 
+            $uuid=getUuid();
+
+            //Guardamos datos de franquiciado
             $query = "INSERT INTO expan_empresa_mistery_fdo  ";
             $query=$query."(id,franquicia_id,empresa_id,nom_entrevistado,telefono_entrevistado,correo_entrevistado,ubicacion,f_entrevista,id_usuario,nom_utilizado,email_utilizado,telefono_utilizado,tipo_entrevista,year_fran,nivel_satisfaccion,informacion_proporcionada,informacion_obtenida)   ";
             $query=$query."VALUES   ";
-            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_entrevistado','$telefono_entrevistado','$email_entrevistado','$ubicacion',STR_TO_DATE('$f_entrevista','%d/%m/%Y'),'$usuario','$nom_utilizado','$correo_utilizado','$telefono_utilizado','$tipo_entrevista','$year_fran','$nivel_satisfaccion','$informacion_proporcionada','$informacion_obtenida'); ";
-
-
+            $query=$query."('$uuid','$idFranquicia','$empresa_id','$nom_entrevistado','$telefono_entrevistado','$email_entrevistado','$ubicacion',STR_TO_DATE('$f_entrevista','%d/%m/%Y'),'$usuario','$nom_utilizado','$correo_utilizado','$telefono_utilizado','$tipo_entrevista','$year_fran','$nivel_satisfaccion','$informacion_proporcionada','$informacion_obtenida'); ";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
 
             $result = $db -> query($query);
+
+            //Guardamos preguntas
+
+            if ($numPreg>0){
+
+                for ($i=0;$i<$numPreg;$i++){
+                    $idPreg=$_POST["idpreg".$i];
+                    $respuesta=$_POST["respuesta".$i];
+                    if ($respuesta!=''){
+                        $query = "INSERT INTO expan_franquicia_resp_mis (id, id_pregunta, id_mistery, date_entered,respuesta) values  ";
+                        $query=$query."(UUID(),'$idPreg','$uuid',now(),'$respuesta')";
+                        $result = $db -> query($query);
+                    }
+                }
+            }
 
             echo "Ok";
 
@@ -337,6 +359,24 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             echo "Ok";
 
             break;
+
+        case 'ConsultarPreguntasMistery':
+
+            $query = "select * from expan_franquicia_resp_mis where id_mistery='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta preguntas mistery-'.$query);
+
+            $return = array();
+
+            $result = $db -> query($query, true);
+
+            while ($row = $db -> fetchByAssoc($result)) {
+                $return[] = $row;
+            }
+
+            echo json_encode($return,JSON_FORCE_OBJECT);
+
+            break;
             
         case 'ConsultaMisteryFdo':
         
@@ -374,9 +414,65 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
             break;
 
+        case 'ConsultaMisteryPregunta':
+
+            $query = "select * from expan_franquicia_pregunta_mis where id='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta mistery-'.$query);
+
+            $return = array();
+
+            $result = $db -> query($query, true);
+
+            while ($row = $db -> fetchByAssoc($result)) {
+                $return[] = $row;
+            }
+
+            echo json_encode($return,JSON_FORCE_OBJECT);
+
+            break;
+
+        case 'BajaMisteryFranqPregunta':
+
+            $query = "delete from expan_franquicia_pregunta_mis where id='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta baja mistery-'.$query);
+
+            $result = $db -> query($query);
+
+            echo "Ok";
+
+            break;
+
+        case 'addMisteryFranqPregunta':
+
+            $query = "INSERT INTO expan_franquicia_pregunta_mis ";
+            $query=$query."(id,date_entered,franquicia_id,pregunta,chk_central,chk_fdo)  ";
+            $query=$query."VALUES  ";
+            $query=$query."(UUID(), now(),'$idFranquicia','$pregunta',$chk_central,$chk_fdo)";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
+
+            $result = $db -> query($query);
+
+            echo "Ok";
+
+            break;
+
         default:
 
             break;
+    }
+
+    function getUuid()
+    {
+        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+          mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+          mt_rand(0, 0xffff),
+          mt_rand(0, 0x0fff) | 0x4000,
+          mt_rand(0, 0x3fff) | 0x8000,
+          mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+        );
     }
 
 ?>

@@ -256,9 +256,9 @@ $layout_defs["Expan_Empresa"]["subpanel_setup"]['expan_empresa_competidores'] = 
           'widget_class' => 'SubPanelTopChangeCompetidorPrinButton',
         ),
         4 =>
-          array (
-            'widget_class' => 'SubPanelTopDelCompetidorPrinButton',
-          ),
+        array (
+          'widget_class' => 'SubPanelTopDelCompetidorPrinButton',
+        ),
       ),           
       
       'list_fields' => array(

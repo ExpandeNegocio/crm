@@ -121,6 +121,11 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
+                  'LBL_EDITVIEW_MISTERY_PREGUNTAS' =>
+                    array(
+                      'newTab' => true,
+                      'panelDefault' => 'expanded',
+                    ),
                 ),
             ),
           'panels' =>
@@ -2122,6 +2127,31 @@
                               $idfranq=$this->_tpl_vars["bean"]->id;                           
                               $op=new opedicionfranquicia();
                               $list=$op->showlistmisteryfdo($idfranq);
+                              echo $list;
+                          {/php}',
+
+                        ),
+
+                      1 => array(
+
+                      ),
+                    ),
+                ),
+              // ---- MISTERY PREGUNTAS--------------------------------------------------------------------
+
+              'LBL_EDITVIEW_MISTERY_PREGUNTAS' =>
+                array(
+
+                  1 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'mistery_insert_preguntas',
+                          'customCode' => '
+                          {php}              
+                              $idfranq=$this->_tpl_vars["bean"]->id;                           
+                              $op=new opedicionfranquicia();
+                              $list=$op->showlistmisteryPreguntas($idfranq);
                               echo $list;
                           {/php}',
 
