@@ -139,16 +139,18 @@
     
     
     //CORRECCION DE LOS EVENTOS QUE ESTAN COMO TIPO DE PARTICIPACION 3
-    $query = "UPDATE expan_gestionsolicitudes  g ";
-    $query=$query."       INNER JOIN ";
-    $query=$query."       (SELECT g.id ";
-    $query=$query."        FROM   expan_gestionsolicitudes g, expan_franquicia_expan_evento_c ef ";
-    $query=$query."        WHERE  ef.expan_franquicia_expan_eventoexpan_franquicia_ida = g.franquicia AND g.expan_evento_id_c = ";
-    $query=$query."                 ef.expan_franquicia_expan_eventoexpan_evento_idb AND (ef.participacion = 3 || length(ef.participacion)=0) a ";
-    $query=$query."SET    tipo_origen = 1, subor_expande = 7,evento_bk=expan_evento_id_c, expan_evento_id_c=null ";
-    $query=$query."WHERE  a.id = g.id ";
+    $query = "UPDATE expan_gestionsolicitudes  g  ";
+    $query=$query."       INNER JOIN  ";
+    $query=$query."       (SELECT g.id  ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_franquicia_expan_evento_c ef  ";
+    $query=$query."        WHERE  ef.expan_franquicia_expan_eventoexpan_franquicia_ida = g.franquicia AND g.expan_evento_id_c =  ";
+    $query=$query."                 ef.expan_franquicia_expan_eventoexpan_evento_idb AND (ef.participacion = 3 || length(ef.participacion)=0)) a ";
+    $query=$query."on      a.id = g.id             ";
+    $query=$query."SET    tipo_origen = 1, subor_expande = 7,evento_bk=expan_evento_id_c, expan_evento_id_c=null; ";
+
     $result = $db -> query($query);
-    
+
+
     
     //CONS_LIMPIA_ESTADO_CURSO
     $query = "update expan_gestionsolicitudes set motivo_descarte = null, motivo_parada = null, motivo_positivo = null where estado_sol = ".Expan_GestionSolicitudes::ESTADO_EN_CURSO;
@@ -378,7 +380,7 @@
     
     $tareas = new SimpleXMLElement($response);
     
-    foreach ($tareas as $tarea) {
+   /* foreach ($tareas as $tarea) {
         
         echo "Entra<br>";
         
@@ -413,7 +415,7 @@
             $i++;
         }           
     
-    }
+    }*/
 
     //Campos que se pueden perder por guardado automático
 
@@ -461,6 +463,8 @@
     $query=$query."where LENGTH(franquicias_secundarias) = 65535 ";
 
     $result = $db -> query($query);
+
+    echo "Cnsulta Limpieza fs - ".$query."<br>";
 
     //Correccion empresas franquicia sin Franquicia asociada
 
