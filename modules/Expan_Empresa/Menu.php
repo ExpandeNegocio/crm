@@ -41,6 +41,6 @@ global $mod_strings, $app_strings, $sugar_config;
 if(ACLController::checkAccess('Expan_Empresa', 'edit', true))$module_menu[]=Array("index.php?module=Expan_Empresa&action=EditView&return_module=Expan_Empresa&return_action=DetailView", $mod_strings['LNK_NEW_RECORD'],"CreateExpan_Empresa", 'Expan_Empresa');
 if(ACLController::checkAccess('Expan_Empresa', 'list', true))$module_menu[]=Array("index.php?module=Expan_Empresa&action=index&return_module=Expan_Empresa&return_action=DetailView", $mod_strings['LNK_LIST'],"Expan_Empresa", 'Expan_Empresa');
 if(ACLController::checkAccess('Expan_Empresa', 'import', true))$module_menu[]=Array("index.php?module=Import&action=Step1&import_module=Expan_Empresa&return_module=Expan_Empresa&return_action=index", $mod_strings['LBL_IMPORT_EMRPESAS'],"Import", 'Expan_Empresa');
-if(ACLController::checkAccess('Expan_Empresa', 'import_Proveedores', true))$module_menu[]=Array("index.php?entryPoint=customImportProveedores&accion=showLoad", $mod_strings['LBL_IMPORT_PROVEEDORES'],"Import", 'Expan_Empresa');
-if(ACLController::checkAccess('Expan_Empresa', 'import_Competidores', true))$module_menu[]=Array("index.php?entryPoint=customImportCompetidores&accion=showLoad", $mod_strings['LBL_IMPORT_COMPETIDORES'],"Import", 'Expan_Empresa');
+if(ACLController::checkAccess('Expan_Empresa', 'import', true))$module_menu[]=Array("index.php?entryPoint=customImportProveedores&accion=showLoad", $mod_strings['LBL_IMPORT_PROVEEDORES'],"Import", 'Expan_Empresa');
+if(ACLController::checkAccess('Expan_Empresa', 'import', true))$module_menu[]=Array("index.php?entryPoint=customImportCompetidores&accion=showLoad", $mod_strings['LBL_IMPORT_COMPETIDORES'],"Import", 'Expan_Empresa');
 
