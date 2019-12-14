@@ -98,8 +98,8 @@
                         ),
                       1 =>
                         array(
-                          'name' => 'propiedad',
-                          'label' => 'LBL_PROPIEDAD',
+                          'name' => 'direccion',
+                          'label' => 'LBL_DIRECCION',
                         ),
                     ),
 
@@ -107,17 +107,31 @@
                     array(
                       0 =>
                         array(
-                          'name' => 'superficie_local',
-                          'label' => 'LBL_SUPERFICIE_LOCAL',
+                          'name' => 'propiedad',
+                          'label' => 'LBL_PROPIEDAD',
                         ),
                       1 =>
                         array(
-                          'name' => 'renta_estimada',
-                          'label' => 'LBL_RENTA_ESTIMADA',
+                          'name' => 'superficie_local',
+                          'label' => 'LBL_SUPERFICIE_LOCAL',
                         ),
                     ),
 
                   3 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'renta_estimada',
+                          'label' => 'LBL_RENTA_ESTIMADA',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'origen_local',
+                          'label' => 'LBL_ORIGEN_LOCAL',
+                        ),
+                    ),
+
+                  4 =>
                     array(
                       0 =>
                         array(
@@ -126,8 +140,8 @@
                         ),
                       1 =>
                         array(
-                          'name' => 'origen_local',
-                          'label' => 'LBL_ORIGEN_LOCAL',
+                          'name' => 'datos_contacto',
+                          'label' => 'LBL_DATOS_CONTACTO',
                         ),
                     ),
                 ),

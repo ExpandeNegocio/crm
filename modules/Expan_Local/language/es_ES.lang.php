@@ -74,4 +74,6 @@
     'LBL_DESCRIPCION_LOCAL' => 'Descripcion',
     'LBL_ORIGEN_LOCAL' => 'Origen',
     'LBL_LOCAL' => 'Local',
+    'LBL_DATOS_CONTACTO' => 'Datos de contacto',
+    'LBL_DIRECCION' => 'Direccion del local',
   );

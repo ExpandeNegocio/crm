@@ -7,5 +7,5 @@
     'LBL_LOCALIDAD' => 'Localidad',
     'LBL_PROPIEDAD' => 'Propiedad',
     'LBL_SUPERFICIE_LOCAL' => 'Superficie',
-    'LBL_RENTA_ESTIMADA' => 'Renta stimada',
+    'LBL_RENTA_ESTIMADA' => 'Renta estimada',
   );
