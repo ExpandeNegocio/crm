@@ -68,13 +68,14 @@
                   ),
                 ),
               'javascript' => '{sugar_getscript file="include/javascript/Expan_Local/QuickCreateExpan_Local.js"}
-                                <script type="text/javascript"> onload=CargaProvMun(); </script>',
+                                <script type="text/javascript"> onload=CargaProvMun();  </script>',
               'useTabs' => false,
             ),
           'panels' =>
             array(
               'lbl_call_information' =>
                 array(
+
                   0 =>
                     array(
                       0 =>

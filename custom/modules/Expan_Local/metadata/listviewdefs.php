@@ -2,11 +2,20 @@
   $module_name = 'Expan_Local';
   $listViewDefs [$module_name] =
     array(
+
+      'name' =>
+        array(
+          'width' => '20%',
+          'label' => 'LBL_NAME',
+          'link' => true,
+          'default' => true,
+        ),
+
+
       'provincia' =>
         array(
           'width' => '20%',
           'label' => 'LBL_PROVINCIA',
-          'link' => true,
           'default' => true,
         ),
 

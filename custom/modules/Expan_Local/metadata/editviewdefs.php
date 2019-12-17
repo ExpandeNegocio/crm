@@ -48,6 +48,20 @@
             array(
               'default' =>
                 array(
+
+                  -1 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'name',
+                          'label' => 'LBL_NAME',
+                        ),
+                      1 =>
+                        array(
+
+                        ),
+                    ),
+
                   0 =>
                     array(
                       0 =>
