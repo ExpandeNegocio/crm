@@ -1,3 +1,8 @@
+var ACTIVATE = "AC";
+var BAJA_EXPANDE = "BE";
+var BAJA_FRANQUICIA = "BF";
+var DESCARGA_FICHERO = "DF";
+var OPEN_LANDING = "OL";
 
 function registerAction(idGest,accion,doc){
     url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=mailingGest&idGest='+ idGest +
@@ -12,7 +17,7 @@ function registerAction(idGest,accion,doc){
     });
 }
 function cargaLanding(idGest) {
-    registerAction(idGest,"OL","");
+    registerAction(idGest,OPEN_LANDING,"");
 }
 
 function acceptPrivPolitics(idDoc,idGest){
@@ -41,7 +46,7 @@ function downloadfile(idDoc,idGest){
         success : function(data) {
 
             if ( data.resp != "") {
-                registerAction(idGest,"DF",data.resp);
+                registerAction(idGest,DESCARGA_FICHERO,data.resp);
                 window.location = "https://www.expandenegocio.com/sugarcrm/upload/"+data.resp;
             }
         },
@@ -51,16 +56,38 @@ function downloadfile(idDoc,idGest){
     });
 }
 
+function activate(idGest){
+
+    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=activateGest&idGest='+ idGest;
+    $.ajax({
+        type : "GET",
+        url : url,
+        dataType: 'jsonp',
+        crossDomain: true,
+        data : "idGest="+ idGest,
+
+        success : function(data) {
+
+            if ( data.resp != "") {
+                registerAction(idGest,ACTIVATE,data.resp);
+               // alert("Se ha reactivado susolicitud");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
 function unsubscribe(gestId){
 
     var sel=false;
 
     if ($("#chkExpande").prop('checked')){
-        registerAction(gestId,"BE","");
+        registerAction(gestId,BAJA_EXPANDE,"");
         sel=true;
     }
     if ($("#chkFranquicia").prop('checked')){
-        registerAction(gestId,"BF","");
+        registerAction(gestId,BAJA_FRANQUICIA,"");
         sel=true;
     }
 

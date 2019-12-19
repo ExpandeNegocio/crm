@@ -1,7 +1,6 @@
 <?php
 
   $template=$_GET['template'];
-
   $idGest=$_GET['idGest'];
 
   // Recojo la plantilla

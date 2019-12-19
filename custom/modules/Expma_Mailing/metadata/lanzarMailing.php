@@ -72,6 +72,7 @@
     
     $resultSol = $db -> query($query, true);
     $correos = array();
+    $listaIDSol = array();
     
     while ($rowSol = $db -> fetchByAssoc($resultSol)) {
         $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]Correo-' . $rowSol["email_address"]);
@@ -85,7 +86,7 @@
     
     if (count($correos)!=0){
        $envioCorreos = new EnvioAutoCorreos;
-       $envioCorreos -> envioCorreosMailing($correos, $idplantilla, $cuerpo,$idMailing);
+       $envioCorreos -> envioCorreosMailing($correos,$listaIDSol, $idplantilla, $cuerpo,$idMailing);
     }
     
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]Finalizacion Lanzamiento mailing');

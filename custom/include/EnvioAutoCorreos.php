@@ -84,6 +84,7 @@ class EnvioAutoCorreos
 
   function modificaMarcas($solicitud, $gestion, $tabla, $text)
   {
+    $text = str_replace("%23","#",  $text);
     $text = str_replace(self::MARC_GESTION_ID, $gestion->id, $text);
     $text = str_replace(self::MARC_SOLICITUD_ID, $solicitud->id, $text);
     $text = str_replace(self::MARC_NOMBRE, $solicitud->first_name, $text);
@@ -297,35 +298,50 @@ class EnvioAutoCorreos
     return $tempId;
   }
 
-  function envioCorreosMailing($listaCorreos, $idTemplate, $cuerpo, $idMailing)
+  function envioCorreosMailing($listaCorreos,$listaSol, $idTemplate, $cuerpo, $idMailing)
   {
     $mailing = new Expma_Mailing();
     $mailing->retrieve($idMailing);
 
     $listaSalida = array();
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]ID Template-' . $idTemplate);
-    $emailTemp = new EmailTemplate();
-    $emailTemp->disable_row_level_security = true;
-    $emailTemp->retrieve($idTemplate);
-    $tempFinal = str_replace(self::MARC_BODY, $cuerpo, $emailTemp->body_html);
-
-    $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Tipo Temp-' . $emailTemp->getFieldValue('type'));
-
-    $idFran = $emailTemp->franquicia;
-    $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]ID fran-' . $idFran);
 
     global $current_user;
     $current_user = new User();
     $current_user->getSystemUser();
 
-    //Marcamos las que sabemos que no podemos enviar por protocolo
+    $emailTemp = new EmailTemplate();
+    $emailTemp->disable_row_level_security = true;
+    $emailTemp->retrieve($idTemplate);
 
+    $idFran = $emailTemp->franquicia;
+    $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]ID fran-' . $idFran);
+
+    //Marcamos las que sabemos que no podemos enviar por protocolo
     $this->marcadoProtocolo($idMailing, $idFran);
     $this->marcarDummies($idMailing);
     $this->marcadoNovalido($idMailing);
 
     $arrayCorreos = array();
-    foreach ($listaCorreos as $bccer) {
+
+    $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Num correos-' . count($listaCorreos));
+
+    for ($i=0; $i<count($listaCorreos);++$i){
+
+      $bccer = $listaCorreos[$i];
+      $idSol = $listaSol[$i];
+
+      $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]$bccer-' . $bccer);
+      $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]iDsOL-' . $idSol);
+
+      $solicitud= new Expan_Solicitud();
+      $solicitud->retrieve($idSol);
+      $gestion=$solicitud->getGestionFromFranID($idFran);
+
+      $subject = $this->modificaMarcas($solicitud, $gestion, '', from_html($emailTemp->subject));
+      $tempFinal = $this->modificaMarcas($solicitud, $gestion, $tabla, from_html($emailTemp->body_html));
+
+      $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Tipo Temp-' . $emailTemp->getFieldValue('type'));
 
       if ($this->noLanzaMailingModNegocio(strtoupper($bccer)) == true) {
         continue;
@@ -374,7 +390,7 @@ class EnvioAutoCorreos
       $mail->ClearReplyTos();
       /*Añadimos en copia oculta todas las direcciones recogidas*/
       //    $mail->AddBCC('crm@expandenegocio.com','CRM');
-      $mail->Subject = from_html($emailTemp->subject);
+      $mail->Subject = $subject;
 
       $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Cuerpo-' . $cuerpo);
       $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]templateAntes-' . $emailTemp->body_html);
