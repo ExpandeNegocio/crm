@@ -371,6 +371,10 @@ function renderTab(estado){
 		$("#tab8").show();
 		$("#tab9").show();
 		$("#tab10").show();
+		$("#tab11").show();
+		$("#tab12").show();
+		$("#tab13").show();
+		$("#tab14").show();
 	}else{
 		$("#tab1").hide();
 		$("#tab2").hide();
@@ -382,6 +386,10 @@ function renderTab(estado){
 		$("#tab8").hide();
 		$("#tab9").hide();
 		$("#tab10").hide();
+		$("#tab11").hide();
+		$("#tab12").hide();
+		$("#tab13").hide();
+		$("#tab14").hide();
 	}	
 }
 
