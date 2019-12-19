@@ -58,11 +58,6 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
-                  'LBL_EDITVIEW_PANEL1' =>
-                    array(
-                      'newTab' => true,
-                      'panelDefault' => 'expanded',
-                    ),
                   'LBL_EDITVIEW_PANEL2' =>
                     array(
                       'newTab' => true,
@@ -1485,10 +1480,21 @@
 
 
               //-----------------------------------------------------------------------------------------------------------------------------
-              //Datos Economicos
+              //Datos Economicos y requisitos y condiciones
               'lbl_editview_panel5' =>
                 array(
                   0 =>
+                    array(
+                      0 => array(
+                          'label' => 'LBL_TITULO_DATOS_ECONOMICOS',
+                        ),
+                      1 =>
+                        array(
+
+                        ),
+                    ),
+
+                  1 =>
                     array(
                       0 =>
                         array(
@@ -1501,7 +1507,7 @@
                           'label' => 'LBL_DERECHO_ENTRADA_MAX',
                         ),
                     ),
-                  1 =>
+                  2 =>
                     array(
                       0 =>
                         array(
@@ -1514,7 +1520,7 @@
                           'label' => 'LBL_ROYALTY_PUBLICITARIO',
                         ),
                     ),
-                  2 =>
+                  3 =>
                     array(
                       0 =>
                         array(
@@ -1522,7 +1528,7 @@
                           'label' => 'LBL_OTROS_ROYALTIES',
                         ),
                     ),
-                  3 =>
+                  4 =>
                     array(
                       0 =>
                         array(
@@ -1535,7 +1541,7 @@
                           'label' => 'LBL_BENEFICIO_NETO_UNIDAD_FRAN_1',
                         ),
                     ),
-                  4 =>
+                  5 =>
                     array(
                       0 =>
                         array(
@@ -1548,7 +1554,7 @@
                           'label' => 'LBL_BENEFICIO_NETO_UNIDAD_FRAN_2',
                         ),
                     ),
-                  5 =>
+                  6 =>
                     array(
                       0 =>
                         array(
@@ -1561,12 +1567,19 @@
                           'label' => 'LBL_BENEFICIO_NETO_UNIDAD_FRAN_3',
                         ),
                     ),
-                ),
-              //-----------------------------------------------------------------------------------------------------------------------------
-              //Requisitos y condiciones
-              'lbl_editview_panel1' =>
-                array(
-                  0 =>
+
+                  7 =>
+                    array(
+                      0 => array(
+                        'label' => 'LBL_TITULO_REQUISITOS',
+                      ),
+                      1 =>
+                        array(
+
+                        ),
+                    ),
+
+                  8 =>
                     array(
                       0 =>
                         array(
@@ -1576,12 +1589,10 @@
                         ),
                       1 =>
                         array(
-                          'name' => 'necesario_titulacion',
-                          'studio' => 'visible',
-                          'label' => 'LBL_NECESARIO_TITULACION',
+
                         ),
                     ),
-                  1 =>
+                  9 =>
                     array(
                       0 =>
                         array(
@@ -1595,7 +1606,7 @@
                           'label' => 'LBL_CONDICIONES_ESPECIALES',
                         ),
                     ),
-                  2 =>
+                  10 =>
                     array(
                       0 =>
                         array(
@@ -1609,7 +1620,7 @@
                           'label' => 'LBL_INVERSION_MINIMA_NECESARIA',
                         ),
                     ),
-                  3 =>
+                  11 =>
                     array(
                       0 =>
                         array(
@@ -1624,7 +1635,7 @@
                           'label' => 'LBL_NECESITA_LOCAL',
                         ),
                     ),
-                  4 =>
+                  12 =>
                     array(
                       0 =>
                         array(
@@ -1639,7 +1650,7 @@
                           'label' => 'LBL_REQUISITOS_LOCAL',
                         ),
                     ),
-                  5 =>
+                  13 =>
                     array(
                       0 =>
                         array(
@@ -1654,7 +1665,7 @@
                           'label' => 'LBL_OBSERVACIONES_UBICACION',
                         ),
                     ),
-                  6 =>
+                  14 =>
                     array(
                       0 =>
                         array(
@@ -1669,7 +1680,7 @@
                           'label' => 'LBL_POBLACION_MINIMA',
                         ),
                     ),
-                  7 =>
+                  15 =>
                     array(
                       0 =>
                         array(
@@ -1679,7 +1690,7 @@
                         ),
                       1 => array(),
                     ),
-                  8 =>
+                  16 =>
                     array(
                       0 =>
                         array(
@@ -1694,7 +1705,7 @@
                           'label' => 'LBL_RECONVERTIR_NEGOCIO',
                         ),
                     ),
-                  9 =>
+                  17 =>
                     array(
                       0 =>
                         array(
@@ -2250,8 +2261,6 @@
                       ),
                     ),
                 ),
-
-
             ),
         ),
     );
