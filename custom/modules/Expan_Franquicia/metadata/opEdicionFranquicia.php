@@ -325,7 +325,7 @@
 
     }
 
-    public function showInterfazMisteryCentral($idFranq,$view)
+    public function showInterfazMisteryCentral($idFranq, $view)
     {
 
       echo '<table class="yui3-skin-sam edit view panelContainer">
@@ -379,7 +379,7 @@
       echo '<td>Información obtenida</td>';
       echo '<td><textarea id="informacion_obtenida" name="informacion_obtenida" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
 
-      $this->getPreguntas($idFranq,'chk_central');
+      $this->getPreguntas($idFranq, 'chk_central');
 
       echo '<tr><td><p><button type="button" onclick="addMisteryFranqCentral(\'' . $idFranq . '\')">Añadir</button></p></td></tr>';
 
@@ -387,7 +387,7 @@
 
     }
 
-    public function showInterfazMisteryFdo($idFranq,$view)
+    public function showInterfazMisteryFdo($idFranq, $view)
     {
 
       echo '<table class="yui3-skin-sam edit view panelContainer">
@@ -449,7 +449,7 @@
       echo '<td>Información obtenida</td>';
       echo '<td><textarea id="informacion_obtenida_fdo" name="informacion_obtenida" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
 
-      $this->getPreguntas($idFranq,'chk_fdo');
+      $this->getPreguntas($idFranq, 'chk_fdo');
 
       echo '<tr><td><p><button type="button" onclick="addMisteryFranqFdo(\'' . $idFranq . '\')">Añadir</button></p></td></tr>';
 
@@ -460,10 +460,10 @@
     public function showListMisteryFdo($idEmpresa)
     {
 
-      $cadena="";
+      $cadena = "";
 
-      $cadena.= "<p>Listado de misterys a franquiciados</p>";
-      $cadena.= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+      $cadena .= "<p>Listado de misterys a franquiciados</p>";
+      $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
                    <th></th><th></th><th>Nombre entrevistdo</th>><th>Fecha</th><th>Nombre mistery</th><th>Ubicacion</th>
@@ -479,28 +479,28 @@
 
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
-        $cadena.= "<tr>";
-        $cadena.= "<td><button type='button' onclick='deleteMisteryFdo(\"" . $row["id"] . "\");'> -</button></td>";
-        $cadena.= "<td><button type='button' onclick='editMisteryFdo(\"" . $row["id"] . "\");'> E</button></td>";
+        $cadena .= "<tr>";
+        $cadena .= "<td><button type='button' onclick='deleteMisteryFdo(\"" . $row["id"] . "\");'> -</button></td>";
+        $cadena .= "<td><button type='button' onclick='editMisteryFdo(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena.= "<td scope='row'>" . $row["nom_entrevistado"] . "</td>";
-        $cadena.= "<td scope='row'>" . $row["f_entrevista"] . "</td>";
-        $cadena.= "<td scope='row'>" . $row["nom_utilizado"] . "</td>";
-        $cadena.= "<td scope='row'>" . $row["ubicacion"] . "</td>";
-        $cadena.= "</tr>";
+        $cadena .= "<td scope='row'>" . $row["nom_entrevistado"] . "</td>";
+        $cadena .= "<td scope='row'>" . $row["f_entrevista"] . "</td>";
+        $cadena .= "<td scope='row'>" . $row["nom_utilizado"] . "</td>";
+        $cadena .= "<td scope='row'>" . $row["ubicacion"] . "</td>";
+        $cadena .= "</tr>";
       }
 
-      $cadena.= "</tbody>
+      $cadena .= "</tbody>
         </table>";
       return $cadena;
     }
 
     public function showListMisteryCentral($idEmpresa)
     {
-      $cadena="";
+      $cadena = "";
 
-      $cadena.= "<p>Listado de misterys a central</p>";
-      $cadena.= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+      $cadena .= "<p>Listado de misterys a central</p>";
+      $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
                    <th></th><th></th><th>Nombre entrevistdo</th>><th>Fecha</th><th>Nombre mistery</th><th>Ubicacion</th>
@@ -516,18 +516,18 @@
 
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
-        $cadena.= "<tr>";
-        $cadena.= "<td><button type='button' onclick='deleteMisteryCentral(\"" . $row["id"] . "\");'> -</button></td>";
-        $cadena.= "<td><button type='button' onclick='editMisteryCentral(\"" . $row["id"] . "\");'> E</button></td>";
+        $cadena .= "<tr>";
+        $cadena .= "<td><button type='button' onclick='deleteMisteryCentral(\"" . $row["id"] . "\");'> -</button></td>";
+        $cadena .= "<td><button type='button' onclick='editMisteryCentral(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena.= "<td scope='row'>" . $row["nom_central"] . "</td>";
-        $cadena.= "<td scope='row'>" . $row["f_entrevista"] . "</td>";
-        $cadena.= "<td scope='row'>" . $row["nom_utilizado"] . "</td>";
-        $cadena.= "<td scope='row'>" . $row["ubicacion"] . "</td>";
-        $cadena.= "</tr>";
+        $cadena .= "<td scope='row'>" . $row["nom_central"] . "</td>";
+        $cadena .= "<td scope='row'>" . $row["f_entrevista"] . "</td>";
+        $cadena .= "<td scope='row'>" . $row["nom_utilizado"] . "</td>";
+        $cadena .= "<td scope='row'>" . $row["ubicacion"] . "</td>";
+        $cadena .= "</tr>";
       }
 
-      $cadena.= "</tbody>
+      $cadena .= "</tbody>
         </table>";
       return $cadena;
     }
@@ -541,11 +541,12 @@
       echo '<option value=""></option>';
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
-        echo '<option value="'.$row["id"].'">'.$row["user_name"].'</option>';
+        echo '<option value="' . $row["id"] . '">' . $row["user_name"] . '</option>';
       }
     }
 
-    public function showInterfazMisteryPreguntas($idFranq){
+    public function showInterfazMisteryPreguntas($idFranq)
+    {
       echo '<table class="yui3-skin-sam edit view panelContainer">
                <tbody>';
       echo '<tr>';
@@ -561,10 +562,10 @@
 
     public function showlistmisteryPreguntas($idFranquicia)
     {
-      $cadena="";
+      $cadena = "";
 
-      $cadena.= "<p>Preguntas Mistery</p>";
-      $cadena.= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+      $cadena .= "<p>Preguntas Mistery</p>";
+      $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
                    <th></th><th></th><th>Pregunta</th><th>Para central</th><th>Para Franquiciado</th>
@@ -581,26 +582,26 @@
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
 
-        $x_fdo="";
-        $x_central="";
-        if ($row["chk_fdo"]==1){
-          $x_central="x";
+        $x_fdo = "";
+        $x_central = "";
+        if ($row["chk_fdo"] == 1) {
+          $x_central = "x";
         }
-        if ($row["chk_central"]==1){
-          $x_central="x";
+        if ($row["chk_central"] == 1) {
+          $x_central = "x";
         }
 
-        $cadena.= "<tr>";
-        $cadena.= "<td><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
-        $cadena.= "<td><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
+        $cadena .= "<tr>";
+        $cadena .= "<td><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
+        $cadena .= "<td><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena.= "<td scope='row'>" . $row["pregunta"] . "</td>";
-        $cadena.= "<td scope='row'>" . $x_central . "</td>";
-        $cadena.= "<td scope='row'>" . $x_fdo . "</td>";
-        $cadena.= "</tr>";
+        $cadena .= "<td scope='row'>" . $row["pregunta"] . "</td>";
+        $cadena .= "<td scope='row'>" . $x_central . "</td>";
+        $cadena .= "<td scope='row'>" . $x_fdo . "</td>";
+        $cadena .= "</tr>";
       }
 
-      $cadena.= "</tbody>
+      $cadena .= "</tbody>
         </table>";
       return $cadena;
     }
@@ -608,7 +609,7 @@
     /**
      * @param $idFranq
      */
-    private function getPreguntas($idFranq,$tipo)
+    private function getPreguntas($idFranq, $tipo)
     {
       echo '<td><H2>Preguntas</H2>></td></tr>';
 
@@ -623,8 +624,105 @@
         $id = $row["id"];
         $pregunta = $row["pregunta"];
         echo '<td>' . $pregunta . '</td>';
-        echo '<td><textarea class="preguntas_'.$tipo.'" id="'.$id.'" name="'.$id.'" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
+        echo '<td><textarea class="preguntas_' . $tipo . '" id="' . $id . '" name="' . $id . '" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
       }
     }
 
+    public function showAccionesPortales($idFranquicia)
+    {
+      echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th>Portal</th>><th>Fecha inicio</th><th>Fecha fin</th><th>Prueba</th><th>Coste</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select p.name,f_inicio,f_fin,b_prueba, coste ";
+      $query=$query."from expan_portales p, expan_portales_periodos pp  ";
+      $query=$query."where p.id=pp.portal and pp.franquicia='$idFranquicia' and p.deleted=0  ";
+      $query=$query."order by name, pp.f_inicio ; ";
+
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo "<tr>";
+        echo "<td scope='row'>" . $row["name"] . "</td>";
+        echo "<td scope='row'>" . $row["f_inicio"] . "</td>";
+        echo "<td scope='row'>" . $row["f_fin"] . "</td>";
+        if ($row["b_prueba"]==1){
+          $_prueba="x";
+        }else{
+          $_prueba="";
+        }
+        echo "<td scope='row'>" . $_prueba . "</td>";
+        echo "<td scope='row'>" . $row["coste"] . "</td>";
+        echo "</tr>";
+      }
+      echo "</tbody>
+        </table>";
+    }
+
+    public function showAccionesFerias($idFranquicia)
+    {
+      echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th>Evento</th>><th>Fecha</th><th>Participacion</th><th>Formato</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select name, DATE_FORMAT(e.fecha_celebracion,\"%d/%m/%Y\") fecha, participacion, ef.formato_participacion ";
+      $query=$query."from expan_evento e, expan_franquicia_expan_evento_c ef ";
+      $query=$query."where e.deleted=0 and ef.deleted=0 and e.id = ef.expan_franquicia_expan_eventoexpan_evento_idb and ef.expan_franquicia_expan_eventoexpan_franquicia_ida='$idFranquicia' ";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo "<tr>";
+        echo "<td scope='row'>" . $row["name"] . "</td>";
+        echo "<td scope='row'>" . $row["fecha"] . "</td>";
+
+        $participa=$GLOBALS['app_list_strings']['lst_tipo_participa_Evento'][$row['participacion']];
+        echo "<td scope='row'>" . $participa . "</td>";
+
+        $formato=$GLOBALS['app_list_strings']['lst_formato_participa_Evento'][$row['formato_participacion']];
+        echo "<td scope='row'>" . $formato . "</td>";
+        echo "</tr>";
+      }
+      echo "</tbody>
+        </table>";
+    }
+
+    public function showAccionesMailing($idFranquicia){
+      echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th>Mailing</th>><th>Fecha</th><th>Tipo</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select name,fecha_envio, tipo from expan_mailings m ";
+      $query=$query."where  m.franquicias_envio like '%^$idFranquicia^%' and deleted=0; ";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo "<tr>";
+        echo "<td scope='row'>" . $row["name"] . "</td>";
+        echo "<td scope='row'>" . $row["fecha_envio"] . "</td>";
+        echo "<td scope='row'>" . $row["tipo"] . "</td>";
+        echo "</tr>";
+      }
+
+      echo "</tbody>
+        </table>";
+
+    }
   }

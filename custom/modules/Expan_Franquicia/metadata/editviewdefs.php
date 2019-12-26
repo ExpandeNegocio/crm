@@ -113,6 +113,11 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
+                  'LBL_EDITVIEW_ACCIONES_EXPANSION' =>
+                    array(
+                      'newTab' => true,
+                      'panelDefault' => 'expanded',
+                    ),
                 ),
             ),
             'panels' =>
@@ -2259,6 +2264,82 @@
                             echo $cadena;
                         {/php}',
                       ),
+                    ),
+                ),
+
+              'LBL_EDITVIEW_ACCIONES_EXPANSION' =>
+                array(
+
+                  0 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'acciones_portales',
+                          'label' => 'LBL_ACCIONES_PORTALES',
+                          'customCode' =>
+                            '{php}
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showAccionesPortales($idFranq);        
+                            {/php}',
+                        ),
+
+                      1 => array(
+                        'name' => 'acciones_ferias',
+                        'label' => 'LBL_ACCIONES_FERIAS',
+                        'customCode' => '
+                        {php}              
+                            $idfranq=$this->_tpl_vars["bean"]->id;                           
+                            $op=new opedicionfranquicia();
+                            $op->showAccionesFerias($idfranq);                            
+                        {/php}',
+                      ),
+                    ),
+
+                  1 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'acciones_mailings',
+                          'label' => 'LBL_ACCIONES_MAILING',
+                          'customCode' =>
+                            '{php}
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showAccionesMailing($idFranq);        
+                            {/php}',
+                        ),
+
+                      1 => array(
+
+                      ),
+                    ),
+
+                  2 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'acc_marketing_digital',
+                          'label' => 'LBL_ACC_MARKETING_DIGITAL',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'acc_posicionamiento',
+                          'label' => 'LBL_ACC_POSICIONAMIENTO',
+                        ),
+                    ),
+
+                  3 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'noticias',
+                          'label' => 'LBL_NOTICIAS',
+                        ),
+                      1 =>
+                        array(
+
+                        ),
                     ),
                 ),
             ),
