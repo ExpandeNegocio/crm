@@ -18,7 +18,7 @@
     
     $db = DBManagerFactory::getInstance();
     
-    $query = "SELECT tag FROM ".$tablaTag." WHERE tag LIKE '%".$tag."%'";
+    $query = "SELECT distinct(tag) tag FROM  $tablaTag WHERE tag LIKE '%".$tag."%'";
     
     $GLOBALS['log']->info('[ExpandeNegocio][recogerTags] Consulta-'.$query);
     
