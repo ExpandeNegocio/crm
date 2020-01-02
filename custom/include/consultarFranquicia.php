@@ -444,6 +444,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
             break;
 
+
         case 'addMisteryFranqPregunta':
 
             $query = "INSERT INTO expan_franquicia_pregunta_mis ";
@@ -451,11 +452,55 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $query=$query."VALUES  ";
             $query=$query."(UUID(), now(),'$idFranquicia','$pregunta',$chk_central,$chk_fdo)";
 
-            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion pregunta mistery-'.$query);
 
             $result = $db -> query($query);
 
             echo "Ok";
+
+            break;
+
+        case 'addPrecanFranqPregunta':
+
+            $query = "INSERT INTO expan_franquicia_pregunta_pre ";
+            $query=$query."(id,date_entered,franquicia_id,pregunta)  ";
+            $query=$query."VALUES  ";
+            $query=$query."(UUID(), now(),'$idFranquicia','$pregunta')";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion pregunta pre-'.$query);
+
+            $result = $db -> query($query);
+
+            echo "Ok";
+
+            break;
+
+        case'BajaPrecanFranqPregunta':
+            $query = "delete from expan_franquicia_pregunta_pre where id='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta baja pregunta pre-'.$query);
+
+            $result = $db -> query($query);
+
+            echo "Ok";
+
+            break;
+
+        case 'ConsultaPrecanPregunta':
+
+            $query = "select * from expan_franquicia_pregunta_pre where id='".$id."'";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta precandidatos-'.$query);
+
+            $return = array();
+
+            $result = $db -> query($query, true);
+
+            while ($row = $db -> fetchByAssoc($result)) {
+              $return[] = $row;
+            }
+
+            echo json_encode($return,JSON_FORCE_OBJECT);
 
             break;
 

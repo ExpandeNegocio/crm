@@ -61,4 +61,5 @@ $mod_strings = array(
   'LBL_SUPERFICIE_LOCAL' => 'Superficie',
   'LBL_RENTA_ESTIMADA' => 'Renta estimada',
   'LBL_EDITVIEW_MISTERY_PREGUNTAS' => 'Mistery Preguntas',
+  'LBL_PRECANDIDATOS' => '<H1><B>Precandidatos</H1></B>',
 );

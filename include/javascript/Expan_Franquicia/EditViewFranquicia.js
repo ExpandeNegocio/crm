@@ -958,6 +958,38 @@ function addPreguntaMistery(idFranquicia){
 	}
 }
 
+function addPreguntaPrecan(idFranquicia){
+
+	var pregunta=$("#pregunta_precan").val();
+
+	if (confirm("¿Quiere añadir la pregunta?")) {
+
+		url = 'index.php?entryPoint=consultarFranquicia';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data :  "tipo=addPrecanFranqPregunta&" +
+				"idFranquicia=" + idFranquicia + "&" +
+				"pregunta=" + pregunta,
+			success : function(data) {
+
+				if ( data == "Ok") {
+					document.location.reload();
+				} else {
+					alert("No se ha podido guardar la pregunta");
+				}
+				return true;
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido guardar la pregunta - ' + textStatus + ' - ' + errorThrown);
+			}
+		});
+	} else {
+		return false;
+	}
+}
+
 function editMisteryPregunta(id){
 
 	url = 'index.php?entryPoint=consultarFranquicia';
@@ -1020,4 +1052,57 @@ function deleteMisteryPregunta(id){
 	} else {
 		return false;
 	}
+}
+
+function deletePrecanPregunta(id){
+
+	if (confirm("¿Quiere eliminar la pregunta?")) {
+
+		url = 'index.php?entryPoint=consultarFranquicia';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : "tipo=BajaPrecanFranqPregunta&" +
+				"id=" + id,
+
+			success : function(data) {
+				if ( data == "Ok") {
+					document.location.reload();
+				} else {
+					alert("No se ha podido eliminar el mistery");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				YAHOO.SUGAR.MessageBox.hide();
+				alert('No se ha podido borrar el mistery seleccionado - ' + textStatus + ' - ' + errorThrown);
+
+			}
+		});
+
+	} else {
+		return false;
+	}
+}
+
+function editPrecanPregunta(id){
+
+	url = 'index.php?entryPoint=consultarFranquicia';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=ConsultaPrecanPregunta&" +
+			"id=" + id,
+
+		success : function(data) {
+
+			var json = JSON.parse(data);
+
+			$("#pregunta_precan").val(json[0].pregunta);
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			YAHOO.SUGAR.MessageBox.hide();
+			alert('No se ha podido recoger los datos de la pregunta - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
 }

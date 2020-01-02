@@ -483,10 +483,10 @@
         $cadena .= "<td><button type='button' onclick='deleteMisteryFdo(\"" . $row["id"] . "\");'> -</button></td>";
         $cadena .= "<td><button type='button' onclick='editMisteryFdo(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena .= "<td scope='row'>" . $row["nom_entrevistado"] . "</td>";
-        $cadena .= "<td scope='row'>" . $row["f_entrevista"] . "</td>";
-        $cadena .= "<td scope='row'>" . $row["nom_utilizado"] . "</td>";
-        $cadena .= "<td scope='row'>" . $row["ubicacion"] . "</td>";
+        $cadena .= "<td>" . $row["nom_entrevistado"] . "</td>";
+        $cadena .= "<td>" . $row["f_entrevista"] . "</td>";
+        $cadena .= "<td>" . $row["nom_utilizado"] . "</td>";
+        $cadena .= "<td>" . $row["ubicacion"] . "</td>";
         $cadena .= "</tr>";
       }
 
@@ -520,10 +520,10 @@
         $cadena .= "<td><button type='button' onclick='deleteMisteryCentral(\"" . $row["id"] . "\");'> -</button></td>";
         $cadena .= "<td><button type='button' onclick='editMisteryCentral(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena .= "<td scope='row'>" . $row["nom_central"] . "</td>";
-        $cadena .= "<td scope='row'>" . $row["f_entrevista"] . "</td>";
-        $cadena .= "<td scope='row'>" . $row["nom_utilizado"] . "</td>";
-        $cadena .= "<td scope='row'>" . $row["ubicacion"] . "</td>";
+        $cadena .= "<td>" . $row["nom_central"] . "</td>";
+        $cadena .= "<td>" . $row["f_entrevista"] . "</td>";
+        $cadena .= "<td>" . $row["nom_utilizado"] . "</td>";
+        $cadena .= "<td>" . $row["ubicacion"] . "</td>";
         $cadena .= "</tr>";
       }
 
@@ -565,7 +565,7 @@
       $cadena = "";
 
       $cadena .= "<p>Preguntas Mistery</p>";
-      $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+      $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;text-align: left'>
               <thead>
                 <tr class='trClass'>
                    <th></th><th></th><th>Pregunta</th><th>Para central</th><th>Para Franquiciado</th>
@@ -592,12 +592,12 @@
         }
 
         $cadena .= "<tr>";
-        $cadena .= "<td><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
-        $cadena .= "<td><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
+        $cadena .= "<td style='width:25px'><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
+        $cadena .= "<td style='width:25px'><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena .= "<td scope='row'>" . $row["pregunta"] . "</td>";
-        $cadena .= "<td scope='row'>" . $x_central . "</td>";
-        $cadena .= "<td scope='row'>" . $x_fdo . "</td>";
+        $cadena .= "<td>" . $row["pregunta"] . "</td>";
+        $cadena .= "<td>" . $x_central . "</td>";
+        $cadena .= "<td>" . $x_fdo . "</td>";
         $cadena .= "</tr>";
       }
 
@@ -649,16 +649,16 @@
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
         echo "<tr>";
-        echo "<td scope='row'>" . $row["name"] . "</td>";
-        echo "<td scope='row'>" . $row["f_inicio"] . "</td>";
-        echo "<td scope='row'>" . $row["f_fin"] . "</td>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["f_inicio"] . "</td>";
+        echo "<td>" . $row["f_fin"] . "</td>";
         if ($row["b_prueba"]==1){
           $_prueba="x";
         }else{
           $_prueba="";
         }
-        echo "<td scope='row'>" . $_prueba . "</td>";
-        echo "<td scope='row'>" . $row["coste"] . "</td>";
+        echo "<td>" . $_prueba . "</td>";
+        echo "<td>" . $row["coste"] . "</td>";
         echo "</tr>";
       }
       echo "</tbody>
@@ -684,14 +684,14 @@
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
         echo "<tr>";
-        echo "<td scope='row'>" . $row["name"] . "</td>";
-        echo "<td scope='row'>" . $row["fecha"] . "</td>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["fecha"] . "</td>";
 
         $participa=$GLOBALS['app_list_strings']['lst_tipo_participa_Evento'][$row['participacion']];
-        echo "<td scope='row'>" . $participa . "</td>";
+        echo "<td>" . $participa . "</td>";
 
         $formato=$GLOBALS['app_list_strings']['lst_formato_participa_Evento'][$row['formato_participacion']];
-        echo "<td scope='row'>" . $formato . "</td>";
+        echo "<td>" . $formato . "</td>";
         echo "</tr>";
       }
       echo "</tbody>
@@ -715,9 +715,9 @@
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
         echo "<tr>";
-        echo "<td scope='row'>" . $row["name"] . "</td>";
-        echo "<td scope='row'>" . $row["fecha_envio"] . "</td>";
-        echo "<td scope='row'>" . $row["tipo"] . "</td>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["fecha_envio"] . "</td>";
+        echo "<td>" . $row["tipo"] . "</td>";
         echo "</tr>";
       }
 

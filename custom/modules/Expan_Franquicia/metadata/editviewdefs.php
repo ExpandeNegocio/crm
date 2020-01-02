@@ -1,4 +1,9 @@
 <?php
+
+  include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";
+  include "custom/modules/Expan_Solicitud/metadata/opEdicionSolicitud.php";
+  include "custom/modules/Expan_Franquicia/metadata/opEdicionPreguntasPrecan.php";
+
   $module_name = 'Expan_Franquicia';
   $_object_name = 'expan_franquicia';
   $viewdefs [$module_name] =
@@ -161,8 +166,7 @@
                           'studio' => 'visible',
                           'label' => 'LBL_SECTOR',
                           'customCode' => '
-                              {php}
-                                  include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";
+                              {php}                                  
                                   $prueba=new opEdicionFranquicia();
                                   $prueba->cargaSectores();  
                               {/php}',
@@ -1966,11 +1970,10 @@
                           'name' => 'tags_empresa',
                           'label' => 'LBL_TAG_EMPRESA',
                           'customCode' =>
-                            '{php}
-                include "custom/modules/Expan_Solicitud/metadata/opEdicionSolicitud.php";
+                            '{php}                
                 $fran=new opEdicionSolicitud();
-                $idSol=$this-> _tpl_vars["bean"]-> id;
-                $fran->recogerTagsEmpresa($idSol);  
+                $idFran=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerTagsEmpresa($idFran);  
       
             {/php}
             <div id="sugerencias_tag_emp" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencias_tag_emp"></div>',
@@ -1995,8 +1998,8 @@
                           'customCode' => '
               {php}                
                   $opSol=new opEdicionSolicitud();
-                  $idSol=$this-> _tpl_vars["bean"]-> id;
-                  $opSol->cargaMotivos($idSol);            
+                  $idFran=$this-> _tpl_vars["bean"]-> id;
+                  $opSol->cargaMotivos($idFran);            
               {/php}',
 
                         ),
@@ -2007,11 +2010,47 @@
                           'customCode' => '
               {php}                
                   $opSol=new opEdicionSolicitud();
-                  $idSol=$this-> _tpl_vars["bean"]-> id;
-                  $opSol->cargaHabilidades($idSol);            
+                  $idFran=$this-> _tpl_vars["bean"]-> id;
+                  $opSol->cargaHabilidades($idFran);            
               {/php}',
                         ),
                     ),
+
+                  4 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_PRECANDIDATOS',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  5 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'precandidato_insert_preguntas',
+                          'customCode' =>
+                            '{php}                                
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionPreguntasPrecan();                
+                                $op->showInterfazPreguntasPre($idFranq);        
+                            {/php}',
+                        ),
+
+                      1 => array(
+                        'name' => 'mistery_list_preguntas',
+                        'customCode' => '
+                        {php}              
+                            $idfranq=$this->_tpl_vars["bean"]->id;                           
+                            $op=new opEdicionPreguntasPrecan();
+                            $cadena = $op->showlistPreguntasPre($idfranq);
+                            echo $cadena;
+                        {/php}',
+                      ),
+                   ),
                 ),
 
               // ---- PROVEEDORES -------------------------------------------------------------------------------------------------

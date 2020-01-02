@@ -1,5 +1,8 @@
 <?php
 
+  include "custom/modules/Expan_Franquicia/metadata/opEdicionPreguntasPrecan.php";
+  include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";
+
   $module_name = 'Expan_Franquicia';
   $_object_name = 'expan_franquicia';
   $viewdefs [$module_name] =
@@ -1927,21 +1930,37 @@
                           'label' => 'LBL_PAPEL_IDONEO',
                         ),
                     ),
-
                   3 =>
                     array(
                       0 =>
                         array(
-                          'name' => 'habilidades',
-                          'label' => 'LBL_HABILIDADES',
+                          'label' => 'LBL_PRECANDIDATOS',
                         ),
                       1 =>
                         array(
-                          'name' => 'motivos_interes',
-                          'label' => 'LBL_MOTIVOS_INTERES',
                         ),
                     ),
+
+                  4 =>
+                    array(
+                      0 =>
+                        array(
+                        ),
+
+                      1 => array(
+                        'name' => 'mistery_list_preguntas',
+                        'customCode' => '
+                        {php}            
+                             
+                            $idfranq=$this->_tpl_vars["bean"]->id;                           
+                            $op=new opEdicionPreguntasPrecan();
+                            $cadena = $op->showlistPreguntasPre($idfranq);
+                            echo $cadena;
+                        {/php}',
+                      ),
+                    ),
                 ),
+
 
               // ---- PROVEEDORES -------------------------------------------------------------------------------------------------
 
@@ -1955,7 +1974,7 @@
                           'name' => 'proveedor_insert',
                           'customCode' =>
                             '{php}
-                include "custom/modules/Expan_Franquicia/metadata/opEdicionFranquicia.php";      
+               
                 $idFranq=$this->_tpl_vars["bean"]->id;   
                 $op=new opEdicionFranquicia();                
                 $op->showInterfazProveedorFraquicia($idFranq,"EditView");        
