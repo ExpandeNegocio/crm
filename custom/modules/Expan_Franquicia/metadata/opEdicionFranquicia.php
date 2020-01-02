@@ -293,7 +293,7 @@
       echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
-                  <th></th><th></th><th>Competidor</th>><th>Tipo Competidor</th><th>Competidor Principal</th>
+                  <th></th><th>Competidor</th>><th>Tipo Competidor</th><th>Competidor Principal</th>
                 </tr>
               </thead>
               <tbody>";
@@ -314,9 +314,9 @@
         echo "<tr>";
         echo "<td><button type='button' onclick='window.open(\"index.php?module=Expan_Empresa&action=DetailView&record=" . $row["id"] . "\");'> V</button></td>";
 
-        echo "<td scope='row'>" . $row["name"] . "</td>";
-        echo "<td scope='row'>" . $row["tipo_comp"] . "</td>";
-        echo "<td scope='row'>" . $row["compt_principal"] . "</td>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["tipo_comp"] . "</td>";
+        echo "<td>" . $row["compt_principal"] . "</td>";
         echo "</tr>";
       }
 

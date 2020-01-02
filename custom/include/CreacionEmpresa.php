@@ -94,7 +94,7 @@
 
           $query = " insert  into expan_empresa_competidores_c  ";
           $query=$query."(id,deleted,date_modified,empresa_id,competidor_id,tipo_competidor,competidor_principal)  ";
-          $query=$query."select uuid(),0,'$time_now','" . $arguments["related_id"] . "','" . $arguments["id"] . "',null,0 from dual ";
+          $query=$query."select uuid(),0,'$time_now','" . $arguments["id"] . "','" . $arguments["related_id"] . "',null,0 from dual ";
           $query=$query."where not exists (select * from expan_empresa_competidores_c ";
           $query=$query."WHERE empresa_id='" . $arguments["id"]  . "' and competidor_id='" .$arguments["related_id"]. "' limit 1); ";
 
