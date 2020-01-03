@@ -198,6 +198,3 @@ $GLOBALS['app_list_strings']['papel_list']=array (
   '' => '',
 );
 
-
-
-

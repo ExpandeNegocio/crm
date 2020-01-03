@@ -26,14 +26,19 @@ class controlEnvios {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]Tipo del que cuelga-' . $bean -> parent_type);
             $GLOBALS['log'] -> info('[ExpandeNegocio][Modificacion de Tarea]ID del padre-' . $bean -> parent_id);
 
-            $mailing= new Expan_Mailings();
-            $mailing->name=$bean->name;
-            $mailing->plantilla=$bean->plantilla;
-            $mailing->tipo="CRM";
-            $mailing->fecha_envio=$bean->date_entered;            
-            $mailing->envio= $bean->id;
-                        
-            $mailing->save();
+
+
+            if ($this->ExisteMailing($bean->name)==false){
+                $mailing= new Expan_Mailings();
+                $mailing->name=$bean->name;
+                $mailing->plantilla=$bean->plantilla;
+                $mailing->tipo="CRM";
+                $mailing->fecha_envio=$bean->date_entered;
+                $mailing->envio= $bean->id;
+
+                $mailing->ignore_update_c=true;
+                $mailing->save();
+            }
 
         //Modificacion
         }else{
@@ -44,6 +49,21 @@ class controlEnvios {
     function ActualizarRel(&$bean, $event, $arguments ){
         
         //NO BORRAR
+    }
+
+    function ExisteMailing($name){
+
+        $db = DBManagerFactory::getInstance();
+        $query = "select * from expan_mailings where name='$name' ";
+
+        $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_solicitud][Existe Mailing]-' . $query);
+
+        $result = $db -> query($query, true);
+
+        while ($row = $db -> fetchByAssoc($result)) {
+           return true;
+        }
+        return false;
     }
 
 }
