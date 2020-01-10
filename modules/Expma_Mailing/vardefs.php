@@ -127,6 +127,27 @@ $dictionary['Expma_Mailing'] = array(
     'len' => '255',
     'size' => '20',
   ),
+
+  'envio_todos' =>
+    array (
+      'required' => false,
+      'name' => 'envio_todos',
+      'vname' => 'LBL_ENVIAR_TODOS',
+      'type' => 'bool',
+      'default' => '0',
+      'no_default' => false,
+      'comments' => '',
+      'help' => '',
+      'importable' => 'true',
+      'duplicate_merge' => 'disabled',
+      'duplicate_merge_dom_value' => '0',
+      'audited' => true,
+      'reportable' => true,
+      'unified_search' => false,
+      'merge_filter' => 'disabled',
+      'len' => '255',
+      'size' => '20',
+    ),
   
   'texto_informe' => 
   array (
@@ -149,7 +170,6 @@ $dictionary['Expma_Mailing'] = array(
     'studio' => 'visible',
     'rows' => '4',
     'cols' => '60',
-    
   ),
   
   'correos_ok' => 
@@ -182,8 +202,7 @@ $dictionary['Expma_Mailing'] = array(
       'max' => false,
     ),
   ),
-  
-  
+
     'correos_ko' => 
   array (
     'required' => false,
@@ -403,4 +422,4 @@ $dictionary['Expma_Mailing'] = array(
 if (!class_exists('VardefManager')){
         require_once('include/SugarObjects/VardefManager.php');
 }
-VardefManager::createVardef('Expma_Mailing','Expma_Mailing', array('basic','assignable'));
+VardefManager::createVardef('Expma_Mailing','Expma_Mailing', array('basic','assignable'));

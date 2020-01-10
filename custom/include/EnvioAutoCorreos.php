@@ -317,11 +317,6 @@ class EnvioAutoCorreos
     $idFran = $emailTemp->franquicia;
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]ID fran-' . $idFran);
 
-    //Marcamos las que sabemos que no podemos enviar por protocolo
-    $this->marcadoProtocolo($idMailing, $idFran);
-    $this->marcarDummies($idMailing);
-    $this->marcadoNovalido($idMailing);
-
     $arrayCorreos = array();
 
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Num correos-' . count($listaCorreos));
@@ -450,27 +445,58 @@ class EnvioAutoCorreos
     // $mail->setMailerForSystem();
   }
 
-  public function marcadoProtocolo($idMailing, $fran)
+  public function marcadoProtocolo($idMailing)
   {
     $db = DBManagerFactory::getInstance();
 
-    $query = "UPDATE expma_mailing_expan_solicitud_c c   ";
-    $query = $query . "       INNER JOIN   ";
-    $query = $query . "       (SELECT s.id AS id  ";
-    $query = $query . "FROM expma_mailing_expan_solicitud_c ms,  ";
-    $query = $query . "     expan_solicitud s,  ";
-    $query = $query . "     expan_solicitud_cstm cs,  ";
-    $query = $query . "     expma_mailing m, ";
-    $query = $query . "     email_templates et ";
-    $query = $query . "WHERE     ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id  ";
-    $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "'  ";
-    $query = $query . "      AND m.plantilla=et.id ";
-    $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id  ";
-    $query = $query . "      AND cs.id_c = s.id  ";
-    $query = $query . "      AND (cs.no_correos_c = 1 OR ( tipo_origen like '%4%' AND s.franquicia_principal!='" . $fran . "') OR (coalesce(et.franquicia,null,'')!='' AND s.cerrada = 1) OR (coalesce(et.franquicia,null,'')!='' AND s.positiva = 1))) a   ";
-    $query = $query . "         ON a.id = c.expma_mailing_expan_solicitudexpan_solicitud_idb   ";
-    $query = $query . "SET    motivo_no_envio = 'Por protocolo'   ";
-    $query = $query . "WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "' ; ";
+    $mailing= new Expma_Mailing();
+    $mailing->retrieve($idMailing);
+
+    if ($mailing->envio_todos==true){
+      $query = "UPDATE expma_mailing_expan_solicitud_c c   ";
+      $query = $query . "       INNER JOIN   ";
+      $query = $query . "       (SELECT s.id AS id  ";
+      $query = $query . "FROM expma_mailing_expan_solicitud_c ms,  ";
+      $query = $query . "     expan_solicitud s,  ";
+      $query = $query . "     expan_solicitud_cstm cs,  ";
+      $query = $query . "     expma_mailing m, ";
+      $query = $query . "     email_templates et ";
+      $query = $query . "WHERE     ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id  ";
+      $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "'  ";
+      $query = $query . "      AND m.plantilla=et.id ";
+      $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id  ";
+      $query = $query . "      AND cs.id_c = s.id  ";
+      $query = $query . "      AND (cs.no_correos_c = 1 )) a   ";
+      $query = $query . "         ON a.id = c.expma_mailing_expan_solicitudexpan_solicitud_idb   ";
+      $query = $query . "SET    motivo_no_envio = 'Por protocolo'   ";
+      $query = $query . "WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "' ; ";
+    }else{
+
+      $query = "UPDATE expma_mailing_expan_solicitud_c c   ";
+      $query = $query . "       INNER JOIN   ";
+      $query = $query . "       (SELECT s.id AS id  ";
+      $query = $query . "FROM expma_mailing_expan_solicitud_c ms,  ";
+      $query = $query . "     expan_solicitud s,  ";
+      $query = $query . "     expan_solicitud_cstm cs,  ";
+      $query = $query . "     expma_mailing m, ";
+      $query = $query . "     email_templates et ";
+      $query = $query . "WHERE     ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id  ";
+      $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "'  ";
+      $query = $query . "      AND m.plantilla=et.id ";
+      $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id  ";
+      $query = $query . "      AND cs.id_c = s.id  ";
+      $query = $query . "      AND (cs.no_correos_c = 1 OR ";
+      $query = $query . "          (tipo_origen like '%4%' AND s.franquicia_principal!=et.franquicia) OR ";
+      $query = $query . "          (coalesce(et.franquicia,null,'')!='' AND s.cerrada = 1) OR ";
+      $query = $query . "          (coalesce(et.franquicia,null,'')!='' AND s.positiva = 1))) a   ";
+      $query = $query . "         ON a.id = c.expma_mailing_expan_solicitudexpan_solicitud_idb   ";
+      $query = $query . "SET    motivo_no_envio = 'Por protocolo'   ";
+      $query = $query . "WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "' ; ";
+
+    }
+
+
+
 
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]marcadoProtocolo:' . $query);
 

@@ -82,9 +82,14 @@ array (
         array (              
           0 => 
           array (
-            'name' => 'evento',
-            'label' => 'LBL_EVENTO_ASOCIADO',
+            'name' => 'envio_todos',
+            'label' => 'LBL_ENVIAR_TODOS',
           ),
+          1=>
+            array (
+              'name' => 'evento',
+              'label' => 'LBL_EVENTO_ASOCIADO',
+            ),
         ),
         
         3 => 

@@ -37,37 +37,44 @@
     
     //Si tenemos que enviar un mismo correo para todos y solo a los que no hemos enviado
     // if ($porFranquicia==0){
-    
-    $query = "SELECT ";
-    $query=$query." s.id AS id, s.tipo_origen tipoorigen, franquicia_principal, email_address ";
-    $query=$query."FROM ";
-    $query=$query." expma_mailing m, ";
-    $query=$query." expma_mailing_expan_solicitud_c ms, ";
-    $query=$query." expan_solicitud s, ";
-    $query=$query." email_addr_bean_rel r, ";
-    $query=$query." email_addresses e, ";
-    $query=$query." expan_solicitud_cstm cs, ";
-    $query=$query." email_templates et ";
-    $query=$query."WHERE ";
-    $query=$query." ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id AND ";
-    $query=$query." m.plantilla = et.id AND ";
-    $query=$query." s.id = r.bean_id AND ";
-    $query=$query." e.id = r.email_address_id AND ";
-    $query=$query." (coalesce(et.franquicia,null,'') = '' OR s.cerrada <> 1) AND ";
-    $query=$query." (coalesce(et.franquicia,null,'') = '' OR s.positiva <> 1) AND ";
-    $query=$query." cs.no_correos_c = 0 AND ";
-    $query=$query." cs.id_c = s.id AND ";
-    $query=$query." enviado = 0 AND ";
-    $query=$query." ms.deleted = 0 AND ";
-    $query=$query." e.deleted = 0 AND ";
-    $query=$query." r.deleted = 0 AND ";
-    $query=$query." s.dummie = 0 AND ";
-    $query=$query." ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id AND ";
-    $query=$query." m.id = '" . $idMailing . "' ";
-    $query=$query."GROUP BY ";
-    $query=$query." s.id, email_address ";
 
-           
+    $envioCorreos = new EnvioAutoCorreos;
+
+    //Marcamos los corrreos que no se pueden enviar
+    $envioCorreos->marcadoProtocolo($idMailing);
+    $envioCorreos->marcarDummies($idMailing);
+    $envioCorreos->marcadoNovalido($idMailing);
+
+    //Recogemos los correos que no estan marcados
+    $query = "SELECT  ";
+    $query=$query." s.id AS id, s.tipo_origen tipoorigen, franquicia_principal, email_address  ";
+    $query=$query."FROM  ";
+    $query=$query." expma_mailing m,  ";
+    $query=$query." expma_mailing_expan_solicitud_c ms,  ";
+    $query=$query." expan_solicitud s,  ";
+    $query=$query." email_addr_bean_rel r,  ";
+    $query=$query." email_addresses e,  ";
+    $query=$query." expan_solicitud_cstm cs,  ";
+    $query=$query." email_templates et  ";
+    $query=$query."WHERE  ";
+    $query=$query." ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id AND  ";
+    $query=$query." m.plantilla = et.id AND  ";
+    $query=$query." s.id = r.bean_id AND  ";
+    $query=$query." e.id = r.email_address_id AND  ";
+    $query=$query." cs.no_correos_c = 0 AND  ";
+    $query=$query." cs.id_c = s.id AND  ";
+    $query=$query." enviado = 0 AND  ";
+    $query=$query." motivo_no_envio is null AND ";
+    $query=$query." ms.deleted = 0 AND  ";
+    $query=$query." e.deleted = 0 AND  ";
+    $query=$query." r.deleted = 0 AND  ";
+    $query=$query." s.dummie = 0 AND  ";
+    $query=$query." ms.expma_mailing_expan_solicitudexpan_solicitud_idb = s.id AND  ";
+    $query=$query." m.id = '$idMailing'  ";
+    $query=$query."GROUP BY  ";
+    $query=$query." s.id, email_address ; ";
+
+
     $GLOBALS['log'] -> info('[ExpandeNegocio][LanzarMailing]Query-' . $query);
     
     $resultSol = $db -> query($query, true);

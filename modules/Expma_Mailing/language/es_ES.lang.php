@@ -82,4 +82,5 @@ $mod_strings = array (
   'LBL_TOTALCORREOS' => 'Nº total de correos',
   'LBL_CORREOSPROTOCOLO' => 'Nº de no envíos por protocolo',
   'LBL_EVENTO_ASOCIADO' => 'Evento asociado',
+  'LBL_ENVIAR_TODOS' => 'Enviar a todos (incluidos descartados y positivos)',
 );

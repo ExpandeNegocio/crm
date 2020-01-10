@@ -158,6 +158,15 @@ array (
             'label' => 'LBL_GUARDAR_CORREO',
           ),  
         ),
+
+        8=>
+          array (
+            0 =>
+              array (
+                'name' => 'envio_todos',
+                'label' => 'LBL_ENVIAR_TODOS',
+              ),
+          ),
       ),
     ),
   ),

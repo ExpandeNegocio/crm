@@ -401,8 +401,8 @@
     'LBL_ACC_MARKETING_DIGITAL' => 'Marketing digital',
     'LBL_ACC_POSICIONAMIENTO' => 'Posicionamiento',
     'LBL_NOTICIAS' => 'Noticias',
-    'LBL_ACCIONES_PORTALES' => 'Acciones portales',
-    'LBL_ACCIONES_FERIAS' => 'Acciones ferias',
-    'LBL_ACCIONES_MAILING' => 'Acciones mailing',
+    'LBL_ACCIONES_PORTALES' => 'Portales',
+    'LBL_ACCIONES_FERIAS' => 'Ferias',
+    'LBL_ACCIONES_MAILING' => 'Mailing',
     'LBL_EDITVIEW_ACCIONES_EXPANSION' => 'Acciones Expansion',
   );

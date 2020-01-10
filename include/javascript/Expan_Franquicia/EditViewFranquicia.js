@@ -1106,3 +1106,27 @@ function editPrecanPregunta(id){
 		}
 	});
 }
+
+function addFechaObserva(linTexto) {
+
+	var texto = $("#noticias").val();
+
+	var f = new Date();
+
+	fecha = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+	if (texto.trim()==""){
+		texto = (fecha + ' : ' + linTexto);
+	}
+	else{
+		texto = texto + ('\n' + fecha + ' : ' + linTexto);
+	}
+
+	$("#noticias").val(texto);
+
+}
+
+$("#noticias").bind("keyup", function () {
+	if (window.event.keyCode == 13) {
+		addFechaObserva("");
+	}
+});
