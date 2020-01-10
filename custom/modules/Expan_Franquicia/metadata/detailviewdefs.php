@@ -1959,6 +1959,25 @@
                         {/php}',
                       ),
                     ),
+
+                  5 =>
+                    array(
+                      0 =>
+                        array(
+                        ),
+
+                      1 => array(
+                        'name' => 'mistery_tags_precan',
+                        'customCode' => '
+                        {php}            
+                             
+                            $idfranq=$this->_tpl_vars["bean"]->id;                           
+                            $op=new opEdicionPreguntasPrecan();
+                            $cadena = $op->ShowTagsPrecandidatos($idfranq);
+                            echo $cadena;
+                        {/php}',
+                      ),
+                    ),
                 ),
 
 
