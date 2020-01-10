@@ -575,7 +575,7 @@
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select id,pregunta ";
+      $query = "select id,pregunta,chk_fdo,chk_central ";
       $query = $query . "from expan_franquicia_pregunta_mis  ";
       $query = $query . "where franquicia_id='$idFranquicia'";
 
@@ -585,7 +585,7 @@
         $x_fdo = "";
         $x_central = "";
         if ($row["chk_fdo"] == 1) {
-          $x_central = "x";
+          $x_fdo = "x";
         }
         if ($row["chk_central"] == 1) {
           $x_central = "x";
