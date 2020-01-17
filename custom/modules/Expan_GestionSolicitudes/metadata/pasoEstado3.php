@@ -26,7 +26,7 @@
     // o esta la fecha de reactivacion a menos de 20 días, esta pasa a estado 2
     
     $query = "select id, max(PresenteRuta) PresenteRuta, max(DesplazaFecha) DesplazaFecha, max(PlanificaLlamada) PlanificaLlamada, ";
-     $query = "max(EnvioCorreo) EnvioCorreo, max(ReactivacionAut) ReactivacionAut ";
+    $query = $query . "max(EnvioCorreo) EnvioCorreo, max(ReactivacionAut) ReactivacionAut ";
     $query=$query."from (  ";
     $query=$query."  SELECT g.id, p.PresenteRuta, p.DesplazaFecha, p.PlanificaLlamada, p.EnvioCorreo, p.ReactivacionAut ";
     $query=$query."  FROM calls c, expan_gestionsolicitudes  g, tipo_parada p ";

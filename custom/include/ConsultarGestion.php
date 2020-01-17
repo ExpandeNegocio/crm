@@ -35,6 +35,29 @@ switch ($tipo) {
 
     echo json_encode($return, JSON_FORCE_OBJECT);
     break;
+  case 'RecogeAccionesMailingGestion':
+
+    $db = DBManagerFactory::getInstance();
+
+    $return = array();
+
+    $query = "select accion,f_accion,t.name Plantilla,m.name Mailing, n.document_name Documento from ( ";
+    $query=$query."select at.name accion, f_accion, id_template,c_doc,id_mailing ";
+    $query=$query."from expan_mailing_actions a, expan_mailing_action_type at ";
+    $query=$query."where gestion_id='$idGest' AND a.c_accion=at.id)b ";
+    $query=$query."left join email_templates t on t.id=id_template ";
+    $query=$query."left join expan_mailings m on m.id=id_mailing ";
+    $query=$query."left join (select r.id rid, d.document_name FROM documents d, document_revisions r where d.id=r.document_id )n on n.rid= c_doc  ";
+    $query=$query."order by f_accion; ";
+
+    $result = $db->query($query, true);
+
+    while ($row = $db->fetchByAssoc($result)) {
+      $return[] = $row;
+    }
+
+    echo json_encode($return, JSON_FORCE_OBJECT);
+    break;
 
   case 'RecogeDocumentosEnviadosGestion':
 

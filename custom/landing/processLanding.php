@@ -1,6 +1,8 @@
 <?php
 
   $template=$_GET['template'];
+  $idTemplate=$_GET['idTemplate'];
+  $idMailing=$_GET['idMailing'];
   $idGest=$_GET['idGest'];
 
   // Recojo la plantilla
@@ -22,6 +24,8 @@
   const MARC_FRANQUICIA_ID = '#franquiciaid#';
   const MARC_GESTION_ID ='#gestionid#';
   const MARC_SOLICITUD_ID ='#solicitudid#';
+  const MARC_TEMPLATE_ID ="#templateid#";
+  const MARC_MAILING_ID ="#mailingid#";
 
   $first_name="";
   $last_name="";
@@ -67,5 +71,7 @@
   $html = str_replace(MARC_FRANQUICIA, $franquicia, $html);
   $html = str_replace(MARC_GESTION_ID, $idGest, $html);
   $html = str_replace(MARC_SOLICITUD_ID, $solId, $html);
+  $html = str_replace(MARC_TEMPLATE_ID, $idTemplate, $html);
+  $html = str_replace(MARC_MAILING_ID, $idMailing, $html);
 
   echo $html;

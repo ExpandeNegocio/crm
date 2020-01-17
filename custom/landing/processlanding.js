@@ -4,16 +4,19 @@ var BAJA_FRANQUICIA = "BF";
 var DESCARGA_FICHERO = "DF";
 var OPEN_LANDING = "OL";
 
-function registerAction(idGest,accion,doc){
+function registerAction(idGest,accion,doc,idTemplate,idMailing){
     url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=mailingGest&idGest='+ idGest +
-        '&accion=' + accion + '&doc='+ doc ;
+        '&accion=' + accion + '&doc='+ doc +   "&idTemplate=" + idTemplate + "&idMailing" + idMailing ;
     $.ajax({
         type : "GET",
         url : url,
         dataType: 'jsonp',
         crossDomain: true,
         data : "idGest="+ idGest + "&" +
-            "accion=" + accion,
+            "accion=" + accion + "&" +
+            "doc=" +doc + "&" +
+            "idTemplate=" + idTemplate + "&" +
+            "idMailing" + idMailing,
     });
 }
 function cargaLanding(idGest) {
@@ -31,10 +34,10 @@ function acceptPrivPolitics(idDoc,idGest){
     return false;
 }
 
-function downloadfile(idDoc,idGest){
+function downloadfile(idDoc,idGest,idTemplate,idMailing){
 
     url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=downloadDoc&idDoc='+ idDoc + '&' +
-    'idGest=' + idGest;
+    'idGest=' + idGest
     $.ajax({
         type : "GET",
         url : url,
@@ -46,7 +49,7 @@ function downloadfile(idDoc,idGest){
         success : function(data) {
 
             if ( data.resp != "") {
-                registerAction(idGest,DESCARGA_FICHERO,data.resp);
+                registerAction(idGest,DESCARGA_FICHERO,data.resp,idTemplate,idMailing);
                 window.location = "https://www.expandenegocio.com/sugarcrm/upload/"+data.resp;
             }
         },
@@ -56,7 +59,7 @@ function downloadfile(idDoc,idGest){
     });
 }
 
-function activate(idGest){
+function activate(idGest,idTemplate,idMailing){
 
     url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=activateGest&idGest='+ idGest;
     $.ajax({
@@ -64,12 +67,12 @@ function activate(idGest){
         url : url,
         dataType: 'jsonp',
         crossDomain: true,
-        data : "idGest="+ idGest,
+        data : "idGest="+ idGest ,
 
         success : function(data) {
 
             if ( data.resp != "") {
-                registerAction(idGest,ACTIVATE,data.resp);
+                registerAction(idGest,ACTIVATE,"",idTemplate,idMailing);
                // alert("Se ha reactivado susolicitud");
             }
         },

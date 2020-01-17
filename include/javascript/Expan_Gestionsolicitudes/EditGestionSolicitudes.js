@@ -2013,6 +2013,7 @@ function addPanelDocumentosRecibidosGestion(gestId) {
             tabla = generateTable(array);
             div.append(tabla);
             $("#DocumentosEnviados").after(div);
+            addPanelAccionesMailingGestion(gestId);
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -2051,6 +2052,36 @@ function addPanelDocumentosEnviadosGestion(gestId) {
     });
 }
 
+function addPanelAccionesMailingGestion(gestId){
+
+    url = 'index.php?entryPoint=consultarGestion&tipo=RecogeAccionesMailingGestion&gestId=' + gestId;
+    $.ajax({
+        type : "POST",
+        url : url,
+        data : "tipo=RecogeAccionesMailingGestion&gestId=" + gestId,
+        success : function(data) {
+            var parse = JSON.parse(data);
+            var array=accioneaMailingJsonToArray(parse,false);
+
+            var div= $('<div/>',
+                {
+                    id: 'AccionesMailing',
+                    class:'subpanelTabForm H3',
+                    html:'<H3>Acciones de los Mailings</H3>',
+                });
+
+            tabla=generateTable(array);
+            div.append(tabla);
+            $("#DocumentosRecibidos").after(div);
+
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            alert('No se ha podido cargar las acciones mailing - ' + textStatus + ' - ' + errorThrown);
+        }
+    });
+}
+
 function documentosGestionJsonToArray(Json, contipo) {
 
     var array = [];
@@ -2076,6 +2107,38 @@ function documentosGestionJsonToArray(Json, contipo) {
         if (contipo){
             arrayInt.push(Json[i].tipo);
         }
+
+        array.push(arrayInt);
+    }
+
+    return array;
+}
+
+function accioneaMailingJsonToArray(Json) {
+
+    var array = [];
+
+    var arrayIntIni = [];
+
+    arrayIntIni.push('Documento');
+    arrayIntIni.push('Mailing');
+    arrayIntIni.push('Plantilla');
+    arrayIntIni.push('Fecha accion');
+    arrayIntIni.push('Tipo accion');
+
+
+    arrayIntIni.push('');
+    array.push(arrayIntIni);
+
+    for (var i in Json) {
+        var arrayInt = [];
+
+        arrayInt.push("");
+        arrayInt.push(Json[i].accion);
+        arrayInt.push(Json[i].f_accion);
+        arrayInt.push(Json[i].Plantilla);
+        arrayInt.push(Json[i].Mailing);
+        arrayInt.push(Json[i].Documento);
 
         array.push(arrayInt);
     }
