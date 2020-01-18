@@ -91,6 +91,8 @@ $viewdefs [$module_name] =
               ),
               1 => 
               array (
+                'name' => 'correos_enviados',
+                label =>'LBL_CORREOS_ENVIADOS',
               ),
             ),  
             
@@ -98,7 +100,7 @@ $viewdefs [$module_name] =
             array (
               0 => 
               array (
-                'name' => 'mailing_interno_link',
+                'customCode' => '{if $fields.envio.value!=""}<a href="index.php?module=Expma_Mailing&action=DetailView&record={$fields.envio.value}">{$fields.envio.name}</a>{/if}',
                 'label' => 'LBL_MAILING_INTERNO',
               ),
               1 => 

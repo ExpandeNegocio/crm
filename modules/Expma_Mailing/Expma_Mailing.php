@@ -40,7 +40,7 @@
 require_once('modules/Expma_Mailing/Expma_Mailing_sugar.php');
 class Expma_Mailing extends Expma_Mailing_sugar {
 	
-	function Expma_Mailing(){	
+	function __construct(){
 		parent::Expma_Mailing_sugar();
 	}
     
@@ -55,7 +55,15 @@ class Expma_Mailing extends Expma_Mailing_sugar {
         if ($this-> fecha_primer_envio==null){
             $this-> fecha_primer_envio= TimeDate::getInstance()->nowDb();
         
-      }
+        }
+        $this->actualizaCorreosGestionMailig($this->id,$this->correos_ok);
+    }
+
+    private function actualizaCorreosGestionMailig($idMailing,$correos_ok){
+
+      $db = DBManagerFactory::getInstance();
+      $query = "update expan_mailings set correos_enviados=$correos_ok where envio='$idMailing'; ";
+      $result = $db -> query($query);
     }
     
     private function calculaCorreosCorrectos(){

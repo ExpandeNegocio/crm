@@ -91,6 +91,8 @@ $viewdefs [$module_name] =
               ),
               1 => 
               array (
+                'name' => 'correos_enviados',
+                label =>'LBL_CORREOS_ENVIADOS',
               ),
             ),  
             
@@ -98,7 +100,7 @@ $viewdefs [$module_name] =
             array (
               0 => 
               array (
-                'name' => 'mailing_interno_link',
+                'name' => 'envio_name',
                 'label' => 'LBL_MAILING_INTERNO',
               ),
               1 => 

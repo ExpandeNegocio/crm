@@ -18,8 +18,12 @@
     
     $result = $db -> query($query);  
     
-    $query = "UPDATE expma_mailing SET correos_ok=0, correos_ko=0, correos_protocolo=0 WHERE id='".$idMailing."' and deleted=0 ;";
-     $result = $db -> query($query); 
+    $query = "UPDATE expma_mailing SET correos_ok=0, correos_ko=0, correos_protocolo=0 WHERE id='$idMailing' and deleted=0 ;";
+    $result = $db -> query($query);
+
+    $query = "update expan_mailings set correos_enviados=0 where envio='$idMailing'; ";
+    $result = $db -> query($query);
+
     
     echo "Ok";
     

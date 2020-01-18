@@ -40,7 +40,7 @@
     'LBL_HERRAMIENTA_ENVIO' => 'Herramienta de envío',
     'LBL_TIPO_MAILING' => 'Tipo',
     'LBL_F_ENVIO' => 'Fecha de envío',
-    'LBL_MAILINGS_ENVIADOS_MEDIO' => 'Mailings enviados por ismo medio',
+    'LBL_MAILINGS_ENVIADOS_MEDIO' => 'Mailings enviados por mismo medio',
     'LBL_FRANQUICIAS_ENVIO' => 'Franquias envio',
     'LBL_COSTE_ACCION' => 'Coste de la accion',
     'LBL_CORREOS_ENVIADOS' => 'Correos enviados',
