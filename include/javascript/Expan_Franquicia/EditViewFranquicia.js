@@ -1,11 +1,34 @@
+var NO_CLIENTE=4;
+
 $("#tipo_cuenta").change(function(){
-		var valor=$(this).val();		
+
+	noShowNoCliente();
+
+	/*var valor=$(this).val();
 		
 		if (valor==1 || valor==2){
 			renderTab(true);
 		}else{
 			renderTab(false);
-		}					
+		}	*/
+});
+
+$("#chk_es_proveedor").click(function(){
+	noShowNoCliente();
+});
+
+$("#chk_es_cliente_potencial").click(function(){
+	noShowNoCliente();
+});
+
+$("#chk_es_competidor").click(function(){
+	noShowNoCliente();
+});
+
+$("#noticias").bind("keyup", function () {
+	if (window.event.keyCode == 13) {
+		addFechaObserva("");
+	}
 });
 
 $('#busca_sector').keypress(function(e) {  
@@ -150,13 +173,17 @@ function inicio() {
 	makeTabby();
 	clean();
 
-	var valor=$("#tipo_cuenta").val();	
+	noShowNoCliente();
+
+	/*var valor=$("#tipo_cuenta").val();
 	
 	if (valor==1 || valor==2){
 		renderTab(true);
 	}else{
 		renderTab(false);
-	}		
+	}		*/
+
+
 
 }
 
@@ -355,7 +382,7 @@ function ocultarInicio(){
 	$("#sector_label").parent().hide();
 	$("#habilidades").parent().parent().hide();
 	$("#motivos_interes").parent().parent().hide();
-	renderTab(false);	
+	//renderTab(false);
 	
 }
 
@@ -1125,8 +1152,81 @@ function addFechaObserva(linTexto) {
 
 }
 
-$("#noticias").bind("keyup", function () {
-	if (window.event.keyCode == 13) {
-		addFechaObserva("");
+function noShowNoCliente() {
+
+	if ($("#tipo_cuenta").val()==NO_CLIENTE){
+		if ($("#chk_es_proveedor").is(':checked')==false &&
+			$("#chk_es_cliente_potencial").is(':checked')==false &&
+			$("#chk_es_competidor").is(':checked')==false){
+			ocultaNoCLiente();
+		} else{
+			ocultaNoCLienterel();
+		}
+	}else{
+		muestraCliente();
 	}
-});
+
+
+}
+
+function muestraCliente(){
+	$("#tab0").show();
+	$("#tab1").show();
+	$("#tab7").show();
+
+	$("#tab2").show();
+	$("#tab3").show();
+	$("#tab4").show();
+	$("#tab5").show();
+	$("#tab6").show();
+	$("#tab8").show();
+	$("#tab9").show();
+	$("#tab10").show();
+	$("#tab11").show();
+	$("#tab12").show();
+	$("#tab13").show();
+	$("#tab14").show();
+	$("#tab15").show();
+}
+
+function ocultaNoCLiente(){
+
+	$("#tab0").show();
+	$("#tab1").show();
+	$("#tab7").show();
+
+	$("#tab2").hide();
+	$("#tab3").hide();
+	$("#tab4").hide();
+	$("#tab5").hide();
+	$("#tab6").hide();
+	$("#tab8").hide();
+	$("#tab9").hide();
+	$("#tab10").hide();
+	$("#tab11").hide();
+	$("#tab12").hide();
+	$("#tab13").hide();
+	$("#tab14").hide();
+	$("#tab15").hide();
+}
+
+function ocultaNoCLienterel(){
+
+	$("#tab0").show();
+	$("#tab1").show();
+	$("#tab7").show();
+
+	$("#tab2").hide();
+	$("#tab3").hide();
+	$("#tab4").hide();
+	$("#tab5").hide();
+	$("#tab6").hide();
+	$("#tab8").hide();
+	$("#tab9").hide();
+	$("#tab10").hide();
+	$("#tab11").hide();
+	$("#tab12").show();
+	$("#tab13").show();
+	$("#tab14").hide();
+	$("#tab15").show();
+}
