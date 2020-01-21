@@ -260,12 +260,12 @@
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select ep.id epid, f.name, case WHEN ep.tipo_proveedor=\"in\" THEN \"Interno\" ELSE case WHEN ep.tipo_proveedor=\"ex\" THEN \"Externo\" else \"\" end END tipo_proveedor, ";
-      $query = $query . "case WHEN ep.chk_cotizado=1 THEN \"x\" ELSE \"\" END chk_cotizado, ";
-      $query = $query . "case WHEN ep.chk_validado=1 THEN \"x\" ELSE \"\" END chk_validado, ";
-      $query = $query . "DATE_FORMAT(ep.f_renovacion_acuerdo,\"%d/%m/%Y\") f_renovacion_acuerdo ";
-      $query = $query . " from     expan_empresa_proveedor ep, expan_franquicia f ";
-      $query = $query . " where  f.id= ep.empresa_id AND ep.empresa_id='" . $idFranquicia . "'";
+      $query = "select ep.proveedor_id emid, ep.id epid, e.name, case WHEN ep.tipo_proveedor='in' THEN 'Interno' ELSE case WHEN ep.tipo_proveedor='ex' THEN 'Externo' else '' end END tipo_proveedor,  ";
+      $query=$query."case WHEN ep.chk_cotizado=1 THEN 'x' ELSE '' END chk_cotizado,  ";
+      $query=$query."case WHEN ep.chk_validado=1 THEN 'x' ELSE '' END chk_validado,  ";
+      $query=$query."DATE_FORMAT(ep.f_renovacion_acuerdo,'%d/%m/%Y') f_renovacion_acuerdo  ";
+      $query=$query." from     expan_empresa_proveedor ep, expan_empresa e ";
+      $query=$query." where ep.proveedor_id= e.id AND ep.empresa_id='$idFranquicia'; ";
 
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
@@ -273,11 +273,11 @@
         echo "<td><button type='button' onclick='deleteProveedor(\"" . $row["epid"] . "\");'> -</button></td>";
         echo "<td><button type='button' onclick='editProveedor(\"" . $row["epid"] . "\");'> E</button></td>";
 
-        echo "<td scope='row'>" . $row["name"] . "</td>";
-        echo "<td scope='row'>" . $row["tipo_proveedor"] . "</td>";
-        echo "<td scope='row'>" . $row["chk_cotizado"] . "</td>";
-        echo "<td scope='row'>" . $row["chk_validado"] . "</td>";
-        echo "<td scope='row'>" . $row["f_renovacion_acuerdo"] . "</td>";
+        echo "<td style='text-align:left' scope='row'><a href='index.php?module=Expan_Empresa&action=DetailView&record=".$row["emid"]."'>" . $row["name"] . "</a></td>";
+        echo "<td style='text-align:left' scope='row'>" . $row["tipo_proveedor"] . "</td>";
+        echo "<td style='text-align:left' scope='row'>" . $row["chk_cotizado"] . "</td>";
+        echo "<td style='text-align:left' scope='row'>" . $row["chk_validado"] . "</td>";
+        echo "<td style='text-align:left' scope='row'>" . $row["f_renovacion_acuerdo"] . "</td>";
         echo "</tr>";
       }
 
@@ -592,12 +592,12 @@
         }
 
         $cadena .= "<tr>";
-        $cadena .= "<td style='width:25px'><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
-        $cadena .= "<td style='width:25px'><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
+        $cadena .= "<td style='width:25px;text-align:left'><button type='button' onclick='deleteMisteryPregunta(\"" . $row["id"] . "\");'> -</button></td>";
+        $cadena .= "<td style='width:25px;text-align:left'><button type='button' onclick='editMisteryPregunta(\"" . $row["id"] . "\");'> E</button></td>";
 
-        $cadena .= "<td>" . $row["pregunta"] . "</td>";
-        $cadena .= "<td>" . $x_central . "</td>";
-        $cadena .= "<td>" . $x_fdo . "</td>";
+        $cadena .= "<td style='text-align:left'>" . $row["pregunta"] . "</td>";
+        $cadena .= "<td style='text-align:left'>" . $x_central . "</td>";
+        $cadena .= "<td style='text-align:left'>" . $x_fdo . "</td>";
         $cadena .= "</tr>";
       }
 

@@ -1988,7 +1988,7 @@
 
                   1 =>
                     array(
-                      0 =>
+                    /*  0 =>
                         array(
                           'name' => 'proveedor_insert',
                           'customCode' =>
@@ -1998,7 +1998,7 @@
                 $op=new opEdicionFranquicia();                
                 $op->showInterfazProveedorFraquicia($idFranq,"EditView");        
             {/php}',
-                        ),
+                        ),*/
 
                       1 => array(
                         'name' => 'proveedor_list',
