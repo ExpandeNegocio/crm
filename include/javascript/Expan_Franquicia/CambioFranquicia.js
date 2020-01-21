@@ -1,4 +1,86 @@
+var NO_CLIENTE=4;
 $("#_detailblock").hide();
+
+noShowNoCliente();
+
+function noShowNoCliente() {
+
+	if ($("#tipo_cuenta").val()==NO_CLIENTE){
+		if ($("#chk_es_proveedor").is(':checked')==false &&
+			$("#chk_es_cliente_potencial").is(':checked')==false &&
+			$("#chk_es_competidor").is(':checked')==false){
+			ocultaNoCLiente();
+		} else{
+			ocultaNoCLienterel();
+		}
+	}else{
+		muestraCliente();
+	}
+
+
+}
+
+function muestraCliente(){
+	$("#tab0").show();
+	$("#tab1").show();
+	$("#tab7").show();
+
+	$("#tab2").show();
+	$("#tab3").show();
+	$("#tab4").show();
+	$("#tab5").show();
+	$("#tab6").show();
+	$("#tab8").show();
+	$("#tab9").show();
+	$("#tab10").show();
+	$("#tab11").show();
+	$("#tab12").show();
+	$("#tab13").show();
+	$("#tab14").show();
+	$("#tab15").show();
+}
+
+function ocultaNoCLiente(){
+
+	$("#tab0").show();
+	$("#tab1").show();
+	$("#tab7").show();
+
+	$("#tab2").hide();
+	$("#tab3").hide();
+	$("#tab4").hide();
+	$("#tab5").hide();
+	$("#tab6").hide();
+	$("#tab8").hide();
+	$("#tab9").hide();
+	$("#tab10").hide();
+	$("#tab11").hide();
+	$("#tab12").hide();
+	$("#tab13").hide();
+	$("#tab14").hide();
+	$("#tab15").hide();
+}
+
+function ocultaNoCLienterel(){
+
+	$("#tab0").show();
+	$("#tab1").show();
+	$("#tab7").show();
+
+	$("#tab2").hide();
+	$("#tab3").hide();
+	$("#tab4").hide();
+	$("#tab5").hide();
+	$("#tab6").hide();
+	$("#tab8").hide();
+	$("#tab9").hide();
+	$("#tab10").hide();
+	$("#tab11").hide();
+	$("#tab12").show();
+	$("#tab13").show();
+	$("#tab14").hide();
+	$("#tab15").show();
+}
 
 function cambiocheck()
 {
@@ -22,13 +104,12 @@ function cambiocheck()
 	}
 
 	for (var k = 0; k < listaSel.length; k++){
-		for (var j = 0; j < listaFran.length; j++){
-			if (trim(listaSel[k])==trim(listaFran[j].text)){
-				listaFran[j].selected = true;	
+		for (var l = 0; j < listaFran.length; l++){
+			if (trim(listaSel[k])==trim(listaFran[l].text)){
+				listaFran[l].selected = true;
 			}
 		}
 	}
-
 }	
 
 function display(){
@@ -63,9 +144,9 @@ function display(){
 	}
 
 	for (var k = 0; k < listaSel.length; k++){
-		for (var i=0; i < checkboxes.length; i++){
-			if (listaSel[k]==checkboxes[i].name){
-				checkboxes[i].checked=true;
+		for (var l=0; i < checkboxes.length; i++){
+			if (listaSel[k]==checkboxes[l].name){
+				checkboxes[l].checked=true;
 			}
 		}
 	}
