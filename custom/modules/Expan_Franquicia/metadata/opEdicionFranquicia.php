@@ -289,7 +289,7 @@
     public function showListCompetidores($idFranquicia)
     {
 
-      echo "<H1>Listado de Comperidores</H1>";
+      echo "<H1>Listado de Competidores</H1>";
       echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
@@ -305,7 +305,7 @@
       $query = $query . "FROM   expan_empresa e, expan_empresa_competidores_c c ";
       $query = $query . "WHERE e.id= c.competidor_id and c.empresa_id  IN (SELECT e.id ";
       $query = $query . "                FROM   expan_franquicia f, expan_empresa e ";
-      $query = $query . "                WHERE  f.empresa_id = e.id AND f.id='" . $idFranquicia . "') ";
+      $query = $query . "                WHERE  f.empresa_id = e.id AND f.id='$idFranquicia') ";
       $query = $query . "                order by e.name; ";
 
 
