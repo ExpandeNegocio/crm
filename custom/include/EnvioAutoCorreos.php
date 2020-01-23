@@ -87,9 +87,9 @@ class EnvioAutoCorreos
     $text = str_replace("%23","#",  $text);
     $text = str_replace(self::MARC_GESTION_ID, $gestion->id, $text);
     $text = str_replace(self::MARC_SOLICITUD_ID, $solicitud->id, $text);
-    $text = str_replace(self::MARC_NOMBRE, $solicitud->first_name, $text);
-    $text = str_replace(self::MARC_APELLIDO, $solicitud->last_name, $text);
-    $text = str_replace(self::MARC_MOVIL, $solicitud->phone_mobile, $text);
+    $text = str_replace(self::MARC_NOMBRE, $solicitud->first_name ?: '', $text);
+    $text = str_replace(self::MARC_APELLIDO, $solicitud->last_name ?: '', $text);
+    $text = str_replace(self::MARC_MOVIL, $solicitud->phone_mobile ?: '', $text);
     $text = str_replace(self::MARC_TABLA, $tabla, $text);
 
     $sea = new SugarEmailAddress();
