@@ -217,8 +217,6 @@
     $result = $db -> query($query);
 
     //Copia de capos de solicitud a gestiones si las gestiones están vacías
-    
-    
     $query = "UPDATE expan_gestionsolicitudes b ";
     $query=$query."       INNER JOIN ";
     $query=$query."       (SELECT g.id, s.rating ";
@@ -433,7 +431,22 @@
 
     $result = $db -> query($query);
 
-    //Correccion problemas franquicia principal
+    //Correccion con franquicias secundarias
+
+    $query = "update expan_solicitud s  left join  (SELECT   s.id, concat('^', GROUP_CONCAT(g.franquicia SEPARATOR '^,^'), '^') sec_calc, s.franquicias_secundarias, ";
+    $query=$query."case when length(s.franquicias_secundarias)<>length(concat('^', GROUP_CONCAT(g.franquicia SEPARATOR '^,^'), '^')) then 'x' else '' end ";
+    $query=$query."FROM     expan_solicitud s, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s. ";
+    $query=$query."         deleted = ";
+    $query=$query."         0 AND g.deleted = 0 AND gs.deleted = 0 ";
+    $query=$query."GROUP BY s.id) a ";
+    $query=$query."on a.id=s.id ";
+    $query=$query."set s.franquicias_secundarias=a.sec_calc ";
+    $query=$query."where a.sec_calc<>s.franquicias_secundarias; ";
+
+    $result = $db -> query($query);
+
+  //Correccion problemas franquicia principal
 
     $query = "SELECT * ";
     $query=$query."FROM expan_solicitud s ";
@@ -449,6 +462,8 @@
         echo $query."<BR>";    
         $result2 = $db -> query($query);
     }
+
+
 
     //Correccion problemas franquicias principal
 
