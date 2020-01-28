@@ -118,6 +118,11 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
+                  'LBL_EDITVIEW_ESTADO_RED'=>
+                    array(
+                      'newTab' => true,
+                      'panelDefault' => 'expanded',
+                    ),
                   'LBL_EDITVIEW_ACCIONES_EXPANSION' =>
                     array(
                       'newTab' => true,
@@ -2323,6 +2328,177 @@
                         {/php}',
                       ),
                     ),
+                ),
+
+              //--------------------- ESTADO DE RED ---------------------------------------
+
+              'LBL_EDITVIEW_ESTADO_RED' =>
+                array(
+                  1 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_TERRITORIOS_PRIORITARIOS',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  2 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'ccaa_prioritarias',
+                          'label' => 'LBL_CCAA_PRIORITARIAS',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'provincias_prioritarias',
+                          'label' => 'LBL_PROVINCIAS_PRIORITARIAS',
+                        ),
+                    ),
+
+                  3 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'localidad_prioritaria',
+                          'label' => 'LBL_LOCALIDAD_PRIORITARIA',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  4 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_ZONAS_RESERVADAS',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  5 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'ccaa_reservadas',
+                          'label' => 'LBL_CCAA_RESERVADAS',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'provincias_reservadas',
+                          'label' => 'LBL_PROVINCIAS_RESERVADAS',
+                        ),
+                    ),
+
+                  6 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'localidad_reservada',
+                          'label' => 'LBL_LOCALIDAD_RESERVADA',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  7 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_ZONAS_RESTRICCIONES',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  8 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'ccaa_restricciones',
+                          'label' => 'LBL_CCAA_RESTRICCIONES',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'provincias_restricciones',
+                          'label' => 'LBL_PROVINCIAS_RESTRICCIONES',
+                        ),
+                    ),
+
+                  9 =>
+                    array(
+                      0 =>
+                        array(
+                          'name' => 'localidad_restriccion',
+                          'label' => 'LBL_LOCALIDAD_RESTRICCION',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'restricciones',
+                          'label' => 'LBL_RESTRICCIONES',
+                        ),
+                    ),
+
+                  10 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_APERTURAS',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
+                  10 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_ABIERTOS',
+                          'customCode' =>
+                            '{php}
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showAperturasAbierto($idFranq);        
+                            {/php}',
+                        ),
+                      1 =>
+                        array(
+                          'label' => 'LBL_CERRADOS',
+                          'customCode' =>
+                            '{php}
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showAperturasCerrado($idFranq);        
+                            {/php}',
+                        ),
+                    ),
+
+                  11 =>
+                    array(
+                      0 =>
+                        array(
+                          'label' => 'LBL_PROCESO',
+                          'customCode' =>
+                            '{php}
+                                $idFranq=$this->_tpl_vars["bean"]->id;   
+                                $op=new opEdicionFranquicia();                
+                                $op->showAperturasProceso($idFranq);        
+                            {/php}',
+                        ),
+                      1 =>
+                        array(
+                        ),
+                    ),
+
                 ),
 
               'LBL_EDITVIEW_ACCIONES_EXPANSION' =>

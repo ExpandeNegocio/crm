@@ -1165,8 +1165,6 @@ function noShowNoCliente() {
 	}else{
 		muestraCliente();
 	}
-
-
 }
 
 function muestraCliente(){

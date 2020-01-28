@@ -698,6 +698,111 @@
         </table>";
     }
 
+    public function showAperturasAbierto($idFranquicia){
+      echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th>Nombre</th>><th>Poblacion</th><th>Tipo</th><th>Fecha Apertura</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select a.name,p.d_prov,a.localidad_apertura, case WHEN tipo_apertura=2 then 'Propia'  when a.tipo_apertura=3 then 'Franquiciada'  ";
+      $query=$query."  ELSE ''  ";
+      $query=$query."END tipo_apertura, DATE_FORMAT(a.f_inicio_contrato, '%d/%m/%Y') f_apertura ";
+      $query=$query."from expan_apertura a ";
+      $query=$query."left join expan_m_provincia p ";
+      $query=$query."on p.c_prov= a.provincia_apertura ";
+      $query=$query."where franquicia='$idFranquicia' and abierta=1 and deleted=0; ";
+
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $row["name"] . "</td>";
+     //   echo "<td>" . $row["d_prov"] . "</td>";
+        echo "<td>" . $row["localidad_apertura"] . "</td>";
+        echo "<td>" . $row["tipo_apertura"] . "</td>";
+        echo "<td>" . $row["f_apertura"] . "</td>";
+        echo "</tr>";
+      }
+
+      echo "</tbody>
+        </table>";
+      
+    }
+
+    public function showAperturasCerrado($idFranquicia){
+      echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th>Nombre</th>><th>Poblacion</th><th>Tipo</th><th>Fecha Apertura</th><th>Fecha Cierre</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select a.name,p.d_prov,a.localidad_apertura, case WHEN tipo_apertura=2 then 'Propia'  when a.tipo_apertura=3 then 'Franquiciada'  ";
+      $query=$query."  ELSE ''  ";
+      $query=$query."END tipo_apertura, DATE_FORMAT(a.f_inicio_contrato, '%d/%m/%Y') f_apertura, DATE_FORMAT(a.f_baja_contrato, '%d/%m/%Y') f_cierre ";
+      $query=$query."from expan_apertura a ";
+      $query=$query."left join expan_m_provincia p ";
+      $query=$query."on p.c_prov= a.provincia_apertura ";
+      $query=$query."where franquicia='$idFranquicia' and abierta=0 and deleted=0; ";
+
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $row["name"] . "</td>";
+      //  echo "<td>" . $row["d_prov"] . "</td>";
+        echo "<td>" . $row["localidad_apertura"] . "</td>";
+        echo "<td>" . $row["tipo_apertura"] . "</td>";
+        echo "<td>" . $row["f_apertura"] . "</td>";
+        echo "<td>" . $row["f_cierre"] . "</td>";
+        echo "</tr>";
+      }
+
+      echo "</tbody>
+        </table>";
+
+    }
+
+    public function showAperturasProceso($idFranquicia){
+      echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
+              <thead>
+                <tr class='trClass'>
+                   <th>Nombre</th>><th>Poblacion</th><th>Fecha Apertura prevista</th><th>Observaciones</th>
+                </tr>
+              </thead>
+              <tbody>";
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select name,m.d_municipio poblacion, g.pf_f_prevista_inicio, g.observacion_precontrato observaciones  from expan_gestionsolicitudes g ";
+      $query=$query."left join expan_m_municipios m ";
+      $query=$query."on m.c_provmun= g.localidad_apertura_pre ";
+      $query=$query."where franquicia='' and chk_precontrato_firmado=1 and chk_contrato_firmado=0; ";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $row["name"] . "</td>";
+        //   echo "<td>" . $row["d_prov"] . "</td>";
+        echo "<td>" . $row["poblacion"] . "</td>";
+        echo "<td>" . $row["pf_f_prevista_inicio"] . "</td>";
+        echo "<td>" . $row["observaciones"] . "</td>";
+        echo "</tr>";
+      }
+
+      echo "</tbody>
+        </table>";
+
+    }
+
     public function showAccionesMailing($idFranquicia){
       echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
