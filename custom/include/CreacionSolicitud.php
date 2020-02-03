@@ -122,7 +122,6 @@ class AccionesGuardado
       //Añadir los nuevos sectores de las franquicias contactadas y no contactadas
       $this->marcarSectores($bean->franquicias_contactadas, $bean->id); //Después del save(), porque si no no se guarda, se sobreecribe con lo anterior
       $this->marcarSectores($bean->otras_franquicias, $bean->id);
-
     }
   }
 
@@ -433,14 +432,11 @@ class AccionesGuardado
       }
 
     }
-
     return $idSol;
-
   }
 
   function getRepeatedbyEmail($solicitud, $emailList)
   {
-
     $idSol = '';
     $db = DBManagerFactory::getInstance();
 
@@ -490,7 +486,6 @@ class AccionesGuardado
 
   function controlSolicitudRepetidaImport($solicitud)
   {
-
     $idSol = $this->ControlIdsol($solicitud);
     ($solicitud);
     $this->buscarNuevasGestiones($solicitud);
@@ -657,7 +652,6 @@ class AccionesGuardado
     }
 
     if ($movilAnt != $movilAct) {
-
       $query = "UPDATE calls c JOIN (SELECT g.id, s.phone_mobile ";
       $query = $query . "  FROM   expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_gestionsolicitudes g ";
       $query = $query . "  WHERE  s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
