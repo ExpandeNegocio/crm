@@ -196,14 +196,15 @@
     $result = $db -> query($query);
     
     //Actualiza la fecha de recogida de las gestiones que vienen de FranquiShop 
-    //No lo hacemos con caracter retroctivo por no modificar los informes previos
+    //No lo hacemos con caracter retroctivo por no modificar los informes previo
+    // Lo dejamos comentado porque ya no lo aplicamos
     
-    $query = "update expan_gestionsolicitudes g ";
+ /*   $query = "update expan_gestionsolicitudes g ";
     $query=$query."join expan_evento e ";
     $query=$query."on  g.expan_evento_id_c=e.id ";
     $query=$query."set g.date_entered =e.fecha_celebracion ";
     $query=$query."where e.tipo_evento='FShop' and g.date_entered>STR_TO_DATE('20/10/2017','%d/%m/%Y') and g.deleted=0; ";
-    $result = $db -> query($query);
+    $result = $db -> query($query);*/
 
     //Actualizar las
 
