@@ -65,7 +65,7 @@ switch ($tipo) {
 
     $return = array();
 
-    $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento, Fecha,tipo    ";
+  /*  $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento,date_format(fecha ,'%d/%m/%Y') Fecha,tipo    ";
     $query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha , 'Enviado' as tipo ";
     $query=$query."          FROM   expan_gestionsolicitudes g,  emails e, notes n   ";
     $query=$query."          WHERE e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0   ";
@@ -81,7 +81,27 @@ switch ($tipo) {
     $query=$query."          from expan_mailing_actions a,document_revisions dr  ";
     $query=$query."          where gestion_id='" . $idGest . "' and dr.id= a.c_doc and c_accion='DF' and deleted=0 group by gestion_id, c_doc                       ";
     $query=$query."       ) yy   ";
-    $query=$query."ORDER BY fecha DESC   ";
+    $query=$query."ORDER BY fecha DESC   ";*/
+
+    $query = "SELECT   DISTINCT concat('<a href=index.php?entryPoint=download&id=', nid, '&type=Notes\">', name, '</a>') Documento, date_format(fecha, '%d/%m/%Y') Fecha, tipo ";
+    $query=$query."FROM     (SELECT n.id nid, n.name, e.date_sent fecha, 'Enviado' AS tipo ";
+    $query=$query."          FROM   expan_gestionsolicitudes g, emails e, notes n ";
+    $query=$query."          WHERE  e.parent_id = g.id AND e.deleted = 0 AND g.deleted = 0 AND n.deleted = 0 AND (e.status = 'sent') AND n.parent_id ";
+    $query=$query."                 = ";
+    $query=$query."                 e.id AND g.id = '$idGest' ";
+    $query=$query."          UNION ALL ";
+    $query=$query."          SELECT n.id nid, n.name, e.date_sent fecha, 'Enviado' AS tipo ";
+    $query=$query."          FROM   emails e, expan_gestionsolicitudes g, notes n, adjuntos j ";
+    $query=$query."          WHERE  g.id = '$idGest' AND e.parent_id = g.id AND j.id_note = n.id AND j.id_email = e.id ";
+    $query=$query."                 AND e.status = ";
+    $query=$query."                 'sent' AND e.deleted = 0 AND n.deleted = 0 ";
+    $query=$query."          UNION ALL ";
+    $query=$query."          SELECT   dr.id, dr.filename, a.f_accion, 'Descargado' AS tipo ";
+    $query=$query."          FROM     expan_mailing_actions a, document_revisions dr ";
+    $query=$query."          WHERE    gestion_id = '$idGest' AND dr.id = a.c_doc AND c_accion = 'DF' AND deleted = 0 ";
+    $query=$query."          GROUP BY gestion_id, c_doc) yy ";
+    $query=$query."ORDER BY fecha DESC; ";
+
 
     $result = $db->query($query, true);
 

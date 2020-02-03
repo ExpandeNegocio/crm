@@ -290,7 +290,10 @@ EOQ;
 			array_push($focus->saved_attachments, $note);
 			$note->id = $note_id;
 
-			if($note->new_with_id === FALSE)
+      $sql = "insert into documents_notes (document_id,note_id,docrev_id) values ('".$doc->id."','".$docId."','".$docRev->id."')";
+      $focus->db->query($sql);
+
+      if($note->new_with_id === FALSE)
     			$note->file->final_move($note->id);
     	    else
     	       $GLOBALS['log']->debug("Not performing final move for note id {$note->id} as it has already been processed");
@@ -330,9 +333,9 @@ EOQ;
 			$docNote->file_mime_type = $docRev->file_mime_type;
 			$docId = $docNote = $docNote->save();
             
-            //Añadims un enlace entre documento/revision - Nota
-            $sql = "insert into documents_notes (document_id,note_id,docrev_id) values ('".$doc->id."','".$docId."','".$docRev->id."')";
-            $focus->db->query($sql);          
+      //Añadims un enlace entre documento/revision - Nota
+      $sql = "insert into documents_notes (document_id,note_id,docrev_id) values ('".$doc->id."','".$docId."','".$docRev->id."')";
+      $focus->db->query($sql);
 
 			UploadFile::duplicate_file($docRev->id, $docId, $docRev->filename);
             

@@ -110,6 +110,8 @@ class EnvioAutoCorreos
     return $text;
   }
 
+
+
   function sendMessageV2($rcpt_name, $addresses, $subject, $body, $fromName, $cuentaCor, $idTemp)
   {
     $mail = new SugarPHPMailer();
@@ -135,6 +137,7 @@ class EnvioAutoCorreos
 
     //Attachments
     $note = new Note();
+
     $where = "notes.parent_id = '" . $idTemp . "'";
     $attach_list = $note->get_full_list("", $where, true);
     //Get all Notes entries associated with email template
@@ -150,6 +153,8 @@ class EnvioAutoCorreos
       $mail->AddAttachment($file_location, $filename, 'base64', $mime_type);
       //Attach each file to message
     }
+
+    $this->registrarAdjuntos($mail->id,$attached->id);
 
     $mail->FromName = $fromName;
 
