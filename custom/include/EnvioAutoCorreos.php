@@ -182,7 +182,7 @@ class EnvioAutoCorreos
     return $mail;
   }
 
-  function almacenarCorreo($mail, $toAdd, $bean, $module)
+  function  almacenarCorreo($mail, $toAdd, $bean, $module)
   {
     $GLOBALS['log']->info('[ExpandeNegocio][Insercion Correos]Entra');
     $db = DBManagerFactory::getInstance();
@@ -206,6 +206,19 @@ class EnvioAutoCorreos
       $db->quote($mail->Body_html) .
       "',0)";
     $GLOBALS['log']->info('[ExpandeNegocio][Insercion Correos]Insercion Correo Mensaje-' . $query);
+    $db->query($query);
+
+    return $emailUID;
+  }
+
+  function registrarAdjuntos($id_email,$id_note){
+    $GLOBALS['log']->info('[ExpandeNegocio][Insercion Correos]Entra');
+    $db = DBManagerFactory::getInstance();
+    $adjuntolUID = create_guid();
+    $date = TimeDate::getInstance()->nowDb();
+
+    $query="insert into adjuntos (id,id_email,id_note,f_envio) values ('$adjuntolUID','$id_email','$id_note','$date')";
+
     $db->query($query);
   }
 
@@ -466,7 +479,7 @@ class EnvioAutoCorreos
       $query = $query . "      AND m.plantilla=et.id ";
       $query = $query . "      AND ms.expma_mailing_expan_solicitudexpma_mailing_ida = m.id  ";
       $query = $query . "      AND cs.id_c = s.id  ";
-      $query = $query . "      AND (cs.no_correos_c = 1 )) a   ";
+      $query = $query . "      AND (cs.no_correos_c = 1 OR (coalesce(et.franquicia,null,'')!='' AND s.positiva = 1))) a   ";
       $query = $query . "         ON a.id = c.expma_mailing_expan_solicitudexpan_solicitud_idb   ";
       $query = $query . "SET    motivo_no_envio = 'Por protocolo'   ";
       $query = $query . "WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "' ; ";
@@ -487,16 +500,13 @@ class EnvioAutoCorreos
       $query = $query . "      AND cs.id_c = s.id  ";
       $query = $query . "      AND (cs.no_correos_c = 1 OR ";
       $query = $query . "          (tipo_origen like '%4%' AND s.franquicia_principal!=et.franquicia) OR ";
-      $query = $query . "          (coalesce(et.franquicia,null,'')!='' AND s.cerrada = 1) OR ";
-      $query = $query . "          (coalesce(et.franquicia,null,'')!='' AND s.positiva = 1))) a   ";
+      $query = $query . "          (coalesce(et.franquicia,null,'')!='' AND s.positiva = 1) OR ";
+      $query = $query . "          (coalesce(et.franquicia,null,'')!='' AND s.cerrada = 1))) a   ";
       $query = $query . "         ON a.id = c.expma_mailing_expan_solicitudexpan_solicitud_idb   ";
       $query = $query . "SET    motivo_no_envio = 'Por protocolo'   ";
       $query = $query . "WHERE  expma_mailing_expan_solicitudexpma_mailing_ida = '" . $idMailing . "' ; ";
 
     }
-
-
-
 
     $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]marcadoProtocolo:' . $query);
 
@@ -619,7 +629,7 @@ class EnvioAutoCorreos
 
       $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Gestion-' . $gestion->id);
 
-      $this->almacenarCorreo($mail, $correo, $gestion, "Expan_GestionSolicitudes");
+      $emailId=$this->almacenarCorreo($mail, $correo, $gestion, "Expan_GestionSolicitudes");
 
       $gestion->addFechaObserva("[Mailing]" . $texto, true);
       $gestion->ignore_update_c = true;
