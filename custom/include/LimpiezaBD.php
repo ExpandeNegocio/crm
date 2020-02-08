@@ -515,5 +515,74 @@
       $fran->CreateEmpresa();
     }
 
+  /*******************************************/
+
+//Recogemos los proyectos del ERM y los llevo a una lista
+
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/projects.xml?limit=1000&key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_HEADER, FALSE);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/xml"));
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+
+  try{
+      $proyectos = new SimpleXMLElement($response);
+      $myArrayProyERM[''] = '';
+
+      foreach ($proyectos as $proyecto) {
+          $id=(string)$proyecto->id;
+          $nombre=(string)$proyecto->name;
+          $query = "insert into erm_proyectos (id,nombre ) values ($id,$nombre) ";
+
+          $result = $db -> query($query);
+
+          $myArrayProyERM[(string)$proyecto->id] = (string)$proyecto->name;
+      }
+
+      $GLOBALS['app_list_strings']['proy_ERM_list']=$myArrayProyERM;
+
+  } catch (Exception $e){
+
+  }
+
+  /*****************************************/
+
+  /*******************************************/
+
+//Recogemos los usuarios del ERM y los llevo a una lista
+
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_URL, "https://expandenegocio.easyredmine.com/users.xml?limit=100&key=6db1cb022e190c19bc44dc5f94af4596ee5422d6");
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_HEADER, FALSE);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/xml"));
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+
+  try{
+      $usuarios = new SimpleXMLElement($response);
+      $myArrayUserERM[''] = '';
+
+      foreach ($usuarios as $usuario) {
+
+
+
+          $myArrayUserERM[(string)$usuario->id] = (string)$usuario->firstname." ".(string)$usuario->lastname;
+      }
+
+      $GLOBALS['app_list_strings']['user_ERM_list']=$myArrayUserERM;
+  } catch (Exception $e){
+
+  }
+  /*****************************************/
+
+
+
     echo 'FinlizadoProceso';
 ?>
