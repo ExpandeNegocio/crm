@@ -533,18 +533,18 @@
       $proyectos = new SimpleXMLElement($response);
       $myArrayProyERM[''] = '';
 
+      $query = "delete from erm_proyectos";
+      $result = $db -> query($query);
+
       foreach ($proyectos as $proyecto) {
           $id=(string)$proyecto->id;
           $nombre=(string)$proyecto->name;
-          $query = "insert into erm_proyectos (id,nombre ) values ($id,$nombre) ";
+          $query = "insert into erm_proyectos (id,nombre ) values ('$id','$nombre') ";
+
+          echo "Proyecto - ".$query."<br>";
 
           $result = $db -> query($query);
-
-          $myArrayProyERM[(string)$proyecto->id] = (string)$proyecto->name;
       }
-
-      $GLOBALS['app_list_strings']['proy_ERM_list']=$myArrayProyERM;
-
   } catch (Exception $e){
 
   }
@@ -569,14 +569,15 @@
       $usuarios = new SimpleXMLElement($response);
       $myArrayUserERM[''] = '';
 
+      $query = "delete from erm_usuarios";
+      $result = $db -> query($query);
+
       foreach ($usuarios as $usuario) {
-
-
-
-          $myArrayUserERM[(string)$usuario->id] = (string)$usuario->firstname." ".(string)$usuario->lastname;
+        $id=(string)$usuario->id;
+        $nombre=(string)$usuario->firstname." ".(string)$usuario->lastname;
+        $query = "insert into erm_usuarios (id,nombre ) values ('$id','$nombre') ";
+        $result = $db -> query($query);
       }
-
-      $GLOBALS['app_list_strings']['user_ERM_list']=$myArrayUserERM;
   } catch (Exception $e){
 
   }
