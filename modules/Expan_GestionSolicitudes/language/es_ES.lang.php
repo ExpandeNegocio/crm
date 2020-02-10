@@ -69,11 +69,11 @@ $mod_strings = array (
   'LBL_PRIORIDAD'=>'Prioridad',
   'LBL_OPORTUNIDAD_INMEDIATA'=>'Gestion Inmediata',
   'LBL_MOTIVO_DESCARTE'=>'Motivo de descarte',
-  'LBL_MOTIVO_PARADA'=>'Motivo de parada',
+  'LBL_MOTIVO_PARADA'=>'Motivo de espera',
   'LBL_MOTIVO_POSITIVO'=>'Tipo positivo',
   'LBL_FINANCIACION'=>'Financiacion',
   'LBL_FONDOS_PROPIOS'=>'Fondos propios',
-  'LBL_OBSERVACIONES_DESCARTE' => 'Observaciones Motivo de <BR>Parada/Descarte',
+  'LBL_OBSERVACIONES_DESCARTE' => 'Observaciones Motivo de <BR>Espera/Descarte',
     'LBL_OBSERVACIONES_INFORME' => 'OBSERVACIONES ESTADO CANDIDATURA <BR> 
   (va a informe mensual)',
   'LBL_CUESTIONARIO'=>'Acceso a Cuestionario',
