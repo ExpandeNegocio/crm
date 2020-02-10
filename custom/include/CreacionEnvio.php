@@ -32,7 +32,13 @@ class controlEnvios {
                 $mailing= new Expan_Mailings();
                 $mailing->name=$bean->name;
                 $mailing->plantilla=$bean->plantilla;
-                $mailing->tipo="CRM";
+
+                $plantilla= new EmailTemplate();
+                $plantilla->retrieve($bean->plantilla);
+                $mailing->chk_plantilla_landing=$plantilla->chk_landing;
+
+                $mailing->tipo_bd="CRM";
+                $mailing->tipo_mailing='mds';
                 $mailing->fecha_envio=$bean->date_entered;
                 $mailing->envio= $bean->id;
 

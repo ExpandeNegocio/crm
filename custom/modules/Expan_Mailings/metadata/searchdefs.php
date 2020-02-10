@@ -40,7 +40,7 @@
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
-$module_name = 'Expan_Portales';
+$module_name = 'Expan_Mailings';
   $searchdefs[$module_name] = array(
                     'templateMeta' => array(
                             'maxColumns' => '3',
@@ -54,7 +54,14 @@ $module_name = 'Expan_Portales';
                             ),
                         'advanced_search' => array(
                             'name', 
-                            array('name' => 'assigned_user_id', 'label' => 'LBL_ASSIGNED_TO', 'type' => 'enum', 'function' => array('name' => 'get_user_array', 'params' => array(false))),
+                           array('name'=>'tipo_mailing',
+                            'label'=>'LBL_TIPO_MAILING',
+                            'type'=>'enum'
+                          ),
+                          array('name'=>'tipo_bd',
+                            'label'=>'LBL_TIPO_BD_MAILING',
+                            'type'=>'enum'
+                          ),
                         ),
                     ),
                );

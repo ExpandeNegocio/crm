@@ -1,19 +1,13 @@
 <?php
-require_once ('modules/Expan_Franquiciado/Expan_Franquiciado.php');
-
+  require_once ('data/SugarBean.php');
+echo "ENtra";
 $db = DBManagerFactory::getInstance();
-
-$sql = "SELECT id as idF FROM expan_franquiciado f ";
-
-$GLOBALS['log'] -> info('[ExpandeNegocio][Creacion Franquiciado] Consulta'.$sql);
+  echo "ENtra2";
+/*$sql = "select * from adjuntos";
 
 $result = $db -> query($sql, true);
 
 while ($row = $db -> fetchByAssoc($result)) {
-  echo $row["idF"]."-Actualizado<BR>";
+  echo $row["id"]."-Actualizado<BR>";
 
-  $expan_franquiciado= new Expan_Franquiciado();
-  $expan_franquiciado->retrieve($row["idF"]);
-  $expan_franquiciado ->estado= $expan_franquiciado->getEstado();
-  $expan_franquiciado->save();
-}
+}*/

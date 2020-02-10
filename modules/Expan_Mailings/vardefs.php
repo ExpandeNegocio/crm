@@ -38,31 +38,75 @@ $dictionary['Expan_Mailings'] = array(
     'table'=>'expan_mailings',
     'audited'=>true,
         'duplicate_merge'=>true,
-        'fields'=>array (   
-                
-      'tipo' => 
-      array (
-        'required' => false,
-        'name' => 'tipo',
-        'vname' => 'LBL_TIPO_MAILING',
-        'type' => 'enum',
-        'massupdate' => 0,
-        'no_default' => true,
-        'comments' => '',
-        'help' => '',
-        'importable' => 'true',
-        'duplicate_merge' => 'disabled',
-        'duplicate_merge_dom_value' => '0',
-        'audited' => true,
-        'reportable' => true,
-        'unified_search' => false,
-        'merge_filter' => 'disabled',
-        'size' => '20',
-        'options' => 'tipo_mailing_list',
-        'studio' => 'visible',        
-      ),                                    
- 
-      'herramienta_envio' => 
+        'fields'=>array (
+
+      'tipo_bd' =>
+        array (
+          'required' => false,
+          'name' => 'tipo_bd',
+          'vname' => 'LBL_TIPO_BD_MAILING',
+          'type' => 'enum',
+          'massupdate' => 0,
+          'no_default' => true,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'size' => '20',
+          'options' => 'tipo_bd_mailing_list',
+          'studio' => 'visible',
+        ),
+
+      'tipo_mailing' =>
+        array (
+          'required' => false,
+          'name' => 'tipo_mailing',
+          'vname' => 'LBL_TIPO_MAILING',
+          'type' => 'enum',
+          'massupdate' => 0,
+          'no_default' => true,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'size' => '20',
+          'options' => 'tipo_mailing_list',
+          'studio' => 'visible',
+        ),
+
+        'medio' =>
+          array (
+            'required' => false,
+            'name' => 'medio',
+            'vname' => 'LBL_MEDIO',
+            'type' => 'enum',
+            'massupdate' => 0,
+            'no_default' => true,
+            'comments' => '',
+            'help' => '',
+            'importable' => 'true',
+            'duplicate_merge' => 'disabled',
+            'duplicate_merge_dom_value' => '0',
+            'audited' => true,
+            'reportable' => true,
+            'unified_search' => false,
+            'merge_filter' => 'disabled',
+            'size' => '20',
+            'options' => 'medio_list',
+            'studio' => 'visible',
+          ),
+
+      'herramienta_envio' =>
       array (
         'required' => false,
         'name' => 'herramienta_envio',
@@ -166,6 +210,28 @@ $dictionary['Expan_Mailings'] = array(
         'len' => 100,
         'size' => '20',                
       ),
+
+      'chk_plantilla_landing' =>
+        array (
+          'required' => false,
+          'name' => 'chk_plantilla_landing',
+          'vname' => 'LBL_PLANTILLA_LANDING',
+          'type' => 'bool',
+          'massupdate' => 0,
+          'default' => '0',
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => '255',
+          'size' => '20',
+        ),
       
       'envio_link' =>
       array (

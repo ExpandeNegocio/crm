@@ -74,4 +74,7 @@
     'LBL_SOL_T' => 'Solicitudes actuales Topo',
     'LBL_SOL_NO_RATING' => 'Solicitudes sin Rating',
     'LBL_EVENTO_ASOCIADO' => 'Evento asociado',
+    'LBL_TIPO_BD_MAILING' => 'Tipo de BBDD',
+    'LBL_MEDIO' => 'Medio',
+    'LBL_PLANTILLA_LANDING' => 'Plantilla con mailing',
   );

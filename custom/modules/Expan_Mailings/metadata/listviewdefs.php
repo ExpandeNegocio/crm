@@ -10,6 +10,22 @@ array (
     'link' => true,
   ),
 
+  'TIPO_MAILING' =>
+    array (
+      'width' => '32%',
+      'label' => 'LBL_TIPO_MAILING',
+      'default' => true,
+      'link' => true,
+    ),
+
+  'TIPO_BD' =>
+    array (
+      'width' => '32%',
+      'label' => 'LBL_TIPO_BD_MAILING',
+      'default' => true,
+      'link' => true,
+    ),
+
   'FECHA_ENVIO' =>
     array (
       'width' => '32%',
@@ -17,7 +33,5 @@ array (
       'default' => true,
       'link' => true,
     ),
-  
-  
 );
 ?>

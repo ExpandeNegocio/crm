@@ -34,6 +34,17 @@ function acceptPrivPolitics(idDoc,idGest){
     return false;
 }
 
+function acceptPrivPoliticsURL(url,idGest){
+
+    if ($("#chkAccept").prop('checked')){
+        window.open(url);
+    }else{
+        alert("Para poder acceder a la web es necesario aceptar las condiciones");
+    }
+
+    return false;
+}
+
 function downloadfile(idDoc,idGest,idTemplate,idMailing){
 
     url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=downloadDoc&idDoc='+ idDoc + '&' +

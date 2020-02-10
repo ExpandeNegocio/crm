@@ -63,12 +63,39 @@ $viewdefs [$module_name] =
               0 => 'name',                                        
               1 => 
               array (
-                'name' => 'tipo',
+                'name' => 'tipo_mailing',
                 'label' => 'LBL_TIPO_MAILING',
               ),
-            ),  
-             
-            1 => 
+            ),
+
+            1 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'tipo_bd',
+                    'label' => 'LBL_TIPO_BD_MAILING',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'date_entered',
+                    'label' => 'LBL_DATE_ENTERED',
+                  ),
+              ),
+
+            2 =>
+              array (
+                0 =>
+                  array (
+
+                  ),
+                1 =>
+                  array (
+                    'name' => 'medio',
+                    'label' => 'LBL_MEDIO',
+                  ),
+              ),
+
+            3 =>
             array (
               0 => 
               array (
@@ -82,7 +109,7 @@ $viewdefs [$module_name] =
               ),
             ),    
             
-            2 => 
+            4 =>
             array (
               0 => 
               array (
@@ -96,7 +123,7 @@ $viewdefs [$module_name] =
               ),
             ),  
             
-            3 => 
+            5 =>
             array (
               0 => 
               array (
@@ -110,7 +137,7 @@ $viewdefs [$module_name] =
               ),
             ),   
             
-            4 => 
+            6 =>
             array (
               0 => 
               array (
@@ -122,7 +149,19 @@ $viewdefs [$module_name] =
                 'name' => 'herramienta_envio',
                 'label' => 'LBL_HERRAMIENTA_ENVIO',
               ),
-            ),                           
+            ),
+
+            7=>
+              array (
+                0 =>
+                  array (
+                    'name' => 'chk_plantilla_landing',
+                    'label' => 'LBL_PLANTILLA_LANDING',
+                  ),
+                1 =>
+                  array (
+                  ),
+              ),
           ),                     
           
           'LBL_DETAIL_VIEW_ESTADISTICAS' =>          

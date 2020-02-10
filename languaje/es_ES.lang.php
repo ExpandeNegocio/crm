@@ -100,14 +100,23 @@ $GLOBALS['app_list_strings']['perfil_fran_list']=array (
   5 => 'Colaborador',
 );
 
-$GLOBALS['app_list_strings']['tipo_mailing_list']=array (
-  '' => '',
-  'crm' => 'Desde CRM',
-  'ext' => 'Desde herramienta externa',
-  'mdf' => 'Medio de franquicias',
-  'mds' => 'Medio sectorial',
-  'fer' => 'Ferias',  
-);
+  $GLOBALS['app_list_strings']['tipo_mailing_list']=array (
+    '' => '',
+    'crm' => 'Nota de prensa',
+    'ext' => 'Comunicado',
+    'mdf' => 'Convocatoria',
+    'mds' => 'Mailing',
+    'fer' => 'Newsletter',
+  );
+
+  $GLOBALS['app_list_strings']['tipo_bd_mailing_list']=array (
+    '' => '',
+    'crm' => 'Desde CRM',
+    'ext' => 'Desde herramienta externa',
+    'mdf' => 'Medio de franquicias',
+    'mds' => 'Medio sectorial',
+    'fer' => 'Ferias',
+  );
 
 // Recojo valores de Franquicias *********/
 $db =  DBManagerFactory::getInstance();
@@ -166,7 +175,7 @@ $GLOBALS['app_list_strings']['estado_sol_list']=array (
   '' => '',
   1 => '1-No Atendido',
   2 => '2-En curso',
-  3 => '3-Parado por el candidato',
+  3 => '3-En espera por el candidato',
   4 => '4-No localizado',
   5 => '5-Zona de no interés',
   6 => '6-Datos erroneos',

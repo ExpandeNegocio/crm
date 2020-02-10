@@ -58,73 +58,113 @@ $viewdefs [$module_name] =
         array (
         'default' => 
           array (
-            0 => 
-            array (
-              0 => 'name',                                        
-              1 => 
+            0 =>
               array (
-                'name' => 'tipo',
-                'label' => 'LBL_TIPO_MAILING',
+                0 => 'name',
+                1 =>
+                  array (
+                    'name' => 'tipo_mailing',
+                    'label' => 'LBL_TIPO_MAILING',
+                  ),
               ),
-            ),  
-             
-            1 => 
-            array (
-              0 => 
+
+            1 =>
               array (
-                'name' => 'fecha_envio',
-                'label' => 'LBL_F_ENVIO',
+                0 =>
+                  array (
+                    'name' => 'tipo_bd',
+                    'label' => 'LBL_TIPO_BD_MAILING',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'date_entered',
+                    'label' => 'LBL_DATE_ENTERED',
+                  ),
               ),
-              1 => 
+
+            2 =>
               array (
-                'name' => 'mailings_enviados_medio',
-                'label' => 'LBL_MAILINGS_ENVIADOS_MEDIO',
+                0 =>
+                  array (
+
+                  ),
+                1 =>
+                  array (
+                    'name' => 'medio',
+                    'label' => 'LBL_MEDIO',
+                  ),
               ),
-            ),    
-            
-            2 => 
-            array (
-              0 => 
+
+            3 =>
               array (
-                'name' => 'franquicias_envio',
-                'label' => 'LBL_FRANQUICIAS_ENVIO',
+                0 =>
+                  array (
+                    'name' => 'fecha_envio',
+                    'label' => 'LBL_F_ENVIO',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'mailings_enviados_medio',
+                    'label' => 'LBL_MAILINGS_ENVIADOS_MEDIO',
+                  ),
               ),
-              1 => 
+
+            4 =>
               array (
-                'name' => 'correos_enviados',
-                label =>'LBL_CORREOS_ENVIADOS',
+                0 =>
+                  array (
+                    'name' => 'franquicias_envio',
+                    'label' => 'LBL_FRANQUICIAS_ENVIO',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'correos_enviados',
+                    label =>'LBL_CORREOS_ENVIADOS',
+                  ),
               ),
-            ),  
-            
-            3 => 
-            array (
-              0 => 
+
+            5 =>
               array (
-                'customCode' => '{if $fields.envio.value!=""}<a href="index.php?module=Expma_Mailing&action=DetailView&record={$fields.envio.value}">{$fields.envio.name}</a>{/if}',
-                'label' => 'LBL_MAILING_INTERNO',
+                0 =>
+                  array (
+                    'name' => 'envio_name',
+                    'label' => 'LBL_MAILING_INTERNO',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'f_ultima_entrada',
+                    'label' => 'LBL_F_ULTIMA_ENTRADA',
+                  ),
               ),
-              1 => 
+
+            6 =>
               array (
-                'name' => 'f_ultima_entrada',
-                'label' => 'LBL_F_ULTIMA_ENTRADA',
+                0 =>
+                  array (
+                    'name' => 'plantilla',
+                    'label' => 'LBL_PLANTILLA',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'herramienta_envio',
+                    'label' => 'LBL_HERRAMIENTA_ENVIO',
+                  ),
               ),
-            ),   
-            
-            4 => 
-            array (
-              0 =>
-                array (
-                  'name' => 'plantilla',
-                  'label' => 'LBL_PLANTILLA',
-                ),
-              1 =>
-                array (
-                  'name' => 'herramienta_envio',
-                  'label' => 'LBL_HERRAMIENTA_ENVIO',
-                ),
-            ),                                            
-          ),                     
-          
+
+            7=>
+              array (
+                0 =>
+                  array (
+                    'name' => 'chk_plantilla_landing',
+                    'label' => 'LBL_PLANTILLA_LANDING',
+                    'displayParams' => array('readOnly' => true),
+                  ),
+                1 =>
+                  array (
+                  ),
+              ),
+          ),
+
           'LBL_DETAIL_VIEW_ESTADISTICAS' =>          
           array (
           
