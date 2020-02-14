@@ -26,14 +26,16 @@ function soloLectura(){
 	$("#solicitudes_no_rating").attr('readonly', true);	
 }
 
-function yearChange(portalId){
+function periodosFilter(portalId){
 	var year=$("#year").val();
+    var fran=$("#franquicia_filter").val();
+
 	
 	url = 'index.php?entryPoint=operarPortales';
 	$.ajax({
 		type : "POST",
 		url : url,
-		data : "tipo=ChangeYear&portal="+portalId+"&year="+year,
+		data : "tipo=periodosFilter&portal="+portalId+"&year="+year+"&franquicia="+fran,
 		success : function(data) {	
 			$("#ListaPeriodos").html(data);
 			$("#year").val(year);
@@ -50,7 +52,7 @@ function addAltaFranquicia(portalId){
 	
 	var f_ini= $("#f_ini_contrata").val();
 	var f_fin= $("#f_fin_contrata").val();
-	var coste=  $("#coste_periodo").val();	
+	var coste=  $("#coste_periodo").val();
 	
 	var prueba= 0;	
 	if ($('#chk_periodo_pruebas').attr('checked')){
@@ -134,9 +136,13 @@ function validarDatos(listFranPak, f_ini, f_fin, coste){
 		alert("Es necesario rellenar el coste del periodo");
 		return false;
 	}
+
+	if (!validarFechas(f_ini,f_fin)){
+		alert("La fecha de inicio debe ser anterior al ");
+		return false;
+	}
 	
 	return true;
-	
 }
 
 function fillFranquicias(soloEN){
@@ -157,4 +163,19 @@ function fillFranquicias(soloEN){
 			alert('No se ha podido recoger la lista de franquicias - ' + textStatus + ' - ' + errorThrown);
 		}
 	});
+}
+
+function validarFechas(dateIni,dateFin){
+	var fechaIni=new Date();
+	var fecha = dateIni.split("/");
+	fechaIni.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+
+	var fechaFin=new Date();
+	fecha = dateFin.split("/");
+	fechaFin.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+
+	if (fechaFin >= fechaIni)
+		return true;
+	else
+		return false;
 }

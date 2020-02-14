@@ -37,7 +37,7 @@
 $mod_strings = array (
   'LBL_TELEFONO_CONTACTO'=>'Telefono de contacto',
   'LBL_CORREO_CONTACTO'=>'Correo de contacto',
-  'LBL_PERSONA_CONTACTO'=>'Persna de contacto',
+  'LBL_PERSONA_CONTACTO'=>'Persona de contacto',
   'LBL_FECHA_RENOVACION'=>'Fecha de renovacion',
   'LBL_FIN_CONTRATO'=>'Fecha de fn de contrato',
   'LBL_EDIT_VIEW_ESTADISTICAS' => 'Estadísticas',
@@ -70,6 +70,8 @@ $mod_strings = array (
   'LBL_SOL_C' => 'Solicitudes actuales C',
   'LBL_SOL_T' => 'Solicitudes actuales Topo',
   'LBL_SOL_NO_RATING' => 'Solicitudes sin Rating',
-
-  
+  'LBL_PORTAL_ACTIVO' => 'Con franquicias activas',
+  'LBL_FRANQUICIAS_PRUEBA' => 'Franquicias en pureba',
+  'LBL_FRANQUICIAS_ALTA' => 'Franquicias dadas de alta',
+  'LBL_FRANQUICIAS_ALTA_ACT' => 'Franquicias dadas de alta en la actualidad',
 );

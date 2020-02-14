@@ -67,6 +67,34 @@ function deletePeriodo(pId){
 	}
 }
 
+function changeCost(pId){
+
+	var coste = prompt("Introduce el coste del periodo", "0");
+
+	if (coste == null || !Number.isInteger(coste)){
+		alert("El coste debe ser un número entero");
+		return
+	}
+
+	url = 'index.php?entryPoint=operarPortales';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=changecost&pId="+pId +"&coste="+coste,
+		success : function(data) {
+			if (data=='ok'){
+				alert ("Se ha cambiado el coste del periodo");
+			}else{
+				alert ("ERROR - El periodo no se ha podido cambiar");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('El periodo no se ha podido cambiar - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+
+}
+
 function validarDatos(listFranPak, f_ini, f_fin, coste){
 	
 	if (listFranPak==""){
@@ -91,4 +119,24 @@ function validarDatos(listFranPak, f_ini, f_fin, coste){
 	
 	return true;
 	
+}
+
+function periodosFilter(portalId){
+    var year=$("#year").val();
+    var fran=$("#franquicia_filter").val();
+
+
+    url = 'index.php?entryPoint=operarPortales';
+    $.ajax({
+        type : "POST",
+        url : url,
+        data : "tipo=periodosFilter&portal="+portalId+"&year="+year+"&franquicia="+fran,
+        success : function(data) {
+            $("#ListaPeriodos").html(data);
+            $("#year").val(year);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            alert('No se ha podido insertar el nuevo periodo - ' + textStatus + ' - ' + errorThrown);
+        }
+    });
 }

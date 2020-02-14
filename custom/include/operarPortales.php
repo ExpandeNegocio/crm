@@ -19,6 +19,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $coste=$_POST["coste"];
     $year=$_POST["year"];
     $soloEN=$_POST["soloEN"];
+    $franquicia=$_POST["franquicia"];
         
     switch ($tipo) {
         case 'AltaFranquicia':                    
@@ -26,8 +27,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $listaFran = explode(',', $listaFranPak);
             
             foreach ($listaFran as $franquicia){
-                $query="insert into expan_portales_periodos (id,portal,franquicia,coste,f_inicio,f_fin) values ";
-                $query=$query." (UUID(),'".$portal."','".$franquicia."',".$coste.",STR_TO_DATE('".$f_ini."', '%d/%m/%Y'),STR_TO_DATE('".$f_fin."', '%d/%m/%Y'))";            
+                $query="insert into expan_portales_periodos (id,portal,franquicia,coste,f_inicio,f_fin,b_prueba) values ";
+                $query=$query." (UUID(),'$portal','$franquicia',$coste,STR_TO_DATE('$f_ini', '%d/%m/%Y'),STR_TO_DATE('$f_fin', '%d/%m/%Y'),$prueba)";
                 $result = $db -> query($query); 
             }        
             
@@ -36,16 +37,16 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
         
         case 'BajaPeriodo':     
         
-            $query="delete from expan_portales_periodos where id='".$pId."'";            
+            $query="delete from expan_portales_periodos where id='$pId'";
             $result = $db -> query($query); 
         
             echo 'ok';
             break;
             
-        case 'ChangeYear':
+        case 'periodosFilter':
             
             $op=new opEdicionFranquicia();
-            $codigo=$op->listaFranquicias($portal,$year);
+            $codigo=$op->listaFranquicias($portal,$year,$franquicia);
             echo $codigo;
             
             break;
@@ -69,6 +70,14 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             echo json_encode($return, JSON_FORCE_OBJECT);
 
             break;
+
+        case 'changecost':
+
+          $query="update expan_portales_periodos set coste=$coste where id='$pId'";
+          $result = $db -> query($query);
+
+          echo 'ok';
+          break;
         
         default:
             

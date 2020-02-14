@@ -83,39 +83,44 @@ class opEdicionFranquicia {
         
     }
 
-    public function listaFranquicias($idportal,$year){
+    public function listaFranquicias($idportal,$year,$franquicia){
         
         $output="";
-        
-        $query = "select p.id pid, f.name Franquicia,  ";
-        $query=$query."date_format(f_inicio,'%d/%m/%Y') f_inicio,";
-        $query=$query."date_format(f_fin,'%d/%m/%Y') f_fin,";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/1/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/1/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Enero, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('28/2/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/2/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Febrero, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/3/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/3/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Marzo, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/4/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/4/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Abril, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/5/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/5/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Mayo, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/6/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/6/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Junio, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/7/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/7/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Julio, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/8/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/8/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Agosto, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/9/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/9/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Septiembre, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/10/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/10/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Octubre, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/11/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/11/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Noviembre, ";
-        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/12/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/12/".$year."', '%d/%m/%Y')  THEN case when p.coste is null then \"\" else p.coste end ELSE \"\" END Diciembre, ";
-        $query=$query."b_prueba ";
-        $query=$query."from expan_portales_periodos p, expan_franquicia f ";
-        $query=$query."where p.franquicia = f.id AND p.portal='".$idportal."'  and f_inicio <  STR_TO_DATE('31/12/".$year."', '%d/%m/%Y') AND   f_fin>   STR_TO_DATE('1/1/".$year."', '%d/%m/%Y') ";
-        $query=$query."order by f.name; ";
  
         $output=$output. "<div id='ListaPeriodos'>"; 
-        $output=$output."<p>Año <select name='select' id='year' onchange='yearChange(\"".$idportal."\")'>";
-        
+        $output=$output."<p>Año <select name='select' id='year' onchange='periodosFilter(\"".$idportal."\")'>";
+
         $thisYear= date('Y');
         
         for ($i=0;$i<10;$i++){
             $output=$output. "<option value='".($thisYear+$i)."'>".($thisYear+$i)."</option>";
-        }         
+        }
         $output=$output. "</select></p>";
+
+
+
+        $output=$output."<p>Franquicia <select name='select' id='franquicia_filter' onchange='periodosFilter(\"".$idportal."\")'>";
+
+        $query = "SELECT * FROM   expan_franquicia ";
+        $query=$query."WHERE  tipo_cuenta IN (1, 2) AND deleted = 0 order by name; ";
+
+        $output=$output. "<option value=''></option>";
+
+        $db = DBManagerFactory::getInstance();
+        $result = $db -> query($query, true);
+        while ($row = $db -> fetchByAssoc($result)) {
+          $idfran=$row["id"];
+          $nomfran=$row["name"];
+          if ($idfran==$franquicia){
+              $output=$output. "<option value='$idfran' selected>$nomfran</option>";
+          }else{
+              $output=$output. "<option value='$idfran'>$nomfran</option>";
+          }
+
+        }
+
+        $output=$output. "</select></p>";
+
         $output=$output. "<br>";
         $output=$output. "<h2>Listado de meses</h2>";
         $output=$output. "<br>";
@@ -128,12 +133,35 @@ class opEdicionFranquicia {
               <tbody>";   
                        
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-                           
+
+        $query = "select p.id pid, f.name Franquicia,  ";
+        $query=$query."date_format(f_inicio,'%d/%m/%Y') f_inicio,";
+        $query=$query."date_format(f_fin,'%d/%m/%Y') f_fin,";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/1/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/1/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Enero, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('28/2/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/2/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Febrero, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/3/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/3/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Marzo, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/4/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/4/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Abril, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/5/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/5/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Mayo, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/6/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/6/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Junio, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/7/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/7/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Julio, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/8/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/8/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Agosto, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/9/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/9/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Septiembre, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/10/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/10/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Octubre, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('30/11/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/11/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Noviembre, ";
+        $query=$query."case WHEN f_inicio < STR_TO_DATE('31/12/".$year."', '%d/%m/%Y') and f_fin>STR_TO_DATE('1/12/".$year."', '%d/%m/%Y')  THEN case when p.b_prueba=1 then 'P' else case when p.coste is null then '' else p.coste end end end Diciembre, ";        $query=$query."b_prueba ";
+        $query=$query."from expan_portales_periodos p, expan_franquicia f ";
+        $query=$query."where p.franquicia = f.id AND p.portal='".$idportal."'  and f_inicio <  STR_TO_DATE('31/12/".$year."', '%d/%m/%Y') AND   f_fin>   STR_TO_DATE('1/1/".$year."', '%d/%m/%Y') ";
+        if (!$franquicia==""){
+            $query=$query." AND franquicia='$franquicia' ";
+        }
+        $query=$query."order by f.name; ";
+
         $db = DBManagerFactory::getInstance();
         $result = $db -> query($query, true);     
         while ($row = $db -> fetchByAssoc($result)) {
             $output=$output. "<tr>";
             $output=$output. "<td><button type='button' onclick='deletePeriodo(\"".$row["pid"]."\");'> -</button></td>";
+            $output=$output. "<td><button type='button' onclick='changeCost(\"".$row["pid"]."\");'> €</button></td>";
             $output=$output. "<td style='width: 60px;' scope='row'><b>".$row["Franquicia"]."</b></td>";            
             
             $output=$output. "<td scope='row'>".$row["f_inicio"]."</td>";

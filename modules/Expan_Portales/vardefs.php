@@ -103,9 +103,94 @@ $dictionary['Expan_Portales'] = array(
         'len' => '255',
         'size' => '20',
       ),
+
+      'portal_activo' =>
+        array (
+          'required' => false,
+          'name' => 'portal_activo',
+          'vname' => 'LBL_PORTAL_ACTIVO',
+          'type' => 'bool',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => 1,
+          'size' => '20',
+          'source' => 'non-db',
+        ),
+
+
       
       //ESTADISTICAS
-      
+
+      'franquicias_alta' =>
+        array (
+          'required' => false,
+          'name' => 'franquicias_alta',
+          'vname' => 'LBL_FRANQUICIAS_ALTA',
+          'type' => 'int',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => 1,
+          'size' => '20',
+          'source' => 'non-db',
+        ),
+
+      'franquicias_alta_act' =>
+        array (
+          'required' => false,
+          'name' => 'franquicias_alta_act',
+          'vname' => 'LBL_FRANQUICIAS_ALTA_ACT',
+          'type' => 'int',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => 1,
+          'size' => '20',
+          'source' => 'non-db',
+        ),
+
+        'franquicias_prueba' =>
+          array (
+            'required' => false,
+            'name' => 'franquicias_prueba',
+            'vname' => 'LBL_FRANQUICIAS_PRUEBA',
+            'type' => 'int',
+            'massupdate' => 0,
+            'no_default' => false,
+            'comments' => '',
+            'help' => '',
+            'importable' => 'true',
+            'duplicate_merge' => 'disabled',
+            'duplicate_merge_dom_value' => '0',
+            'reportable' => true,
+            'unified_search' => false,
+            'merge_filter' => 'disabled',
+            'len' => 1,
+            'size' => '20',
+            'source' => 'non-db',
+          ),
       
       'total_gestiones' => 
       array (

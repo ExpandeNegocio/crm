@@ -40,30 +40,42 @@
 require_once('modules/Expan_Portales/Expan_Portales_sugar.php');
 class Expan_Portales extends Expan_Portales_sugar {
     
-    function Expan_Portales(){    
+    function __construct(){
         parent::Expan_Portales_sugar();
     }   
     
-     public function fill_in_additional_detail_fields() {
-        parent::fill_in_additional_detail_fields();
+   public function fill_in_additional_detail_fields() {
+      parent::fill_in_additional_detail_fields();
         
-    $this->total_gestiones = $this->get_total_gestiones();
-    $this->total_gestiones_ultima_cont = $this->get_total_gestiones_ultima_cont();
-    $this->total_gestiones_ultimo_mes = $this->get_total_gestiones_ultimo_mes();
-    $this->gestiones_existentes = $this->get_gestiones_existentes();
-    $this->gestiones_existentes_portal = $this->get_gestiones_existentes_portal();
-    $this->gestiones_encurso = $this->get_gestiones_encurso();
-    $this->gestiones_paradas = $this->get_gestiones_paradas();
-    $this->gestiones_descartadas = $this->get_gestiones_descartadas();
-    $this->gestiones_descartadas_nosector = $this->get_gestiones_descartadas_nosector();
-    $this->gestiones_descartadas_nocadena = $this->get_gestiones_descartadas_nocadena();
-    $this->solicitudes_aplus = $this->get_solicitudes_aplus();
-    $this->solicitudes_a = $this->get_solicitudes_a();
-    $this->solicitudes_b = $this->get_solicitudes_b();
-    $this->solicitudes_c = $this->get_solicitudes_c();
-    $this->solicitudes_t = $this->get_solicitudes_t();
-    $this->solicitudes_no_rating = $this->get_solicitudes_no_rating();
-                   
+      $this->total_gestiones = $this->get_total_gestiones();
+      $this->total_gestiones_ultima_cont = $this->get_total_gestiones_ultima_cont();
+      $this->total_gestiones_ultimo_mes = $this->get_total_gestiones_ultimo_mes();
+      $this->gestiones_existentes = $this->get_gestiones_existentes();
+      $this->gestiones_existentes_portal = $this->get_gestiones_existentes_portal();
+      $this->gestiones_encurso = $this->get_gestiones_encurso();
+      $this->gestiones_paradas = $this->get_gestiones_paradas();
+      $this->gestiones_descartadas = $this->get_gestiones_descartadas();
+      $this->gestiones_descartadas_nosector = $this->get_gestiones_descartadas_nosector();
+      $this->gestiones_descartadas_nocadena = $this->get_gestiones_descartadas_nocadena();
+      $this->solicitudes_aplus = $this->get_solicitudes_aplus();
+      $this->solicitudes_a = $this->get_solicitudes_a();
+      $this->solicitudes_b = $this->get_solicitudes_b();
+      $this->solicitudes_c = $this->get_solicitudes_c();
+      $this->solicitudes_t = $this->get_solicitudes_t();
+      $this->solicitudes_no_rating = $this->get_solicitudes_no_rating();
+      $this->portal_activo = $this->is_portal_activo();
+      $this->franquicias_alta_act = $this->get_franquicias_alta_act();
+      $this->franquicias_alta = $this->get_franquicias_alta();
+      $this->franquicias_prueba = $this->get_franquicias_prueba();
+    }
+
+    function fill_in_additional_list_fields()
+    {
+      parent::fill_in_additional_list_fields();
+      $this->portal_activo = $this->is_portal_activo();
+      $this->franquicias_alta_act = $this->get_franquicias_alta_act();
+      $this->franquicias_alta = $this->get_franquicias_alta();
+      $this->franquicias_prueba = $this->get_franquicias_prueba();
     }
 
     private function get_total_gestiones(){
@@ -318,7 +330,49 @@ class Expan_Portales extends Expan_Portales_sugar {
     
         return $cont;
     }
-    
-    
+
+    private function is_portal_activo(){
+        $query="select * from expan_portales_periodos where  portal='".$this->id."' AND f_inicio<now() AND f_fin>now()";
+
+        $db = DBManagerFactory::getInstance();
+        $result = $db -> query($query, true);
+        while ($row = $db -> fetchByAssoc($result)) {
+          return 1;
+        }
+        return 0;
+    }
+
+  private function get_franquicias_alta_act(){
+    $query="select count(1) cont from expan_portales_periodos where  portal='".$this->id."' AND f_inicio<now() AND f_fin>now()";
+
+    $cont =0;
+    $db = DBManagerFactory::getInstance();
+    $result = $db -> query($query, true);
+    while ($row = $db -> fetchByAssoc($result)) {
+      $cont=$row["cont"];
+    }
+    return $cont;
+  }
+  private function get_franquicias_alta(){
+    $query="select count(1) cont from expan_portales_periodos where  portal='".$this->id."'";
+
+    $cont =0;
+    $db = DBManagerFactory::getInstance();
+    $result = $db -> query($query, true);
+    while ($row = $db -> fetchByAssoc($result)) {
+      $cont=$row["cont"];
+    }
+    return $cont;
+  }
+  private function get_franquicias_prueba(){
+    $query="select count(1) cont from expan_portales_periodos where  portal='".$this->id."' AND f_inicio<now() AND f_fin>now() and b_prueba=1";
+
+    $cont =0;
+    $db = DBManagerFactory::getInstance();
+    $result = $db -> query($query, true);
+    while ($row = $db -> fetchByAssoc($result)) {
+      $cont=$row["cont"];
+    }
+    return $cont;
+  }
 }
-?>

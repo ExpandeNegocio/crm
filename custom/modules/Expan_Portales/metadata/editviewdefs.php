@@ -81,6 +81,32 @@ $viewdefs [$module_name] =
                 'label' => 'LBL_CORREO_CONTACTO',
               ),
             ),
+            2 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'portal_activo',
+                    'label' => 'LBL_PORTAL_ACTIVO',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'franquicias_alta_act',
+                    'label' => 'LBL_FRANQUICIAS_ALTA_ACT',
+                  ),
+              ),
+            3 =>
+              array (
+                0 =>
+                  array (
+                    'name' => 'franquicias_alta',
+                    'label' => 'LBL_FRANQUICIAS_ALTA',
+                  ),
+                1 =>
+                  array (
+                    'name' => 'franquicias_prueba',
+                    'label' => 'LBL_FRANQUICIAS_PRUEBA',
+                  ),
+              ),
           ),
           
           'LBL_EDIT_VIEW_FRANQUICIAS' =>          
@@ -107,7 +133,7 @@ $viewdefs [$module_name] =
                   $idportal=$this->_tpl_vars["bean"]->id;                  
                   $op=new opEdicionFranquicia();
                   $year= date("Y");
-                  $codigo=$op->listaFranquicias($idportal,$year);
+                  $codigo=$op->listaFranquicias($idportal,$year,"");
                   echo $codigo;
               {/php}',
               ),         
