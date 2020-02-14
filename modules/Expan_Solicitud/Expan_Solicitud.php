@@ -885,8 +885,7 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         return $salida;
     }
     
-    function actualizarEntrevistaPrevia(){
-        
+    public function actualizarEntrevistaPrevia(){
         $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
     
         foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
