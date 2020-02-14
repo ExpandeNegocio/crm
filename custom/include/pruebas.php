@@ -1,13 +1,6 @@
 <?php
-  require_once ('data/SugarBean.php');
-echo "ENtra";
-$db = DBManagerFactory::getInstance();
-  echo "ENtra2";
-/*$sql = "select * from adjuntos";
+  require_once ('modules/Expan_GestionSolicitudes/Expan_GestionSolicitudes.php');
 
-$result = $db -> query($sql, true);
-
-while ($row = $db -> fetchByAssoc($result)) {
-  echo $row["id"]."-Actualizado<BR>";
-
-}*/
+  $gestion= new Expan_GestionSolicitudes();
+  $gestion->retrieve("840d24f8-f38c-43c2-6b60-5dfb42f923dc");
+  $gestion->crearTablaEntregaCuentaPrecontrato(true);

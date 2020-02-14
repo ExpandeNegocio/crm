@@ -1801,15 +1801,13 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
       );
     }
 
-
-    $query = "SELECT first_name Nombre, last_name Apellidos, f.name franquicia, prov.d_prov Provincia, f_entrega_cuenta_pre FEnt, entrega_cuenta ImporteEnt ";
+    $query = "SELECT first_name Nombre, last_name Apellidos, f.name Franquicia, prov.d_prov Provincia, entrega_cuenta ImporteEnt, f_entrega_cuenta_pre FEnt ";
     $query = $query . "FROM   (SELECT s.first_name, s.last_name, g.franquicia, g.provincia_apertura_pre, g.f_entrega_cuenta_pre, g.entrega_cuenta ";
     $query = $query . "        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
     $query = $query . "        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND ";
     $query = $query . "               g.id = '" . $this->id . "') a ";
     $query = $query . "       LEFT JOIN expan_m_provincia prov ON a.provincia_apertura_pre = prov.c_prov ";
     $query = $query . "       LEFT JOIN expan_franquicia f ON f.id = a.franquicia; ";
-
 
     $db = DBManagerFactory::getInstance();
 
@@ -1828,6 +1826,9 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
 
     $tabla = $tabla . "</tbody>
         </table>";
+
+    echo $tabla;
+
     return $tabla;
   }
 
