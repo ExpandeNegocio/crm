@@ -22,13 +22,13 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
     $franquicia=$_POST["franquicia"];
         
     switch ($tipo) {
-        case 'AltaFranquicia':                    
+        case 'AltaFranquicia':
             
             $listaFran = explode(',', $listaFranPak);
             
             foreach ($listaFran as $franquicia){
-                $query="insert into expan_portales_periodos (id,portal,franquicia,coste,f_inicio,f_fin,b_prueba) values ";
-                $query=$query." (UUID(),'$portal','$franquicia',$coste,STR_TO_DATE('$f_ini', '%d/%m/%Y'),STR_TO_DATE('$f_fin', '%d/%m/%Y'),$prueba)";
+                $query="insert into expan_portales_periodos (id,portal,franquicia,coste,f_inicio,f_fin,b_prueba,date_entered) values ";
+                $query=$query." (UUID(),'$portal','$franquicia',$coste,STR_TO_DATE('$f_ini', '%d/%m/%Y'),STR_TO_DATE('$f_fin', '%d/%m/%Y'),$prueba,now())";
                 $result = $db -> query($query); 
             }        
             

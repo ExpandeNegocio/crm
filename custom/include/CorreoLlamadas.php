@@ -51,6 +51,7 @@
             echo "***************************************<BR>";
             echo "ENTRA<BR>";
             echo "***************************************<BR>";
+
             //Control de Contratos / Precontratos
             if (date('d')==14 || date('d')==29){
                               
@@ -67,7 +68,7 @@
                 $bodyCorreo=CrearCuerpoCorreoEvento($eventosAlta,$TIPO_EVENTO_ALTA);
                 EnviarCorreo($row['email_address'],from_html("Nuevas altas de eventos"),null,$bodyCorreo);     
                 createTask("Validar datos de eventos creados ayer");
-                           
+
             }
             // Indicacion de franquicias de evento
             $eventosInicioAlta=controlInicioEvento($NUM_DIAS_ANTES_EVENTO_ALTA_FRANQUICIA);
@@ -598,7 +599,12 @@
     }
 
     function CreaFicheroEnvioAdministracion($filePath,$user_id) {
-        
+
+        $NUM_DIAS_ALTA_PORTAL=20;
+        $NUM_DIAS_VENCIMIENTO=15;
+        $NUM_DIAS_PRE=15;
+
+
         // Se crea el objeto PHPExcel
         $objPHPExcel = new PHPExcel();
         
@@ -712,7 +718,111 @@
          $descripcion = array("Informe de tareas del ERM terminadas que tienen un colaborador asignado");                        
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Tareas de Colaborador');
-        
+
+
+        $query = "select name Nombre, ";
+        $query=$query."case when tipo_cuenta=1 then 'Consultoría' when tipo_cuenta=2 then 'Intermediacion' end as 'Tipo de Cuenta' ";
+        $query=$query."from expan_franquicia where tipo_cuenta in (1,2) and deleted=0 order by name; ";
+
+        InsertaConsulta($objPHPExcel,$query,'Cuentas EN');
+
+        $descripcion = array("Listado de cuentas en consultoria e intermediación",
+          "Las colunas son: Nombre de franquicia + Tipo de Cuenta (consultoria o intermediación)");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'Cuentas EN');
+
+        $query = "SELECT f.name Franquicia, p.name Portal, DATE_FORMAT(pp.date_entered,'%d/%m/%Y') FechaAlta ";
+        $query=$query."FROM   expan_portales_periodos pp, expan_portales p, expan_franquicia f ";
+        $query=$query."WHERE  pp.portal = p.id AND pp.franquicia = f.id AND abs(TIMESTAMPDIFF(DAY, DATE(pp.date_entered), CURDATE())) < $NUM_DIAS_ALTA_PORTAL ";
+        $query=$query."order by portal, franquicia";
+
+        InsertaConsulta($objPHPExcel,$query,'Alta en portales');
+
+        $descripcion = array("Listado de franquicias dadas de alta en portales en los ultimos $NUM_DIAS_ALTA_PORTAL días",
+          "Las colunas son: Nombre de franquicia+ portal+ fecha de alta)");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'Alta en portales');
+
+        $query = "SELECT f.name Franquicia, p.name Portal, DATE_FORMAT(pp.f_fin,'%d/%m/%Y') as 'Fecha vence' ";
+        $query=$query."FROM   expan_portales_periodos pp, expan_portales p, expan_franquicia f ";
+        $query=$query."WHERE  pp.portal = p.id AND pp.franquicia = f.id AND abs(TIMESTAMPDIFF(DAY, CURDATE(),DATE(pp.f_fin))) < $NUM_DIAS_VENCIMIENTO and  CURDATE()<pp.f_fin ";
+        $query=$query."order by portal, franquicia";
+
+        InsertaConsulta($objPHPExcel,$query,'Alta en portales');
+
+        $descripcion = array("Listado de franquicias cuyo periodo de vencimiento es antes de $NUM_DIAS_VENCIMIENTO días",
+        "Las colunas son: Nombre de franquicia + nombre de portal+ fecha de renovación");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'Vencimientos < $NUM_DIAS_VENCIMIENTO días');
+
+        $query = "select a.name Nombre,p.d_prov Provincia, date_format(fecha,'%d/%m/%Y') fecha, 'Precontrato' Motivo from ( ";
+        $query=$query."select g.name, provincia_apertura_pre Provincia,f_entrega_cuenta_pre fecha  ";
+        $query=$query."from expan_gestionsolicitudes g ";
+        $query=$query."where TIMESTAMPDIFF(DAY, CURDATE(),DATE(f_entrega_cuenta_pre)) < $NUM_DIAS_PRE and ";
+        $query=$query."g.deleted=0 and  motivo_positivo='Pre')a ";
+        $query=$query."left join expan_m_provincia p on a.provincia= p.c_prov ";
+        $query=$query."UNION ";
+        $query=$query."select a.name Nombre,p.d_prov Provincia, date_format(fecha,'%d/%m/%Y') fecha, 'Contrato' Motivo from ( ";
+        $query=$query."select g.name, provincia_apertura_pre Provincia,f_contrato_firma fecha  ";
+        $query=$query."from expan_gestionsolicitudes g ";
+        $query=$query."where abs(TIMESTAMPDIFF(DAY, CURDATE(),DATE(f_contrato_firma))) < $NUM_DIAS_PRE and ";
+        $query=$query."g.deleted=0 and  motivo_positivo='Con')a ";
+        $query=$query."left join expan_m_provincia p on a.provincia= p.c_prov ";
+
+        InsertaConsulta($objPHPExcel,$query,'Aperturas');
+
+        $descripcion = array("Positivos precontrato o contrato de los últimos $NUM_DIAS_PRE días",
+          "Nombre de candidato+cadena+Provincia+fecha de entrega a cuenta (fecha en la que nos ha pagado) ");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'Aperturas');
+
+
+        $query = "SELECT a.name Nombre, p.d_prov Provincia, date_format(a.date_created, '%d/%m/%Y') fecha ";
+        $query=$query."FROM   (SELECT g.name, provincia_apertura_pre Provincia, f_entrega_cuenta_pre fecha ";
+        $query=$query."        FROM   expan_gestionsolicitudes g, ";
+        $query=$query."               (SELECT * ";
+        $query=$query."                FROM   expan_gestionsolicitudes_audit ";
+        $query=$query."                WHERE  FIELD_NAME = 'motivo_positivo' AND AFTER_VALUE_STRING = 'CaiPre' AND TIMESTAMPDIFF(DAY, DATE(date_created), CURDATE()) < 15) a ";
+        $query=$query."        WHERE g.id= a.parent_id and g.deleted = 0 AND motivo_positivo = 'CaiPre') a ";
+        $query=$query."       LEFT JOIN expan_m_provincia p ON a.provincia = p.c_prov; ";
+
+        InsertaConsulta($objPHPExcel,$query,'Caidas');
+
+        $descripcion = array("Registro de caidas de precontrato de los último 15* días",
+          "Nombre evento + Fecha del evento");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'Caidas');
+
+
+        $query = "select name Nombre,   ";
+        $query=$query."date_format(fecha_celebracion, '%d/%m/%Y') Fecha ";
+        $query=$query."from expan_evento  ";
+        $query=$query."where deleted=0 and fecha_celebracion BETWEEN SUBDATE(curdate(), DAYOFMONTH(curdate()) - 1) AND adddate(last_day(adddate(last_day(curdate()), 1)), 1) ";
+        $query=$query."and fecha_celebracion>curdate() ";
+        $query=$query."order by fecha_celebracion; ";
+
+        InsertaConsulta($objPHPExcel,$query,'EVENTOS');
+
+        $descripcion = array("Registro de eventos que se celebrarán este més y el que viene",
+          "Nombre evento + Fecha del evento");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'EVENTOS');
+
+
+        $query = "SELECT f.name, fecha_envio, e.name Medio ";
+        $query=$query."FROM   (SELECT franquicias_envio, fecha_envio, medio ";
+        $query=$query."        FROM   expan_mailings ";
+        $query=$query."        WHERE  tipo_bd IN ('mds', 'mdf', 'fer') AND deleted=0 and fecha_envio BETWEEN adddate(last_day(curdate()), 1) AND adddate(last_day(adddate(last_day(curdate()), 1)), 1)) a ";
+        $query=$query."       LEFT JOIN expan_franquicia f ON franquicias_envio LIKE concat('%^', f.id, '^%') ";
+        $query=$query."       LEFT JOIN expan_empresa e on a.medio= e.id; ";
+
+        InsertaConsulta($objPHPExcel,$query,'MAILING');
+
+        $descripcion = array("Registro de mailigs que se lanzarán el més que viene, solo aquellos mailings de Medios de franquicia, medios de sectores y Ferias",
+          "Cadena + Medio por que que se lanza + Fecha del evento");
+
+        InsertarDescripcion($objPHPExcel,$descripcion,'MAILING');
+
         $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         $writer -> save($filePath);
     }
