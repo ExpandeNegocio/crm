@@ -387,6 +387,41 @@
 
     }
 
+    private function getUsers()
+    {
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select id, user_name from users where status='Active'";
+
+      echo '<option value=""></option>';
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        echo '<option value="' . $row["id"] . '">' . $row["user_name"] . '</option>';
+      }
+    }
+
+    /**
+     * @param $idFranq
+     */
+    private function getPreguntas($idFranq, $tipo)
+    {
+      echo '<td><H2>Preguntas</H2>></td></tr>';
+
+      $db = DBManagerFactory::getInstance();
+
+      $query = "select id,pregunta ";
+      $query = $query . "from expan_franquicia_pregunta_mis  ";
+      $query = $query . "where franquicia_id='$idFranq' and $tipo=1";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        $id = $row["id"];
+        $pregunta = $row["pregunta"];
+        echo '<td>' . $pregunta . '</td>';
+        echo '<td><textarea class="preguntas_' . $tipo . '" id="' . $id . '" name="' . $id . '" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
+      }
+    }
+
     public function showInterfazMisteryFdo($idFranq, $view)
     {
 
@@ -532,19 +567,6 @@
       return $cadena;
     }
 
-    private function getUsers()
-    {
-      $db = DBManagerFactory::getInstance();
-
-      $query = "select id, user_name from users where status='Active'";
-
-      echo '<option value=""></option>';
-      $result = $db->query($query, true);
-      while ($row = $db->fetchByAssoc($result)) {
-        echo '<option value="' . $row["id"] . '">' . $row["user_name"] . '</option>';
-      }
-    }
-
     public function showInterfazMisteryPreguntas($idFranq)
     {
       echo '<table class="yui3-skin-sam edit view panelContainer">
@@ -604,28 +626,6 @@
       $cadena .= "</tbody>
         </table>";
       return $cadena;
-    }
-
-    /**
-     * @param $idFranq
-     */
-    private function getPreguntas($idFranq, $tipo)
-    {
-      echo '<td><H2>Preguntas</H2>></td></tr>';
-
-      $db = DBManagerFactory::getInstance();
-
-      $query = "select id,pregunta ";
-      $query = $query . "from expan_franquicia_pregunta_mis  ";
-      $query = $query . "where franquicia_id='$idFranq' and $tipo=1";
-
-      $result = $db->query($query, true);
-      while ($row = $db->fetchByAssoc($result)) {
-        $id = $row["id"];
-        $pregunta = $row["pregunta"];
-        echo '<td>' . $pregunta . '</td>';
-        echo '<td><textarea class="preguntas_' . $tipo . '" id="' . $id . '" name="' . $id . '" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
-      }
     }
 
     public function showAccionesPortales($idFranquicia)
@@ -814,7 +814,7 @@
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select name,fecha_envio, tipo from expan_mailings m ";
+      $query = "select name,fecha_envio, tipo_mailing from expan_mailings m ";
       $query=$query."where  m.franquicias_envio like '%^$idFranquicia^%' and deleted=0; ";
 
       $result = $db->query($query, true);
@@ -828,6 +828,5 @@
 
       echo "</tbody>
         </table>";
-
     }
   }
