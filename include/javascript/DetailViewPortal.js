@@ -71,7 +71,9 @@ function changeCost(pId){
 
 	var coste = prompt("Introduce el coste del periodo", "0");
 
-	if (coste == null || !Number.isInteger(coste)){
+	var ncoste= parseInt(coste);
+
+	if (coste == null || !Number.isInteger(ncoste)){
 		alert("El coste debe ser un número entero");
 		return
 	}
@@ -82,8 +84,8 @@ function changeCost(pId){
 		url : url,
 		data : "tipo=changecost&pId="+pId +"&coste="+coste,
 		success : function(data) {
-			if (data=='ok'){
-				alert ("Se ha cambiado el coste del periodo");
+			if (data.trim()=='ok'){
+				location.reload();
 			}else{
 				alert ("ERROR - El periodo no se ha podido cambiar");
 			}
