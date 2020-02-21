@@ -146,7 +146,7 @@
   function InsertarDescripcion($objPHPExcel, $descripcion, $nomPestaña)
   {
 
-    echo "----------INICO INSERTA DESCRIPCION---------------------------<br>";
+  //  echo "----------INICO INSERTA DESCRIPCION---------------------------<br>";
 
     $pagina = 0;
     $colPestaña = 'A';
@@ -163,12 +163,12 @@
       $fila = $i + $filaIni;
       $celda = $colDescrip . $fila;
 
-      echo "Celda-" . $celda . "<BR>";
+   //   echo "Celda-" . $celda . "<BR>";
       $objPHPExcel->setActiveSheetIndex($pagina)->setCellValue($colDescrip . $fila, $descripcion[$i]);
     }
 
 
-    echo "----------FIN INSERTA DESCRIPCION---------------------------<br>";
+  //  echo "----------FIN INSERTA DESCRIPCION---------------------------<br>";
 
   }
 
