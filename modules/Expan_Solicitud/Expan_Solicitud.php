@@ -884,18 +884,30 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
         
         return $salida;
     }
-    
-    public function actualizarEntrevistaPrevia(){
-        $this -> load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
-    
-        foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
-           
-            $gestion -> chk_entrevista_previa = 1;
-            $gestion-> usuario_entrevista_previa = $this->usuario_entrevista_previa_cliente;
-              
-            $gestion->ignore_update_c=true;
-            $gestion -> save();
-        }
-    }     
+
+  public function actualizarEntrevistaPrevia()
+  {
+    $this->load_relationship('expan_solicitud_expan_gestionsolicitudes_1');
+
+    $GLOBALS['log']->info('[ExpandeNegocio][actualizarEntrevistaPrevia]Entra');
+
+    foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
+
+      $gestion->chk_entrevista_previa = 1;
+      $gestion->usuario_entrevista_previa = $this->usuario_entrevista_previa_cliente;
+      $GLOBALS['log']->info('[ExpandeNegocio][actualizarEntrevistaPrevia]gestionActualiza-'.$gestion->id);
+
+      $gestion->ignore_update_c = true;
+      $gestion->save();
+    }
+
+    $this->chk_entrevista_previa_EN=1;
+    $this->chk_entrevista_previa_cliente=1;
+    $this->actualizarEntrevistaPrevia();
+
+    $this->ignore_update_c = true;
+    $this->save();
+
+  }
 }
 ?>

@@ -115,7 +115,9 @@ class AccionesGuardado
         $bean->save();
       }
 
-      if ($bean->chk_entrevista_previa_EN == true || $bean->chk_entrevista_previa_cliente == true) {
+      $GLOBALS['log']->info('[ExpandeNegocio][asignacionUsuario]$bean->chk_entrevista_previa_EN-'.$bean->chk_entrevista_previa_EN);
+      $GLOBALS['log']->info('[ExpandeNegocio][asignacionUsuario]$bean->chk_entrevista_previa_cliente-'.$bean->chk_entrevista_previa_cliente);
+      if ($bean->chk_entrevista_previa_EN == true || $bean->chk_entrevista_previa_cliente == true || $bean->f_entrevista_previa_EN !=null || $bean->f_entrevista_previa_cliente !=null) {
         $bean->actualizarEntrevistaPrevia();
       }
 
