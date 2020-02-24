@@ -84,7 +84,7 @@
                 EnviarCorreo($row['email_address'],from_html("Nuevas altas de eventos"),null,$bodyCorreo); 
                 createTask("Facturar asistentes a eventos comienzan en 10 dias");
             }                       
-            
+
         }       
                
         echo "Terminado<BR>";
@@ -620,7 +620,7 @@
                              ->setCategory("Reporte excel");
         
         $objPHPExcel->createSheet();
-        
+      /*
     
         // CONSULTA PRECONTRATO    
         $query = "SELECT  ";
@@ -702,7 +702,7 @@
         
         InsertarDescripcion($objPHPExcel,$descripcion,'Contratos');
         
-        echo "inserta Contratos<br>";
+        echo "inserta Contratos<br>";*/
         
         $query='https://expandenegocio.easyredmine.com/issues.xml?key=6db1cb022e190c19bc44dc5f94af4596ee5422d6&status_id=6&easy_query_q=Tareas%20Cuentas%20Extra&limit=1000&sort=updated_on:desc';
         InsertaERM($objPHPExcel,$query,'Tareas Extra');
