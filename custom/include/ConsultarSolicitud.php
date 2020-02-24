@@ -176,7 +176,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
           $query=$query."                 = '\".$idSol.\"' ";
           $query=$query."          UNION ";
           $query=$query."          SELECT n.id nid, n.name, e.date_sent fech ";
-          $query=$query."          FROM   emails e, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, notes n, adjuntos j ";
+          $query=$query."          FROM   emails e, expan_gestionsolicitudes g, expan_solicitud_expan_gestionsolicitudes_1_c gs, notes n, expan_adjuntos j ";
           $query=$query."          WHERE  gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida = '\".$idSol.\"' AND g.id = ";
           $query=$query."                 gs.expan_soli5dcccitudes_idb AND e.parent_id = g.id AND j.id_note = n.id AND j.id_email = e.id AND e.status = ";
           $query=$query."                 'sent' AND e.deleted = 0 AND n.deleted = 0) yy ";

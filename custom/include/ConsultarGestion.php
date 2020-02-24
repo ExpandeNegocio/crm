@@ -91,7 +91,7 @@ switch ($tipo) {
     $query=$query."                 e.id AND g.id = '$idGest' ";
     $query=$query."          UNION ALL ";
     $query=$query."          SELECT n.id nid, n.name, e.date_sent fecha, 'Enviado' AS tipo ";
-    $query=$query."          FROM   emails e, expan_gestionsolicitudes g, notes n, adjuntos j ";
+    $query=$query."          FROM   emails e, expan_gestionsolicitudes g, notes n, expan_adjuntos j ";
     $query=$query."          WHERE  g.id = '$idGest' AND e.parent_id = g.id AND j.id_note = n.id AND j.id_email = e.id ";
     $query=$query."                 AND e.status = ";
     $query=$query."                 'sent' AND e.deleted = 0 AND n.deleted = 0 ";

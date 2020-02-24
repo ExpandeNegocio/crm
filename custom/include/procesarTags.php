@@ -13,7 +13,7 @@
 
     $result = $db -> query($query);;*/
 
-  $sql = "select * from adjuntos";
+  $sql = "select * from expan_adjuntos where f_envio<STR_TO_DATE('22/02/2020', '%d/%m/%Y') and f_envio>STR_TO_DATE('3/02/2020', '%d/%m/%Y')";
 
   $result = $db -> query($sql, true);
 
@@ -44,7 +44,7 @@
         echo $row["id"] . "-Fenvio-".$row["f_envio"]."-drid-".$row2["drid"]."<BR>";
 
         $idNote=$row2["note_id"];
-        $query2="update adjuntos set id_note='$idNote' where id='$rid'";
+        $query2="update expan_adjuntos set id_note='$idNote' where id='$rid'";
 
       }
   }

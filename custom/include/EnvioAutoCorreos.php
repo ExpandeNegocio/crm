@@ -145,16 +145,18 @@ class EnvioAutoCorreos
     if (count($attach_list) > 0) {
       $attachments = array_merge($attachments, $attach_list);
     }
+
     foreach ($attachments as $attached) {
       $GLOBALS['log']->info('[ExpandeNegocio][Envio correosV2]Recoge Attach');
       $filename = $attached->filename;
       $file_location = 'upload/' . $attached->id;
       $mime_type = $attached->file_mime_type;
       $mail->AddAttachment($file_location, $filename, 'base64', $mime_type);
+      $GLOBALS['log']->info('[ExpandeNegocio][Envio correosV2]Id del email-'.$emailObj->id);
+
       //Attach each file to message
     }
-
-    $this->registrarAdjuntos($mail->id,$attached->id);
+    $mail->notes=$attachments;
 
     $mail->FromName = $fromName;
 
@@ -213,6 +215,12 @@ class EnvioAutoCorreos
     $GLOBALS['log']->info('[ExpandeNegocio][Insercion Correos]Insercion Correo Mensaje-' . $query);
     $db->query($query);
 
+    $attachments=$mail->notes;
+
+    foreach ($attachments as $attached) {
+      $this->registrarAdjuntos($emailUID,$attached->id);
+    }
+
     return $emailUID;
   }
 
@@ -222,7 +230,9 @@ class EnvioAutoCorreos
     $adjuntolUID = create_guid();
     $date = TimeDate::getInstance()->nowDb();
 
-    $query="insert into adjuntos (id,id_email,id_note,f_envio) values ('$adjuntolUID','$id_email','$id_note','$date')";
+    $query="insert into expan_adjuntos (id,id_email,id_note,f_envio) values ('$adjuntolUID','$id_email','$id_note','$date')";
+
+    $GLOBALS['log']->info('[ExpandeNegocio][Insercion Correos]registrarAdjuntos-'.$query);
 
     $db->query($query);
   }
@@ -428,6 +438,7 @@ class EnvioAutoCorreos
         $mail->AddAttachment($file_location, $filename, 'base64', $mime_type);
         //Attach each file to message
       }
+      $mail->notes=$attachments;
 
       $mail->AddBCC($bccer);
       $arrayCorreos[] = "'" . strtoupper($bccer) . "'";
@@ -436,7 +447,7 @@ class EnvioAutoCorreos
       $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]CorreoEnviado:' . $cuentaCor->mail_smtpport);
 
       //Enviamos el correo
-      if ($mail->Send()) {
+      if (!$mail->Send()) {
         $this->marcarEnviadoMailing(implode(",", $arrayCorreos), $idMailing);
         if ($mailing->guardar_correo == 1) {
           $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Entra Asociar Correo');
