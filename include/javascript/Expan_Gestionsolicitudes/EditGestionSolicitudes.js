@@ -627,7 +627,6 @@ function validarSubOrigen() {
         $("#franquicia_principal").css("border", "#94c1e8 solid 1px");
     }
 
-
     var rating = "";
     if (optRating.selectedIndex != -1) {
         rating = optRating.options[optRating.selectedIndex].label;
@@ -742,6 +741,9 @@ function validarSubOrigen() {
         }
 
     }
+
+
+
     return check_form("EditView");
 }
 
@@ -1498,26 +1500,35 @@ function validarPrecontrato() {
             $("#canon_entrada").css("border", "#94c1e8 solid 1px");
         }
 
-        if (document.getElementById("f_entrega_cuenta_pre").value != "" &&
-            document.getElementById("entrega_cuenta").value == "") {
-            $("#entrega_cuenta").css("border", "2px solid red");
-            valida = false;
-        } else {
-            $("#entrega_cuenta").css("border", "#94c1e8 solid 1px");
-        }
+    }
 
-        if (document.getElementById("f_entrega_cuenta_pre").value != "" &&
-            document.getElementById("canon_entrada").value == "") {
-            $("#canon_entrada").css("border", "2px solid red");
-            valida = false;
-        } else {
-            $("#canon_entrada").css("border", "#94c1e8 solid 1px");
-        }
+    if (document.getElementById("f_entrega_cuenta_pre").value != "" &&
+        document.getElementById("entrega_cuenta").value == "") {
+        $("#entrega_cuenta").css("border", "2px solid red");
+        valida = false;
+    } else {
+        $("#entrega_cuenta").css("border", "#94c1e8 solid 1px");
+    }
 
-        if (valida == false) {
-            alert("No se han rellenado todos los valores del precontrato necesarios");
-            return false;
-        }
+    if (document.getElementById("f_entrega_cuenta_pre").value != "" &&
+        document.getElementById("canon_entrada").value == "") {
+        $("#canon_entrada").css("border", "2px solid red");
+        valida = false;
+    } else {
+        $("#canon_entrada").css("border", "#94c1e8 solid 1px");
+    }
+
+    if (document.getElementById("f_entrega_cuenta_pre").value != "" &&
+        document.getElementById("provincia_apertura_pre").value == "") {
+        $("#provincia_apertura_pre").css("border", "2px solid red");
+        valida = false;
+    } else {
+        $("#provincia_apertura_pre").css("border", "#94c1e8 solid 1px");
+    }
+
+    if (valida == false) {
+        alert("No se han rellenado todos los valores del precontrato necesarios");
+        return false;
     }
 
     return true;
