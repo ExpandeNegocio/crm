@@ -122,6 +122,7 @@ array (
           1 => 
           array (
             'name' => 'priority',
+            'label' => 'LBL_PRIORIDAD',
             'displayParams' => 
             array (
               'required' => true,

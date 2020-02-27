@@ -137,4 +137,6 @@ $mod_strings = array (
   'LBL_OPORTUNIDAD_INMEDIATA'=>'Gestión Inmediata',
   'LBL_TASK_TYPE'=>'Tipo de tarea',
   'LBL_MODIFICADO_POR'=>'Modificado por',
+  'LBL_FRANQUICIA'=>'Franquicia',
+
 );

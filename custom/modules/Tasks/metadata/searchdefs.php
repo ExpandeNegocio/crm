@@ -101,6 +101,13 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      'priority' =>
+        array (
+          'label' => 'LBL_PRIORIDAD',
+          'name' => 'priority',
+          'default' => true,
+          'width' => '10%',
+        ),
       
       'assigned_user_id' => 
       array (
