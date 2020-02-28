@@ -38,7 +38,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
     $nom_entrevistado = $_POST["nom_entrevistado"];
     $telefono_entrevistado = $_POST["telefono_entrevistado"];
-    $tipo_entrevista = $_POST["tipo_entrevista"];
+    $tipo_entrevista_fdo = $_POST["tipo_entrevista_fdo"];
+    $tipo_entrevista_central = $_POST["tipo_entrevista_central"];
     $email_entrevistado = $_POST["email_entrevistado"];
     $year_fran = $_POST["year_fran"];
     $nivel_satisfaccion = $_POST["nivel_satisfaccion"];
@@ -296,7 +297,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $query = "INSERT INTO expan_empresa_mistery_fdo  ";
             $query=$query."(id,franquicia_id,empresa_id,nom_entrevistado,telefono_entrevistado,correo_entrevistado,ubicacion,f_entrevista,id_usuario,nom_utilizado,email_utilizado,telefono_utilizado,tipo_entrevista,year_fran,nivel_satisfaccion,informacion_proporcionada,informacion_obtenida)   ";
             $query=$query."VALUES   ";
-            $query=$query."('$uuid','$idFranquicia','$empresa_id','$nom_entrevistado','$telefono_entrevistado','$email_entrevistado','$ubicacion',STR_TO_DATE('$f_entrevista','%d/%m/%Y'),'$usuario','$nom_utilizado','$correo_utilizado','$telefono_utilizado','$tipo_entrevista','$year_fran','$nivel_satisfaccion','$informacion_proporcionada','$informacion_obtenida'); ";
+            $query=$query."('$uuid','$idFranquicia','$empresa_id','$nom_entrevistado','$telefono_entrevistado','$email_entrevistado','$ubicacion',STR_TO_DATE('$f_entrevista','%d/%m/%Y'),'$usuario','$nom_utilizado','$correo_utilizado','$telefono_utilizado','$tipo_entrevista_fdo','$year_fran','$nivel_satisfaccion','$informacion_proporcionada','$informacion_obtenida'); ";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
 
@@ -324,9 +325,9 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
         case 'addMisteryFranqCentral':
 
             $query = "INSERT INTO expan_empresa_mistery_central ";
-            $query=$query."(id,franquicia_id,empresa_id,nom_central,correo_central,cargo_central,telefono_central,nom_utilizado,id_usuario,correo_utilizado,telefono_utilizado,f_entrevista,catalogos,ubicacion,informacion_obtenida)  ";
+            $query=$query."(id,franquicia_id,empresa_id,nom_central,correo_central,cargo_central,telefono_central,nom_utilizado,id_usuario,correo_utilizado,telefono_utilizado,f_entrevista,catalogos,ubicacion,informacion_obtenida,tipo_entrevista)  ";
             $query=$query."VALUES  ";
-            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_central','$correo_central','$cargo_central','$telefono_central','$nom_utilizado','$usuario','$correo_utilizado','$telefono_utilizado',STR_TO_DATE('$f_entrevista', '%d/%m/%Y'),'$catalogos','$ubicacion','$informacion_obtenida')";
+            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_central','$correo_central','$cargo_central','$telefono_central','$nom_utilizado','$usuario','$correo_utilizado','$telefono_utilizado',STR_TO_DATE('$f_entrevista', '%d/%m/%Y'),'$catalogos','$ubicacion','$informacion_obtenida'.'$tipo_entrevista_central')";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
 

@@ -373,7 +373,13 @@
       echo '<td><input type="text" name="telefono_utilizado" id="telefono_utilizado" size="30" maxlength="200" value="" title=""></td></tr>';
       echo '<td>Email mistery</td>';
       echo '<td><input type="text" name="correo_utilizado" id="correo_utilizado" size="30" maxlength="200" value="" title=""></td></tr>';
-
+      echo '<td>Tipo entrevista</td>';
+      echo '<td><select name="tipo_entrevista" id="tipo_entrevista_central" >';
+      echo '<option value=""></option>';
+      echo '<option value="Re">Reunión</option>';
+      echo '<option value="Ll">Llamada</option>';
+      echo '<option value="So">Solicitud Informacion</option>';
+      echo '</td></tr>';
       echo '<td>Catálogos</td>';
       echo '<td><textarea id="catalogos" name="catalogos" rows="4" cols="60" title="" tabindex="0"></textarea></td></tr>';
       echo '<td>Información obtenida</td>';
@@ -474,6 +480,7 @@
       echo '<option value=""></option>';
       echo '<option value="Re">Reunión</option>';
       echo '<option value="Ll">Llamada</option>';
+      echo '<option value="So">Solicitud Informacion</option>';
       echo '</td></tr>';
       echo '<td>Años con la franquicia</td>';
       echo '<td><input type="text" name="year_fran" id="year_fran_fdo" size="30" maxlength="200" value="" title=""></td></tr>';
@@ -501,14 +508,15 @@
       $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
-                   <th></th><th></th><th>Nombre entrevistdo</th>><th>Fecha</th><th>Nombre mistery</th><th>Ubicacion</th>
+                   <th></th><th></th><th>Tipo Entrevista</th><th>Nombre entrevistdo</th>><th>Fecha</th><th>Nombre mistery</th><th>Ubicacion</th>
                 </tr>
               </thead>
               <tbody>";
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select id, nom_entrevistado, case WHEN f_entrevista='00/00/0000' then '' else DATE_FORMAT(f_entrevista, '%d/%m/%Y') end as f_entrevista,nom_utilizado,ubicacion ";
+      $query = "select id, case when tipo_entrevista='Ll' Then 'LLamada' when tipo_entrevista='Re' then 'Reunión' when tipo_entrevista='Re' then 'Reunión' else '' END tipo_entrevista, ";
+      $query = $query . "nom_entrevistado, case WHEN f_entrevista='00/00/0000' then '' else DATE_FORMAT(f_entrevista, '%d/%m/%Y') end as f_entrevista,nom_utilizado,ubicacion ";
       $query = $query . "from expan_empresa_mistery_fdo  ";
       $query = $query . "where empresa_id='$idEmpresa' OR franquicia_id='$idEmpresa'";
 
@@ -518,6 +526,7 @@
         $cadena .= "<td><button type='button' onclick='deleteMisteryFdo(\"" . $row["id"] . "\");'> -</button></td>";
         $cadena .= "<td><button type='button' onclick='editMisteryFdo(\"" . $row["id"] . "\");'> E</button></td>";
 
+        $cadena .= "<td>" . $row["tipo_entrevista"] . "</td>";
         $cadena .= "<td>" . $row["nom_entrevistado"] . "</td>";
         $cadena .= "<td>" . $row["f_entrevista"] . "</td>";
         $cadena .= "<td>" . $row["nom_utilizado"] . "</td>";
@@ -538,14 +547,15 @@
       $cadena .= "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
-                   <th></th><th></th><th>Nombre entrevistdo</th>><th>Fecha</th><th>Nombre mistery</th><th>Ubicacion</th>
+                   <th></th><th></th><th>Tipo Entrevista</th><th>Nombre entrevistdo</th>><th>Fecha</th><th>Nombre mistery</th><th>Ubicacion</th>
                 </tr>
               </thead>
               <tbody>";
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select id, nom_central, case WHEN f_entrevista='00/00/0000' then '' else DATE_FORMAT(f_entrevista, '%d/%m/%Y') end as f_entrevista,nom_utilizado,ubicacion ";
+      $query = "select id, case when tipo_entrevista='Ll' Then 'LLamada' when tipo_entrevista='Re' then 'Reunión' when tipo_entrevista='Re' then 'Reunión' else '' END tipo_entrevista, ";
+      $query = $query . "nom_central, case WHEN f_entrevista='00/00/0000' then '' else DATE_FORMAT(f_entrevista, '%d/%m/%Y') end as f_entrevista,nom_utilizado,ubicacion ";
       $query = $query . "from expan_empresa_mistery_central  ";
       $query = $query . "where empresa_id='$idEmpresa' OR franquicia_id='$idEmpresa'";
 
@@ -555,6 +565,7 @@
         $cadena .= "<td><button type='button' onclick='deleteMisteryCentral(\"" . $row["id"] . "\");'> -</button></td>";
         $cadena .= "<td><button type='button' onclick='editMisteryCentral(\"" . $row["id"] . "\");'> E</button></td>";
 
+        $cadena .= "<td>" . $row["tipo_entrevista"] . "</td>";
         $cadena .= "<td>" . $row["nom_central"] . "</td>";
         $cadena .= "<td>" . $row["f_entrevista"] . "</td>";
         $cadena .= "<td>" . $row["nom_utilizado"] . "</td>";

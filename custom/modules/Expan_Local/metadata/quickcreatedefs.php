@@ -44,8 +44,8 @@
                 array(
                   'hidden' =>
                     array(
-                      '<input type="hidden" name="isSaveAndNew" value="false">',
-                      '<input type="hidden" name="is_ajax_call" value="1">',
+                      0 =>'<input type="hidden" name="isSaveAndNew" value="false">',
+                      1 =>'<input type="hidden" name="is_ajax_call" value="1">',
                     ),
                   'buttons' =>
                     array(
@@ -67,13 +67,22 @@
                     'field' => '30',
                   ),
                 ),
-              'javascript' => '{sugar_getscript file="include/javascript/Expan_Local/QuickCreateExpan_Local.js"}
+              'javascript' => '<script type="text/javascript">{$JSON_CONFIG_JAVASCRIPT}</script>{sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}<script>toggle_portal_flag();function toggle_portal_flag()  {literal} { {/literal} {$TOGGLE_JS} {literal} } {/literal} </script>
+                {sugar_getscript file="include/javascript/Expan_Local/QuickCreateExpan_Local.js"}
                                 <script type="text/javascript"> onload=CargaProvMun();  </script>',
               'useTabs' => false,
+              'tabDefs' =>
+                array (
+                  'LBL_LOCAL_INFORMATION' =>
+                    array (
+                      'newTab' => false,
+                      'panelDefault' => 'expanded',
+                    ),
+                ),
             ),
           'panels' =>
             array(
-              'lbl_call_information' =>
+              'lbl_local_information' =>
                 array(
 
                   0 =>

@@ -648,6 +648,7 @@ function addMisteryFranqCentral(idFranquicia){
 	var ubicacion=$("#ubicacion").val();
 	var f_entrevista=$("#f_entrevista_central").val();
 	var correo_central=$("#correo_central").val();
+	var tipo_entrevista_central=$("#tipo_entrevista_central").val();
 	var cargo_central=$("#cargo_central").val();
 	var telefono_central=$("#telefono_central").val();
 	var nom_utilizado=$("#nom_utilizado").val();
@@ -671,6 +672,7 @@ function addMisteryFranqCentral(idFranquicia){
 					"ubicacion=" + ubicacion + "&" +
 					"f_entrevista=" + f_entrevista + "&" +
 					"correo_central=" + correo_central + "&" +
+					"tipo_entrevista_central=" + tipo_entrevista_central + "&" +
 					"cargo_central="+ cargo_central + "&" +
 					"telefono_central=" + telefono_central + "&" +
 					"nom_utilizado=" + nom_utilizado + "&" +
@@ -776,7 +778,7 @@ function addMisteryFranqFdo(idFranquicia){
 				"nom_utilizado=" + nom_utilizado + "&" +
 				"correo_utilizado=" + correo_utilizado + "&" +
 				"telefono_utilizado=" + telefono_utilizado + "&" +
-				"tipo_entrevista=" + tipo_entrevista + "&" +
+				"tipo_entrevista_fdo=" + tipo_entrevista + "&" +
 				"year_fran=" + year_fran + "&" +
 				"nivel_satisfaccion=" + nivel_satisfaccion + "&" +
 				"informacion_proporcionada=" + informacion_proporcionada + "&" +
