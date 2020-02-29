@@ -415,9 +415,13 @@
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select id,pregunta ";
-      $query = $query . "from expan_franquicia_pregunta_mis  ";
-      $query = $query . "where franquicia_id='$idFranq' and $tipo=1";
+      $query = "SELECT * ";
+      $query=$query."FROM   expan_franquicia_pregunta_mis ";
+      $query=$query."WHERE  (franquicia_id = '$idFranq'  ";
+      $query=$query."        OR franquicia_id IN (select id from expan_franquicia where empresa_id  in (SELECT c.competidor_id ";
+      $query=$query."                              FROM   expan_franquicia f, expan_empresa_competidores_c c ";
+      $query=$query."                              WHERE  c.empresa_id = f.empresa_id AND f.id = ";
+      $query=$query."                              '$idFranq'))) AND $tipo = 1; ";
 
       $result = $db->query($query, true);
       while ($row = $db->fetchByAssoc($result)) {
