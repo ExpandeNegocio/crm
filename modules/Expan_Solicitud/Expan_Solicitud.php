@@ -903,7 +903,6 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
 
     $this->chk_entrevista_previa_EN=1;
     $this->chk_entrevista_previa_cliente=1;
-    $this->actualizarEntrevistaPrevia();
 
     $this->ignore_update_c = true;
     $this->save();
