@@ -130,7 +130,6 @@ function addPanelDocumentosRecibidosGestion(gestId){
 				
 			tabla=generateTable(array);																					
 			div.append(tabla);
-			alert("Antes");
 			$("#DocumentosEnviados").after(div);
 			addPanelAccionesMailingGestion(gestId);
 

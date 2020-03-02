@@ -752,7 +752,12 @@ function mensajeParadoDescartado(){
     if ($("#estado_sol").val() == 3 || $("#estado_sol").val() == 4){
         alert ("¿Hay DUDAS, OBJECIONES, MEJORAS O SOLICITUDES que reflejar de este candidato?")
     }
+}
 
+function mensajeFechaApertura() {
+    if (EsCaliente() && document.getElementById("candidatura_caliente").checked ==true ){
+        alert("Revisar campo de fecha de apertura");
+    }
 }
 
 /**
@@ -1315,6 +1320,47 @@ function existeTextoObserva(texto) {
     }
 }
 
+function EsCaliente() {
+    if (document.getElementById("chk_visitado_fran").checked ==true||
+        document.getElementById("chk_envio_precontrato").checked ==true||
+        document.getElementById("chk_visita_local").checked ==true||
+        document.getElementById("chk_operacion_autorizada").checked ==true||
+        document.getElementById("chk_envio_precontrato_personal").checked ==true||
+        document.getElementById("chk_posible_colabora").checked ==true||
+        document.getElementById("candidatura_caliente").checked ==true||
+        document.getElementById("candidatura_caliente").checked ==true){
+
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function EsAvanzada(){
+
+    if (document.getElementById("chk_visitado_fran").checked ==true||
+        document.getElementById("chk_envio_precontrato").checked ==true||
+        document.getElementById("chk_visita_local").checked ==true||
+        document.getElementById("chk_operacion_autorizada").checked ==true||
+        document.getElementById("chk_envio_precontrato_personal").checked ==true||
+        document.getElementById("chk_posible_colabora").checked ==true||
+        document.getElementById("candidatura_caliente").checked ==true||
+        document.getElementById("candidatura_caliente").checked ==true||
+        document.getElementById("chk_resolucion_dudas").checked==true||
+        document.getElementById("chk_recepcio_cuestionario").checked==true||
+        document.getElementById("chk_informacion_adicional").checked==true||
+        document.getElementById("chk_autoriza_central").checked==true||
+        document.getElementById("chk_entrevista").checked==true||
+        document.getElementById("chk_propuesta_zona").checked==true||
+        document.getElementById("candidatura_avanzada").checked==true||
+        document.getElementById("candidatura_avanzada").checked==true){
+
+        return true;
+    }else{
+        return false;
+    }
+}
+
 /*
 function activarCanCaliente() {	
 	
@@ -1429,12 +1475,13 @@ function validarEdicion(idGestion) {
         validarMotivoParada() == false ||
         validarMotivoPositivo() == false ||
         validarModeloDeNegocio() == false ||
-        validarPrecontrato() == false) {
+        validarPrecontrato() == false ||
+        validarFechaApertura()==false) {
         return false;
     }
     mensajeParadoDescartado();
+    mensajeFechaApertura();
     return check_form("EditView");
-
 }
 
 function validarPrecontrato() {
@@ -1531,6 +1578,17 @@ function validarPrecontrato() {
         return false;
     }
 
+    return true;
+}
+
+function validarFechaApertura(){
+
+    if (EsAvanzada() && $("#cuando_empezar").val()=="" ){
+        $("#cuando_empezar").css("border", "2px solid red");
+        return false;
+    } else {
+        $("#cuando_empezar").css("border", "#94c1e8 solid 1px");
+    }
     return true;
 }
 
