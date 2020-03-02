@@ -335,6 +335,9 @@
             if (self::$fetchedRow[$bean -> id]['website']!=$bean->website && $bean->website!=""){
               $empresa->web= $bean->website;
             }
+            if (self::$fetchedRow[$bean -> id]['sector']!=$bean->sector && $bean->sector!=""){
+              $empresa->sector= $bean->sector;
+            }
           }
           $empresa->ignore_update_c=true;
           $empresa->save();
