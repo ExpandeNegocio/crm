@@ -190,3 +190,22 @@ function envioPuertasAbiertas(franquicia){
 	}
 	
 }
+
+function abrirEmpresa(franquicia){
+	url = 'index.php?entryPoint=consultarFranquicia';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=ConsultarEmpresa&" +
+			"id=" + franquicia,
+		success : function(data) {
+			if (data!=""){
+				window.open('index.php?module=Expan_Empresa&action=DetailView&record=' + data);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Np se ha podido abrir la empresa - ' + textStatus + ' - ' + errorThrown);
+		}
+	});
+	return false;
+}

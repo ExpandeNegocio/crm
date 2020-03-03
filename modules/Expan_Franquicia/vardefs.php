@@ -313,6 +313,29 @@ $dictionary['Expan_Franquicia'] = array(
         'enable_range_search' => false,
         'precision' => 6,
       ),
+
+    'observacion_inversion' =>
+      array(
+        'required' => false,
+        'name' => 'observacion_inversion',
+        'vname' => 'LBL_OBSERVACIONES_INVERSION',
+        'type' => 'text',
+        'massupdate' => 0,
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'rows' => '4',
+        'cols' => '80',
+      ),
+
+
     'currency_id' =>
       array(
         'required' => false,

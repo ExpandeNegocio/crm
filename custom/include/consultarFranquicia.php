@@ -505,6 +505,20 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
             break;
 
+        case 'ConsultarEmpresa':
+
+            $query = "select empresa_id from expan_franquicia where id='".$id."'";
+
+            $result = $db -> query($query, true);
+            $empresa_id="";
+            while ($row = $db -> fetchByAssoc($result)) {
+                $empresa_id=$row['empresa_id'];
+            }
+
+            echo $empresa_id;
+
+            break;
+
         default:
 
             break;

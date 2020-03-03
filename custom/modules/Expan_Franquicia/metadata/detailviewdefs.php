@@ -23,6 +23,11 @@
                           'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="save" class="submit"
                            onClick="envioPuertasAbiertas(\'{$fields.id.value}\');" value="Envío puertas abiertas">{/if}',
                         ),
+                      4 =>
+                        array(
+                          'customCode' => '{if $fields.id.value!=""} <input type="button" name="abrir_empresa" id="abrir_empresa" class="submit"
+                           onClick="abrirEmpresa(\'{$fields.id.value}\');" value="Abrir Empresa">{/if}',
+                        ),
                     ),
                 ),
               'maxColumns' => '2',
@@ -1555,6 +1560,9 @@
                         ),
                       1 =>
                         array(
+                          'name' => 'condiciones_especiales',
+                          'studio' => 'visible',
+                          'label' => 'LBL_CONDICIONES_ESPECIALES',
                         ),
                     ),
                   9 =>
@@ -1566,9 +1574,8 @@
                         ),
                       1 =>
                         array(
-                          'name' => 'condiciones_especiales',
-                          'studio' => 'visible',
-                          'label' => 'LBL_CONDICIONES_ESPECIALES',
+                          'name' => 'inversion_minima_necesaria',
+                          'label' => 'LBL_INVERSION_MINIMA_NECESARIA',
                         ),
                     ),
                   10 =>
@@ -1581,8 +1588,8 @@
                         ),
                       1 =>
                         array(
-                          'name' => 'inversion_minima_necesaria',
-                          'label' => 'LBL_INVERSION_MINIMA_NECESARIA',
+                          'name' => 'observacion_inversion',
+                          'label' => 'LBL_OBSERVACIONES_INVERSION',
                         ),
                     ),
                   11 =>
