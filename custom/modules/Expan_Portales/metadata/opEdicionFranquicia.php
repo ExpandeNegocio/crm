@@ -92,8 +92,12 @@ class opEdicionFranquicia {
 
         $thisYear= date('Y');
         
-        for ($i=0;$i<10;$i++){
-            $output=$output. "<option value='".($thisYear+$i)."'>".($thisYear+$i)."</option>";
+        for ($i=-2;$i<10;$i++){
+            if ($i==0){
+                $output=$output. "<option value='".($thisYear+$i)."' selected>".($thisYear+$i)."</option>";
+            }else{
+                $output=$output. "<option value='".($thisYear+$i)."'>".($thisYear+$i)."</option>";
+            }
         }
         $output=$output. "</select></p>";
 
