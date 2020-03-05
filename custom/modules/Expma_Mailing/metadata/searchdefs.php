@@ -56,15 +56,7 @@ $module_name = 'Expma_Mailing';
                             'name', 
                             array('name' => 'assigned_user_id', 'label' => 'LBL_ASSIGNED_TO', 'type' => 'enum', 'function' => array('name' => 'get_user_array', 'params' => array(false))),
                         
-                        'franquicia_search' =>
-                            array(
-                                'name' => 'franquicias',
-                                'label' => 'LBL_FRANQUICIAS',
-                                'type' => 'multienum',
-                                'studio' => 'visible',
-                                'default' => true,
-                                'width' => '10%',
-                            ),
+
                         
                      ),
                     ),

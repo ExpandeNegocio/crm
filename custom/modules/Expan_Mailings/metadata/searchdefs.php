@@ -62,6 +62,15 @@ $module_name = 'Expan_Mailings';
                             'label'=>'LBL_TIPO_BD_MAILING',
                             'type'=>'enum'
                           ),
+                          'franquicia_search' =>
+                            array(
+                              'name' => 'franquicias',
+                              'label' => 'LBL_FRANQUICIAS',
+                              'type' => 'multienum',
+                              'studio' => 'visible',
+                              'default' => true,
+                              'width' => '10%',
+                            ),
                         ),
                     ),
                );
