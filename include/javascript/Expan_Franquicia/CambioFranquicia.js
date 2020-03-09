@@ -78,7 +78,7 @@ function ocultaNoCLienterel(){
 	$("#tab11").hide();
 	$("#tab12").show();
 	$("#tab13").show();
-	$("#tab14").hide();
+	$("#tab14").show();
 	$("#tab15").show();
 }
 
