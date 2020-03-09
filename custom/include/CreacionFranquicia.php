@@ -231,10 +231,14 @@
 
                     $bean -> procesarObservaciones();
 
-                    $bean -> ignore_update_c=true;
-                    $bean -> save();
 
                 }
+
+              if ($bean -> tipo_cuenta==4){
+                $bean->assigned_user_id=null;
+              }
+              $bean -> ignore_update_c=true;
+              $bean -> save();
 
               $this->CloneEmpresa($bean);
 
