@@ -234,7 +234,7 @@
 
                 }
 
-              if ($bean -> tipo_cuenta==4){
+              if ($bean -> tipo_cuenta!=1 and $bean -> tipo_cuenta!=2){
                 $bean->assigned_user_id=null;
               }
               $bean -> ignore_update_c=true;
