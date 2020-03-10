@@ -16,7 +16,7 @@
     const ACT_EVENTO='ACT_EVENTO';
     const FACT_EVENTO='FACT_EVENTO';
 
-    const EMAIL_ADMIN='administracion@expandenegocio.com';
+    const EMAIL_ADMIN='julia@expandenegocio.com';
 
     const BODY_ENTRADA_PORTAL = '<P> #FRAN# ha sido dada de alta en #MODULO#, con fecha de fin #FECHA#. Ya puedes intruducir los costes de la acción</P>';
     const SUBJECT_ENTRADA_PORTAL ='Alta de franquicia en portal';
