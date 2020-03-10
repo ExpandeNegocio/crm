@@ -110,8 +110,6 @@ class EnvioAutoCorreos
     return $text;
   }
 
-
-
   function sendMessageV2($rcpt_name, $addresses, $subject, $body, $fromName, $cuentaCor, $idTemp)
   {
     $mail = new SugarPHPMailer();

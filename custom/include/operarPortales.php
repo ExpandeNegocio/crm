@@ -3,6 +3,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
     require_once ('data/SugarBean.php');
     require_once ('custom/modules/Expan_Portales/metadata/opEdicionFranquicia.php');
+    require_once ('custom/include/AvisosAdmin.php');
+
     
     $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
     $GLOBALS['log'] -> info('[ExpandeNegocio][OperarPortales]Inicio' );
@@ -29,7 +31,16 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             foreach ($listaFran as $franquicia){
                 $query="insert into expan_portales_periodos (id,portal,franquicia,coste,f_inicio,f_fin,b_prueba,date_entered) values ";
                 $query=$query." (UUID(),'$portal','$franquicia',$coste,STR_TO_DATE('$f_ini', '%d/%m/%Y'),STR_TO_DATE('$f_fin', '%d/%m/%Y'),$prueba,now())";
-                $result = $db -> query($query); 
+                $result = $db -> query($query);
+                $AvisosAdmin= new AvisosAdmin();
+
+                $franObj= new Expan_Franquicia();
+                $franObj->retrieve($franquicia);
+
+                $portObj= new Expan_Portales();
+                $portObj->retrieve($portal);
+
+                $AvisosAdmin->enviaCorreo(AvisosAdmin::ENTRADA_PORTAL,$franObj->name,$portObj->name,$f_fin);
             }        
             
             echo 'ok';

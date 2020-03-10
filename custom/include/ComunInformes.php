@@ -1,5 +1,7 @@
 <?php
 
+  require_once('include/SugarPHPMailer.php');
+
   function deleteFiles($folder)
   {
 
@@ -212,7 +214,6 @@
     } else {
       echo "Message sent!";
     }
-
   }
 
   function esAdministracion($user_id)

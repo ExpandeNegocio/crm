@@ -828,7 +828,6 @@ class AccionesGuardado
 
   function recogerEntPrevia(&$bean)
   {
-
     global $current_user;
 
     if ($bean->chk_entrevista_previa_EN == 1 && $bean->usuario_entrevista_previa_EN == "") {
@@ -838,7 +837,6 @@ class AccionesGuardado
     if ($bean->chk_entrevista_previa_cliente == 1 && $bean->usuario_entrevista_previa_cliente == "") {
       $bean->usuario_entrevista_previa_cliente = $current_user->first_name . " " . $current_user->last_name;
     }
-
   }
 
   /**

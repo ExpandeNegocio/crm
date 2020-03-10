@@ -894,7 +894,12 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
     foreach ($this->expan_solicitud_expan_gestionsolicitudes_1->getBeans() as $gestion) {
 
       $gestion->chk_entrevista_previa = 1;
-      $gestion->usuario_entrevista_previa = $this->usuario_entrevista_previa_cliente;
+      if ($this->usuario_entrevista_previa_EN!=""){
+        $gestion->usuario_entrevista_previa = $this->usuario_entrevista_previa_EN;
+      }else if ($this->usuario_entrevista_previa_cliente!=""){
+        $gestion->usuario_entrevista_previa = $this->usuario_entrevista_previa_cliente;
+      }
+
       $GLOBALS['log']->info('[ExpandeNegocio][actualizarEntrevistaPrevia]gestionActualiza-'.$gestion->id);
 
       $gestion->ignore_update_c = true;
