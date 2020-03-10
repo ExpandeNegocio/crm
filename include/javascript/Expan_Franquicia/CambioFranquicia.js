@@ -201,6 +201,8 @@ function abrirEmpresa(franquicia){
 		success : function(data) {
 			if (data!=""){
 				window.open('index.php?module=Expan_Empresa&action=DetailView&record=' + data);
+			}else{
+				alert("No hay empresa asociada a la franquicia");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

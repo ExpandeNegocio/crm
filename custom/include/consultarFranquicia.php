@@ -507,7 +507,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
         case 'ConsultarEmpresa':
 
-            $query = "select empresa_id from expan_franquicia where id='".$id."'";
+            $query = "select empresa_id from expan_franquicia where deleted=0 and id='".$id."'";
 
             $result = $db -> query($query, true);
             $empresa_id="";
