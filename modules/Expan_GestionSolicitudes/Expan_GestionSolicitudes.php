@@ -1801,13 +1801,15 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
       );
     }
 
-    $query = "SELECT first_name Nombre, last_name Apellidos, f.name Franquicia, prov.d_prov Provincia, entrega_cuenta ImporteEnt, f_entrega_cuenta_pre FEnt ";
-    $query = $query . "FROM   (SELECT s.first_name, s.last_name, g.franquicia, g.provincia_apertura_pre, g.f_entrega_cuenta_pre, g.entrega_cuenta ";
-    $query = $query . "        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
-    $query = $query . "        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND ";
-    $query = $query . "               g.id = '" . $this->id . "') a ";
-    $query = $query . "       LEFT JOIN expan_m_provincia prov ON a.provincia_apertura_pre = prov.c_prov ";
-    $query = $query . "       LEFT JOIN expan_franquicia f ON f.id = a.franquicia; ";
+    $query = "SELECT first_name Nombre, last_name Apellidos, f.name Franquicia, prov.d_prov Provincia, entrega_cuenta ImporteEnt, date_format( f_entrega_cuenta_pre,'%d/%m/%Y') FEnt  ";
+    $query=$query."FROM   (SELECT s.first_name, s.last_name, g.franquicia, g.provincia_apertura_pre, g.f_entrega_cuenta_pre, g.entrega_cuenta  ";
+    $query=$query."        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs  ";
+    $query=$query."        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
+    $query=$query."               g.id = '$this->id') a  ";
+    $query=$query."       LEFT JOIN expan_m_provincia prov ON a.provincia_apertura_pre = prov.c_prov  ";
+    $query=$query."       LEFT JOIN expan_franquicia f ON f.id = a.franquicia; ";
+
+    $GLOBALS['log']->info('[ExpandeNegocio][crearTablaEntregaCuentaPrecontrato] Query - ' . $query);
 
     $db = DBManagerFactory::getInstance();
 
@@ -1817,10 +1819,22 @@ class Expan_GestionSolicitudes extends Expan_GestionSolicitudes_sugar
 
     while ($row = $db->fetchByAssoc($result)) {
       foreach ($campos as $key => $value) {
+
+        $valor=$row[$key];
+
+        if ($key=='ImporteEnt'){
+          $valor=$this->entrega_cuenta;
+        }else if ($key=='FEnt'){
+          $valor=$this->f_entrega_cuenta_pre;
+        }else if ($key=='Provincia'){
+          $valor=$this->provincia_apertura_pre;
+        }
         $tabla = $tabla . "<tr>";
         $tabla = $tabla . "<td>" . $value . "</td>";
-        $tabla = $tabla . "<td>" . $row[$key] . "</td>";
+        $tabla = $tabla . "<td>" . $valor  . "</td>";
         $tabla = $tabla . "</tr>";
+
+        $GLOBALS['log']->info('[ExpandeNegocio][crearTablaEntregaCuentaPrecontrato] Query - ' . $value.'-'.$valor );
       }
     }
 
