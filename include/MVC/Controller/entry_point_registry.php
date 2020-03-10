@@ -151,5 +151,5 @@ $entry_point_registry = array(
     'processLanding' => array('file' => 'custom/landing/processLanding.php', 'auth' => false),
     'unsubscribeEmail' => array('file' => 'custom/landing/unsubscribeEmail.php', 'auth' => false),
     'activateGest' => array('file' => 'custom/landing/activateGest.php', 'auth' => false),
-    'avisosAdmin' => array('file' => 'custom/include/AvisosAdmin.php', 'auth' => false),
+    'avisosAdminProg' => array('file' => 'custom/include/AvisosAdminProg.php', 'auth' => false),
 );
