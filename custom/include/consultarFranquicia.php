@@ -327,7 +327,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $query = "INSERT INTO expan_empresa_mistery_central ";
             $query=$query."(id,franquicia_id,empresa_id,nom_central,correo_central,cargo_central,telefono_central,nom_utilizado,id_usuario,correo_utilizado,telefono_utilizado,f_entrevista,catalogos,ubicacion,informacion_obtenida,tipo_entrevista)  ";
             $query=$query."VALUES  ";
-            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_central','$correo_central','$cargo_central','$telefono_central','$nom_utilizado','$usuario','$correo_utilizado','$telefono_utilizado',STR_TO_DATE('$f_entrevista', '%d/%m/%Y'),'$catalogos','$ubicacion','$informacion_obtenida'.'$tipo_entrevista_central')";
+            $query=$query."(UUID(),'$idFranquicia','$empresa_id','$nom_central','$correo_central','$cargo_central','$telefono_central','$nom_utilizado','$usuario','$correo_utilizado','$telefono_utilizado',STR_TO_DATE('$f_entrevista', '%d/%m/%Y'),'$catalogos','$ubicacion','$informacion_obtenida','$tipo_entrevista_central')";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta Insercion mistery-'.$query);
 
@@ -435,7 +435,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
         case 'BajaMisteryFranqPregunta':
 
-            $query = "delete from expan_franquicia_pregunta_mis where id='".$id."'";
+            $query = "delete from expan_franquicia_pregunta_mis where id='$id' ";
 
             $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta baja mistery-'.$query);
 
