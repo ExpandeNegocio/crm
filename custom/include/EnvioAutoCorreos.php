@@ -445,7 +445,7 @@ class EnvioAutoCorreos
       $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]CorreoEnviado:' . $cuentaCor->mail_smtpport);
 
       //Enviamos el correo
-      if (!$mail->Send()) {
+      if ($mail->Send()) {
         $this->marcarEnviadoMailing(implode(",", $arrayCorreos), $idMailing);
         if ($mailing->guardar_correo == 1) {
           $GLOBALS['log']->info('[ExpandeNegocio][Envio correos]Entra Asociar Correo');
