@@ -60,6 +60,7 @@ class AccionesGuardadoGestionSol {
             $pre_fir1_first_name_ant="";
             $chk_gestionado_central_ant="";
             $rating_ant="";
+            $chk_entrevista_previa_ant="";
 
             while ($row = $db -> fetchByAssoc($result)) {
 
@@ -114,6 +115,7 @@ class AccionesGuardadoGestionSol {
                 $cand_avan_ant = $row["candidatura_avanzada"];
 
                 $usuario_ant = $row["assigned_user_id"];
+                $chk_entrevista_previa_ant=$row["chk_entrevista_previa"];
                 
                 $motivoPositivoAnt =$row["motivo_positivo"];
                 $rating_ant=$row["rating"];
@@ -609,7 +611,11 @@ class AccionesGuardadoGestionSol {
                 //Si volvemos de parado añadimos un texto
                 if($estadoAnt==Expan_GestionSolicitudes::ESTADO_PARADO){
                     $bean->observaciones_informe=$bean->observaciones_informe.$fechaHoy->format('d/m/Y').' : Pasamos a estado en curso \n';
-                } 
+                }
+
+               if ($chk_entrevista_previa_ant!=$bean->chk_entrevista_previa && $bean->chk_entrevista_previa==1){
+                 $bean->activarEntPrevia();
+               }
                 
                 //Los demas estados que no son el dos
             } else {

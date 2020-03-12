@@ -275,6 +275,17 @@ $searchdefs [$module_name] =
                 'width' => '10%',
                 'name' => 'chk_gestionado_central',
               ),
+
+            'chk_entrevista_previa' =>
+              array(
+                'type' => 'bool',
+                'default' => true,
+                'label' => 'LBL_ENTREVISTA_PREVIA',
+                'width' => '10%',
+                'name' => 'chk_entrevista_previa',
+              ),
+
+
           ),
       ),
     'templateMeta' =>
