@@ -755,7 +755,7 @@ function mensajeParadoDescartado(){
 }
 
 function mensajeFechaApertura() {
-    if (EsCaliente() && document.getElementById("candidatura_caliente").checked ==true ){
+    if (EsCaliente() && document.getElementById("candidatura_caliente").checked !=true ){
         alert("Revisar campo de fecha de apertura");
     }
 }
