@@ -249,94 +249,94 @@
             $empresa= new Expan_Empresa();
             $empresa->retrieve($bean->empresa_id);
 
-            if (self::$fetchedRow[$bean -> id]['chk_es_cliente_potencial']!=$bean->chk_es_cliente_potencial && $bean->chk_es_cliente_potencial!="" && $bean->chk_es_cliente_potencial!=null){
+            if (self::$fetchedRow[$bean -> id]['chk_es_cliente_potencial']!=$bean->chk_es_cliente_potencial){
               $empresa->chk_es_cliente_potencial= $bean->chk_es_cliente_potencial;
             }
-            if (self::$fetchedRow[$bean -> id]['chk_es_proveedor']!=$bean->chk_es_proveedor && $bean->chk_es_proveedor!="" && $bean->chk_es_proveedor!=null){
+            if (self::$fetchedRow[$bean -> id]['chk_es_proveedor']!=$bean->chk_es_proveedor){
               $empresa->chk_es_proveedor= $bean->chk_es_proveedor;
             }
-            if (self::$fetchedRow[$bean -> id]['chk_es_competidor']!=$bean->chk_es_competidor && $bean->chk_es_competidor!="" && $bean->chk_es_competidor!=null){
+            if (self::$fetchedRow[$bean -> id]['chk_es_competidor']!=$bean->chk_es_competidor){
               $empresa->chk_es_competidor= $bean->chk_es_competidor;
             }
-            if (self::$fetchedRow[$bean -> id]['chk_alianza']!=$bean->chk_alianza && $bean->chk_alianza!="" && $bean->chk_alianza!=null){
+            if (self::$fetchedRow[$bean -> id]['chk_alianza']!=$bean->chk_alianza){
               $empresa->chk_alianza= $bean->chk_alianza;
             }
-            if (self::$fetchedRow[$bean -> id]['cif']!=$bean->cif && $bean->cif!="" && $bean->cif!=null){
+            if (self::$fetchedRow[$bean -> id]['cif']!=$bean->cif){
               $empresa->cif= $bean->cif;
             }
-            if (self::$fetchedRow[$bean -> id]['razon_social']!=$bean->razon_social && $bean->razon_social!="" && $bean->razon_social!=null){
+            if (self::$fetchedRow[$bean -> id]['razon_social']!=$bean->razon_social){
               $empresa->razon_social= $bean->razon_social;
             }
-            if (self::$fetchedRow[$bean -> id]['regmarca']!=$bean->regmarca && $bean->regmarca!="" && $bean->regmarca!=null){
+            if (self::$fetchedRow[$bean -> id]['regmarca']!=$bean->regmarca){
               $empresa->regmarca= $bean->regmarca;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_1']!=$bean->telefono_contacto_1 && $bean->telefono_contacto_1!="" && $bean->telefono_contacto_1!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_1']!=$bean->telefono_contacto_1){
               $empresa->telefono_contacto_1= $bean->telefono_contacto_1;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_observa1']!=$bean->telefono_contacto_observa1 && $bean->telefono_contacto_observa1!="" && $bean->telefono_contacto_observa1!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_observa1']!=$bean->telefono_contacto_observa1){
               $empresa->telefono_contacto_observa1= $bean->telefono_contacto_observa1;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_2']!=$bean->telefono_contacto_2 && $bean->telefono_contacto_2!="" && $bean->telefono_contacto_2!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_2']!=$bean->telefono_contacto_2){
               $empresa->telefono_contacto_2= $bean->telefono_contacto_2;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_observa2']!=$bean->telefono_contacto_observa2 && $bean->telefono_contacto_observa2!="" && $bean->telefono_contacto_observa2!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_observa2']!=$bean->telefono_contacto_observa2){
               $empresa->telefono_contacto_observa2= $bean->telefono_contacto_observa2;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_3']!=$bean->telefono_contacto_3 && $bean->telefono_contacto_3!="" && $bean->telefono_contacto_3!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_3']!=$bean->telefono_contacto_3){
               $empresa->telefono_contacto_3= $bean->telefono_contacto_3;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_observa3']!=$bean->telefono_contacto_observa3 && $bean->telefono_contacto_observa3!="" && $bean->telefono_contacto_observa3!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_observa3']!=$bean->telefono_contacto_observa3){
               $empresa->telefono_contacto_observa3= $bean->telefono_contacto_observa3;
             }
-            if (self::$fetchedRow[$bean -> id]['persona_contacto']!=$bean->persona_contacto && $bean->persona_contacto!="" && $bean->persona_contacto!=null){
+            if (self::$fetchedRow[$bean -> id]['persona_contacto']!=$bean->persona_contacto){
               $empresa->contacto1= $bean->persona_contacto;
             }
-            if (self::$fetchedRow[$bean -> id]['contacto_general_2']!=$bean->contacto_general_2 && $bean->contacto_general_2!="" && $bean->contacto_general_2!=null){
+            if (self::$fetchedRow[$bean -> id]['contacto_general_2']!=$bean->contacto_general_2){
               $empresa->contacto2= $bean->contacto_general_2;
             }
-            if (self::$fetchedRow[$bean -> id]['phone_office']!=$bean->phone_office && $bean->phone_office!="" && $bean->phone_office!=null){
+            if (self::$fetchedRow[$bean -> id]['phone_office']!=$bean->phone_office){
               $empresa->telefono1= $bean->phone_office;
             }
-            if (self::$fetchedRow[$bean -> id]['telefono_contacto_2']!=$bean->telefono_contacto_2 && $bean->telefono_contacto_2!="" && $bean->telefono_contacto_2!=null){
+            if (self::$fetchedRow[$bean -> id]['telefono_contacto_2']!=$bean->telefono_contacto_2){
               $empresa->telefono2= $bean->telefono_contacto_2;
             }
-            if (self::$fetchedRow[$bean -> id]['movil_general']!=$bean->movil_general && $bean->movil_general!="" && $bean->movil_general!=null){
+            if (self::$fetchedRow[$bean -> id]['movil_general']!=$bean->movil_general){
               $empresa->movil1= $bean->movil_general;
             }
-            if (self::$fetchedRow[$bean -> id]['movil_general_2']!=$bean->movil_general_2 && $bean->movil_general_2!="" && $bean->movil_general_2!=null){
+            if (self::$fetchedRow[$bean -> id]['movil_general_2']!=$bean->movil_general_2){
               $empresa->movil2= $bean->movil_general_2;
             }
-            if (self::$fetchedRow[$bean -> id]['correo_general']!=$bean->correo_general && $bean->correo_general!="" && $bean->correo_general!=null){
+            if (self::$fetchedRow[$bean -> id]['correo_general']!=$bean->correo_general){
               $empresa->email_con_1= $bean->correo_general;
             }
-            if (self::$fetchedRow[$bean -> id]['correo_contacto_2']!=$bean->correo_contacto_2 && $bean->correo_contacto_2!="" && $bean->correo_contacto_2!=null){
+            if (self::$fetchedRow[$bean -> id]['correo_contacto_2']!=$bean->correo_contacto_2){
               $empresa->email_con_2= $bean->correo_contacto_2;
             }
-            if (self::$fetchedRow[$bean -> id]['observacion_con_1']!=$bean->observacion_con_1 && $bean->observacion_con_1!="" && $bean->observacion_con_1!=null){
+            if (self::$fetchedRow[$bean -> id]['observacion_con_1']!=$bean->observacion_con_1){
               $empresa->observacion_con_1= $bean->observacion_con_1;
             }
-            if (self::$fetchedRow[$bean -> id]['observacion_con_2']!=$bean->observacion_con_2 && $bean->observacion_con_2!="" && $bean->observacion_con_2!=null){
+            if (self::$fetchedRow[$bean -> id]['observacion_con_2']!=$bean->observacion_con_2){
               $empresa->observacion_con_2= $bean->observacion_con_2;
             }
-            if (self::$fetchedRow[$bean -> id]['direccion_direccion']!=$bean->direccion_direccion && $bean->direccion_direccion!="" && $bean->direccion_direccion!=null){
+            if (self::$fetchedRow[$bean -> id]['direccion_direccion']!=$bean->direccion_direccion){
               $empresa->direccion= $bean->direccion_direccion;
             }
-            if (self::$fetchedRow[$bean -> id]['direccion_provincia']!=$bean->direccion_provincia && $bean->direccion_provincia!="" && $bean->direccion_provincia!=null){
+            if (self::$fetchedRow[$bean -> id]['direccion_provincia']!=$bean->direccion_provincia){
               $empresa->provincia= $bean->direccion_provincia;
             }
-            if (self::$fetchedRow[$bean -> id]['ccaa']!=$bean->ccaa && $bean->ccaa!="" && $bean->ccaa!=null){
+            if (self::$fetchedRow[$bean -> id]['ccaa']!=$bean->ccaa){
               $empresa->ccaa= $bean->ccaa;
             }
-            if (self::$fetchedRow[$bean -> id]['pais']!=$bean->pais && $bean->pais!="" && $bean->pais!=null){
+            if (self::$fetchedRow[$bean -> id]['pais']!=$bean->pais){
               $empresa->pais= $bean->pais;
             }
-            if (self::$fetchedRow[$bean -> id]['direccion_codigo_postal']!=$bean->direccion_codigo_postal && $bean->direccion_codigo_postal!="" && $bean->direccion_codigo_postal!=null){
+            if (self::$fetchedRow[$bean -> id]['direccion_codigo_postal']!=$bean->direccion_codigo_postal){
               $empresa->codigo_postal= $bean->direccion_codigo_postal;
             }
-            if (self::$fetchedRow[$bean -> id]['website']!=$bean->website && $bean->website!="" && $bean->website!=null){
+            if (self::$fetchedRow[$bean -> id]['website']!=$bean->website){
               $empresa->web= $bean->website;
             }
-            if (self::$fetchedRow[$bean -> id]['sector']!=$bean->sector && $bean->sector!="" && $bean->sector!=null){
+            if (self::$fetchedRow[$bean -> id]['sector']!=$bean->sector){
               $empresa->sector= $bean->sector;
             }
           }
