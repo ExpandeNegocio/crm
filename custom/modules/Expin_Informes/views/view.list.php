@@ -25,8 +25,15 @@ class Expin_InformesViewList extends ViewList {
         { 
            $this->where .= " AND ";
         } 
-        
-         $this->where .= "id in (select id_informe from expan_informes_rol where id_rol='".$user_roles[0]."' )  ";
+
+        if ($current_user->id=='1' ||  $current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6'){
+          $this->where .="1=1";
+        }else{
+          $this->where .= "id in (select id_informe from expan_informes_rol where id_rol='".$user_roles[0]."' ) ";
+        }
+
+
+        $GLOBALS['log']->info('[ExpandeNegocio][ExpinInforme.view.list]Consulta-'.$this->where);
          
         $this->lv->searchColumns = $this->searchForm->searchColumns; 
         if(empty($_REQUEST['search_form_only']) || $_REQUEST['search_form_only'] == false) 
