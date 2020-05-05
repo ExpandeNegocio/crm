@@ -114,7 +114,7 @@ class opEdicionFranquicia {
         echo "<table cellpadding='0'cellspacing='0' border='0' id='tableTareas' class='list view' style='width: 100%;'>
               <thead>
                 <tr class='trClass'>
-                  <th></th><th>Franquicia</th><th>F. Inicio</th><th>F. Fin</th><th>Enero</th><th>Febrero</th><th>Marzo</th><th>Abril</th><th>Mayo</th><th>Junio</th><th>Julio</th><th>Agosto</th><th>Septiembre</th><th>Octubre</th><th>Noviembre</th><th>Diciembre</th>
+                  <th></th><th></th><th>Franquicia</th><th>F. Inicio</th><th>F. Fin</th><th>Enero</th><th>Febrero</th><th>Marzo</th><th>Abril</th><th>Mayo</th><th>Junio</th><th>Julio</th><th>Agosto</th><th>Septiembre</th><th>Octubre</th><th>Noviembre</th><th>Diciembre</th>
                 </tr>
               </thead>
               <tbody>";   
