@@ -170,9 +170,48 @@
         
     //CONS_LIMPIA_AVANZADAS
     $query = "update expan_gestionsolicitudes set candidatura_avanzada=0,candidatura_caliente=0 where estado_sol=".Expan_GestionSolicitudes::ESTADO_PARADO." or estado_sol=".Expan_GestionSolicitudes::ESTADO_DESCARTADO;
-    $result = $db -> query($query);    
-    
-    //CONS_ADD_DESCARTE
+    $result = $db -> query($query);
+
+    //Pasamos a no calientes aquellas gestiones que estando calientes no tienen acciones o la apertura cercana
+
+    $query = "update expan_gestionsolicitudes ";
+    $query=$query."set candidatura_caliente = 0 ";
+    $query=$query."where ";
+    $query=$query."candidatura_caliente = 1 and not ( abs(TIMESTAMPDIFF(DAY, DATE(cuando_empezar), CURDATE()))<180 AND  id in ( ";
+    $query=$query."                                  SELECT g.id ";
+    $query=$query."                                  FROM   expan_gestionsolicitudes g, calls c ";
+    $query=$query."                                  WHERE  status = 'held' AND c.parent_id = g.id  ";
+    $query=$query."                                  and abs(TIMESTAMPDIFF(DAY, DATE(c.date_modified), CURDATE()))<60 and c.deleted=0 ";
+    $query=$query."                                  UNION ALL ";
+    $query=$query."                                  SELECT g.id ";
+    $query=$query."                                  FROM   expan_gestionsolicitudes g, tasks t ";
+    $query=$query."                                  WHERE  status = 'Completed' AND t.parent_id = g.id ";
+    $query=$query."                                  and abs(TIMESTAMPDIFF(DAY, DATE(t.date_modified), CURDATE()))<60 and t.deleted=0 ";
+    $query=$query."                                  UNION ALL ";
+    $query=$query."                                  SELECT g.id ";
+    $query=$query."                                  FROM   expan_gestionsolicitudes g, meetings m ";
+    $query=$query."                                  WHERE  status = 'held' AND m.parent_id = g.id  ";
+    $query=$query."                                  and abs(TIMESTAMPDIFF(DAY, DATE(m.date_modified), CURDATE()))<60 and m.deleted=0)) ";
+    $result = $db -> query($query);
+
+
+    //Actualizamos las solicitudes con la caliente
+
+    $query = "UPDATE expan_solicitud ";
+    $query=$query."SET    candidatura_caliente = 0 ";
+      $result = $db -> query($query);
+
+    $query = "UPDATE expan_solicitud ";
+    $query=$query."SET    candidatura_caliente = 1 ";
+    $query=$query."WHERE  id IN ";
+    $query=$query."         (SELECT s.id ";
+    $query=$query."          FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+    $query=$query."          WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
+    $query=$query."                 AND g.deleted = 0 AND g.candidatura_caliente = 1) ";
+    $result = $db -> query($query);
+
+
+  //CONS_ADD_DESCARTE
     $query = "update expan_gestionsolicitudes set motivo_descarte=99 where estado_sol = ".Expan_GestionSolicitudes::ESTADO_DESCARTADO." and motivo_descarte is null";
     $result = $db -> query($query);
     

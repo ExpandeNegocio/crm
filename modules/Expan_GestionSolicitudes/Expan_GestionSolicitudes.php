@@ -735,7 +735,8 @@
             $this->chk_posible_colabora == true ||
             $this->chk_envio_contrato_personal ||
             $this->chk_contrato_firmado == true
-          ))
+          ) &&
+          ($this->critTiempoCal()==true))
         ||
         ($this->estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
           $this->motivo_positivo == Expan_GestionSolicitudes::POSITIVO_PRECONTRATO)) {
@@ -744,6 +745,39 @@
       } else {
         $this->candidatura_caliente = false;
       }
+    }
+
+    private function critTiempoCal(){
+      $cuando_empezar=new DateTime($this->cuando_empezar);
+      $hoy = new DateTime("now");
+      $dif=abs($cuando_empezar-$hoy);
+
+      if ($dif<90) {
+        return true;
+      }
+
+      $query = "select sum(num) cont from (select count(1) num ";
+      $query=$query."FROM   expan_gestionsolicitudes g, calls c  ";
+      $query=$query."WHERE  status = 'held' AND c.parent_id = '' ";
+      $query=$query."and abs(TIMESTAMPDIFF(DAY, DATE(c.date_modified), CURDATE()))<60 and c.deleted=0  ";
+      $query=$query."UNION ALL  ";
+      $query=$query."SELECT count(1) num ";
+      $query=$query."FROM   expan_gestionsolicitudes g, tasks t  ";
+      $query=$query."WHERE  status = 'Completed' AND t.parent_id = '' ";
+      $query=$query."and abs(TIMESTAMPDIFF(DAY, DATE(t.date_modified), CURDATE()))<60 and t.deleted=0  ";
+      $query=$query."UNION ALL  ";
+      $query=$query."SELECT count(1) num ";
+      $query=$query."FROM   expan_gestionsolicitudes g, meetings m  ";
+      $query=$query."WHERE  status = 'held' AND m.parent_id ='' ";
+      $query=$query."and abs(TIMESTAMPDIFF(DAY, DATE(m.date_modified), CURDATE()))<60 and m.deleted=0)a; ";
+
+      $result = $db->query($query, true);
+      while ($row = $db->fetchByAssoc($result)) {
+        if ($row["num"] != 0) {
+          return true;
+        }
+      }
+      return false;
     }
 
     public function creaReunion($texto, $tipo, $días)
