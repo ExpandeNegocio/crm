@@ -99,7 +99,7 @@ switch ($tipo) {
     $query=$query."          SELECT   dr.id, dr.filename, a.f_accion, 'Descargado' AS tipo ";
     $query=$query."          FROM     expan_mailing_actions a, document_revisions dr ";
     $query=$query."          WHERE    gestion_id = '$idGest' AND dr.id = a.c_doc AND c_accion = 'DF' AND deleted = 0 ";
-    $query=$query."          GROUP BY gestion_id, c_doc) yy ";
+    $query=$query."          GROUP BY gestion_id, c_doc,a.f_accion) yy ";
     $query=$query."ORDER BY fecha DESC; ";
 
 

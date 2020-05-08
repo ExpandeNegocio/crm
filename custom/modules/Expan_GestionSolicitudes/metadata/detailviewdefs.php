@@ -665,6 +665,19 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'chk_firma_corto',
+                        'studio' => 'visible',
+                        'label' => 'LBL_CHK_FIRMA_CORTO',
+                      ),
+                    1 =>
+                      array(
+                      ),
+                  ),
+
+                34 =>
+                  array(
+                    0 =>
+                      array(
                         'name' => 'inversion',
                         'studio' => 'visible',
                         'label' => 'LBL_INVERSION',
@@ -677,7 +690,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                34 =>
+                35 =>
                   array(
                     0 => array(
                       'name' => 'perfil_ideoneo',
@@ -691,7 +704,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                35 =>
+                36 =>
                   array(
                     0 =>
                       array(),
@@ -703,7 +716,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                36 =>
+                37 =>
                   array(
                     0 =>
                       array(),
@@ -715,7 +728,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                37 =>
+                38 =>
                   array(
                     0 =>
                       array(
@@ -730,7 +743,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                38 =>
+                39 =>
                   array(
                     0 =>
                       array(
@@ -744,7 +757,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                39 =>
+                40 =>
                   array(
                     0 =>
                       array(
@@ -760,7 +773,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                40 =>
+                41 =>
                   array(
                     0 =>
                       array(
@@ -792,7 +805,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                41 =>
+                42 =>
                   array(
                     0 =>
                       array(
@@ -807,7 +820,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                42 =>
+                43 =>
                   array(
                     0 =>
                       array(
@@ -822,7 +835,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                43 =>
+                44 =>
                   array(
                     0 =>
                       array(
@@ -837,7 +850,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                44 =>
+                45 =>
                   array(
                     0 =>
                       array(
@@ -852,7 +865,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                45 =>
+                46 =>
                   array(
                     0 => 'assigned_user_name',
                     1 =>
@@ -871,7 +884,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                46 =>
+                47 =>
                   array(
                     0 => array(
                       'name' => 'modified_by_name',

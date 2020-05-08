@@ -760,6 +760,15 @@ function mensajeFechaApertura() {
     }
 }
 
+function mensajeFirmaCorto(){
+    if (EsCaliente() && document.getElementById("chk_firma_corto").checked !=true ){
+        var opcion = confirm("¿La gestion se estima como una firma a corto plao?");
+        if (opcion == true) {
+            $('#chk_firma_corto').attr('checked', true);
+        }
+    }
+}
+
 /**
  *Oculta el encabezado de los modelos de negocio cuando no los hay
  */
@@ -1481,6 +1490,7 @@ function validarEdicion(idGestion) {
     }
     mensajeParadoDescartado();
     mensajeFechaApertura();
+    mensajeFirmaCorto();
     return check_form("EditView");
 }
 

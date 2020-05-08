@@ -739,12 +739,20 @@
           ($this->critTiempoCal()==true))
         ||
         ($this->estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
-          $this->motivo_positivo == Expan_GestionSolicitudes::POSITIVO_PRECONTRATO)) {
+          $this->motivo_positivo == Expan_GestionSolicitudes::POSITIVO_PRECONTRATO) ||
+        ($this->estado_sol == Expan_GestionSolicitudes::ESTADO_EN_CURSO && $this->chk_firma_corto==true)){
 
-        $this->candidatura_caliente = true;
+          $this->candidatura_caliente = true;
       } else {
         $this->candidatura_caliente = false;
       }
+    }
+
+    public function calcCorto(){
+       if ($this->estado_sol != Expan_GestionSolicitudes::ESTADO_EN_CURSO ||
+         $this->candidatura_caliente == false){
+         $this->chk_firma_corto==false;
+       }
     }
 
     private function critTiempoCal(){

@@ -751,6 +751,7 @@ class AccionesGuardadoGestionSol {
 
             $bean -> calcAvanzado();
             $bean -> calcCaliente();
+            $bean -> calcCorto();
             $bean -> procesarObservaciones();
             
             //Si pasamos a caliente o avanzada pero antes no lo eran

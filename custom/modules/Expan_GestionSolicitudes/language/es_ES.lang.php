@@ -102,4 +102,5 @@
     'LBL_PAIS_APERTURA' => 'Pais Apertura',
     'LBL_SUBESTADO_PRECANDIDATO' => 'Estado precandidato',
     'LBL_ENTREVISTA_PREVIA_CANCELADA' => 'Entrevista cancelada',
+    'LBL_CHK_FIRMA_CORTO' => 'Firma a corto plazo'
   );

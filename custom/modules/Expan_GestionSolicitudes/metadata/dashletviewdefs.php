@@ -89,6 +89,13 @@ $dashletData['Expan_GestionSolicitudesDashlet']['columns'] = array (
     'label' => 'Candidatura Avanzada',
     'width' => '10%',
   ),
+  'chk_firma_corto' =>
+    array (
+      'type' => 'bool',
+      'default' => false,
+      'label' => 'LBL_CHK_FIRMA_CORTO',
+      'width' => '10%',
+    ),
   'provincia_apertura_1' => 
   array (
     'default' => false,

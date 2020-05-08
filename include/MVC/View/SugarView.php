@@ -1675,7 +1675,5 @@ EOHTML;
         }
         return false;
     }
-
-
 }
 ?>

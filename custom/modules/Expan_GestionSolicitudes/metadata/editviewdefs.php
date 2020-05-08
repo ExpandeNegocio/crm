@@ -691,6 +691,19 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'chk_firma_corto',
+                        'studio' => 'visible',
+                        'label' => 'LBL_CHK_FIRMA_CORTO',
+                      ),
+                    1 =>
+                      array(
+                      ),
+                  ),
+
+                33 =>
+                  array(
+                    0 =>
+                      array(
                         'name' => 'inversion',
                         'studio' => 'visible',
                         'label' => 'LBL_INVERSION',
@@ -703,7 +716,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                33 =>
+                34 =>
                   array(
                     0 =>
                       array(
@@ -719,7 +732,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                34 =>
+                35 =>
                   array(
                     0 =>
                       array(
@@ -733,7 +746,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                35 =>
+                36 =>
                   array(
                     0 =>
                       array(),
@@ -745,7 +758,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                36 =>
+                37 =>
                   array(
                     0 =>
                       array(),
@@ -757,7 +770,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                37 =>
+                38 =>
                   array(
                     0 =>
                       array(),
@@ -769,7 +782,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                38 =>
+                39 =>
                   array(
                     0 =>
                       array(),
@@ -781,7 +794,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                39 =>
+                40 =>
                   array(
                     0 =>
                       array(),
@@ -793,7 +806,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                40 =>
+                41 =>
                   array(
                     0 =>
                       array(
@@ -803,7 +816,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                41 =>
+                42 =>
                   array(
                     0 =>
                       array(
@@ -813,7 +826,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                42 =>
+                43 =>
                   array(
                     0 =>
                       array(
@@ -829,7 +842,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                43 =>
+                44 =>
                   array(
                     0 =>
                       array(
@@ -845,7 +858,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                44 =>
+                45 =>
                   array(
                     0 =>
                       array(
@@ -855,7 +868,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                45 =>
+                46 =>
                   array(
                     0 =>
                       array(
@@ -865,7 +878,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                46 =>
+                47 =>
                   array(
                     0 =>
                       array(
@@ -881,7 +894,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                47 =>
+                48 =>
                   array(
                     0 =>
                       array(
@@ -897,7 +910,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                48 =>
+                49 =>
                   array(
                     0 =>
                       array(
@@ -907,7 +920,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                49 =>
+                50 =>
                   array(
                     0 =>
                       array(
@@ -917,7 +930,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                50 =>
+                51 =>
                   array(
                     0 =>
                       array(
@@ -933,7 +946,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                51 =>
+                52 =>
                   array(
                     0 =>
                       array(
@@ -949,7 +962,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                52 =>
+                53 =>
                   array(
                     0 =>
                       array(
@@ -959,7 +972,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                53 =>
+                54 =>
                   array(
                     0 =>
                       array(
@@ -969,7 +982,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                54 =>
+                55 =>
                   array(
                     0 =>
                       array(
@@ -985,7 +998,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                55 =>
+                56 =>
                   array(
                     0 =>
                       array(
@@ -1001,7 +1014,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                56 =>
+                57 =>
                   array(
                     0 =>
                       array(
@@ -1011,7 +1024,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                57 =>
+                58 =>
                   array(
                     0 =>
                       array(),
@@ -1023,7 +1036,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                58 =>
+                59 =>
                   array(
                     0 => 'assigned_user_name',
 
@@ -1034,7 +1047,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                59 =>
+                60 =>
                   array(
                     0 =>
                       array(
@@ -1050,7 +1063,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                60 =>
+                61 =>
                   array(
                     0 =>
                       array(
@@ -1078,7 +1091,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                61 =>
+                62 =>
                   array(
                     0 =>
                       array(
@@ -1106,7 +1119,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                62 =>
+                63 =>
                   array(
                     0 =>
                       array(
@@ -1122,7 +1135,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                63 =>
+                64 =>
                   array(
                     0 =>
                       array(
@@ -1138,7 +1151,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                64 =>
+                65=>
                   array(
                     0 =>
                       array(
@@ -1166,7 +1179,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                65 =>
+                66 =>
                   array(
                     0 =>
                       array(
@@ -1194,7 +1207,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                66 =>
+                67 =>
                   array(
                     0 =>
                       array(
@@ -1210,7 +1223,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                67 =>
+                68 =>
                   array(
                     0 =>
                       array(
@@ -1226,7 +1239,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                68 =>
+                69 =>
                   array(
                     0 =>
                       array(
@@ -1254,7 +1267,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                69 =>
+                70 =>
                   array(
                     0 =>
                       array(
@@ -1282,7 +1295,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                70 =>
+                71 =>
                   array(
                     0 =>
                       array(
@@ -1298,7 +1311,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                71 =>
+                72 =>
                   array(
                     0 =>
                       array(
@@ -1314,7 +1327,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                72 =>
+                73 =>
                   array(
                     0 =>
                       array(
@@ -1342,7 +1355,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                73 =>
+                74 =>
                   array(
                     0 =>
                       array(
@@ -1370,7 +1383,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                74 =>
+                75 =>
                   array(
                     0 =>
                       array(
@@ -1386,7 +1399,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                75 =>
+                76 =>
                   array(
                     0 => array(
                       'name' => 'modified_by_name',
@@ -1399,7 +1412,7 @@ $viewdefs [$module_name] =
 
                   ),
 
-                76 =>
+                77 =>
                   array(
                     0 => array(),
                     1 => array(

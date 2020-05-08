@@ -177,7 +177,7 @@
     $query = "update expan_gestionsolicitudes ";
     $query=$query."set candidatura_caliente = 0 ";
     $query=$query."where ";
-    $query=$query."candidatura_caliente = 1 and not ( abs(TIMESTAMPDIFF(DAY, DATE(cuando_empezar), CURDATE()))<180 AND  id in ( ";
+    $query=$query."candidatura_caliente = 1 and not chk_firma_corto=1 and not ( abs(TIMESTAMPDIFF(DAY, DATE(cuando_empezar), CURDATE()))<180 AND  id in ( ";
     $query=$query."                                  SELECT g.id ";
     $query=$query."                                  FROM   expan_gestionsolicitudes g, calls c ";
     $query=$query."                                  WHERE  status = 'held' AND c.parent_id = g.id  ";
@@ -208,6 +208,10 @@
     $query=$query."          FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
     $query=$query."          WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida ";
     $query=$query."                 AND g.deleted = 0 AND g.candidatura_caliente = 1) ";
+    $result = $db -> query($query);
+
+    $query = "UPDATE expan_solicitud ";
+    $query=$query."SET chk_firma_corto=0 here  candidatura_caliente = 0 ";
     $result = $db -> query($query);
 
 
