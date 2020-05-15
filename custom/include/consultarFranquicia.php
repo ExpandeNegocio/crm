@@ -56,7 +56,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
             $sectores=array();
             $nomFran=str_replace(",","','",$nomFran);
             $query="SELECT s.d_subsector sub, s.c_sector FROM expan_franquicia f, expan_m_sectores s ";
-            $query=$query."WHERE replace(f.sector,'^','')=s.c_id AND f.deleted=0 AND f.name in  ('".$nomFran."');";
+            $query=$query."WHERE f.sector like concat('%^', s.c_id,'^%') AND f.deleted=0 AND f.name in  ('$nomFran');";
 
             $result = $db -> query($query, true);
             while ($row = $db -> fetchByAssoc($result)) {
