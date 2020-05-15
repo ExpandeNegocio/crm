@@ -103,6 +103,7 @@ $entry_point_registry = array(
     'procesadoCandidaturasCron'=>array('file' => 'custom/include/ProcesarCandidaturas.php', 'auth' => false),
     'procesadoFormulariosCron'=>array('file' => 'custom/include/ProcesarFormularios.php', 'auth' => false),
     'procesarGoogleForms'=>array('file' => 'custom/include/ProcesarGoogleForms.php', 'auth' => false),
+    'procesarGoogleFormsCitas'=>array('file' => 'custom/include/ProcesarGoogleFormsCitas.php', 'auth' => false),
     'cambioEstadoGestion'=>array('file' => 'custom/include/CambioEstadoGestion.php', 'auth' => false),
     'recogellamadasGestion'=>array('file' => 'custom/modules/Expan_GestionSolicitudes/metadata/recogellamadasGestion.php', 'auth' => false),
     'eliminarTareasCuestionario'=>array('file' => 'custom/modules/Expan_GestionSolicitudes/metadata/eliminarTareasCuestionario.php', 'auth' => false),

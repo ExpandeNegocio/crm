@@ -190,12 +190,11 @@ class Expan_Solicitud extends Expan_Solicitud_sugar {
             $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][getGestionFromFranID]franquicia' . $gestion -> franquicia);
 
             if ($gestion -> franquicia == $franID) {
-                echo "Encuentra Gestion" ."<br>";
+                $GLOBALS['log'] -> info('[ExpandeNegocio][Expan_Solicitud][getGestionFromFranID]Encontrada la franquicia' . $gestion -> franquicia."-Gestion-". $gestion ->id);
                 return $gestion;
             }
         }
         return null;
-
     }
 
     function recogeTelefono() {
