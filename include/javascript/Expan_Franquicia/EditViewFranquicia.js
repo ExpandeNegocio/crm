@@ -108,6 +108,49 @@ $("#tags_empresa").keyup(function(){//cuando pulses la caja de texto
 		}
 	});
 
+$("#tags_empresa_formacion").keyup(function(){//cuando pulses la caja de texto
+	var campoF=$(this).val();	//valor del texto
+	var arrayTag=campoF.split(","); //todas las franquicias separadas por comas en un array
+	var tagHastaUlComa="";
+	for(var i=0;i<arrayTag.length-1;i++){//construir las franquicias anteriores
+		tagHastaUlComa=tagHastaUlComa+arrayTag[i]+",";
+	}
+	var longi=arrayTag.length;//cuantas hay
+
+	var tag=arrayTag[longi-1];//la ultima franquicia, que es sobre la que se quiere hacer la consulta
+	var tagSE=tag.trim(); //eliminar espacios en blanco
+
+
+	if(tagSE.length>1){//solo se hace la llamada si se han escrito 3 caracteres
+
+		var dataTag="tags="+tagSE+"&tipoTag=expan_tag_perfil_formacion";
+
+		//llamada ajax
+		$.ajax({
+			type:"POST",
+			url:"index.php?entryPoint=RecogeTags",
+			data: dataTag,
+			success: function(data){
+				$('#sugerencias_tag_emp_form').fadeIn(500).html(data);
+				$('.sug_form').live('click', function(){//cuando se pulsa una
+					var tag=$(this).text();
+					if(longi==1){//borrar todo y sustituir por el nuevo valor
+						$('#tags_empresa_formacion').val(tag);//editar input
+					}else{//poner las anteriores, y después la nueva
+						$('#tags_empresa_formacion').val(tagHastaUlComa+tag);
+					}
+
+					$('#sugerencias_tag_emp_form').fadeOut(500);//quitar las sugerencias
+				});
+
+				$('#detailpanel_4').live('click', function(){//que se cierre el cuadro de sugerencias en caso de pulsar fuera
+					$('#sugerencias_tag_emp_form').fadeOut(500);
+				});
+			}
+		});
+	}
+});
+
 $("#busca_habilidadTagCheck").keyup(function(){//cuando pulses la caja de texto
 		
 		$(".habilidadTagCheck").parent().css( "background-color", "");

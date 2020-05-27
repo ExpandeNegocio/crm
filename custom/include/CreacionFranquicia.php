@@ -339,9 +339,10 @@
             if (self::$fetchedRow[$bean -> id]['sector']!=$bean->sector){
               $empresa->sector= $bean->sector;
             }
+            $empresa->ignore_update_c=true;
+            $empresa->save();
+
           }
-          $empresa->ignore_update_c=true;
-          $empresa->save();
         }
     }
 ?>

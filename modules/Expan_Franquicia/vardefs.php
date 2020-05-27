@@ -4049,6 +4049,27 @@ $dictionary['Expan_Franquicia'] = array(
         'size' => '100',
       ),
 
+    'tags_empresa_formacion' =>
+      array(
+        'required' => false,
+        'name' => 'tags_empresa_formacion',
+        'vname' => 'LBL_TAG_EMPRESA_FORMACION',
+        'type' => 'varchar',
+        'massupdate' => 0,
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '512',
+        'size' => '100',
+      ),
+
     'habilidades' =>
       array(
         'required' => false,

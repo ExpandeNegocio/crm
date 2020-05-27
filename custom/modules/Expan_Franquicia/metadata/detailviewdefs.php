@@ -1932,6 +1932,11 @@
                           'name' => 'tags_empresa',
                           'label' => 'LBL_TAG_EMPRESA',
                         ),
+                      1 =>
+                        array(
+                          'name' => 'tags_empresa_formacion',
+                          'label' => 'LBL_TAG_EMPRESA_FORMACION',
+                        ),
                     ),
 
                   2 =>

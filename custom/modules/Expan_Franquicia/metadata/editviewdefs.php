@@ -1964,13 +1964,13 @@
                     array(
                       0 =>
                         array(
-                          'name' => 'habilidades',
-                          'label' => 'LBL_HABILIDADES',
+                          'name' => 'motivos_interes',
+                          'label' => 'LBL_MOTIVOS_INTERES',
                         ),
                       1 =>
                         array(
-                          'name' => 'motivos_interes',
-                          'label' => 'LBL_MOTIVOS_INTERES',
+                          'name' => 'habilidades',
+                          'label' => 'LBL_HABILIDADES',
                         ),
                     ),
 
@@ -1988,6 +1988,19 @@
       
             {/php}
             <div id="sugerencias_tag_emp" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencias_tag_emp"></div>',
+                        ),
+                      1 =>
+                        array(
+                          'name' => 'tags_empresa_formacion',
+                          'label' => 'LBL_TAG_EMPRESA_FORMACION',
+                          'customCode' =>
+                            '{php}                
+                $fran=new opEdicionSolicitud();
+                $idFran=$this-> _tpl_vars["bean"]-> id;
+                $fran->recogerTagsEmpresaFormacion($idFran);  
+      
+            {/php}
+            <div id="sugerencias_tag_emp_form" class="ui-autocomplete" style="display:none;background:white;overflow:auto" class="ui-menu" name="sugerencias_tag_emp_form"></div>',
                         ),
                     ),
 
