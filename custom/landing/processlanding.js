@@ -106,13 +106,13 @@ function unsubscribe(gestId){
     }
 
     if (sel){
-        url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&gestId='+ gestId;
+        url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&tipo=gestionid&gestId='+ gestId;
         $.ajax({
             type : "GET",
             url : url,
             dataType: 'jsonp',
             crossDomain: true,
-            data : "gestId="+ gestId,
+            data : "tipo=gestionid&gestId="+ gestId,
 
             success : function(data) {
 
@@ -127,4 +127,29 @@ function unsubscribe(gestId){
     }else{
         alert('Es necesario seleccionar alguno de las opciones para dar de baja la cuenta de correo');
     }
+}
+
+function unsubscribeEmail(){
+
+    var correo=$("#email").val();
+
+    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&tipo=email&email='+ correo;
+    $.ajax({
+        type : "GET",
+        url : url,
+        dataType: 'jsonp',
+        crossDomain: true,
+        data : "tipo=email&email="+ correo,
+
+        success : function(data) {
+
+            if ( data.resp != "") {
+                alert("El correo " + correo +" se ha dado de baja con exito");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            alert('No se ha podido dar de baja el usuario - ' + textStatus + ' - ' + errorThrown);
+        }
+    });
+
 }

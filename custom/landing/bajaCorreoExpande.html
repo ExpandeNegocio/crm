@@ -13,13 +13,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>*|MC:SUBJECT|*</title>
+        <title>Baja correos #franquicia#</title>
         
     <style type="text/css">
 		p{
 			margin:10px 0;
 			padding:0;
-		}
+		}|
 		table{
 			border-collapse:collapse;
 		}
@@ -546,9 +546,11 @@
 		}
 
 }</style></head>
+<script src="https://expandenegocio.com/sugarcrm/custom/landing/processlanding.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <body>
         <!--*|IF:MC_PREVIEW_TEXT|*-->
-        <!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">*|MC_PREVIEW_TEXT|*</span><!--<![endif]-->
+        <!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;"></span><!--<![endif]-->
         <!--*|END:IF|*-->
         <center>
             <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
@@ -574,7 +576,7 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
                                     
-                                        <img align="center" alt="" src="https://www.expandenegocio.cm/imagenes/ExpandenegocioLogo.jpg" width="200" style="max-width:200px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                        <img align="center" alt="" src="http://www.expandenegocio.com/imagenes/ExpandenegocioLogo.jpg"  style="max-width:200px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                     
                                 
                             </td>
@@ -604,7 +606,7 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
                             <div style="text-align: center;"><br>
-<span style="font-size:22px"><span style="font-family:helvetica neue,helvetica,arial,verdana,sans-serif"><strong>¿Seguro que desea dejar de recibir información acerca de Tomate Fresh Fun Food?</strong></span></span><br>
+<span style="font-size:22px"><span style="font-family:helvetica neue,helvetica,arial,verdana,sans-serif"><strong>¿Quiere darse de baja en los envios automatizados de ExpandeNegocio?</strong></span></span><br>
 &nbsp;</div>
 
                         </td>
@@ -639,7 +641,7 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
                             <div style="text-align: center;"><br>
-[INSERTAR CAJA PARA EL CORREO ELECTRÓNICO]</div>
+ Indique el correo electrónico que quiere dar de baja en el servicio</div>
 
                         </td>
                     </tr>
@@ -652,6 +654,18 @@
 				</tr>
 				</table>
 				<![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCodeBlock">
+    <tbody class="mcnTextBlockOuter">
+        <tr>
+            <td valign="top"  class="mcnTextContent" style="text-align: center;" >
+            	<font face="helvetica neue, helvetica, arial, verdana, sans-serif">
+                    <input type="email" id="email">
+            	</font>
+				<br>
+            </td>
+        </tr>
+    </tbody>
+</table>
             </td>
         </tr>
     </tbody>
@@ -763,11 +777,11 @@
     <tbody class="mcnButtonBlockOuter">
         <tr>
             <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-                <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 4px;background-color: #007A2D;">
+                <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 4px;background-color: #007a2d;">
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif; font-size: 16px; padding: 18px;">
-                                <a class="mcnButton " title="Dar de baja" href="" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Dar de baja</a>
+                                <a class="mcnButton " title="Dar de baja" onclick="unsubscribeEmail()" href="#" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Dar de baja</a>
                             </td>
                         </tr>
                     </tbody>
