@@ -507,6 +507,17 @@ $viewdefs [$module_name] =
                   array(
                     0 =>
                       array(
+                        'name' => 'perfil_plurifranquiciado',
+                        'studio' => 'visible',
+                        'label' => 'LBL_PERFIL_PLURIFRANQUICIADO',
+                      ),
+
+                  ),
+
+                2 =>
+                  array(
+                    0 =>
+                      array(
                         'name' => 'perfil_profesional',
                         'label' => 'LBL_PERFIL_PROFESIONAL',
                       ),
@@ -518,7 +529,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                2 =>
+                3 =>
                   array(
                     0 =>
                       array(),
@@ -529,7 +540,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                3 =>
+                4 =>
                   array(
                     0 =>
                       array(),
@@ -540,7 +551,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                4 =>
+                5 =>
                   array(
                     0 =>
                       array(),
@@ -551,7 +562,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                5 =>
+                6 =>
                   array(
                     0 =>
                       array(),
@@ -562,7 +573,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                6 =>
+                7 =>
                   array(
                     0 =>
                       array(),
@@ -573,7 +584,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                7 =>
+                8 =>
                   array(
                     0 =>
                       array(),
@@ -584,7 +595,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                8 =>
+                9 =>
                   array(
                     0 =>
                       array(),
@@ -595,7 +606,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                9 =>
+                10 =>
                   array(
                     0 =>
                       array(),
@@ -606,7 +617,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                10 =>
+                11 =>
                   array(
                     0 =>
                       array(),
@@ -617,7 +628,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                11 =>
+                12 =>
                   array(
                     0 =>
                       array(),
@@ -628,7 +639,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                12 =>
+                13 =>
                   array(
                     0 =>
                       array(
@@ -643,7 +654,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                13 =>
+                14 =>
                   array(
                     0 =>
                       array(
@@ -657,7 +668,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                14 =>
+                15 =>
                   array(
                     0 =>
                       array(
@@ -674,7 +685,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                15 =>
+                16 =>
                   array(
                     0 =>
                       array(
@@ -690,7 +701,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                16 =>
+                17 =>
                   array(
                     0 =>
                       array(
@@ -706,7 +717,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                17 =>
+                18 =>
                   array(
                     0 =>
                       array(
@@ -720,7 +731,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                18 =>
+                19 =>
                   array(
                     0 =>
                       array(
@@ -729,7 +740,7 @@ $viewdefs [$module_name] =
                       ),
                   ),
 
-                19 =>
+                20 =>
                   array(
                     0 => array(
                       'name' => 'rating',
@@ -743,7 +754,7 @@ $viewdefs [$module_name] =
                     ),
                   ),
 
-                20 =>
+                21 =>
                   array(
                     0 => array(),
                     1 => array(
