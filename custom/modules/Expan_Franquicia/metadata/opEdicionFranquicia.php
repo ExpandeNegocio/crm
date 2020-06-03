@@ -519,7 +519,7 @@
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select id, case when tipo_entrevista='Ll' Then 'LLamada' when tipo_entrevista='Re' then 'Reunión' when tipo_entrevista='Re' then 'Reunión' else '' END tipo_entrevista, ";
+      $query = "select id, case when tipo_entrevista='Ll' Then 'LLamada' when tipo_entrevista='Re' then 'Reunión' when tipo_entrevista='So' then 'Solicitud Informacion' else '' END tipo_entrevista, ";
       $query = $query . "nom_entrevistado, case WHEN f_entrevista='00/00/0000' then '' else DATE_FORMAT(f_entrevista, '%d/%m/%Y') end as f_entrevista,nom_utilizado,ubicacion ";
       $query = $query . "from expan_empresa_mistery_fdo  ";
       $query = $query . "where empresa_id='$idEmpresa' OR franquicia_id='$idEmpresa'";
@@ -558,7 +558,7 @@
 
       $db = DBManagerFactory::getInstance();
 
-      $query = "select id, case when tipo_entrevista='Ll' Then 'LLamada' when tipo_entrevista='Re' then 'Reunión' when tipo_entrevista='Re' then 'Reunión' else '' END tipo_entrevista, ";
+      $query = "select id, case when tipo_entrevista='Ll' Then 'LLamada' when tipo_entrevista='Re' then 'Reunión' when tipo_entrevista='So' then 'Solicitud Informacion' else '' END tipo_entrevista, ";
       $query = $query . "nom_central, case WHEN f_entrevista='00/00/0000' then '' else DATE_FORMAT(f_entrevista, '%d/%m/%Y') end as f_entrevista,nom_utilizado,ubicacion ";
       $query = $query . "from expan_empresa_mistery_central  ";
       $query = $query . "where empresa_id='$idEmpresa' OR franquicia_id='$idEmpresa'";
