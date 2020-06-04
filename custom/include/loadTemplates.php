@@ -5,6 +5,11 @@
     $accion='showLoad';
   }
 
+  $target_dir = "custom/landing/";
+
+  $listadoArchivos=listarArchivos($target_dir,"html");
+
+
   switch ($accion) {
     case 'showLoad':
 
@@ -79,9 +84,8 @@
                               </table>
                 </td>
                 </tr>
-                </tbody></table>
-                
-                <br>
+                </tbody></table>                               
+                                
                 
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tbody><tr>
@@ -91,7 +95,9 @@
                 </tr>
                 </tbody></table>
                 
+                 <br>
                 
+                Plantillas:<br>'.$listadoArchivos.'<br>
                 
                 </script>  
                 </form>
@@ -107,7 +113,7 @@
       break;
 
     case 'load' :
-      $target_dir = "custom/landing/";
+
       $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
 
       echo "Procesando fichero: " . $target_file . "<br>";
@@ -147,6 +153,26 @@
         echo "Ha habido un error subiendo el fichero.<br>";
       }
     }
+  }
+
+  function listarArchivos( $path,$fileExtension ){
+    // Abrimos la carpeta que nos pasan como parámetro
+    $dir = opendir($path);
+
+    $out='<ul>';
+
+    while ($elemento = readdir($dir)){
+      if( $elemento != "." && $elemento != ".." && $elemento){
+
+        if(! is_dir($path.$elemento) ){
+          $ext = substr($elemento, strrpos($elemento, '.') + 1);
+          if ($ext==$fileExtension){
+            $out .= "<li>" . $elemento."</li>";
+          }
+        }
+      }
+    }
+    return $out.'</ul>';
   }
 
 ?>
