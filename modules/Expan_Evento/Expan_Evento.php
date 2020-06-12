@@ -261,7 +261,7 @@ class Expan_Evento extends Expan_Evento_sugar {
         $db = DBManagerFactory::getInstance();
         
         if ($ConDummies==true){
-            $query = "select count(1) num from (SELECT s.from_import  ";
+            $query = "select count(1) num from (SELECT s.from_import ";
             $query=$query."FROM   expan_solicitud s,  ";
             $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs,  ";
             $query=$query."       users u,  ";
@@ -274,7 +274,7 @@ class Expan_Evento extends Expan_Evento_sugar {
             $query=$query."       s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND s.created_by=u.id ";
             $query=$query."       AND s.from_import=1) a; ";
         }else{
-            $query = "select count(1) num from (SELECT s.from_import  ";
+            $query = "select count(1) num from (SELECT s.from_import ";
             $query=$query."FROM   expan_solicitud s,  ";
             $query=$query."       expan_solicitud_expan_gestionsolicitudes_1_c gs,  ";
             $query=$query."       users u,  ";
@@ -524,7 +524,7 @@ class Expan_Evento extends Expan_Evento_sugar {
                 
         $db = DBManagerFactory::getInstance();
         
-        //Cogemos las originales
+        //Cogemos las actuales
         if ($ConDummies==true){
                         $query = "select count(1) num from ( ";
             $query=$query."SELECT s.id sid, date_entered de ";
