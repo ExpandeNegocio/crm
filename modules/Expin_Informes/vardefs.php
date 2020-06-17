@@ -127,7 +127,111 @@ $dictionary['Expin_Informes'] = array(
         'studio' => 'visible',
         'isMultiSelect' => false,
         'default' => '2',
-      ), 
+      ),
+
+      'columna_ins' =>
+        array (
+          'required' => false,
+          'name' => 'columna_ins',
+          'vname' => 'LBL_COLUMNA_INS',
+          'type' => 'varchar',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => '3',
+          'size' => '3',
+        ),
+
+      'fila_ins' =>
+        array (
+          'required' => false,
+          'name' => 'fila_ins',
+          'vname' => 'LBL_FILA_INS',
+          'type' => 'int',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => '20',
+          'size' => '5',
+          'enable_range_search' => false,
+          'disable_num_format' => '',
+          'min' => 0,
+          'max' => false,
+          'validation' =>
+            array (
+              'type' => 'range',
+              'min' => 1,
+              'max' => 15000,
+            ),
+        ),
+
+        'plantilla' =>
+        array (
+          'required' => false,
+          'name' => 'plantilla',
+          'vname' => 'LBL_PLANTILLA',
+          'type' => 'varchar',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => '255',
+          'size' => '20',
+        ),
+
+      'hoja_ins' =>
+        array (
+          'required' => false,
+          'name' => 'hoja_ins',
+          'vname' => 'LBL_HOJA_INS',
+          'type' => 'int',
+          'massupdate' => 0,
+          'no_default' => false,
+          'comments' => '',
+          'help' => '',
+          'importable' => 'true',
+          'duplicate_merge' => 'disabled',
+          'duplicate_merge_dom_value' => '0',
+          'audited' => true,
+          'reportable' => true,
+          'unified_search' => false,
+          'merge_filter' => 'disabled',
+          'len' => '20',
+          'size' => '5',
+          'enable_range_search' => false,
+          'disable_num_format' => '',
+          'min' => 0,
+          'max' => false,
+          'validation' =>
+            array (
+              'type' => 'range',
+              'min' => 1,
+              'max' => 20,
+            ),
+        ),
         
 ),
 	'relationships'=>array (
@@ -138,4 +242,4 @@ $dictionary['Expin_Informes'] = array(
 if (!class_exists('VardefManager')){
         require_once('include/SugarObjects/VardefManager.php');
 }
-VardefManager::createVardef('Expin_Informes','Expin_Informes', array('basic','assignable'));
+VardefManager::createVardef('Expin_Informes','Expin_Informes', array('basic','assignable'));
