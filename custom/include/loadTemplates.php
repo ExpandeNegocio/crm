@@ -7,8 +7,8 @@
 
   $target_dir = "custom/landing/";
 
-  $listadoArchivos=listarArchivos($target_dir,"html");
-
+  $listadoArchivoshtml=listarArchivos($target_dir,"html");
+  $listadoArchivosxlsx=listarArchivos($target_dir,"xlsx");
 
   switch ($accion) {
     case 'showLoad':
@@ -97,7 +97,9 @@
                 
                  <br>
                 
-                Plantillas:<br>'.$listadoArchivos.'<br>
+                Plantillas correos:<br>'.$listadoArchivoshtml.'<br>
+                
+                Plantillas informes:<br>'.$listadoArchivosxlsx.'<br>
                 
                 </script>  
                 </form>
@@ -138,8 +140,8 @@
       $uploadOk = 0;
     }
     // Allow certain file formats
-    if ($imageFileType != "html") {
-      echo "Solo se pueden cargar ficheros de tipo html.<br>";
+    if ($imageFileType != "html" && $imageFileType != "xlsx") {
+      echo "Solo se pueden cargar ficheros de tipo html o xlsx.<br>";
       $uploadOk = 0;
     }
 
@@ -167,7 +169,7 @@
         if(! is_dir($path.$elemento) ){
           $ext = substr($elemento, strrpos($elemento, '.') + 1);
           if ($ext==$fileExtension){
-            $out .= "<li>" . $elemento."</li>";
+            $out .= "<li><a href=./custom/landing/'".$elemento."'>" . $elemento."</a></li>";
           }
         }
       }
