@@ -254,6 +254,9 @@ class EnvioAutoCorreos
         if ($tipoEnv == "franq") {
           $GLOBALS['log']->info('[ExpandeNegocio][Rellenar Correos Ficha]Envio a Franquicia');
           $tabla = $gestion->crearTablaFichaFranquicia();
+        }else if ($tipoEnv =="intermedia"){
+          $GLOBALS['log']->info('[ExpandeNegocio][Rellenar Correos Ficha]Envio a Franquicia');
+          $tabla = $gestion->crearTablaFichaIntermedia();
         } else {
           $GLOBALS['log']->info('[ExpandeNegocio][Rellenar Correos Ficha]Envio a Consultor');
           $tabla = $gestion->crearTablaFichaConsultor();
@@ -262,6 +265,9 @@ class EnvioAutoCorreos
       case "FR":
         if ($tipoEnv == "franq") {
           $tabla = $gestion->crearTablaFichaFranquicia();
+        }else if ($tipoEnv =="intermedia"){
+          $GLOBALS['log']->info('[ExpandeNegocio][Rellenar Correos Ficha]Envio a Franquicia');
+          $tabla = $gestion->crearTablaFichaIntermedia();
         } else {
           $tabla = $gestion->crearTablaFichaConsultor();
         }

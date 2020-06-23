@@ -394,7 +394,7 @@
     'LBL_PAPEL_IDONEO' => 'Rol idoneo',
     'LBL_MOTIVOS_INTERES' => 'Motivos de interes',
     'LBL_HABILIDADES' => 'Habilidades',
-    'LBL_TAG_EMPRESA' => 'Tags del perfil profesonal y de formación:',
+    'LBL_TAG_EMPRESA' => 'Tags del perfil profesonal',
     'LBL_SOL_MAILINGS' => 'Sol Mailings Asociados',
     'LBL_INTERMEDIACION_PASIVA' => 'Intermediación pasiva',
     'LBL_NUM_APERURAS_REG' => 'Numero de aperturas registrasdas',

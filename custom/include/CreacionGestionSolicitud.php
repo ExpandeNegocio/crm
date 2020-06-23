@@ -467,15 +467,12 @@ class AccionesGuardadoGestionSol {
                         
                     $envioAutoCorreos= new EnvioAutoCorreos();
                     
-                    $addresses['0']['email_address']="administracion@expandenegocio.com"; 
-                    $rcp_name="Administracion ExpandeNegocio";  
+                    $addresses['0']['email_address']="administracion@expandenegocio.com";
+                    $addresses['1']['email_address']=$franquicia->correo_general;
+                    $rcp_name="Administracion ExpandeNegocio";
                     $salida=$envioAutoCorreos->rellenacorreoFicha("FPC","cons",$rcp_name,$addresses,$solicitud,$franquiciaid,$bean,null);
                     
                     $bean->chk_precontrato_firmado=1;
-                    
-                  /*  $addresses['0']['email_address']=$franquicia->correo_general; 
-                    $rcp_name=$franquicia->name;  
-                    $salida=$envioAutoCorreos->rellenacorreoFicha("FPC",$rcp_name,$addresses,$solicitud,$franquicia,$bean,null);*/
                 }  
                 
                 

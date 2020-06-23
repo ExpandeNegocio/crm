@@ -25,6 +25,7 @@
          
     switch ($tipoEnv) {
         case 'franq' :
+        case 'intermedia' :
             $addresses['0']['email_address']=$franquicia->correo_general;   
             $rcp_name=$franquicia->name;        
             break;
@@ -40,6 +41,7 @@
             
             $addresses['0']['email_address'] = $dirCorreoEnvio;
             break;
+
     }
 
     $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]Addreses rellenas - '.$addresses['0']['email_address']);
@@ -51,13 +53,13 @@
     }else{
         if ($tipoEnv=='franq'){
             echo "No existe el correo de la franquicia";
+          $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]No existe el correo de la franquicia');
         }else{
             echo "No existe el correo del director de consultoria de la cuenta";
+          $GLOBALS['log'] -> info('[ExpandeNegocio][EnvioCorreoInterno]No existe el correo del director de consultoria de la cuenta');
         }
-        
     }         
-            
-    
+
     function getUserEmail($idUsuario){
         
         $db = DBManagerFactory::getInstance();
@@ -75,7 +77,6 @@
         }
         
         return $correo;
-        
     }
     
 ?>

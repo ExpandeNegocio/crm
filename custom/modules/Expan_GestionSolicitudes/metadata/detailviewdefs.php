@@ -134,7 +134,12 @@ $viewdefs [$module_name] =
                     16 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="fichaConsultor" 
-                onClick="envioCorreoInterlocutor(\'{$fields.id.value}\',\'consultor\');" value="Envio Ficha Consultor"><BR><BR>{/if}',
+                onClick="envioCorreoInterlocutor(\'{$fields.id.value}\',\'consultor\');" value="Envio Ficha Consultor">{/if}',
+                      ),
+                    17 =>
+                      array(
+                        'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="FichaIntermediacion" 
+                onClick="envioCorreoInterlocutor(\'{$fields.id.value}\',\'intermedia\');" value="Envio Ficha Intermediacion"><BR><BR>{/if}',
                       ),
                   ),
               ),

@@ -1092,8 +1092,17 @@ function irAperturas(solicitud) {
 }
 
 function envioCorreoInterlocutor(id, tipoEnv) {
+    var mensaje="";
 
-    if (confirm("¿Esta seguro de que desea enviar el correo con el cuestionario al consultor?")) {
+    if (tipoEnv=="intermedia") {
+        mensaje="¿Esta seguro de que desea enviar el correo con el cuestionario a la franquicia de intermediacion?";
+    }else if(tipoEnv=="consultor"){
+        mensaje="¿Esta seguro de que desea enviar el correo con el cuestionario al consultor?";
+    }else{
+        mensaje="¿Esta seguro de que desea enviar el correo con el cuestionario a la franquicia?";
+    };
+
+    if (confirm(mensaje)) {
 
         var config = {};
         config.title = "Enviando Correo";

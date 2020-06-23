@@ -1840,8 +1840,8 @@
         );
       }
 
-      $query = "SELECT first_name Nombre, last_name Apellidos, f.name Franquicia, prov.d_prov Provincia, entrega_cuenta ImporteEnt, date_format( f_entrega_cuenta_pre,'%d/%m/%Y') FEnt  ";
-      $query = $query . "FROM   (SELECT s.first_name, s.last_name, g.franquicia, g.provincia_apertura_pre, g.f_entrega_cuenta_pre, g.entrega_cuenta  ";
+      $query = "SELECT first_name Nombre, last_name Apellidos, f.name Franquicia, prov.d_prov Provincia, importe_entrega_cuenta ImporteEnt, date_format( f_entrega_cuenta_pre,'%d/%m/%Y') FEnt  ";
+      $query = $query . "FROM   (SELECT s.first_name, s.last_name, g.franquicia, g.provincia_apertura_pre, g.f_entrega_cuenta_pre, g.importe_entrega_cuenta  ";
       $query = $query . "        FROM   expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs  ";
       $query = $query . "        WHERE  g.id = gs.expan_soli5dcccitudes_idb AND s.id = gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND  ";
       $query = $query . "               g.id = '$this->id') a  ";
@@ -1862,7 +1862,7 @@
           $valor = $row[$key];
 
           if ($key == 'ImporteEnt') {
-            $valor = $this->entrega_cuenta;
+            $valor = $this->importe_entrega_cuenta;
           } else if ($key == 'FEnt') {
             $valor = $this->f_entrega_cuenta_pre;
           } else if ($key == 'Provincia') {
@@ -1884,6 +1884,54 @@
 
       return $tabla;
     }
+
+    public function crearTablaFichaIntermedia()
+    {
+
+      $GLOBALS['log']->info('[ExpandeNegocio][crearTablaFichaFranquicia]Entra');
+
+      $campos = array(
+        "Nombre" => "<b>Nombre</b>",
+        "Apellidos" => "<b>Apellidos</b>",
+        "Provincia" => "<b>Provincia</b>",
+        "Localidad" => "<b>Localidad</b>",
+      );
+
+      $db = DBManagerFactory::getInstance();
+
+      $GLOBALS['log']->info('[ExpandeNegocio][crearTablaFichaFranquicia]Previo sql');
+
+      $query = "select first_name Nombre, last_name Apellidos, p.d_prov Provincia, m.d_municipio Localidad from (select g.id, s.first_name, s.last_name, s.provincia_apertura_1, s.localidad_apertura_1 ";
+      $query=$query."from expan_gestionsolicitudes g, expan_solicitud s, expan_solicitud_expan_gestionsolicitudes_1_c gs ";
+      $query=$query."where g.id = gs.expan_soli5dcccitudes_idb and s.id=gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida  ";
+      $query=$query."and g.id='$this->id') a ";
+      $query=$query."left join expan_m_municipios m on a.localidad_apertura_1=m.c_provmun ";
+      $query=$query."left join expan_m_provincia p on a.provincia_apertura_1= p.c_prov ; ";
+
+      $GLOBALS['log']->info('[ExpandeNegocio][crearTablaFichaFranquicia]Consulta-'.$query);
+
+      $result = $db->query($query, true);
+      $tabla = '<table border="1">
+                <tbody>';
+
+      while ($row = $db->fetchByAssoc($result)) {
+        foreach ($campos as $key => $value) {
+          $tabla = $tabla . "<tr>";
+          $tabla = $tabla . "<td>" . $value . "</td>";
+          $tabla = $tabla . "<td>" . $row[$key] . "</td>";
+          $tabla = $tabla . "</tr>";
+        }
+      }
+
+      $tabla = $tabla . "</tbody>
+        </table>";
+
+      $GLOBALS['log']->info('[ExpandeNegocio][crearTablaFichaFranquicia]Termina');
+
+      return $tabla;
+
+    }
+
 
     public function crearTablaFichaConsultor()
     {
@@ -1981,7 +2029,7 @@
       $query = $query . "          FROM     expan_gestionsolicitudes g, expan_solicitud s, ";
       $query = $query . "                   expan_solicitud_expan_gestionsolicitudes_1_c gs, expan_franquicia f ";
       $query = $query . "          WHERE    g.id = gs.expan_soli5dcccitudes_idb AND s.id = ";
-      $query = $query . "                     gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id='" . $this->id . "' AND f.id = ";
+      $query = $query . "                     gs.expan_solicitud_expan_gestionsolicitudes_1expan_solicitud_ida AND g.id='$this->id' AND f.id = ";
       $query = $query . "                     g.franquicia ";
       $query = $query . "          ORDER BY f.name) AS a ";
       $query = $query . "         LEFT JOIN tipo_origen AS t ON t.id = a.ori ";
@@ -2086,6 +2134,7 @@
         "lnk" => "&emsp;&emsp;&emsp;Enlace al cuestionario"
 
       );
+
 
       $db = DBManagerFactory::getInstance();
 

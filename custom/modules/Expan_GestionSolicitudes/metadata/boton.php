@@ -20,6 +20,7 @@ class Boton {
                     var botoncunopuntocinco=$('<input type="button" name="reenviarcunopuntocinco" id="reenviarcunopuntocinco" class="button" style="margin-right:5px;" tittle="Reenviar C1.5" onclick="reenvioDoc(\'C1.5\');" value="Reenviar C1.5">');
                     var botonEnvioFichaFranquicia=$('<BR><BR><input type="button" name="EnvioFichaConsultor" id="EnvioFichaFranquicia" class="button" style="margin-right:5px;" tittle="Envio Ficha Franquicia" onclick="envioFicha(\'franq\');" value="Envio Ficha Franquicia">');
                     var botonEnvioFichaConsultor=$('<input type="button" name="EnvioFichaConsultor" id="EnvioFichaConsultor" class="button" style="margin-right:5px;" tittle="Envio Ficha Consultor" onclick="envioFicha(\'consultor\');" value="Envio Ficha Consultor">');
+                    var botonEnvioFichaIntermediacion=$('<input type="button" name="EnvioFichaIntermediacion" id="EnvioFichaIntermediacion" class="button" style="margin-right:5px;" tittle="Envio Ficha INtermediacion" onclick="envioFicha(\'intermedia\');" value="Envio Ficha Intermediacion">');
                     
                     $(".paginationActionButtons").append(botoncuno);
                     $(".paginationActionButtons").append(botoncdos);
@@ -32,6 +33,7 @@ class Boton {
                     $(".paginationActionButtons").append(botoncunopuntocinco);
                     $(".paginationActionButtons").append(botonEnvioFichaFranquicia);
                     $(".paginationActionButtons").append(botonEnvioFichaConsultor);
+                    $(".paginationActionButtons").append(botonEnvioFichaIntermediacion);
          });
                 </script>
 EOQ;

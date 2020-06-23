@@ -62,4 +62,5 @@ $mod_strings = array(
   'LBL_RENTA_ESTIMADA' => 'Renta estimada',
   'LBL_EDITVIEW_MISTERY_PREGUNTAS' => 'Mistery Preguntas',
   'LBL_PRECANDIDATOS' => '<H1><B>Precandidatos</H1></B>',
+  'LBL_TAG_EMPRESA_FORMACION'=>'Tags de formación'
 );

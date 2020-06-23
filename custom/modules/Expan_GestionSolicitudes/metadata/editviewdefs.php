@@ -133,10 +133,15 @@ $viewdefs [$module_name] =
                       ),
                     17 =>
                       array(
+                        'customCode' => '{if $fields.id.value!=""} <input type="button" name="save" id="FichaIntermediacion" 
+                onClick="envioCorreoInterlocutor(\'{$fields.id.value}\',\'intermedia\');" value="Envio Ficha Intermediacion"><BR><BR>{/if}',
+                      ),
+                    18 =>
+                      array(
                         'customCode' => '{if $fields.id.value!=""}<BR><BR><input type="button" name="openWind" id="openWind" class="" 
                     onClick="abrirHermanas(\'{$fields.id.value}\');" value="Abrir Hermanas">{/if}',
                       ),
-                    18 =>
+                    19 =>
                       array(
                         'customCode' => '{if $fields.id.value!=""} <input type="button" name="open" id="open" class="" 
                     onClick="window.open(\'index.php?module=Calls&action=EditView&expan_gestionsolicitudes_calls_1_name={$fields.name.value}&&expan_gestionsolicitudes_calls_1expan_gestionsolicitudes_ida={$fields.id.value}\');" value="CrearLlamada">{/if}',

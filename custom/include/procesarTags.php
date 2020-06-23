@@ -13,11 +13,11 @@
 
     $result = $db -> query($query);;*/
 
-  $sql = "select * from expan_adjuntos where f_envio<STR_TO_DATE('22/02/2020', '%d/%m/%Y') and f_envio>STR_TO_DATE('3/02/2020', '%d/%m/%Y')";
+  $sql = "select * from expan_adjuntos";
 
   $result = $db -> query($sql, true);
 
-  echo "Consulta<BR>";
+  echo "Consulta<BR>";Documentos Enviados
 
   while ($row = $db -> fetchByAssoc($result)) {
 
@@ -38,7 +38,7 @@
 
       $result2 = $db -> query($query, true);
 
-   //   echo $query."<BR>";
+       echo $query."<BR>";
 
       while ($row2 = $db -> fetchByAssoc($result2)) {
         echo $row["id"] . "-Fenvio-".$row["f_envio"]."-drid-".$row2["drid"]."<BR>";
