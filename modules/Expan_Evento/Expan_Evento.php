@@ -190,9 +190,11 @@ class Expan_Evento extends Expan_Evento_sugar {
     
     public function NumEmpresasPart(){
         $db = DBManagerFactory::getInstance();
-        
-        $query = "select count(1) num from expan_franquicia_expan_evento_c  ";
-        $query=$query."where expan_franquicia_expan_eventoexpan_evento_idb ='".$this->id."' and not (participacion='' or participacion is null)and deleted=0;";
+
+        $query = "select count(1) num  ";
+        $query=$query."from expan_franquicia_expan_evento_c  fe, expan_franquicia f ";
+        $query=$query."where fe.expan_franquicia_expan_eventoexpan_franquicia_ida=f.id and (f.tipo_cuenta=1 or f.tipo_cuenta=2 or f.tipo_cuenta=8) and expan_franquicia_expan_eventoexpan_evento_idb ='$this->id'  ";
+        $query=$query."AND fe.deleted=0 and f.deleted=0 ";
         
         $result = $db -> query($query, true);
         
@@ -206,10 +208,11 @@ class Expan_Evento extends Expan_Evento_sugar {
     
     public function NumEmpresas($tipo){
         $db = DBManagerFactory::getInstance();
-        
-        $query = "select count(1) num from expan_franquicia_expan_evento_c  ";
-        $query=$query."where expan_franquicia_expan_eventoexpan_evento_idb ='".$this->id."' ";
-        $query=$query."AND deleted=0 And formato_participacion='".$tipo."'; ";
+
+        $query = "select count(1) num  ";
+        $query=$query."from expan_franquicia_expan_evento_c  fe, expan_franquicia f ";
+        $query=$query."where fe.expan_franquicia_expan_eventoexpan_franquicia_ida=f.id and (f.tipo_cuenta=1 or f.tipo_cuenta=2 or f.tipo_cuenta=8) and expan_franquicia_expan_eventoexpan_evento_idb ='$this->id'  ";
+        $query=$query."AND fe.deleted=0 and f.deleted=0 And formato_participacion='$tipo'  ";
         
         $result = $db -> query($query, true);
                 
