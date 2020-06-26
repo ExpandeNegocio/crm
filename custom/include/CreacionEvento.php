@@ -16,16 +16,18 @@
     }
 
     public function CreacionEventoD(&$bean, $event, $arguments) {
-
-      //Creación
       if (!isset($bean -> ignore_update_c) || $bean -> ignore_update_c === false) {
 
-        $AvisosAdmin= new AvisosAdmin();
-        $AvisosAdmin->enviaCorreo(AvisosAdmin::CREACION_EVENTO,'',$bean->name,$bean->fecha_celebracion);
+        $bean->ignore_update_c = true;
 
+        //Creacion de una nuevo Evento
+        if (!isset(self::$fetchedRow[$bean->id])) {
+          $AvisosAdmin= new AvisosAdmin();
+          $AvisosAdmin->enviaCorreo(AvisosAdmin::CREACION_EVENTO,'',$bean->name,$bean->fecha_celebracion);
         //Modificacion
-      }else{
+        }else {
 
+        }
       }
     }
 
