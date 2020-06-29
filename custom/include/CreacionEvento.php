@@ -41,7 +41,7 @@
 
         if ($fran->tipo_cuenta==1 || $fran->tipo_cuenta==2){
           $AvisosAdmin= new AvisosAdmin();
-          $AvisosAdmin->enviaCorreo(AvisosAdmin::SALIDA_PORTAL,$fran->name,$bean->name,$bean->fecha_celebracion);
+          $AvisosAdmin->enviaCorreo(AvisosAdmin::ACT_EVENTO,$fran->name,$bean->name,$bean->fecha_celebracion);
         }
       }
     }
