@@ -11,7 +11,11 @@ function addFechaObserva(linTexto) {
     var f = new Date();
 
     fecha = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
-    texto = texto + ('\n' + fecha + ' : ' + linTexto);
+    if (texto=="\n"){
+        texto = fecha + ' : ' + linTexto;
+    }else{
+        texto = texto + ('\n' + fecha + ' : ' + linTexto);
+    }
     $("#observaciones").val(texto);
 
 }

@@ -25,6 +25,7 @@ $("#encaje_cliente").change(function () {
 
 $("#empresa_type").change(function () {
     renderTrabajaConsultora();
+    renderEsConsultora();
 });
 
 $("#estado_cp").change(function () {
@@ -39,9 +40,48 @@ $("#name").blur(function () {
     controlNombre();
 });
 
+var componentes=["#noticias","#noticias_destacadas","#acuerdos_relevantes","#campa_sem","#presencia_eventos","#noticias_newsletter","#noticias_rrss"];
+var i;
+
 $("#noticias").bind("keyup", function () {
     if (window.event.keyCode == 13) {
-        addFechaNoticias("");
+        addFecha("#noticias","");
+    }
+});
+
+$("#noticias_destacadas").bind("keyup", function () {
+    if (window.event.keyCode == 13) {
+        addFecha("#noticias_destacadas","");
+    }
+});
+
+$("#acuerdos_relevantes").bind("keyup", function () {
+    if (window.event.keyCode == 13) {
+        addFecha("#acuerdos_relevantes","");
+    }
+});
+
+$("#campa_sem").bind("keyup", function () {
+    if (window.event.keyCode == 13) {
+        addFecha("#campa_sem","");
+    }
+});
+
+$("#presencia_eventos").bind("keyup", function () {
+    if (window.event.keyCode == 13) {
+        addFecha("#presencia_eventos","");
+    }
+});
+
+$("#noticias_newsletter").bind("keyup", function () {
+    if (window.event.keyCode == 13) {
+        addFecha("#presencia_eventos","");
+    }
+});
+
+$("#noticias_rrss").bind("keyup", function () {
+    if (window.event.keyCode == 13) {
+        addFecha("#presencia_eventos","");
     }
 });
 
@@ -63,7 +103,9 @@ renderCompetidorTab();
 renderAlianzaTab();
 renderTrabajaConsultora();
 renderConsultora();
+renderEsConsultora();
 renderTipoPositivo();
+organizeConsultora();
 marcarCamposImportantes();
 cargarchecks("Sectorcheck", "sector");
 fechaPrimerContactoHoy();
@@ -135,6 +177,14 @@ function renderTrabajaConsultora() {
         $("#chk_trabaja_consultora_label").parent().show();
     } else {
         $("#chk_trabaja_consultora_label").parent().hide();
+    }
+}
+
+function renderEsConsultora() {
+    if ($("#empresa_type option:selected").text() == "Consultora de franquicia") {
+        $("a:contains('Consultora')").show();
+    } else {
+        $("a:contains('Consultora')").hide();
     }
 }
 
@@ -748,16 +798,20 @@ function getListaCompetidores() {
     return idCompetidores;
 }
 
-function addFechaNoticias(linTexto) {
+function addFecha(txtBox,linTexto) {
 
-    var texto = $("#noticias").val();
+    var texto = $(txtBox).val();
 
     var f = new Date();
 
     fecha = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
-    texto = texto + ('\n' + fecha + ' : ' + linTexto);
-    $("#noticias").val(texto);
+    if (texto=="\n"){
+        texto = fecha + ' : ' + linTexto;
+    }else{
+        texto = texto + ('\n' + fecha + ' : ' + linTexto);
+    }
 
+    $(txtBox).val(texto);
 }
 
 function loadProvincias() {
@@ -964,4 +1018,52 @@ function renderProveedorTab() {
         $("a:contains('Datos Proveedor Generales')").hide();
         $("a:contains('Datos Proveedor por Franquicia')").hide();
     }
+}
+
+function organizeConsultora(){
+    $("#d_consultoria_label").hide();
+    $("#d_expansion_label").hide();
+    $("#d_asesoramiento_label").hide();
+    $("#d_club_label").hide();
+    $("#d_form_emp_label").hide();
+    $("#d_form_emprende_label").hide();
+    $("#d_eventos_propios_label").hide();
+    $("#d_software_propio_label").hide();
+    $("#d_particulares_label").hide();
+    $("#d_revista_label").hide();
+    $("#d_portal_label").hide();
+    $("#d_mailing_label").hide();
+    $("#d_podcast_label").hide();
+    $("#d_radio_label").hide();
+    $("#d_tv_label").hide();
+    $("#d_otros_PS_label").hide();
+     $("#d_facebook_label").hide();
+     $("#d_instagram_label").hide();
+     $("#d_youtube_label").hide();
+     $("#d_linkedin_label").hide();
+     $("#d_twitter_label").hide();
+     $("#d_pinterest_label").hide();
+
+    $("#d_consultoria").attr('size',60);
+    $("#d_expansion").attr('size',60);
+    $("#d_asesoramiento").attr('size',60);
+    $("#d_club").attr('size',60);
+    $("#d_form_emp").attr('size',60);
+    $("#d_form_emprende").attr('size',60);
+    $("#d_eventos_propios").attr('size',60);
+    $("#d_software_propio").attr('size',60);
+    $("#d_particulares").attr('size',60);
+    $("#d_revista").attr('size',60);
+    $("#d_portal").attr('size',60);
+    $("#d_mailing").attr('size',60);
+    $("#d_podcast").attr('size',60);
+    $("#d_radio").attr('size',60);
+    $("#d_tv").attr('size',60);
+    $("#d_facebook").attr('size',60);
+    $("#d_instagram").attr('size',60);
+    $("#d_youtube").attr('size',60);
+    $("#d_linkedin").attr('size',60);
+    $("#d_twitter").attr('size',60);
+    $("#d_pinterest").attr('size',60);
+
 }

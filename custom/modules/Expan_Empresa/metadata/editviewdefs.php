@@ -85,6 +85,11 @@
                       'newTab' => true,
                       'panelDefault' => 'expanded',
                     ),
+                  'LBL_CONSULTORA' =>
+                    array (
+                      'newTab' => true,
+                      'panelDefault' => 'expanded',
+                    ),
                 ),
             ),
           'panels' =>
@@ -937,6 +942,408 @@
           {/php}',
           ),
         ),
+    );
+
+  // ---- DATOS DE CONSULTORA ----------------------------------------------------------------------------
+
+  $viewdefs [$module_name]['EditView']['panels']['LBL_CONSULTORA'] =
+    array(
+      0 =>
+        array (
+          0 =>
+            array(
+              'label' => 'LBL_OFERTA_SERVICIOS',
+            ),
+          1 =>
+            array(
+
+            ),
+        ),
+
+      1 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_consultoria',
+              'label' => 'LBL_CHK_CONSULTORIA',
+            ),
+          1 =>
+            array(
+              'name' => 'd_consultoria',
+              'label' => 'LBL_D_CONSULTORIA',
+            ),
+        ),
+        2 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_expansion',
+              'label' => 'LBL_CHK_EXPANSION',
+            ),
+          1 =>
+            array(
+              'name' => 'd_expansion',
+              'label' => 'LBL_D_EXPANSION',
+            ),
+        ),
+        3 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_asesoramiento',
+              'label' => 'LBL_CHK_ASESORAMIENTO',
+            ),
+          1 =>
+            array(
+              'name' => 'd_asesoramiento',
+              'label' => 'LBL_D_ASESORAMIENTO',
+            ),
+        ),
+        4 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_club',
+              'label' => 'LBL_CHK_CLUB',
+            ),
+          1 =>
+            array(
+              'name' => 'd_club',
+              'label' => 'LBL_D_CLUB',
+            ),
+        ),
+        5 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_form_emp',
+              'label' => 'LBL_CHK_FORM_EMP',
+            ),
+          1 =>
+            array(
+              'name' => 'd_form_emp',
+              'label' => 'LBL_D_FORM_EMP',
+            ),
+        ),
+        6 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_form_emprende',
+              'label' => 'LBL_CHK_FORM_EMPRENDE',
+            ),
+          1 =>
+            array(
+              'name' => 'd_form_emprende',
+              'label' => 'LBL_D_FORM_EMPRENDE',
+            ),
+        ),
+        7 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_eventos_propios',
+              'label' => 'LBL_CHK_EVENTOS_PROPIOS',
+            ),
+          1 =>
+            array(
+              'name' => 'd_eventos_propios',
+              'label' => 'LBL_D_EVENTOS_PROPIOS',
+            ),
+        ),
+        8 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_software_propio',
+              'label' => 'LBL_CHK_SOFTWARE_PROPIO',
+            ),
+          1 =>
+            array(
+              'name' => 'd_software_propio',
+              'label' => 'LBL_D_SOFTWARE_PROPIO',
+            ),
+        ),
+        9 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_particulares',
+              'label' => 'LBL_CHK_PARTICULARES',
+            ),
+          1 =>
+            array(
+              'name' => 'd_particulares',
+              'label' => 'LBL_D_PARTICULARES',
+            ),
+        ),
+        10 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_otros_PS',
+              'label' => 'LBL_CHK_OTROS_PS',
+            ),
+          1 =>
+            array(
+              'name' => 'd_otros_PS',
+              'label' => 'LBL_D_OTROS_PS',
+            ),
+        ),
+        11 =>
+        array (
+          0 =>
+            array(
+              'label' => 'LBL_MEDIOS',
+            ),
+          1 =>
+            array(
+            ),
+        ),
+        12 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_revista',
+              'label' => 'LBL_CHK_REVISTA',
+            ),
+          1 =>
+            array(
+              'name' => 'd_revista',
+              'label' => 'LBL_D_REVISTA',
+            ),
+        ),
+        13 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_portal',
+              'label' => 'LBL_CHK_PORTAL',
+            ),
+          1 =>
+            array(
+              'name' => 'd_portal',
+              'label' => 'LBL_D_PORTAL',
+            ),
+        ),
+
+        14 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_mailing',
+              'label' => 'LBL_CHK_MAILING',
+            ),
+          1 =>
+            array(
+              'name' => 'd_mailing',
+              'label' => 'LBL_D_MAILING',
+            ),
+        ),
+
+        15 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_podcast',
+              'label' => 'LBL_CHK_PODCAST',
+            ),
+          1 =>
+            array(
+              'name' => 'd_podcast',
+              'label' => 'LBL_D_PODCAST',
+            ),
+        ),
+
+        16 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_radio',
+              'label' => 'LBL_CHK_RADIO',
+            ),
+          1 =>
+            array(
+              'name' => 'd_radio',
+              'label' => 'LBL_D_RADIO',
+            ),
+        ),
+
+        17 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_tv',
+              'label' => 'LBL_CHK_TV',
+            ),
+          1 =>
+            array(
+              'name' => 'd_tv',
+              'label' => 'LBL_D_TV',
+            ),
+        ),
+        18 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_newsletter',
+              'label' => 'LBL_CHK_NEWSLETTER',
+            ),
+          1 =>
+            array(
+            ),
+        ),
+
+        19 =>
+        array (
+          0 =>
+            array(
+              'label' => 'LBL_RRSS',
+            ),
+          1 =>
+            array(
+
+            ),
+        ),
+
+        20 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_facebook',
+              'label' => 'LBL_CHK_FACEBOOK',
+            ),
+          1 =>
+            array(
+              'name' => 'd_facebook',
+              'label' => 'LBL_D_FACEBOOK',
+            ),
+        ),
+
+        21 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_instagram',
+              'label' => 'LBL_CHK_INSTAGRAM',
+            ),
+          1 =>
+            array(
+              'name' => 'd_instagram',
+              'label' => 'LBL_D_INSTAGRAM',
+            ),
+        ),
+
+        22 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_youtube',
+              'label' => 'LBL_CHK_YOUTUBE',
+            ),
+          1 =>
+            array(
+              'name' => 'd_youtube',
+              'label' => 'LBL_D_YOUTUBE',
+            ),
+        ),
+
+        23 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_linkedin',
+              'label' => 'LBL_CHK_LINKEDIN',
+            ),
+          1 =>
+            array(
+              'name' => 'd_linkedin',
+              'label' => 'LBL_D_LINKEDIN',
+            ),
+        ),
+
+        24 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_twitter',
+              'label' => 'LBL_CHK_TWITTER',
+            ),
+          1 =>
+            array(
+              'name' => 'd_twitter',
+              'label' => 'LBL_D_TWITTER',
+            ),
+        ),
+
+        25 =>
+        array (
+          0 =>
+            array(
+              'name' => 'chk_pinterest',
+              'label' => 'LBL_CHK_PINTEREST',
+            ),
+          1 =>
+            array(
+              'name' => 'd_pinterest',
+              'label' => 'LBL_D_PINTEREST',
+            ),
+        ),
+
+        26 =>
+        array (
+          0 =>
+            array(
+              'label' => 'LBL_ACCIONES_EXPANSION',
+            ),
+          1 =>
+            array(
+
+            ),
+        ),
+
+        27 =>
+        array (
+          0 =>
+            array(
+              'name' => 'noticias_destacadas',
+              'label' => 'LBL_NOTICIAS_DESTACADAS',
+            ),
+          1 =>
+            array(
+              'name' => 'acuerdos_relevantes',
+              'label' => 'LBL_D_ACUERDOS_RELEVANTES',
+            ),
+        ),
+
+        28 =>
+        array (
+          0 =>
+            array(
+              'name' => 'campa_sem',
+              'label' => 'LBL_CAMPA_SEM',
+            ),
+          1 =>
+            array(
+              'name' => 'presencia_eventos',
+              'label' => 'LBL_PRESENCIA_EVENTOS',
+            ),
+        ),
+
+        29 =>
+        array (
+          0 =>
+            array(
+              'name' => 'noticias_newsletter',
+              'label' => 'LBL_NOTICIAS_NEWSLETTER',
+            ),
+          1 =>
+            array(
+              'name' => 'noticias_rrss',
+              'label' => 'LBL_NOTICIAS_RRSS',
+            ),
+        ),
+
     );
 
 ?>
