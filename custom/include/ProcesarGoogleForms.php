@@ -66,8 +66,6 @@ function procesar()
   echo "Email-" . $email . "<br>";
   echo "Telefono-" . $telefono . "<br>";
 
-  $idSol = "";
-
   $idSol = localizaSolicitudPoremail($email);
 
   if ($idSol == "") {

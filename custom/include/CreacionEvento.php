@@ -1,13 +1,17 @@
 <?php
   require_once ('data/SugarBean.php');
   require_once('custom/include/AvisosAdmin.php');
-
+  require_once('modules/Expan_Evento/Expan_Evento.php');
 
   class AccionesGuardadoEvento {
 
     protected static $fetchedRow = array();
+
     /**
      * Called as before_save logic hook to grab the fetched_row values
+     * @param $bean
+     * @param $event
+     * @param $arguments
      */
     public function saveFetchedRow($bean, $event, $arguments) {
       if ($bean -> fetched_row) {
