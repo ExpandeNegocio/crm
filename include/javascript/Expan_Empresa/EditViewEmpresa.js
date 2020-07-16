@@ -1067,3 +1067,7 @@ function organizeConsultora(){
     $("#d_pinterest").attr('size',60);
 
 }
+
+function irFranquicia(franquicia) {
+    window.open('index.php?module=Expan_Franquicia&action=DetailView&record=' + franquicia, franquicia).focus();
+}

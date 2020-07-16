@@ -1,5 +1,23 @@
 <?php
   $module_name = 'Expan_Empresa';
+  $id = $_REQUEST["record"];
+  if ($id == "") {
+    $id = $_POST["record"];
+  }
+  if ($id == "") {
+    $id = $_GET["record"];
+  }
+  if ($id == "") {
+    $id = $_SESSION["Expan_Empresa_detailview_record"];
+  }
+
+  $empresa= new Expan_Empresa();
+  $empresa->retrieve($id);
+  $franquicia=$empresa->getFranquicia();
+  if ($franquicia!=null){
+    $cutomCodeBotFranqui ='<input type="button" style="color:#FF0000;" name="irsol" id="irfran" class="" onclick="irFranquicia(\'' .$franquicia->id . '\');" value="Ir Franquicia">';
+  }
+
   $viewdefs [$module_name] =
     array(
       'DetailView' =>
@@ -18,6 +36,10 @@
                     array(
                       0 => 'EDIT',
                       1 => 'DELETE',
+                      2 =>
+                        array(
+                          'customCode' => $cutomCodeBotFranqui,
+                        ),
                     ),
                 ),
               'maxColumns' => '2',

@@ -152,3 +152,7 @@ function renderProveedorTab() {
 		$("a:contains('Datos Proveedor por Franquicia')").hide();
 	}
 }
+
+function irFranquicia(franquicia) {
+	window.open('index.php?module=Expan_Franquicia&action=DetailView&record=' + franquicia, franquicia).focus();
+}
