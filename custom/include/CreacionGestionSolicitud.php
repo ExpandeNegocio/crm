@@ -651,8 +651,9 @@ class AccionesGuardadoGestionSol {
 
                 if ($bean -> estado_sol == Expan_GestionSolicitudes::ESTADO_POSITIVO &&
                     $bean -> motivo_positivo=='Cont' &&
-                    $bean -> motivo_positivo!=$motivoPositivoAnt)
+                  ($bean -> motivo_positivo!=$motivoPositivoAnt || estado_sol!=$estadoAnt))
                 {
+                  $GLOBALS['log']->info('[ExpandeNegocio][creacionGestionSolicitud]Tiene condiciones para apertura');
                   $nameAperura=$solicitud->first_name." ".$solicitud->last_name."-".$franquicia->name;
                   Expan_Apertura::PreparaApertura($nameAperura,$solicitud,$bean);
                 }

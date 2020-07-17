@@ -60,7 +60,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
 
       $franquiciadoId = Expan_Franquiciado::existeFranquiciado($solicitud->id);
 
-      $GLOBALS['log']->info('[ExpandeNegocio][PreparaApertura]Entra');
+      $GLOBALS['log']->info('[ExpandeNegocio][PreparaApertura]Entra-'.$name);
 
       if ($franquiciadoId == false) {  //se crea el franquiciado a partir de la solicitud, no existe
         $GLOBALS['log']->info('[ExpandeNegocio][PreparaApertura]No existe el franquiciado');
@@ -135,6 +135,7 @@ class Expan_Apertura extends Expan_Apertura_sugar
     $apertura->gestion = $gestion->id;
     $apertura->solicitud = $solicitud->id;
     $apertura->expan_franquiciado_id = $franquiciado->id;
+    $GLOBALS['log']->info('[ExpandeNegocio][crearApertura]Se guarda la apertura');
     $apertura->save();
   }
 
