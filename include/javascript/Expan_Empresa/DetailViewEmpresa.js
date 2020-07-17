@@ -35,7 +35,7 @@ function renderMotivos(){
 
 function renderCompetidorTab() {
 	if ($("#chkCompetidor").is(':checked') &&
-		$("#empresa_type_detailblock").text().trim() !="Franquicia") {
+		$("#empresa_type_detailblock").text().trim() =="Franquicia") {
 		$("a:contains('Datos competidor')").show();
 	} else {
 		$("a:contains('Datos competidor')").hide();

@@ -138,7 +138,7 @@ function hide() {
 
 function renderCompetidorTab() {
     if ($("#chk_es_competidor").is(':checked') &&
-        $("#empresa_type option:selected").text() != "Franquicia" ) {
+        $("#empresa_type option:selected").text() == "Franquicia" ) {
         $("a:contains('Datos competidor')").show();
     } else {
         $("a:contains('Datos competidor')").hide();
