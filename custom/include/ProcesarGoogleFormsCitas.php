@@ -135,4 +135,10 @@ function crearLLamadaGest($gestion,$telefono,$fecha,$hora){
 
   $db -> query($query, true);
 
+  //enlazamos con la gestión
+  $gestion->load_relationship('expan_gestionsolicitudes_calls_1');
+  $gestion->expan_gestionsolicitudes_calls_1->add($llamada->id);
+  $gestion->ignore_update_c = true;
+  $gestion->save();
+
 }
