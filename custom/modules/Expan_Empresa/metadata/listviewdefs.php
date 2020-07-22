@@ -76,6 +76,10 @@ if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6' || $current_user-
 			'width' => '10',
 			'label' => 'LBL_FECHA_CONTACTO',
 			'default' => true),
+    'DATE_ENTERED' => array (
+        'width' => '10%',
+        'label' => 'LBL_DATE_ENTERED',
+        'default' => true,),
 		'rating' => array(
 			'width' => '10',
 			'label' => 'LBL_RATING',
@@ -125,6 +129,10 @@ if  ($current_user->id=='71f40543-2702-4095-9d30-536f529bd8b6' || $current_user-
 			'width' => '20',
 			'label' => 'LBL_TYPE',
 			'default' => true),
+    'DATE_ENTERED' => array (
+      'width' => '10%',
+      'label' => 'LBL_DATE_ENTERED',
+      'default' => true,),
 		'chk_es_proveedor' => array(
 			'width' => '10',
 			'label' => 'LBL_ES_PROVEEDOR',
