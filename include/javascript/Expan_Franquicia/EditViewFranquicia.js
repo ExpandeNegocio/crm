@@ -217,6 +217,7 @@ function inicio() {
 	clean();
 
 	noShowNoCliente();
+	renderMisteryTabs();
 
 	/*var valor=$("#tipo_cuenta").val();
 	
@@ -1273,3 +1274,26 @@ function ocultaNoCLienterel(){
 	$("#tab15").show();
 }
 
+function renderMisteryTabs(){
+	var id = $('[name="record"]').val();
+	url = 'index.php?entryPoint=consultarFranquicia';
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "tipo=isConpetidorCentral&" +
+			"id=" + id,
+
+		success : function(data) {
+			if ( data == "ok") {
+				$("a:contains('Mistery Central')").show();
+				$("a:contains('Mistery Fdo')").show();
+			} else {
+				$("a:contains('Mistery Central')").hide();
+				$("a:contains('Mistery Fdo')").hide();
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+
+		}
+	});
+}

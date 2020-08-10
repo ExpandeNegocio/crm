@@ -46,7 +46,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 global $app_strings;
 
 $dashletMeta['Expan_LocalDashlet'] = array('module'		=> 'Expan_Local',
-										  'title'       => translate('LBL_HOMEPAGE_TITLE', 'Expan_Local'),
+										  'title'       => translate('LBL_LIST_MY_LOCALS', 'Expan_Local'),
                                           'description' => 'A customizable view into Expan_Local',
                                       //    'icon'        => 'icon_Expan_Apertura_32.gif',
                                           'category'    => 'Module Views');

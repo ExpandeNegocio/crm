@@ -1,5 +1,5 @@
 <?php
-// created: 2018-12-15 11:44:30
+// created: 2019-12-12 19:06:24
 $sugar_config = array (
   'SAML_X509Cert' => '',
   'SAML_loginurl' => '',
@@ -34,7 +34,7 @@ $sugar_config = array (
     'min_cron_interval' => 30,
   ),
   'currency' => '',
-  'dashlet_auto_refresh_min' => '30',
+  'dashlet_auto_refresh_min' => '-1',
   'dashlet_display_row_options' => 
   array (
     0 => '1',
@@ -254,7 +254,7 @@ $sugar_config = array (
     'timeout' => 86400,
   ),
   'js_custom_version' => 1,
-  'js_lang_version' => 12,
+  'js_lang_version' => 13,
   'languages' => 
   array (
     'en_us' => 'English (US)',
@@ -481,6 +481,24 @@ $sugar_config = array (
     91 => 'asol_ProcessInstances',
     92 => 'asol_WorkingNodes',
     93 => 'asol_OnHold',
+    94 => 'asol_Release',
+    95 => 'asol_Project',
+    96 => 'asol_ProjectTask',
+    97 => 'asol_ProjectVersion',
+    98 => 'asol_Installation',
+    99 => 'asol_Intervention',
+    100 => 'asol_Feature',
+    101 => 'asol_Domains',
+    102 => 'asol_TicketsN2',
+    103 => 'asol_TicketsN3',
+    104 => 'asol_Reports',
+    105 => 'asol_Process',
+    106 => 'asol_Events',
+    107 => 'asol_Activity',
+    108 => 'asol_Task',
+    109 => 'asol_ProcessInstances',
+    110 => 'asol_WorkingNodes',
+    111 => 'asol_OnHold',
   ),
   'allow_pop_inbound' => true,
 );

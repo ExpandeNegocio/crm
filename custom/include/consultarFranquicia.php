@@ -519,6 +519,20 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
             break;
 
+        case 'isConpetidorCentral':
+
+            $query = "select f.* from expan_franquicia f, expan_empresa_competidores_c c where tipo_cuenta in (1,2) and f.empresa_id=c.empresa_id and competidor_principal=1 and f.id='$id'";
+
+            $result = $db -> query($query, true);
+            $sal="ko";
+            while ($row = $db -> fetchByAssoc($result)) {
+                $sal="ok";
+            }
+
+            echo $sal;
+
+            break;
+
         default:
 
             break;

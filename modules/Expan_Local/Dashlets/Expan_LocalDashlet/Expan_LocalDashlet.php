@@ -47,9 +47,10 @@ require_once('include/Dashlets/DashletGeneric.php');
 require_once('modules/Expan_Local/Expan_Local.php');
 
 class Expan_LocalDashlet extends DashletGeneric {
-    function Expan_LocalDashlet($id, $def = null) {
+    function __construct($id, $def = null) {
 		global $current_user, $app_strings;
-		require('modules/Expan_Local/metadata/dashletviewdefs.php');
+      require('modules/Expan_Local/Dashlets/Expan_LocalDashlet/Expan_LocalDashlet.data.php');
+
 
         parent::DashletGeneric($id, $def);
 
