@@ -25,4 +25,4 @@
 
   $GLOBALS['log'] -> info('[ExpandeNegocio][Descarga Documentos]Link Documento -'.$data);
 
-  echo $_GET['callback'] . '(' . "{'resp' : '".$id."'}" . ')';
+  echo $_GET['callback'] . '(' . "{'resp' : '$id'}" . ')';

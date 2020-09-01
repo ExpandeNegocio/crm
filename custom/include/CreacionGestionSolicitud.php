@@ -468,7 +468,9 @@ class AccionesGuardadoGestionSol {
                     $envioAutoCorreos= new EnvioAutoCorreos();
                     
                     $addresses['0']['email_address']="administracion@expandenegocio.com";
-                    $addresses['1']['email_address']=$franquicia->correo_general;
+                    if ($franquicia->chk_no_avisar_precontrato_central==true){
+                      $addresses['1']['email_address']=$franquicia->correo_general;
+                    }
                     $rcp_name="Administracion ExpandeNegocio";
                     $salida=$envioAutoCorreos->rellenacorreoFicha("FPC","cons",$rcp_name,$addresses,$solicitud,$franquiciaid,$bean,null);
                     

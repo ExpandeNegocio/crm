@@ -424,5 +424,5 @@
     'LBL_PROCESO' => '>En proceso de apertura (Precontrato)',
     'LBL_EDITVIEW_ESTADO_RED'=> 'Estado red',
     'LBL_OBSERVACIONES_INVERSION'=>'Observaciones inversión',
-
+    'LBL_NO_AVISAR_PRECONTRATO_CENTRAL'=>'No avisar precontrato a central',
   );

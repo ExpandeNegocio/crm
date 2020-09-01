@@ -690,6 +690,17 @@
                   7 =>
                     array(
                       0 => array(
+                        'name' => 'chk_no_avisar_precontrato_central',
+                        'label' => 'LBL_NO_AVISAR_PRECONTRATO_CENTRAL',
+                      ),
+                      1 => array(
+
+                      ),
+                    ),
+
+                  8 =>
+                    array(
+                      0 => array(
                         'name' => 'cod_franquicia',
                         'label' => 'LBL_COD_FRANQUICIA',
                       ),
@@ -698,7 +709,8 @@
                         'label' => 'LBL_PROY_ERM',
                       ),
                     ),
-                  8 =>
+
+                  9 =>
                     array(
                       0 => array(
                         'name' => 'correo_drive',
@@ -707,7 +719,7 @@
                       1 => array(),
                     ),
 
-                  9 =>
+                  10 =>
                     array(
                       0 => array(
                         'name' => 'carpeta_drive',

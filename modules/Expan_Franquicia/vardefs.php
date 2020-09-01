@@ -2623,6 +2623,28 @@ $dictionary['Expan_Franquicia'] = array(
         'size' => '20',
       ),
 
+      'chk_no_avisar_precontrato_central' =>
+      array(
+        'required' => false,
+        'name' => 'chk_no_avisar_precontrato_central',
+        'vname' => 'LBL_NO_AVISAR_PRECONTRATO_CENTRAL',
+        'type' => 'bool',
+        'massupdate' => 1,
+        'default' => '0',
+        'no_default' => false,
+        'comments' => '',
+        'help' => '',
+        'importable' => 'true',
+        'duplicate_merge' => 'disabled',
+        'duplicate_merge_dom_value' => '0',
+        'audited' => true,
+        'reportable' => true,
+        'unified_search' => false,
+        'merge_filter' => 'disabled',
+        'len' => '1',
+        'size' => '20',
+      ),
+
     'informe_urgente' =>
       array(
         'required' => false,
@@ -5573,7 +5595,6 @@ $dictionary['Expan_Franquicia'] = array(
         'rows' => '3',
         'cols' => '60',
       ),
-
   ),
   'relationships' => array(),
   'optimistic_locking' => true,
