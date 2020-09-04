@@ -521,7 +521,17 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
         case 'isConpetidorCentral':
 
-            $query = "select f.* from expan_franquicia f, expan_empresa_competidores_c c where tipo_cuenta in (1,2) and f.empresa_id=c.empresa_id and competidor_principal=1 and f.id='$id'";
+
+            $query = "SELECT f.* ";
+            $query=$query."FROM   expan_franquicia f, expan_empresa e ";
+            $query=$query."WHERE  e.id IN (SELECT c.empresa_id ";
+            $query=$query."                FROM   expan_empresa_competidores_c c ";
+            $query=$query."                WHERE  competidor_id IN (SELECT e.id ";
+            $query=$query."                                         FROM   expan_franquicia f, expan_empresa e ";
+            $query=$query."                                         WHERE  e.id = f.empresa_id AND f.id = '$id') AND ";
+            $query=$query."       competidor_principal = 1) AND e.id = f.empresa_id AND tipo_cuenta IN (1, 2); ";
+
+            $GLOBALS['log'] -> info('[ExpandeNegocio][ConsultaFranquicia]Consulta isConpetidorCentral-'.$query);
 
             $result = $db -> query($query, true);
             $sal="ko";
