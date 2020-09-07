@@ -328,12 +328,14 @@ class AccionesGuardado
       $bean->save();
 
       if ($bean->rating != 5 && $franq->chk_c1 == 1) {//no es topo, miramos si esta el check de la franquicia para pasar automaticamente a estado 2
-        if (str_replace('^','',$bean->tipo_origen)==Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO &&
-             $bean->subor_expande==Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDE_BB_ANT) {//se puede pasar a estado 2
+        if ((str_replace('^','',$bean->tipo_origen)==Expan_GestionSolicitudes::TIPO_ORIGEN_EXPANDENEGOCIO &&
+             $bean->subor_expande==Expan_GestionSolicitudes::TIPO_SUBORIGEN_EXPANDE_BB_ANT) ||
+            str_replace('^','',$bean->tipo_origen)==Expan_GestionSolicitudes::TIPO_ORIGEN_LEADS_CUALIFICADOS
+            ) {
           $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_PRECANDIDATO;
           $gestion->subestado_precandidato= 1;
         }else{
-          $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;
+          $gestion->estado_sol = Expan_GestionSolicitudes::ESTADO_EN_CURSO;  //se puede pasar a estado 2
         }
         $gestion->ignore_update_c = false;
         $gestion->save();

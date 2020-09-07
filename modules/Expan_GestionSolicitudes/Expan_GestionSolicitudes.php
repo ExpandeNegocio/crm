@@ -59,6 +59,7 @@
     const TIPO_ORIGEN_EVENTOS = '3';
     const TIPO_ORIGEN_PORTALES = '2';
     const TIPO_ORIGEN_MAILING = '6';
+    const TIPO_ORIGEN_LEADS_CUALIFICADOS = '7';
     const TIPO_ORIGEN_MEDIOS_COMUN = '5';
 
     const TIPO_SUBORIGEN_CENTRAL_BB_ANT = '8';
