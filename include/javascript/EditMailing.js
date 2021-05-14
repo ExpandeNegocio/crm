@@ -4,7 +4,7 @@ function generarMailing(pidMailing,ptemplate,pporFranquicia) {
 	
 	if (confirm("¿Esta seguro de que desea lanzar el mailing?")) {
 		
-		//var url='http://expandenegocio.com:8111/sugarcrm/index.php?entryPoint=lanzarMailing&idMailing='+pidMailing +'&template='+ptemplate+'&porFranquicia='+pporFranquicia;
+		//var url='http://crm.expandenegocio.com:8111/sugarcrm/index.php?entryPoint=lanzarMailing&idMailing='+pidMailing +'&template='+ptemplate+'&porFranquicia='+pporFranquicia;
 		 var url='index.php?entryPoint=lanzarMailing&idMailing='+pidMailing +'&template='+ptemplate+'&porFranquicia='+pporFranquicia;
 		
 		var config = { };

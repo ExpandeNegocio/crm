@@ -9,7 +9,7 @@
 
   $db = DBManagerFactory::getInstance();
 
-  // https://www.expandenegocio.com/sugarcrm/upload/edbb0f99-9802-9314-478a-5a6998f3287f  -> id de la ultima revision
+  // https://crm.expandenegocio.com/sugarcrm/upload/edbb0f99-9802-9314-478a-5a6998f3287f  -> id de la ultima revision
   // documento
 
   $query ="select * from document_revisions where document_id='$idDoc' and deleted=0 order by cast(revision as SIGNED) desc";

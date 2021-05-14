@@ -1,6 +1,6 @@
 <?php
 /***CONFIGURATOR***/
-$sugar_config['http_referer']['list']['0'] = 'expandenegocio.com';
+$sugar_config['http_referer']['list']['0'] = 'crm.expandenegocio.com';
 $sugar_config['http_referer']['actions']['0'] = 'Login';
 $sugar_config['http_referer']['actions']['1'] = 'Authenticate';
 $sugar_config['http_referer']['actions']['2'] = 'SetTimezone';
@@ -30,7 +30,7 @@ $sugar_config['SAML_loginurl'] = '';
 $sugar_config['SAML_X509Cert'] = '';
 $sugar_config['authenticationClass'] = '';
 $sugar_config['default_export_charset'] = 'ISO-8859-1';
-$sugar_config['WFM_site_url'] = 'expandenegocio.com/sugarcrm';
+$sugar_config['WFM_site_url'] = 'crm.expandenegocio.com/sugarcrm';
 $sugar_config['DHA_templates_default_lang'] = 'es';
 $sugar_config['DHA_templates_dir'] = 'document_templates/';
 $sugar_config['DHA_OpenOffice_exe'] = '';

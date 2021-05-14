@@ -668,7 +668,7 @@ class AccionesGuardadoGestionSol {
                      $addresses=array("ruben@expandenegocio.com"=>"ruben@expandenegocio.com");
                      $subject="Nuevo precontrato para firmar";
                      $body="Hay un nuevo precontrato por firmar <br><br>";
-                     $body=$body."<a href='www.expandenegocio.com/index.php?module=Expan_GestionSolicitudes&action=DetailView&record=".$bean->id."'>Enlace a la gestion</a>";
+                     $body=$body."<a href='crm.expandenegocio.com/index.php?module=Expan_GestionSolicitudes&action=DetailView&record=".$bean->id."'>Enlace a la gestion</a>";
                      $fromName="Info Expandenegocio";
                      $cuentaCor="info@expandenegocio.com";
                      $idTemp='null';                     

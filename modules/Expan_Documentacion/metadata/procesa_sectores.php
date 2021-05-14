@@ -8,7 +8,7 @@
 
    require_once "SugarSoap.php";
    echo 'LLega0<br/>';   
-	$soap=new SugarSoap('http://www.expandenegocio.com/sugarcrm_des/soap.php?wsdl'); // we automatically log in
+	$soap=new SugarSoap('http://crm.expandenegocio.com/sugarcrm_des/soap.php?wsdl'); // we automatically log in
 
 	echo 'LLega1<br/>';   
 

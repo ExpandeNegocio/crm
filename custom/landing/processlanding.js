@@ -5,7 +5,7 @@ var DESCARGA_FICHERO = "DF";
 var OPEN_LANDING = "OL";
 
 function registerAction(idGest,accion,doc,idTemplate,idMailing){
-    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=mailingGest&idGest='+ idGest +
+    url = 'https://crm.expandenegocio.com/sugarcrm/index.php?entryPoint=mailingGest&idGest='+ idGest +
         '&accion=' + accion + '&doc='+ doc +   "&idTemplate=" + idTemplate + "&idMailing" + idMailing ;
     $.ajax({
         type : "GET",
@@ -47,7 +47,7 @@ function acceptPrivPoliticsURL(url,idGest){
 
 function downloadfile(idDoc,idGest,idTemplate,idMailing){
 
-    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=downloadDoc&idDoc='+ idDoc + '&' +
+    url = 'https://crm.expandenegocio.com/sugarcrm/index.php?entryPoint=downloadDoc&idDoc='+ idDoc + '&' +
     'idGest=' + idGest
     $.ajax({
         type : "GET",
@@ -61,7 +61,7 @@ function downloadfile(idDoc,idGest,idTemplate,idMailing){
 
             if ( data.resp != "") {
                 registerAction(idGest,DESCARGA_FICHERO,data.resp,idTemplate,idMailing);
-                window.location = "https://www.expandenegocio.com/sugarcrm/upload/"+data.resp;
+                window.location = "https://crm.expandenegocio.com/sugarcrm/upload/"+data.resp;
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -72,7 +72,7 @@ function downloadfile(idDoc,idGest,idTemplate,idMailing){
 
 function activate(idGest,idTemplate,idMailing){
 
-    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=activateGest&idGest='+ idGest;
+    url = 'https://crm.expandenegocio.com/sugarcrm/index.php?entryPoint=activateGest&idGest='+ idGest;
     $.ajax({
         type : "GET",
         url : url,
@@ -106,7 +106,7 @@ function unsubscribe(gestId){
     }
 
     if (sel){
-        url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&tipo=gestionid&gestId='+ gestId;
+        url = 'https://crm.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&tipo=gestionid&gestId='+ gestId;
         $.ajax({
             type : "GET",
             url : url,
@@ -133,7 +133,7 @@ function unsubscribeEmail(){
 
     var correo=$("#email").val();
 
-    url = 'https://www.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&tipo=email&email='+ correo;
+    url = 'https://crm.expandenegocio.com/sugarcrm/index.php?entryPoint=unsubscribeEmail&tipo=email&email='+ correo;
     $.ajax({
         type : "GET",
         url : url,

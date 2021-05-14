@@ -3,7 +3,7 @@
 $sugar_config = array (
   'SAML_X509Cert' => '',
   'SAML_loginurl' => '',
-  'WFM_site_url' => 'expandenegocio.com/sugarcrm',
+  'WFM_site_url' => 'crm.expandenegocio.com/sugarcrm',
   'admin_access_control' => false,
   'admin_export_only' => false,
   'authenticationClass' => '',
@@ -232,7 +232,7 @@ $sugar_config = array (
   array (
     'list' => 
     array (
-      0 => 'expandenegocio.com',
+      0 => 'crm.expandenegocio.com',
     ),
     'actions' => 
     array (

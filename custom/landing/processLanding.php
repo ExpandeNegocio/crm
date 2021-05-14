@@ -7,7 +7,7 @@
 
   // Recojo la plantilla
 
-  $html_file='https://expandenegocio.com/sugarcrm/custom/landing/'.$template;
+  $html_file='https://crm.expandenegocio.com/sugarcrm/custom/landing/'.$template;
 
   $html=file_get_contents($html_file, true);
 
