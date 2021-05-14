@@ -2342,7 +2342,7 @@ SE.composeLayout = {
 			type : "POST",
 			url : url,
 			data : "tipo=getSing&accountId=" + cuenta,
-			success : function(data) {											
+			success : function(data) {
 				$("#signatures"+idx).val(data);	
 				SUGAR.email2.composeLayout.setSignature('1');	
 			},

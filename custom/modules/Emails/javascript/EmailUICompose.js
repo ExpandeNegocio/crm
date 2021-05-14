@@ -1367,6 +1367,7 @@ SE.composeLayout = {
 		var global_rpcClient =  new SugarRPCClient();
 
 		result = global_rpcClient.call_method('retrieve', post_data, true);
+
 		if(!result['record']) return;
 		json_objects['email_template_object'] = result['record'];
 		this.appendEmailTemplateJSON();
